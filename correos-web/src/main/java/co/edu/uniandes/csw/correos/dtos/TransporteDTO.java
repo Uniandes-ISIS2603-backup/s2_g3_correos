@@ -24,7 +24,31 @@ SOFTWARE.
 package co.edu.uniandes.csw.correos.dtos;
 
 /**
+ * TransporteDTO Objeto de transferencia de datos de Transportes. Los DTO contienen las
+ * represnetaciones de los JSON que se transfieren entre el cliente y el
+ * servidor.
+ * 
+ * Al serializarse como JSON esta clase implementa el siguiente modelo: <br>
+ * <pre>
+ *   {
+ *      "id": number,
+ *      "tipo: string,
+ *      "capacidad": string,
+ *      "activo": boolean
+ *   }
+ * </pre>
+ * Por ejemplo un transporte se representa asi:<br>
+ * 
+ * <pre>
+ * 
+ *   {
+ *      "id": 1234,
+ *      "tipo: "Moto",
+ *      "capacidad": "4 kg",
+ *      "activo": "false"
+ *   }
  *
+ * </pre>
  * @author l.mejia
  */
 public class TransporteDTO {
@@ -37,35 +61,59 @@ public class TransporteDTO {
     public TransporteDTO(){}
     
     //public TransporteDTO(TransporteEntity transporte){} este se realizara cuando se implemente la capa de persistencia
-
+    
+    /**
+     * @return el ID del transporte
+     */
     public Long getId() {
         return id;
     }
-
+    
+    /**
+     * @param id el nuevo id del transporte
+     */
     public void setId(Long id) {
         this.id = id;
     }
-
+    
+    /**
+     * @return el tipo de transporte
+     */
     public String getTipo() {
         return tipo;
     }
-
+    
+    /**
+     * @param tipo el nuevo tipo del transporte
+     */
     public void setTipo(String tipo) {
         this.tipo = tipo;
     }
-
+    
+    /**
+     * @return la capacidad del transporte
+     */
     public String getCapacidad() {
         return capacidad;
     }
-
+    
+    /**
+     * @param capacidad la nueva capacidad del transporte
+     */
     public void setCapacidad(String capacidad) {
         this.capacidad = capacidad;
     }
-
+    
+    /**
+     * @return True si el transporte esta activo, False si no lo esta.
+     */
     public boolean isActivo() {
         return activo;
     }
-
+    
+    /**
+     * @param activo el nuevo estado del transporte
+     */
     public void setActivo(boolean activo) {
         this.activo = activo;
     }

@@ -24,14 +24,40 @@ SOFTWARE.
 package co.edu.uniandes.csw.correos.dtos;
 
 /**
+ * ResrvaDTO Objeto de transferencia de datos de Reservas. Los DTO contienen las
+ * represnetaciones de los JSON que se transfieren entre el cliente y el
+ * servidor.
+ * 
+ * Al serializarse como JSON esta clase implementa el siguiente modelo: <br>
+ * <pre>
+ *   {
+ *      "id": number,
+ *      "fecha: string,
+ *      "hora": string
+ *   }
+ * </pre>
+ * Por ejemplo una reserva se representa asi:<br>
+ * 
+ * <pre>
+ * 
+ *   {
+ *      "id": 1234,
+ *      "fecha: "27/02/2018",
+ *      "hora": "9:45 PM"
+ *   }
  *
+ * </pre>
  * @author l.mejia
  */
 public class ReservaDTO {
     
+    Long id;
     private String fecha;
     private String hora;
     
+    /**
+     * constructor por defecto
+     */
     public ReservaDTO()
     {
         //Constructor vacio para construir el objeto del JSon
@@ -39,18 +65,44 @@ public class ReservaDTO {
     
     //public ReservaDTO(ReservaEntity reserva){} este se realizara cuando se implemente la capa de persistencia
     
+    /**
+     * @return el ID de la reserva
+     */
+    public Long getId() {
+        return id;
+    }
+
+    /**
+     * @param id el nuevo id de la reserva
+     */
+    public void setId(Long id) {    
+        this.id = id;
+    }
+    
+    /**
+     * @return la fecha de la reserva
+     */
     public String getFecha() {
         return fecha;
     }
-
+    
+    /**
+     * @param fecha la nueva fecha de la reserva
+     */
     public void setFecha(String fecha) {
         this.fecha = fecha;
     }
-
+    
+    /**
+     * @return la hora de la reserva
+     */
     public String getHora() {
         return hora;
     }
-
+    
+    /**
+     * @param hora la nueva hora de la reserva
+     */
     public void setHora(String hora) {
         this.hora = hora;
     }

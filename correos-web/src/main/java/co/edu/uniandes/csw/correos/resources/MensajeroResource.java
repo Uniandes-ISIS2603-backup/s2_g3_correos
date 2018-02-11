@@ -25,6 +25,7 @@ package co.edu.uniandes.csw.correos.resources;
 
 import co.edu.uniandes.csw.correos.dtos.MensajeroDTO;
 import co.edu.uniandes.csw.correos.dtos.MensajeroDetailDTO;
+import co.edu.uniandes.csw.correos.exceptions.BusinessLogicException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.enterprise.context.RequestScoped;
@@ -38,8 +39,20 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 
 /**
+ * <pre>Clase que implementa el recurso "mensajeros".
+ * URL: /api/mensajeros
+ * </pre>
+ * <i>Note que la aplicación (definida en {@link RestConfig}) define la ruta "/api" y
+ * este recurso tiene la ruta "mensajeros".</i>
  *
- * @author l.mejia
+ * <h2>Anotaciones </h2>
+ * <pre>
+ * Path: indica la dirección después de "api" para acceder al recurso
+ * Produces/Consumes: indica que los servicios definidos en este recurso reciben y devuelven objetos en formato JSON
+ * RequestScoped: Inicia una transacción desde el llamado de cada método (servicio). 
+ * </pre>
+ * @author l.mejia  
+ * @version 1.0
  */
 
 @Path("mensajeros")
@@ -48,19 +61,74 @@ import javax.ws.rs.Produces;
 @RequestScoped
 public class MensajeroResource {
     
+    /**
+     * <h1>POST /api/mensajeros : Crear un mensajero.</h1>
+     * 
+     * <pre>Cuerpo de petición: JSON {@link MensajeroDetailDTO}.
+     * 
+     * Crea un nuevo mensajero con la informacion que se recibe en el cuerpo 
+     * de la petición y se regresa un objeto identico con un id auto-generado 
+     * por la base de datos.
+     * 
+     * Codigos de respuesta:
+     * <code style="color: mediumseagreen; background-color: #eaffe0;">
+     * 200 OK Creó el nuevo Mensajero .
+     * </code>
+     * <code style="color: #c7254e; background-color: #f9f2f4;">
+     * 412 Precodition Failed: Ya existe el mensajero.
+     * </code>
+     * </pre>
+     * @param mensajero {@link MensajeroDetailDTO} - El mensajero que se desea guardar.
+     * @return JSON {@link MensajeroDetailDTO}  - El mensajero guardado con el atributo id autogenerado.
+     * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} - Error de lógica que se genera cuando ya existe el Mensajero.
+     */
     @POST
-    public MensajeroDetailDTO createMensajero(MensajeroDetailDTO nuevo)
+    public MensajeroDetailDTO createMensajero(MensajeroDetailDTO mensajero) throws BusinessLogicException
     {
-        return nuevo;
+        return mensajero;
     }
     
+    /**
+     * <h1>PUT /api/cities/{id} : Actualizar mensajero con el id dado.</h1>
+     * <pre>Cuerpo de petición: JSON {@link MensajeroDetailDTO}.
+     * 
+     * Actualiza el mensajero con el id recibido en la URL con la informacion que se recibe en el cuerpo de la petición.
+     * 
+     * Codigos de respuesta:
+     * <code style="color: mediumseagreen; background-color: #eaffe0;">
+     * 200 OK Actualiza el mensajero con el id dado con la información enviada como parámetro. Retorna un objeto identico.</code> 
+     * <code style="color: #c7254e; background-color: #f9f2f4;">
+     * 404 Not Found. No existe un mensajero con el id dado.
+     * </code> 
+     * </pre>
+     * @param id Identificador del mensajero que se desea actualizar.Este debe ser una cadena de dígitos.
+     * @param mensajero {@link MensajeroDetailDTO} El Mensajero que se desea guardar.
+     * @return JSON {@link MensajeroDetailDTO} - El mensajero guardado.
+     * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} - Error de lógica que se genera al no poder actualizar el mensajero porque ya existe uno con ese correo o numero telefónico.
+     */
     @PUT
     @Path("{id: \\d+}")
-    public MensajeroDetailDTO updateMensajero(@PathParam("id") Long id , MensajeroDetailDTO actualizar)
+    public MensajeroDetailDTO updateMensajero(@PathParam("id") Long id , MensajeroDetailDTO mensajero) throws BusinessLogicException
     {
-        return actualizar;
+        return mensajero;
     }
     
+    /**
+     * <h1>GET /api/mensajeros/{id} : Obtener mensajero por id.</h1>
+     * 
+     * <pre>Busca el mensajero con el id asociado recibido en la URL y lo devuelve.
+     * 
+     * Codigos de respuesta:
+     * <code style="color: mediumseagreen; background-color: #eaffe0;">
+     * 200 OK Devuelve el mensajero correspondiente al id.
+     * </code> 
+     * <code style="color: #c7254e; background-color: #f9f2f4;">
+     * 404 Not Found No existe un mensajero con el id dado.
+     * </code> 
+     * </pre>
+     * @param id Identificador del mensajero que se esta buscando. Este debe ser una cadena de dígitos.
+     * @return JSON {@link MensajeroDetailDTO} - el mensajero buscado
+     */
     @GET
     @Path("{id: \\d+}")
     public MensajeroDetailDTO getMensajero(@PathParam("id") Long id)
@@ -68,12 +136,37 @@ public class MensajeroResource {
         return null;
     }
     
+    /**
+     * <h1>GET /api/mensajeros : Obtener todos los mensajeros.</h1>
+     * 
+     * <pre>Busca y devuelve todos los mensajeros que existen en la aplicacion.
+     * 
+     * Codigos de respuesta:
+     * <code style="color: mediumseagreen; background-color: #eaffe0;">
+     * 200 OK Devuelve todos los mensajeros de la aplicacion.</code> 
+     * </pre>
+     * @return JSONArray {@link MensajeroDTO} - Los mensajeros encontrados en la aplicación. Si no hay ninguno retorna una lista vacía.
+     */
     @GET
     public List<MensajeroDTO> getMensajeros()
     {
         return new ArrayList<>();
     }
     
+    /**
+     * <h1>DELETE /api/mensajeros/{id} : Borrar mensajero por id.</h1>
+     * 
+     * <pre>Borra el mensajero con el id asociado recibido en la URL.
+     * 
+     * Códigos de respuesta:<br>
+     * <code style="color: mediumseagreen; background-color: #eaffe0;">
+     * 200 OK Elimina el mensajero correspondiente al id dado.</code>
+     * <code style="color: #c7254e; background-color: #f9f2f4;">
+     * 404 Not Found. No existe un mensajero con el id dado.
+     * </code>
+     * </pre>
+     * @param id Identificador del mensajero que se desea borrar. Este debe ser una cadena de dígitos.
+     */
     @DELETE
     @Path("{id: \\d+}")
     public void deleteMensajero(@PathParam("id") Long id)

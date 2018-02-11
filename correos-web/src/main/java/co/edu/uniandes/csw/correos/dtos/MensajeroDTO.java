@@ -25,7 +25,33 @@ SOFTWARE.
 package co.edu.uniandes.csw.correos.dtos;
 
 /**
+ * MensajeroDTO Objeto de transferencia de datos de Mensajeros. Los DTO contienen las
+ * represnetaciones de los JSON que se transfieren entre el cliente y el
+ * servidor.
+ * 
+ * Al serializarse como JSON esta clase implementa el siguiente modelo: <br>
+ * <pre>
+ *   {
+ *      "id": number,
+ *      "nombre: string,
+ *      "celular": string,
+ *      "correo": string,
+ *      "calificacionPromedio": number
+ *   }
+ * </pre>
+ * Por ejemplo un mensajero se representa asi:<br>
+ * 
+ * <pre>
+ * 
+ *   {
+ *      "id": 1234,
+ *      "nombre: "Juan",
+ *      "celular": "3182223652",
+ *      "correo": "juanElMensajero@correo.com",
+ *      "calificacionPromedio": 4.9
+ *   }
  *
+ * </pre>
  * @author l.mejia
  */
 public class MensajeroDTO {
@@ -36,49 +62,82 @@ public class MensajeroDTO {
     private String correo;
     private Double calificacionPromedio;
     
+    /**
+     * Constructor por defecto
+     */
     public MensajeroDTO ()
     {
         //Este metodo esta vacio para permitir la construccion del JSON
     }
     
     //public MensajeroDTO(MensajeroEntity entity){} este constructor sera realizado una vez se realice la capa de persistencia  
-
+    
+    /**
+     * @return el ID del mensajero
+     */
     public Long getId() {
         return id;
     }
-
+    
+    /**
+     * @param id el nuevo id del mensajero
+     */
     public void setId(Long id) {
         this.id = id;
     }
 
+    /**
+     * @return el nombre del mensajero
+     */
     public String getNombre() {
         return nombre;
     }
-
+    
+    /**
+     * @param nombre el nuevo nombre del mensajero
+     */
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-
+    
+    /**
+     * @return el celular del mensajero
+     */
     public String getCelular() {
         return celular;
     }
-
+    
+    /**
+     * @param celular el nuevo celular del mensajero
+     */
     public void setCelular(String celular) {
         this.celular = celular;
     }
-
+    
+    /**
+     * @return el correo del mensajero
+     */
     public String getCorreo() {
         return correo;
     }
-
+    
+    /**
+     * @param correo el nuevo correo del mensajero
+     */
     public void setCorreo(String correo) {
         this.correo = correo;
     }
-
+    
+    /**
+     * @return la calificación promedio del mensajero del mensajero
+     */
     public Double getCalificacionPromedio() {
         return calificacionPromedio;
     }
-
+    
+    /**
+     * @param calificacionPromedio la nueva calificación promedio del mensajero
+     */
     public void setCalificacionPromedio(Double calificacionPromedio) {
         this.calificacionPromedio = calificacionPromedio;
     }
