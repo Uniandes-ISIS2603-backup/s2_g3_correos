@@ -10,6 +10,7 @@ package co.edu.uniandes.csw.correos.dtos;
  * @author a.silvag
  */
 public class CuentaBancariaDTO {
+private long id;
 private String numero;
 private String banco;
 private String tipoTarjeta;
@@ -17,6 +18,23 @@ private String tipoTarjeta;
 public CuentaBancariaDTO(){
         //Este metodo esta vacio para permitir la construccion del JSON
     }
+
+/**
+ * @return el id de la cuenta bancaria
+ */
+
+public long getId()
+{
+        return id;
+}
+
+/**
+     * @param id el nuevo id de la cuenta bancaria
+     */
+public void setId(long id){
+        this.id = id;
+} 
+
 /**
  * @return el numero de la cuenta bancaria
  */

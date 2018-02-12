@@ -11,12 +11,30 @@ package co.edu.uniandes.csw.correos.dtos;
  */
 public class PagoDTO {
     
+    private long id;
     private double valor;
     private String fecha;
     
 public PagoDTO(){
         //Este metodo esta vacio para permitir la construccion del JSON
     }
+
+/**
+ * @return el id del pago
+ */
+
+public long getId()
+{
+        return id;
+}
+
+/**
+     * @param id el nuevo id dl pago
+     */
+public void setId(long id){
+        this.id = id;
+} 
+
 /**
  * @return el valor del pago
  */
