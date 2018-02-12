@@ -9,6 +9,6 @@ package co.edu.uniandes.csw.correos.dtos;
  *
  * @author a.silvag
  */
-public class PagoDetailDTO {
+public class PagoDetailDTO extends PagoDTO {
     
 }
