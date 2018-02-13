@@ -65,14 +65,14 @@ import javax.ws.rs.Produces;
 public class TarjetaCreditoResource {
 
      @POST
-     public TarjetaCreditoDetailDTO createCliente(TarjetaCreditoDetailDTO nuevo)
+     public TarjetaCreditoDetailDTO createCliente(TarjetaCreditoDetailDTO nuevo) throws BusinessLogicException
      {
          return nuevo;
      }
      
      @PUT
      @Path("{id: \\d+ }")
-     public TarjetaCreditoDetailDTO updateCliente(@PathParam("id") Long id , TarjetaCreditoDetailDTO actualizar)
+     public TarjetaCreditoDetailDTO updateCliente(@PathParam("id") Long id , TarjetaCreditoDetailDTO actualizar) throws BusinessLogicException
      {
          return actualizar;
      }

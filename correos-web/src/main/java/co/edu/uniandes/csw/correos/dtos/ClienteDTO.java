@@ -96,7 +96,7 @@ public class ClienteDTO
     }
 
     /**
-     * @param name El nuevo nombre del cliente 
+     * @param nombre El nuevo nombre del cliente 
      */
     public void setNombre(String nombre) {
         this.nombre = nombre;
