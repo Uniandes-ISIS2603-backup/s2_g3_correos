@@ -23,7 +23,30 @@
  */
  
  package co.edu.uniandes.csw.correos.dtos;
- 
+ /**
+  * EnvioDTO Objeto de transferencia de datos de Envios. Los DTO contienen las
+  * representaciones de los JSON que se transfieren entre el cliente y el
+  * servidor.
+  * 
+  * Al serializarse como JSON esta clase implementa el siguiente modelo: <br>
+  * <pre>
+  *   {
+  *      "id": number,
+  *      "horaInicio": number,
+  *      "horaFinal": number,
+  *      "direccionEntrega": String,
+  *      "direccionRecogida": String,
+  *      "estado": String,             
+  *   }
+  *
+  *   {
+  *      "id": 2,
+  *      "horaInicio": 0000,
+  *      "horaFinal": 0030,
+  *      "direccionEntrega": calle 1 # 2-4,
+  *      "direccionRecogida": calle 1 # 3-4,
+  *      "estado": INICIAL,
+  *   }
  /**
   *
   * @author df.rengifo

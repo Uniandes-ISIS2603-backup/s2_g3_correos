@@ -23,8 +23,30 @@
  */
  
  package co.edu.uniandes.csw.correos.dtos;
- 
  /**
+  * PaqueteDTO Objeto de transferencia de datos de Paquetes. Los DTO contienen las
+  * represnetaciones de los JSON que se transfieren entre el cliente y el
+  * servidor.
+  * 
+  * Al serializarse como JSON esta clase implementa el siguiente modelo: <br>
+  * <pre>
+  *   {
+  *      "id": number,
+  *      "tipo": string,
+  *      "peso": number,
+  *      "dimensionA": number,
+  *      "dimensionB": number,
+  *      "dimensionC": number,             
+  *   }
+  *
+  *   {
+  *      "id": 1,
+  *      "tipo": FRAGIL,
+  *      "peso": 10,
+  *      "dimensionA": 1,
+  *      "dimensionB": 2,
+  *      "dimensionC": 3,
+  *   }
   *
   * @author df.rengifo
   */
