@@ -28,7 +28,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
+ * Clase que extiende de {@link MensajeroDTO} para manejar la transformacion entre
+ * los objetos JSON y las Entidades de la base de datos. Para conocer el
+ * contenido del mensajero vaya a la documentacion de {@link MensajeroDTO}
  * @author l.mejia
  */
 public class MensajeroDetailDTO extends MensajeroDTO
@@ -40,47 +42,80 @@ public class MensajeroDetailDTO extends MensajeroDTO
     private List<ComentarioDTO> comentarios=new ArrayList<>();
     private List<ZonaDTO> zonas= new ArrayList<>();
     
+    /**
+     * Constructor por defecto
+     */
     public MensajeroDetailDTO()
     {
         super();
     }
-
+    
+    /**
+     * @return La lista de los trasnportes asociados al mensajero
+     */
     public List<TransporteDTO> getTransportes() {
         return transportes;
     }
-
+    
+    /**
+     * @param transportes los nuevos transportes asociados del mensajero
+     */
     public void setTransportes(List<TransporteDTO> transportes) {
         this.transportes = transportes;
     }
 
+    /**
+     * @return La cuenta bancaria del mensajero
+     */
     public CuentaBancariaDTO getCuentaBancaria() {
         return cuentaBancaria;
     }
-
+    
+    /**
+     * @param cuentaBancaria la nueva cuenta bancaria del mensajero
+     */
     public void setCuentaBancaria(CuentaBancariaDTO cuentaBancaria) {
         this.cuentaBancaria = cuentaBancaria;
     }
-
+    
+    /**
+     * @return La lista de los envios realizados/por realizar del mensajero
+     */
     public List<EnvioDTO> getEnvios() {
         return envios;
     }
-
+    
+    /**
+     * @param envios los nuevos envios del mensajero
+     */
     public void setEnvios(List<EnvioDTO> envios) {
         this.envios = envios;
     }
-
+    
+    /**
+     * @return La lista de los comentarios que los usuarios le dan al mensajero
+     */
     public List<ComentarioDTO> getComentarios() {
         return comentarios;
     }
-
+    
+    /**
+     * @param comentarios los nuevos comentarios asociados del mensajero
+     */
     public void setComentarios(List<ComentarioDTO> comentarios) {
         this.comentarios = comentarios;
     }
-
+    
+    /**
+     * @return La lista de las zonas a las que realiza envios el mensajero
+     */
     public List<ZonaDTO> getZonas() {
         return zonas;
     }
-
+    
+    /**
+     * @param zonas las nuevas zonas asociados del mensajero
+     */
     public void setZonas(List<ZonaDTO> zonas) {
         this.zonas = zonas;
     }

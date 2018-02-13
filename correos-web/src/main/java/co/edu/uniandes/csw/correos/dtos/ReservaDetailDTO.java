@@ -24,22 +24,33 @@ SOFTWARE.
 package co.edu.uniandes.csw.correos.dtos;
 
 /**
- *
+ * Clase que extiende de {@link ReservaDTO} para manejar la transformacion entre
+ * los objetos JSON y las Entidades de la base de datos. Para conocer el
+ * contenido del ReservaDTO vaya a la documentacion de {@link ReservaDTO}
  * @author l.mejia
  */
 public class ReservaDetailDTO extends ReservaDTO{
     
     private EnvioDTO envio;
     
+    /**
+     * constructor por defecto
+     */
     public ReservaDetailDTO()
     {
         super();
     }
-
+    
+    /**
+     * @return El envio al que corresponde la reserva
+     */
     public EnvioDTO getEnvio() {
         return envio;
     }
-
+    
+    /**
+     * @param envio El nuevo envio reservado
+     */
     public void setEnvio(EnvioDTO envio) {
         this.envio = envio;
     }
