@@ -65,14 +65,14 @@ import javax.ws.rs.Produces;
 public class ClienteResource {
 
      @POST
-     public ClienteDetailDTO createCliente(ClienteDetailDTO nuevo)
+     public ClienteDetailDTO createCliente(ClienteDetailDTO nuevo) throws BusinessLogicException
      {
          return nuevo;
      }
      
      @PUT
      @Path("{id: \\d+ }")
-     public ClienteDetailDTO updateCliente(@PathParam("id") Long id , ClienteDetailDTO actualizar)
+     public ClienteDetailDTO updateCliente(@PathParam("id") Long id , ClienteDetailDTO actualizar) throws BusinessLogicException
      {
          return actualizar;
      }
