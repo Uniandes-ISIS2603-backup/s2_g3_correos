@@ -61,7 +61,7 @@ public class TarjetaCreditoDTO
     private long id;
     private int numero;
     private String fecha;
-    private int securityCode;
+    private short securityCode;
 
     /**
      * Constructor por defecto
@@ -129,7 +129,7 @@ public class TarjetaCreditoDTO
     /**
      * @param securityCode el nuevo security code de la tarjeta 
      */
-    public void setSecurityCode(int securityCode) {
+    public void setSecurityCode(short securityCode) {
         this.securityCode = securityCode;
     }
 

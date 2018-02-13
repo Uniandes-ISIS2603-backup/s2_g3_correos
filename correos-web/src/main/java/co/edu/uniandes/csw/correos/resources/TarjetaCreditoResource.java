@@ -58,7 +58,7 @@ import javax.ws.rs.Produces;
  * @author da.leon  
  * @version 1.0
  */
-@Path("tarjetaCredito")
+@Path("tarjetasCredito")
 @Produces("application/json")
 @Consumes("application/json")
 @RequestScoped
