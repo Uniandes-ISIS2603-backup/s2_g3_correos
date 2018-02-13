@@ -40,7 +40,7 @@ package co.edu.uniandes.csw.correos.dtos;
  *   
  *   }
  * </pre>
- * Por ejemplo una ciudad se representa asi:<br>
+ * Por ejemplo una tarjeta se representa asi:<br>
  * 
  * <pre>
  * 

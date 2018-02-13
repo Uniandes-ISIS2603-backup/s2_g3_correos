@@ -25,38 +25,40 @@ package co.edu.uniandes.csw.correos.dtos;
 
 
 /**
- * ClienteDetailDTO Objeto de transferencia de datos de Cliente. Los DTO contienen las
- * represnetaciones de los JSON que se transfieren entre el cliente y el
- * servidor.
- * 
- * Al serializarse como JSON esta clase implementa el siguiente modelo: <br>
- * <pre>
- *   {
- *      "idCliente": number,
- *      "nombre: string
- *   
- *   }
- * </pre>
- * Por ejemplo una ciudad se representa asi:<br>
- * 
- * <pre>
- * 
- *   {
- *      "id": 91852,
- *      "name: "Pepito Perez"
- *     
- *   }
- *
- * </pre>
- * @author da.leon
+ * Clase que extiende de {@link ClienteDTO} para manejar la transformacion entre
+ * los objetos JSON y las Entidades de la base de datos. Para conocer el
+ * contenido del ReservaDTO vaya a la documentacion de {@link ReservaDTO}
+ *@author da.leon
  */
 public class ClienteDetailDTO extends ClienteDTO
 {
 
    
-
+ private ClienteDTO cliente;
+   /**
+    * contructor
+    */
+    public ClienteDetailDTO()
+    {
+    super();
+    }
+    
+   /**
+    * retorna el cliente que corresponde
+    */
+    
+    public ClienteDTO getTarjeta()
+    {
+        return cliente;
+    }
+    
     /**
-     * Convertir DTO a Entity se hace con la persistencia 
-     *
-**/  
+     * cambia el cliente 
+     * @param cliente cliente que se va a cambiar 
+     */
+    public void setCliente( ClienteDTO cliente)
+    {
+        this.cliente = cliente;
+    }
+
 }
