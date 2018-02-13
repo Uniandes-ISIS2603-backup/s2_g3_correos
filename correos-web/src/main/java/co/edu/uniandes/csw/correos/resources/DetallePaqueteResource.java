@@ -31,7 +31,7 @@ import co.edu.uniandes.csw.correos.dtos.detallePaqueteDetailDTO;
 @Consumes("application/json")
 @RequestScoped
 
-public class DetallePaqueteResource {
+public class detallePaqueteResource {
  
     @POST
     public detallePaqueteDetailDTO crearPaquete(detallePaqueteDetailDTO nuevo)
