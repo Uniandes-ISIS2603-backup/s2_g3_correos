@@ -13,7 +13,7 @@ package co.edu.uniandes.csw.correos.dtos;
  * Al serializarse como JSON esta clase implementa el siguiente modelo: <br>
  * <pre>
  *   {
- *      
+ *      "id":long,
  *      "ubicacion": long,
  *      "detalle": String
  *   }
@@ -23,6 +23,7 @@ package co.edu.uniandes.csw.correos.dtos;
  * <pre>
  * 
  *   {
+ *      "id":1234567890,
  *      "ubicacion": 1234567890,
  *      "detalle": "uniandes"
  *   }
@@ -32,15 +33,31 @@ package co.edu.uniandes.csw.correos.dtos;
  */
 public class EventoDTO {
     
+    private long id;
     private long ubicacion;
     private String detalle;
     
 /**
- * @return la ubicacion del evento
+ * @return el id del evento
  */
-public long ubicacion(){
-    return ubicacion;
+public long getId()
+{
+        return id;
+}
+
+/**
+     * @param id el nuevo id del evento
+     */
+public void setId(long id){
+        this.id = id;
 }    
+
+    /**
+     * @return la ubicacion del evento
+     */
+    public long getUbicacion() {
+        return ubicacion;
+    }
 /**
  * @param ubicacion la nueva ubicacion del evento
  */
