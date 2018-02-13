@@ -29,4 +29,21 @@ package co.edu.uniandes.csw.correos.dtos;
  */
 public class ReservaDetailDTO extends ReservaDTO{
     
+    private EnvioDTO envio;
+    
+    public ReservaDetailDTO()
+    {
+        super();
+    }
+
+    public EnvioDTO getEnvio() {
+        return envio;
+    }
+
+    public void setEnvio(EnvioDTO envio) {
+        this.envio = envio;
+    }
+    
+    
+    
 }

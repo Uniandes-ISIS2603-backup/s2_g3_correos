@@ -24,11 +24,67 @@ SOFTWARE.
 
 package co.edu.uniandes.csw.correos.dtos;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author l.mejia
  */
 public class MensajeroDetailDTO extends MensajeroDTO
-{
+{   
     
+    private List<TransporteDTO> transportes= new ArrayList<>();
+    private CuentaBancariaDTO cuentaBancaria;
+    private List<EnvioDTO> envios=new ArrayList<>();
+    private List<ComentarioDTO> comentarios=new ArrayList<>();
+    private List<ZonaDTO> zonas= new ArrayList<>();
+    
+    public MensajeroDetailDTO()
+    {
+        super();
+    }
+
+    public List<TransporteDTO> getTransportes() {
+        return transportes;
+    }
+
+    public void setTransportes(List<TransporteDTO> transportes) {
+        this.transportes = transportes;
+    }
+
+    public CuentaBancariaDTO getCuentaBancaria() {
+        return cuentaBancaria;
+    }
+
+    public void setCuentaBancaria(CuentaBancariaDTO cuentaBancaria) {
+        this.cuentaBancaria = cuentaBancaria;
+    }
+
+    public List<EnvioDTO> getEnvios() {
+        return envios;
+    }
+
+    public void setEnvios(List<EnvioDTO> envios) {
+        this.envios = envios;
+    }
+
+    public List<ComentarioDTO> getComentarios() {
+        return comentarios;
+    }
+
+    public void setComentarios(List<ComentarioDTO> comentarios) {
+        this.comentarios = comentarios;
+    }
+
+    public List<ZonaDTO> getZonas() {
+        return zonas;
+    }
+
+    public void setZonas(List<ZonaDTO> zonas) {
+        this.zonas = zonas;
+    }
+    
+    
+            
 }
