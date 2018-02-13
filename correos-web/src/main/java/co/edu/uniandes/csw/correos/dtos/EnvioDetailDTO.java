@@ -5,6 +5,9 @@
   */
  package co.edu.uniandes.csw.correos.dtos;
  
+ import java.util.List;
+ import java.util.ArrayList;
+ 
  /**
   *
   * @author df.rengifo
