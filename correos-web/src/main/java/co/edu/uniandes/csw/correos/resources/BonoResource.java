@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.ArrayList; 
 import javax.enterprise.context.RequestScoped;
 import co.edu.uniandes.csw.correos.dtos.BonoDTO;
-import co.edu.uniandes.csw.correos.dtos.BonoDetailDTO;
+
 
 /**
  *
@@ -32,21 +32,21 @@ import co.edu.uniandes.csw.correos.dtos.BonoDetailDTO;
 public class BonoResource 
 {    
     @POST
-    public BonoDetailDTO createBono(BonoDetailDTO nuevo)
+    public BonoDTO createBono(BonoDTO nuevo)
     {
         return nuevo;
     }
     
     @PUT
     @Path("{id: \\d+}")
-    public BonoDetailDTO updateBono (@PathParam("id") Long id, BonoDetailDTO actualizar)
+    public BonoDTO updateBono (@PathParam("id") Long id, BonoDTO actualizar)
     {
         return actualizar;
     }
     
     @GET
     @Path("{id: \\d+}")
-    public BonoDetailDTO getBono (@PathParam("id")Long id)
+    public BonoDTO getBono (@PathParam("id")Long id)
     {
         return null;
     }
