@@ -1,4 +1,4 @@
- /*
+  /*
  MIT License
  
  Copyright (c) 2017 ISIS2603
@@ -38,6 +38,19 @@
  import javax.ws.rs.Produces;
  
  /**
+  * <pre>Clase que implementa el resource "envios".
+  * URL: /api/envios
+  * </pre>
+  * <i>Note que la aplicacion (definida en {@link RestConfig}) define la ruta "/api" y
+  * este recurso tiene la ruta "envios".</i>
+  *
+  * <h2>Anotaciones </h2>
+  * <pre>
+  * Path: indica la direccin despues de "api" para acceder al recurso
+  * Produces/Consumes: indica que los servicios definidos en este recurso reciben y 
+  * devuelven objetos en formato JSON
+  * RequestScoped: Inicia una transaccion desde el llamado de cada metodo (servicio). 
+  * </pre>
   * @author df.rengifo
   */
 @Path("envios")
@@ -45,15 +58,49 @@
  @Consumes("application/json")
  @RequestScoped
  public class EnvioResource { 
-	/**
-     * Post
+    /**
+     * <h1>POST /api/envios : Crear un envio.</h1>
+     * 
+     * <pre>Cuerpo de peticion: JSON {@link EnvioDetailDTO}.
+     * 
+     * Crea un nuevo envio con la informacion que se recibe en el cuerpo 
+     * de la peticion y se regresa un objeto identico con un id auto-generado 
+     * por la base de datos.
+     * 
+     * Codigos de respuesta:
+     * <code style="color: mediumseagreen; background-color: #eaffe0;">
+     * 200 OK Creo el nuevo envio.
+     * </code>
+     * <code style="color: #c7254e; background-color: #f9f2f4;">
+     * 412 Precodition Failed: Ya existe el envio.
+     * </code>
+     * </pre>
+     * @param envio {@link EnvioDetailDTO} - El envio que se desea guardar.
+     * @return JSON {@link EnvioDetailDTO}  - El envio guardado con el atributo 
+     * ID autogenerado.     
      */
      @POST
      public EnvioDetailDTO createEnvio(EnvioDetailDTO envio){
          return envio;
      }
      /**
-      * Put
+      * <h1>PUT /api/envios/{id} : Actualizar envio con el id dado.</h1>
+      * <pre>Cuerpo de peticion: JSON {@link EnvioDetailDTO}.
+      * 
+      * Actualiza el envio con el ID recibido, con la informacion que se recibe.
+      * 
+      * Codigos de respuesta:
+      * <code style="color: mediumseagreen; background-color: #eaffe0;">
+      * 200 OK Actualiza el envio con el ID dado con la informacion enviada 
+      * como parametro. Retorna un objeto identico.</code> 
+      * <code style="color: #c7254e; background-color: #f9f2f4;">
+      * 404 Not Found. No existe un envio con el ID dado.
+      * </code> 
+      * </pre>
+      * @param id ID del envio que se desea actualizar.
+      * Debe ser un Long.
+      * @param envio {@link EnvioDetailDTO} El Envio que se desea guardar.
+      * @return JSON {@link EnvioDetailDTO} - El Envio guardado.      
       */
      @PUT
      @Path("{id: \\d+}")
@@ -61,7 +108,21 @@
          return envio;
      } 
      /**
-      * Get
+      * <h1>GET /api/envios/{id} : Obtener envio por ID.</h1>
+      * 
+      * <pre>Busca el envio con el ID asociado recibido en la URL y lo devuelve.
+      * 
+      * Codigos de respuesta:
+      * <code style="color: mediumseagreen; background-color: #eaffe0;">
+      * 200 OK Devuelve el envio correspondiente al ID.
+      * </code> 
+      * <code style="color: #c7254e; background-color: #f9f2f4;">
+      * 404 Not Found No existe un envio con el ID dado.
+      * </code> 
+      * </pre>
+      * @param id ID del envio. 
+      * Debe ser un Long.
+      * @return JSON {@link EnvioDetailDTO} - el envio buscado.
       */
      @GET
      @Path("{id: \\d+}")
@@ -69,14 +130,35 @@
          return null;
      } 
      /**
-      * Get (todos)
+      * <h1>GET /api/envios : Obtener todos los envios.</h1>
+      * 
+      * <pre>Busca y devuelve todos los envios que existen en la aplicacion.
+      * 
+      * Codigos de respuesta:
+      * <code style="color: mediumseagreen; background-color: #eaffe0;">
+      * 200 OK Devuelve todos los envios de la aplicacion.</code> 
+      * </pre>**
+      * @return JSONArray {@link EnvioDTO} - Los envios encontrados 
+      * en la aplicacion. Si no hay ninguno retorna una lista vacia.
       */
      @GET
-     public List<EnvioDTO> getEnvio(){
+     public List<EnvioDTO> getEnvios(){
          return new ArrayList<>();
      }    
      /**
-      * Delete
+      * <h1>DELETE /api/envios/{id} : Borrar envio por id.</h1>
+      * 
+      * <pre>Elimina el envio con el id asociado.
+      * 
+      * Codigos de respuesta:<br>
+      * <code style="color: mediumseagreen; background-color: #eaffe0;">
+      * 200 OK Elimina el envio indicado.</code>
+      * <code style="color: #c7254e; background-color: #f9f2f4;">
+      * 404 Not Found. El envio indicado no existe.
+      * </code>
+      * </pre>**
+      * @param id ID del envio 
+      * Debe ser un long.
       */
      @DELETE
      @Path("{id: \\d+}")
