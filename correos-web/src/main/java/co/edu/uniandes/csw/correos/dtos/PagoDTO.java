@@ -7,6 +7,29 @@ package co.edu.uniandes.csw.correos.dtos;
 
 /**
  *
+ * * PagoDTO Objeto de transferencia de datos de Pago. Los DTO contienen las
+ * represnetaciones de los JSON que se transfieren entre el cliente y el
+ * servidor.
+ * 
+ * Al serializarse como JSON esta clase implementa el siguiente modelo: <br>
+ * <pre>
+ *   {
+ *      "id":long,
+ *      "valor": double,
+ *      "fecha": String
+ *   }
+ * </pre>
+ * Por ejemplo un evento se representa asi:<br>
+ * 
+ * <pre>
+ * 
+ *   {
+ *      "id":6900420,
+ *      "valor": 420.69,
+ *      "fecha": "5/4/2016"
+ *   }
+ *
+ * </pre>
  * @author a.silvag
  */
 public class PagoDTO {

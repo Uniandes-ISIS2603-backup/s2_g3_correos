@@ -6,7 +6,31 @@
 package co.edu.uniandes.csw.correos.dtos;
 
 /**
+ * * * CuentaBancariaDTO Objeto de transferencia de datos de CuentaBancaria. Los DTO contienen las
+ * represnetaciones de los JSON que se transfieren entre el cliente y el
+ * servidor.
+ * 
+ * Al serializarse como JSON esta clase implementa el siguiente modelo: <br>
+ * <pre>
+ *   {
+ *      "id":long,
+ *      "numero": String,
+ *      "banco": String,
+ *      "tipoTarjeta":String
+ *   }
+ * </pre>
+ * Por ejemplo un evento se representa asi:<br>
+ * 
+ * <pre>
+ * 
+ *   {
+ *      "id":646464,
+ *      "numero": "827338",
+ *      "banco": "Banco Pichincha",
+ *      "tipoTarjeta":"De hotel"
+ *   }
  *
+ * </pre>
  * @author a.silvag
  */
 public class CuentaBancariaDTO {
@@ -54,7 +78,7 @@ public String getBanco(){
     return banco;
 }    
 /**
- * @param banco el nuevo nombre del banco
+ * @param numero el nuevo nombre del banco
  */
 public void setBanco(String numero){
     this.numero = numero;

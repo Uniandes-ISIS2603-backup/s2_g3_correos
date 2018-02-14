@@ -69,13 +69,13 @@ public CuentaBancariaDetailDTO createCuentaBancaria(CuentaBancariaDetailDTO cuen
      * </code> 
      * </pre>
      * @param id Identificador de la cuentaBancaria que se desea actualizar.Este debe ser una cadena de dígitos.
-     * @param cuentaBancaria {@link cuentaBancariaDetailDTO} La cuentaBancaria que se desea guardar.
+     * @param cuentaBancaria {@link CuentaBancariaDetailDTO} La cuentaBancaria que se desea guardar.
      * @return JSON {@link CuentaBancariaDetailDTO} - La cuenta bancaria guardada.
      * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} - Error de lógica que se genera al no poder actualizar la cuenta bancaria porque ya existe uno con ese correo o numero telefónico.
      */
     @PUT
     @Path("{id: \\d+}")
-    public CuentaBancariaDetailDTO updateCuentaBancaria(@PathParam("id") Long id , CuentaBancariaDetailDTO cuentaBancaria) throws BusinessLogicException{
+    public CuentaBancariaDetailDTO updateCuentaBancaria(@PathParam("id") Long id , CuentaBancariaDetailDTO cuentaBancaria)throws BusinessLogicException{
         return cuentaBancaria;
     }
     
@@ -110,7 +110,7 @@ public CuentaBancariaDetailDTO createCuentaBancaria(CuentaBancariaDetailDTO cuen
      * <code style="color: mediumseagreen; background-color: #eaffe0;">
      * 200 OK Devuelve todas las cuentas bancarias de la aplicacion.</code> 
      * </pre>
-     * @return JSONArray {@link CuentaBancariaDTO} - Los mensajeros encontrados en la aplicación. Si no hay ninguno retorna una lista vacía.
+     * @return JSONArray {@link CuentaBancariaDTO} - as ceuntas bancarias encontradas en la aplicación. Si no hay ninguno retorna una lista vacía.
      */
     @GET
     public List<CuentaBancariaDTO> getCuentaBancaria(){
