@@ -15,10 +15,10 @@
      
         private ClienteDTO cliente;
         private PagoDTO pago;
-        private ClienteDTO mensajero;
+        private MensajeroDTO mensajero;
         private List<EventoDTO> eventos=new ArrayList<>();  
         private List<PaqueteDTO> paquetes=new ArrayList<>();
-        private List<BonoDTO> bono=new ArrayList<>();
+        private List<BonoDTO> bonos=new ArrayList<>();
         
         /**
          * Constructor por defecto
