@@ -18,18 +18,18 @@ package co.edu.uniandes.csw.correos.dtos;
  *   }
  * @author t.vargas10
  */
-public class detallePaqueteDTO {
+public class DetallePaqueteDTO {
     private long idDetalle;
     private String mensaje;
     /**
      * Constructor por defecto
      */
-    public detallePaqueteDTO()
+    public DetallePaqueteDTO()
     {
         //Este método esta vacio para la contruccion del JSON
     }
     
-    //public datellaPaqueteDTO (detallePaqueteEntity entity){} este constructor sera realizado una vez se realice la capa de persistencia
+    //public datellaPaqueteDTO (DetallePaqueteEntity entity){} este constructor sera realizado una vez se realice la capa de persistencia
     /**
      * @return id el paquete 
      */
