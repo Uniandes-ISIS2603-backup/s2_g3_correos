@@ -18,7 +18,6 @@ import javax.ws.rs.Consumes;
 import java.util.List; 
 import javax.enterprise.context.RequestScoped;
 import co.edu.uniandes.csw.correos.dtos.detallePaqueteDTO;
-import co.edu.uniandes.csw.correos.dtos.detallePaqueteDetailDTO;
      
 
 /**
@@ -34,21 +33,21 @@ import co.edu.uniandes.csw.correos.dtos.detallePaqueteDetailDTO;
 public class detallePaqueteResource {
  
     @POST
-    public detallePaqueteDetailDTO crearPaquete(detallePaqueteDetailDTO nuevo)
+    public detallePaqueteDTO crearPaquete(detallePaqueteDTO nuevo)
     {
         return nuevo;
     }
     
     @PUT
     @Path("{id: \\d+}")
-    public detallePaqueteDetailDTO updatePaquete (@PathParam("id")Long id, detallePaqueteDetailDTO actualizar)
+    public detallePaqueteDTO updatePaquete (@PathParam("id")Long id, detallePaqueteDTO actualizar)
     {
         return actualizar;
     }
     
     @GET
     @Path("{id: \\d+}") 
-    public detallePaqueteDetailDTO getDetallePaquete(@PathParam("id") Long id) 
+    public detallePaqueteDTO getDetallePaquete(@PathParam("id") Long id) 
     {
         return null;
     }
