@@ -44,7 +44,7 @@ import javax.ws.rs.Produces;
 
 /**
  * <pre>Clase que implementa el recurso "tarjetaCredito".
- * URL: /api/tarjetaCredito
+ * URL: /api/tarjetasCredito
  * </pre>
  * <i>Note que la aplicación (definida en {@link RestConfig}) define la ruta "/api" y
  * este recurso tiene la ruta "tarjetaCredito".</i>
@@ -64,25 +64,90 @@ import javax.ws.rs.Produces;
 @RequestScoped
 public class TarjetaCreditoResource {
 
+    /**
+     * <h1>POST /api/tarjetasCredito : Crear una tarjeta de credito.</h1>
+     * 
+     * <pre>Cuerpo de petición: JSON {@link TarjetaCreditoDetailDTO}.
+     * 
+     * Crea un nueva nueva tarjeta con la informacion que se recibe en el cuerpo 
+     * de la petición y se regresa un objeto identico con un id auto-generado 
+     * por la base de datos.
+     * 
+     * Codigos de respuesta:
+     * <code style="color: mediumseagreen; background-color: #eaffe0;">
+     * 200 OK Creó la nueva tarjeta .
+     * </code>
+     * <code style="color: #c7254e; background-color: #f9f2f4;">
+     * 412 Precodition Failed: Ya existe la tarjeta.
+     * </code>
+     * </pre>
+     * @param nuevo {@link TarjetaCreditoDetailDTO} - La tarjeta que se desea guardar.
+     * @return JSON {@link TarjetaCreditoDetailDTO}  - La tarjeta que se guardada con el atributo id autogenerado.
+     * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} - Error de lógica que se genera cuando ya existe el cliente.
+     */
      @POST
      public TarjetaCreditoDetailDTO createCliente(TarjetaCreditoDetailDTO nuevo) throws BusinessLogicException
      {
          return nuevo;
      }
-     
+     /**
+     * <h1>PUT /api/tarjetasCredito/{id} : Actualizar tarjeta con el id dado.</h1>
+     * <pre>Cuerpo de petición: JSON {@link TarjetaCreditoDetailDTO}.
+     * 
+     * Actualiza la tarjeta con el id recibido en la URL con la informacion que se recibe en el cuerpo de la petición.
+     * 
+     * Codigos de respuesta:
+     * <code style="color: mediumseagreen; background-color: #eaffe0;">
+     * 200 OK Actualiza la tarjeta con el id dado con la información enviada como parámetro. Retorna un objeto identico.</code> 
+     * <code style="color: #c7254e; background-color: #f9f2f4;">
+     * 404 Not Found. No existe una tarjeta con el id dado.
+     * </code> 
+     * </pre>
+     * @param id Identificador de la tarjeta que se desea actualizar.Este debe ser una cadena de dígitos.
+     * @param actualizar {@link TarjetaCreditoDetailDTO} La tarjeta que se desea guardar.
+     * @return JSON {@link TarjetaCreditoDetailDTO} - La tarjeta guardado.
+     * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} - Error de lógica que se genera al no poder actualizar la tarjeta porque ya existe.
+     */
      @PUT
      @Path("{id: \\d+ }")
      public TarjetaCreditoDetailDTO updateCliente(@PathParam("id") Long id , TarjetaCreditoDetailDTO actualizar) throws BusinessLogicException
      {
          return actualizar;
      }
-     
+   /**
+  * <h1>GET /api/tarjetasCredito/{id} : Obtener tarjetas por id.</h1>
+  * 
+  * <pre>Busca la tarjeta con el id asociado recibido en la URL y la devuelve.
+  * 
+  * Codigos de respuesta:
+  * <code style="color: mediumseagreen; background-color: #eaffe0;">
+  * 200 OK Devuelve la tarjeta correspondiente al id.
+  * </code> 
+  * <code style="color: #c7254e; background-color: #f9f2f4;">
+  * 404 Not Found No existe una tarjeta con el id dado.
+  * </code> 
+  * </pre>
+  * @param id Identificador de la tarjeta que se esta buscando. Este debe ser una cadena de dígitos.
+  * @return JSON {@link TarjetaCreditoDetailDTO} - La tarjeta buscada
+  */
      @GET
      @Path("{id: \\d+ }")
      public TarjetaCreditoDetailDTO getCliente(@PathParam("id") Long id)
      {
          return null;
      }
+     /**
+     * <h1>GET /api/tarjetasCredito : Obtener todas las tarjetas.</h1>
+     * 
+     * <pre>Busca y devuelve todas las tarjetas que existen en la aplicacion.
+     * 
+     * Codigos de respuesta:
+     * <code style="color: mediumseagreen; background-color: #eaffe0;">
+     * 200 OK Devuelve todas las tarjetas de la aplicacion.</code> 
+     * </pre>
+     * @return JSONArray {@link TarjetaCreditoDetailDTO} - Las tarjetas encontradas en la aplicación. Si no hay ninguna retorna una lista vacía.
+     */
+     
      
      @GET
      public List<TarjetaCreditoDTO> getTarjetaCredito()
@@ -94,7 +159,7 @@ public class TarjetaCreditoResource {
      @Path("{id: \\d+ }")
      public void deleteTarjetaCredito(@PathParam("id") Long id)
      {
-         //lo hago despues :'v 
+         // se hace despues
      }
      
      
