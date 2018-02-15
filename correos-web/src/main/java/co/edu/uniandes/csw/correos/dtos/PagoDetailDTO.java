@@ -12,18 +12,43 @@ package co.edu.uniandes.csw.correos.dtos;
 public class PagoDetailDTO extends PagoDTO {
     
     private CuentaBancariaDTO cuentaBancaria;
-    //private TarjetaDeCreditoDTO tarjetaDeCredito;
+    private TarjetaCreditoDTO tarjetaDeCredito;
     public PagoDetailDTO(){
         
     }
 
+    /**
+     * 
+     * @return la cuenta bancaria asociada
+     */
     public CuentaBancariaDTO getCuentaBancaria() {
         return cuentaBancaria;
     }
 
+    /**
+     * 
+     * @param cuentaBancaria la cuenta bancaria asociada
+     */
     public void setCuentaBancaria(CuentaBancariaDTO cuentaBancaria) {
         this.cuentaBancaria = cuentaBancaria;
     }
+
+    /**
+     * 
+     * @return la tarjeta de credito asociada
+     */
+    public TarjetaCreditoDTO getTarjetaDeCredito() {
+        return tarjetaDeCredito;
+    }
+
+    /**
+     * 
+     * @param tarjetaDeCredito la tarjeta de credito asociada
+     */
+    public void setTarjetaDeCredito(TarjetaCreditoDTO tarjetaDeCredito) {
+        this.tarjetaDeCredito = tarjetaDeCredito;
+    }
+    
     
     
 }
