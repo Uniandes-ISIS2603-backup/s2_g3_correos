@@ -18,11 +18,17 @@ private List<PagoDTO> pagos;
 public CuentaBancariaDetailDTO(){
     
 }
-
+/**
+ * 
+ * @return la lista de pagos
+ */
     public List<PagoDTO> getPagos() {
         return pagos;
     }
-
+/**
+ * 
+ * @param pagos la lista de pagos
+ */
     public void setPagos(List<PagoDTO> pagos) {
         this.pagos = pagos;
     }
