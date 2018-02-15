@@ -15,7 +15,7 @@
  public class PaqueteDetailDTO extends PaqueteDTO {	  
 	    
 	    private EnvioDTO envio;
-	    private List<DetallePaqueteDTO> detalles=new ArrayList<>();	   
+	    private List<detallePaqueteDTO> detalles=new ArrayList<>();	   
 	    
 	    /**
 	     * Constructor por defecto
@@ -28,14 +28,14 @@
 	    /**
 	     * @return La lista de los detalles asociados al paquete
 	     */
-	    public List<DetallePaqueteDTO> getPaquete() {
+	    public List<detallePaqueteDTO> getPaquete() {
 	        return detalles;
 	    }
 	    
 	    /**
 	     * @param detalles nuevos detalles para el paquete
 	     */
-	    public void setDetalles(List<DetallePaqueteDTO> detalles) {
+	    public void setDetalles(List<detallePaqueteDTO> detalles) {
 	        this.detalles = detalles;
 	    }
 
