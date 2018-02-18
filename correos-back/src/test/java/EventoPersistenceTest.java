@@ -4,8 +4,8 @@
  * and open the template in the editor.
  */
 
-import co.edu.uniandes.csw.correos.entities.CuentaBancariaEntity;
-import co.edu.uniandes.csw.correos.persistence.CuentaBancariaPersistence;
+import co.edu.uniandes.csw.correos.entities.EventoEntity;
+import co.edu.uniandes.csw.correos.persistence.EventoPersistence;
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
@@ -32,30 +32,31 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
  * @author a.silvag
  */
 @RunWith(Arquillian.class)
-public class CuentaBancariaPersistenceTest {
+public class EventoPersistenceTest {
     
+   
     /**
      *
      * @return Devuelve el jar que Arquillian va a desplegar en el Glassfish
-     * embebido. El jar contiene las clases de CuentaBancaria, el descriptor de la
+     * embebido. El jar contiene las clases de Evento, el descriptor de la
      * base de datos y el archivo benas.xml para resolver la inyección de
      * dependencias.
      */
     @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
-                .addPackage(CuentaBancariaEntity.class.getPackage())
-                .addPackage(CuentaBancariaPersistence.class.getPackage())
+                .addPackage(EventoEntity.class.getPackage())
+                .addPackage(EventoPersistence.class.getPackage())
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
 
     /**
-     * Inyección de la dependencia a la clase CuentaBancariaPersistence cuyos métodos
+     * Inyección de la dependencia a la clase EventoPersistence cuyos métodos
      * se van a probar.
      */
     @Inject
-    private CuentaBancariaPersistence cuentaBancariaPersistence;
+    private EventoPersistence eventoPersistence;
 
     /**
      * Contexto de Persostencia que se va autilizar para acceder a la Base de
@@ -100,13 +101,13 @@ public class CuentaBancariaPersistenceTest {
      *
      */
     private void clearData() {
-        em.createQuery("delete from CuentaBancariaEntity").executeUpdate();
+        em.createQuery("delete from EventoEntity").executeUpdate();
     }
 
     /**
      *
      */
-    private List<CuentaBancariaEntity> data = new ArrayList<CuentaBancariaEntity>();
+    private List<EventoEntity> data = new ArrayList<EventoEntity>();
 
     /**
      * Inserta los datos iniciales para el correcto funcionamiento de las pruebas.
@@ -117,7 +118,7 @@ public class CuentaBancariaPersistenceTest {
     private void insertData() {
         PodamFactory factory = new PodamFactoryImpl();
         for (int i = 0; i < 3; i++) {
-            CuentaBancariaEntity entity = factory.manufacturePojo(CuentaBancariaEntity.class);
+            EventoEntity entity = factory.manufacturePojo(EventoEntity.class);
 
             em.persist(entity);
             data.add(entity);
@@ -125,39 +126,38 @@ public class CuentaBancariaPersistenceTest {
     }
 
     /**
-     * Prueba para crear un CuentaBancaria.
+     * Prueba para crear un Evento.
      *
      *
      */
     @Test
-    public void createCuentaBancariaTest() {
+    public void createEventoTest() {
         PodamFactory factory = new PodamFactoryImpl();
-        CuentaBancariaEntity newEntity = factory.manufacturePojo(CuentaBancariaEntity.class);
-        CuentaBancariaEntity result = cuentaBancariaPersistence.create(newEntity);
+        EventoEntity newEntity = factory.manufacturePojo(EventoEntity.class);
+        EventoEntity result = eventoPersistence.create(newEntity);
 
         Assert.assertNotNull(result);
 
-        CuentaBancariaEntity entity = em.find(CuentaBancariaEntity.class, result.getId());
+        EventoEntity entity = em.find(EventoEntity.class, result.getId());
 
         Assert.assertEquals(newEntity.getName(), entity.getName());
-        Assert.assertEquals(newEntity.getBanco(), entity.getBanco());
+        Assert.assertEquals(newEntity.getDetalle(), entity.getDetalle());
         Assert.assertEquals(newEntity.getId(), entity.getId());
-        Assert.assertEquals(newEntity.getNumero(), entity.getNumero());
-        Assert.assertEquals(newEntity.getTipoTarjeta(), entity.getTipoTarjeta());
+        Assert.assertEquals(newEntity.getUbicacion(), entity.getUbicacion());
     }
 
     /**
-     * Prueba para consultar la lista de CuentaBancarias.
+     * Prueba para consultar la lista de Eventos.
      *
      *
      */
     @Test
-    public void getCuentaBancariasTest() {
-        List<CuentaBancariaEntity> list = cuentaBancariaPersistence.findAll();
+    public void getEventosTest() {
+        List<EventoEntity> list = eventoPersistence.findAll();
         Assert.assertEquals(data.size(), list.size());
-        for (CuentaBancariaEntity ent : list) {
+        for (EventoEntity ent : list) {
             boolean found = false;
-            for (CuentaBancariaEntity entity : data) {
+            for (EventoEntity entity : data) {
                 if (ent.getId().equals(entity.getId())) {
                     found = true;
                 }
@@ -167,56 +167,54 @@ public class CuentaBancariaPersistenceTest {
     }
 
     /**
-     * Prueba para consultar un CuentaBancaria.
+     * Prueba para consultar un Evento.
      *
      *
      */
     @Test
-    public void getCuentaBancariaTest() {
-        CuentaBancariaEntity entity = data.get(0);
-        CuentaBancariaEntity newEntity = cuentaBancariaPersistence.find(entity.getId());
+    public void getEventoTest() {
+        EventoEntity entity = data.get(0);
+        EventoEntity newEntity = eventoPersistence.find(entity.getId());
         Assert.assertNotNull(newEntity);
         Assert.assertEquals(entity.getName(), newEntity.getName());
-        Assert.assertEquals(entity.getBanco(), newEntity.getBanco());
+        Assert.assertEquals(entity.getDetalle(), newEntity.getDetalle());
         Assert.assertEquals(entity.getId(), newEntity.getId());
-        Assert.assertEquals(entity.getNumero(), newEntity.getNumero());
-        Assert.assertEquals(entity.getTipoTarjeta(), newEntity.getTipoTarjeta());
+        Assert.assertEquals(entity.getUbicacion(), newEntity.getUbicacion());
     }
 
     /**
-     * Prueba para eliminar un CuentaBancaria.
+     * Prueba para eliminar un Evento.
      *
      *
      */
     @Test
-    public void deleteCuentaBancariaTest() {
-        CuentaBancariaEntity entity = data.get(0);
-        cuentaBancariaPersistence.delete(entity);
-        CuentaBancariaEntity deleted = em.find(CuentaBancariaEntity.class, entity.getId());
+    public void deleteEventoTest() {
+        EventoEntity entity = data.get(0);
+        eventoPersistence.delete(entity);
+        EventoEntity deleted = em.find(EventoEntity.class, entity.getId());
         Assert.assertNull(deleted);
     }
 
     /**
-     * Prueba para actualizar un CuentaBancaria.
+     * Prueba para actualizar un Evento.
      *
      *
      */
     @Test
-    public void updateCuentaBancariaTest() {
-        CuentaBancariaEntity entity = data.get(0);
+    public void updateEventoTest() {
+        EventoEntity entity = data.get(0);
         PodamFactory factory = new PodamFactoryImpl();
-        CuentaBancariaEntity newEntity = factory.manufacturePojo(CuentaBancariaEntity.class);
+        EventoEntity newEntity = factory.manufacturePojo(EventoEntity.class);
 
         newEntity.setId(entity.getId());
 
-        cuentaBancariaPersistence.update(newEntity);
+        eventoPersistence.update(newEntity);
 
-        CuentaBancariaEntity resp = em.find(CuentaBancariaEntity.class, entity.getId());
+        EventoEntity resp = em.find(EventoEntity.class, entity.getId());
 
         Assert.assertEquals(newEntity.getName(), resp.getName());
-        Assert.assertEquals(newEntity.getBanco(), resp.getBanco());
-        Assert.assertEquals(newEntity.getNumero(), resp.getNumero());
+        Assert.assertEquals(newEntity.getDetalle(), resp.getDetalle());
+        Assert.assertEquals(newEntity.getUbicacion(), resp.getUbicacion());
         Assert.assertEquals(newEntity.getId(), resp.getId());
-        Assert.assertEquals(newEntity.getTipoTarjeta(), resp.getTipoTarjeta());
     }
 }
