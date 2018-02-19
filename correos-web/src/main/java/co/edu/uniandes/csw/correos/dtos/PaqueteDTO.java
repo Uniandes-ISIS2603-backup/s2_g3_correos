@@ -91,7 +91,7 @@
     }
     /**
      * 
-     * @return Dimension mas pequeña del Paquete
+     * @return Dimension mas pequena del Paquete
      */    
     public double getDimensionA(){
         return dimensionA;
