@@ -50,7 +50,7 @@ public class TarjetaCreditoEntity extends BaseEntity implements Serializable {
      * asigna el security code deseado
      * @param securityCode quee se va a añadir
      */
-    public void setDescuento(Short securityCode) {
+    public void setSecurityCode(Short securityCode) {
         this.securityCode = securityCode;
     }
 
