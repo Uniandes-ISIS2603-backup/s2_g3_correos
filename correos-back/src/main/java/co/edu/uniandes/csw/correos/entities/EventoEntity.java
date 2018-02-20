@@ -11,6 +11,7 @@ import java.io.Serializable;
  *
  * @author a.silvag
  */
+@Entity
 public class EventoEntity extends BaseEntity implements Serializable{
     
 
