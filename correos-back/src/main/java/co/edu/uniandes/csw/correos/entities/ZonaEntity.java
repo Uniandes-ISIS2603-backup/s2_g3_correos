@@ -5,11 +5,13 @@
  */
 package co.edu.uniandes.csw.correos.entities;
 
+import java.io.Serializable;
+
 /**
  *
  * @author ed.diaz11
  */
-public class ZonaEntity {
+public class ZonaEntity extends BaseEntity implements Serializable{
     
     private Long latitud;
     private Long longitud;
