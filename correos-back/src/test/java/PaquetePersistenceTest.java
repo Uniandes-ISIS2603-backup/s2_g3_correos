@@ -222,3 +222,4 @@ public class PaquetePersistenceTest {
         Assert.assertEquals(newEntity.getId(), resp.getId());
     }   
 }
+
