@@ -17,7 +17,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.Consumes;
 import java.util.List; 
 import javax.enterprise.context.RequestScoped;
-import co.edu.uniandes.csw.correos.dtos.detallePaqueteDTO;
+import co.edu.uniandes.csw.correos.dtos.DetallePaqueteDTO;
      
 
 /**
@@ -36,7 +36,7 @@ import co.edu.uniandes.csw.correos.dtos.detallePaqueteDTO;
 @Consumes("application/json")
 @RequestScoped
 
-public class detallePaqueteResource {
+public class DetallePaqueteResource {
  /**
      * <h1>POST /api/DetallePaquetes: Crear un detalle.<h1>
      * 
@@ -58,7 +58,7 @@ public class detallePaqueteResource {
      * @throws BusinessLogicException {@link BusinessLogicException} - Error de lógica que se genera cuando ya existe el detalle
      */
     @POST
-    public detallePaqueteDTO crearPaquete(detallePaqueteDTO nuevo)
+    public DetallePaqueteDTO crearPaquete(DetallePaqueteDTO nuevo)
     {
         return nuevo;
     }
@@ -83,7 +83,7 @@ public class detallePaqueteResource {
      */
     @PUT
     @Path("{id: \\d+}")
-    public detallePaqueteDTO updatePaquete (@PathParam("id")Long id, detallePaqueteDTO actualizar)
+    public DetallePaqueteDTO updatePaquete (@PathParam("id")Long id, DetallePaqueteDTO actualizar)
     {
         return actualizar;
     }
@@ -107,7 +107,7 @@ public class detallePaqueteResource {
      */
     @GET
     @Path("{id: \\d+}") 
-    public detallePaqueteDTO getDetallePaquete(@PathParam("id") Long id) 
+    public DetallePaqueteDTO getDetallePaquete(@PathParam("id") Long id) 
     {
         return null;
     }
