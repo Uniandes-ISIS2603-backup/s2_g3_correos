@@ -6,7 +6,6 @@
 package co.edu.uniandes.csw.correos.persistence;
 
 import co.edu.uniandes.csw.correos.entities.CuentaBancariaEntity;
-import com.sun.istack.internal.logging.Logger;
 import java.util.List;
 import java.util.logging.Level;
 import javax.ejb.Stateless;
