@@ -12,23 +12,11 @@ import java.io.Serializable;
  * @author a.silvag
  */
 public class PagoEntity extends BaseEntity implements Serializable{
-    private Long id;
+    
     private Double valor;
     private String fecha;
 
-    /**
-     * @return the id
-     */
-    public Long getId() {
-        return id;
-    }
-
-    /**
-     * @param id the id to set
-     */
-    public void setId(Long id) {
-        this.id = id;
-    }
+    
 
     /**
      * @return the valor

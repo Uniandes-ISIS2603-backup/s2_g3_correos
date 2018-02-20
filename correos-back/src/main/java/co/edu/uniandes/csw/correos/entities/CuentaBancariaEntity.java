@@ -13,24 +13,12 @@ import java.io.Serializable;
  */
 public class CuentaBancariaEntity extends BaseEntity implements Serializable{
 
-    private Long id;
+
     private String numero;
     private String banco;
     private String tipoTarjeta;
 
-    /**
-     * @return the id
-     */
-    public Long getId() {
-        return id;
-    }
-
-    /**
-     * @param id the id to set
-     */
-    public void setId(Long id) {
-        this.id = id;
-    }
+ 
 
     /**
      * @return the numero
