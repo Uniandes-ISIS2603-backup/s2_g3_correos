@@ -189,8 +189,8 @@ public class EventoPersistenceTest {
      */
     @Test
     public void deleteEventoTest() {
-        EventoEntity entity = data.get(0);
-        eventoPersistence.delete(entity);
+        EventoEntity entity = eventoPersistence.find(data.get(0).getId());
+        eventoPersistence.delete(entity.getId());
         EventoEntity deleted = em.find(EventoEntity.class, entity.getId());
         Assert.assertNull(deleted);
     }
