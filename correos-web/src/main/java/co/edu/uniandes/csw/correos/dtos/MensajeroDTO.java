@@ -24,6 +24,8 @@ SOFTWARE.
 
 package co.edu.uniandes.csw.correos.dtos;
 
+import co.edu.uniandes.csw.correos.entities.MensajeroEntity;
+
 /**
  * MensajeroDTO Objeto de transferencia de datos de Mensajeros. Los DTO contienen las
  * represnetaciones de los JSON que se transfieren entre el cliente y el
@@ -70,7 +72,14 @@ public class MensajeroDTO {
         //Este metodo esta vacio para permitir la construccion del JSON
     }
     
-    //public MensajeroDTO(MensajeroEntity entity){} este constructor sera realizado una vez se realice la capa de persistencia  
+    public MensajeroDTO(MensajeroEntity entity)
+    {
+        this.id=entity.getId();
+        this.calificacionPromedio=entity.getCalificacionPromedio();
+        this.celular=entity.getCelular();
+        this.correo=entity.getCorreo();
+        this.nombre=entity.getNombre();
+    } 
     
     /**
      * @return el ID del mensajero
