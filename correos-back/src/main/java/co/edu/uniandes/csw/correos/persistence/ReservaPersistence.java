@@ -22,7 +22,7 @@ public class ReservaPersistence {
     
     private static final Logger LOGGER= Logger.getLogger(ReservaPersistence.class.getName());
     
-    @PersistenceContext(unitName="correosPU")
+    @PersistenceContext(unitName="CorreosPU")
     protected EntityManager em;
     
     

@@ -22,7 +22,7 @@ public class PaquetePersistence {
     
     private static final Logger LOGGER = Logger.getLogger(PaquetePersistence.class.getName());
     
-    @PersistenceContext(unitName="correosPU")
+    @PersistenceContext(unitName="CorreosPU")
     protected EntityManager em;
     
     /**

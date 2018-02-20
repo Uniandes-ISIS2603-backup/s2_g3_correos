@@ -41,7 +41,7 @@ public class MensajeroPersistence {
     
     private static final Logger LOGGER= Logger.getLogger(MensajeroPersistence.class.getName());
     
-    @PersistenceContext(unitName="correosPU")
+    @PersistenceContext(unitName="CorreosPU")
     protected EntityManager em;
     
     
