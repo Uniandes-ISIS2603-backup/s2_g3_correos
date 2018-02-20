@@ -33,7 +33,7 @@ public class TransporteEntity extends BaseEntity implements Serializable {
     
     private String tipo;
     private String capacidad;
-    private boolean activo;
+    private Boolean activo;
     
     /**
      * @return El tipo de transporte

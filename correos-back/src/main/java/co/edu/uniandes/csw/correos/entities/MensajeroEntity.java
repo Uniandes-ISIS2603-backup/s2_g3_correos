@@ -34,7 +34,7 @@ public class MensajeroEntity extends BaseEntity implements Serializable {
     private String correo;
     private String nombre;
     private String celular;
-    private double calificacionPromedio;
+    private Double calificacionPromedio;
 
     /**
      * @return  El correo del mensajero
