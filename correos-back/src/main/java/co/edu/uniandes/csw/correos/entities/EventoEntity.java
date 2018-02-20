@@ -6,11 +6,13 @@
 package co.edu.uniandes.csw.correos.entities;
 
 import java.io.Serializable;
+import javax.persistence.Entity;
 
 /**
  *
  * @author a.silvag
  */
+@Entity
 public class EventoEntity extends BaseEntity implements Serializable{
     
 
