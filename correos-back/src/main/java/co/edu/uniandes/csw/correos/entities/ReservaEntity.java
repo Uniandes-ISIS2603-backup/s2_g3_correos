@@ -24,11 +24,13 @@ SOFTWARE.
 package co.edu.uniandes.csw.correos.entities;
 
 import java.io.Serializable;
+import javax.persistence.Entity;
 
 /**
  *
  * @author l.mejia
  */
+@Entity
 public class ReservaEntity extends BaseEntity implements Serializable{
     
     private String fecha;
