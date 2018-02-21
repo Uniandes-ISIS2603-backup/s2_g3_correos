@@ -15,26 +15,12 @@ import javax.persistence.Entity;
 
 @Entity
 public class TarjetaCreditoEntity extends BaseEntity implements Serializable {
-    private Long id; //id de la Tarjeta
+   
     private Short securityCode; // codigo de seguridad de la tarjeta
     private String numero; // numero de la tarjeta
     private String fechaDeVencimiento; // fecha de vencimiento de la tarjeta
 
-    /** 
-     * Obtiene el atributo id
-     * @return id de la tarjeta 
-     */
-    public Long getId() {
-        return id;
-    }
-
-    /**
-     * Asigna el id de la tarjeta
-     * @param id id de la tarjeta
-     */
-    public void setId(Long id) {
-        this.id = id;
-    }
+   
 
   
 

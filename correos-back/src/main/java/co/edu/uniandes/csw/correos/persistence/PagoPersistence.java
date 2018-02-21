@@ -74,7 +74,9 @@ public class PagoPersistence {
          return em.merge(entity);
     }
     
-    public void delete(PagoEntity entity) {
+    public void delete(Long id) {
+        LOGGER.log(Level.INFO, "Borrando pago con id={0}", id);
+        PagoEntity entity = em.find(PagoEntity.class, id);
         em.remove(entity);
     }
 }

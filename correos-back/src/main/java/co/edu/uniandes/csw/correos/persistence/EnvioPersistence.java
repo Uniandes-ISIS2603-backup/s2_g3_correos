@@ -22,7 +22,7 @@ public class EnvioPersistence {
     
     private static final Logger LOGGER = Logger.getLogger(EnvioPersistence.class.getName());
     
-    @PersistenceContext(unitName="correosPU")
+    @PersistenceContext(unitName="CorreosPU")
     protected EntityManager em;
     
     /**

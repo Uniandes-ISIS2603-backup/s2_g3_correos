@@ -31,26 +31,14 @@ import java.io.Serializable;
  */
 public class EnvioEntity extends BaseEntity implements Serializable{    
     
-   private Long id;
+   
    private Long horaInicio;
    private Long horaFinal;    
    private String estado;
    private String direccionEntrega;
    private String direccionRecogida;
 
-    /**
-     * @return the id
-     */
-    public Long getId() {
-        return id;
-    }
-
-    /**
-     * @param id the id to set
-     */
-    public void setId(Long id) {
-        this.id = id;
-    }
+   
 
     /**
      * @return the horaInicio
