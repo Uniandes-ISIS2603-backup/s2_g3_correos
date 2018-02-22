@@ -31,26 +31,14 @@ import java.io.Serializable;
  */
 public class PaqueteEntity extends BaseEntity implements Serializable{    
     
-   private Long id;
+   
    private Double dimensionA;
    private Double dimensionB;
    private Double dimensionC;
    private Double peso;
    private String tipo;
 
-    /**
-     * @return the id
-     */
-    public Long getId() {
-        return id;
-    }
-
-    /**
-     * @param id the id to set
-     */
-    public void setId(Long id) {
-        this.id = id;
-    }
+   
 
     /**
      * @return the dimensionA

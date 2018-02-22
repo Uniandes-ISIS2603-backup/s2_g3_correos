@@ -191,7 +191,7 @@ public class CuentaBancariaPersistenceTest {
     @Test
     public void deleteCuentaBancariaTest() {
         CuentaBancariaEntity entity = data.get(0);
-        cuentaBancariaPersistence.delete(entity);
+        cuentaBancariaPersistence.delete(entity.getId());
         CuentaBancariaEntity deleted = em.find(CuentaBancariaEntity.class, entity.getId());
         Assert.assertNull(deleted);
     }

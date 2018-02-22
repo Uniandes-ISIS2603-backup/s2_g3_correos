@@ -21,7 +21,7 @@ import javax.persistence.TypedQuery;
 public class TransportePersistence {
     private static final Logger LOGGER= Logger.getLogger(TransportePersistence.class.getName());
     
-    @PersistenceContext(unitName="correosPU")
+    @PersistenceContext(unitName="CorreosPU")
     protected EntityManager em;
     
     

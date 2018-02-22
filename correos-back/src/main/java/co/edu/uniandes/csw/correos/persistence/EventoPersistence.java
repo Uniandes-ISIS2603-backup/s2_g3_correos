@@ -13,6 +13,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
+import static jdk.nashorn.internal.runtime.Debug.id;
 
 /**
  *
@@ -74,7 +75,9 @@ public class EventoPersistence {
          return em.merge(entity);
     }
     
-    public void delete(EventoEntity entity) {
+    public void delete(Long id) {
+        LOGGER.log(Level.INFO, "Borrando company con id={0}", id);
+        EventoEntity entity = em.find(EventoEntity.class, id);
         em.remove(entity);
     }
 }

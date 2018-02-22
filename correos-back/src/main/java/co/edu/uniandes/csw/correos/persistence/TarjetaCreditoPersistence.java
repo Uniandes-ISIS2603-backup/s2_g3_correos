@@ -38,7 +38,7 @@ public class TarjetaCreditoPersistence {
     
     private static final Logger LOGGER= Logger.getLogger(TarjetaCreditoPersistence.class.getName());
     
-    @PersistenceContext(unitName="correosPU")
+    @PersistenceContext(unitName="CorreosPU")
     protected EntityManager em;
     
     
