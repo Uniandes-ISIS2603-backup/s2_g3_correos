@@ -15,23 +15,9 @@ import javax.persistence.Entity;
 
 @Entity
 public class ClienteEntity extends BaseEntity implements Serializable {
-    private Long id; //id del cliente
+    
     private String nombre; // nombre dek cliente
-    /** 
-     * Obtiene el atributo id
-     * @return id del cliente 
-     */
-    public Long getId() {
-        return id;
-    }
-
-    /**
-     * Asigna el id del cliente
-     * @param id id del cliente
-     */
-    public void setId(Long id) {
-        this.id = id;
-    }
+   
 
     /**
      * Obtiene el nombre del cliente

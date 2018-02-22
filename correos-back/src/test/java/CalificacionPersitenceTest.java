@@ -4,13 +4,10 @@
  * and open the template in the editor.
  */
 
-
-
-import co.edu.uniandes.csw.correos.entities.PagoEntity;
-import co.edu.uniandes.csw.correos.persistence.PagoPersistence;
+import co.edu.uniandes.csw.correos.entities.CalificacionEntity;
+import co.edu.uniandes.csw.correos.persistence.CalificacionPersistence;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -26,35 +23,34 @@ import org.junit.runner.RunWith;
 import uk.co.jemos.podam.api.PodamFactory;
 import uk.co.jemos.podam.api.PodamFactoryImpl;
 
+
 /**
  *
- * @author a.silvag
+ * @author ed.diaz11
  */
 @RunWith(Arquillian.class)
-public class PagoPersistenceTest {
-
-    /**
+public class CalificacionPersitenceTest {
+    
+     /**
      *
      * @return Devuelve el jar que Arquillian va a desplegar en el Glassfish
-     * embebido. El jar contiene las clases de Pago, el descriptor de la
-     * base de datos y el archivo benas.xml para resolver la inyección de
-     * dependencias.
+     * 
      */
     @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
-                .addPackage(PagoEntity.class.getPackage())
-                .addPackage(PagoPersistence.class.getPackage())
+                .addPackage(CalificacionEntity.class.getPackage())
+                .addPackage(CalificacionPersistence.class.getPackage())
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
-
-    /**
-     * Inyección de la dependencia a la clase PagoPersistence cuyos métodos
+    
+     /**
+     * Inyección de la dependencia a la clase CalificacionPersistance cuyos métodos
      * se van a probar.
      */
     @Inject
-    private PagoPersistence pagoPersistence;
+    private CalificacionPersistence calificacionPersistence;
 
     /**
      * Contexto de Persostencia que se va autilizar para acceder a la Base de
@@ -64,7 +60,7 @@ public class PagoPersistenceTest {
     private EntityManager em;
 
     /**
-     * Variable para marcar las transacciones del em anterior cuando se
+     * Variable para martcar las transacciones del em anterior cuando se
      * crean/borran datos para las pruebas.
      */
     @Inject
@@ -92,127 +88,122 @@ public class PagoPersistenceTest {
             }
         }
     }
-
-    /**
+    
+     /**
      * Limpia las tablas que están implicadas en la prueba.
      *
      *
      */
     private void clearData() {
-        em.createQuery("delete from PagoEntity").executeUpdate();
+        em.createQuery("delete from CalificacionEntity").executeUpdate();
     }
 
     /**
      *
      */
-    private List<PagoEntity> data = new ArrayList<PagoEntity>();
+    private List<CalificacionEntity> data = new ArrayList<CalificacionEntity>();
 
     /**
-     * Inserta los datos iniciales para el correcto funcionamiento de las pruebas.
-     * 
+     * Inserta los datos iniciales para el correcto funcionamiento de las
+     * pruebas.
      *
-     *
+     *PODEM crea objetos con valores random. Nos permite probar con diferentes datos todo el tiempo
      */
     private void insertData() {
         PodamFactory factory = new PodamFactoryImpl();
         for (int i = 0; i < 3; i++) {
-            PagoEntity entity = factory.manufacturePojo(PagoEntity.class);
-
+            CalificacionEntity entity = factory.manufacturePojo(CalificacionEntity.class);
             em.persist(entity);
             data.add(entity);
         }
     }
 
     /**
-     * Prueba para crear un Pago.
+     * Prueba para crear una Calificacion.
      *
      *
      */
     @Test
-    public void createPagoTest() {
+    public void createCalificacionTest() {
         PodamFactory factory = new PodamFactoryImpl();
-        PagoEntity newEntity = factory.manufacturePojo(PagoEntity.class);
-        PagoEntity result = pagoPersistence.create(newEntity);
+        CalificacionEntity newEntity = factory.manufacturePojo(CalificacionEntity.class);
+        CalificacionEntity result = calificacionPersistence.create(newEntity);
 
         Assert.assertNotNull(result);
 
-        PagoEntity entity = em.find(PagoEntity.class, result.getId());
+        CalificacionEntity entity = em.find(CalificacionEntity.class, result.getId());
 
-        Assert.assertEquals(newEntity.getName(), entity.getName());
-        Assert.assertEquals(newEntity.getFecha(), entity.getFecha());
-        Assert.assertEquals(newEntity.getId(), entity.getId());
-        Assert.assertEquals(newEntity.getValor(), entity.getValor());
+        Assert.assertEquals(newEntity.getCalificacion(), entity.getCalificacion());
+        Assert.assertEquals(newEntity.getComentario(), entity.getComentario());
+       
     }
 
     /**
-     * Prueba para consultar la lista de Pagos.
-     *
+     * Prueba para consultar la lista de Calificaciones.
      *
      */
     @Test
-    public void getPagosTest() {
-        List<PagoEntity> list = pagoPersistence.findAll();
+    public void getCalificacionsTest() {
+        List<CalificacionEntity> list = calificacionPersistence.findAll();
         Assert.assertEquals(data.size(), list.size());
-        for (PagoEntity ent : list) {
-            boolean found = false;
-            for (PagoEntity entity : data) {
+        for (CalificacionEntity ent : list) {
+            boolean e = false;
+            for (CalificacionEntity entity : data) {
                 if (ent.getId().equals(entity.getId())) {
-                    found = true;
+                    e = true;
                 }
             }
-            Assert.assertTrue(found);
+            Assert.assertTrue(e);
         }
     }
 
     /**
-     * Prueba para consultar un Pago.
+     * Prueba para consultar una Calificacion.
      *
      *
      */
     @Test
-    public void getPagoTest() {
-        PagoEntity entity = data.get(0);
-        PagoEntity newEntity = pagoPersistence.find(entity.getId());
+    public void getCalificacionTest() {
+        CalificacionEntity entity = data.get(0);
+        CalificacionEntity newEntity = calificacionPersistence.find(entity.getId());
         Assert.assertNotNull(newEntity);
-        Assert.assertEquals(entity.getName(), newEntity.getName());
-        Assert.assertEquals(entity.getFecha(), newEntity.getFecha());
-        Assert.assertEquals(entity.getId(), newEntity.getId());
-        Assert.assertEquals(entity.getValor(), newEntity.getValor());
+        Assert.assertEquals(newEntity.getCalificacion(), entity.getCalificacion());
+        Assert.assertEquals(newEntity.getComentario(), entity.getComentario());
+  
     }
 
     /**
-     * Prueba para eliminar un Pago.
+     * Prueba para eliminar una Calificacion.
      *
      *
      */
     @Test
-    public void deletePagoTest() {
-        PagoEntity entity = data.get(0);
-        pagoPersistence.delete(entity.getId());
-        PagoEntity deleted = em.find(PagoEntity.class, entity.getId());
+    public void deleteCalificacionTest() {
+        CalificacionEntity entity = data.get(0);
+        calificacionPersistence.delete(entity);
+        CalificacionEntity deleted = em.find(CalificacionEntity.class, entity.getId());
         Assert.assertNull(deleted);
     }
 
     /**
-     * Prueba para actualizar un Pago.
+     * Prueba para actualizar una Calificacion.
      *
      *
      */
     @Test
-    public void updatePagoTest() {
-        PagoEntity entity = data.get(0);
+    public void updateCalificacionTest() {
+        CalificacionEntity entity = data.get(0);
         PodamFactory factory = new PodamFactoryImpl();
-        PagoEntity newEntity = factory.manufacturePojo(PagoEntity.class);
+        CalificacionEntity newEntity = factory.manufacturePojo(CalificacionEntity.class);
 
         newEntity.setId(entity.getId());
 
-        pagoPersistence.update(newEntity);
+        calificacionPersistence.update(newEntity);
 
-        PagoEntity resp = em.find(PagoEntity.class, entity.getId());
+        CalificacionEntity r = em.find(CalificacionEntity.class, entity.getId());
 
-        Assert.assertEquals(newEntity.getName(), resp.getName());
-        Assert.assertEquals(newEntity.getFecha(), resp.getFecha());
-        Assert.assertEquals(newEntity.getValor(), resp.getValor());
-        Assert.assertEquals(newEntity.getId(), resp.getId());
-    }
+        Assert.assertEquals(newEntity.getCalificacion(), r.getCalificacion());
+        Assert.assertEquals(newEntity.getComentario(), r.getComentario());
+        
+    } 
 }

@@ -6,7 +6,6 @@
 package co.edu.uniandes.csw.correos.persistence;
 
 import co.edu.uniandes.csw.correos.entities.CuentaBancariaEntity;
-import com.sun.istack.internal.logging.Logger;
 import java.util.List;
 import java.util.logging.Level;
 import javax.ejb.Stateless;
@@ -74,7 +73,9 @@ public class CuentaBancariaPersistence {
          return em.merge(entity);
     }
     
-    public void delete(CuentaBancariaEntity entity) {
+    public void delete(Long id) {
+        LOGGER.log(Level.INFO, "Borrando cuenta bancaria con id={0}", id);
+        CuentaBancariaEntity entity = em.find(CuentaBancariaEntity.class, id);
         em.remove(entity);
     }
 }

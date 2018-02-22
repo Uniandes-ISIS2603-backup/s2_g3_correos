@@ -3,9 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
-import co.edu.uniandes.csw.correos.entities.EventoEntity;
-import co.edu.uniandes.csw.correos.persistence.EventoPersistence;
+import co.edu.uniandes.csw.correos.entities.PaqueteEntity;
+import co.edu.uniandes.csw.correos.persistence.PaquetePersistence;
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
@@ -26,37 +25,35 @@ import static org.junit.Assert.*;
 import org.junit.runner.RunWith;
 import uk.co.jemos.podam.api.PodamFactory;
 import uk.co.jemos.podam.api.PodamFactoryImpl;
-
 /**
  *
- * @author a.silvag
+ * @author df.rengifo
  */
 @RunWith(Arquillian.class)
-public class EventoPersistenceTest {
-    
-   
+public class PaquetePersistenceTest {   
+
     /**
      *
      * @return Devuelve el jar que Arquillian va a desplegar en el Glassfish
-     * embebido. El jar contiene las clases de Evento, el descriptor de la
+     * embebido. El jar contiene las clases de Paquete, el descriptor de la
      * base de datos y el archivo benas.xml para resolver la inyección de
      * dependencias.
      */
     @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
-                .addPackage(EventoEntity.class.getPackage())
-                .addPackage(EventoPersistence.class.getPackage())
+                .addPackage(PaqueteEntity.class.getPackage())
+                .addPackage(PaquetePersistence.class.getPackage())
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
 
     /**
-     * Inyección de la dependencia a la clase EventoPersistence cuyos métodos
+     * Inyección de la dependencia a la clase PaquetePersistence cuyos métodos
      * se van a probar.
      */
     @Inject
-    private EventoPersistence eventoPersistence;
+    private PaquetePersistence paquetePersistence;
 
     /**
      * Contexto de Persostencia que se va autilizar para acceder a la Base de
@@ -101,13 +98,13 @@ public class EventoPersistenceTest {
      *
      */
     private void clearData() {
-        em.createQuery("delete from EventoEntity").executeUpdate();
+        em.createQuery("delete from PaqueteEntity").executeUpdate();
     }
 
     /**
      *
      */
-    private List<EventoEntity> data = new ArrayList<EventoEntity>();
+    private List<PaqueteEntity> data = new ArrayList<PaqueteEntity>();
 
     /**
      * Inserta los datos iniciales para el correcto funcionamiento de las pruebas.
@@ -118,7 +115,7 @@ public class EventoPersistenceTest {
     private void insertData() {
         PodamFactory factory = new PodamFactoryImpl();
         for (int i = 0; i < 3; i++) {
-            EventoEntity entity = factory.manufacturePojo(EventoEntity.class);
+            PaqueteEntity entity = factory.manufacturePojo(PaqueteEntity.class);
 
             em.persist(entity);
             data.add(entity);
@@ -126,38 +123,41 @@ public class EventoPersistenceTest {
     }
 
     /**
-     * Prueba para crear un Evento.
+     * Prueba para crear un Paquete.
      *
      *
      */
     @Test
-    public void createEventoTest() {
+    public void createPaqueteTest() {
         PodamFactory factory = new PodamFactoryImpl();
-        EventoEntity newEntity = factory.manufacturePojo(EventoEntity.class);
-        EventoEntity result = eventoPersistence.create(newEntity);
+        PaqueteEntity newEntity = factory.manufacturePojo(PaqueteEntity.class);
+        PaqueteEntity result = paquetePersistence.create(newEntity);
 
         Assert.assertNotNull(result);
 
-        EventoEntity entity = em.find(EventoEntity.class, result.getId());
+        PaqueteEntity entity = em.find(PaqueteEntity.class, result.getId());
 
-        Assert.assertEquals(newEntity.getName(), entity.getName());
-        Assert.assertEquals(newEntity.getDetalle(), entity.getDetalle());
+        Assert.assertEquals(newEntity.getTipo(), entity.getTipo());
+        Assert.assertEquals(newEntity.getPeso(), entity.getPeso());
+        Assert.assertEquals(newEntity.getDimensionA(), entity.getDimensionA());
+        Assert.assertEquals(newEntity.getDimensionB(), entity.getDimensionB());
+        Assert.assertEquals(newEntity.getDimensionC(), entity.getDimensionC());
         Assert.assertEquals(newEntity.getId(), entity.getId());
-        Assert.assertEquals(newEntity.getUbicacion(), entity.getUbicacion());
+                
     }
 
     /**
-     * Prueba para consultar la lista de Eventos.
+     * Prueba para consultar la lista de Paquetes.
      *
      *
      */
     @Test
-    public void getEventosTest() {
-        List<EventoEntity> list = eventoPersistence.findAll();
+    public void getPaquetesTest() {
+        List<PaqueteEntity> list = paquetePersistence.findAll();
         Assert.assertEquals(data.size(), list.size());
-        for (EventoEntity ent : list) {
+        for (PaqueteEntity ent : list) {
             boolean found = false;
-            for (EventoEntity entity : data) {
+            for (PaqueteEntity entity : data) {
                 if (ent.getId().equals(entity.getId())) {
                     found = true;
                 }
@@ -167,54 +167,59 @@ public class EventoPersistenceTest {
     }
 
     /**
-     * Prueba para consultar un Evento.
+     * Prueba para consultar un Paquete.
      *
      *
      */
     @Test
-    public void getEventoTest() {
-        EventoEntity entity = data.get(0);
-        EventoEntity newEntity = eventoPersistence.find(entity.getId());
+    public void getPaqueteTest() {
+        PaqueteEntity entity = data.get(0);
+        PaqueteEntity newEntity = paquetePersistence.find(entity.getId());
         Assert.assertNotNull(newEntity);
-        Assert.assertEquals(entity.getName(), newEntity.getName());
-        Assert.assertEquals(entity.getDetalle(), newEntity.getDetalle());
+        Assert.assertEquals(entity.getTipo(), newEntity.getTipo());
+        Assert.assertEquals(entity.getPeso(), newEntity.getPeso());
+        Assert.assertEquals(entity.getDimensionA(), newEntity.getDimensionA());
+        Assert.assertEquals(entity.getDimensionB(), newEntity.getDimensionB());
+        Assert.assertEquals(entity.getDimensionC(), newEntity.getDimensionC());
         Assert.assertEquals(entity.getId(), newEntity.getId());
-        Assert.assertEquals(entity.getUbicacion(), newEntity.getUbicacion());
     }
 
     /**
-     * Prueba para eliminar un Evento.
+     * Prueba para eliminar un Paquete.
      *
      *
      */
     @Test
-    public void deleteEventoTest() {
-        EventoEntity entity = eventoPersistence.find(data.get(0).getId());
-        eventoPersistence.delete(entity.getId());
-        EventoEntity deleted = em.find(EventoEntity.class, entity.getId());
+    public void deletePaqueteTest() {
+        PaqueteEntity entity = data.get(0);
+        paquetePersistence.delete(entity);
+        PaqueteEntity deleted = em.find(PaqueteEntity.class, entity.getId());
         Assert.assertNull(deleted);
     }
 
     /**
-     * Prueba para actualizar un Evento.
+     * Prueba para actualizar un Paquete.
      *
      *
      */
     @Test
-    public void updateEventoTest() {
-        EventoEntity entity = data.get(0);
+    public void updatePaqueteTest() {
+        PaqueteEntity entity = data.get(0);
         PodamFactory factory = new PodamFactoryImpl();
-        EventoEntity newEntity = factory.manufacturePojo(EventoEntity.class);
+        PaqueteEntity newEntity = factory.manufacturePojo(PaqueteEntity.class);
 
         newEntity.setId(entity.getId());
 
-        eventoPersistence.update(newEntity);
+        paquetePersistence.update(newEntity);
 
-        EventoEntity resp = em.find(EventoEntity.class, entity.getId());
+        PaqueteEntity resp = em.find(PaqueteEntity.class, entity.getId());
 
-        Assert.assertEquals(newEntity.getName(), resp.getName());
-        Assert.assertEquals(newEntity.getDetalle(), resp.getDetalle());
-        Assert.assertEquals(newEntity.getUbicacion(), resp.getUbicacion());
+        Assert.assertEquals(newEntity.getTipo(), resp.getTipo());
+        Assert.assertEquals(newEntity.getPeso(), resp.getPeso());
+        Assert.assertEquals(newEntity.getDimensionA(), resp.getDimensionA());
+        Assert.assertEquals(newEntity.getDimensionB(), resp.getDimensionB());
+        Assert.assertEquals(newEntity.getDimensionC(), resp.getDimensionC());
         Assert.assertEquals(newEntity.getId(), resp.getId());
-    }
+    }   
 }
+

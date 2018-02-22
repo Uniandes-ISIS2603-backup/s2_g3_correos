@@ -4,13 +4,10 @@
  * and open the template in the editor.
  */
 
-
-
-import co.edu.uniandes.csw.correos.entities.PagoEntity;
-import co.edu.uniandes.csw.correos.persistence.PagoPersistence;
+import co.edu.uniandes.csw.correos.entities.ZonaEntity;
+import co.edu.uniandes.csw.correos.persistence.ZonaPersistence;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -28,33 +25,30 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
 
 /**
  *
- * @author a.silvag
+ * @author ed.diaz11
  */
 @RunWith(Arquillian.class)
-public class PagoPersistenceTest {
-
-    /**
+public class ZonaPersitenceTest {
+ /**
      *
      * @return Devuelve el jar que Arquillian va a desplegar en el Glassfish
-     * embebido. El jar contiene las clases de Pago, el descriptor de la
-     * base de datos y el archivo benas.xml para resolver la inyección de
-     * dependencias.
+     * 
      */
     @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
-                .addPackage(PagoEntity.class.getPackage())
-                .addPackage(PagoPersistence.class.getPackage())
+                .addPackage(ZonaEntity.class.getPackage())
+                .addPackage(ZonaPersistence.class.getPackage())
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
-
-    /**
-     * Inyección de la dependencia a la clase PagoPersistence cuyos métodos
+    
+     /**
+     * Inyección de la dependencia a la clase ZonaPersistance cuyos métodos
      * se van a probar.
      */
     @Inject
-    private PagoPersistence pagoPersistence;
+    private ZonaPersistence zonaPersistence;
 
     /**
      * Contexto de Persostencia que se va autilizar para acceder a la Base de
@@ -64,7 +58,7 @@ public class PagoPersistenceTest {
     private EntityManager em;
 
     /**
-     * Variable para marcar las transacciones del em anterior cuando se
+     * Variable para martcar las transacciones del em anterior cuando se
      * crean/borran datos para las pruebas.
      */
     @Inject
@@ -92,127 +86,123 @@ public class PagoPersistenceTest {
             }
         }
     }
-
-    /**
+    
+     /**
      * Limpia las tablas que están implicadas en la prueba.
      *
      *
      */
     private void clearData() {
-        em.createQuery("delete from PagoEntity").executeUpdate();
+        em.createQuery("delete from ZonaEntity").executeUpdate();
     }
 
     /**
      *
      */
-    private List<PagoEntity> data = new ArrayList<PagoEntity>();
+    private List<ZonaEntity> data = new ArrayList<ZonaEntity>();
 
     /**
-     * Inserta los datos iniciales para el correcto funcionamiento de las pruebas.
-     * 
+     * Inserta los datos iniciales para el correcto funcionamiento de las
+     * pruebas.
      *
-     *
+     *PODEM crea objetos con valores random. Nos permite probar con diferentes datos todo el tiempo
      */
     private void insertData() {
         PodamFactory factory = new PodamFactoryImpl();
         for (int i = 0; i < 3; i++) {
-            PagoEntity entity = factory.manufacturePojo(PagoEntity.class);
-
+            ZonaEntity entity = factory.manufacturePojo(ZonaEntity.class);
             em.persist(entity);
             data.add(entity);
         }
     }
 
     /**
-     * Prueba para crear un Pago.
+     * Prueba para crear una Zona.
      *
      *
      */
     @Test
-    public void createPagoTest() {
+    public void createZonaTest() {
         PodamFactory factory = new PodamFactoryImpl();
-        PagoEntity newEntity = factory.manufacturePojo(PagoEntity.class);
-        PagoEntity result = pagoPersistence.create(newEntity);
+        ZonaEntity newEntity = factory.manufacturePojo(ZonaEntity.class);
+        ZonaEntity result = zonaPersistence.create(newEntity);
 
         Assert.assertNotNull(result);
 
-        PagoEntity entity = em.find(PagoEntity.class, result.getId());
+        ZonaEntity entity = em.find(ZonaEntity.class, result.getId());
 
-        Assert.assertEquals(newEntity.getName(), entity.getName());
-        Assert.assertEquals(newEntity.getFecha(), entity.getFecha());
-        Assert.assertEquals(newEntity.getId(), entity.getId());
-        Assert.assertEquals(newEntity.getValor(), entity.getValor());
+        Assert.assertEquals(newEntity.getLongitud(), entity.getLongitud());
+        Assert.assertEquals(newEntity.getLatitud(), entity.getLatitud());
+       
     }
 
     /**
-     * Prueba para consultar la lista de Pagos.
-     *
+     * Prueba para consultar la lista de Zonas.
      *
      */
     @Test
-    public void getPagosTest() {
-        List<PagoEntity> list = pagoPersistence.findAll();
+    public void getZonasTest() {
+        List<ZonaEntity> list = zonaPersistence.findAll();
         Assert.assertEquals(data.size(), list.size());
-        for (PagoEntity ent : list) {
-            boolean found = false;
-            for (PagoEntity entity : data) {
+        for (ZonaEntity ent : list) {
+            boolean e = false;
+            for (ZonaEntity entity : data) {
                 if (ent.getId().equals(entity.getId())) {
-                    found = true;
+                    e = true;
                 }
             }
-            Assert.assertTrue(found);
+            Assert.assertTrue(e);
         }
     }
 
     /**
-     * Prueba para consultar un Pago.
+     * Prueba para consultar una Zona.
      *
      *
      */
     @Test
-    public void getPagoTest() {
-        PagoEntity entity = data.get(0);
-        PagoEntity newEntity = pagoPersistence.find(entity.getId());
+    public void getZonaTest() {
+        ZonaEntity entity = data.get(0);
+        ZonaEntity newEntity = zonaPersistence.find(entity.getId());
         Assert.assertNotNull(newEntity);
-        Assert.assertEquals(entity.getName(), newEntity.getName());
-        Assert.assertEquals(entity.getFecha(), newEntity.getFecha());
-        Assert.assertEquals(entity.getId(), newEntity.getId());
-        Assert.assertEquals(entity.getValor(), newEntity.getValor());
+        Assert.assertEquals(newEntity.getLatitud(), entity.getLatitud());
+        Assert.assertEquals(newEntity.getLongitud(), entity.getLongitud());
+  
     }
 
     /**
-     * Prueba para eliminar un Pago.
+     * Prueba para eliminar una Zona.
      *
      *
      */
     @Test
-    public void deletePagoTest() {
-        PagoEntity entity = data.get(0);
-        pagoPersistence.delete(entity.getId());
-        PagoEntity deleted = em.find(PagoEntity.class, entity.getId());
+    public void deleteZonaTest() {
+        ZonaEntity entity = data.get(0);
+        zonaPersistence.delete(entity);
+        ZonaEntity deleted = em.find(ZonaEntity.class, entity.getId());
         Assert.assertNull(deleted);
     }
 
     /**
-     * Prueba para actualizar un Pago.
+     * Prueba para actualizar una Zona.
      *
      *
      */
     @Test
-    public void updatePagoTest() {
-        PagoEntity entity = data.get(0);
+    public void updateZonaTest() {
+        ZonaEntity entity = data.get(0);
         PodamFactory factory = new PodamFactoryImpl();
-        PagoEntity newEntity = factory.manufacturePojo(PagoEntity.class);
+        ZonaEntity newEntity = factory.manufacturePojo(ZonaEntity.class);
 
         newEntity.setId(entity.getId());
 
-        pagoPersistence.update(newEntity);
+        zonaPersistence.update(newEntity);
 
-        PagoEntity resp = em.find(PagoEntity.class, entity.getId());
+        ZonaEntity r = em.find(ZonaEntity.class, entity.getId());
 
-        Assert.assertEquals(newEntity.getName(), resp.getName());
-        Assert.assertEquals(newEntity.getFecha(), resp.getFecha());
-        Assert.assertEquals(newEntity.getValor(), resp.getValor());
-        Assert.assertEquals(newEntity.getId(), resp.getId());
-    }
+        Assert.assertEquals(newEntity.getLatitud(), r.getLatitud());
+        Assert.assertEquals(newEntity.getLongitud(), r.getLongitud());
+        
+    }    
+  
 }

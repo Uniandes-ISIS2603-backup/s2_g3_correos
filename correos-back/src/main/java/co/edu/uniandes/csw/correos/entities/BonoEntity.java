@@ -15,27 +15,13 @@ import javax.persistence.Entity;
 
 @Entity
 public class BonoEntity extends BaseEntity implements Serializable {
-    private Long id; //id del bono
+    
     private String descripcion; // descripcion del paquete
     private Double descuento; // descuento del bono
     private String condicion; // condicion o estado del bono
     private String fechaDeVencimiento; // fecha de vencimiento del bono
 
-    /** 
-     * Obtiene el atributo id
-     * @return id del bono 
-     */
-    public Long getId() {
-        return id;
-    }
-
-    /**
-     * Asigna el id del bono
-     * @param id id el bono
-     */
-    public void setId(Long id) {
-        this.id = id;
-    }
+   
 
     /**
      * Obtiene el atributo descripcion

@@ -6,31 +6,21 @@
 package co.edu.uniandes.csw.correos.entities;
 
 import java.io.Serializable;
+import javax.persistence.Entity;
 
 /**
  *
  * @author a.silvag
  */
+@Entity
 public class CuentaBancariaEntity extends BaseEntity implements Serializable{
 
-    private Long id;
+
     private String numero;
     private String banco;
     private String tipoTarjeta;
 
-    /**
-     * @return the id
-     */
-    public Long getId() {
-        return id;
-    }
-
-    /**
-     * @param id the id to set
-     */
-    public void setId(Long id) {
-        this.id = id;
-    }
+ 
 
     /**
      * @return the numero
