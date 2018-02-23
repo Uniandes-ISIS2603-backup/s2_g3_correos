@@ -151,7 +151,7 @@ public class MensajeroPersistenceTest {
         Assert.assertEquals(newEntity.getNombre(), entity.getNombre());
         Assert.assertEquals(newEntity.getCorreo(), entity.getCorreo());
         Assert.assertEquals(newEntity.getCelular(), entity.getCelular());
-        Assert.assertEquals(newEntity.getCalificacionPromedio(), entity.getCalificacionPromedio());
+        Assert.assertEquals(newEntity.getCalificacionPromedio(), entity.getCalificacionPromedio(),0.0);
     }
     
     /**
@@ -183,7 +183,7 @@ public class MensajeroPersistenceTest {
         Assert.assertEquals(newEntity.getNombre(), entity.getNombre());
         Assert.assertEquals(newEntity.getCorreo(), entity.getCorreo());
         Assert.assertEquals(newEntity.getCelular(), entity.getCelular());
-        Assert.assertEquals(newEntity.getCalificacionPromedio(), entity.getCalificacionPromedio());
+        Assert.assertEquals(newEntity.getCalificacionPromedio(), entity.getCalificacionPromedio(),0.0);
     }
     
     /**
@@ -192,7 +192,7 @@ public class MensajeroPersistenceTest {
     @Test
     public void deleteMensajeroTest() {
         MensajeroEntity entity = data.get(0);
-        mensajeroPersistence.delete( em.find(MensajeroEntity.class,entity.getId()));
+        mensajeroPersistence.delete( entity.getId());
         MensajeroEntity deleted = em.find(MensajeroEntity.class, entity.getId());
         Assert.assertNull(deleted);
     }
@@ -213,10 +213,10 @@ public class MensajeroPersistenceTest {
         MensajeroEntity resp = em.find(MensajeroEntity.class, entity.getId());
 
         Assert.assertNotNull(newEntity);
-        Assert.assertEquals(newEntity.getNombre(), entity.getNombre());
-        Assert.assertEquals(newEntity.getCorreo(), entity.getCorreo());
-        Assert.assertEquals(newEntity.getCelular(), entity.getCelular());
-        Assert.assertEquals(newEntity.getCalificacionPromedio(), entity.getCalificacionPromedio());
+        Assert.assertEquals(newEntity.getNombre(), resp.getNombre());
+        Assert.assertEquals(newEntity.getCorreo(), resp.getCorreo());
+        Assert.assertEquals(newEntity.getCelular(), resp.getCelular());
+        Assert.assertEquals(newEntity.getCalificacionPromedio(), resp.getCalificacionPromedio(),0.0);
     }
     
 }

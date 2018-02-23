@@ -67,10 +67,10 @@ public class TransportePersistence {
     }
     
     /**
-     * @param entity el transporte que se desea eliminar
+     * @param id el transporte que se desea eliminar
      */
-    public void delete(TransporteEntity entity)
+    public void delete(Long id)
     {
-        em.remove(entity);
+        em.remove(em.find(TransporteEntity.class, id));
     }
 }
