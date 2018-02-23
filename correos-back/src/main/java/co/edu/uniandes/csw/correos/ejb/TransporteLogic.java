@@ -81,7 +81,7 @@ public class TransporteLogic {
     public void deleteTransporte(TransporteEntity transporte)
     {
         LOGGER.log(Level.INFO,"se elimina el transporte con el id={0}",transporte.getId());
-        persistence.delete(transporte);
+        persistence.delete(transporte.getId());
         LOGGER.log(Level.INFO,"se eliminó el transporte con el id={0}",transporte.getId());
     }
 }

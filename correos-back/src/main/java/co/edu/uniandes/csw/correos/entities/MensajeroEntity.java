@@ -44,7 +44,7 @@ public class MensajeroEntity extends BaseEntity implements Serializable {
     private String celular;
     private Double calificacionPromedio;
     
-//    @OneToOne(fetch = FetchType.EAGER)
+//   @OneToOne(fetch = FetchType.EAGER)
 //    private CuentaBancariaEntity cuenta;
 //    
 //    @OneToMany(cascade=CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
@@ -58,8 +58,8 @@ public class MensajeroEntity extends BaseEntity implements Serializable {
 //    
 //    @ManyToMany(mappedBy="zonas", fetch = FetchType.LAZY)
 //    private List<ZonaEntity> zonas;
-    
-    
+//    
+//    
     
     /**
      * @return  El correo del mensajero

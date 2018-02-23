@@ -81,7 +81,7 @@ public class ReservaLogic {
     public void deleteReserva(ReservaEntity reserva)
     {
         LOGGER.log(Level.INFO,"se elimina el reserva con el id={0}",reserva.getId());
-        persistence.delete(reserva);
+        persistence.delete(reserva.getId());
         LOGGER.log(Level.INFO,"se eliminó el reserva con el id={0}",reserva.getId());
     }
 }

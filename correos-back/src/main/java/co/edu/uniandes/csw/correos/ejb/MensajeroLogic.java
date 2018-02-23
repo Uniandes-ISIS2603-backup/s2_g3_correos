@@ -83,7 +83,7 @@ public class MensajeroLogic {
     public void deleteMensajero(MensajeroEntity mensajero)
     {
         LOGGER.log(Level.INFO,"se elimina el mensajero con el id={0}",mensajero.getId());
-        persistence.delete(mensajero);
+        persistence.delete(mensajero.getId());
         LOGGER.log(Level.INFO,"se eliminó el mensajero con el id={0}",mensajero.getId());
     }
     
