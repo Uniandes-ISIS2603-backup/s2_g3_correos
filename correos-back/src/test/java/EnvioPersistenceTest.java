@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 import co.edu.uniandes.csw.correos.entities.EnvioEntity;
 import co.edu.uniandes.csw.correos.persistence.EnvioPersistence;
 import java.util.ArrayList;
@@ -15,13 +16,9 @@ import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
-import static org.junit.Assert.*;
 import org.junit.runner.RunWith;
 import uk.co.jemos.podam.api.PodamFactory;
 import uk.co.jemos.podam.api.PodamFactoryImpl;
@@ -191,7 +188,7 @@ public class EnvioPersistenceTest {
     @Test
     public void deleteEnvioTest() {
         EnvioEntity entity = data.get(0);
-        envioPersistence.delete(entity);
+        envioPersistence.delete(entity.getId());
         EnvioEntity deleted = em.find(EnvioEntity.class, entity.getId());
         Assert.assertNull(deleted);
     }

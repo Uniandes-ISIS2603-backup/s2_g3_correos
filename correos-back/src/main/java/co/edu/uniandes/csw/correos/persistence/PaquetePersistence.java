@@ -3,10 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package co.edu.uniandes.csw.correos.persistence;
 
 import co.edu.uniandes.csw.correos.entities.PaqueteEntity;
 import java.util.List;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -67,10 +69,12 @@ public class PaquetePersistence {
     }
     
     /**
-     * @param entity el paquete que se desea eliminar
+     * @param id la ID del paquete que se desea eliminar
      */
-    public void delete(PaqueteEntity entity)
+    public void delete(Long id)
     {
+        LOGGER.log(Level.INFO, "Borrando el paquete de id={0}", id);
+        PaqueteEntity entity = em.find(PaqueteEntity.class, id);
         em.remove(entity);
     }
 }
