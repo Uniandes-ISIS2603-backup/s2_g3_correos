@@ -7,7 +7,12 @@
 package co.edu.uniandes.csw.correos.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
@@ -20,7 +25,15 @@ public class PaqueteEntity extends BaseEntity implements Serializable{
    private Double dimensionB;
    private Double dimensionC;
    private Double peso;
-   private String tipo;   
+   private String tipo;
+
+   @PodamExclude
+   @ManyToOne
+   private EnvioEntity envio; 
+
+   @PodamExclude
+   @OneToMany(mappedBy = "detalles paquete")
+   private List<DetallePaqueteEntity> detalles = new ArrayList<DetallePaqueteEntity>();  
 
     /**
      * @return the dimensionA
@@ -36,6 +49,34 @@ public class PaqueteEntity extends BaseEntity implements Serializable{
         this.dimensionA = dimensionA;
     }
 
+    /**
+     * @return the envio
+     */
+    public EnvioEntity getEnvio() {
+        return envio;
+    }
+
+    /**
+     * @param envio the envio to set
+     */
+    public void setEnvio(EnvioEntity envio) {
+        this.envio = envio;
+    }
+    
+    /**
+     * @return the detalle
+     */
+    public List<DetallePaqueteEntity> getDetallesPaquete() {
+        return detalles;
+    }
+
+    /**
+     * @param detalles the detalles to set
+     */
+    public void setDetallePaqueteEntity(List<DetallePaqueteEntity> detalles) {
+        this.detalles = detalles;
+    }
+    
     /**
      * @return the dimensionB
      */
