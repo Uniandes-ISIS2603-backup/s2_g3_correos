@@ -68,10 +68,10 @@ public class ReservaPersistence {
     }
     
     /**
-     * @param entity la reserva que se desea eliminar
+     * @param id la reserva que se desea eliminar
      */
-    public void delete(ReservaEntity entity)
+    public void delete(Long id)
     {
-        em.remove(entity);
+        em.remove(em.find(ReservaEntity.class, id));
     }
 }

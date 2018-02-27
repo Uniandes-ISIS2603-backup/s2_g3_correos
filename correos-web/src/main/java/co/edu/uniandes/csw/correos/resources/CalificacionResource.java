@@ -25,7 +25,7 @@ package co.edu.uniandes.csw.correos.resources;
 
 
 import co.edu.uniandes.csw.correos.dtos.CityDetailDTO;
-import co.edu.uniandes.csw.correos.dtos.ComentarioDetailDTO;
+import co.edu.uniandes.csw.correos.dtos.CalidicaionDetailDTO;
 import co.edu.uniandes.csw.correos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.correos.mappers.BusinessLogicExceptionMapper;
 import java.util.ArrayList;
@@ -57,11 +57,11 @@ import javax.ws.rs.Produces;
  * @author ISIS2603  
  * @version 1.0
  */
-@Path("comentarios")
+@Path("calificaciones")
 @Produces("application/json")
 @Consumes("application/json")
 @RequestScoped
-public class ComentarioResource {
+public class CalificacionResource {
 
     /**
      * <h1>POST /api/cities : Crear un comentairo.</h1>
@@ -80,12 +80,12 @@ public class ComentarioResource {
      * 412 Precodition Failed: Ya existe el comentario.
      * </code>
      * </pre>
-     * @param comentario {@link ComentarioDetailDTO} - El comentairo  que se desea guardar.
-     * @return JSON {@link ComentarioDetailDTO}  - El comentario que se guardada con el atributo id autogenerado.
+     * @param comentario {@link CalidicaionDetailDTO} - El comentairo  que se desea guardar.
+     * @return JSON {@link CalidicaionDetailDTO}  - El comentario que se guardada con el atributo id autogenerado.
      * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} - Error de lógica que se genera cuando ya existe el comentario.
      */
 
-    public ComentarioDetailDTO createCity(ComentarioDetailDTO comentario) throws BusinessLogicException {
+    public CalidicaionDetailDTO createCity(CalidicaionDetailDTO comentario) throws BusinessLogicException {
         return comentario;
     }
 
@@ -98,10 +98,10 @@ public class ComentarioResource {
      * <code style="color: mediumseagreen; background-color: #eaffe0;">
      * 200 OK Devuelve todas los comentarios de la aplicacion.</code> 
      * </pre>
-     * @return JSONArray {@link ComentarioDetailDTO} - Los comentarios encontrados en la aplicación. Si no hay ninguno retorna una lista vacía.
+     * @return JSONArray {@link CalidicaionDetailDTO} - Los comentarios encontrados en la aplicación. Si no hay ninguno retorna una lista vacía.
      */
     @GET
-    public List<ComentarioDetailDTO> getComentairos() {
+    public List<CalidicaionDetailDTO> getComentairos() {
         return new ArrayList<>();
     }
 
@@ -119,11 +119,11 @@ public class ComentarioResource {
      * </code> 
      * </pre>
      * @param id Identificador del comentario que se esta buscando. Este debe ser una cadena de dígitos.
-     * @return JSON {@link ComentarioDetailDTO} - El comentario buscado
+     * @return JSON {@link CalidicaionDetailDTO} - El comentario buscado
      */
     @GET
     @Path("{id: \\d+}")
-    public ComentarioDetailDTO getComentario(@PathParam("id") Long id) {
+    public CalidicaionDetailDTO getComentario(@PathParam("id") Long id) {
         return null;
     }
     
@@ -141,13 +141,13 @@ public class ComentarioResource {
      * </code> 
      * </pre>
      * @param id Identificador del comentario que se desea actualizar.Este debe ser una cadena de dígitos.
-     * @param city {@link ComentarioDetailDTO} El comentario que se desea guardar.
-     * @return JSON {@link ComentarioDetailDTO} - El comentario guardada.
+     * @param city {@link CalidicaionDetailDTO} El comentario que se desea guardar.
+     * @return JSON {@link CalidicaionDetailDTO} - El comentario guardada.
      * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} - Error de lógica que se genera al no poder actualizar el comentario porque ya existe una con ese nombre.
      */
     @PUT
     @Path("{id: \\d+}")
-    public ComentarioDetailDTO updateComentario(@PathParam("id") Long id, ComentarioDetailDTO comentario) throws BusinessLogicException {
+    public CalidicaionDetailDTO updateComentario(@PathParam("id") Long id, CalidicaionDetailDTO comentario) throws BusinessLogicException {
         return comentario;
     }
     

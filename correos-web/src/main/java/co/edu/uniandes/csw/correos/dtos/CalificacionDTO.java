@@ -9,7 +9,7 @@ package co.edu.uniandes.csw.correos.dtos;
  *
  * @author ed.diaz11
  */
-public class ComentarioDTO {
+public class CalificacionDTO {
     private long id;
     private double calificacion;
     private String comentario ;
@@ -19,7 +19,7 @@ public class ComentarioDTO {
     /**
      * Constructor por defecto
      */
-    public ComentarioDTO ()
+    public CalificacionDTO ()
     {
         //Este metodo esta vacio para permitir la construccion del JSON
     }

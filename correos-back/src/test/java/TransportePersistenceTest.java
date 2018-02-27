@@ -172,7 +172,7 @@ public class TransportePersistenceTest {
     @Test
     public void deleteTransporteTest() {
         TransporteEntity entity = data.get(0);
-        transportePersistence.delete( em.find(TransporteEntity.class,entity.getId()));
+        transportePersistence.delete( entity.getId());
         TransporteEntity deleted = em.find(TransporteEntity.class, entity.getId());
         Assert.assertNull(deleted);
     }
@@ -193,9 +193,9 @@ public class TransportePersistenceTest {
         TransporteEntity resp = em.find(TransporteEntity.class, entity.getId());
 
         Assert.assertNotNull(newEntity);
-        Assert.assertEquals(newEntity.getTipo(), entity.getTipo());
-        Assert.assertEquals(newEntity.getCapacidad(), entity.getCapacidad());
-        Assert.assertEquals(newEntity.isActivo(), entity.isActivo());
+        Assert.assertEquals(newEntity.getTipo(), resp.getTipo());
+        Assert.assertEquals(newEntity.getCapacidad(), resp.getCapacidad());
+        Assert.assertEquals(newEntity.isActivo(), resp.isActivo());
     }
     
 }

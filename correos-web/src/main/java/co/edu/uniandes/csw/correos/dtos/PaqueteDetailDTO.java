@@ -52,5 +52,4 @@
 	    public void setEnvio(EnvioDTO envio) {
 	        this.envio = envio;
 	    }    
-
  }
