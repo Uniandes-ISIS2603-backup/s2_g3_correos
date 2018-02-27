@@ -20,6 +20,7 @@ import uk.co.jemos.podam.common.PodamExclude;
  *
  * @author df.rengifo
  */
+
 @Entity
 public class PaqueteEntity extends BaseEntity implements Serializable{        
    
