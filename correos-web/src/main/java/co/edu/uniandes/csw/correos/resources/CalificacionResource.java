@@ -25,7 +25,7 @@ package co.edu.uniandes.csw.correos.resources;
 
 
 import co.edu.uniandes.csw.correos.dtos.CityDetailDTO;
-import co.edu.uniandes.csw.correos.dtos.CalidicacionDetailDTO;
+import co.edu.uniandes.csw.correos.dtos.CalificacionDetailDTO;
 import co.edu.uniandes.csw.correos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.correos.mappers.BusinessLogicExceptionMapper;
 import java.util.ArrayList;
@@ -80,12 +80,12 @@ public class CalificacionResource {
      * 412 Precodition Failed: Ya existe el comentario.
      * </code>
      * </pre>
-     * @param comentario {@link CalidicacionDetailDTO} - El comentairo  que se desea guardar.
+     * @param comentario {@link CalificacionDetailDTO} - El comentairo  que se desea guardar.
      * @return JSON {@link CalidicacionDetailDTO}  - El comentario que se guardada con el atributo id autogenerado.
      * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} - Error de lógica que se genera cuando ya existe el comentario.
      */
 
-    public CalidicacionDetailDTO createCity(CalidicacionDetailDTO comentario) throws BusinessLogicException {
+    public CalificacionDetailDTO createCity(CalificacionDetailDTO comentario) throws BusinessLogicException {
         return comentario;
     }
 
@@ -101,7 +101,7 @@ public class CalificacionResource {
      * @return JSONArray {@link CalidicacionDetailDTO} - Los comentarios encontrados en la aplicación. Si no hay ninguno retorna una lista vacía.
      */
     @GET
-    public List<CalidicacionDetailDTO> getComentairos() {
+    public List<CalificacionDetailDTO> getComentairos() {
         return new ArrayList<>();
     }
 
@@ -123,7 +123,7 @@ public class CalificacionResource {
      */
     @GET
     @Path("{id: \\d+}")
-    public CalidicacionDetailDTO getComentario(@PathParam("id") Long id) {
+    public CalificacionDetailDTO getComentario(@PathParam("id") Long id) {
         return null;
     }
     
@@ -141,13 +141,13 @@ public class CalificacionResource {
      * </code> 
      * </pre>
      * @param id Identificador del comentario que se desea actualizar.Este debe ser una cadena de dígitos.
-     * @param city {@link CalidicacionDetailDTO} El comentario que se desea guardar.
-     * @return JSON {@link CalidicacionDetailDTO} - El comentario guardada.
+     * @param city {@link CalificacionDetailDTO} El comentario que se desea guardar.
+     * @return JSON {@link CalificacionDetailDTO} - El comentario guardada.
      * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} - Error de lógica que se genera al no poder actualizar el comentario porque ya existe una con ese nombre.
      */
     @PUT
     @Path("{id: \\d+}")
-    public CalidicacionDetailDTO updateComentario(@PathParam("id") Long id, CalidicacionDetailDTO comentario) throws BusinessLogicException {
+    public CalificacionDetailDTO updateComentario(@PathParam("id") Long id, CalificacionDetailDTO comentario) throws BusinessLogicException {
         return comentario;
     }
     
