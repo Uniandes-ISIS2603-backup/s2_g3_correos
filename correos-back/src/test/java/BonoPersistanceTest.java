@@ -422,13 +422,13 @@ public class BonoPersistanceTest
 
         Assert.assertEquals(newEntity.getName(), resp.getName());
 
-        Assert.assertEquals(newEntity.getDescripcion(), entity.getDescripcion());
+        Assert.assertEquals(newEntity.getDescripcion(), resp.getDescripcion());
 
-        Assert.assertEquals(newEntity.getDescuento(), entity.getDescuento());
+        Assert.assertEquals(newEntity.getDescuento(), resp.getDescuento());
 
-        Assert.assertEquals(newEntity.getCondicion(), entity.getCondicion());
+        Assert.assertEquals(newEntity.getCondicion(), resp.getCondicion());
 
-        Assert.assertEquals(newEntity.getFechaDeVencimiento(), entity.getFechaDeVencimiento());
+        Assert.assertEquals(newEntity.getFechaDeVencimiento(), resp.getFechaDeVencimiento());
 
         Assert.assertEquals(newEntity.getId(), resp.getId());
 

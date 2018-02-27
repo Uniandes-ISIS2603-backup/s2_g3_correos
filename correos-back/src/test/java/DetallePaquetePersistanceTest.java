@@ -420,7 +420,7 @@ public class DetallePaquetePersistanceTest {
 
         Assert.assertEquals(newEntity.getName(), resp.getName());
 
-        Assert.assertEquals(newEntity.getMensaje(), entity.getMensaje());
+        Assert.assertEquals(newEntity.getMensaje(), resp.getMensaje());
 
         Assert.assertEquals(newEntity.getId(), resp.getId());
 
