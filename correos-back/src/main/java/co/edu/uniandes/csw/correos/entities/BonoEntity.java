@@ -7,6 +7,8 @@ package co.edu.uniandes.csw.correos.entities;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
+import javax.persistence.OneToOne;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
@@ -15,6 +17,10 @@ import javax.persistence.Entity;
 
 @Entity
 public class BonoEntity extends BaseEntity implements Serializable {
+    
+    @PodamExclude
+    @OneToOne
+    private ClienteEntity cliente;
     
     private String descripcion; // descripcion del paquete
     private Double descuento; // descuento del bono

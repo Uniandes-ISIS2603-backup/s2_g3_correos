@@ -15,6 +15,8 @@ package co.edu.uniandes.csw.correos.entities;
 import java.io.Serializable;
 
 import javax.persistence.Entity;
+import javax.persistence.OneToOne;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
 
@@ -30,6 +32,9 @@ import javax.persistence.Entity;
 
 public class DetallePaqueteEntity extends BaseEntity implements Serializable {
 
+    @PodamExclude
+    @OneToOne
+    private PaqueteEntity paquete;
     
 
     // Se le quito el id ya que las demas clases, aunque esta en el UML no lo declara
