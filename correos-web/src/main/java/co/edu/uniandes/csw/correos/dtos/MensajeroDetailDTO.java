@@ -39,7 +39,7 @@ public class MensajeroDetailDTO extends MensajeroDTO
     private List<TransporteDTO> transportes= new ArrayList<>();
     private CuentaBancariaDTO cuentaBancaria;
     private List<EnvioDTO> envios=new ArrayList<>();
-    private List<ComentarioDTO> comentarios=new ArrayList<>();
+    private List<CalificacionDTO> comentarios=new ArrayList<>();
     private List<ZonaDTO> zonas= new ArrayList<>();
     
     /**
@@ -95,14 +95,14 @@ public class MensajeroDetailDTO extends MensajeroDTO
     /**
      * @return La lista de los comentarios que los usuarios le dan al mensajero
      */
-    public List<ComentarioDTO> getComentarios() {
+    public List<CalificacionDTO> getComentarios() {
         return comentarios;
     }
     
     /**
      * @param comentarios los nuevos comentarios asociados del mensajero
      */
-    public void setComentarios(List<ComentarioDTO> comentarios) {
+    public void setComentarios(List<CalificacionDTO> comentarios) {
         this.comentarios = comentarios;
     }
     
