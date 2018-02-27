@@ -23,9 +23,9 @@ SOFTWARE.
  */
 package co.edu.uniandes.csw.correos.ejb;
 
-import co.edu.uniandes.csw.correos.entities.ClienteEntity;
+import co.edu.uniandes.csw.correos.entities.TarjetaCreditoEntity;
 import co.edu.uniandes.csw.correos.exceptions.BusinessLogicException;
-import co.edu.uniandes.csw.correos.persistence.ClientePersistence;
+import co.edu.uniandes.csw.correos.persistence.TarjetaCreditoPersistence;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -37,47 +37,47 @@ import javax.inject.Inject;
  * @author da.leon
  */
 @Stateless
-public class ClienteLogic {
+public class TarjetaCreditoLogic {
 
-    private static final Logger LOGGER = Logger.getLogger(ClienteLogic.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(TarjetaCreditoLogic.class.getName());
 
     @Inject
-    private ClientePersistence persistence; // Variable para acceder a la persistencia de la aplicación. Es una inyección de dependencias.
+    private TarjetaCreditoPersistence persistence; // Variable para acceder a la persistencia de la aplicación. Es una inyección de dependencias.
 
-    public ClienteEntity createCliente(ClienteEntity entity) throws BusinessLogicException {
-        LOGGER.info("Inicia proceso de creación de cliente");
-        // Verifica la regla de negocio que dice que no puede haber dos cliente con el mismo nombre
+    public TarjetaCreditoEntity createTarjetaCredito(TarjetaCreditoEntity entity) throws BusinessLogicException {
+        LOGGER.info("Inicia proceso de creación de la tarjeta de credito");
+        // Verifica la regla de negocio que dice que no puede haber dos tarjetas repetidas
         if (persistence.findByName(entity.getName()) != null) {
-            throw new BusinessLogicException("Ya existe un cliente con el nombre \"" + entity.getName() + "\"");
+            throw new BusinessLogicException("Ya existe esa tarjeta \"" + entity.getName() + "\"");
         }
-        // Invoca la persistencia para crear el cliente
+        // Invoca la persistencia para crear la tarjeta
         persistence.create(entity);
-        LOGGER.info("Termina proceso de creación del cliente");
+        LOGGER.info("Termina proceso de creación de la tarjeta");
         return entity;
     }
 
-    public List<ClienteEntity> getClientes() {
-        LOGGER.info("Inicia proceso de consultar todos los clientes");
+    public List<TarjetaCreditoEntity> getTarjetasCredito() {
+        LOGGER.info("Inicia proceso de consultar todas las tarjetas");
         // Note que, por medio de la inyección de dependencias se llama al método "findAll()" que se encuentra en la persistencia.
-        List<ClienteEntity> editorials = persistence.findAll();
-        LOGGER.info("Termina proceso de consultar todos los clientes");
+        List<TarjetaCreditoEntity> editorials = persistence.findAll();
+        LOGGER.info("Termina proceso de consultar todas las tarjetas");
         return editorials;
     }
 
-    public ClienteEntity getCliente(Long id) {
+    public TarjetaCreditoEntity getTarjetaCredito(Long id) {
         return persistence.find(id);
     }
 
-    public ClienteEntity udateCliente(ClienteEntity entity) throws BusinessLogicException  {
+    public TarjetaCreditoEntity updateTarjetaCredito(TarjetaCreditoEntity entity) throws BusinessLogicException  {
         if (persistence.findByName(entity.getName()) != null) {
-            throw new BusinessLogicException("Ya existe un cliente con el nombre \"" + entity.getName() + "\"");
+            throw new BusinessLogicException("Ya existe una tarjeta \"" + entity.getName() + "\"");
         }
         return persistence.update(entity);
     }
     
-    public void deleteCliente(ClienteEntity entity) throws BusinessLogicException {
-        LOGGER.log(Level.INFO, "Inicia proceso de borrar el cliente con id={0}", entity.getId());    
+    public void deleteTarjetaCredito(TarjetaCreditoEntity entity) throws BusinessLogicException {
+        LOGGER.log(Level.INFO, "Inicia proceso de borrar la tarjeta de credito con id={0}", entity.getId());    
         persistence.delete(entity.getId());
-        LOGGER.log(Level.INFO, "Termina proceso de borrar cliente con id={0}", entity.getId());
+        LOGGER.log(Level.INFO, "Termina proceso de borrar la tarjeta de credito con id={0}", entity.getId());
     }
 }
