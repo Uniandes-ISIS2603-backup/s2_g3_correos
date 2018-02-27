@@ -1,31 +1,15 @@
-  /*
- MIT License
- 
- Copyright (c) 2017 ISIS2603
- 
- Permission is hereby granted, free of charge, to any person obtaining a copy
- of this software and associated documentation files (the "Software"), to deal
- in the Software without restriction, including without limitation the rights
- to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- copies of the Software, and to permit persons to whom the Software is
- furnished to do so, subject to the following conditions:
- 
- The above copyright notice and this permission notice shall be included in all
- copies or substantial portions of the Software.
- 
- THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- CITYS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
- SOFTWARE.
-  */
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
  package co.edu.uniandes.csw.correos.resources;
  
  import co.edu.uniandes.csw.correos.dtos.EnvioDTO;
  import co.edu.uniandes.csw.correos.dtos.EnvioDetailDTO;
- import java.util.ArrayList;
+ import co.edu.uniandes.csw.correos.exceptions.BusinessLogicException;
+ import java.util.LinkedList;
  import java.util.List;
  import javax.enterprise.context.RequestScoped;
  import javax.ws.rs.Consumes;
@@ -77,10 +61,12 @@
      * </pre>
      * @param envio {@link EnvioDetailDTO} - El envio que se desea guardar.
      * @return JSON {@link EnvioDetailDTO}  - El envio guardado con el atributo 
-     * ID autogenerado.     
+     * ID autogenerado. 
+     * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} - Error 
+     * de lógica que se genera cuando ya existe el pago.
      */
      @POST
-     public EnvioDetailDTO createEnvio(EnvioDetailDTO envio){
+     public EnvioDetailDTO createEnvio(EnvioDetailDTO envio) throws BusinessLogicException{
          return envio;
      }
      /**
@@ -100,11 +86,13 @@
       * @param id ID del envio que se desea actualizar.
       * Debe ser un Long.
       * @param envio {@link EnvioDetailDTO} El Envio que se desea guardar.
-      * @return JSON {@link EnvioDetailDTO} - El Envio guardado.      
+      * @return JSON {@link EnvioDetailDTO} - El Envio guardado.  
+      * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} - Error 
+      * de lógica que se genera cuando ya existe el pago.
       */
      @PUT
      @Path("{id: \\d+}")
-     public EnvioDetailDTO updateEnvio(@PathParam("id") Long id , EnvioDetailDTO envio){
+     public EnvioDetailDTO updateEnvio(@PathParam("id") Long id , EnvioDetailDTO envio) throws BusinessLogicException{
          return envio;
      } 
      /**
@@ -143,7 +131,7 @@
       */
      @GET
      public List<EnvioDTO> getEnvios(){
-         return new ArrayList<>();
+         return new LinkedList<>();
      }    
      /**
       * <h1>DELETE /api/envios/{id} : Borrar envio por id.</h1>

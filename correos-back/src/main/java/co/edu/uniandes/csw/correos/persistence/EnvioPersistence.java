@@ -3,10 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package co.edu.uniandes.csw.correos.persistence;
 
 import co.edu.uniandes.csw.correos.entities.EnvioEntity;
 import java.util.List;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -67,10 +69,12 @@ public class EnvioPersistence {
     }
     
     /**
-     * @param entity el envio que se desea eliminar
+     * @param id la ID del envio que se desea eliminar
      */
-    public void delete(EnvioEntity entity)
+    public void delete(Long id)
     {
-        em.remove(entity);
+        LOGGER.log(Level.INFO, "Borrando el Envio de id={0}", id);
+        EnvioEntity entity = em.find(EnvioEntity.class, id);
+        em.remove(entity);       
     }
 }
