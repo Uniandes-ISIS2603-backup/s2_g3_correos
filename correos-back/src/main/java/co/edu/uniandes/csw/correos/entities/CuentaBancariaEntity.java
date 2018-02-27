@@ -25,7 +25,7 @@ public class CuentaBancariaEntity extends BaseEntity implements Serializable{
     private String banco;
     private String tipoTarjeta;
     @PodamExclude
-    @OneToMany(mappedBy = "cuentasBancarias")
+    @OneToMany(mappedBy = "cuentaBancaria")
     private List<PagoEntity> pagos = new ArrayList<PagoEntity>();
     
     @PodamExclude
