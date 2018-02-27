@@ -10,8 +10,10 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import uk.co.jemos.podam.common.PodamExclude;
 
 /**
@@ -32,8 +34,8 @@ public class PaqueteEntity extends BaseEntity implements Serializable{
    private EnvioEntity envio; 
 
    @PodamExclude
-   @OneToMany(mappedBy = "detalles paquete")
-   private List<DetallePaqueteEntity> detalles = new ArrayList<DetallePaqueteEntity>();  
+   @OneToOne
+   private DetallePaqueteEntity detalle;  
 
     /**
      * @return the dimensionA
@@ -66,15 +68,15 @@ public class PaqueteEntity extends BaseEntity implements Serializable{
     /**
      * @return the detalle
      */
-    public List<DetallePaqueteEntity> getDetallesPaquete() {
-        return detalles;
+    public DetallePaqueteEntity getDetallePaquete() {
+        return detalle;
     }
 
     /**
-     * @param detalles the detalles to set
+     * @param detalle the detalles to set
      */
-    public void setDetallePaqueteEntity(List<DetallePaqueteEntity> detalles) {
-        this.detalles = detalles;
+    public void setDetallePaqueteEntity(DetallePaqueteEntity detalle) {
+        this.detalle = detalle;
     }
     
     /**

@@ -40,15 +40,15 @@ public class EnvioEntity extends BaseEntity implements Serializable{
    private PagoEntity pago;
    
    @PodamExclude
-   @OneToMany(mappedBy = "eventos")
+   @OneToMany(mappedBy = "envio")
    private List<EventoEntity> eventos = new ArrayList<EventoEntity>();
    
    @PodamExclude
-   @OneToMany(mappedBy = "paquetes")
+   @OneToMany(mappedBy = "envio")
    private List<PaqueteEntity> paquetes = new ArrayList<PaqueteEntity>();
    
    @PodamExclude
-   @OneToMany(mappedBy = "paquetes")
+   @OneToMany(mappedBy = "envio")
    private List<BonoEntity> bonos = new ArrayList<BonoEntity>();
 
    
