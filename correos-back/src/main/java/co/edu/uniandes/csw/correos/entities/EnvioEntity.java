@@ -60,6 +60,9 @@ public class EnvioEntity extends BaseEntity implements Serializable{
     }
 
     /**
+     * arreglando esta bs
+     */
+    /**
      * @param horaInicio the horaInicio to set
      */
     public void setHoraInicio(Long horaInicio) {
