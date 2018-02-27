@@ -8,11 +8,13 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.UserTransaction;
 import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import uk.co.jemos.podam.api.PodamFactory;
 import uk.co.jemos.podam.api.PodamFactoryImpl;
 
@@ -26,6 +28,7 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
  *
  * @author l.mejia
  */
+@RunWith(Arquillian.class)
 public class ReservaPersistenceTest {
     
       /**
@@ -97,7 +100,7 @@ public class ReservaPersistenceTest {
         em.createQuery("delete from ReservaEntity").executeUpdate();
     }
     
-    private List<ReservaEntity> data = new ArrayList<ReservaEntity>();
+    private List<ReservaEntity> data = new ArrayList<>();
     
     
     /**
@@ -170,7 +173,7 @@ public class ReservaPersistenceTest {
     @Test
     public void deleteReservaTest() {
         ReservaEntity entity = data.get(0);
-        reservaPersistence.delete( em.find(ReservaEntity.class,entity.getId()));
+        reservaPersistence.delete( entity.getId());
         ReservaEntity deleted = em.find(ReservaEntity.class, entity.getId());
         Assert.assertNull(deleted);
     }
@@ -191,8 +194,8 @@ public class ReservaPersistenceTest {
         ReservaEntity resp = em.find(ReservaEntity.class, entity.getId());
 
         Assert.assertNotNull(newEntity);
-        Assert.assertEquals(newEntity.getFecha(), entity.getFecha());
-        Assert.assertEquals(newEntity.getHora(), entity.getHora());
+        Assert.assertEquals(newEntity.getFecha(), resp.getFecha());
+        Assert.assertEquals(newEntity.getHora(), resp.getHora());
         
     }
     

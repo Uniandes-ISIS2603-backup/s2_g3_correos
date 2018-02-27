@@ -87,10 +87,10 @@ public class MensajeroPersistence {
     }
     
     /**
-     * @param entity el mensajero que se desea eliminar
+     * @param id el mensajero que se desea eliminar
      */
-    public void delete(MensajeroEntity entity)
+    public void delete(Long id)
     {
-        em.remove(entity);
+        em.remove(em.find(MensajeroEntity.class, id));
     }
 }
