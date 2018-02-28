@@ -27,15 +27,34 @@ public class EnvioLogic {
     private EnvioPersistence persistence;
 
     public EnvioEntity createEnvio(EnvioEntity entity) throws BusinessLogicException {
-        LOGGER.info("Se comienza a crear un Envio");      
+        
+        LOGGER.info("Se comienza a crear un Envio"); 
+        
+        if (entity.getHoraInicio()<entity.getHoraFinal()){
+            throw new BusinessLogicException("La Hora Final es anterior a la Hora Incial.");
+        }
+        if (entity.getCliente()==null){
+            throw new BusinessLogicException("No se reconoce un cliente.");
+        }
+        if (entity.getPaquetes().isEmpty()){
+            throw new BusinessLogicException("No hay paquetes en el envio.");
+        }
+        
         persistence.create(entity);
         LOGGER.info("Se termina de crear un Envio");
         return entity;
     }
 
-    public List<EnvioEntity> geEnvios() {
-        LOGGER.info("Se comienzan a buscar todos los Envios");       
+    public List<EnvioEntity> geEnvios() throws BusinessLogicException {
+        
+        LOGGER.info("Se comienzan a buscar todos los Envios"); 
         List<EnvioEntity> envios = persistence.findAll();
+        
+        if(envios.isEmpty())
+        {
+            throw new BusinessLogicException("No hay envios en el sistema.");
+        } 
+        
         LOGGER.info("Se terminan de buscar todos los Envios");
         return envios;
     }
@@ -44,7 +63,20 @@ public class EnvioLogic {
         return persistence.find(id);
     }
 
-    public EnvioEntity updateCity(EnvioEntity entity) throws BusinessLogicException  {       
+    public EnvioEntity updateCity(EnvioEntity entity) throws BusinessLogicException  {
+        
+        LOGGER.info("se comienza a actualizar un envio");
+        
+        if (entity.getHoraInicio()<entity.getHoraFinal()){
+            throw new BusinessLogicException("La Hora Final es anterior a la Hora Incial.");
+        }
+        if (entity.getCliente()==null){
+            throw new BusinessLogicException("No se reconoce un cliente.");
+        }
+        if (entity.getPaquetes().isEmpty()){
+            throw new BusinessLogicException("No hay paquetes en el envio.");
+        }
+        
         return persistence.update(entity);
     }
     
