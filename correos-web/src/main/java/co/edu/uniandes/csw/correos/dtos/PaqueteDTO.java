@@ -119,14 +119,14 @@
     } 
     /**
      * 
-     * @param A Primera Dimension  
+     * @param B Primera Dimension  
      */
     public void setDimensionB(double B) {
         dimensionB = B;         
     }    
     /**
      * 
-     * @param A Primera Dimension  
+     * @param C Primera Dimension  
      */
     public void setDimensionC(double C) {
         dimensionC = C;         

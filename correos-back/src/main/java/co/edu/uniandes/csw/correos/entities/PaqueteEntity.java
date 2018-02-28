@@ -7,12 +7,10 @@
 package co.edu.uniandes.csw.correos.entities;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import uk.co.jemos.podam.common.PodamExclude;
 
@@ -31,11 +29,11 @@ public class PaqueteEntity extends BaseEntity implements Serializable{
    private String tipo;
 
    @PodamExclude
-   @ManyToOne
+   @ManyToOne (fetch = FetchType.EAGER)
    private EnvioEntity envio; 
 
    @PodamExclude
-   @OneToOne
+   @OneToOne (cascade=CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
    private DetallePaqueteEntity detalle;  
 
     /**
