@@ -9,6 +9,6 @@ package co.edu.uniandes.csw.correos.dtos;
  *
  * @author ed.diaz11
  */
-public class ComentarioDetailDTO  extends ComentarioDTO {
+public class CalificacionDetailDTO  extends CalificacionDTO {
     
 }

@@ -109,8 +109,10 @@ public class ClientePersistence {
     /**
      * @param entity el Cliente que se desea eliminar
      */
-    public void delete(ClienteEntity entity)
+    public void delete(Long id)
     {
+        LOGGER.log(Level.INFO, "Borrando cliente con id={0}", id);
+        ClienteEntity entity = em.find(ClienteEntity.class, id);
         em.remove(entity);
     }
 }

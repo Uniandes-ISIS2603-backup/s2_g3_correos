@@ -193,7 +193,7 @@ public class TarjetaCreditoPersistenceTest {
     @Test
     public void deleteTarjetaCreditoTest() {
         TarjetaCreditoEntity entity = data.get(0);
-        tarjetaCreditoPersistence.delete(entity);
+        tarjetaCreditoPersistence.delete(entity.getId());
         TarjetaCreditoEntity deleted = em.find(TarjetaCreditoEntity.class, entity.getId());
         Assert.assertNull(deleted);
     }

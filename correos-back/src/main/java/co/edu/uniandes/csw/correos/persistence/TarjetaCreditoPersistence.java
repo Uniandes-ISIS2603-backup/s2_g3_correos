@@ -108,8 +108,10 @@ public class TarjetaCreditoPersistence {
     /**
      * @param entity el TarjetaCredito que se desea eliminar
      */
-    public void delete(TarjetaCreditoEntity entity)
+    public void delete(Long id)
     {
+        LOGGER.log(Level.INFO, "Borrando tarjeta de credito con id={0}", id);
+        TarjetaCreditoEntity entity = em.find(TarjetaCreditoEntity.class, id);
         em.remove(entity);
     }
 }

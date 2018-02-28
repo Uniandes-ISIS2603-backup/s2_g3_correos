@@ -1,25 +1,7 @@
 /*
- * MIT License
- 
- Copyright (c) 2017 ISIS2603
- 
- Permission is hereby granted, free of charge, to any person obtaining a copy
- of this software and associated documentation files (the "Software"), to deal
- in the Software without restriction, including without limitation the rights
- to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- copies of the Software, and to permit persons to whom the Software is
- furnished to do so, subject to the following conditions:
- 
- The above copyright notice and this permission notice shall be included in all
- copies or substantial portions of the Software.
- 
- THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
- SOFTWARE.
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
  */
  
  package co.edu.uniandes.csw.correos.dtos;
@@ -38,7 +20,8 @@
   *      "dimensionB": number,
   *      "dimensionC": number,             
   *   }
-  *
+  * </pre>
+  * <pre>
   *   {
   *      "id": 1,
   *      "tipo": FRAGIL,
@@ -47,18 +30,14 @@
   *      "dimensionB": 2,
   *      "dimensionC": 3,
   *   }
-  *
+  * </pre>
   * @author df.rengifo
   */
  public class PaqueteDTO {
    
     private long idPaquete; 
     private String tipo; 
-    private double peso; 
-    /**
-     * para evitar confusiones acerca de como "voltear" el paquete para que 
-     * entre en el ttransporte
-     */
+    private double peso;    
     private double dimensionA;
     private double dimensionB;
     private double dimensionC;
@@ -133,11 +112,23 @@
     }
     /**
      * 
-     * @param A 
-     * @param B
-     * @param C
+     * @param A Primera Dimension  
      */
-    public void setDimensiones(double A, double B, double C) {
-        
-    }        
+    public void setDimensionA(double A) {
+        dimensionA = A;         
+    } 
+    /**
+     * 
+     * @param A Primera Dimension  
+     */
+    public void setDimensionB(double B) {
+        dimensionB = B;         
+    }    
+    /**
+     * 
+     * @param A Primera Dimension  
+     */
+    public void setDimensionC(double C) {
+        dimensionC = C;         
+    }    
 }

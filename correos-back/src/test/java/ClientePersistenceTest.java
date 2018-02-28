@@ -186,7 +186,7 @@ public class ClientePersistenceTest {
     @Test
     public void deleteClienteTest() {
         ClienteEntity entity = data.get(0);
-        clientePersistence.delete(entity);
+        clientePersistence.delete(entity.getId());
         ClienteEntity deleted = em.find(ClienteEntity.class, entity.getId());
         Assert.assertNull(deleted);
     }
