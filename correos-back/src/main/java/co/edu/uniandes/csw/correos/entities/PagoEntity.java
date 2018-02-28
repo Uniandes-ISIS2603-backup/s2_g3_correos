@@ -6,7 +6,11 @@
 package co.edu.uniandes.csw.correos.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
@@ -14,6 +18,16 @@ import javax.persistence.Entity;
  */
 @Entity
 public class PagoEntity extends BaseEntity implements Serializable{
+    
+    @PodamExclude
+    @ManyToOne
+    private TarjetaCreditoEntity tarjetaCredito;
+    
+    @PodamExclude
+    @ManyToOne
+    private CuentaBancariaEntity cuentaBancaria;
+    
+    
     
     private Double valor;
     private String fecha;
@@ -46,5 +60,33 @@ public class PagoEntity extends BaseEntity implements Serializable{
      */
     public void setFecha(String fecha) {
         this.fecha = fecha;
+    }
+
+    /**
+     * @return the tarjetaCredito
+     */
+    public TarjetaCreditoEntity getTarjetaCredito() {
+        return tarjetaCredito;
+    }
+
+    /**
+     * @param tarjetaCredito the tarjetaCredito to set
+     */
+    public void setTarjetaCredito(TarjetaCreditoEntity tarjetaCredito) {
+        this.tarjetaCredito = tarjetaCredito;
+    }
+
+    /**
+     * @return the cuentaBancaria
+     */
+    public CuentaBancariaEntity getCuentaBancaria() {
+        return cuentaBancaria;
+    }
+
+    /**
+     * @param cuentaBancaria the cuentaBancaria to set
+     */
+    public void setCuentaBancaria(CuentaBancariaEntity cuentaBancaria) {
+        this.cuentaBancaria = cuentaBancaria;
     }
 }
