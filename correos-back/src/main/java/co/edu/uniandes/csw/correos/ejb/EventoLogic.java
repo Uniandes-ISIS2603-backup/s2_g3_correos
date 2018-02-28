@@ -48,4 +48,15 @@ public class EventoLogic {
       return persistence.create(entity);
     }
     
+    public EventoEntity updateEvento(EventoEntity entity) throws BusinessLogicException{
+        if(entity.getDetalle().split("\\w+").length<3){
+          throw new BusinessLogicException("Diga algo en el detalle");
+      }
+        return persistence.update(entity);
+    }
+    
+    public void deleteEvento(long id){
+     persistence.delete(id);
+    }
+    
 }

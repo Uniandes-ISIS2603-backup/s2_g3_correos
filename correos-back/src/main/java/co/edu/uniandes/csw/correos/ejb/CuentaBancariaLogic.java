@@ -26,7 +26,7 @@ public class CuentaBancariaLogic {
     private CuentaBancariaPersistence persistence;
     
     @Inject
-    private CuentaBancariaLogic cuentaBancariaLogic;
+    private PagoLogic pagoLogic;
     
     public List<CuentaBancariaEntity> getCuentasBancarias(){
         
@@ -43,11 +43,26 @@ public class CuentaBancariaLogic {
         if(persistence.findByName(entity.getName())!=null){
             throw new BusinessLogicException("Ya existe una cuenta bancaria con el nombre, por dios que esta pasando?");
         }
+        if(entity.getNumero().length()<10){
+            throw new BusinessLogicException("Se necesitan 10 digitos caballero");
+        }
+        if(!entity.getNumero().matches("[0-9]+")){
+            throw new BusinessLogicException("Numeros no letras");
+        }
         persistence.create(entity);
         return entity;
     }
     
-    public CuentaBancariaEntity updateCuentaBancaria(CuentaBancariaEntity entity){
+    public CuentaBancariaEntity updateCuentaBancaria(CuentaBancariaEntity entity) throws BusinessLogicException{
+        if(persistence.findByName(entity.getName())!=null){
+            throw new BusinessLogicException("Ya existe una cuenta bancaria con el nombre, por dios que esta pasando?");
+        }
+        if(entity.getNumero().length()<10){
+            throw new BusinessLogicException("Se necesitan 10 digitos caballero");
+        }
+        if(!entity.getNumero().matches("[0-9]+")){
+            throw new BusinessLogicException("Numeros no letras");
+        }
         return persistence.update(entity);
     }
     

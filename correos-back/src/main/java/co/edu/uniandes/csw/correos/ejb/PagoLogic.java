@@ -25,6 +25,7 @@ public class PagoLogic {
 
     @Inject
     private PagoPersistence persistence;
+    
 
     @Inject
     private CuentaBancariaLogic cuentaBancariaLogic;
@@ -63,9 +64,17 @@ public class PagoLogic {
      * @param entity Objeto de PagoEntity con los datos nuevos
      * @return Objeto de PagoEntity con los datos nuevos y su ID.
      */
-    public PagoEntity createPago(Long cuentaBancariaid, PagoEntity entity) {
+    public PagoEntity createPago(Long cuentaBancariaid, PagoEntity entity) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "Inicia proceso de crear un pago ");
-        
+        if(entity.getValor()<0.0){
+            throw new BusinessLogicException("UUUUUY que paso aca, no les vamos a regalar plata. No se puede tener un valor menor a cero");
+        }
+        if(entity.getCuentaBancaria()==null){
+            throw new BusinessLogicException("Esta plata debe ir para alguien");
+        }
+        if(entity.getTarjetaCredito()==null){
+            throw new BusinessLogicException("Paila mi pez, hay que cobrarle esto a alguien");
+        }
         return persistence.create(entity);
     }
 
@@ -75,8 +84,17 @@ public class PagoLogic {
      * @param entity Instancia de PagoEntity con los nuevos datos.
      * @return Instancia de PagoEntity con los datos actualizados.
      */
-    public PagoEntity updatePago(PagoEntity entity) {
+    public PagoEntity updatePago(PagoEntity entity) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "Inicia proceso de actualizar un pago ");
+        if(entity.getValor()<0.0){
+            throw new BusinessLogicException("UUUUUY que paso aca, no les vamos a regalar plata. No se puede tener un valor menor a cero");
+        }
+        if(entity.getCuentaBancaria()==null){
+            throw new BusinessLogicException("Esta plata debe ir para alguien");
+        }
+        if(entity.getTarjetaCredito()==null){
+            throw new BusinessLogicException("Paila mi pez, hay que cobrarle esto a alguien");
+        }
         return persistence.update(entity);
     }
 
