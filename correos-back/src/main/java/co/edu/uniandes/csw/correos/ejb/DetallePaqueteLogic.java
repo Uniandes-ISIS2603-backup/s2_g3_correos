@@ -60,9 +60,13 @@ public class DetallePaqueteLogic {
         return persistence.update(entity);
     }
         
-         public void deleteDetallePaquete(DetallePaqueteEntity entity) throws BusinessLogicException {
-        LOGGER.log(Level.INFO, "Inicia proceso de borrar el detalle con id={0}", entity.getId());    
-        persistence.delete(entity.getId());
-        LOGGER.log(Level.INFO, "Termina proceso de borrar detalle con id={0}", entity.getId());
+         public void deleteDetallePaquete(Long id) throws BusinessLogicException {
+        LOGGER.log(Level.INFO, "Inicia proceso de borrar el detalle con id={0}");    
+        persistence.delete(id);
+        LOGGER.log(Level.INFO, "Termina proceso de borrar detalle con id={0}");
+    }
+
+    public DetallePaqueteEntity getAuthor(Long id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
