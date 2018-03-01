@@ -69,9 +69,9 @@ public class BonoLogic {
         return persistence.update(entity);
     }
         
-         public void deleteBono(BonoEntity entity) throws BusinessLogicException {
-        LOGGER.log(Level.INFO, "Inicia proceso de borrar el bono con id={0}", entity.getId());    
-        persistence.delete(entity.getId());
-        LOGGER.log(Level.INFO, "Termina proceso de borrar bono con id={0}", entity.getId());
+         public void deleteBono(Long id) throws BusinessLogicException {
+        LOGGER.log(Level.INFO, "Inicia proceso de borrar el bono con id={0}");    
+        persistence.delete(id);
+        LOGGER.log(Level.INFO, "Termina proceso de borrar bono con id={0}");
     }
 }
