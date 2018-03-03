@@ -47,8 +47,12 @@ public class EnvioLogic {
         LOGGER.info("Se termina de crear un Envio");
         return entity;
     }
+    
+    public EnvioEntity getEnvio(Long id){
+        return persistence.find(id);
+    }
 
-    public List<EnvioEntity> geEnvios() throws BusinessLogicException {
+    public List<EnvioEntity> getEnvios() throws BusinessLogicException {
         
         LOGGER.info("Se comienzan a buscar todos los Envios"); 
         List<EnvioEntity> envios = persistence.findAll();
@@ -60,13 +64,9 @@ public class EnvioLogic {
         
         LOGGER.info("Se terminan de buscar todos los Envios");
         return envios;
-    }
+    } 
 
-    public EnvioEntity getCity(Long id) {
-        return persistence.find(id);
-    }
-
-    public EnvioEntity updateCity(EnvioEntity entity) throws BusinessLogicException  {
+    public EnvioEntity updateEnvio(EnvioEntity entity) throws BusinessLogicException  {
         
         LOGGER.info("se comienza a actualizar un envio");
         
@@ -86,7 +86,7 @@ public class EnvioLogic {
         return persistence.update(entity);
     }
     
-    public void deleteCity(EnvioEntity entity) throws BusinessLogicException {
+    public void deleteEnvio(EnvioEntity entity) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "Comienza a borrar el envio de id={0}", entity.getId());    
         persistence.delete(entity.getId());
         LOGGER.log(Level.INFO, "Termina a borrar el envio de id={0}", entity.getId());

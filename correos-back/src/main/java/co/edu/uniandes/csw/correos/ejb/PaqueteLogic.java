@@ -55,11 +55,11 @@ public class PaqueteLogic {
         return paquetes;
     }
 
-    public PaqueteEntity getCity(Long id) {
+    public PaqueteEntity getPaquete(Long id) {
         return persistence.find(id);
     }
 
-    public PaqueteEntity updateCity(PaqueteEntity entity) throws BusinessLogicException  {
+    public PaqueteEntity updatePaquete(PaqueteEntity entity) throws BusinessLogicException  {
         
         LOGGER.log(Level.INFO, "Se comienza a actualizar un paquete");
         
@@ -73,7 +73,7 @@ public class PaqueteLogic {
         return persistence.update(entity);
     }
     
-    public void deleteCity(PaqueteEntity entity){
+    public void deletePaquete(PaqueteEntity entity){
         LOGGER.log(Level.INFO, "Comienza a borrar el paquete de id={0}", entity.getId());    
         persistence.delete(entity.getId());
         LOGGER.log(Level.INFO, "Termina a borrar el paquete de id={0}", entity.getId());
