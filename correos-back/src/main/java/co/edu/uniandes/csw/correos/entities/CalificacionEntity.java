@@ -48,7 +48,7 @@ public class CalificacionEntity extends BaseEntity implements Serializable{
     /**
      * @param comentario a insertar
      */
-    public void setComentario(String Comentario){
+    public void setComentario(String comentario){
         this.comentario=comentario;
     }
 
