@@ -27,31 +27,56 @@ public class PaqueteLogic {
     private PaquetePersistence persistence;
 
     public PaqueteEntity createPaquete(PaqueteEntity entity) throws BusinessLogicException {
-        LOGGER.info("Se comienza a crear un Paquete");      
+        
+        LOGGER.info("Se comienza a crear un Paquete"); 
+        
+        if(entity.getDimensionA()*entity.getDimensionB()*entity.getDimensionC()==0){
+            throw new BusinessLogicException("El volumen del paquete ha sido evaluado en 0.");
+        }
+        if(entity.getPeso()<=0){
+            throw new BusinessLogicException("El peso del paquete ha sido evaluado en 0.");
+        }     
+        
         persistence.create(entity);
         LOGGER.info("Se termina de crear un Paquete");
-        return entity;
+        return entity;        
     }
 
-    public List<PaqueteEntity> getPaquetes() {
+    public List<PaqueteEntity> getPaquetes() throws BusinessLogicException {
         LOGGER.info("Se comienzan a buscar todos los Paquetes");       
         List<PaqueteEntity> paquetes = persistence.findAll();
+        
+        if(paquetes.isEmpty())
+        {
+            throw new BusinessLogicException("No hay paquetes en el sistema.");
+        } 
+        
         LOGGER.info("Se terminan de buscar todos los Paquetes");
         return paquetes;
     }
 
-    public PaqueteEntity getCity(Long id) {
+    public PaqueteEntity getPaquete(Long id) {
         return persistence.find(id);
     }
 
-    public PaqueteEntity updateCity(PaqueteEntity entity) throws BusinessLogicException  {       
+    public PaqueteEntity updatePaquete(PaqueteEntity entity) throws BusinessLogicException  {
+        
+        LOGGER.log(Level.INFO, "Se comienza a actualizar un paquete");
+        
+        if(entity.getDimensionA()*entity.getDimensionB()*entity.getDimensionC()==0){
+            throw new BusinessLogicException("El volumen del paquete ha sido evaluado en 0.");
+        }
+        if(entity.getPeso()<=0){
+            throw new BusinessLogicException("El peso del paquete ha sido evaluado en 0.");
+        }   
+        
         return persistence.update(entity);
     }
     
-    public void deleteCity(PaqueteEntity entity) throws BusinessLogicException {
-        LOGGER.log(Level.INFO, "Comienza a borrar el paquete de id={0}", entity.getId());    
-        persistence.delete(entity.getId());
-        LOGGER.log(Level.INFO, "Termina a borrar el paquete de id={0}", entity.getId());
+    public void deletePaquete(Long id){
+        LOGGER.log(Level.INFO, "Comienza a borrar el paquete de id={0}", id);    
+        persistence.delete(id);
+        LOGGER.log(Level.INFO, "Termina a borrar el paquete de id={0}", id);
     }    
 }
 

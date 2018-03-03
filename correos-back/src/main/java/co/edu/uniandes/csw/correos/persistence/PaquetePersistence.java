@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package co.edu.uniandes.csw.correos.persistence;
 
 import co.edu.uniandes.csw.correos.entities.PaqueteEntity;
@@ -40,6 +41,24 @@ public class PaquetePersistence {
     }
     
     /**
+     * @param name el nombre del paquete existente que se esta buscando.
+     * @return el paquete buscado.
+     */
+    public PaqueteEntity findByName(String name) {
+        LOGGER.log(Level.INFO, "Consultando paquete por nombre", name);       
+        TypedQuery query = em.createQuery("Select e From PaqueteEntity e where e.name = :name", PaqueteEntity.class);
+         
+        query = query.setParameter("name", name);
+        
+        List<PaqueteEntity> sameName = query.getResultList();
+        if (sameName.isEmpty()) {
+            return null;
+        } else {
+            return sameName.get(0);
+        }
+    }
+    
+    /**
      * @param id el ID del paquete existente que se esta buscando.
      * @return el paquete buscado.
      */
@@ -62,16 +81,14 @@ public class PaquetePersistence {
      * @param entity el paquete que se se va a actualizar
      * @return el paquete actualizado.
      */
-    public PaqueteEntity update(PaqueteEntity entity)
-    {
+    public PaqueteEntity update(PaqueteEntity entity){
        return em.merge(entity);
     }
     
     /**
      * @param id la ID del paquete que se desea eliminar
      */
-    public void delete(Long id)
-    {
+    public void delete(Long id){
         LOGGER.log(Level.INFO, "Borrando el paquete de id={0}", id);
         PaqueteEntity entity = em.find(PaqueteEntity.class, id);
         em.remove(entity);
