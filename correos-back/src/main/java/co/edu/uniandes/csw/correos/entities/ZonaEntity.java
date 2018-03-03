@@ -6,15 +6,26 @@
 package co.edu.uniandes.csw.correos.entities;
 
 import java.io.Serializable;
+import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
  * @author ed.diaz11
  */
+@Entity
 public class ZonaEntity extends BaseEntity implements Serializable{
     
     private Long latitud;
     private Long longitud;
+    
+    @PodamExclude
+    @ManyToMany(mappedBy = "zonas")
+    private List<MensajeroEntity> mensajeros;
+    
+
     
     /**
      * @return la latitud
@@ -41,4 +52,13 @@ public class ZonaEntity extends BaseEntity implements Serializable{
     public void setLongitud(Long longitud){
         this.longitud=longitud;
     }
+
+    public List<MensajeroEntity> getMensajeros() {
+        return mensajeros;
+    }
+
+    public void setMensajeros(List<MensajeroEntity> mensajeros) {
+        this.mensajeros = mensajeros;
+    }
+    
 }

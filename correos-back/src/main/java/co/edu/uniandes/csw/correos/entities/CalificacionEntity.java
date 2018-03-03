@@ -6,17 +6,23 @@
 package co.edu.uniandes.csw.correos.entities;
 
 import java.io.Serializable;
+import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
  * @author ed.diaz11
  */
+@Entity
 public class CalificacionEntity extends BaseEntity implements Serializable{
     
     private Integer calificacion;
     private String comentario;
     
-    
+    @PodamExclude
+    @ManyToOne()
+    private MensajeroEntity mensajero;
      /**
      * @return la calificacion
      */
@@ -42,9 +48,19 @@ public class CalificacionEntity extends BaseEntity implements Serializable{
     /**
      * @param comentario a insertar
      */
-    public void setComentario(String Comentario){
+    public void setComentario(String comentario){
         this.comentario=comentario;
     }
+
+    public MensajeroEntity getMensajero() {
+        return mensajero;
+    }
+
+    public void setMensajero(MensajeroEntity mensajero) {
+        this.mensajero = mensajero;
+    }
+    
+    
     
     
 }
