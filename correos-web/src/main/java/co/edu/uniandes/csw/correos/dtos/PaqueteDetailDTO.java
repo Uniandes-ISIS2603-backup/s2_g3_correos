@@ -5,9 +5,6 @@
   */
  package co.edu.uniandes.csw.correos.dtos;
  
- import java.util.ArrayList;
- import java.util.List;
- 
  /**
   *
   * @author df.rengifo
@@ -15,7 +12,7 @@
  public class PaqueteDetailDTO extends PaqueteDTO {	  
 	    
 	    private EnvioDTO envio;
-	    private List<DetallePaqueteDTO> detalles=new ArrayList<>();	   
+	    private DetallePaqueteDTO detalle;	   
 	    
 	    /**
 	     * Constructor por defecto
@@ -26,17 +23,17 @@
 	    }
 	    
 	    /**
-	     * @return La lista de los detalles asociados al paquete
+	     * @return El detalle asociado al paquete
 	     */
-	    public List<DetallePaqueteDTO> getPaquete() {
-	        return detalles;
+	    public DetallePaqueteDTO getPaquete() {
+	        return detalle;
 	    }
 	    
 	    /**
-	     * @param detalles nuevos detalles para el paquete
+	     * @param detalle nuevo detalle para el paquete
 	     */
-	    public void setDetalles(List<DetallePaqueteDTO> detalles) {
-	        this.detalles = detalles;
+	    public void setDetalle(DetallePaqueteDTO detalle) {
+	        this.detalle = detalle;
 	    }
 
 	    /**

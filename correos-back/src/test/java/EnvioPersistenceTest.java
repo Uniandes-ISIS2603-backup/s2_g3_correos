@@ -12,22 +12,23 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.UserTransaction;
+import org.junit.Assert;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import uk.co.jemos.podam.api.PodamFactory;
 import uk.co.jemos.podam.api.PodamFactoryImpl;
+
 /**
  *
  * @author df.rengifo
  */
 @RunWith(Arquillian.class)
-public class EnvioPersistenceTest {   
+public class EnvioPersistenceTest {
 
     /**
      *
@@ -53,7 +54,7 @@ public class EnvioPersistenceTest {
     private EnvioPersistence envioPersistence;
 
     /**
-     * Contexto de Persostencia que se va autilizar para acceder a la Base de
+     * Contexto de Persistencia que se va autilizar para acceder a la Base de
      * datos por fuera de los métodos que se están probando.
      */
     @PersistenceContext
@@ -134,12 +135,13 @@ public class EnvioPersistenceTest {
 
         EnvioEntity entity = em.find(EnvioEntity.class, result.getId());
 
-        Assert.assertEquals(newEntity.getDireccionEntrega(), entity.getDireccionEntrega());
-        Assert.assertEquals(newEntity.getDireccionEntrega(), entity.getDireccionEntrega());
-        Assert.assertEquals(newEntity.getHoraFinal(), entity.getHoraFinal());
+        Assert.assertEquals(newEntity.getName(), entity.getName());
         Assert.assertEquals(newEntity.getHoraInicio(), entity.getHoraInicio());
+        Assert.assertEquals(newEntity.getHoraFinal(), entity.getHoraFinal());
+        Assert.assertEquals(newEntity.getEstado(), entity.getEstado());
+        Assert.assertEquals(newEntity.getDireccionEntrega(), entity.getDireccionEntrega());
         Assert.assertEquals(newEntity.getId(), entity.getId());
-        Assert.assertEquals(newEntity.getEstado(), entity.getEstado());        
+        Assert.assertEquals(newEntity.getDireccionRecogida(), entity.getDireccionRecogida());
     }
 
     /**
@@ -172,12 +174,13 @@ public class EnvioPersistenceTest {
         EnvioEntity entity = data.get(0);
         EnvioEntity newEntity = envioPersistence.find(entity.getId());
         Assert.assertNotNull(newEntity);
-        Assert.assertEquals(entity.getDireccionEntrega(), newEntity.getDireccionEntrega());
+        Assert.assertEquals(entity.getName(), newEntity.getName());
+        Assert.assertEquals(entity.getDireccionRecogida(), newEntity.getDireccionRecogida());
         Assert.assertEquals(entity.getDireccionEntrega(), newEntity.getDireccionEntrega());
         Assert.assertEquals(entity.getHoraFinal(), newEntity.getHoraFinal());
         Assert.assertEquals(entity.getHoraInicio(), newEntity.getHoraInicio());
         Assert.assertEquals(entity.getId(), newEntity.getId());
-        Assert.assertEquals(entity.getEstado(), newEntity.getEstado()); 
+        Assert.assertEquals(entity.getEstado(), newEntity.getEstado());
     }
 
     /**
@@ -210,11 +213,14 @@ public class EnvioPersistenceTest {
 
         EnvioEntity resp = em.find(EnvioEntity.class, entity.getId());
 
+        Assert.assertEquals(newEntity.getName(), resp.getName());
         Assert.assertEquals(newEntity.getDireccionEntrega(), resp.getDireccionEntrega());
-        Assert.assertEquals(newEntity.getDireccionEntrega(), resp.getDireccionEntrega());
+        Assert.assertEquals(newEntity.getDireccionRecogida(), resp.getDireccionRecogida());
+        Assert.assertEquals(newEntity.getEstado(), resp.getEstado());
         Assert.assertEquals(newEntity.getHoraFinal(), resp.getHoraFinal());
         Assert.assertEquals(newEntity.getHoraInicio(), resp.getHoraInicio());
         Assert.assertEquals(newEntity.getId(), resp.getId());
-        Assert.assertEquals(newEntity.getEstado(), resp.getEstado()); 
-    }   
+    }
 }
+
+
