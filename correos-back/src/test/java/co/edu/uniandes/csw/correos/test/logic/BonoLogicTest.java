@@ -141,7 +141,7 @@ public class BonoLogicTest {
         }
     }
     /**
-     * Prueba para consultar un Author
+     * Prueba para consultar un Bono
      *
      *
      */
@@ -158,7 +158,7 @@ public class BonoLogicTest {
         Assert.assertEquals(entity.getFechaDeVencimiento(), resultEntity.getFechaDeVencimiento());
     }
      /**
-     * Prueba para eliminar un Author
+     * Prueba para eliminar un Bono
      *
      *
      */
@@ -170,12 +170,12 @@ public class BonoLogicTest {
         Assert.assertNull(deleted);
     }
      /**
-     * Prueba para actualizar un Author
+     * Prueba para actualizar un Bono
      *
      *
      */
     @Test
-    public void updateAuthorTest() throws BusinessLogicException {
+    public void updateBonoTest() throws BusinessLogicException {
         BonoEntity entity = data.get(0);
         BonoEntity pojoEntity = factory.manufacturePojo(BonoEntity.class);
 
