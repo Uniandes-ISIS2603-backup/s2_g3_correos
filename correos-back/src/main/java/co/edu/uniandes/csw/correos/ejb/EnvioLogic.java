@@ -86,9 +86,9 @@ public class EnvioLogic {
         return persistence.update(entity);
     }
     
-    public void deleteEnvio(EnvioEntity entity) throws BusinessLogicException {
-        LOGGER.log(Level.INFO, "Comienza a borrar el envio de id={0}", entity.getId());    
-        persistence.delete(entity.getId());
-        LOGGER.log(Level.INFO, "Termina a borrar el envio de id={0}", entity.getId());
+    public void deleteEnvio(Long id) throws BusinessLogicException {
+        LOGGER.log(Level.INFO, "Comienza a borrar el envio de id={0}", id);    
+        persistence.delete(id);
+        LOGGER.log(Level.INFO, "Termina a borrar el envio de id={0}", id);
     }    
 }

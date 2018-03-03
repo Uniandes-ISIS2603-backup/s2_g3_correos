@@ -73,10 +73,10 @@ public class PaqueteLogic {
         return persistence.update(entity);
     }
     
-    public void deletePaquete(PaqueteEntity entity){
-        LOGGER.log(Level.INFO, "Comienza a borrar el paquete de id={0}", entity.getId());    
-        persistence.delete(entity.getId());
-        LOGGER.log(Level.INFO, "Termina a borrar el paquete de id={0}", entity.getId());
+    public void deletePaquete(Long id){
+        LOGGER.log(Level.INFO, "Comienza a borrar el paquete de id={0}", id);    
+        persistence.delete(id);
+        LOGGER.log(Level.INFO, "Termina a borrar el paquete de id={0}", id);
     }    
 }
 
