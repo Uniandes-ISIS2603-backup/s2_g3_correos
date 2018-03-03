@@ -12,22 +12,23 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.UserTransaction;
+import org.junit.Assert;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import uk.co.jemos.podam.api.PodamFactory;
 import uk.co.jemos.podam.api.PodamFactoryImpl;
+
 /**
  *
  * @author df.rengifo
  */
 @RunWith(Arquillian.class)
-public class PaquetePersistenceTest {   
+public class PaquetePersistenceTest {
 
     /**
      *
@@ -53,7 +54,7 @@ public class PaquetePersistenceTest {
     private PaquetePersistence paquetePersistence;
 
     /**
-     * Contexto de Persostencia que se va autilizar para acceder a la Base de
+     * Contexto de Persistencia que se va autilizar para acceder a la Base de
      * datos por fuera de los métodos que se están probando.
      */
     @PersistenceContext
@@ -134,13 +135,13 @@ public class PaquetePersistenceTest {
 
         PaqueteEntity entity = em.find(PaqueteEntity.class, result.getId());
 
-        Assert.assertEquals(newEntity.getTipo(), entity.getTipo());
-        Assert.assertEquals(newEntity.getPeso(), entity.getPeso());
+        Assert.assertEquals(newEntity.getName(), entity.getName());
         Assert.assertEquals(newEntity.getDimensionA(), entity.getDimensionA());
         Assert.assertEquals(newEntity.getDimensionB(), entity.getDimensionB());
         Assert.assertEquals(newEntity.getDimensionC(), entity.getDimensionC());
+        Assert.assertEquals(newEntity.getPeso(), entity.getPeso());
         Assert.assertEquals(newEntity.getId(), entity.getId());
-                
+        Assert.assertEquals(newEntity.getTipo(), entity.getTipo());
     }
 
     /**
@@ -173,12 +174,13 @@ public class PaquetePersistenceTest {
         PaqueteEntity entity = data.get(0);
         PaqueteEntity newEntity = paquetePersistence.find(entity.getId());
         Assert.assertNotNull(newEntity);
-        Assert.assertEquals(entity.getTipo(), newEntity.getTipo());
-        Assert.assertEquals(entity.getPeso(), newEntity.getPeso());
+        Assert.assertEquals(entity.getName(), newEntity.getName());
         Assert.assertEquals(entity.getDimensionA(), newEntity.getDimensionA());
         Assert.assertEquals(entity.getDimensionB(), newEntity.getDimensionB());
         Assert.assertEquals(entity.getDimensionC(), newEntity.getDimensionC());
+        Assert.assertEquals(entity.getPeso(), newEntity.getPeso());
         Assert.assertEquals(entity.getId(), newEntity.getId());
+        Assert.assertEquals(entity.getTipo(), newEntity.getTipo());
     }
 
     /**
@@ -211,12 +213,14 @@ public class PaquetePersistenceTest {
 
         PaqueteEntity resp = em.find(PaqueteEntity.class, entity.getId());
 
-        Assert.assertEquals(newEntity.getTipo(), resp.getTipo());
-        Assert.assertEquals(newEntity.getPeso(), resp.getPeso());
+        Assert.assertEquals(newEntity.getName(), resp.getName());
         Assert.assertEquals(newEntity.getDimensionA(), resp.getDimensionA());
         Assert.assertEquals(newEntity.getDimensionB(), resp.getDimensionB());
         Assert.assertEquals(newEntity.getDimensionC(), resp.getDimensionC());
+        Assert.assertEquals(newEntity.getPeso(), resp.getPeso());
+        Assert.assertEquals(newEntity.getTipo(), resp.getTipo());
         Assert.assertEquals(newEntity.getId(), resp.getId());
-    }   
+    }
 }
+
 
