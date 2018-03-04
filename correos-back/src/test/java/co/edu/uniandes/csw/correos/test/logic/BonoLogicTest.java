@@ -105,20 +105,23 @@ public class BonoLogicTest {
         }
     }
 
-        /**
-     * Prueba para crear un Bono
+     /**
+     * Prueba para crear un Review
      *
-     *
+     * 
      */
     @Test
-    public void createBonoTest() throws BusinessLogicException {
+    public void createBonoTest() {
         BonoEntity newEntity = factory.manufacturePojo(BonoEntity.class);
-        BonoEntity result = bonoLogic.createBono(newEntity);
+        BonoEntity result = bonoLogic.createBono(data.get(0).getCliente().getId(), newEntity);
         Assert.assertNotNull(result);
         BonoEntity entity = em.find(BonoEntity.class, result.getId());
         Assert.assertEquals(newEntity.getId(), entity.getId());
         Assert.assertEquals(newEntity.getName(), entity.getName());
+        Assert.assertEquals(newEntity.getCondicion(), entity.getCondicion());
+        Assert.assertEquals(newEntity.getDescripcion(), entity.getDescripcion());
         Assert.assertEquals(newEntity.getDescuento(), entity.getDescuento());
+        Assert.assertEquals(newEntity.getFechaDeVencimiento(), entity.getFechaDeVencimiento());
     }
     
     /**
