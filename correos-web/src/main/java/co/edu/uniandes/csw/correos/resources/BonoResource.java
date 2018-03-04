@@ -17,6 +17,10 @@ import java.util.List;
 import java.util.ArrayList; 
 import javax.enterprise.context.RequestScoped;
 import co.edu.uniandes.csw.correos.dtos.BonoDTO;
+import co.edu.uniandes.csw.correos.ejb.BonoLogic;
+import co.edu.uniandes.csw.correos.entities.BonoEntity;
+import co.edu.uniandes.csw.correos.exceptions.BusinessLogicException;
+import javax.inject.Inject;
 
 
 /**
@@ -37,6 +41,10 @@ import co.edu.uniandes.csw.correos.dtos.BonoDTO;
 
 public class BonoResource 
 {    
+    
+    @Inject
+    BonoLogic bonoLogic;
+    
     /**
      * <h1>POST /api/Bonos: Crear un bono.<h1>
      * 
@@ -58,9 +66,8 @@ public class BonoResource
      * @throws BusinessLogicException {@link BusinessLogicException} - Error de lógica que se genera cuando ya existeel bono
      */
     @POST
-    public BonoDTO createBono(BonoDTO nuevo)
-    {
-        return nuevo;
+    public BonoDTO createReview(@PathParam("idCliente") Long idCliente, BonoDTO bono) throws BusinessLogicException {
+        return new BonoDTO(bonoLogic.createBono(idCliente, bono.toEntity()));
     }
      /**
      * <h1>PUT /api/Bonos: Actualizar el bonocon el id dado.<h1>

@@ -6,6 +6,7 @@
 package co.edu.uniandes.csw.correos.ejb;
 
 import co.edu.uniandes.csw.correos.entities.BonoEntity;
+import co.edu.uniandes.csw.correos.entities.ClienteEntity;
 import co.edu.uniandes.csw.correos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.correos.persistence.BonoPersistance;
 import java.util.List;
@@ -27,6 +28,9 @@ public class BonoLogic {
     @Inject
     private BonoPersistance persistence;
     
+    @Inject
+    private ClienteLogic clienteLogic;
+    
     public BonoLogic (BonoPersistance persistence)
     {
         this.persistence=persistence;
@@ -38,18 +42,21 @@ public class BonoLogic {
         this.persistence=null;
     }
     
-    public BonoEntity createBono(BonoEntity entity) throws BusinessLogicException
-{
-    LOGGER.info("Inicia proceso de creación del bono");
-        // Verifica la regla de negocio que dice que no puede haber dos cityes con el mismo nombre
-        if (persistence.find(entity.getId()) != null) {
-            throw new BusinessLogicException("Ya existe un Bono con el id \"" + entity.getId() + "\"");
-        }
-        // Invoca la persistencia para crear la city
-        persistence.create(entity);
-        LOGGER.info("Termina proceso de creación del Bono");
-        return entity;   
-}
+    /**
+     * Se encarga de crear un bono en la base de datos.
+     *
+     * @param entity Objeto de BonoEntity con los datos nuevos
+     * @param Clienteid id del cliente el cual sera padre del nuevo bono.
+     * @return Objeto de BonoEntity con los datos nuevos y su ID.
+     * 
+     */
+    public BonoEntity createBono(Long Clienteid, BonoEntity entity) {
+        LOGGER.info("Inicia proceso de crear bono");
+        ClienteEntity cliente = clienteLogic.getCliente(Clienteid);
+        entity.setCliente(cliente);
+        return persistence.create(entity);
+    }
+    
     
         public List<BonoEntity> getBonos() {
         LOGGER.info("Inicia proceso de consultar todos los bonos");
@@ -69,9 +76,9 @@ public class BonoLogic {
         return persistence.update(entity);
     }
         
-         public void deleteBono(BonoEntity entity) throws BusinessLogicException {
-        LOGGER.log(Level.INFO, "Inicia proceso de borrar el bono con id={0}", entity.getId());    
-        persistence.delete(entity.getId());
-        LOGGER.log(Level.INFO, "Termina proceso de borrar bono con id={0}", entity.getId());
+         public void deleteBono(Long id) throws BusinessLogicException {
+        LOGGER.log(Level.INFO, "Inicia proceso de borrar el bono con id={0}");    
+        persistence.delete(id);
+        LOGGER.log(Level.INFO, "Termina proceso de borrar bono con id={0}");
     }
 }
