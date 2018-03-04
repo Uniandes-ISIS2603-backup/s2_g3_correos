@@ -75,9 +75,9 @@ public class TarjetaCreditoLogic {
         return persistence.update(entity);
     }
     
-    public void deleteTarjetaCredito(TarjetaCreditoEntity entity) throws BusinessLogicException {
-        LOGGER.log(Level.INFO, "Inicia proceso de borrar la tarjeta de credito con id={0}", entity.getId());    
-        persistence.delete(entity.getId());
-        LOGGER.log(Level.INFO, "Termina proceso de borrar la tarjeta de credito con id={0}", entity.getId());
+    public void deleteTarjetaCredito(Long id) throws BusinessLogicException {
+        LOGGER.log(Level.INFO, "Inicia proceso de borrar la tarjeta de credito con id={0}", id);    
+        persistence.delete(id);
+        LOGGER.log(Level.INFO, "Termina proceso de borrar la tarjeta de credito con id={0}", id);
     }
 }
