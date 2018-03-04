@@ -5,6 +5,8 @@
  */
 package co.edu.uniandes.csw.correos.dtos;
 
+import co.edu.uniandes.csw.correos.entities.BonoEntity;
+
 /**
  * BonoDTO Objeto de transferencia de datos Bono. Los DTO continen las representacones de los JSON entre el cliente y el servidor
  * 
@@ -22,6 +24,7 @@ package co.edu.uniandes.csw.correos.dtos;
 public class BonoDTO 
 {
     private long id;
+    private String name;
     private String descripcion;
     private double descuento;
     private String condicion;
@@ -35,12 +38,46 @@ public class BonoDTO
          //Este metodo esta vacio para permitir la construccion del JSON 
     }
     
-     //public BonoDTO(MBonoEntity entity){} este constructor sera realizado una vez se realice la capa de persistencia  
+    public BonoDTO(BonoEntity entity) {
+
+        this.id = entity.getId();
+        this.condicion = entity.getCondicion();
+        this.descripcion = entity.getDescripcion();
+        this.fechaDeVencimiento = entity.getFechaDeVencimiento();
+        this.name = entity.getName();
+    }
+
+    public BonoEntity toEntity() {
+        BonoEntity entity = new BonoEntity();
+        entity.setId(this.id);
+        entity.setName(this.name);
+        entity.setCondicion(this.condicion);
+        entity.setDescripcion(this.descripcion);
+        entity.setFechaDeVencimiento(this.fechaDeVencimiento);
+        return entity;
+    }
+
+    //public BonoDTO(MBonoEntity entity){} este constructor sera realizado una vez se realice la capa de persistencia
+   /**
+    * @return nombre del bono
+    */
+    public String getName()
+    {    
+        return name;
+    }
+
+   /**
+    * Asigna nombre al bono
+    * @param name nombre del bono
+    */
+    public void setName(String name) {
+        this.name = name;
+    }
+
     /**
      * @return id del bono
      */
-    public long getId()
-    {
+    public long getId() {
         return id;
     }
     /**

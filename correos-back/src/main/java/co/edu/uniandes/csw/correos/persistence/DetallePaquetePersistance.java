@@ -26,14 +26,31 @@ public class DetallePaquetePersistance {
     @PersistenceContext(unitName = "CorreosPU")
     protected EntityManager em;
 
+     
     /**
-     * Encuentra el detalle con el id ingresado
-     * @param id id del detalle deseado
-     * @return  detallePaquete
+     * Buscar un detalle
+     * 
+     * Busca si hay algun detalle asociad a un paquete y con un ID específico
+     * @param paqueteid El ID del paquete con respecto al cual se busca
+     * @param detalleid El ID del detalle buscado
+     * @return El detalle encontrado o null. Nota: Si existe una o más detalles 
+     * devuelve siempre la primera que encuentra
      */
-    public DetallePaqueteEntity find(Long id) {
-        LOGGER.log(Level.INFO, "Consultando detalles con id={0}", id);
-        return em.find(DetallePaqueteEntity.class, id);
+    public DetallePaqueteEntity find(Long paqueteid, Long detalleid) {
+        TypedQuery<DetallePaqueteEntity> q = em.createQuery("select p from ReviewEntity p where (p.book.id = :bookid) and (p.id = :reviewid)", DetallePaqueteEntity.class);
+        q.setParameter("bookid", paqueteid);
+        q.setParameter("reviewid", detalleid);
+        List<DetallePaqueteEntity> results = q.getResultList();
+        DetallePaqueteEntity review = null;
+        if (results == null) {
+            review = null;
+        } else if (results.isEmpty()) {
+            review = null;
+        } else if (results.size() >= 1) {
+            review = results.get(0);
+        }
+
+        return review;
     }
 
     /**

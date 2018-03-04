@@ -21,6 +21,7 @@
 
 
 import co.edu.uniandes.csw.correos.entities.BonoEntity;
+import co.edu.uniandes.csw.correos.entities.ClienteEntity;
 
 import co.edu.uniandes.csw.correos.persistence.BonoPersistance;
 
@@ -202,18 +203,9 @@ public class BonoPersistanceTest
 
     }
 
-
-
-    /**
-
-     *
-
-     */
-
     private List<BonoEntity> data = new ArrayList<BonoEntity>();
-
-
-
+    private List<ClienteEntity> dataCliente = new ArrayList<ClienteEntity>();
+    
     /**
 
      * Inserta los datos iniciales para el correcto funcionamiento de las
@@ -329,33 +321,20 @@ public class BonoPersistanceTest
 
 
     /**
-
      * Prueba para consultar un Bono.
-
      *
-
-     *
-
+     * 
      */
-
     @Test
-
     public void getBonoTest() {
-
         BonoEntity entity = data.get(0);
-
-        BonoEntity newEntity = bonoPersistence.find(entity.getId());
-
+        BonoEntity newEntity = bonoPersistence.find(dataCliente.get(0).getId(), entity.getId());
         Assert.assertNotNull(newEntity);
-
-        Assert.assertEquals(newEntity.getDescripcion(), entity.getDescripcion());
-
-        Assert.assertEquals(newEntity.getDescuento(), entity.getDescuento());
-
-        Assert.assertEquals(newEntity.getCondicion(), entity.getCondicion());
-
-        Assert.assertEquals(newEntity.getFechaDeVencimiento(), entity.getFechaDeVencimiento());  
-
+        Assert.assertEquals(entity.getName(), newEntity.getName());
+        Assert.assertEquals(entity.getCondicion(), newEntity.getCondicion());
+        Assert.assertEquals(entity.getDescripcion(), newEntity.getDescripcion());
+        Assert.assertEquals(entity.getDescuento(), newEntity.getDescuento());
+        Assert.assertEquals(entity.getFechaDeVencimiento(), newEntity.getFechaDeVencimiento());
     }
 
 

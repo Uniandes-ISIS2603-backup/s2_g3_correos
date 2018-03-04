@@ -73,7 +73,21 @@ public class DetallePaqueteEntity extends BaseEntity implements Serializable {
 
     }
 
-    
+     /**
+     * Devuelve el paquete asociado a este detalle
+     * @return Entidad de tipo paquete
+     */
+    public PaqueteEntity getPaquete() {
+        return paquete;
+    }
+
+    /**
+     * Modifica el paquete asociado a este detalle
+     * @param book El nuevo paquete
+     */
+    public void setBook(PaqueteEntity book) {
+        this.paquete = book;
+    }
 
     
 
