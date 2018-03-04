@@ -64,12 +64,13 @@ public class PagoLogic {
      * @param entity Objeto de PagoEntity con los datos nuevos
      * @return Objeto de PagoEntity con los datos nuevos y su ID.
      */
-    public PagoEntity createPago(Long cuentaBancariaid, PagoEntity entity) throws BusinessLogicException {
+    public PagoEntity createPago(Long id, PagoEntity entity) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "Inicia proceso de crear un pago ");
+        CuentaBancariaEntity cuentaBancaria = cuentaBancariaLogic.getCuentaBancaria(id);
         if(entity.getValor()<0.0){
             throw new BusinessLogicException("UUUUUY que paso aca, no les vamos a regalar plata. No se puede tener un valor menor a cero");
         }
-        if(entity.getCuentaBancaria()==null){
+        if(entity.getCuentaBancaria()!=cuentaBancaria){
             throw new BusinessLogicException("Esta plata debe ir para alguien");
         }
         if(entity.getTarjetaCredito()==null){
