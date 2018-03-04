@@ -18,6 +18,12 @@ import javax.ws.rs.Consumes;
 import java.util.List; 
 import javax.enterprise.context.RequestScoped;
 import co.edu.uniandes.csw.correos.dtos.DetallePaqueteDTO;
+import co.edu.uniandes.csw.correos.ejb.DetallePaqueteLogic;
+import co.edu.uniandes.csw.correos.entities.DetallePaqueteEntity;
+import co.edu.uniandes.csw.correos.entities.PaqueteEntity;
+import co.edu.uniandes.csw.correos.exceptions.BusinessLogicException;
+import javax.inject.Inject;
+import javax.ws.rs.WebApplicationException;
      
 
 /**
@@ -37,80 +43,118 @@ import co.edu.uniandes.csw.correos.dtos.DetallePaqueteDTO;
 @RequestScoped
 
 public class DetallePaqueteResource {
+    
+    @Inject
+    DetallePaqueteLogic detalleLogic;
  /**
-     * <h1>POST /api/DetallePaquetes: Crear un detalle.<h1>
+     * <h1>POST /api/detalles : Crear un detalle.</h1>
+     *
+     * <pre>Cuerpo de petición: JSON {@link DetalePaqueteDTO}.
      * 
-     * <pre> Cuerpo de la petición: JSON {@link BonoDTO}
-     * 
-     * Crea un nueo detalle con la información que se recibe en el cuerpo
-     * de la petición y se regresa un objeto identico con id generado
+     * Crea un nuevo detalle con la informacion que se recibe en el cuerpo 
+     * de la petición y se regresa un objeto identico con un id auto-generado 
+     * por la base de datos.
      * 
      * Codigos de respuesta:
-     * <code style = "color": mediumseagreen; background-color: #eaffe0;">
-     * 200 OK Creó el nuevo bono
+     * <code style="color: mediumseagreen; background-color: #eaffe0;">
+     * 200 OK Creó el nuevo detalle .
      * </code>
-     * <code style = "color: #c7254e; background-color: #f9f2f4;">
-     * 412 Preconditition Failed: Ya existe el bono
+     * <code style="color: #c7254e; background-color: #f9f2f4;">
+     * 412 Precodition Failed: Ya existe el detalle.
      * </code>
      * </pre>
-     * @param nuevo {@link BonoDTO} - El detalle que se desea guardar
-     * @return JSON {@link BonoDTO} - El detalle generado
-     * @throws BusinessLogicException {@link BusinessLogicException} - Error de lógica que se genera cuando ya existe el detalle
+     * @param book {@link DetallePaqueteDTO} - EL detalle que se desea guardar.
+     * @return JSON {@link DetallePaqueteDTO}  - El detalle guardado con el atributo id autogenerado.
+     * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} - Error de lógica que se genera cuando ya existe el detalle.
      */
     @POST
-    public DetallePaqueteDTO crearPaquete(DetallePaqueteDTO nuevo)
-    {
-        return nuevo;
+    public DetallePaqueteDTO createReview(@PathParam("idPaquete") Long idPaquete, DetallePaqueteDTO review) throws BusinessLogicException {
+        return new DetallePaqueteDTO(detalleLogic.createDetallePaquete(idPaquete, review.toEntity()));
     }
      /**
-     * <h1>PUT /api/DetallePquete: Actualizar el detalle con el id dado.<h1>
-     * 
-     * <pre> Cuerpo de la petición: JSON {@link BonoDTO}
-     * 
-     * Actualiza el detalle con el id dado por la URL con la información que se recibe en el cuerpo de la petición.
-     * 
+     * <h1>PUT /api/detalles/{id} : Actualizar detalle con el id dado.</h1>
+     * <pre>Cuerpo de petición: JSON {@link BookDetailDTO}.
+     *
+     * Actualiza el detalle con el id recibido en la URL con la información que se recibe en el cuerpo de la petición.
+     *
      * Codigos de respuesta:
-     * <code style = "color": mediumseagreen; background-color: #eaffe0;">
-     * 200 OK Creó el nuevo bono
-     * </code>
-     * <code style = "color: #c7254e; background-color: #f9f2f4;">
-     * 404 Not found. No existe el bono con el id dado.
-     * </code>
+     * <code style="color: mediumseagreen; background-color: #eaffe0;">
+     * 200 OK Actualiza el detalle con el id dado con la información enviada como parámetro. Retorna un objeto identico.</code> 
+     * <code style="color: #c7254e; background-color: #f9f2f4;">
+     * 404 Not Found. No existe un detalle con el id dado.
+     * </code> 
+     * <code style="color: #c7254e; background-color: #f9f2f4;">
+     * 412 Precondition Failes. No se puede actualizar el detalle con el id dado.
+     * </code> 
      * </pre>
-     * @param nuevo {@link BonoDTO} - El detalle que se desea guardar
-     * @return JSON {@link BonoDTO} - El detalle guardado
-     * @throws BusinessLogicException {@link BusinessLogicException} - Error de lógica que no permite actualizar el detalle.
+     * @param id Identificador del paquete que se desea actualizar. Este debe ser una cadena de dígitos.
+     * @param book {@link DetallePaqueteDTO} El detalle que se desea guardar.
+     * @return JSON {@link BookDetailDTO} - El detalle guardado.
+     * @throws WebApplicationException {@link WebApplicationExceptionMapper} - Error de lógica que se genera cuando no se encuentra el detalle a actualizar.
+     * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} - Error de lógica que se genera cuando no se puede actualizar el detalle.
      */
     @PUT
     @Path("{id: \\d+}")
-    public DetallePaqueteDTO updatePaquete (@PathParam("id")Long id, DetallePaqueteDTO actualizar)
-    {
-        return actualizar;
+    public DetallePaqueteDTO updateReview(@PathParam("idPaquete") Long idPaquete, @PathParam("id") Long id, DetallePaqueteDTO review) throws BusinessLogicException {
+        review.setId(id);
+        DetallePaqueteEntity entity = detalleLogic.getDetallePaquete(idPaquete, id);
+        if (entity == null) {
+            throw new WebApplicationException("El recurso /paquetes/" + idPaquete + "/detalles/" + id + " no existe.", 404);
+        }
+        return new DetallePaqueteDTO(detalleLogic.updateDetallePaquete(idPaquete, review.toEntity()));
+
     }
      /**
-     * <h1>GET /api/DetallePaquete: Retornar el detalle con el id dado..<h1>
-     * 
-     * <pre> Busca el id con el detalle asociado recibido en la URL y lo devuelve
-     * 
-     * 
-     * 
+     * <h1>GET /api/detalles/{id} : Obtener detalle por id.</h1>
+     *
+     * <pre>Busca el detalle con el id asociado recibido en la URL y lo devuelve.
+     *
      * Codigos de respuesta:
-     * <code style = "color": mediumseagreen; background-color: #eaffe0;">
-     * 200 OK Creó el nuevo bono
-     * </code>
-     * <code style = "color: #c7254e; background-color: #f9f2f4;">
-     * 404 Not found. No existe el bono con el id dado.
-     * </code>
+     * <code style="color: mediumseagreen; background-color: #eaffe0;">
+     * 200 OK Devuelve el detalle correspondiente al id.
+     * </code> 
+     * <code style="color: #c7254e; background-color: #f9f2f4;">
+     * 404 Not Found No existe un detalle con el id dado.
+     * </code> 
      * </pre>
-     * @param nuevo id identificador del detalle que se esta buscando.
-     * @return JSON {@link BonoDTO} - El detalle buscado
+     * @param id Identificador del detalle que se esta buscando. Este debe ser una cadena de dígitos.
+     * @return JSON {@link DetallePaqueteDTO} - El detalle buscado
+     * @throws WebApplicationException {@link WebApplicationExceptionMapper} - Error de lógica que se genera cuando no se encuentra el detalle.
      */
-    @GET
-    @Path("{id: \\d+}") 
-    public DetallePaqueteDTO getDetallePaquete(@PathParam("id") Long id) 
-    {
-        return null;
+   @GET
+    @Path("{id: \\d+}")
+    public DetallePaqueteDTO getReview(@PathParam("idBook") Long idBook, @PathParam("id") Long id) throws BusinessLogicException {
+        DetallePaqueteEntity entity = detalleLogic.getDetallePaquete(idBook, id);
+        if (entity == null) {
+            throw new WebApplicationException("El recurso /books/" + idBook + "/reviews/" + id + " no existe.", 404);
+        }
+        return new DetallePaqueteDTO(entity);
     }
     
+    /**
+     * <h1>DELETE /api/paquetes/{idPaquete}/detalles/{id} : Borrar detalle por id.</h1>
+     *
+     * <pre>Borra el detalle con el id asociado recibido en la URL.
+     *
+     * Códigos de respuesta:<br>
+     * <code style="color: mediumseagreen; background-color: #eaffe0;">
+     * 200 OK Elimina el detalle correspondiente al id dado dentro del paquete.</code>
+     * <code style="color: #c7254e; background-color: #f9f2f4;">
+     * 404 Not Found. No existe un detalle con el id dado en el paquete.
+     * </code>
+     * </pre>
+     * @param idBook El ID del paquete del cual se va a eliminar el detalle.
+     * @param id El ID del detalle que se va a eliminar.
+     * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} - Error de lógica que se genera cuando no se puede eliminar el detalle.
+     */
+    @DELETE
+    @Path("{id: \\d+}")
+    public void deleteDetallePaquete(@PathParam("idPaquete") Long idPaquete, @PathParam("id") Long id) throws BusinessLogicException {
+        DetallePaqueteEntity entity = detalleLogic.getDetallePaquete(idPaquete, id);
+        if (entity == null) {
+            throw new WebApplicationException("El recurso /paquetes/" + idPaquete + "/detalles/" + id + " no existe.", 404);
+        }
+        detalleLogic.deleteDetallePaquete(idPaquete, id);
+    }
     
 }

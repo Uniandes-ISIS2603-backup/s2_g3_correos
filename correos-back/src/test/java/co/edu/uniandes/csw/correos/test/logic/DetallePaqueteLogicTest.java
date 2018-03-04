@@ -7,6 +7,7 @@ package co.edu.uniandes.csw.correos.test.logic;
 
 import co.edu.uniandes.csw.correos.ejb.DetallePaqueteLogic;
 import co.edu.uniandes.csw.correos.entities.DetallePaqueteEntity;
+import co.edu.uniandes.csw.correos.entities.PaqueteEntity;
 import co.edu.uniandes.csw.correos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.correos.persistence.DetallePaquetePersistance;
 import java.util.ArrayList;
@@ -46,6 +47,8 @@ public class DetallePaqueteLogicTest {
     private UserTransaction utx;
 
     private List<DetallePaqueteEntity> data = new ArrayList<DetallePaqueteEntity>();
+    
+    private List<PaqueteEntity> dataPaquete = new ArrayList<PaqueteEntity>();
 
     @Deployment
     public static JavaArchive createDeployment() {
@@ -111,9 +114,9 @@ public class DetallePaqueteLogicTest {
      *
      */
     @Test
-    public void createDetalleTest() throws BusinessLogicException {
+    public void createDetallePaqueteTest() {
         DetallePaqueteEntity newEntity = factory.manufacturePojo(DetallePaqueteEntity.class);
-        DetallePaqueteEntity result = detalleLogic.createDetallePaquete(newEntity);
+        DetallePaqueteEntity result = detalleLogic.createDetallePaquete(data.get(0).getPaquete().getId(), newEntity);
         Assert.assertNotNull(result);
         DetallePaqueteEntity entity = em.find(DetallePaqueteEntity.class, result.getId());
         Assert.assertEquals(newEntity.getId(), entity.getId());
@@ -127,9 +130,9 @@ public class DetallePaqueteLogicTest {
      *
      */
     @Test
-    public void getDetalleTest() {
+    public void getDetallePaqueteTest() {
         DetallePaqueteEntity entity = data.get(0);
-        DetallePaqueteEntity resultEntity = detalleLogic.getDetallePaquete(entity.getId());
+        DetallePaqueteEntity resultEntity = detalleLogic.getDetallePaquete(dataPaquete.get(1).getId(), entity.getId());
         Assert.assertNotNull(resultEntity);
         Assert.assertEquals(entity.getId(), resultEntity.getId());
         Assert.assertEquals(entity.getName(), resultEntity.getName());
@@ -142,9 +145,9 @@ public class DetallePaqueteLogicTest {
      *
      */
     @Test
-    public void deleteDetalleTest() throws BusinessLogicException {
+    public void deleteDetallePaqueteTest() {
         DetallePaqueteEntity entity = data.get(0);
-        detalleLogic.deleteDetallePaquete(entity.getId());
+        detalleLogic.deleteDetallePaquete(dataPaquete.get(1).getId(), entity.getId());
         DetallePaqueteEntity deleted = em.find(DetallePaqueteEntity.class, entity.getId());
         Assert.assertNull(deleted);
     }
@@ -152,16 +155,16 @@ public class DetallePaqueteLogicTest {
     /**
      * Prueba para actualizar un detalle
      *
-     *
+     * 
      */
-    @Test
-    public void updateDetalleTest() throws BusinessLogicException {
+ @Test
+    public void updateDetallePaqueteTest() {
         DetallePaqueteEntity entity = data.get(0);
         DetallePaqueteEntity pojoEntity = factory.manufacturePojo(DetallePaqueteEntity.class);
 
         pojoEntity.setId(entity.getId());
 
-        detalleLogic.updateDetallePaquete(pojoEntity);
+        detalleLogic.updateDetallePaquete(dataPaquete.get(1).getId(), pojoEntity);
 
         DetallePaqueteEntity resp = em.find(DetallePaqueteEntity.class, entity.getId());
 
