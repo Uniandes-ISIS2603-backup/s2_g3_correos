@@ -68,16 +68,16 @@ public class ClienteLogic {
         return persistence.find(id);
     }
 
-    public ClienteEntity udateCliente(ClienteEntity entity) throws BusinessLogicException  {
+    public ClienteEntity updateCliente(ClienteEntity entity) throws BusinessLogicException  {
         if (persistence.findByName(entity.getName()) != null) {
             throw new BusinessLogicException("Ya existe un cliente con el nombre \"" + entity.getName() + "\"");
         }
         return persistence.update(entity);
     }
     
-    public void deleteCliente(ClienteEntity entity) throws BusinessLogicException {
-        LOGGER.log(Level.INFO, "Inicia proceso de borrar el cliente con id={0}", entity.getId());    
-        persistence.delete(entity.getId());
-        LOGGER.log(Level.INFO, "Termina proceso de borrar cliente con id={0}", entity.getId());
+    public void deleteCliente(Long id) throws BusinessLogicException {
+        LOGGER.log(Level.INFO, "Inicia proceso de borrar el cliente con id={0}", id);    
+        persistence.delete(id);
+        LOGGER.log(Level.INFO, "Termina proceso de borrar cliente con id={0}", id);
     }
 }
