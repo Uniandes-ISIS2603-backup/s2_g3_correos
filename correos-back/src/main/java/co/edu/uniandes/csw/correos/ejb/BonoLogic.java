@@ -58,27 +58,56 @@ public class BonoLogic {
     }
     
     
-        public List<BonoEntity> getBonos() {
+       public List<BonoEntity> getBonos(Long clienteid) throws BusinessLogicException {
         LOGGER.info("Inicia proceso de consultar todos los bonos");
-        List<BonoEntity> bonos = persistence.findAll();
-        LOGGER.info("Termina proceso de consultar toos los bonos");
-        return bonos;
-    }
-        
-        public BonoEntity getBono(Long id) {
-        return persistence.find(id);
-    }
-        
-        public BonoEntity updateBono(BonoEntity entity) throws BusinessLogicException  {
-        if (persistence.find(entity.getId()) != null) {
-            throw new BusinessLogicException("Ya existe un Bono con el id \"" + entity.getId() + "\"");
+        ClienteEntity cliente = clienteLogic.getCliente(clienteid);
+        if (cliente.getBonos()== null) {
+            throw new BusinessLogicException("El libro que consulta aún no tiene reviews");
         }
+        if (cliente.getBonos().isEmpty()) {
+            throw new BusinessLogicException("El libro que consulta aún no tiene reviews");
+        }
+        return cliente.getBonos();
+    }
+        
+     /**
+     * Obtiene los datos de una instancia de Bono a partir de su ID.
+     * La existencia del elemento padre Cliente se debe garantizar.
+     *
+     * @param clienteid El id del Cliente buscado
+     * @param bonoid Identificador de la Bono a consultar
+     * @return Instancia de BonoEntity con los datos del Bono consultado.
+     * 
+     */
+    public BonoEntity getBono(Long clienteid, Long bonoid) {
+        return persistence.find(clienteid, bonoid);
+    }
+        
+       /**
+     * Actualiza la información de una instancia de bono.
+     *
+     * @param entity Instancia de BonoEntity con los nuevos datos.
+     * @param clienteid id del Cliente el cual sera padre del Bono actualizado.
+     * @return Instancia de BonoEntity con los datos actualizados.
+     * 
+     */
+    public BonoEntity updateBono(Long clienteid, BonoEntity entity) {
+        LOGGER.info("Inicia proceso de actualizar bono");
+        ClienteEntity cliente = clienteLogic.getCliente(clienteid);
+        entity.setCliente(cliente);
         return persistence.update(entity);
     }
         
-         public void deleteBono(Long id) throws BusinessLogicException {
-        LOGGER.log(Level.INFO, "Inicia proceso de borrar el bono con id={0}");    
-        persistence.delete(id);
-        LOGGER.log(Level.INFO, "Termina proceso de borrar bono con id={0}");
+        /**
+     * Elimina una instancia de bono de la base de datos.
+     *
+     * @param id Identificador de la instancia a eliminar.
+     * @param clienteid id del cliente el cual es padre del bono.
+     * 
+     */
+    public void deleteBono(Long clienteid, Long id) {
+        LOGGER.info("Inicia proceso de borrar bono");
+        BonoEntity old = getBono(clienteid, id);
+        persistence.delete(old.getId());
     }
 }

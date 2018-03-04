@@ -7,6 +7,7 @@ package co.edu.uniandes.csw.correos.test.logic;
 
 import co.edu.uniandes.csw.correos.ejb.BonoLogic;
 import co.edu.uniandes.csw.correos.entities.BonoEntity;
+import co.edu.uniandes.csw.correos.entities.ClienteEntity;
 import co.edu.uniandes.csw.correos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.correos.persistence.BonoPersistance;
 import java.util.ArrayList;
@@ -46,6 +47,8 @@ public class BonoLogicTest {
     private UserTransaction utx;
 
     private List<BonoEntity> data = new ArrayList<BonoEntity>();
+
+    private List<ClienteEntity> dataCliente = new ArrayList<ClienteEntity>();
 
     @Deployment
     public static JavaArchive createDeployment() {
@@ -125,13 +128,14 @@ public class BonoLogicTest {
     }
     
     /**
-     * Prueba para consultar la lista de Bonos
+     * Prueba para consultar la lista de bonos
      *
-     *
+     * 
      */
+    
     @Test
-    public void getBonosTest() {
-        List<BonoEntity> list = bonoLogic.getBonos();
+    public void getBonosTest() throws BusinessLogicException {
+        List<BonoEntity> list = bonoLogic.getBonos(dataCliente.get(1).getId());        
         Assert.assertEquals(data.size(), list.size());
         for (BonoEntity entity : list) {
             boolean found = false;
@@ -151,7 +155,7 @@ public class BonoLogicTest {
     @Test
     public void getBonoTest() {
         BonoEntity entity = data.get(0);
-        BonoEntity resultEntity = bonoLogic.getBono(entity.getId());
+        BonoEntity resultEntity = bonoLogic.getBono(dataCliente.get(1).getId(), entity.getId());
         Assert.assertNotNull(resultEntity);
         Assert.assertEquals(entity.getId(), resultEntity.getId());
         Assert.assertEquals(entity.getName(), resultEntity.getName());
@@ -160,31 +164,32 @@ public class BonoLogicTest {
         Assert.assertEquals(entity.getDescuento(), resultEntity.getDescuento());
         Assert.assertEquals(entity.getFechaDeVencimiento(), resultEntity.getFechaDeVencimiento());
     }
-     /**
-     * Prueba para eliminar un Bono
+    /**
+     * Prueba para eliminar un bono
      *
-     *
+     * 
      */
+ 
     @Test
-    public void deleteBonoTest() throws BusinessLogicException {
+    public void deleteBonoTest() {
         BonoEntity entity = data.get(0);
-        bonoLogic.deleteBono(entity.getId());
+        bonoLogic.deleteBono(dataCliente.get(1).getId(), entity.getId());
         BonoEntity deleted = em.find(BonoEntity.class, entity.getId());
         Assert.assertNull(deleted);
     }
      /**
      * Prueba para actualizar un Bono
      *
-     *
+     * 
      */
-    @Test
-    public void updateBonoTest() throws BusinessLogicException {
+ @Test
+    public void updateBonoTest() {
         BonoEntity entity = data.get(0);
         BonoEntity pojoEntity = factory.manufacturePojo(BonoEntity.class);
 
         pojoEntity.setId(entity.getId());
 
-        bonoLogic.updateBono(pojoEntity);
+        bonoLogic.updateBono(dataCliente.get(1).getId(), pojoEntity);
 
         BonoEntity resp = em.find(BonoEntity.class, entity.getId());
 
@@ -192,22 +197,9 @@ public class BonoLogicTest {
         Assert.assertEquals(pojoEntity.getName(), resp.getName());
         Assert.assertEquals(pojoEntity.getCondicion(), resp.getCondicion());
         Assert.assertEquals(pojoEntity.getDescripcion(), resp.getDescripcion());
-        Assert.assertEquals(pojoEntity.getDescuento(), resp.getDescuento());
         Assert.assertEquals(pojoEntity.getFechaDeVencimiento(), resp.getFechaDeVencimiento());
+        Assert.assertEquals(pojoEntity.getDescuento(), resp.getDescuento());
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     }
 
