@@ -36,9 +36,9 @@ public class CalificacionLogic {
         else if(calificacion.getCalificacion()!=1 && calificacion.getCalificacion()!=2 && calificacion.getCalificacion()!=3 && calificacion.getCalificacion()!=4&& calificacion.getCalificacion()!=5 ){
             throw new BusinessLogicException("Calificacion fuera del rango \"" + calificacion.getCalificacion() + "\"");
         }
-        // Invoca la persistencia para crear la city
+        // Invoca la persistencia para crear la Zona
         cP.create(calificacion);
-        LOGGER.info("Termina proceso de creación de city");
+        LOGGER.info("Termina proceso de creación de Zona");
         return calificacion;
         
     }
@@ -52,16 +52,16 @@ public class CalificacionLogic {
     public CalificacionEntity getCalificacion(Long id) {
         return cP.find(id);
     }
-    public CalificacionEntity updateCity(CalificacionEntity entity) throws BusinessLogicException  {
+    public CalificacionEntity updateCalificacion(CalificacionEntity entity) throws BusinessLogicException  {
         if (entity.getMensajero()==null) {
             throw new BusinessLogicException("El mensajero no puede ser nulo \"" + entity.getName() + "\"");
         }
         return cP.update(entity);
     }
     
-     public void deleteCity(CalificacionEntity entity) throws BusinessLogicException {
-        LOGGER.log(Level.INFO, "Inicia proceso de borrar ciudad con id={0}", entity.getId());    
+     public void deleteCalificacion(CalificacionEntity entity) throws BusinessLogicException {
+        LOGGER.log(Level.INFO, "Inicia proceso de borrar la calficacion", entity.getId());    
         cP.delete(entity);
-        LOGGER.log(Level.INFO, "Termina proceso de borrar libro con id={0}", entity.getId());
+        LOGGER.log(Level.INFO, "Termina proceso de borrar la calificaion", entity.getId());
     }
 }
