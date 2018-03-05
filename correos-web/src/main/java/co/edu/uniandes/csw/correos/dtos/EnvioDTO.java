@@ -5,6 +5,9 @@
  */
  
  package co.edu.uniandes.csw.correos.dtos;
+
+import co.edu.uniandes.csw.correos.entities.EnvioEntity;
+
  /**
   * EnvioDTO Objeto de transferencia de datos de Envios. Los DTO contienen las
   * representaciones de los JSON que se transfieren entre el cliente y el
@@ -43,11 +46,41 @@
     private String direccionEntrega;
     private String direccionRecogida;
     private String estado;
+    private String name; 
 /**
  * Constructor basico (vacio)
  */
     public EnvioDTO() {
         
+    }
+    
+    /**
+     * 
+     * @param entity a ser creada 
+     */
+    public EnvioDTO(EnvioEntity entity) {
+        this.idEnvio = entity.getId();
+        this.horaInicio = entity.getHoraInicio();
+        this.name = entity.getName();
+        this.horaFinal = entity.getHoraFinal();
+        this.estado = entity.getEstado();
+        this.direccionEntrega = entity.getDireccionEntrega();
+        this.direccionRecogida = entity.getDireccionRecogida();        
+    }
+/**
+ * 
+ * @return  entidad de paquete
+ */
+    public EnvioEntity toEntity() {
+        EnvioEntity entity = new EnvioEntity();
+        entity.setId(this.idEnvio);
+        entity.setName(this.name);
+        entity.setEstado(this.estado);
+        entity.setHoraInicio(this.horaInicio);
+        entity.setHoraFinal(this.horaFinal);
+        entity.setDireccionEntrega(this.direccionEntrega);
+        entity.setDireccionRecogida(this.direccionRecogida);
+        return entity;
     }
     /**
      * 
