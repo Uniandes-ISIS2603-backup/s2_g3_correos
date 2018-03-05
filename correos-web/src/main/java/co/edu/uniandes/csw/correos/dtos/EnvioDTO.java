@@ -126,6 +126,13 @@ import co.edu.uniandes.csw.correos.entities.EnvioEntity;
     }
     /**
      * 
+     * @return Nombre del envio
+     */    
+    public String getName(){
+        return name;
+    }
+    /**
+     * 
      * @param id la nueva ID del Envio (?)
      */
     public void setId(long id) {
@@ -165,5 +172,12 @@ import co.edu.uniandes.csw.correos.entities.EnvioEntity;
      */
     public void setEstado(String estado) {
         this.estado = estado; 
-    }        
+    }  
+    /**
+     * 
+     * @param name nuevo nombre del envio
+     */
+    public void setName(String name) {
+        this.name = name; 
+    } 
 }
