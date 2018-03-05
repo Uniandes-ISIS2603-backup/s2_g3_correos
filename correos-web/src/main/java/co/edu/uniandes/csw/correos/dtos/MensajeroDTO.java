@@ -151,5 +151,14 @@ public class MensajeroDTO {
         this.calificacionPromedio = calificacionPromedio;
     }
     
-    // public MensajeroEntity toEntity(){} este metododo se realizara una vez se haya realizado la capa de persistencia
+    public MensajeroEntity toEntity()
+    {
+        MensajeroEntity entity= new MensajeroEntity();
+        entity.setCalificacionPromedio(this.calificacionPromedio);
+        entity.setNombre(this.nombre);
+        entity.setCelular(this.celular);
+        entity.setCorreo(this.correo);
+        entity.setId(this.id);
+        return entity;
+    } 
 }

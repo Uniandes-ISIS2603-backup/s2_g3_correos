@@ -52,9 +52,10 @@ public class TransporteLogic {
         this.persistence=null;
     }
     
-    public TransporteEntity createMensjaero(TransporteEntity transporte)
+    public TransporteEntity createTransporte(TransporteEntity transporte)
     {
         LOGGER.info("Se inicia la creación de un Transporte");
+        
         persistence.create(transporte);
         LOGGER.info("se termino de crear un transporte");
         return transporte;

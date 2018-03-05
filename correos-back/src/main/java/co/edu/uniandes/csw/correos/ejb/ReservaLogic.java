@@ -52,7 +52,7 @@ public class ReservaLogic {
         this.persistence=null;
     }
     
-    public ReservaEntity createMensjaero(ReservaEntity reserva)
+    public ReservaEntity createReserva(ReservaEntity reserva)
     {
         LOGGER.info("Se inicia la creación de un Reserva");
         persistence.create(reserva);
