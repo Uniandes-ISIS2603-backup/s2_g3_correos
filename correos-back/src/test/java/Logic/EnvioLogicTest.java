@@ -1,3 +1,5 @@
+package Logic;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -5,7 +7,11 @@
  */
 
 import co.edu.uniandes.csw.correos.ejb.EnvioLogic;
+import co.edu.uniandes.csw.correos.entities.ClienteEntity;
 import co.edu.uniandes.csw.correos.entities.EnvioEntity;
+import co.edu.uniandes.csw.correos.entities.MensajeroEntity;
+import co.edu.uniandes.csw.correos.entities.PagoEntity;
+import co.edu.uniandes.csw.correos.entities.PaqueteEntity;
 import co.edu.uniandes.csw.correos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.correos.persistence.EnvioPersistence;
 import java.util.ArrayList;
@@ -45,6 +51,10 @@ public class EnvioLogicTest {
     private UserTransaction utx;
 
     private List<EnvioEntity> data = new ArrayList<EnvioEntity>();
+    private List<PaqueteEntity> dataPaquetes = new ArrayList<PaqueteEntity>();
+    private List<ClienteEntity> dataClientes = new ArrayList<ClienteEntity>();
+    private List<MensajeroEntity> dataMensajero = new ArrayList<MensajeroEntity>();
+    private List<PagoEntity> dataPago = new ArrayList<PagoEntity>();    
 
     @Deployment
     public static JavaArchive createDeployment() {
@@ -81,10 +91,8 @@ public class EnvioLogicTest {
      */
     private void clearData() {
         em.createQuery("delete from PaqueteEntity").executeUpdate();
-        em.createQuery("delete from EnvioEntity").executeUpdate();
-        em.createQuery("delete from BonoEntity").executeUpdate(); 
-        em.createQuery("delete from ClienteEntity").executeUpdate(); 
-        em.createQuery("delete from EventoEntity").executeUpdate(); 
+        em.createQuery("delete from EnvioEntity").executeUpdate();       
+        em.createQuery("delete from ClienteEntity").executeUpdate();         
         em.createQuery("delete from MensajeroEntity").executeUpdate(); 
         em.createQuery("delete from PagoEntity").executeUpdate(); 
     }
@@ -93,11 +101,36 @@ public class EnvioLogicTest {
      * Inserta los datos iniciales para el correcto funcionamiento de las pruebas.
      */
     private void insertData() throws BusinessLogicException {
-
+        
         for (int i = 0; i < 3; i++) {
+            ClienteEntity cliente = factory.manufacturePojo(ClienteEntity.class);
+            em.persist(cliente);
+            dataClientes.add(cliente);
+        }
+        for (int i = 0; i < 3; i++) {
+            PagoEntity pago = factory.manufacturePojo(PagoEntity.class);
+            em.persist(pago);
+            dataPago.add(pago);
+        }
+        for (int i = 0; i < 3; i++) {
+            MensajeroEntity mensajero = factory.manufacturePojo(MensajeroEntity.class);
+            em.persist(mensajero);
+            dataMensajero.add(mensajero);
+        }
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; i < 3; j++) {
+            PaqueteEntity paquete = factory.manufacturePojo(PaqueteEntity.class);
+            em.persist(paquete);
+            dataPaquetes.add(paquete);
+            }
             EnvioEntity entity = factory.manufacturePojo(EnvioEntity.class);
+            entity.setCliente(dataClientes.get(i));
+            entity.setMensajero(dataMensajero.get(i));
+            entity.setPago(dataPago.get(i));
+            entity.setPaquetes(dataPaquetes);
             em.persist(entity);
-            data.add(entity);         
+            data.add(entity);
+            dataPaquetes = new ArrayList<PaqueteEntity>();            
         }
     }
 
