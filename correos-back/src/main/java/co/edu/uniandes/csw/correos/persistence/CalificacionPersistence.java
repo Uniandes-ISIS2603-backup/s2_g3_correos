@@ -53,7 +53,7 @@ public class CalificacionPersistence {
          return em.merge(entity);
     }
     
-    public void delete(CalificacionEntity entity) {
-        em.remove(entity);
+    public void delete(Long id) {
+        em.remove(em.find(CalificacionEntity.class, id));
     }
 }

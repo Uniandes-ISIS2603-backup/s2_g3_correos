@@ -93,5 +93,20 @@ public class BonoEntity extends BaseEntity implements Serializable {
         this.fechaDeVencimiento = fechaDeVencimiento;
     }
     
+    /**
+     * Devuelve el cliente asociado a este bono
+     * @return Entidad de tipo Cliente
+     */
+    public ClienteEntity getCliente() {
+        return cliente;
+    }
+
+    /**
+     * Modifica el cliente asociado a este bono
+     * @param cliente El nuevo cliente
+     */
+    public void setCliente(ClienteEntity cliente) {
+        this.cliente = cliente;
+    }
     
 }

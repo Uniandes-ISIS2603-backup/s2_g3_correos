@@ -6,6 +6,7 @@
 package co.edu.uniandes.csw.correos.ejb;
 
 import co.edu.uniandes.csw.correos.entities.DetallePaqueteEntity;
+import co.edu.uniandes.csw.correos.entities.PaqueteEntity;
 import co.edu.uniandes.csw.correos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.correos.persistence.DetallePaquetePersistance;
 import java.util.List;
@@ -27,6 +28,9 @@ public class DetallePaqueteLogic {
     @Inject
     private DetallePaquetePersistance persistence;
     
+    @Inject
+    PaqueteLogic paqueteLogic;
+    
     public DetallePaqueteLogic (DetallePaquetePersistance persistence)
     {
         this.persistence=persistence;
@@ -38,31 +42,58 @@ public class DetallePaqueteLogic {
         this.persistence=null;
     }
     
-    public DetallePaqueteEntity createDetallePaquete(DetallePaqueteEntity entity) throws BusinessLogicException
-{
-    LOGGER.info("Inicia proceso de creación del detalle");
-        if (persistence.find(entity.getId()) != null) {
-            throw new BusinessLogicException("Ya existe un detalle con el id \"" + entity.getId() + "\"");
-        }
-        
-        persistence.create(entity);
-        LOGGER.info("Termina proceso de creación del detalle");
-        return entity;   
-}
-        public DetallePaqueteEntity getDetallePaquete(Long id) {
-        return persistence.find(id);
+     /**
+     * Se encarga de crear un detalle en la base de datos.
+     *
+     * @param entity Objeto de DetallePaqueteEntity con los datos nuevos
+     * @param bookid id del paquete el cual sera padre del nuevo detalle.
+     * @return Objeto de DetallePaqueteEntity con los datos nuevos y su ID.
+     * 
+     */
+    public DetallePaqueteEntity createDetallePaquete(Long paqueteid, DetallePaqueteEntity entity) {
+        LOGGER.info("Inicia proceso de crear detalle");
+        PaqueteEntity paquete = paqueteLogic.getPaquete(paqueteid);
+        entity.setBook(paquete);
+        return persistence.create(entity);
+    }
+       /**
+     * Obtiene los datos de una instancia de detalle a partir de su ID.
+     * La existencia del elemento padre paquete se debe garantizar.
+     *
+     * @param bookid El id del paquete buscado
+     * @param reviewid Identificador del detalle a consultar
+     * @return Instancia de DetallePaqueteEntity con los datos del detalle consultado.
+     * 
+     */
+    public DetallePaqueteEntity getDetallePaquete(Long bookid, Long reviewid) {
+        return persistence.find(bookid, reviewid);
     }
         
-        public DetallePaqueteEntity updateDetallePaquete(DetallePaqueteEntity entity) throws BusinessLogicException  {
-        if (persistence.find(entity.getId()) != null) {
-            throw new BusinessLogicException("Ya existe un detalle con el id \"" + entity.getId() + "\"");
-        }
+        /**
+     * Actualiza la información de una instancia de detallePaquete.
+     *
+     * @param entity Instancia de DetallePaqueteEntity con los nuevos datos.
+     * @param bookid id del paquete el cual sera padre del detalle actualizado.
+     * @return Instancia de DetallePaqueteEntity con los datos actualizados.
+     * 
+     */
+    public DetallePaqueteEntity updateDetallePaquete(Long paqueteid, DetallePaqueteEntity entity) {
+        LOGGER.info("Inicia proceso de actualizar el detalle");
+        PaqueteEntity paquete = paqueteLogic.getPaquete(paqueteid);
+        entity.setBook(paquete);
         return persistence.update(entity);
     }
         
-         public void deleteDetallePaquete(DetallePaqueteEntity entity) throws BusinessLogicException {
-        LOGGER.log(Level.INFO, "Inicia proceso de borrar el detalle con id={0}", entity.getId());    
-        persistence.delete(entity.getId());
-        LOGGER.log(Level.INFO, "Termina proceso de borrar detalle con id={0}", entity.getId());
+         /**
+     * Elimina una instancia de detalle de la base de datos.
+     *
+     * @param id Identificador de la instancia a eliminar.
+     * @param bookid id del paqute el cual es padre del detalle.
+     * 
+     */
+    public void deleteDetallePaquete(Long paqueteid, Long id) {
+        LOGGER.info("Inicia proceso de borrar detalle");
+        DetallePaqueteEntity old = getDetallePaquete(paqueteid, id);
+        persistence.delete(old.getId());
     }
 }

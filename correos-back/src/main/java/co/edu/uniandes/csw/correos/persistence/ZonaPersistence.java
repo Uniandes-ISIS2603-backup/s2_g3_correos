@@ -9,7 +9,6 @@ package co.edu.uniandes.csw.correos.persistence;
 import co.edu.uniandes.csw.correos.entities.ZonaEntity;
 import javax.ejb.Stateless;
 import java.util.List;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -55,8 +54,8 @@ public class ZonaPersistence {
          return em.merge(entity);
     }
     
-    public void delete(ZonaEntity entity) {
-        em.remove(entity);
+    public void delete( Long id) {
+        em.remove(em.find(ZonaEntity.class, id));
     }
     
 }

@@ -3,8 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+package co.edu.uniandes.csw.corres.test.logic;
 
+
+import co.edu.uniandes.csw.correos.ejb.ZonaLogic;
 import co.edu.uniandes.csw.correos.entities.ZonaEntity;
+import co.edu.uniandes.csw.correos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.correos.persistence.ZonaPersistence;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,11 +16,11 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.UserTransaction;
-import org.junit.Assert;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -28,41 +32,30 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
  * @author ed.diaz11
  */
 @RunWith(Arquillian.class)
-public class ZonaPersitenceTest {
- /**
-     *
-     * @return Devuelve el jar que Arquillian va a desplegar en el Glassfish
-     * 
-     */
+public class ZonaLogicTest {
+    private PodamFactory factory = new PodamFactoryImpl();
+
+    @Inject
+    private ZonaLogic zonaLogic;
+
+    @PersistenceContext
+    private EntityManager em;
+
+    @Inject
+    private UserTransaction utx;
+
+    private List<ZonaEntity> data = new ArrayList<ZonaEntity>();
+
+
     @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
                 .addPackage(ZonaEntity.class.getPackage())
+                .addPackage(ZonaLogic.class.getPackage())
                 .addPackage(ZonaPersistence.class.getPackage())
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
-    
-     /**
-     * Inyección de la dependencia a la clase ZonaPersistance cuyos métodos
-     * se van a probar.
-     */
-    @Inject
-    private ZonaPersistence zonaPersistence;
-
-    /**
-     * Contexto de Persostencia que se va autilizar para acceder a la Base de
-     * datos por fuera de los métodos que se están probando.
-     */
-    @PersistenceContext
-    private EntityManager em;
-
-    /**
-     * Variable para martcar las transacciones del em anterior cuando se
-     * crean/borran datos para las pruebas.
-     */
-    @Inject
-    UserTransaction utx;
 
     /**
      * Configuración inicial de la prueba.
@@ -70,10 +63,9 @@ public class ZonaPersitenceTest {
      *
      */
     @Before
-    public void setUp() {
+    public void configTest() {
         try {
             utx.begin();
-            em.joinTransaction();
             clearData();
             insertData();
             utx.commit();
@@ -86,123 +78,118 @@ public class ZonaPersitenceTest {
             }
         }
     }
-    
-     /**
+
+    /**
      * Limpia las tablas que están implicadas en la prueba.
      *
      *
      */
     private void clearData() {
         em.createQuery("delete from ZonaEntity").executeUpdate();
+       
     }
-
-    /**
-     *
-     */
-    private List<ZonaEntity> data = new ArrayList<ZonaEntity>();
 
     /**
      * Inserta los datos iniciales para el correcto funcionamiento de las
      * pruebas.
      *
-     *PODEM crea objetos con valores random. Nos permite probar con diferentes datos todo el tiempo
+     *
      */
     private void insertData() {
-        PodamFactory factory = new PodamFactoryImpl();
         for (int i = 0; i < 3; i++) {
             ZonaEntity entity = factory.manufacturePojo(ZonaEntity.class);
             em.persist(entity);
             data.add(entity);
+         
         }
     }
 
     /**
-     * Prueba para crear una Zona.
+     * Prueba para crear una Zona
      *
      *
      */
     @Test
-    public void createZonaTest() {
-        PodamFactory factory = new PodamFactoryImpl();
+    public void createZonaTest() throws BusinessLogicException {
         ZonaEntity newEntity = factory.manufacturePojo(ZonaEntity.class);
-        ZonaEntity result = zonaPersistence.create(newEntity);
-
+        ZonaEntity result = zonaLogic.createZona(newEntity);
         Assert.assertNotNull(result);
-
         ZonaEntity entity = em.find(ZonaEntity.class, result.getId());
-
-        Assert.assertEquals(newEntity.getLongitud(), entity.getLongitud());
+        Assert.assertEquals(newEntity.getId(), entity.getId());
         Assert.assertEquals(newEntity.getLatitud(), entity.getLatitud());
+        Assert.assertEquals(newEntity.getLongitud(), entity.getLongitud());
        
     }
 
     /**
-     * Prueba para consultar la lista de Zonas.
+     * Prueba para consultar la lista de Zonas
+     *
      *
      */
     @Test
     public void getZonasTest() {
-        List<ZonaEntity> list = zonaPersistence.findAll();
+        List<ZonaEntity> list = zonaLogic.getZonas();
         Assert.assertEquals(data.size(), list.size());
-        for (ZonaEntity ent : list) {
-            boolean e = false;
-            for (ZonaEntity entity : data) {
-                if (ent.getId().equals(entity.getId())) {
-                    e = true;
+        for (ZonaEntity entity : list) {
+            boolean found = false;
+            for (ZonaEntity storedEntity : data) {
+                if (entity.getId().equals(storedEntity.getId())) {
+                    found = true;
                 }
             }
-            Assert.assertTrue(e);
+            Assert.assertTrue(found);
         }
     }
 
     /**
-     * Prueba para consultar una Zona.
+     * Prueba para consultar una ZOna
      *
      *
      */
     @Test
     public void getZonaTest() {
         ZonaEntity entity = data.get(0);
-        ZonaEntity newEntity = zonaPersistence.find(entity.getId());
-        Assert.assertNotNull(newEntity);
-        Assert.assertEquals(newEntity.getLatitud(), entity.getLatitud());
-        Assert.assertEquals(newEntity.getLongitud(), entity.getLongitud());
-  
+        ZonaEntity resultEntity = zonaLogic.getZona(entity.getId());
+        Assert.assertNotNull(resultEntity);
+        Assert.assertEquals(entity.getId(), resultEntity.getId());
+        Assert.assertEquals(entity.getLatitud(), resultEntity.getLatitud());
+        Assert.assertEquals(entity.getLongitud(), resultEntity.getLongitud());
+        
     }
 
     /**
-     * Prueba para eliminar una Zona.
+     * Prueba para eliminar una Zona
      *
      *
      */
     @Test
-    public void deleteZonaTest() {
+    public void deleteZonaTest() throws BusinessLogicException {
         ZonaEntity entity = data.get(0);
-        zonaPersistence.delete(entity.getId());
+        zonaLogic.deleteZona(entity);
         ZonaEntity deleted = em.find(ZonaEntity.class, entity.getId());
         Assert.assertNull(deleted);
     }
 
     /**
-     * Prueba para actualizar una Zona.
+     * Prueba para actualizar una Zona
      *
      *
      */
     @Test
-    public void updateZonaTest() {
+    public void updateZonaTest() throws BusinessLogicException {
         ZonaEntity entity = data.get(0);
-        PodamFactory factory = new PodamFactoryImpl();
-        ZonaEntity newEntity = factory.manufacturePojo(ZonaEntity.class);
+        ZonaEntity pojoEntity = factory.manufacturePojo(ZonaEntity.class);
 
-        newEntity.setId(entity.getId());
+        pojoEntity.setId(entity.getId());
 
-        zonaPersistence.update(newEntity);
+        zonaLogic.updateZona(pojoEntity);
 
-        ZonaEntity r = em.find(ZonaEntity.class, entity.getId());
+        ZonaEntity resp = em.find(ZonaEntity.class, entity.getId());
 
-        Assert.assertEquals(newEntity.getLatitud(), r.getLatitud());
-        Assert.assertEquals(newEntity.getLongitud(), r.getLongitud());
-        
-    }    
-  
+        Assert.assertEquals(pojoEntity.getId(), resp.getId());
+        Assert.assertEquals(pojoEntity.getLatitud(), resp.getLatitud());
+        Assert.assertEquals(pojoEntity.getLongitud(), resp.getLongitud());
+      
+    }
+    
 }

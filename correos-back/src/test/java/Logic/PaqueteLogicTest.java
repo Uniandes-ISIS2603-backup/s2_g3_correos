@@ -7,6 +7,7 @@ package Logic;
  */
 
 import co.edu.uniandes.csw.correos.ejb.PaqueteLogic;
+import co.edu.uniandes.csw.correos.entities.EnvioEntity;
 import co.edu.uniandes.csw.correos.entities.PaqueteEntity;
 import co.edu.uniandes.csw.correos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.correos.persistence.PaquetePersistence;
@@ -47,6 +48,7 @@ public class PaqueteLogicTest {
     private UserTransaction utx;
 
     private List<PaqueteEntity> data = new ArrayList<PaqueteEntity>();
+    private List<EnvioEntity> dataEnvio = new ArrayList<EnvioEntity>();
 
     @Deployment
     public static JavaArchive createDeployment() {
@@ -91,11 +93,16 @@ public class PaqueteLogicTest {
      */
     private void insertData() throws BusinessLogicException {
 
-        for (int i = 0; i < 3; i++) {
+         for (int i = 0; i < 3; i++) {
+            EnvioEntity envio = factory.manufacturePojo(EnvioEntity.class);
+            em.persist(envio);
+            dataEnvio.add(envio);
+        }
+        for (int i = 0; i < 3; i++) {            
             PaqueteEntity entity = factory.manufacturePojo(PaqueteEntity.class);
+            entity.setEnvio(dataEnvio.get(i));            
             em.persist(entity);
-            data.add(entity);
-         
+            data.add(entity);                       
         }
     }
 

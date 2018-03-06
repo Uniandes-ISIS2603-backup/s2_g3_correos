@@ -28,15 +28,30 @@ public class BonoPersistance {
       protected EntityManager em;
       
       /**
-       * Encuentra el bono con el id dado
-       * @param id id del bono
-       * @return bono con el id ingresado
-       */
-      public BonoEntity find(Long id)
-      {
-        LOGGER.log(Level.INFO, "Consultando bono con id={0}", id);
-        return em.find(BonoEntity.class, id);
-      }
+     * Buscar un bono
+     * 
+     * Busca si hay algun bono asociado a un cliente y con un ID específico
+     * @param clienteid El ID del cliente con respecto al cual se busca
+     * @param bonoid El ID del bono buscada
+     * @return El bono encontrada o null. Nota: Si existe uno o más bonos 
+     * devuelve siempre el primero que encuentra
+     */
+    public BonoEntity find(Long clienteid, Long bonoid) {
+        TypedQuery<BonoEntity> q = em.createQuery("select p from BonoEntity p where (p.cliente.id = :bookid) and (p.id = :reviewid)", BonoEntity.class);
+        q.setParameter("bookid", clienteid);
+        q.setParameter("reviewid", bonoid);
+        List<BonoEntity> results = q.getResultList();
+        BonoEntity review = null;
+        if (results == null) {
+            review = null;
+        } else if (results.isEmpty()) {
+            review = null;
+        } else if (results.size() >= 1) {
+            review = results.get(0);
+        }
+
+        return review;
+    }
       
       /**
        * Encuentra todos los bonos existentes
@@ -44,7 +59,7 @@ public class BonoPersistance {
        */
       public List<BonoEntity> findAll() {
         LOGGER.info("Consultando todos los bonos");
-        Query q = em.createQuery("select u from BonoEntity u");
+        Query q = em.createQuery("select u from BonoEntity u", BonoEntity.class);
         return q.getResultList();
     }
       

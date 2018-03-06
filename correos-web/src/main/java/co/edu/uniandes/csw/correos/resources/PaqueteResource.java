@@ -8,10 +8,13 @@
  
  import co.edu.uniandes.csw.correos.dtos.PaqueteDTO;
  import co.edu.uniandes.csw.correos.dtos.PaqueteDetailDTO;
+ import co.edu.uniandes.csw.correos.ejb.PaqueteLogic;
+ import co.edu.uniandes.csw.correos.entities.PaqueteEntity;
  import co.edu.uniandes.csw.correos.exceptions.BusinessLogicException;
- import java.util.LinkedList;
+ import java.util.ArrayList;
  import java.util.List;
  import javax.enterprise.context.RequestScoped;
+ import javax.inject.Inject;
  import javax.ws.rs.Consumes;
  import javax.ws.rs.DELETE;
  import javax.ws.rs.GET;
@@ -20,6 +23,7 @@
  import javax.ws.rs.Path;
  import javax.ws.rs.PathParam;
  import javax.ws.rs.Produces;
+ import javax.ws.rs.WebApplicationException;
  
  /**
   * <pre>Clase que implementa el resource "paquetes".
@@ -42,6 +46,9 @@
  @Consumes("application/json")
  @RequestScoped
  public class PaqueteResource { 
+    
+    @Inject
+    PaqueteLogic paqueteLogic;
 	/**
      * <h1>POST /api/paquetes : Crear un paquete.</h1>
      * 
@@ -63,11 +70,11 @@
      * @return JSON {@link PaqueteDetailDTO}  - El paquete guardado con el atributo 
      * ID autogenerado.
      * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} - Error 
-     * de lógica que se genera cuando ya existe el pago.
+     * de lógica que se genera cuando ya existe el envio.
      */
      @POST
-     public PaqueteDetailDTO createPaquete(PaqueteDetailDTO paquete) throws BusinessLogicException{
-         return paquete;
+     public PaqueteDTO createPaquete(PaqueteDTO paquete) throws BusinessLogicException{
+         return new PaqueteDTO(paqueteLogic.createPaquete(paquete.toEntity()));          
      }
      /**
       * <h1>PUT /api/paquetes/{id} : Actualizar paquete con el id dado.</h1>
@@ -88,12 +95,17 @@
       * @param paquete {@link PaqueteDetailDTO} El paquete que se desea guardar.
       * @return JSON {@link PaqueteDetailDTO} - El paquete guardado.  
       * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} - Error 
-      * de lógica que se genera cuando ya existe el pago.
+      * de lógica que se genera cuando no se encuentra el paquete a actualizar.
       */
      @PUT
      @Path("{id: \\d+}")
-     public PaqueteDetailDTO updatePaquete(@PathParam("id") Long id , PaqueteDetailDTO paquete) throws BusinessLogicException{
-         return paquete;
+     public PaqueteDTO updatePaquete(@PathParam("id") Long id, PaqueteDTO paquete) throws BusinessLogicException {
+        paquete.setId(id);
+        PaqueteEntity entity = paqueteLogic.getPaquete(id);
+        if (entity == null) {
+            throw new WebApplicationException("El recurso /paquetes/" + id + " no existe.", 404);
+        }
+        return new PaqueteDTO(paqueteLogic.updatePaquete(paquete.toEntity()));
      } 
      /**
       * <h1>GET /api/paquetes/{id} : Obtener paquete por ID.</h1>
@@ -111,12 +123,18 @@
       * @param id ID del paquete. 
       * Debe ser un Long.
       * @return JSON {@link PaqueteDetailDTO} - el paquete buscado.
+      * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} - Error 
+      * de lógica que se genera cuando no se encuentra el paquete.
       */
      @GET
      @Path("{id: \\d+}")
-     public PaqueteDetailDTO getPaquete(@PathParam("id") Long id){
-         return null;
-     } 
+     public PaqueteDTO getPaquete(@PathParam("id") Long id) throws BusinessLogicException {
+        PaqueteEntity entity = paqueteLogic.getPaquete(id);
+        if (entity == null) {
+            throw new WebApplicationException("El recurso /paquetes/" + id + " no existe.", 404);
+        }
+        return new PaqueteDTO(entity);
+     }
      /**
       * <h1>GET /api/paquetes : Obtener todos los paquetes.</h1>
       * 
@@ -128,11 +146,21 @@
       * </pre>**
       * @return JSONArray {@link PaqueteDTO} - Los paquetes encontrados 
       * en la aplicacion. Si no hay ninguno retorna una lista vacia.
+      * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} - Error 
+      * de lógica que se genera cuando no hay paquetes en el sistema.
       */
-     @GET
-     public List<PaqueteDTO> getPaquetes(){
-         return new LinkedList<>();
-     }    
+     @GET     
+     public List<PaqueteDTO> getPaquetes() throws BusinessLogicException{
+         List<PaqueteEntity> entitys = paqueteLogic.getPaquetes();
+         if (entitys.isEmpty()){
+             throw new WebApplicationException("No hay paquetes en el sistema.", 404);
+         }
+         List<PaqueteDTO> dtos = new ArrayList<PaqueteDTO>();
+         for( int i = 0; i<entitys.size();i++){
+             dtos.add(new PaqueteDTO(paqueteLogic.createPaquete(entitys.get(i))));
+         }
+          return dtos;   
+     }         
      /**
       * <h1>DELETE /api/paquetes/{id} : Borrar paquete por id.</h1>
       * 
@@ -145,14 +173,17 @@
       * 404 Not Found. El paquete indicado no existe.
       * </code>
       * </pre>**
-      * @param id ID del paquete 
-      * Debe ser un long.
+      * @param id ID del paquete      
+      * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} - Error 
+      * de lógica que se genera cuando no se encuentra el paquete a eliminar.
       */
      @DELETE
      @Path("{id: \\d+}")
-     public void deletePaquete(@PathParam("id") Long id){
-         /**
-          * vacio
-          */          
-     } 
+     public void deletePaquete(@PathParam("id") Long id) throws BusinessLogicException {
+        PaqueteEntity entity = paqueteLogic.getPaquete(id);
+        if (entity == null) {
+            throw new WebApplicationException("El recurso /paquetes/" + id + " no existe.", 404);
+        }
+        paqueteLogic.deletePaquete(id);
+    } 
 }
