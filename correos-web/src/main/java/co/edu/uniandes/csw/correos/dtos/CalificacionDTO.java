@@ -26,6 +26,13 @@ public class CalificacionDTO {
         //Este metodo esta vacio para permitir la construccion del JSON
     }
     
+    public CalificacionDTO(CalificacionEntity entity){
+        this.id=entity.getId();
+        this.calificacion=entity.getCalificacion();
+        this.comentario= entity.getComentario();
+        
+    }
+    
     public CalificacionEntity toEntity(){
         CalificacionEntity entity = new CalificacionEntity();
         entity.setId(this.id);

@@ -23,6 +23,19 @@ public class ZonaDetailDTO extends ZonaDTO {
         
     }
     
+    public ZonaDetailDTO(ZonaEntity entity){
+        super();
+        if(entity.getMensajeros().size()>0){
+            List<MensajeroDTO> mL=new ArrayList();
+            for(MensajeroEntity m: entity.getMensajeros()){
+                mL.add(new MensajeroDTO(m));
+        }
+            this.setMensajeros(mL);
+            
+        }
+        
+    }
+    
     public ZonaEntity toEntity(){
         ZonaEntity entity= super.toEntity();
         if(mensajeros!=null){
@@ -36,6 +49,14 @@ public class ZonaDetailDTO extends ZonaDTO {
         }
         return entity;
         
+    }
+
+    public List<MensajeroDTO> getMensajeros() {
+        return mensajeros;
+    }
+
+    public void setMensajeros(List<MensajeroDTO> mensajeros) {
+        this.mensajeros = mensajeros;
     }
     
     

@@ -19,6 +19,13 @@ public class CalificacionDetailDTO  extends CalificacionDTO {
         super();
     }
     
+    public CalificacionDetailDTO(CalificacionEntity entity){
+        super();
+        MensajeroDTO m= new MensajeroDTO(entity.getMensajero());
+        this.mensajero=m;
+        
+    }
+    
     public CalificacionEntity toEntity(){
         CalificacionEntity entity= super.toEntity();
         if(mensajero!=null){
@@ -38,6 +45,7 @@ public class CalificacionDetailDTO  extends CalificacionDTO {
     
    
             
+    
     
     
     

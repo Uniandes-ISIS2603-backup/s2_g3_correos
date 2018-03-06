@@ -21,6 +21,12 @@ public class ZonaDTO {
         
     }
     
+    public ZonaDTO(ZonaEntity entity){
+        this.id=entity.getId();
+        this.latitud=entity.getLatitud();
+        this.longitud=entity.getLongitud();
+    }
+    
     /**
      * @return El ID de la zona
      */
@@ -70,4 +76,5 @@ public class ZonaDTO {
         entity.setLongitud(this.longitud);
         return entity;
     }
+    
 }
