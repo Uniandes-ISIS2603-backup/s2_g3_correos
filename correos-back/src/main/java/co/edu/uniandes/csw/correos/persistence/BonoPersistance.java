@@ -37,7 +37,7 @@ public class BonoPersistance {
      * devuelve siempre el primero que encuentra
      */
     public BonoEntity find(Long clienteid, Long bonoid) {
-        TypedQuery<BonoEntity> q = em.createQuery("select p from ReviewEntity p where (p.book.id = :bookid) and (p.id = :reviewid)", BonoEntity.class);
+        TypedQuery<BonoEntity> q = em.createQuery("select p from BonoEntity p where (p.cliente.id = :bookid) and (p.id = :reviewid)", BonoEntity.class);
         q.setParameter("bookid", clienteid);
         q.setParameter("reviewid", bonoid);
         List<BonoEntity> results = q.getResultList();
@@ -59,7 +59,7 @@ public class BonoPersistance {
        */
       public List<BonoEntity> findAll() {
         LOGGER.info("Consultando todos los bonos");
-        Query q = em.createQuery("select u from BonoEntity u");
+        Query q = em.createQuery("select u from BonoEntity u", BonoEntity.class);
         return q.getResultList();
     }
       
