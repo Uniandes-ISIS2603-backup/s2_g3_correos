@@ -24,7 +24,9 @@ SOFTWARE.
 
 package co.edu.uniandes.csw.correos.ejb;
 
+import co.edu.uniandes.csw.correos.entities.CalificacionEntity;
 import co.edu.uniandes.csw.correos.entities.MensajeroEntity;
+import co.edu.uniandes.csw.correos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.correos.persistence.MensajeroPersistence;
 import java.util.List;
 import java.util.logging.Level;
@@ -54,10 +56,15 @@ public class MensajeroLogic {
         this.persistence=null;
     }
     
-    public MensajeroEntity createMensjaero(MensajeroEntity mensajero)
+    public MensajeroEntity createMensajero(MensajeroEntity mensajero) throws BusinessLogicException
     {
         LOGGER.info("Se inicia la creación de un Mensajero");
-        persistence.create(mensajero);
+        if(persistence.findByCorreo(mensajero.getCorreo())!=null)
+            throw new BusinessLogicException("ya existe un mensajero con ese Correo Electrónico!");
+        else if(persistence.findByNumero(mensajero.getCelular())!=null)
+            throw new BusinessLogicException("ya existe un mensajero con ese numero telefónico!");
+        else 
+            persistence.create(mensajero);
         LOGGER.info("se termino de crear un mensajero");
         return mensajero;
     }
@@ -70,14 +77,23 @@ public class MensajeroLogic {
         return retorno;
     }
     
+   
+    
     public MensajeroEntity getMensajero(Long id)
     {
         return persistence.find(id);
     }
     
-    public MensajeroEntity putMensajero(MensajeroEntity mensajero)
+    public MensajeroEntity putMensajero(MensajeroEntity mensajero) throws BusinessLogicException
     {
-        return persistence.update(mensajero);
+        if(persistence.findByCorreo(mensajero.getCorreo())!=null)
+            throw new BusinessLogicException("ya existe un mensajero con ese Correo Electrónico!");
+        else if(persistence.findByNumero(mensajero.getCelular())!=null)
+            throw new BusinessLogicException("ya existe un mensajero con ese numero telefónico!");
+        else{
+            mensajero.setCalificacionPromedio(calcularCalificaionPromedio(mensajero));
+            return persistence.update(mensajero);
+        }
     }
     
     public void deleteMensajero(MensajeroEntity mensajero)
@@ -85,6 +101,17 @@ public class MensajeroLogic {
         LOGGER.log(Level.INFO,"se elimina el mensajero con el id={0}",mensajero.getId());
         persistence.delete(mensajero.getId());
         LOGGER.log(Level.INFO,"se eliminó el mensajero con el id={0}",mensajero.getId());
+    }
+    
+    public double calcularCalificaionPromedio(MensajeroEntity mensajero)
+    {
+        if(mensajero.getCalificaciones().isEmpty())
+            return 0;
+        double retorno=0;
+        for(CalificacionEntity x: mensajero.getCalificaciones())
+            retorno+=x.getCalificacion();
+        retorno/=mensajero.getCalificaciones().size();
+        return retorno;        
     }
     
 }

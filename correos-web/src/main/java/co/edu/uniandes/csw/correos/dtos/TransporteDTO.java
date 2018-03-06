@@ -23,6 +23,8 @@ SOFTWARE.
  */
 package co.edu.uniandes.csw.correos.dtos;
 
+import co.edu.uniandes.csw.correos.entities.TransporteEntity;
+
 /**
  * TransporteDTO Objeto de transferencia de datos de Transportes. Los DTO contienen las
  * represnetaciones de los JSON que se transfieren entre el cliente y el
@@ -118,6 +120,14 @@ public class TransporteDTO {
         this.activo = activo;
     }
     
-    //public toEntity(){} este se realizara cuando se implemente la capa de persistencia
+    public TransporteEntity toEntity()
+    {
+        TransporteEntity transporte=new TransporteEntity();
+        transporte.setId(this.id);
+        transporte.setTipo(this.tipo);
+        transporte.setCapacidad(this.capacidad);
+        transporte.setActivo(this.activo);
+        return transporte;
+    } 
     
 }

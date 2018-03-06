@@ -31,6 +31,7 @@ import javax.persistence.FetchType;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
@@ -44,22 +45,27 @@ public class MensajeroEntity extends BaseEntity implements Serializable {
     private String celular;
     private Double calificacionPromedio;
     
-//   @OneToOne(fetch = FetchType.EAGER)
-//    private CuentaBancariaEntity cuenta;
-//    
-//    @OneToMany(cascade=CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
-//    private List<TransporteEntity> transportes;
-//    
-//    @OneToMany(cascade=CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
-//    private List<CalificacionEntity> calificaciones;
-//    
-//    @OneToMany(mappedBy="mensajero", fetch = FetchType.LAZY)
-//    private List<EnvioEntity> envios;
-//    
-//    @ManyToMany(mappedBy="zonas", fetch = FetchType.LAZY)
-//    private List<ZonaEntity> zonas;
-//    
-//    
+    @PodamExclude
+   @OneToOne(fetch = FetchType.EAGER)
+    private CuentaBancariaEntity cuenta;
+   
+    @PodamExclude
+    @OneToMany(cascade=CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+   private List<TransporteEntity> transportes;
+  
+    @PodamExclude
+   @OneToMany(cascade=CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+   private List<CalificacionEntity> calificaciones;
+
+    @PodamExclude
+    @OneToMany(mappedBy="mensajero", fetch = FetchType.EAGER)
+    private List<EnvioEntity> envios;
+    
+    @PodamExclude
+    @ManyToMany(mappedBy="mensajeros", fetch = FetchType.LAZY)
+    private List<ZonaEntity> zonas;
+   
+    
     
     /**
      * @return  El correo del mensajero
@@ -117,45 +123,45 @@ public class MensajeroEntity extends BaseEntity implements Serializable {
         this.calificacionPromedio = calificacionPromedio;
     }
 
-//    public CuentaBancariaEntity getCuenta() {
-//        return cuenta;
-//    }
-//
-//    public void setCuenta(CuentaBancariaEntity cuenta) {
-//        this.cuenta = cuenta;
-//    }
-//
-//    public List<TransporteEntity> getTransportes() {
-//        return transportes;
-//    }
-//
-//    public void setTransportes(List<TransporteEntity> transportes) {
-//        this.transportes = transportes;
-//    }
-//
-//    public List<CalificacionEntity> getCalificaciones() {
-//        return calificaciones;
-//    }
-//
-//    public void setCalificaciones(List<CalificacionEntity> calificaciones) {
-//        this.calificaciones = calificaciones;
-//    }
-//
-//    public List<EnvioEntity> getEnvios() {
-//        return envios;
-//    }
-//
-//    public void setEnvios(List<EnvioEntity> envios) {
-//        this.envios = envios;
-//    }
-//
-//    public List<ZonaEntity> getZonas() {
-//        return zonas;
-//    }
-//
-//    public void setZonas(List<ZonaEntity> zonas) {
-//        this.zonas = zonas;
-//    }
+    public CuentaBancariaEntity getCuenta() {
+        return cuenta;
+    }
+
+    public void setCuenta(CuentaBancariaEntity cuenta) {
+        this.cuenta = cuenta;
+    }
+
+    public List<TransporteEntity> getTransportes() {
+        return transportes;
+    }
+
+    public void setTransportes(List<TransporteEntity> transportes) {
+        this.transportes = transportes;
+    }
+
+    public List<CalificacionEntity> getCalificaciones() {
+        return calificaciones;
+    }
+
+    public void setCalificaciones(List<CalificacionEntity> calificaciones) {
+        this.calificaciones = calificaciones;
+    }
+
+    public List<EnvioEntity> getEnvios() {
+        return envios;
+    }
+
+    public void setEnvios(List<EnvioEntity> envios) {
+        this.envios = envios;
+    }
+
+    public List<ZonaEntity> getZonas() {
+        return zonas;
+    }
+
+    public void setZonas(List<ZonaEntity> zonas) {
+        this.zonas = zonas;
+    }
     
     
     
