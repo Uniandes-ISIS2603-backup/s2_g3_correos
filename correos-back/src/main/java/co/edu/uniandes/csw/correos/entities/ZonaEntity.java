@@ -22,7 +22,7 @@ public class ZonaEntity extends BaseEntity implements Serializable{
     private Long longitud;
     
     @PodamExclude
-    @ManyToMany(mappedBy = "zonas")
+    @ManyToMany
     private List<MensajeroEntity> mensajeros;
     
 

@@ -7,6 +7,8 @@ package co.edu.uniandes.csw.correos.entities;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
@@ -18,9 +20,19 @@ public class EventoEntity extends BaseEntity implements Serializable{
 
     private Long ubicacion;
     private String detalle;
+    @PodamExclude
+    @ManyToOne
+    private EnvioEntity envio;
 
+    public EnvioEntity getEnvio() {
+        return envio;
+    }
+
+    public void setEnvio(EnvioEntity envio) {
+        this.envio = envio;
+    }
     
-
+    
     /**
      * @return the ubicacion
      */
