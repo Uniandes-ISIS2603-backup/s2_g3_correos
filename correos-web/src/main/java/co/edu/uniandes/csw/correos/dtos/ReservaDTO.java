@@ -23,6 +23,10 @@ SOFTWARE.
  */
 package co.edu.uniandes.csw.correos.dtos;
 
+import co.edu.uniandes.csw.correos.entities.ReservaEntity;
+import java.util.Date;
+
+
 /**
  * ResrvaDTO Objeto de transferencia de datos de Reservas. Los DTO contienen las
  * represnetaciones de los JSON que se transfieren entre el cliente y el
@@ -52,7 +56,7 @@ package co.edu.uniandes.csw.correos.dtos;
 public class ReservaDTO {
     
     Long id;
-    private String fecha;
+    private Date fecha;
     private String hora;
     
     /**
@@ -82,14 +86,14 @@ public class ReservaDTO {
     /**
      * @return la fecha de la reserva
      */
-    public String getFecha() {
+    public Date getFecha() {
         return fecha;
     }
     
     /**
      * @param fecha la nueva fecha de la reserva
      */
-    public void setFecha(String fecha) {
+    public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
     
@@ -107,6 +111,13 @@ public class ReservaDTO {
         this.hora = hora;
     }
     
-    //public ReservaEntity toEntity(){}  este se realizara cuando se implemente la capa de persistencia
+    public ReservaEntity toEntity()
+    {
+        ReservaEntity reserva=new ReservaEntity();
+        reserva.setFecha(this.fecha);
+        reserva.setHora(this.hora);
+        reserva.setId(this.id);
+        return reserva;
+    } 
     
 }
