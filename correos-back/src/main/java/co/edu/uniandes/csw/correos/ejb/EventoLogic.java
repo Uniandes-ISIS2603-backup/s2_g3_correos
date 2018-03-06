@@ -59,6 +59,6 @@ public class EventoLogic {
      persistence.delete(id);
     }
 
-    
+
     
 }

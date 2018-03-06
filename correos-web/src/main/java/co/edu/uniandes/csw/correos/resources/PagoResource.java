@@ -58,8 +58,8 @@ public class PagoResource {
     @Inject
     private PagoLogic pagoLogic;
 @POST
-public PagoDetailDTO createPago(@PathParam("idCuentaBancaria")Long id, PagoDetailDTO pago)throws BusinessLogicException{
-    return new PagoDetailDTO(pagoLogic.createPago(id, pago.toEntity()));
+public PagoDetailDTO createPago(PagoDetailDTO pago)throws BusinessLogicException{
+    return new PagoDetailDTO(pagoLogic.createPago(pago.toEntity()));
 }
 /**
      * <h1>PUT /api/cities/{id} : Actualizar pago con el id dado.</h1>
@@ -133,8 +133,8 @@ public PagoDetailDTO createPago(@PathParam("idCuentaBancaria")Long id, PagoDetai
         return list;
     }
     @GET
-    public List<PagoDetailDTO> getPagos(@PathParam("idCuentaBancaria") Long idCuentaBancaria) throws BusinessLogicException{
-        return listEntity2DTO(pagoLogic.getPagos(idCuentaBancaria));
+    public List<PagoDetailDTO> getPagos() throws BusinessLogicException{
+        return listEntity2DTO(pagoLogic.getPagos());
     }
     /**
      * <h1>DELETE /api/pagos/{id} : Borrar pago por id.</h1>
