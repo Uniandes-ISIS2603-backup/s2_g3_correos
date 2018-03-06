@@ -61,7 +61,7 @@ public class CalificacionLogic {
     
      public void deleteCalificacion(CalificacionEntity entity) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "Inicia proceso de borrar la calficacion", entity.getId());    
-        cP.delete(entity);
+        cP.delete(entity.getId());
         LOGGER.log(Level.INFO, "Termina proceso de borrar la calificaion", entity.getId());
     }
 }

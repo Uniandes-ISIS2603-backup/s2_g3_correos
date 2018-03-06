@@ -226,11 +226,12 @@ public class BonoPersistanceTest
 
             BonoEntity entity = factory.manufacturePojo(BonoEntity.class);
 
-
+            ClienteEntity entityC=factory.manufacturePojo(ClienteEntity.class);
 
             em.persist(entity);
-
+            em.persist(entityC);
             data.add(entity);
+            dataCliente.add(entityC);
 
         }
 
