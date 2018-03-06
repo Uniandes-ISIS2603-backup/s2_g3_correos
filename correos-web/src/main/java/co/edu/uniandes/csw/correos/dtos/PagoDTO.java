@@ -52,6 +52,14 @@ public PagoDTO(PagoEntity entity){
     }
 }
 
+public PagoEntity toEntity(){
+    PagoEntity entity = new PagoEntity();
+    entity.setFecha(fecha);
+    entity.setValor(valor);
+    entity.setId(id);
+    return entity;
+}
+
 /**
  * @return el id del pago
  */

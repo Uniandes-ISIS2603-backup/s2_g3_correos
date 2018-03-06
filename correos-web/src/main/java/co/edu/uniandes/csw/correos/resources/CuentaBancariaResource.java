@@ -7,10 +7,14 @@ package co.edu.uniandes.csw.correos.resources;
 
 import co.edu.uniandes.csw.correos.dtos.CuentaBancariaDTO;
 import co.edu.uniandes.csw.correos.dtos.CuentaBancariaDetailDTO;
+import co.edu.uniandes.csw.correos.ejb.CuentaBancariaLogic;
+import co.edu.uniandes.csw.correos.entities.CuentaBancariaEntity;
 import co.edu.uniandes.csw.correos.exceptions.BusinessLogicException;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -19,10 +23,11 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.WebApplicationException;
 
 /**
  *
- * @author a.silvag
+ * @cuentaBancaria a.silvag
  */
 
 @Path("cuentasBancarias")
@@ -51,9 +56,11 @@ public class CuentaBancariaResource {
      * @return JSON {@link CuentaBancariaDetailDTO}  - la cuentaBancaria guardada con el atributo id autogenerado.
      * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} - Error de lógica que se genera cuando ya existe la cuenta bancaria.
      */
+    @Inject
+    CuentaBancariaLogic cuentaBancariaLogic;
     @POST
 public CuentaBancariaDetailDTO createCuentaBancaria(CuentaBancariaDetailDTO cuentaBancaria)throws BusinessLogicException{
-    return cuentaBancaria;
+    return new CuentaBancariaDetailDTO(cuentaBancariaLogic.createCuentaBancaria(cuentaBancaria.toEntity()));
 }
     /**
      * <h1>PUT /api/cities/{id} : Actualizar cuenta bancaria con el id dado.</h1>
@@ -76,7 +83,14 @@ public CuentaBancariaDetailDTO createCuentaBancaria(CuentaBancariaDetailDTO cuen
     @PUT
     @Path("{id: \\d+}")
     public CuentaBancariaDetailDTO updateCuentaBancaria(@PathParam("id") Long id , CuentaBancariaDetailDTO cuentaBancaria)throws BusinessLogicException{
-        return cuentaBancaria;
+        CuentaBancariaEntity entity = cuentaBancaria.toEntity();
+        entity.setId(id);
+        CuentaBancariaEntity oldEntity = cuentaBancariaLogic.getCuentaBancaria(id);
+        if (oldEntity == null) {
+            throw new WebApplicationException("La cuentaBancaria no existe", 404);
+        }
+        entity.setPagos(oldEntity.getPagos());
+        return new CuentaBancariaDetailDTO(cuentaBancariaLogic.updateCuentaBancaria(entity));
     }
     
     
@@ -96,10 +110,15 @@ public CuentaBancariaDetailDTO createCuentaBancaria(CuentaBancariaDetailDTO cuen
      * @param id Identificador de la cuenta bancaria que se esta buscando. Este debe ser una cadena de dígitos.
      * @return JSON {@link CuentaBancariaDetailDTO} - la cuenta bancaria buscada
      */
+    
     @GET
     @Path("{id: \\d+}")
     public CuentaBancariaDetailDTO getCuentaBancaria(@PathParam("id") Long id){
-        return null;
+       CuentaBancariaEntity entity = cuentaBancariaLogic.getCuentaBancaria(id);
+        if (entity == null) {
+            throw new WebApplicationException("La cuentaBancaria no existe", 404);
+        }
+        return new CuentaBancariaDetailDTO(entity);
     }
     /**
      * <h1>GET /api/cuentasBancarias : Obtener todas las cuentas bancarias.</h1>
@@ -112,9 +131,16 @@ public CuentaBancariaDetailDTO createCuentaBancaria(CuentaBancariaDetailDTO cuen
      * </pre>
      * @return JSONArray {@link CuentaBancariaDTO} - as ceuntas bancarias encontradas en la aplicación. Si no hay ninguno retorna una lista vacía.
      */
+    private List<CuentaBancariaDetailDTO> listEntity2DTO(List<CuentaBancariaEntity> entityList) {
+        List<CuentaBancariaDetailDTO> list = new ArrayList<>();
+        for (CuentaBancariaEntity entity : entityList) {
+            list.add(new CuentaBancariaDetailDTO(entity));
+        }
+        return list;
+    }
     @GET
-    public List<CuentaBancariaDTO> getCuentaBancaria(){
-        return new LinkedList<>();
+    public List<CuentaBancariaDetailDTO> getCuentaBancaria(){
+        return listEntity2DTO(cuentaBancariaLogic.getCuentasBancarias());
     }
     
     /**
@@ -135,6 +161,11 @@ public CuentaBancariaDetailDTO createCuentaBancaria(CuentaBancariaDetailDTO cuen
     @Path("{id: \\d+}")
     public void deleteCuentaBancaria(@PathParam("id") Long id){
         //en espera de implementacion
+        CuentaBancariaEntity entity = cuentaBancariaLogic.getCuentaBancaria(id);
+        if (entity == null) {
+            throw new WebApplicationException("La cuentaBancaria no existe", 404);
+        }
+        cuentaBancariaLogic.deleteCuentaBancaria(id);
     }
     
 }

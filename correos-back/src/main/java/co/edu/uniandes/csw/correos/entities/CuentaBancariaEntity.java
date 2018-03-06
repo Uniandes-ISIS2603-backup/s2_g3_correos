@@ -103,4 +103,6 @@ public class CuentaBancariaEntity extends BaseEntity implements Serializable{
         this.cliente = cliente;
     }
 
+   
+
 }
