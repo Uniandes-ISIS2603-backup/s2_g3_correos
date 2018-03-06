@@ -60,9 +60,19 @@ public class TransporteDTO {
     private String capacidad;
     private boolean activo;
     
-    public TransporteDTO(){}
+    public TransporteDTO()
+    {
+        //transporteDTO metodo vacio para construccion del JSon
+    }
     
-    //public TransporteDTO(TransporteEntity transporte){} este se realizara cuando se implemente la capa de persistencia
+    public TransporteDTO(TransporteEntity transporte)
+    {
+        this.id=transporte.getId();
+        this.tipo=transporte.getTipo();
+        this.capacidad=transporte.getCapacidad();
+        this.activo=transporte.isActivo();
+    }
+    
     
     /**
      * @return el ID del transporte
