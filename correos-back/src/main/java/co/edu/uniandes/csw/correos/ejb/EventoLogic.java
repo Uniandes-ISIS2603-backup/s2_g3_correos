@@ -29,10 +29,10 @@ public class EventoLogic {
     @Inject
     private EnvioLogic envioLogic;
     
-    public List<EventoEntity> getEventos(Long envioid){
-        EnvioEntity envio = envioLogic.getEnvio(envioid);
+    public List<EventoEntity> getEventos(){
         
-        return envio.getEventos();
+        
+        return persistence.findAll();
     }
     
     public EventoEntity getEvento(Long id){
@@ -59,12 +59,6 @@ public class EventoLogic {
      persistence.delete(id);
     }
 
-    public List<EventoEntity> getEventos() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    public List<EventoEntity> getEventos() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    
     
 }

@@ -5,10 +5,20 @@
  */
 package co.edu.uniandes.csw.correos.dtos;
 
+import co.edu.uniandes.csw.correos.entities.EventoEntity;
+
 /**
  *
  * @author a.silvag
  */
 public class EventoDetailDTO extends EventoDTO {
     
-}
+    public EventoDetailDTO(EventoEntity entity){
+        super(entity);
+    }
+    
+    
+    public EventoEntity toEntity(){
+        return super.toEntity();
+    }
+            }
