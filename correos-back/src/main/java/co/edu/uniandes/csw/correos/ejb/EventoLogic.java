@@ -39,9 +39,9 @@ public class EventoLogic {
         return persistence.find(id);
     }
     
-    public EventoEntity createEvento(Long envioId, EventoEntity entity) throws BusinessLogicException{
-        EnvioEntity envio = envioLogic.getEnvio(envioId);
-      if(entity.getDetalle().split("\\w+").length<3){
+    public EventoEntity createEvento(EventoEntity entity) throws BusinessLogicException{
+        
+      if(entity.getDetalle().split("\\w+").length<3||persistence.findByName(entity.getName())!=null){
           throw new BusinessLogicException("Diga algo en el detalle");
       }
       
@@ -58,5 +58,8 @@ public class EventoLogic {
     public void deleteEvento(long id){
      persistence.delete(id);
     }
-    
+
+    public List<EventoEntity> getEventos() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

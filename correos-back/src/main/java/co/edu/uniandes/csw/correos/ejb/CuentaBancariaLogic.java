@@ -38,7 +38,7 @@ public class CuentaBancariaLogic {
         return persistence.find(id);
     }
     
-    public CuentaBancariaEntity createCuentaBancaria(Long cuentaBancariaId, CuentaBancariaEntity entity) throws BusinessLogicException{
+    public CuentaBancariaEntity createCuentaBancaria(CuentaBancariaEntity entity) throws BusinessLogicException{
             
         if(persistence.findByName(entity.getName())!=null){
             throw new BusinessLogicException("Ya existe una cuenta bancaria con el nombre, por dios que esta pasando?");

@@ -23,6 +23,7 @@
 
 
 import co.edu.uniandes.csw.correos.entities.DetallePaqueteEntity;
+import co.edu.uniandes.csw.correos.entities.PaqueteEntity;
 
 import co.edu.uniandes.csw.correos.persistence.DetallePaquetePersistance;
 
@@ -213,6 +214,7 @@ public class DetallePaquetePersistanceTest {
      */
 
     private List<DetallePaqueteEntity> data = new ArrayList<DetallePaqueteEntity>();
+    private List<PaqueteEntity> dataPaquete = new ArrayList<PaqueteEntity>();
 
 
 
@@ -341,19 +343,12 @@ public class DetallePaquetePersistanceTest {
      */
 
     @Test
-
-    public void getDetalleTest() {
-
+    public void getDetallePaqueteTest() {
         DetallePaqueteEntity entity = data.get(0);
-
-        DetallePaqueteEntity newEntity = detallePaquetePersistence.find(entity.getId());
-
+        DetallePaqueteEntity newEntity = detallePaquetePersistence.find(dataPaquete.get(0).getId(), entity.getId());
         Assert.assertNotNull(newEntity);
-
-       
-
-        Assert.assertEquals(newEntity.getMensaje(), entity.getMensaje());
-
+        Assert.assertEquals(entity.getName(), newEntity.getName());
+        Assert.assertEquals(entity.getMensaje(), newEntity.getMensaje());
     }
 
 

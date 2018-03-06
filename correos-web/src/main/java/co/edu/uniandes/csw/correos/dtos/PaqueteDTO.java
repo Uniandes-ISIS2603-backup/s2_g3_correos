@@ -5,6 +5,9 @@
  */
  
  package co.edu.uniandes.csw.correos.dtos;
+
+import co.edu.uniandes.csw.correos.entities.PaqueteEntity;
+
  /**
   * PaqueteDTO Objeto de transferencia de datos de Paquetes. Los DTO contienen las
   * represnetaciones de los JSON que se transfieren entre el cliente y el
@@ -36,7 +39,8 @@
  public class PaqueteDTO {
    
     private long idPaquete; 
-    private String tipo; 
+    private String tipo;
+    private String name;
     private double peso;    
     private double dimensionA;
     private double dimensionB;
@@ -46,6 +50,34 @@
  */
     public PaqueteDTO() {
         
+    }
+    /**
+     * 
+     * @param entity a ser creada 
+     */
+    public PaqueteDTO(PaqueteEntity entity) {
+        this.idPaquete = entity.getId();
+        this.tipo = entity.getTipo();
+        this.name = entity.getName();
+        this.peso = entity.getPeso();
+        this.dimensionA = entity.getDimensionA();
+        this.dimensionB = entity.getDimensionB();
+        this.dimensionC = entity.getDimensionC();        
+    }
+/**
+ * 
+ * @return  entidad de paquete
+ */
+    public PaqueteEntity toEntity() {
+        PaqueteEntity entity = new PaqueteEntity();
+        entity.setId(this.idPaquete);
+        entity.setName(this.name);
+        entity.setTipo(this.tipo);
+        entity.setPeso(this.peso);
+        entity.setDimensionA(this.dimensionA);
+        entity.setDimensionB(this.dimensionB);
+        entity.setDimensionC(this.dimensionC);
+        return entity;
     }
 /**
  * 
@@ -130,5 +162,19 @@
      */
     public void setDimensionC(double C) {
         dimensionC = C;         
+    }  
+     /**
+     * 
+     * @param name nombre  
+     */
+    public void setName(String name) {
+        this.name = name;         
     }    
+    /**
+     * 
+     * @return name nombre  
+     */
+    public String getName() {
+        return name;        
+    }  
 }
