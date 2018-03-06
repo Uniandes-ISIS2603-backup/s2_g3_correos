@@ -5,10 +5,40 @@
  */
 package co.edu.uniandes.csw.correos.dtos;
 
+import co.edu.uniandes.csw.correos.entities.CalificacionEntity;
+import co.edu.uniandes.csw.correos.entities.MensajeroEntity;
+
 /**
  *
  * @author ed.diaz11
  */
 public class CalificacionDetailDTO  extends CalificacionDTO {
+    private MensajeroDTO mensajero;
+    
+    public CalificacionDetailDTO(){
+        super();
+    }
+    
+    public CalificacionEntity toEntity(){
+        CalificacionEntity entity= super.toEntity();
+        if(mensajero!=null){
+            MensajeroEntity m= mensajero.toEntity();
+            entity.setMensajero(m);
+        }
+        return entity;
+    }
+
+    public MensajeroDTO getMensajero() {
+        return mensajero;
+    }
+
+    public void setMensajero(MensajeroDTO mensajero) {
+        this.mensajero = mensajero;
+    }
+    
+   
+            
+    
+    
     
 }
