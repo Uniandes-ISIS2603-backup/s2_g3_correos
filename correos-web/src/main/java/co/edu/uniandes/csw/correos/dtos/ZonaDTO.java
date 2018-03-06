@@ -5,6 +5,8 @@
  */
 package co.edu.uniandes.csw.correos.dtos;
 
+import co.edu.uniandes.csw.correos.entities.ZonaEntity;
+
 /**
  *
  * @author ed.diaz11
@@ -17,6 +19,12 @@ public class ZonaDTO {
     
     public ZonaDTO(){
         
+    }
+    
+    public ZonaDTO(ZonaEntity entity){
+        this.id=entity.getId();
+        this.latitud=entity.getLatitud();
+        this.longitud=entity.getLongitud();
     }
     
     /**
@@ -60,4 +68,13 @@ public class ZonaDTO {
     public void setLongitud(Long longitud) {
         this.longitud = longitud;
     }
+    
+    public ZonaEntity toEntity(){
+        ZonaEntity entity= new ZonaEntity();
+        entity.setId(this.id);
+        entity.setLatitud(this.latitud);
+        entity.setLongitud(this.longitud);
+        return entity;
+    }
+    
 }
