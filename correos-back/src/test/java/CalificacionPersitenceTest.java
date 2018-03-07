@@ -180,7 +180,7 @@ public class CalificacionPersitenceTest {
     @Test
     public void deleteCalificacionTest() {
         CalificacionEntity entity = data.get(0);
-        calificacionPersistence.delete(entity);
+        calificacionPersistence.delete(entity.getId());
         CalificacionEntity deleted = em.find(CalificacionEntity.class, entity.getId());
         Assert.assertNull(deleted);
     }

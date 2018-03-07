@@ -178,7 +178,7 @@ public class ZonaPersitenceTest {
     @Test
     public void deleteZonaTest() {
         ZonaEntity entity = data.get(0);
-        zonaPersistence.delete(entity);
+        zonaPersistence.delete(entity.getId());
         ZonaEntity deleted = em.find(ZonaEntity.class, entity.getId());
         Assert.assertNull(deleted);
     }

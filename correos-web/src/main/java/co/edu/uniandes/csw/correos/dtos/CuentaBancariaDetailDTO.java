@@ -5,6 +5,9 @@
  */
 package co.edu.uniandes.csw.correos.dtos;
 
+import co.edu.uniandes.csw.correos.entities.CuentaBancariaEntity;
+import co.edu.uniandes.csw.correos.entities.PagoEntity;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -18,10 +21,32 @@ private List<PagoDTO> pagos;
 public CuentaBancariaDetailDTO(){
     
 }
+
+public CuentaBancariaDetailDTO(CuentaBancariaEntity entity){
+    super(entity);
+        if (entity != null) {
+            pagos = new ArrayList<>();
+            for (PagoEntity entityPagos : entity.getPagos()) {
+                pagos.add(new PagoDTO(entityPagos));
+            }
+
+        }
+}
 /**
  * 
  * @return la lista de pagos
  */
+
+public CuentaBancariaEntity toEntity(){
+    CuentaBancariaEntity entity = super.toEntity();
+    List<PagoEntity> list = new ArrayList<>();
+    for(PagoDTO pago:pagos){
+        list.add(pago.toEntity());
+    }
+    entity.setPagos(list);
+    return entity;
+}
+        
     public List<PagoDTO> getPagos() {
         return pagos;
     }

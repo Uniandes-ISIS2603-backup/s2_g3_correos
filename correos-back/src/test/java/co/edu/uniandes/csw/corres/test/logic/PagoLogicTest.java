@@ -140,7 +140,7 @@ public class PagoLogicTest {
         PagoEntity newEntity = factory.manufacturePojo(PagoEntity.class);
         PagoEntity result;
          try {
-             result = pagoLogic.createPago(data.get(0).getCuentaBancaria().getId(), newEntity);
+             result = pagoLogic.createPago(newEntity);
          } catch (BusinessLogicException ex) {
              Logger.getLogger(PagoLogicTest.class.getName()).log(Level.SEVERE, null, ex);
              return;
@@ -161,7 +161,7 @@ public class PagoLogicTest {
     
     @Test
     public void getPagosTest() throws BusinessLogicException {
-        List<PagoEntity> list = pagoLogic.getPagos(dataCuentaBancaria.get(1).getId());        
+        List<PagoEntity> list = pagoLogic.getPagos();        
         Assert.assertEquals(data.size(), list.size());
         for (PagoEntity entity : list) {
             boolean found = false;

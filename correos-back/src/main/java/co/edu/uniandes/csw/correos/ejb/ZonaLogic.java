@@ -66,7 +66,7 @@ public class ZonaLogic {
     
      public void deleteZona(ZonaEntity entity) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "Inicia proceso de borrar la zona", entity.getId());    
-        zP.delete(entity);
+        zP.delete(entity.getId());
         LOGGER.log(Level.INFO, "Termina proceso la zona", entity.getId());
     }
     

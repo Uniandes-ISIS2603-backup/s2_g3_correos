@@ -24,6 +24,8 @@ SOFTWARE.
 
 package co.edu.uniandes.csw.correos.dtos;
 
+import co.edu.uniandes.csw.correos.entities.EnvioEntity;
+import co.edu.uniandes.csw.correos.entities.MensajeroEntity;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -120,6 +122,16 @@ public class MensajeroDetailDTO extends MensajeroDTO
         this.zonas = zonas;
     }
     
-    
+    public MensajeroEntity toEntity()
+    {
+        MensajeroEntity entity=new MensajeroEntity();
+        entity.setCalificacionPromedio(getCalificacionPromedio());
+        entity.setNombre(getNombre());
+        entity.setCelular(getCelular());
+        entity.setCorreo(getCorreo());
+        entity.setId(getId());
+        ArrayList<EnvioEntity> nuevaEnvios=new ArrayList<>();
+        return entity;
+    }
             
 }

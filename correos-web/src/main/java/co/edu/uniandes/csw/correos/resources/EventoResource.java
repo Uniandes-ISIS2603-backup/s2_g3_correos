@@ -7,10 +7,14 @@ package co.edu.uniandes.csw.correos.resources;
 
 import co.edu.uniandes.csw.correos.dtos.EventoDTO;
 import co.edu.uniandes.csw.correos.dtos.EventoDetailDTO;
+import co.edu.uniandes.csw.correos.ejb.EventoLogic;
+import co.edu.uniandes.csw.correos.entities.EventoEntity;
 import co.edu.uniandes.csw.correos.exceptions.BusinessLogicException;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -19,10 +23,11 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.WebApplicationException;
 
 /**
  *
- * @author a.silvag
+ * @evento a.silvag
  */
 @Path("eventos")
 @Produces("application/json")
@@ -52,9 +57,12 @@ public class EventoResource {
      * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} - Error de lógica que se genera cuando ya existe el evento.
      */
     
+    @Inject
+    private EventoLogic eventoLogic;
+    
     @POST
 public EventoDetailDTO createEvento(EventoDetailDTO evento)throws BusinessLogicException{
-    return evento;
+    return new EventoDetailDTO(eventoLogic.createEvento(evento.toEntity()));
 }
 
 
@@ -79,7 +87,13 @@ public EventoDetailDTO createEvento(EventoDetailDTO evento)throws BusinessLogicE
     @PUT
     @Path("{id: \\d+}")
     public EventoDetailDTO updateEvento(@PathParam("id") Long id , EventoDetailDTO evento) throws BusinessLogicException{
-        return evento;
+         EventoEntity entity = evento.toEntity();
+        entity.setId(id);
+        EventoEntity oldEntity = eventoLogic.getEvento(id);
+        if (oldEntity == null) {
+            throw new WebApplicationException("El evento no existe", 404);
+        }
+        return new EventoDetailDTO(eventoLogic.updateEvento(entity));
     }
         /**
      * <h1>GET /api/eventos/{id} : Obtener eventos por id.</h1>
@@ -100,7 +114,11 @@ public EventoDetailDTO createEvento(EventoDetailDTO evento)throws BusinessLogicE
     @GET
     @Path("{id: \\d+}")
     public EventoDetailDTO getEvento(@PathParam("id") Long id){
-        return null;
+            EventoEntity entity = eventoLogic.getEvento(id);
+        if (entity == null) {
+            throw new WebApplicationException("El evento no existe", 404);
+        }
+        return new EventoDetailDTO(entity);
     }
     /**
      * <h1>GET /api/eventos : Obtener todos los eventos.</h1>
@@ -113,9 +131,17 @@ public EventoDetailDTO createEvento(EventoDetailDTO evento)throws BusinessLogicE
      * </pre>
      * @return JSONArray {@link EventoDTO} - Los eventos encontrados en la aplicación. Si no hay ninguno retorna una lista vacía.
      */
+    private List<EventoDetailDTO> listEntity2DTO(List<EventoEntity> entityList) {
+        List<EventoDetailDTO> list = new ArrayList<>();
+        for (EventoEntity entity : entityList) {
+            list.add(new EventoDetailDTO(entity));
+        }
+        return list;
+    }
+    
     @GET
-    public List<EventoDTO> getEvento(){
-        return new LinkedList<>();
+    public List<EventoDetailDTO> getEventos(){
+        return listEntity2DTO(eventoLogic.getEventos());
     }
         /**
      * <h1>DELETE /api/eventos/{id} : Borrar evento por id.</h1>

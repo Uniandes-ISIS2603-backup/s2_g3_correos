@@ -5,6 +5,8 @@
  */
 package co.edu.uniandes.csw.correos.dtos;
 
+import co.edu.uniandes.csw.correos.entities.PagoEntity;
+
 /**
  *
  * @author a.silvag
@@ -15,6 +17,21 @@ public class PagoDetailDTO extends PagoDTO {
     private TarjetaCreditoDTO tarjetaDeCredito;
     public PagoDetailDTO(){
         
+    }
+    
+    public PagoDetailDTO(PagoEntity entity){
+        super(entity);
+        
+    }
+    
+    
+    public PagoEntity toEntity(){
+        PagoEntity entity = new PagoEntity();
+        //entity.setCuentaBancaria(cuentaBancaria.toEntity());
+        entity.setFecha(super.getFecha());
+        entity.setValor(super.getValor());
+        entity.setId(super.getId());
+        return entity;
     }
 
     /**
