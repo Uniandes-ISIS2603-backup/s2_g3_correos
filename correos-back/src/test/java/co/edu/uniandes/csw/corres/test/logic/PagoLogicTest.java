@@ -161,7 +161,7 @@ public class PagoLogicTest {
     
     @Test
     public void getPagosTest() throws BusinessLogicException {
-        List<PagoEntity> list = pagoLogic.getPagos(dataCuentaBancaria.get(1).getId());        
+        List<PagoEntity> list = pagoLogic.getPagos();        
         Assert.assertEquals(data.size(), list.size());
         for (PagoEntity entity : list) {
             boolean found = false;
