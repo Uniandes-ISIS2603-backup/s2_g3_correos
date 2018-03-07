@@ -5,6 +5,8 @@
  */
 package co.edu.uniandes.csw.correos.dtos;
 
+import co.edu.uniandes.csw.correos.entities.EventoEntity;
+
 /**
  * * EventoDTO Objeto de transferencia de datos de Evento. Los DTO contienen las
  * represnetaciones de los JSON que se transfieren entre el cliente y el
@@ -40,6 +42,15 @@ public class EventoDTO {
 /**
  * @return el id del evento
  */
+    
+public EventoDTO(EventoEntity entity){
+    if(entity!=null){
+        this.id = entity.getId();
+        this.ubicacion = entity.getUbicacion();
+        this.detalle = entity.getDetalle();
+    }
+}    
+    
 public long getId()
 {
         return id;
@@ -78,5 +89,13 @@ public String getDetalle(){
 public void setDetalle(String detalle){
     this.detalle = detalle;
 }  
+
+public EventoEntity toEntity(){
+    EventoEntity entity = new EventoEntity();
+    entity.setDetalle(this.detalle);
+    entity.setId(this.id);
+    entity.setUbicacion(this.ubicacion);
+    return entity;
+}
   
 }

@@ -5,6 +5,8 @@
  */
 package co.edu.uniandes.csw.correos.dtos;
 
+import co.edu.uniandes.csw.correos.entities.CuentaBancariaEntity;
+
 /**
  * * * CuentaBancariaDTO Objeto de transferencia de datos de CuentaBancaria. Los DTO contienen las
  * represnetaciones de los JSON que se transfieren entre el cliente y el
@@ -42,6 +44,22 @@ private String tipoTarjeta;
 public CuentaBancariaDTO(){
         //Este metodo esta vacio para permitir la construccion del JSON
     }
+
+public CuentaBancariaDTO(CuentaBancariaEntity entity){
+    this.id = entity.getId();
+    this.numero = entity.getNumero();
+    this.banco = entity.getBanco();
+    this.tipoTarjeta = entity.getTipoTarjeta();
+}
+
+public CuentaBancariaEntity toEntity(){
+    CuentaBancariaEntity entity = new CuentaBancariaEntity();
+    entity.setBanco(this.banco);
+    entity.setId(this.id);
+    entity.setTipoTarjeta(this.tipoTarjeta);
+    entity.setNumero(this.numero);
+    return entity;
+}
 
 /**
  * @return el id de la cuenta bancaria

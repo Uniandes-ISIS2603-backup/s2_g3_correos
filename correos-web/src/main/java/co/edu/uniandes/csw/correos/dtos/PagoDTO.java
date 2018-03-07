@@ -5,6 +5,8 @@
  */
 package co.edu.uniandes.csw.correos.dtos;
 
+import co.edu.uniandes.csw.correos.entities.PagoEntity;
+
 /**
  *
  * * PagoDTO Objeto de transferencia de datos de Pago. Los DTO contienen las
@@ -41,6 +43,22 @@ public class PagoDTO {
 public PagoDTO(){
         //Este metodo esta vacio para permitir la construccion del JSON
     }
+
+public PagoDTO(PagoEntity entity){
+    if(entity!=null){
+        this.id = entity.getId();
+        this.valor = entity.getValor();
+        this.fecha = entity.getFecha();
+    }
+}
+
+public PagoEntity toEntity(){
+    PagoEntity entity = new PagoEntity();
+    entity.setFecha(fecha);
+    entity.setValor(valor);
+    entity.setId(id);
+    return entity;
+}
 
 /**
  * @return el id del pago

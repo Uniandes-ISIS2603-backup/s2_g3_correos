@@ -140,7 +140,7 @@ public class PagoLogicTest {
         PagoEntity newEntity = factory.manufacturePojo(PagoEntity.class);
         PagoEntity result;
          try {
-             result = pagoLogic.createPago(data.get(0).getCuentaBancaria().getId(), newEntity);
+             result = pagoLogic.createPago(newEntity);
          } catch (BusinessLogicException ex) {
              Logger.getLogger(PagoLogicTest.class.getName()).log(Level.SEVERE, null, ex);
              return;
