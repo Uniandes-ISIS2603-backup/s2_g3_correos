@@ -80,7 +80,7 @@ public class BonoLogic {
      * 
      */
     public BonoEntity getBono(Long clienteid, Long bonoid) {
-        return persistence.find(clienteid, bonoid);
+        return persistence.find(bonoid);
     }
         
        /**
