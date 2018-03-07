@@ -31,7 +31,13 @@ public class PaqueteLogic {
         
         LOGGER.info("Se comienza a crear un Paquete"); 
         
-        if(entity.getDimensionA()*entity.getDimensionB()*entity.getDimensionC()==0){
+        if(entity.getDimensionA()==0){
+            throw new BusinessLogicException("El volumen del paquete ha sido evaluado en 0.");
+        }
+        if(entity.getDimensionB()==0){
+            throw new BusinessLogicException("El volumen del paquete ha sido evaluado en 0.");
+        }
+        if(entity.getDimensionC()==0){
             throw new BusinessLogicException("El volumen del paquete ha sido evaluado en 0.");
         }
         if(entity.getPeso()<=0){
@@ -64,7 +70,13 @@ public class PaqueteLogic {
         
         LOGGER.log(Level.INFO, "Se comienza a actualizar un paquete");
         
-        if(entity.getDimensionA()*entity.getDimensionB()*entity.getDimensionC()==0){
+        if(entity.getDimensionA()==0){
+            throw new BusinessLogicException("El volumen del paquete ha sido evaluado en 0.");
+        }
+        if(entity.getDimensionB()==0){
+            throw new BusinessLogicException("El volumen del paquete ha sido evaluado en 0.");
+        }
+        if(entity.getDimensionC()==0){
             throw new BusinessLogicException("El volumen del paquete ha sido evaluado en 0.");
         }
         if(entity.getPeso()<=0){
