@@ -25,10 +25,6 @@ public class PagoLogic {
 
     @Inject
     private PagoPersistence persistence;
-    
-
-    @Inject
-    private CuentaBancariaLogic cuentaBancariaLogic;
 
     /**
      * Obtiene la lista de los registros de Pago.
