@@ -345,7 +345,7 @@ public class DetallePaquetePersistanceTest {
     @Test
     public void getDetallePaqueteTest() {
         DetallePaqueteEntity entity = data.get(0);
-        DetallePaqueteEntity newEntity = detallePaquetePersistence.find(dataPaquete.get(0).getId(), entity.getId());
+        DetallePaqueteEntity newEntity = detallePaquetePersistence.find(entity.getId());
         Assert.assertNotNull(newEntity);
         Assert.assertEquals(entity.getName(), newEntity.getName());
         Assert.assertEquals(entity.getMensaje(), newEntity.getMensaje());

@@ -66,7 +66,7 @@ public class DetallePaqueteLogic {
      * 
      */
     public DetallePaqueteEntity getDetallePaquete(Long bookid, Long reviewid) {
-        return persistence.find(bookid, reviewid);
+        return persistence.find(reviewid);
     }
         
         /**
