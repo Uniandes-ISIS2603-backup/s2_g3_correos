@@ -212,7 +212,6 @@ public class PagoLogicTest {
         PagoEntity resp = em.find(PagoEntity.class, entity.getId());
 
         Assert.assertEquals(pojoEntity.getId(), resp.getId());
-        Assert.assertEquals(pojoEntity.getName(), resp.getName());
         Assert.assertEquals(pojoEntity.getTarjetaCredito(), resp.getTarjetaCredito());
         Assert.assertEquals(pojoEntity.getFecha(), resp.getFecha());
     }
