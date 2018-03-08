@@ -129,11 +129,11 @@ public class EnvioLogicTest {
             dataPaquetes.add(paquete);
             }
             
-            /**entity.setCliente(cliente);
+            entity.setCliente(cliente);
             entity.setMensajero(dataMensajero.get(i));
             entity.setPago(dataPago.get(i));
             entity.setPaquetes(dataPaquetes);           
-            **/
+            
             em.persist(entity);
             data.add(entity);
                         
@@ -224,5 +224,8 @@ public class EnvioLogicTest {
         Assert.assertEquals(pojoEntity.getDireccionEntrega(), resp.getDireccionEntrega());
     }   
 }
+
+
+
 
 
