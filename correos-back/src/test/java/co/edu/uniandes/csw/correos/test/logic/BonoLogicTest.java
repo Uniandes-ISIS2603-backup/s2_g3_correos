@@ -48,8 +48,6 @@ public class BonoLogicTest {
 
     private List<BonoEntity> data = new ArrayList<BonoEntity>();
 
-    private List<ClienteEntity> dataCliente = new ArrayList<ClienteEntity>();
-
     @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
@@ -114,9 +112,9 @@ public class BonoLogicTest {
      * 
      */
     @Test
-    public void createBonoTest() {
+    public void createBonoTest() throws BusinessLogicException {
         BonoEntity newEntity = factory.manufacturePojo(BonoEntity.class);
-        BonoEntity result = bonoLogic.createBono(data.get(0).getCliente().getId(), newEntity);
+        BonoEntity result = bonoLogic.createBono(newEntity);
         Assert.assertNotNull(result);
         BonoEntity entity = em.find(BonoEntity.class, result.getId());
         Assert.assertEquals(newEntity.getId(), entity.getId());
@@ -135,7 +133,7 @@ public class BonoLogicTest {
     
     @Test
     public void getBonosTest() throws BusinessLogicException {
-        List<BonoEntity> list = bonoLogic.getBonos(dataCliente.get(1).getId());        
+        List<BonoEntity> list = bonoLogic.getBonos();        
         Assert.assertEquals(data.size(), list.size());
         for (BonoEntity entity : list) {
             boolean found = false;
@@ -155,7 +153,7 @@ public class BonoLogicTest {
     @Test
     public void getBonoTest() {
         BonoEntity entity = data.get(0);
-        BonoEntity resultEntity = bonoLogic.getBono(dataCliente.get(1).getId(), entity.getId());
+        BonoEntity resultEntity = bonoLogic.getBono(entity.getId());
         Assert.assertNotNull(resultEntity);
         Assert.assertEquals(entity.getId(), resultEntity.getId());
         Assert.assertEquals(entity.getName(), resultEntity.getName());
@@ -173,7 +171,7 @@ public class BonoLogicTest {
     @Test
     public void deleteBonoTest() {
         BonoEntity entity = data.get(0);
-        bonoLogic.deleteBono(dataCliente.get(1).getId(), entity.getId());
+        bonoLogic.deleteBono(entity.getId());
         BonoEntity deleted = em.find(BonoEntity.class, entity.getId());
         Assert.assertNull(deleted);
     }
@@ -183,13 +181,13 @@ public class BonoLogicTest {
      * 
      */
  @Test
-    public void updateBonoTest() {
+    public void updateBonoTest() throws BusinessLogicException {
         BonoEntity entity = data.get(0);
         BonoEntity pojoEntity = factory.manufacturePojo(BonoEntity.class);
 
         pojoEntity.setId(entity.getId());
 
-        bonoLogic.updateBono(dataCliente.get(1).getId(), pojoEntity);
+        bonoLogic.updateBono(pojoEntity);
 
         BonoEntity resp = em.find(BonoEntity.class, entity.getId());
 

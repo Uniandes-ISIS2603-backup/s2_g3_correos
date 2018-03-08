@@ -6,6 +6,7 @@
 package co.edu.uniandes.csw.correos.dtos;
 
 import co.edu.uniandes.csw.correos.entities.BonoEntity;
+import java.util.Date;
 
 /**
  * BonoDTO Objeto de transferencia de datos Bono. Los DTO continen las representacones de los JSON entre el cliente y el servidor
@@ -28,7 +29,7 @@ public class BonoDTO
     private String descripcion;
     private double descuento;
     private String condicion;
-    private String fechaDeVencimiento;
+    private Date fechaDeVencimiento;
     
     /**
      * Conductor por defecto 
@@ -133,14 +134,14 @@ public class BonoDTO
     /**
      * @return fecha de vencimiento del bono 
      */
-    public String fechaDeVencimiento()
+    public Date fechaDeVencimiento()
     {
         return fechaDeVencimiento;
     }
     /**
      * @param fechaDeVenc nueva fecha de vencimiento del bono 
      */
-    public void setFechaDeVencimiento (String fechaDeVenc)
+    public void setFechaDeVencimiento (Date fechaDeVenc)
     {
         this.fechaDeVencimiento = fechaDeVenc;
     }
