@@ -9,6 +9,7 @@ import co.edu.uniandes.csw.correos.entities.BonoEntity;
 import co.edu.uniandes.csw.correos.entities.ClienteEntity;
 import co.edu.uniandes.csw.correos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.correos.persistence.BonoPersistance;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -50,24 +51,46 @@ public class BonoLogic {
      * @return Objeto de BonoEntity con los datos nuevos y su ID.
      * 
      */
-    public BonoEntity createBono(Long Clienteid, BonoEntity entity) {
+    public BonoEntity createBono(BonoEntity entity) throws BusinessLogicException {
         LOGGER.info("Inicia proceso de crear bono");
-        ClienteEntity cliente = clienteLogic.getCliente(Clienteid);
-        entity.setCliente(cliente);
-        return persistence.create(entity);
+        
+        if(entity.getDescuento() < 0.0)
+        {
+            throw new BusinessLogicException("El descuento debe ser un número mayor a cero");
+        }
+        
+        // NO SE ESTA CUMPLIENDO ESTA REGLA DE NEGOCIO
+        Date fecha = new Date();
+        if(entity.getFechaDeVencimiento().before(fecha) == true)
+        {
+           throw new BusinessLogicException("La fecha de vencimiento es invalida");
+        }
+        
+        if(entity.getCondicion().isEmpty() == true)
+        {
+             throw new BusinessLogicException("La condicion no puede estar vacia");
+        }
+        
+        if(entity.getDescripcion().isEmpty() == true)
+        {
+             throw new BusinessLogicException("La descripción no puede estar vacia");
+        }
+       persistence.create(entity);
+        LOGGER.info("Se termina de crear un Bono");
+        return entity;
     }
     
     
-       public List<BonoEntity> getBonos(Long clienteid) throws BusinessLogicException {
+       public List<BonoEntity> getBonos() throws BusinessLogicException {
         LOGGER.info("Inicia proceso de consultar todos los bonos");
-        ClienteEntity cliente = clienteLogic.getCliente(clienteid);
-        if (cliente.getBonos()== null) {
-            throw new BusinessLogicException("El libro que consulta aún no tiene reviews");
+       
+        List<BonoEntity> bonos = persistence.findAll();
+        
+        if(bonos.isEmpty() == true)
+        {
+            throw new BusinessLogicException("No hay bonos en el sistema.");
         }
-        if (cliente.getBonos().isEmpty()) {
-            throw new BusinessLogicException("El libro que consulta aún no tiene reviews");
-        }
-        return cliente.getBonos();
+        return bonos;
     }
         
      /**
@@ -79,7 +102,7 @@ public class BonoLogic {
      * @return Instancia de BonoEntity con los datos del Bono consultado.
      * 
      */
-    public BonoEntity getBono(Long clienteid, Long bonoid) {
+    public BonoEntity getBono(Long bonoid) {
         return persistence.find(bonoid);
     }
         
@@ -91,10 +114,29 @@ public class BonoLogic {
      * @return Instancia de BonoEntity con los datos actualizados.
      * 
      */
-    public BonoEntity updateBono(Long clienteid, BonoEntity entity) {
+    public BonoEntity updateBono(BonoEntity entity) throws BusinessLogicException {
         LOGGER.info("Inicia proceso de actualizar bono");
-        ClienteEntity cliente = clienteLogic.getCliente(clienteid);
-        entity.setCliente(cliente);
+        if(entity.getDescuento() < 0.0)
+        {
+            throw new BusinessLogicException("El descuento debe ser un número mayor a cero");
+        }
+        
+        // NO SE ESTA CUMPLIENDO ESTA REGLA DE NEGOCIO
+        Date fecha = new Date();
+        if(entity.getFechaDeVencimiento().before(fecha) == true)
+        {
+            throw new BusinessLogicException("La fecha de vencimiento es invalida");
+        }
+        
+        if(entity.getCondicion().isEmpty() == true)
+        {
+             throw new BusinessLogicException("La condicion no puede estar vacia");
+        }
+        
+        if(entity.getDescripcion().isEmpty() == true)
+        {
+             throw new BusinessLogicException("La descripción no puede estar vacia");
+        }
         return persistence.update(entity);
     }
         
@@ -105,9 +147,9 @@ public class BonoLogic {
      * @param clienteid id del cliente el cual es padre del bono.
      * 
      */
-    public void deleteBono(Long clienteid, Long id) {
-        LOGGER.info("Inicia proceso de borrar bono");
-        BonoEntity old = getBono(clienteid, id);
-        persistence.delete(old.getId());
+    public void deleteBono(Long id) {
+        LOGGER.log(Level.INFO, "Comienza a borrar el bono de id={0}", id);    
+        persistence.delete(id);
+        LOGGER.log(Level.INFO, "Termina a borrar el bono de id={0}", id);
     }
 }

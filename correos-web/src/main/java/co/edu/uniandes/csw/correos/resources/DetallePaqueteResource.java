@@ -68,8 +68,8 @@ public class DetallePaqueteResource {
      * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} - Error de lógica que se genera cuando ya existe el detalle.
      */
     @POST
-    public DetallePaqueteDTO createReview(@PathParam("idPaquete") Long idPaquete, DetallePaqueteDTO review) throws BusinessLogicException {
-        return new DetallePaqueteDTO(detalleLogic.createDetallePaquete(idPaquete, review.toEntity()));
+    public DetallePaqueteDTO createReview(DetallePaqueteDTO review) throws BusinessLogicException {
+        return new DetallePaqueteDTO(detalleLogic.createDetallePaquete(review.toEntity()));
     }
      /**
      * <h1>PUT /api/detalles/{id} : Actualizar detalle con el id dado.</h1>
@@ -95,13 +95,13 @@ public class DetallePaqueteResource {
      */
     @PUT
     @Path("{id: \\d+}")
-    public DetallePaqueteDTO updateReview(@PathParam("idPaquete") Long idPaquete, @PathParam("id") Long id, DetallePaqueteDTO review) throws BusinessLogicException {
+    public DetallePaqueteDTO updateReview(@PathParam("id") Long id, DetallePaqueteDTO review) throws BusinessLogicException {
         review.setId(id);
-        DetallePaqueteEntity entity = detalleLogic.getDetallePaquete(idPaquete, id);
+        DetallePaqueteEntity entity = detalleLogic.getDetallePaquete(id);
         if (entity == null) {
-            throw new WebApplicationException("El recurso /paquetes/" + idPaquete + "/detalles/" + id + " no existe.", 404);
+            throw new WebApplicationException("El recurso /detalles/" + id + " no existe.", 404);
         }
-        return new DetallePaqueteDTO(detalleLogic.updateDetallePaquete(idPaquete, review.toEntity()));
+        return new DetallePaqueteDTO(detalleLogic.updateDetallePaquete(review.toEntity()));
 
     }
      /**
@@ -123,10 +123,10 @@ public class DetallePaqueteResource {
      */
    @GET
     @Path("{id: \\d+}")
-    public DetallePaqueteDTO getReview(@PathParam("idBook") Long idBook, @PathParam("id") Long id) throws BusinessLogicException {
-        DetallePaqueteEntity entity = detalleLogic.getDetallePaquete(idBook, id);
+    public DetallePaqueteDTO getReview(@PathParam("id") Long id) throws BusinessLogicException {
+        DetallePaqueteEntity entity = detalleLogic.getDetallePaquete(id);
         if (entity == null) {
-            throw new WebApplicationException("El recurso /books/" + idBook + "/reviews/" + id + " no existe.", 404);
+            throw new WebApplicationException("El recurso /detalle/" + id + " no existe.", 404);
         }
         return new DetallePaqueteDTO(entity);
     }
@@ -149,12 +149,12 @@ public class DetallePaqueteResource {
      */
     @DELETE
     @Path("{id: \\d+}")
-    public void deleteDetallePaquete(@PathParam("idPaquete") Long idPaquete, @PathParam("id") Long id) throws BusinessLogicException {
-        DetallePaqueteEntity entity = detalleLogic.getDetallePaquete(idPaquete, id);
+    public void deleteDetallePaquete(@PathParam("id") Long id) throws BusinessLogicException {
+        DetallePaqueteEntity entity = detalleLogic.getDetallePaquete(id);
         if (entity == null) {
-            throw new WebApplicationException("El recurso /paquetes/" + idPaquete + "/detalles/" + id + " no existe.", 404);
+            throw new WebApplicationException("El recurso /paquetes/" + id + " no existe.", 404);
         }
-        detalleLogic.deleteDetallePaquete(idPaquete, id);
+        detalleLogic.deleteDetallePaquete(id);
     }
     
 }

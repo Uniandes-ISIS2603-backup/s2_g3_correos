@@ -6,14 +6,16 @@ package Logic;
  * and open the template in the editor.
  */
 
+import co.edu.uniandes.csw.correos.ejb.ClienteLogic;
 import co.edu.uniandes.csw.correos.ejb.EnvioLogic;
+import co.edu.uniandes.csw.correos.ejb.PaqueteLogic;
 import co.edu.uniandes.csw.correos.entities.ClienteEntity;
 import co.edu.uniandes.csw.correos.entities.EnvioEntity;
-import co.edu.uniandes.csw.correos.entities.MensajeroEntity;
-import co.edu.uniandes.csw.correos.entities.PagoEntity;
 import co.edu.uniandes.csw.correos.entities.PaqueteEntity;
 import co.edu.uniandes.csw.correos.exceptions.BusinessLogicException;
+import co.edu.uniandes.csw.correos.persistence.ClientePersistence;
 import co.edu.uniandes.csw.correos.persistence.EnvioPersistence;
+import co.edu.uniandes.csw.correos.persistence.PaquetePersistence;
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
@@ -43,6 +45,8 @@ public class EnvioLogicTest {
 
     @Inject
     private EnvioLogic envioLogic;
+    private ClienteLogic clienteLogic;
+    private PaqueteLogic paqueteLogic;
 
     @PersistenceContext
     private EntityManager em;
@@ -53,15 +57,19 @@ public class EnvioLogicTest {
     private List<EnvioEntity> data = new ArrayList<EnvioEntity>();
     private List<PaqueteEntity> dataPaquetes = new ArrayList<PaqueteEntity>();
     private List<ClienteEntity> dataClientes = new ArrayList<ClienteEntity>();
-    private List<MensajeroEntity> dataMensajero = new ArrayList<MensajeroEntity>();
-    private List<PagoEntity> dataPago = new ArrayList<PagoEntity>();    
-
+    
     @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
                 .addPackage(EnvioEntity.class.getPackage())
                 .addPackage(EnvioLogic.class.getPackage())
                 .addPackage(EnvioPersistence.class.getPackage())
+                .addPackage(ClienteEntity.class.getPackage())
+                .addPackage(ClienteLogic.class.getPackage())
+                .addPackage(ClientePersistence.class.getPackage())
+                .addPackage(PaqueteEntity.class.getPackage())
+                .addPackage(PaqueteLogic.class.getPackage())
+                .addPackage(PaquetePersistence.class.getPackage())
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
@@ -92,45 +100,35 @@ public class EnvioLogicTest {
     private void clearData() {
         em.createQuery("delete from PaqueteEntity").executeUpdate();
         em.createQuery("delete from EnvioEntity").executeUpdate();       
-        em.createQuery("delete from ClienteEntity").executeUpdate();         
-        em.createQuery("delete from MensajeroEntity").executeUpdate(); 
-        em.createQuery("delete from PagoEntity").executeUpdate(); 
+        em.createQuery("delete from ClienteEntity").executeUpdate(); 
     }
     
      /**
      * Inserta los datos iniciales para el correcto funcionamiento de las pruebas.
      */
-    private void insertData() throws BusinessLogicException {
-        
+    private void insertData() throws BusinessLogicException {        
+            
         for (int i = 0; i < 3; i++) {
+            
+            EnvioEntity entity = factory.manufacturePojo(EnvioEntity.class);                      
+            
             ClienteEntity cliente = factory.manufacturePojo(ClienteEntity.class);
-            em.persist(cliente);
-            dataClientes.add(cliente);
-        }
-        for (int i = 0; i < 3; i++) {
-            PagoEntity pago = factory.manufacturePojo(PagoEntity.class);
-            em.persist(pago);
-            dataPago.add(pago);
-        }
-        for (int i = 0; i < 3; i++) {
-            MensajeroEntity mensajero = factory.manufacturePojo(MensajeroEntity.class);
-            em.persist(mensajero);
-            dataMensajero.add(mensajero);
-        }
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; i < 3; j++) {
+            em.persist(cliente);            
+            dataClientes.add(cliente);           
+            
+            for (int j = 0; j < 3; j++) {
             PaqueteEntity paquete = factory.manufacturePojo(PaqueteEntity.class);
             em.persist(paquete);
             dataPaquetes.add(paquete);
             }
-            EnvioEntity entity = factory.manufacturePojo(EnvioEntity.class);
-            entity.setCliente(dataClientes.get(i));
-            entity.setMensajero(dataMensajero.get(i));
-            entity.setPago(dataPago.get(i));
-            entity.setPaquetes(dataPaquetes);
+            
+            entity.setCliente(dataClientes.get(i));            
+            entity.setPaquetes(dataPaquetes);           
+            
             em.persist(entity);
             data.add(entity);
-            dataPaquetes = new ArrayList<PaqueteEntity>();            
+            
+            dataPaquetes = new ArrayList<PaqueteEntity>();                        
         }
     }
 
@@ -140,6 +138,7 @@ public class EnvioLogicTest {
     @Test
     public void createEnvioTest() throws BusinessLogicException {
         EnvioEntity newEntity = factory.manufacturePojo(EnvioEntity.class);
+        //newEntity.setCliente(dataClientes.get(0));
         EnvioEntity result = envioLogic.createEnvio(newEntity);
         Assert.assertNotNull(result);
         EnvioEntity entity = em.find(EnvioEntity.class, result.getId());
@@ -202,7 +201,7 @@ public class EnvioLogicTest {
     public void updateEnvioTest() throws BusinessLogicException {
         EnvioEntity entity = data.get(0);
         EnvioEntity pojoEntity = factory.manufacturePojo(EnvioEntity.class);
-
+        //entity.setCliente(dataClientes.get(0));
         pojoEntity.setId(entity.getId());
 
         envioLogic.updateEnvio(pojoEntity);
@@ -211,12 +210,15 @@ public class EnvioLogicTest {
 
         Assert.assertEquals(pojoEntity.getId(), resp.getId());
         Assert.assertEquals(pojoEntity.getName(), resp.getName());
-        Assert.assertEquals(pojoEntity.getHoraFinal(), resp.getHoraInicio());
+        Assert.assertEquals(pojoEntity.getHoraFinal(), resp.getHoraFinal());
         Assert.assertEquals(pojoEntity.getHoraInicio(), resp.getHoraInicio());
         Assert.assertEquals(pojoEntity.getEstado(), resp.getEstado());
         Assert.assertEquals(pojoEntity.getDireccionRecogida(), resp.getDireccionRecogida());
         Assert.assertEquals(pojoEntity.getDireccionEntrega(), resp.getDireccionEntrega());
     }   
 }
+
+
+
 
 

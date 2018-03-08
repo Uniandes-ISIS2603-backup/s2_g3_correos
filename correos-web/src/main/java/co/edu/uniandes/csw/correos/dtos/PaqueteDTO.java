@@ -45,11 +45,11 @@ import co.edu.uniandes.csw.correos.entities.PaqueteEntity;
     private double dimensionA;
     private double dimensionB;
     private double dimensionC;
-/**
- * Constructor basico (vacio)
- */
+
     public PaqueteDTO() {
-        
+     /**
+      * Constructor basico (vacio)
+      */    
     }
     /**
      * 
@@ -144,24 +144,24 @@ import co.edu.uniandes.csw.correos.entities.PaqueteEntity;
     }
     /**
      * 
-     * @param A Primera Dimension  
+     * @param a Primera Dimension  
      */
-    public void setDimensionA(double A) {
-        dimensionA = A;         
+    public void setDimensionA(double a) {
+        dimensionA = a;         
     } 
     /**
      * 
-     * @param B Primera Dimension  
+     * @param b Segunda Dimension  
      */
-    public void setDimensionB(double B) {
-        dimensionB = B;         
+    public void setDimensionB(double b) {
+        dimensionB = b;         
     }    
     /**
      * 
-     * @param C Primera Dimension  
+     * @param c Tercera Dimension  
      */
-    public void setDimensionC(double C) {
-        dimensionC = C;         
+    public void setDimensionC(double c) {
+        dimensionC = c;         
     }  
      /**
      * 

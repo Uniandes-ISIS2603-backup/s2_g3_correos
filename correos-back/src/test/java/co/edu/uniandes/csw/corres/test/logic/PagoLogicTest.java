@@ -57,9 +57,6 @@ public class PagoLogicTest {
   
     private List<PagoEntity> data = new ArrayList<PagoEntity>();
 
-    private List<CuentaBancariaEntity> dataCuentaBancaria = new ArrayList<CuentaBancariaEntity>();
-
-    private List<TarjetaCreditoEntity> tarjetaCreditoData = new ArrayList();
 
     
     @Deployment
@@ -101,8 +98,6 @@ public class PagoLogicTest {
      */
     private void clearData() {
         em.createQuery("delete from PagoEntity").executeUpdate();
-        em.createQuery("delete from CuentaBancariaEntity").executeUpdate();
-        em.createQuery("delete from TarjetaCreditoEntity").executeUpdate();
     }
 
     /**
@@ -113,21 +108,12 @@ public class PagoLogicTest {
      */
     private void insertData() {
         for (int i = 0; i < 3; i++) {
-            TarjetaCreditoEntity tarjetaCredito = factory.manufacturePojo(TarjetaCreditoEntity.class);
-            em.persist(tarjetaCredito);
-            tarjetaCreditoData.add(tarjetaCredito);
+            PagoEntity pago = factory.manufacturePojo(PagoEntity.class);
+            em.persist(pago);
+            data.add(pago);
         }
         
-        
-        
-        for (int i = 0; i < 3; i++) {
-            PagoEntity entity = factory.manufacturePojo(PagoEntity.class);
-            
-            entity.setCuentaBancaria(dataCuentaBancaria.get(1));
-            
-            em.persist(entity);
-            data.add(entity);
-        }
+       
     }
 
     /**
@@ -189,6 +175,7 @@ public class PagoLogicTest {
         Assert.assertEquals(entity.getName(), resultEntity.getName());
         Assert.assertEquals(entity.getFecha(), resultEntity.getFecha());
         Assert.assertEquals(entity.getValor(), resultEntity.getValor());
+        Assert.assertEquals(entity.getCuentaBancaria(), resultEntity.getCuentaBancaria());
     }
 
     /**
@@ -211,24 +198,22 @@ public class PagoLogicTest {
      * 
      */
  @Test
-    public void updatePagoTest() {
+    public void updatePagoTest() throws BusinessLogicException {
         PagoEntity entity = data.get(0);
         PagoEntity pojoEntity = factory.manufacturePojo(PagoEntity.class);
 
         pojoEntity.setId(entity.getId());
 
-         try {
-             pagoLogic.updatePago(pojoEntity);
-         } catch (BusinessLogicException ex) {
-             Logger.getLogger(PagoLogicTest.class.getName()).log(Level.SEVERE, null, ex);
-         }
+         
+        pagoLogic.updatePago(pojoEntity);
+        
 
         PagoEntity resp = em.find(PagoEntity.class, entity.getId());
 
         Assert.assertEquals(pojoEntity.getId(), resp.getId());
-        Assert.assertEquals(pojoEntity.getName(), resp.getName());
         Assert.assertEquals(pojoEntity.getTarjetaCredito(), resp.getTarjetaCredito());
         Assert.assertEquals(pojoEntity.getFecha(), resp.getFecha());
+        Assert.assertEquals(entity.getValor(), resp.getValor());
     }
 
 }

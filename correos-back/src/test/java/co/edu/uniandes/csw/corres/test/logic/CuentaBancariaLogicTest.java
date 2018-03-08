@@ -91,7 +91,6 @@ public class CuentaBancariaLogicTest {
      */
     private void clearData() {
         em.createQuery("delete from CuentaBancariaEntity").executeUpdate();
-        em.createQuery("delete from BookEntity").executeUpdate();
     }
 
     /**
@@ -162,6 +161,10 @@ public class CuentaBancariaLogicTest {
         Assert.assertEquals(entity.getId(), resultEntity.getId());
         Assert.assertEquals(entity.getName(), resultEntity.getName());
         Assert.assertEquals(entity.getCliente(), resultEntity.getCliente());
+        Assert.assertEquals(entity.getBanco(), resultEntity.getBanco());
+        Assert.assertEquals(entity.getNumero(), resultEntity.getNumero());
+        Assert.assertEquals(entity.getTipoTarjeta(), resultEntity.getTipoTarjeta());
+        
     }
 
     /**
@@ -196,5 +199,6 @@ public class CuentaBancariaLogicTest {
         Assert.assertEquals(pojoEntity.getId(), resp.getId());
         Assert.assertEquals(pojoEntity.getName(), resp.getName());
         Assert.assertEquals(pojoEntity.getCliente(), resp.getCliente());
+        Assert.assertEquals(pojoEntity.getNumero(), resp.getNumero());
     }
 }

@@ -30,7 +30,7 @@ public class EnvioLogic {
         
         LOGGER.info("Se comienza a crear un Envio"); 
         
-        if (entity.getHoraInicio()<entity.getHoraFinal()){
+        if (entity.getHoraInicio()>entity.getHoraFinal()){
             throw new BusinessLogicException("La Hora Final es anterior a la Hora Incial.");
         }
         if (entity.getCliente()==null){
@@ -70,7 +70,7 @@ public class EnvioLogic {
         
         LOGGER.info("se comienza a actualizar un envio");
         
-        if (entity.getHoraInicio()<entity.getHoraFinal()){
+        if (entity.getHoraInicio()>entity.getHoraFinal()){
             throw new BusinessLogicException("La Hora Final es anterior a la Hora Incial.");
         }
         if (entity.getCliente()==null){
@@ -92,3 +92,4 @@ public class EnvioLogic {
         LOGGER.log(Level.INFO, "Termina a borrar el envio de id={0}", id);
     }    
 }
+
