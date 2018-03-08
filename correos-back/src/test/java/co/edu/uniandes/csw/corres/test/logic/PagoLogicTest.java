@@ -197,17 +197,15 @@ public class PagoLogicTest {
      * 
      */
  @Test
-    public void updatePagoTest() {
+    public void updatePagoTest() throws BusinessLogicException {
         PagoEntity entity = data.get(0);
         PagoEntity pojoEntity = factory.manufacturePojo(PagoEntity.class);
 
         pojoEntity.setId(entity.getId());
 
-         try {
-             pagoLogic.updatePago(pojoEntity);
-         } catch (BusinessLogicException ex) {
-             Logger.getLogger(PagoLogicTest.class.getName()).log(Level.SEVERE, null, ex);
-         }
+         
+        pagoLogic.updatePago(pojoEntity);
+        
 
         PagoEntity resp = em.find(PagoEntity.class, entity.getId());
 

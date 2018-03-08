@@ -8,9 +8,12 @@ package co.edu.uniandes.csw.correos.entities;
 import co.edu.uniandes.csw.correos.podamstrategy.PositiveIntegerStrategy;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import uk.co.jemos.podam.common.PodamExclude;
 import uk.co.jemos.podam.common.PodamStrategyValue;
 
@@ -32,7 +35,9 @@ public class PagoEntity extends BaseEntity implements Serializable{
     
     @PodamStrategyValue(PositiveIntegerStrategy.class)
     private Double valor;
-    private String fecha;
+    
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date fecha;
 
     
 
@@ -53,14 +58,14 @@ public class PagoEntity extends BaseEntity implements Serializable{
     /**
      * @return the fecha
      */
-    public String getFecha() {
+    public Date getFecha() {
         return fecha;
     }
 
     /**
      * @param fecha the fecha to set
      */
-    public void setFecha(String fecha) {
+    public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
 

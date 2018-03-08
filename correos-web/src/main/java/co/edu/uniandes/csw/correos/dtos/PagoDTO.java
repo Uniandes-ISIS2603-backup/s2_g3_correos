@@ -6,6 +6,7 @@
 package co.edu.uniandes.csw.correos.dtos;
 
 import co.edu.uniandes.csw.correos.entities.PagoEntity;
+import java.util.Date;
 
 /**
  *
@@ -38,7 +39,7 @@ public class PagoDTO {
     
     private long id;
     private double valor;
-    private String fecha;
+    private Date fecha;
     
 public PagoDTO(){
         //Este metodo esta vacio para permitir la construccion del JSON
@@ -93,13 +94,13 @@ public void setValor(double valor)
 /**
  * @return la fecha del pago
  */
-public String getFecha(){
+public Date getFecha(){
     return fecha;
 }    
 /**
  * @param fecha la nueva fecha que tiene el pago
  */
-public void setFecha(String fecha){
+public void setFecha(Date fecha){
     this.fecha = fecha;
 }
 }
