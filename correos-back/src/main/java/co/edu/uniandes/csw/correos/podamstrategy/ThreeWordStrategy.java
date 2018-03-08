@@ -15,7 +15,7 @@ public class ThreeWordStrategy implements AttributeStrategy<String> {
 
     @Override
     public String getValue() {
-        String random = "qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM" ;
+        String random = "qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM0123456789" ;
         String toReturn = "";
         for (int i = 0; i < 3; i++) {
             double ran = Math.random();
