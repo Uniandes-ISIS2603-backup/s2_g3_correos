@@ -50,11 +50,17 @@ public class DetallePaqueteLogic {
      * @return Objeto de DetallePaqueteEntity con los datos nuevos y su ID.
      * 
      */
-    public DetallePaqueteEntity createDetallePaquete(Long paqueteid, DetallePaqueteEntity entity) {
+    public DetallePaqueteEntity createDetallePaquete(DetallePaqueteEntity entity) throws BusinessLogicException {
         LOGGER.info("Inicia proceso de crear detalle");
-        PaqueteEntity paquete = paqueteLogic.getPaquete(paqueteid);
-        entity.setBook(paquete);
-        return persistence.create(entity);
+        
+        if(entity.getMensaje().isEmpty() == true)
+        {
+            throw new BusinessLogicException ("El mensaje del detalle no puede estar vacío");
+        }
+        
+       persistence.create(entity);
+        LOGGER.info("Se termina de crear un detalle");
+        return entity;
     }
        /**
      * Obtiene los datos de una instancia de detalle a partir de su ID.
@@ -65,8 +71,8 @@ public class DetallePaqueteLogic {
      * @return Instancia de DetallePaqueteEntity con los datos del detalle consultado.
      * 
      */
-    public DetallePaqueteEntity getDetallePaquete(Long bookid, Long reviewid) {
-        return persistence.find(reviewid);
+    public DetallePaqueteEntity getDetallePaquete(Long detalleid) {
+        return persistence.find(detalleid);
     }
         
         /**
@@ -77,10 +83,12 @@ public class DetallePaqueteLogic {
      * @return Instancia de DetallePaqueteEntity con los datos actualizados.
      * 
      */
-    public DetallePaqueteEntity updateDetallePaquete(Long paqueteid, DetallePaqueteEntity entity) {
+    public DetallePaqueteEntity updateDetallePaquete(DetallePaqueteEntity entity) throws BusinessLogicException {
         LOGGER.info("Inicia proceso de actualizar el detalle");
-        PaqueteEntity paquete = paqueteLogic.getPaquete(paqueteid);
-        entity.setBook(paquete);
+         if(entity.getMensaje().isEmpty() == true)
+        {
+            throw new BusinessLogicException ("El mensaje del detalle no puede estar vacío");
+        }
         return persistence.update(entity);
     }
         
@@ -88,12 +96,11 @@ public class DetallePaqueteLogic {
      * Elimina una instancia de detalle de la base de datos.
      *
      * @param id Identificador de la instancia a eliminar.
-     * @param bookid id del paqute el cual es padre del detalle.
      * 
      */
-    public void deleteDetallePaquete(Long paqueteid, Long id) {
-        LOGGER.info("Inicia proceso de borrar detalle");
-        DetallePaqueteEntity old = getDetallePaquete(paqueteid, id);
-        persistence.delete(old.getId());
+    public void deleteDetallePaquete(Long id) {
+        LOGGER.log(Level.INFO, "Comienza a borrar el detalle de id={0}", id);    
+        persistence.delete(id);
+        LOGGER.log(Level.INFO, "Termina a borrar el detalle de id={0}", id);
     }
 }
