@@ -47,11 +47,11 @@ import co.edu.uniandes.csw.correos.entities.EnvioEntity;
     private String direccionRecogida;
     private String estado;
     private String name; 
-/**
- * Constructor basico (vacio)
- */
+
     public EnvioDTO() {
-        
+     /**
+      * Constructor basico (vacio)
+      */   
     }
     
     /**

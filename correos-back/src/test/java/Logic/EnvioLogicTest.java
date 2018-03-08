@@ -6,6 +6,7 @@ package Logic;
  * and open the template in the editor.
  */
 
+import co.edu.uniandes.csw.correos.ejb.ClienteLogic;
 import co.edu.uniandes.csw.correos.ejb.EnvioLogic;
 import co.edu.uniandes.csw.correos.entities.ClienteEntity;
 import co.edu.uniandes.csw.correos.entities.EnvioEntity;
@@ -13,6 +14,7 @@ import co.edu.uniandes.csw.correos.entities.MensajeroEntity;
 import co.edu.uniandes.csw.correos.entities.PagoEntity;
 import co.edu.uniandes.csw.correos.entities.PaqueteEntity;
 import co.edu.uniandes.csw.correos.exceptions.BusinessLogicException;
+import co.edu.uniandes.csw.correos.persistence.ClientePersistence;
 import co.edu.uniandes.csw.correos.persistence.EnvioPersistence;
 import java.util.ArrayList;
 import java.util.List;
@@ -62,6 +64,9 @@ public class EnvioLogicTest {
                 .addPackage(EnvioEntity.class.getPackage())
                 .addPackage(EnvioLogic.class.getPackage())
                 .addPackage(EnvioPersistence.class.getPackage())
+                .addPackage(ClienteEntity.class.getPackage())
+                .addPackage(ClienteLogic.class.getPackage())
+                .addPackage(ClientePersistence.class.getPackage())
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
@@ -100,37 +105,38 @@ public class EnvioLogicTest {
      /**
      * Inserta los datos iniciales para el correcto funcionamiento de las pruebas.
      */
-    private void insertData() throws BusinessLogicException {
-        
+    private void insertData() throws BusinessLogicException {        
+            
         for (int i = 0; i < 3; i++) {
+            
+            EnvioEntity entity = factory.manufacturePojo(EnvioEntity.class);
+            
+            MensajeroEntity mensajero = factory.manufacturePojo(MensajeroEntity.class);
+            em.persist(mensajero);
+            dataMensajero.add(mensajero);            
+            
             ClienteEntity cliente = factory.manufacturePojo(ClienteEntity.class);
             em.persist(cliente);
             dataClientes.add(cliente);
-        }
-        for (int i = 0; i < 3; i++) {
+            
             PagoEntity pago = factory.manufacturePojo(PagoEntity.class);
             em.persist(pago);
             dataPago.add(pago);
-        }
-        for (int i = 0; i < 3; i++) {
-            MensajeroEntity mensajero = factory.manufacturePojo(MensajeroEntity.class);
-            em.persist(mensajero);
-            dataMensajero.add(mensajero);
-        }
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; i < 3; j++) {
+            
+            for (int j = 0; j < 3; j++) {
             PaqueteEntity paquete = factory.manufacturePojo(PaqueteEntity.class);
             em.persist(paquete);
             dataPaquetes.add(paquete);
             }
-            EnvioEntity entity = factory.manufacturePojo(EnvioEntity.class);
-            entity.setCliente(dataClientes.get(i));
+            
+            entity.setCliente(cliente);
             entity.setMensajero(dataMensajero.get(i));
             entity.setPago(dataPago.get(i));
-            entity.setPaquetes(dataPaquetes);
+            entity.setPaquetes(dataPaquetes);           
+            
             em.persist(entity);
             data.add(entity);
-            dataPaquetes = new ArrayList<PaqueteEntity>();            
+                        
         }
     }
 
@@ -211,12 +217,15 @@ public class EnvioLogicTest {
 
         Assert.assertEquals(pojoEntity.getId(), resp.getId());
         Assert.assertEquals(pojoEntity.getName(), resp.getName());
-        Assert.assertEquals(pojoEntity.getHoraFinal(), resp.getHoraInicio());
+        Assert.assertEquals(pojoEntity.getHoraFinal(), resp.getHoraFinal());
         Assert.assertEquals(pojoEntity.getHoraInicio(), resp.getHoraInicio());
         Assert.assertEquals(pojoEntity.getEstado(), resp.getEstado());
         Assert.assertEquals(pojoEntity.getDireccionRecogida(), resp.getDireccionRecogida());
         Assert.assertEquals(pojoEntity.getDireccionEntrega(), resp.getDireccionEntrega());
     }   
 }
+
+
+
 
 
