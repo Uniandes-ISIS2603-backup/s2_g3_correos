@@ -91,7 +91,6 @@ public class CuentaBancariaLogicTest {
      */
     private void clearData() {
         em.createQuery("delete from CuentaBancariaEntity").executeUpdate();
-        em.createQuery("delete from BookEntity").executeUpdate();
     }
 
     /**
