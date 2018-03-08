@@ -67,8 +67,8 @@ public class BonoResource
      * @throws BusinessLogicException {@link BusinessLogicException} - Error de lógica que se genera cuando ya existeel bono
      */
     @POST
-    public BonoDTO createBono(@PathParam("idCliente") Long idCliente, BonoDTO bono) throws BusinessLogicException {
-        return new BonoDTO(bonoLogic.createBono(idCliente, bono.toEntity()));
+    public BonoDTO createBono(BonoDTO bono) throws BusinessLogicException {
+        return new BonoDTO(bonoLogic.createBono(bono.toEntity()));
     }
      /**
      * <h1>PUT /api/Bonos: Actualizar el bono con el id dado.<h1>
@@ -91,13 +91,13 @@ public class BonoResource
      */
     @PUT
     @Path("{id: \\d+}")
-    public BonoDTO updateBono(@PathParam("idCliente") Long idCliente, @PathParam("id") Long id, BonoDTO bono) throws BusinessLogicException {
+    public BonoDTO updateBono(@PathParam("id") Long id, BonoDTO bono) throws BusinessLogicException {
         bono.setId(id);
-        BonoEntity entity = bonoLogic.getBono(idCliente, id);
+        BonoEntity entity = bonoLogic.getBono(id);
         if (entity == null) {
-            throw new WebApplicationException("El recurso /books/" + idCliente + "/reviews/" + id + " no existe.", 404);
+            throw new WebApplicationException("El recurso /bonos/" + id + " no existe.", 404);
         }
-        return new BonoDTO(bonoLogic.updateBono(idCliente, bono.toEntity()));
+        return new BonoDTO(bonoLogic.updateBono(bono.toEntity()));
 
     }
      /**
@@ -120,17 +120,17 @@ public class BonoResource
      */
     @GET
     @Path("{id: \\d+}")
-    public BonoDTO getBono(@PathParam("idBook") Long idCliente, @PathParam("id") Long id) throws BusinessLogicException {
-        BonoEntity entity = bonoLogic.getBono(idCliente, id);
+    public BonoDTO getBono(@PathParam("id") Long id) throws BusinessLogicException {
+        BonoEntity entity = bonoLogic.getBono(id);
         if (entity == null) {
-            throw new WebApplicationException("El recurso /books/" + idCliente + "/reviews/" + id + " no existe.", 404);
+            throw new WebApplicationException("El recurso /bonos/" + id + " no existe.", 404);
         }
         return new BonoDTO(entity);
     }
     
     @GET
-    public List<BonoDTO> getBonos(@PathParam("idBook") Long idCliente) throws BusinessLogicException {
-        return listEntity2DTO(bonoLogic.getBonos(idCliente));
+    public List<BonoDTO> getBonos() throws BusinessLogicException {
+        return listEntity2DTO(bonoLogic.getBonos());
     }
      /**
      * <h1>DELETE /api/Bonos: Borrar el bono con el id dado.<h1>
@@ -149,12 +149,12 @@ public class BonoResource
      */
     @DELETE
     @Path("{id: \\d+}")
-    public void deleteBono(@PathParam("idCliente") Long idCliente, @PathParam("id") Long id) throws BusinessLogicException {
-        BonoEntity entity = bonoLogic.getBono(idCliente, id);
+    public void deleteBono(@PathParam("id") Long id) throws BusinessLogicException {
+        BonoEntity entity = bonoLogic.getBono(id);
         if (entity == null) {
-            throw new WebApplicationException("El recurso /books/" + idCliente + "/reviews/" + id + " no existe.", 404);
+            throw new WebApplicationException("El recurso /bonos/" + id + " no existe.", 404);
         }
-        bonoLogic.deleteBono(idCliente, id);
+        bonoLogic.deleteBono(id);
     }
     
     private List<BonoDTO> listEntity2DTO(List<BonoEntity> entityList) {

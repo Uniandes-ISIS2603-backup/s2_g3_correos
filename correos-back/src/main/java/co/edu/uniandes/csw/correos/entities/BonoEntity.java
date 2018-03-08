@@ -6,6 +6,7 @@
 package co.edu.uniandes.csw.correos.entities;
 
 import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.OneToOne;
 import uk.co.jemos.podam.common.PodamExclude;
@@ -25,7 +26,7 @@ public class BonoEntity extends BaseEntity implements Serializable {
     private String descripcion; // descripcion del paquete
     private Double descuento; // descuento del bono
     private String condicion; // condicion o estado del bono
-    private String fechaDeVencimiento; // fecha de vencimiento del bono
+    private Date fechaDeVencimiento; // fecha de vencimiento del bono
 
    
 
@@ -81,7 +82,7 @@ public class BonoEntity extends BaseEntity implements Serializable {
      * Obtiene el atributo fecha de vencimiento
      * @return fecha de vencimiento del bono
      */
-    public String getFechaDeVencimiento() {
+    public Date getFechaDeVencimiento() {
         return fechaDeVencimiento;
     }
 
@@ -89,7 +90,7 @@ public class BonoEntity extends BaseEntity implements Serializable {
      * Asigna la fecha de vencimiento al bono deseado
      * @param fechaDeVencimiento fecha de vencimiento del bono
      */
-    public void setFechaDeVencimiento(String fechaDeVencimiento) {
+    public void setFechaDeVencimiento(Date fechaDeVencimiento) {
         this.fechaDeVencimiento = fechaDeVencimiento;
     }
     
