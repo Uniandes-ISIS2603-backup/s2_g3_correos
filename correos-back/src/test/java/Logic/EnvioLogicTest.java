@@ -102,17 +102,22 @@ public class EnvioLogicTest {
             dataClientes.add(cliente);
         }        
         for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
-            PaqueteEntity paquete = factory.manufacturePojo(PaqueteEntity.class);
-            em.persist(paquete);
-            dataPaquetes.add(paquete);
-        }  
+            
             EnvioEntity entity = factory.manufacturePojo(EnvioEntity.class);
+             
+            for (int j = 0; j < 3; j++) {
+                PaqueteEntity paquete = factory.manufacturePojo(PaqueteEntity.class);
+                em.persist(paquete);
+                dataPaquetes.add(paquete);
+            }  
+           
             entity.setCliente(dataClientes.get(i));
             entity.setPaquetes(dataPaquetes);
 
             em.persist(entity);
             data.add(entity);
+            
+            List<ClienteEntity> dataClientes = new ArrayList<ClienteEntity>();
         }
     }
 
