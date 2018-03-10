@@ -24,10 +24,14 @@ SOFTWARE.
 package co.edu.uniandes.csw.correos.resources;
 
 import co.edu.uniandes.csw.correos.dtos.TransporteDTO;
+import co.edu.uniandes.csw.correos.ejb.MensajeroLogic;
+import co.edu.uniandes.csw.correos.ejb.TransporteLogic;
+import co.edu.uniandes.csw.correos.entities.TransporteEntity;
 import co.edu.uniandes.csw.correos.exceptions.BusinessLogicException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -36,6 +40,7 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.WebApplicationException;
 
 /**
  * <pre>Clase que implementa el recurso "transportes".
@@ -53,12 +58,16 @@ import javax.ws.rs.Produces;
  * @author l.mejia  
  * @version 1.0
  */
-@Path("transportes")
+@Path("mensajeros/{mensajeroId:\\d+}/transportes")
 @Produces("application/json")
 @Consumes("application/json")
 @RequestScoped
 public class TransporteResource {
+    @Inject
+    private TransporteLogic logic;
     
+    @Inject
+    private MensajeroLogic logicMensajero;
     /**
      * <h1>POST /api/transportes : Crear un transporte.</h1>
      * 
@@ -81,9 +90,13 @@ public class TransporteResource {
      * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} - Error de lógica que se genera cuando ya existe el Trasnporte.
      */
     @POST
-    public TransporteDTO createTransporte(TransporteDTO trasnporte) throws BusinessLogicException
+    public TransporteDTO createTransporte(@PathParam("mensajeroId") Long mensajeroId, TransporteDTO transporte) throws BusinessLogicException
     {
-        return trasnporte;
+        if(logicMensajero.getMensajero(mensajeroId)==null) 
+            throw new WebApplicationException("no existe el Mensajero con el id" + mensajeroId, 404);
+        logicMensajero.agregarTransporte(mensajeroId, transporte.toEntity());
+        return new TransporteDTO(logic.createTransporte(transporte.toEntity()));
+        
     }
     
     /**
@@ -105,9 +118,14 @@ public class TransporteResource {
      */
     @PUT
     @Path("{id: \\d+}")
-    public TransporteDTO updateTransporte(@PathParam("id") Long id , TransporteDTO transporte)
+    public TransporteDTO updateTransporte(@PathParam("mensajeroId") Long mensajeroId, @PathParam("id") Long id , TransporteDTO transporte)
     {
-        return transporte;
+        if(logicMensajero.getMensajero(mensajeroId)==null)
+            throw new WebApplicationException("no existe el Mensajero con el id " + mensajeroId, 404);
+        if(logic.getTransporte(id)==null)
+            throw new WebApplicationException("no existe el Transporte con el id " + id, 404);
+        transporte.setId(id);
+        return new TransporteDTO(logic.putTransporte(transporte.toEntity()));
     }
     
     /**
@@ -128,9 +146,13 @@ public class TransporteResource {
      */
     @GET
     @Path("{id: \\d+}")
-    public TransporteDTO getTransporte(@PathParam("id") Long id)
+    public TransporteDTO getTransporte(@PathParam("mensajeroId") Long mensajeroId,@PathParam("id") Long id)
     {
-        return null;
+        if(logicMensajero.getMensajero(mensajeroId)==null)
+            throw new WebApplicationException("no existe el Mensajero con el id " + mensajeroId, 404);
+        if(logic.getTransporte(id)==null)
+            throw new WebApplicationException("no existe el Transporte con el id " + id, 404);
+        return new TransporteDTO(logic.getTransporte(id));
     }
     
     /**
@@ -145,9 +167,11 @@ public class TransporteResource {
      * @return JSONArray {@link TransporteDTO} - Los transportes encontrados en la aplicación. Si no hay ninguno retorna una lista vacía.
      */
     @GET
-    public List<TransporteDTO> getTransportes()
+    public List<TransporteDTO> getTransportes(@PathParam("mensajeroId") Long mensajeroId)
     {
-        return new ArrayList<>();
+        if(logicMensajero.getMensajero(mensajeroId)==null)
+            throw new WebApplicationException("no existe el Mensajero con el id " + mensajeroId, 404);
+        return listEntity2DTO(logicMensajero.getMensajero(mensajeroId).getTransportes());
     }
     
     /**
@@ -166,11 +190,20 @@ public class TransporteResource {
      */
     @DELETE
     @Path("{id: \\d+}")
-    public void deleteTransporte(@PathParam("id") Long id)
+    public void deleteTransporte(@PathParam("mensajeroId") Long mensajeroId,@PathParam("id") Long id)
     {
-        //en espera de implementacion
+        if(logicMensajero.getMensajero(mensajeroId)==null)
+            throw new WebApplicationException("no existe el Mensajero con el id " + mensajeroId, 404);
+        if(logic.getTransporte(id)==null)
+            throw new WebApplicationException("no existe el Transporte con el id " + id, 404);
     }
     
     
-    
+    public List<TransporteDTO>  listEntity2DTO(List<TransporteEntity> transportes)
+    {
+        List<TransporteDTO> retorno = new ArrayList<>();
+        for(TransporteEntity x: transportes)
+            retorno.add(new TransporteDTO(x));
+        return retorno;
+    }
 }
