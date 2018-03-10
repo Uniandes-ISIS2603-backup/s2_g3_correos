@@ -26,6 +26,7 @@ package co.edu.uniandes.csw.correos.ejb;
 
 import co.edu.uniandes.csw.correos.entities.CalificacionEntity;
 import co.edu.uniandes.csw.correos.entities.MensajeroEntity;
+import co.edu.uniandes.csw.correos.entities.TransporteEntity;
 import co.edu.uniandes.csw.correos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.correos.persistence.MensajeroPersistence;
 import java.util.List;
@@ -101,6 +102,15 @@ public class MensajeroLogic {
         LOGGER.log(Level.INFO,"se elimina el mensajero con el id={0}",mensajero.getId());
         persistence.delete(mensajero.getId());
         LOGGER.log(Level.INFO,"se eliminó el mensajero con el id={0}",mensajero.getId());
+    }
+    
+    public void agregarTransporte(Long id, TransporteEntity transporte)
+    {
+        MensajeroEntity agregar= persistence.find(id);
+        List <TransporteEntity> lista=agregar.getTransportes();
+        lista.add(transporte);
+        agregar.setTransportes(lista);
+        persistence.update(agregar);
     }
     
     public double calcularCalificaionPromedio(MensajeroEntity mensajero)

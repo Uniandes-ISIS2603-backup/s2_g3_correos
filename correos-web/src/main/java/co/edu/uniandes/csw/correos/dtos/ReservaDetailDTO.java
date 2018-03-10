@@ -23,6 +23,8 @@ SOFTWARE.
  */
 package co.edu.uniandes.csw.correos.dtos;
 
+import co.edu.uniandes.csw.correos.entities.ReservaEntity;
+
 /**
  * Clase que extiende de {@link ReservaDTO} para manejar la transformacion entre
  * los objetos JSON y las Entidades de la base de datos. Para conocer el
@@ -39,6 +41,12 @@ public class ReservaDetailDTO extends ReservaDTO{
     public ReservaDetailDTO()
     {
         super();
+    }
+    public ReservaDetailDTO(ReservaEntity reserva)
+    {
+         super(reserva);
+         if(reserva.getEnvio()!=null)
+             this.envio=new EnvioDTO(reserva.getEnvio());
     }
     
     /**
