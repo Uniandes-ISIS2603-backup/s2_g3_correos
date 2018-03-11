@@ -8,7 +8,29 @@ package co.edu.uniandes.csw.correos.dtos;
 import co.edu.uniandes.csw.correos.entities.CalificacionEntity;
 
 /**
+ * * CalificacionDTO Objeto de transferencia de datos de calificacion. Los DTO contienen las
+ * represnetaciones de los JSON que se transfieren entre el cliente y el
+ * servidor.
+ * 
+ * Al serializarse como JSON esta clase implementa el siguiente modelo: <br>
+ * <pre>
+ *   {
+ *      "id":long,
+ *      "calificacion": int,
+ *      "comentario": String
+ *   }
+ * </pre>
+ * Por ejemplo un evento se representa asi:<br>
+ * 
+ * <pre>
+ * 
+ *   {
+ *      "id":1234567890,
+ *      "calificacion": 3,
+ *      "comentario": "Me gustan las papas fritas"
+ *   }
  *
+ * </pre>
  * @author ed.diaz11
  */
 public class CalificacionDTO {
@@ -26,13 +48,24 @@ public class CalificacionDTO {
         //Este metodo esta vacio para permitir la construccion del JSON
     }
     
+    
+    /**
+     * 
+     * Metodo constructor de CalificacionDTO a partir de un CalificacionEntity
+     * 
+     * @param entity que se quiere convertir a dto
+     */
     public CalificacionDTO(CalificacionEntity entity){
         this.id=entity.getId();
         this.calificacion=entity.getCalificacion();
         this.comentario= entity.getComentario();
         
     }
-    
+    /**
+     * Metrodo para construir un entity a partir de un DTO
+     * 
+     * @return un objeto de tipo CalificacionEntity con las mismas caracteristicas
+     */
     public CalificacionEntity toEntity(){
         CalificacionEntity entity = new CalificacionEntity();
         entity.setId(this.id);
@@ -82,5 +115,6 @@ public class CalificacionDTO {
     public void setComentario(String pComentario) {
         this.comentario = pComentario;
     }
+    
     
 }

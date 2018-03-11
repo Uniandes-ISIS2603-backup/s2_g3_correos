@@ -67,6 +67,13 @@ public class ReservaDTO {
         //Constructor vacio para construir el objeto del JSon
     }
     
+    public ReservaDTO(ReservaEntity reserva)
+    {
+        this.id=reserva.getId();
+        this.fecha=reserva.getFecha();
+        this.hora=reserva.getHora();
+    }
+    
     //public ReservaDTO(ReservaEntity reserva){} este se realizara cuando se implemente la capa de persistencia
     
     /**

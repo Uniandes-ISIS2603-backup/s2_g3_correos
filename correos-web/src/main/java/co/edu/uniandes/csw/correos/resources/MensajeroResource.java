@@ -25,10 +25,13 @@ package co.edu.uniandes.csw.correos.resources;
 
 import co.edu.uniandes.csw.correos.dtos.MensajeroDTO;
 import co.edu.uniandes.csw.correos.dtos.MensajeroDetailDTO;
+import co.edu.uniandes.csw.correos.ejb.MensajeroLogic;
+import co.edu.uniandes.csw.correos.entities.MensajeroEntity;
 import co.edu.uniandes.csw.correos.exceptions.BusinessLogicException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -37,6 +40,8 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.WebApplicationException;
+import javax.xml.ws.WebServiceException;
 
 /**
  * <pre>Clase que implementa el recurso "mensajeros".
@@ -61,6 +66,8 @@ import javax.ws.rs.Produces;
 @RequestScoped
 public class MensajeroResource {
     
+    @Inject
+    private MensajeroLogic logic;
     /**
      * <h1>POST /api/mensajeros : Crear un mensajero.</h1>
      * 
@@ -85,7 +92,7 @@ public class MensajeroResource {
     @POST
     public MensajeroDetailDTO createMensajero(MensajeroDetailDTO mensajero) throws BusinessLogicException
     {
-        return mensajero;
+        return new MensajeroDetailDTO(logic.createMensajero(mensajero.toEntity()));
     }
     
     /**
@@ -110,7 +117,10 @@ public class MensajeroResource {
     @Path("{id: \\d+}")
     public MensajeroDetailDTO updateMensajero(@PathParam("id") Long id , MensajeroDetailDTO mensajero) throws BusinessLogicException
     {
-        return mensajero;
+        if(logic.getMensajero(id)!=null) 
+            throw new WebApplicationException("El Mensajero con id" + id,404);
+        mensajero.setId(id);
+        return new MensajeroDetailDTO(logic.putMensajero(mensajero.toEntity()));
     }
     
     /**
@@ -133,7 +143,9 @@ public class MensajeroResource {
     @Path("{id: \\d+}")
     public MensajeroDetailDTO getMensajero(@PathParam("id") Long id)
     {
-        return null;
+        if(logic.getMensajero(id)!=null) 
+            throw new WebApplicationException("El Mensajero con id" + id,404);
+        return new MensajeroDetailDTO(logic.getMensajero(id));
     }
     
     /**
@@ -148,9 +160,9 @@ public class MensajeroResource {
      * @return JSONArray {@link MensajeroDTO} - Los mensajeros encontrados en la aplicación. Si no hay ninguno retorna una lista vacía.
      */
     @GET
-    public List<MensajeroDTO> getMensajeros()
+    public List<MensajeroDetailDTO> getMensajeros()
     {
-        return new ArrayList<>();
+        return listEntity2DTO(logic.getMensajeros());
     }
     
     /**
@@ -171,9 +183,17 @@ public class MensajeroResource {
     @Path("{id: \\d+}")
     public void deleteMensajero(@PathParam("id") Long id)
     {
-        //en espera de implementacion
+        if(logic.getMensajero(id)!=null) 
+            throw new WebApplicationException("El Mensajero con id" + id ,404);
+        logic.deleteMensajero(logic.getMensajero(id));
     }
     
-    
+    public List<MensajeroDetailDTO>  listEntity2DTO(List<MensajeroEntity> mensajeros)
+    {
+        List<MensajeroDetailDTO> retorno = new ArrayList<>();
+        for(MensajeroEntity x: mensajeros)
+            retorno.add(new MensajeroDetailDTO(x));
+        return retorno;
+    }
     
 }
