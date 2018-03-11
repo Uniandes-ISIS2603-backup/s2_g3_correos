@@ -23,11 +23,11 @@ SOFTWARE.
  */
 package co.edu.uniandes.csw.correos.dtos;
 
-// import co.edu.uniandes.csw.correos.entities.ClienteEntity;
+import co.edu.uniandes.csw.correos.entities.TarjetaCreditoEntity;
 
 /**
  * TarjetaCreditoDTO Objeto de transferencia de datos de TarjetaCredito. Los DTO contienen las
- * represnetaciones de los JSON que se transfieren entre el cliente y el
+ * represnetaciones de los JSON que se transfieren entre el TarjetaCredito y el
  * servidor.
  * 
  * Al serializarse como JSON esta clase implementa el siguiente modelo: <br>
@@ -59,15 +59,15 @@ public class TarjetaCreditoDTO
 {
 
     private long id;
-    private int numero;
+    private String numero;
     private String fecha;
     private short securityCode;
 
     /**
      * Constructor por defecto
      */
-    public TarjetaCreditoDTO
-        () {
+    public TarjetaCreditoDTO() {
+        // se deja vacio
     }
 
     /**
@@ -76,7 +76,25 @@ public class TarjetaCreditoDTO
      *
      * @param TarjetaCredito: Es la entidad que se va a convertir a DTO
      */
-   // public ClienteDTO se hace con la persistencia 
+   public TarjetaCreditoDTO(TarjetaCreditoEntity entity){
+    this.id = entity.getId();
+    this.fecha = entity.getFechaDeVencimiento();
+    this.securityCode = entity.getSecurityCode();
+    this.numero = entity.getNumero();
+   }
+   
+   /**
+    * metodo que transforma a entidad
+    * @return la entidad
+    */
+   public TarjetaCreditoEntity toEntity(){
+    TarjetaCreditoEntity entity = new TarjetaCreditoEntity();
+    entity.setId(this.id);
+    entity.setNumero(this.numero);
+    entity.setFechaDeVencimiento(this.fecha);
+    entity.setSecurityCode(this.securityCode);
+    return entity;
+}
    
       /**
      * @return El ID de la tarjeta 
@@ -95,14 +113,14 @@ public class TarjetaCreditoDTO
     /**
      * @return El numero de la tarjeta de credito
      */
-    public int getNumero() {
+    public String getNumero() {
         return numero;
     }
 
     /**
      * @param numero El nuevo de la tarjeta de credito
      */
-    public void setNumero(int numero) {
+    public void setNumero(String numero) {
         this.numero = numero;
     }
 
@@ -134,9 +152,5 @@ public class TarjetaCreditoDTO
     }
 
    
-
-    /**
-     * Convertir DTO a Entity se hace con la persistencia 
-     *
-**/  
+ 
 }
