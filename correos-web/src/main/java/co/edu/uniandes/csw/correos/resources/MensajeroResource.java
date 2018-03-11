@@ -41,7 +41,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.WebApplicationException;
-import javax.xml.ws.WebServiceException;
+
 
 /**
  * <pre>Clase que implementa el recurso "mensajeros".
@@ -114,10 +114,10 @@ public class MensajeroResource {
      * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} - Error de lógica que se genera al no poder actualizar el mensajero porque ya existe uno con ese correo o numero telefónico.
      */
     @PUT
-    @Path("{id: \\d+}")
-    public MensajeroDetailDTO updateMensajero(@PathParam("id") Long id , MensajeroDetailDTO mensajero) throws BusinessLogicException
+    @Path("{id:\\d+}")
+    public MensajeroDetailDTO updateMensajero(@PathParam("id") Long id , MensajeroDetailDTO mensajero) throws BusinessLogicException, WebApplicationException
     {
-        if(logic.getMensajero(id)!=null) 
+        if(logic.getMensajero(id)==null) 
             throw new WebApplicationException("El Mensajero con id" + id,404);
         mensajero.setId(id);
         return new MensajeroDetailDTO(logic.putMensajero(mensajero.toEntity()));
@@ -140,10 +140,10 @@ public class MensajeroResource {
      * @return JSON {@link MensajeroDetailDTO} - el mensajero buscado
      */
     @GET
-    @Path("{id: \\d+}")
-    public MensajeroDetailDTO getMensajero(@PathParam("id") Long id)
+    @Path("{id:\\d+}")
+    public MensajeroDetailDTO getMensajero(@PathParam("id") Long id) throws WebApplicationException
     {
-        if(logic.getMensajero(id)!=null) 
+        if(logic.getMensajero(id)==null) 
             throw new WebApplicationException("El Mensajero con id" + id,404);
         return new MensajeroDetailDTO(logic.getMensajero(id));
     }
@@ -180,10 +180,10 @@ public class MensajeroResource {
      * @param id Identificador del mensajero que se desea borrar. Este debe ser una cadena de dígitos.
      */
     @DELETE
-    @Path("{id: \\d+}")
-    public void deleteMensajero(@PathParam("id") Long id)
+    @Path("{id:\\d+}")
+    public void deleteMensajero(@PathParam("id") Long id) throws WebApplicationException
     {
-        if(logic.getMensajero(id)!=null) 
+        if(logic.getMensajero(id)==null) 
             throw new WebApplicationException("El Mensajero con id" + id ,404);
         logic.deleteMensajero(logic.getMensajero(id));
     }

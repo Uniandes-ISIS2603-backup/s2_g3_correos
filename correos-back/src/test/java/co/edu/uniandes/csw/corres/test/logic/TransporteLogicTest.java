@@ -29,18 +29,19 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
  * @author l.mejia
  */
 public class TransporteLogicTest {
+    
     private PodamFactory factory = new PodamFactoryImpl();
     
     @Inject
     private TransporteLogic transporteLogic;
     
-    
-    
-       @PersistenceContext
-    private EntityManager em;
-
     @Inject
     private UserTransaction utx;
+    
+    @PersistenceContext
+    private EntityManager em;
+
+    
 
     private List<TransporteEntity> data = new ArrayList<TransporteEntity>();
 
@@ -83,7 +84,7 @@ public class TransporteLogicTest {
      */
     private void clearData() {
         em.createQuery("delete from TransporteEntity").executeUpdate();
-        em.createQuery("delete from BookEntity").executeUpdate();
+        
     }
 
     /**

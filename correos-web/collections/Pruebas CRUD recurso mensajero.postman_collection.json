@@ -1,0 +1,303 @@
+{
+	"variables": [],
+	"info": {
+		"name": "Pruebas CRUD recurso mensajero",
+		"_postman_id": "f2e19de8-5a3c-fc0f-ef98-717eaff2dc23",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Crea un mensajero",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] =responseCode.code===200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/correos-web/api/mensajeros",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\r\n      \"nombre\": \"Juan\",\r\n      \"celular\": \"3182223652\",\r\n      \"correo\": \"juanElMensajero@correo.com\",\r\n      \"calificacionPromedio\": 4.9,\r\n      \"transportes\":\r\n      [\r\n    \t{\r\n\t\t\t\"tipo\": \"Moto\",\r\n\t\t\t\"capacidad\": \"4 kg\",\r\n\t\t\t\"activo\": \"false\"\r\n    \t},\r\n    \t{\r\n\t\t\t\"tipo\": \"Moto\",\r\n\t\t\t\"capacidad\": \"4 kg\",\r\n\t\t\t\"activo\": \"false\"\r\n    \t}\r\n      ],\r\n      \"cuentaBancaria\":\r\n      {\r\n       \"id\":646464,\r\n       \"numero\": \"827338\",\r\n       \"banco\": \"Banco Pichincha\",\r\n       \"tipoTarjeta\":\"De hotel\"\r\n\t   },\r\n\t   \"comentarios\":\r\n\t   [\r\n\t   \t{\r\n\t   \t\t\"calificacion\":4,\r\n\t   \t\t\"comentario\":\"Uy sisa, mi perro es severo mensajero\"\r\n\t   \t},\r\n\t   \t{\r\n\t   \t\t\"calificacion\":5,\r\n\t   \t\t\"comentario\":\"khe wen servizio\"\r\n\t   \t}\r\n\t   ]\r\n      \r\n   }"
+				},
+				"description": "Succesful POST service request\n\nSe agrega el mensajero correctamente a la base de datos"
+			},
+			"response": []
+		},
+		{
+			"name": "Crea un mensajero",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 412\"] =responseCode.code===412;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/correos-web/api/mensajeros",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\r\n      \"nombre\": \"Juan\",\r\n      \"celular\": \"3182223652\",\r\n      \"correo\": \"juanElMensajero@correo.com\",\r\n      \"calificacionPromedio\": 4.9,\r\n      \"transportes\":\r\n      [\r\n    \t{\r\n\t\t\t\"tipo\": \"Moto\",\r\n\t\t\t\"capacidad\": \"4 kg\",\r\n\t\t\t\"activo\": \"false\"\r\n    \t},\r\n    \t{\r\n\t\t\t\"tipo\": \"Moto\",\r\n\t\t\t\"capacidad\": \"4 kg\",\r\n\t\t\t\"activo\": \"false\"\r\n    \t}\r\n      ],\r\n      \"cuentaBancaria\":\r\n      {\r\n       \"id\":646464,\r\n       \"numero\": \"827338\",\r\n       \"banco\": \"Banco Pichincha\",\r\n       \"tipoTarjeta\":\"De hotel\"\r\n\t   },\r\n\t   \"comentarios\":\r\n\t   [\r\n\t   \t{\r\n\t   \t\t\"calificacion\":4,\r\n\t   \t\t\"comentario\":\"Uy sisa, mi perro es severo mensajero\"\r\n\t   \t},\r\n\t   \t{\r\n\t   \t\t\"calificacion\":5,\r\n\t   \t\t\"comentario\":\"khe wen servizio\"\r\n\t   \t}\r\n\t   ]\r\n      \r\n   }"
+				},
+				"description": "Unsuccesful POST service request\nRecibe 412 , por que no hay 2 mensajeros con el mismo Correo electrónico"
+			},
+			"response": []
+		},
+		{
+			"name": "Crear un mensajero",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 412\"] =responseCode.code===412;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/correos-web/api/mensajeros",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\r\n      \"nombre\": \"Juan\",\r\n      \"celular\": \"3182223652\",\r\n      \"correo\": \"juanElMensajero2@correo.com\",\r\n      \"calificacionPromedio\": 4.9,\r\n      \"transportes\":\r\n      [\r\n    \t{\r\n\t\t\t\"tipo\": \"Moto\",\r\n\t\t\t\"capacidad\": \"4 kg\",\r\n\t\t\t\"activo\": \"false\"\r\n    \t},\r\n    \t{\r\n\t\t\t\"tipo\": \"Moto\",\r\n\t\t\t\"capacidad\": \"4 kg\",\r\n\t\t\t\"activo\": \"false\"\r\n    \t}\r\n      ],\r\n      \"cuentaBancaria\":\r\n      {\r\n       \"id\":646464,\r\n       \"numero\": \"827338\",\r\n       \"banco\": \"Banco Pichincha\",\r\n       \"tipoTarjeta\":\"De hotel\"\r\n\t   },\r\n\t   \"comentarios\":\r\n\t   [\r\n\t   \t{\r\n\t   \t\t\"calificacion\":4,\r\n\t   \t\t\"comentario\":\"Uy sisa, mi perro es severo mensajero\"\r\n\t   \t},\r\n\t   \t{\r\n\t   \t\t\"calificacion\":5,\r\n\t   \t\t\"comentario\":\"khe wen servizio\"\r\n\t   \t}\r\n\t   ]\r\n      \r\n   }"
+				},
+				"description": "Unsuccesful POST service request\nRecibe 412 pues no hay 2 mensajeros con el mismo numero telefónico"
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener todos los mensajeros",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] =responseCode.code===200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/correos-web/api/mensajeros",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\r\n      \"nombre\": \"Juan\",\r\n      \"celular\": \"3182223652\",\r\n      \"correo\": \"juanElMensajero2@correo.com\",\r\n      \"calificacionPromedio\": 4.9,\r\n      \"transportes\":\r\n      [\r\n    \t{\r\n\t\t\t\"tipo\": \"Moto\",\r\n\t\t\t\"capacidad\": \"4 kg\",\r\n\t\t\t\"activo\": \"false\"\r\n    \t},\r\n    \t{\r\n\t\t\t\"tipo\": \"Moto\",\r\n\t\t\t\"capacidad\": \"4 kg\",\r\n\t\t\t\"activo\": \"false\"\r\n    \t}\r\n      ],\r\n      \"cuentaBancaria\":\r\n      {\r\n       \"id\":646464,\r\n       \"numero\": \"827338\",\r\n       \"banco\": \"Banco Pichincha\",\r\n       \"tipoTarjeta\":\"De hotel\"\r\n\t   },\r\n\t   \"comentarios\":\r\n\t   [\r\n\t   \t{\r\n\t   \t\t\"calificacion\":4,\r\n\t   \t\t\"comentario\":\"Uy sisa, mi perro es severo mensajero\"\r\n\t   \t},\r\n\t   \t{\r\n\t   \t\t\"calificacion\":5,\r\n\t   \t\t\"comentario\":\"khe wen servizio\"\r\n\t   \t}\r\n\t   ]\r\n      \r\n   }"
+				},
+				"description": "Succesful GET service request\n200 OK"
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener un Mensajero",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] =responseCode.code===200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/correos-web/api/mensajeros/1",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\r\n      \"nombre\": \"Juan\",\r\n      \"celular\": \"3182223652\",\r\n      \"correo\": \"juanElMensajero2@correo.com\",\r\n      \"calificacionPromedio\": 4.9,\r\n      \"transportes\":\r\n      [\r\n    \t{\r\n\t\t\t\"tipo\": \"Moto\",\r\n\t\t\t\"capacidad\": \"4 kg\",\r\n\t\t\t\"activo\": \"false\"\r\n    \t},\r\n    \t{\r\n\t\t\t\"tipo\": \"Moto\",\r\n\t\t\t\"capacidad\": \"4 kg\",\r\n\t\t\t\"activo\": \"false\"\r\n    \t}\r\n      ],\r\n      \"cuentaBancaria\":\r\n      {\r\n       \"id\":646464,\r\n       \"numero\": \"827338\",\r\n       \"banco\": \"Banco Pichincha\",\r\n       \"tipoTarjeta\":\"De hotel\"\r\n\t   },\r\n\t   \"comentarios\":\r\n\t   [\r\n\t   \t{\r\n\t   \t\t\"calificacion\":4,\r\n\t   \t\t\"comentario\":\"Uy sisa, mi perro es severo mensajero\"\r\n\t   \t},\r\n\t   \t{\r\n\t   \t\t\"calificacion\":5,\r\n\t   \t\t\"comentario\":\"khe wen servizio\"\r\n\t   \t}\r\n\t   ]\r\n      \r\n   }"
+				},
+				"description": "Succesful GET service Request\n200 ok"
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener un mensajero ",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 404\"] =responseCode.code===404;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/correos-web/api/mensajeros/2",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\r\n      \"nombre\": \"Juan\",\r\n      \"celular\": \"3182223652\",\r\n      \"correo\": \"juanElMensajero2@correo.com\",\r\n      \"calificacionPromedio\": 4.9,\r\n      \"transportes\":\r\n      [\r\n    \t{\r\n\t\t\t\"tipo\": \"Moto\",\r\n\t\t\t\"capacidad\": \"4 kg\",\r\n\t\t\t\"activo\": \"false\"\r\n    \t},\r\n    \t{\r\n\t\t\t\"tipo\": \"Moto\",\r\n\t\t\t\"capacidad\": \"4 kg\",\r\n\t\t\t\"activo\": \"false\"\r\n    \t}\r\n      ],\r\n      \"cuentaBancaria\":\r\n      {\r\n       \"id\":646464,\r\n       \"numero\": \"827338\",\r\n       \"banco\": \"Banco Pichincha\",\r\n       \"tipoTarjeta\":\"De hotel\"\r\n\t   },\r\n\t   \"comentarios\":\r\n\t   [\r\n\t   \t{\r\n\t   \t\t\"calificacion\":4,\r\n\t   \t\t\"comentario\":\"Uy sisa, mi perro es severo mensajero\"\r\n\t   \t},\r\n\t   \t{\r\n\t   \t\t\"calificacion\":5,\r\n\t   \t\t\"comentario\":\"khe wen servizio\"\r\n\t   \t}\r\n\t   ]\r\n      \r\n   }"
+				},
+				"description": "Unsuccesful GET request\n404 not found "
+			},
+			"response": []
+		},
+		{
+			"name": "Actualizar un Mensajero",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] =responseCode.code===200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/correos-web/api/mensajeros/1",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "\t{\r\n\t\"nombre\": \"Pepe\",\r\n      \"celular\": \"3182223652\",\r\n      \"correo\": \"juanElMensajero@correo.com\",\r\n      \"calificacionPromedio\": 4.9\r\n\t}"
+				},
+				"description": "Succesful PUT service Request \n200 OK"
+			},
+			"response": []
+		},
+		{
+			"name": "Actualizar un mensajero",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 404\"] =responseCode.code===404;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/correos-web/api/mensajeros/2",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "\t{\r\n\t\"nombre\": \"Pepe\",\r\n      \"celular\": \"3182223652\",\r\n      \"correo\": \"juanElMensajero@correo.com\",\r\n      \"calificacionPromedio\": 4.9\r\n\t}"
+				},
+				"description": "Unsuccesful PUT service Request\t\n404 not found"
+			},
+			"response": []
+		},
+		{
+			"name": "Eliminar un mensajero",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 204\"] =responseCode.code===204;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/correos-web/api/mensajeros/1",
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"description": "Succesful DELETE service request\n200 OK"
+			},
+			"response": []
+		},
+		{
+			"name": "Eliminar un Mensajero",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 404\"] =responseCode.code===404;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/correos-web/api/mensajeros/2",
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"description": "Unsuccesful DELETE service Request\n404 not Found"
+			},
+			"response": []
+		}
+	]
+}
