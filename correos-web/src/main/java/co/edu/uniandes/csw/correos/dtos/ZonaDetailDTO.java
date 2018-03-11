@@ -18,11 +18,16 @@ public class ZonaDetailDTO extends ZonaDTO {
     
     private List<MensajeroDTO> mensajeros;
     
-    
+    /**
+     * Contructor vacio
+     */
     public ZonaDetailDTO(){
         
     }
-    
+    /**
+     * Contructor a partir de un entity
+     * @param entity 
+     */
     public ZonaDetailDTO(ZonaEntity entity){
         super();
         if(entity.getMensajeros().size()>0){
@@ -35,7 +40,10 @@ public class ZonaDetailDTO extends ZonaDTO {
         }
         
     }
-    
+    /**
+     * Convertir a entity
+     * @return ZonaEntity
+     */
     public ZonaEntity toEntity(){
         ZonaEntity entity= super.toEntity();
         if(mensajeros!=null){
@@ -50,11 +58,17 @@ public class ZonaDetailDTO extends ZonaDTO {
         return entity;
         
     }
-
+    /**
+     * Obtener mensajeros
+     * @return lista de mensajeros
+     */
     public List<MensajeroDTO> getMensajeros() {
         return mensajeros;
     }
-
+    /**
+     * Poner mensajeros
+     * @param mensajeros 
+     */
     public void setMensajeros(List<MensajeroDTO> mensajeros) {
         this.mensajeros = mensajeros;
     }
