@@ -5,6 +5,8 @@
   */
  package co.edu.uniandes.csw.correos.dtos;
  
+import co.edu.uniandes.csw.correos.entities.PaqueteEntity;
+
  /**
   *
   * @author df.rengifo
@@ -22,6 +24,33 @@
 	        super();
 	    }
 	    
+            /**
+             * 
+             * @param entity El paquete a ser creado
+             */
+            public PaqueteDetailDTO(PaqueteEntity entity)
+            {            
+                super(entity);         
+                
+                this.detalle=new DetallePaqueteDTO(entity.getDetallePaquete());
+                this.envio=new EnvioDTO(entity.getEnvio());
+            }
+        
+            /**
+             * 
+             * @return la entidad recien convertida
+             */
+            @Override
+            public PaqueteEntity toEntity()
+            {
+                PaqueteEntity entity= super.toEntity();
+            
+                entity.setEnvio(this.envio.toEntity());
+                entity.setDetallePaquete(this.detalle.toEntity());        
+        
+                return entity;        
+            }  
+            
 	    /**
 	     * @return El detalle asociado al paquete
 	     */

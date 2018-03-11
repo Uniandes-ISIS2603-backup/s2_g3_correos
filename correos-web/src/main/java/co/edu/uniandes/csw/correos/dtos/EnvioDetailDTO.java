@@ -4,6 +4,10 @@
   */
  package co.edu.uniandes.csw.correos.dtos;
  
+import co.edu.uniandes.csw.correos.entities.BonoEntity;
+import co.edu.uniandes.csw.correos.entities.EnvioEntity;
+import co.edu.uniandes.csw.correos.entities.EventoEntity;
+import co.edu.uniandes.csw.correos.entities.PaqueteEntity;
  import java.util.List;
  import java.util.ArrayList;
  
@@ -27,6 +31,61 @@
         {
             super();
         }
+        
+        /**
+         * 
+         * @param entity El envio a ser creado
+         */
+        public EnvioDetailDTO(EnvioEntity entity)
+        {            
+        super(entity);        
+        
+            for(int i = 0; i< entity.getBonos().size(); i++){
+                this.bonos.add(new BonoDTO(entity.getBonos().get(i)));
+            }
+            for(int i = 0; i< entity.getEventos().size(); i++){
+                this.eventos.add(new EventoDTO(entity.getEventos().get(i)));
+            }
+            for(int i = 0; i< entity.getPaquetes().size(); i++){
+                this.paquetes.add(new PaqueteDTO(entity.getPaquetes().get(i)));
+            }
+            this.cliente=new ClienteDTO(entity.getCliente());
+            this.mensajero=new MensajeroDTO(entity.getMensajero());
+            this.pago=new PagoDTO(entity.getPago());
+        }
+        
+        /**
+         * 
+         * @return la entidad recien convertida
+         */
+        @Override
+        public EnvioEntity toEntity()
+        {
+            EnvioEntity entity= super.toEntity();        
+        
+            List<EventoEntity> newEventos = new ArrayList<>();
+            List<BonoEntity> newBonos = new ArrayList<>();
+            List<PaqueteEntity> newPaquetes = new ArrayList<>();
+            
+            for(int i = 0; i< eventos.size(); i++){
+                newEventos.add(eventos.get(i).toEntity());
+            }
+            for(int i = 0; i< bonos.size(); i++){
+                newBonos.add(bonos.get(i).toEntity());
+            }
+            for(int i = 0; i< paquetes.size(); i++){
+                newPaquetes.add(paquetes.get(i).toEntity());
+            }
+                
+            entity.setEventos(newEventos);
+            entity.setBonos(newBonos);
+            entity.setPaquetes(newPaquetes);
+            entity.setCliente(this.cliente.toEntity());
+            entity.setPago(this.pago.toEntity());
+            entity.setMensajero(this.mensajero.toEntity());        
+        
+            return entity;        
+        }      
         
         /**
          * @return La lista de los eventos asociados al envio

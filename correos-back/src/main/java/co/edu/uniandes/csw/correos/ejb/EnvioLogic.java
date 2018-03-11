@@ -25,7 +25,13 @@ public class EnvioLogic {
 
     @Inject
     private EnvioPersistence persistence;
-
+    
+    /**
+     * 
+     * @param entity el envio a ser creado
+     * @return el envio recien creado
+     * @throws BusinessLogicException 
+     */
     public EnvioEntity createEnvio(EnvioEntity entity) throws BusinessLogicException {
         
         LOGGER.info("Se comienza a crear un Envio"); 
@@ -48,10 +54,20 @@ public class EnvioLogic {
         return entity;
     }
     
+    /**
+     * 
+     * @param id ID del envio buscado
+     * @return el envio buscado
+     */
     public EnvioEntity getEnvio(Long id){
         return persistence.find(id);
     }
-
+    
+    /**
+     * 
+     * @return todos los envios del sistema
+     * @throws BusinessLogicException 
+     */
     public List<EnvioEntity> getEnvios() throws BusinessLogicException {
         
         LOGGER.info("Se comienzan a buscar todos los Envios"); 
@@ -65,7 +81,13 @@ public class EnvioLogic {
         LOGGER.info("Se terminan de buscar todos los Envios");
         return envios;
     } 
-
+    
+    /**
+     * 
+     * @param entity el envio a ser actualizado
+     * @return el envio atualizado
+     * @throws BusinessLogicException 
+     */
     public EnvioEntity updateEnvio(EnvioEntity entity) throws BusinessLogicException  {
         
         LOGGER.info("se comienza a actualizar un envio");
@@ -86,10 +108,25 @@ public class EnvioLogic {
         return persistence.update(entity);
     }
     
+    /**
+     * 
+     * @param id ID del envio a ser borrado
+     * @throws BusinessLogicException 
+     */
     public void deleteEnvio(Long id) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "Comienza a borrar el envio de id={0}", id);    
         persistence.delete(id);
         LOGGER.log(Level.INFO, "Termina a borrar el envio de id={0}", id);
     }    
+    
+    public double calcularHoraFinal(EnvioEntity envio)
+    {
+        if(envio.getDireccionEntrega().equals(envio.getDireccionRecogida())){
+            return envio.getHoraInicio();
+        }
+        else {
+            return envio.getHoraInicio()+2000;
+        }     
+    }
 }
 

@@ -6,6 +6,7 @@
 
 package co.edu.uniandes.csw.correos.entities;
 
+import co.edu.uniandes.csw.correos.podamstrategy.PositiveIntegerStrategy;
 import java.io.Serializable;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -13,6 +14,7 @@ import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import uk.co.jemos.podam.common.PodamExclude;
+import uk.co.jemos.podam.common.PodamStrategyValue;
 
 /**
  *
@@ -22,9 +24,13 @@ import uk.co.jemos.podam.common.PodamExclude;
 @Entity
 public class PaqueteEntity extends BaseEntity implements Serializable{        
    
+   @PodamStrategyValue(PositiveIntegerStrategy.class)
    private Double dimensionA;
+   @PodamStrategyValue(PositiveIntegerStrategy.class)
    private Double dimensionB;
+   @PodamStrategyValue(PositiveIntegerStrategy.class)
    private Double dimensionC;
+   @PodamStrategyValue(PositiveIntegerStrategy.class)
    private Double peso;
    private String tipo;
 
@@ -74,7 +80,7 @@ public class PaqueteEntity extends BaseEntity implements Serializable{
     /**
      * @param detalle the detalles to set
      */
-    public void setDetallePaqueteEntity(DetallePaqueteEntity detalle) {
+    public void setDetallePaquete(DetallePaqueteEntity detalle) {
         this.detalle = detalle;
     }
     

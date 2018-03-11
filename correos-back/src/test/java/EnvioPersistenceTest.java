@@ -44,7 +44,9 @@ public class EnvioPersistenceTest {
                 .addPackage(EnvioPersistence.class.getPackage())
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
-    }
+    }    
+    
+    private List<EnvioEntity> data = new ArrayList<EnvioEntity>();
 
     /**
      * Inyección de la dependencia a la clase EnvioPersistence cuyos métodos
@@ -100,11 +102,6 @@ public class EnvioPersistenceTest {
     }
 
     /**
-     *
-     */
-    private List<EnvioEntity> data = new ArrayList<EnvioEntity>();
-
-    /**
      * Inserta los datos iniciales para el correcto funcionamiento de las pruebas.
      * 
      *
@@ -135,7 +132,6 @@ public class EnvioPersistenceTest {
 
         EnvioEntity entity = em.find(EnvioEntity.class, result.getId());
 
-        Assert.assertEquals(newEntity.getName(), entity.getName());
         Assert.assertEquals(newEntity.getHoraInicio(), entity.getHoraInicio());
         Assert.assertEquals(newEntity.getHoraFinal(), entity.getHoraFinal());
         Assert.assertEquals(newEntity.getEstado(), entity.getEstado());
@@ -174,7 +170,7 @@ public class EnvioPersistenceTest {
         EnvioEntity entity = data.get(0);
         EnvioEntity newEntity = envioPersistence.find(entity.getId());
         Assert.assertNotNull(newEntity);
-        Assert.assertEquals(entity.getName(), newEntity.getName());
+        
         Assert.assertEquals(entity.getDireccionRecogida(), newEntity.getDireccionRecogida());
         Assert.assertEquals(entity.getDireccionEntrega(), newEntity.getDireccionEntrega());
         Assert.assertEquals(entity.getHoraFinal(), newEntity.getHoraFinal());
@@ -213,7 +209,6 @@ public class EnvioPersistenceTest {
 
         EnvioEntity resp = em.find(EnvioEntity.class, entity.getId());
 
-        Assert.assertEquals(newEntity.getName(), resp.getName());
         Assert.assertEquals(newEntity.getDireccionEntrega(), resp.getDireccionEntrega());
         Assert.assertEquals(newEntity.getDireccionRecogida(), resp.getDireccionRecogida());
         Assert.assertEquals(newEntity.getEstado(), resp.getEstado());
