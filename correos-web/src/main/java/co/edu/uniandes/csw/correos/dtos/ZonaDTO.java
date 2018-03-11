@@ -8,7 +8,29 @@ package co.edu.uniandes.csw.correos.dtos;
 import co.edu.uniandes.csw.correos.entities.ZonaEntity;
 
 /**
+ * * ZonaDTO Objeto de transferencia de datos de zona. Los DTO contienen las
+ * represnetaciones de los JSON que se transfieren entre el cliente y el
+ * servidor.
+ * 
+ * Al serializarse como JSON esta clase implementa el siguiente modelo: <br>
+ * <pre>
+ *   {
+ *      "id":long,
+ *      "longitud": long,
+ *      "latitud": long,
+ *   }
+ * </pre>
+ * Por ejemplo un evento se representa asi:<br>
+ * 
+ * <pre>
+ * 
+ *   {
+ *      "id":1234567890,
+ *      "longitud": 68.9797658,
+ *      "calificacion": 60.9776467,
+ *   }
  *
+ * </pre>
  * @author ed.diaz11
  */
 public class ZonaDTO {
@@ -16,11 +38,16 @@ public class ZonaDTO {
     private long latitud;
     private long longitud;
     
-    
+    /**
+     * Contructor vacio
+     */
     public ZonaDTO(){
         
     }
-    
+    /**
+     * Contructor a partir de entity
+     * @param entity 
+     */
     public ZonaDTO(ZonaEntity entity){
         this.id=entity.getId();
         this.latitud=entity.getLatitud();
@@ -68,7 +95,10 @@ public class ZonaDTO {
     public void setLongitud(Long longitud) {
         this.longitud = longitud;
     }
-    
+    /**
+     * Retorna un DTO a Entity
+     * @return una ZonaEntity
+     */
     public ZonaEntity toEntity(){
         ZonaEntity entity= new ZonaEntity();
         entity.setId(this.id);
