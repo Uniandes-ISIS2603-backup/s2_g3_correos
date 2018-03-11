@@ -27,11 +27,14 @@ package co.edu.uniandes.csw.correos.resources;
 import co.edu.uniandes.csw.correos.dtos.TarjetaCreditoDTO;
 import co.edu.uniandes.csw.correos.dtos.TarjetaCreditoDetailDTO
         ;
+import co.edu.uniandes.csw.correos.ejb.TarjetaCreditoLogic;
+import co.edu.uniandes.csw.correos.entities.TarjetaCreditoEntity;
 import co.edu.uniandes.csw.correos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.correos.mappers.BusinessLogicExceptionMapper;
 import java.util.ArrayList;
 import java.util.List;
 import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 
 import javax.ws.rs.DELETE;
@@ -41,6 +44,7 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.WebApplicationException;
 
 /**
  * <pre>Clase que implementa el recurso "tarjetaCredito".
@@ -64,6 +68,9 @@ import javax.ws.rs.Produces;
 @RequestScoped
 public class TarjetaCreditoResource {
 
+     @Inject
+    private TarjetaCreditoLogic logic;
+    
     /**
      * <h1>POST /api/tarjetasCredito : Crear una tarjeta de credito.</h1>
      * 
@@ -88,7 +95,7 @@ public class TarjetaCreditoResource {
      @POST
      public TarjetaCreditoDetailDTO createCliente(TarjetaCreditoDetailDTO nuevo) throws BusinessLogicException
      {
-         return nuevo;
+         return new TarjetaCreditoDetailDTO(logic.createTarjetaCredito(nuevo.toEntity()));
      }
      /**
      * <h1>PUT /api/tarjetasCredito/{id} : Actualizar tarjeta con el id dado.</h1>
@@ -112,7 +119,10 @@ public class TarjetaCreditoResource {
      @Path("{id: \\d+ }")
      public TarjetaCreditoDetailDTO updateCliente(@PathParam("id") Long id , TarjetaCreditoDetailDTO actualizar) throws BusinessLogicException
      {
-         return actualizar;
+         if(logic.getTarjetaCredito(id)!=null) 
+            throw new WebApplicationException("La tarjeta con id" + id,404);
+        actualizar.setId(id);
+        return new TarjetaCreditoDetailDTO(logic.updateTarjetaCredito(actualizar.toEntity()));
      }
    /**
   * <h1>GET /api/tarjetasCredito/{id} : Obtener tarjetas por id.</h1>
@@ -132,9 +142,11 @@ public class TarjetaCreditoResource {
   */
      @GET
      @Path("{id: \\d+ }")
-     public TarjetaCreditoDetailDTO getCliente(@PathParam("id") Long id)
+     public TarjetaCreditoDetailDTO getTarjeta(@PathParam("id") Long id)
      {
-         return null;
+        if(logic.getTarjetaCredito(id)!=null) 
+            throw new WebApplicationException("La tarjeta con id" + id,404);
+        return new TarjetaCreditoDetailDTO(logic.getTarjetaCredito(id));
      }
      /**
      * <h1>GET /api/tarjetasCredito : Obtener todas las tarjetas.</h1>
@@ -152,15 +164,24 @@ public class TarjetaCreditoResource {
      @GET
      public List<TarjetaCreditoDTO> getTarjetaCredito()
      {
-         return new ArrayList<>();
+         return listEntity2DTO(logic.getTarjetasCredito());
      }
      
      @DELETE
      @Path("{id: \\d+ }")
-     public void deleteTarjetaCredito(@PathParam("id") Long id)
+     public void deleteTarjetaCredito(@PathParam("id") Long id) throws BusinessLogicException
      {
-         // se hace despues
-     }
-     
+         if(logic.getTarjetaCredito(id)!=null) 
+            throw new WebApplicationException("El Mensajero con id" + id ,404);
+        logic.deleteTarjetaCredito(id);
+    }
+    
+    public List<TarjetaCreditoDTO>  listEntity2DTO(List<TarjetaCreditoEntity> tarjetasCredito)
+    {
+        List<TarjetaCreditoDTO> retorno = new ArrayList<>();
+        for(TarjetaCreditoEntity x: tarjetasCredito)
+            retorno.add(new TarjetaCreditoDTO(x));
+        return retorno;
+    }
      
 }
