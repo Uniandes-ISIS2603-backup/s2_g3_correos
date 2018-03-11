@@ -83,6 +83,10 @@ public class TarjetaCreditoDTO
     this.numero = entity.getNumero();
    }
    
+   /**
+    * metodo que transforma a entidad
+    * @return la entidad
+    */
    public TarjetaCreditoEntity toEntity(){
     TarjetaCreditoEntity entity = new TarjetaCreditoEntity();
     entity.setId(this.id);

@@ -76,7 +76,10 @@ public class ClienteDTO
     this.nombre = entity.getNombre();
 
 }
-    
+    /**
+     * metodo que transforma a entidad 
+     * @return la entidad 
+     */
 public ClienteEntity toEntity(){
     ClienteEntity entity = new ClienteEntity();
     entity.setId(this.idCliente);
