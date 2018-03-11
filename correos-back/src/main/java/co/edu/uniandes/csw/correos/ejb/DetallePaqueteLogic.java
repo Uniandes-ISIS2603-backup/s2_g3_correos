@@ -58,6 +58,8 @@ public class DetallePaqueteLogic {
             throw new BusinessLogicException ("El mensaje del detalle no puede estar vacío");
         }
         
+        
+        
        persistence.create(entity);
         LOGGER.info("Se termina de crear un detalle");
         return entity;
@@ -89,6 +91,10 @@ public class DetallePaqueteLogic {
         {
             throw new BusinessLogicException ("El mensaje del detalle no puede estar vacío");
         }
+         if(entity == null)
+         {
+             throw new BusinessLogicException ("El detalle solicitado no existe");
+         }
         return persistence.update(entity);
     }
         
