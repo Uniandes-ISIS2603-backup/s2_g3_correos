@@ -23,8 +23,6 @@ SOFTWARE.
  */
 package co.edu.uniandes.csw.correos.resources;
 
-
-import co.edu.uniandes.csw.correos.dtos.CityDetailDTO;
 import co.edu.uniandes.csw.correos.dtos.CalificacionDetailDTO;
 import co.edu.uniandes.csw.correos.ejb.CalificacionLogic;
 import co.edu.uniandes.csw.correos.entities.CalificacionEntity;
@@ -46,7 +44,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.WebApplicationException;
 
 /**
- * <pre>Clase que implementa el recurso "cities".
+ * <pre>Clase que implementa el recurso "calificacion".
  * URL: /api/cities
  * </pre>
  * <i>Note que la aplicación (definida en {@link RestConfig}) define la ruta "/api" y
@@ -72,7 +70,7 @@ public class CalificacionResource {
     /**
      * <h1>POST /api/cities : Crear un comentairo.</h1>
      * 
-     * <pre>Cuerpo de petición: JSON {@link CityDetailDTO}.
+     * <pre>Cuerpo de petición: JSON {@link CalificacionDetailDTO}.
      * 
      * Crea un nuevo  comentario con la informacion que se recibe en el cuerpo 
      * de la petición y se regresa un objeto identico con un id auto-generado 
@@ -86,12 +84,12 @@ public class CalificacionResource {
      * 412 Precodition Failed: Ya existe el comentario.
      * </code>
      * </pre>
-     * @param comentario {@link CalificacionDetailDTO} - El comentairo  que se desea guardar.
+     * @param calificacion {@link CalificacionDetailDTO} - El comentairo  que se desea guardar.
      * @return JSON {@link CalidicacionDetailDTO}  - El comentario que se guardada con el atributo id autogenerado.
      * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} - Error de lógica que se genera cuando ya existe el comentario.
      */
 
-    public CalificacionDetailDTO createCity(CalificacionDetailDTO calificacion) throws BusinessLogicException {
+    public CalificacionDetailDTO createCalificacion(CalificacionDetailDTO calificacion) throws BusinessLogicException {
         return new CalificacionDetailDTO(logica.createCalificacion(calificacion.toEntity()));
     }
 
@@ -107,7 +105,7 @@ public class CalificacionResource {
      * @return JSONArray {@link CalidicacionDetailDTO} - Los comentarios encontrados en la aplicación. Si no hay ninguno retorna una lista vacía.
      */
     @GET
-    public List<CalificacionDetailDTO> getComentairos() {
+    public List<CalificacionDetailDTO> getCalificacions() {
         return listEntityToDTO(logica.getCalificaciones());
     }
 
@@ -135,7 +133,7 @@ public class CalificacionResource {
     
     /**
      * <h1>PUT /api/comentarioss/{id} : Actualizar ciudad con el id dado.</h1>
-     * <pre>Cuerpo de petición: JSON {@link CityDetailDTO}.
+     * <pre>Cuerpo de petición: JSON {@link CalificacionDetailDTO}.
      * 
      * Actualiza el comentario con el id recibido en la URL con la informacion que se recibe en el cuerpo de la petición.
      * 
@@ -147,18 +145,17 @@ public class CalificacionResource {
      * </code> 
      * </pre>
      * @param id Identificador del comentario que se desea actualizar.Este debe ser una cadena de dígitos.
-     * @param city {@link CalificacionDetailDTO} El comentario que se desea guardar.
+     * @param calificacion {@link CalificacionDetailDTO} El comentario que se desea guardar.
      * @return JSON {@link CalificacionDetailDTO} - El comentario guardada.
      * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} - Error de lógica que se genera al no poder actualizar el comentario porque ya existe una con ese nombre.
      */
     @PUT
     @Path("{id: \\d+}")
-    public CalificacionDetailDTO updateComentario(@PathParam("id") Long id, CalificacionDetailDTO comentario) throws BusinessLogicException {
+    public CalificacionDetailDTO updateCalificacion(@PathParam("id") Long id, CalificacionDetailDTO comentario) throws BusinessLogicException {
         if(logica.getCalificacion(id)==null){
             throw new WebApplicationException("La calificacion  con id" + id + "no existe",404);
         }
-        
-        
+
         return new CalificacionDetailDTO(logica.updateCalificacion(comentario.toEntity()));
     }
     
@@ -178,7 +175,7 @@ public class CalificacionResource {
      */
     @DELETE
     @Path("{id: \\d+}")
-     public void deletComentario(@PathParam("id") Long id) throws BusinessLogicException {
+     public void deleteCalificacion(@PathParam("id") Long id) throws BusinessLogicException {
        if(logica.getCalificacion(id)==null){
             throw new WebApplicationException("La calificacion  con id" + id + "no existe",404);
         }

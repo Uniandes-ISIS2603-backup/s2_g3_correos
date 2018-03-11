@@ -21,7 +21,7 @@ import uk.co.jemos.podam.common.PodamExclude;
 @Entity
 public class ClienteEntity extends BaseEntity implements Serializable {
     
-    private String nombre; // nombre dek cliente
+    private String nombre; // nombre del cliente
    
     @PodamExclude
     @OneToMany(mappedBy = "cliente", cascade = CascadeType.PERSIST, orphanRemoval = true)
@@ -53,7 +53,7 @@ public class ClienteEntity extends BaseEntity implements Serializable {
 
     /**
      * Modifica los bonos de un cliente.
-     * @param reviews Las nuevas reseñas.
+     * @param bonos Los bonos.
      */
     public void setBonos(List<BonoEntity> bonos) {
         this.bonos = bonos;

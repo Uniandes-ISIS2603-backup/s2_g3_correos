@@ -24,13 +24,15 @@ SOFTWARE.
 package co.edu.uniandes.csw.correos.resources;
 
 
-import co.edu.uniandes.csw.correos.dtos.CityDetailDTO;
 import co.edu.uniandes.csw.correos.dtos.ZonaDetailDTO;
+import co.edu.uniandes.csw.correos.ejb.ZonaLogic;
+import co.edu.uniandes.csw.correos.entities.ZonaEntity;
 import co.edu.uniandes.csw.correos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.correos.mappers.BusinessLogicExceptionMapper;
 import java.util.ArrayList;
 import java.util.List;
 import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 
 import javax.ws.rs.DELETE;
@@ -62,11 +64,14 @@ import javax.ws.rs.Produces;
 @Consumes("application/json")
 @RequestScoped
 public class ZonaResource {
+    
+    @Inject
+    private ZonaLogic logica;
 
     /**
      * <h1>POST /api/cities : Crear una zona.</h1>
      * 
-     * <pre>Cuerpo de petición: JSON {@link CityDetailDTO}.
+     * <pre>Cuerpo de petición: JSON {@link ZonaDetailDTO}.
      * 
      * Crea una nueva zona con la informacion que se recibe en el cuerpo 
      * de la petición y se regresa un objeto identico con un id auto-generado 
@@ -85,8 +90,8 @@ public class ZonaResource {
      * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} - Error de lógica que se genera cuando ya existe la zona.
      */
     @POST
-    public ZonaDetailDTO createCity(ZonaDetailDTO zona) throws BusinessLogicException {
-        return zona;
+    public ZonaDetailDTO createZona(ZonaDetailDTO zona) throws BusinessLogicException {
+        return new ZonaDetailDTO(logica.createZona(zona.toEntity()));
     }
 
     /**
@@ -101,8 +106,8 @@ public class ZonaResource {
      * @return JSONArray {@link ZonaDetailDTO} - Las zonas encontradas en la aplicación. Si no hay ninguna retorna una lista vacía.
      */
     @GET
-    public List<CityDetailDTO> getZonas() {
-        return new ArrayList<>();
+    public List<ZonaDetailDTO> getZonas() {
+        return listEntityToDTO(logica.getZonas());
     }
 
     /**
@@ -124,7 +129,7 @@ public class ZonaResource {
     @GET
     @Path("{id: \\d+}")
     public ZonaDetailDTO getZona(@PathParam("id") Long id) {
-        return null;
+        return new ZonaDetailDTO(logica.getZona(id));
     }
     
     /**
@@ -141,14 +146,14 @@ public class ZonaResource {
      * </code> 
      * </pre>
      * @param id Identificador de la zona que se desea actualizar.Este debe ser una cadena de dígitos.
-     * @param zona {@link CityDetailDTO} La zona que se desea guardar.
-     * @return JSON {@link CityDetailDTO} - La zona guardada.
+     * @param zona {@link ZonaDetailDTO} La zona que se desea guardar.
+     * @return JSON {@link ZonaDetailDTO} - La zona guardada.
      * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} - Error de lógica que se genera al no poder actualizar la zona porque ya existe una con ese nombre.
      */
     @PUT
     @Path("{id: \\d+}")
     public ZonaDetailDTO updateZona(@PathParam("id") Long id, ZonaDetailDTO zona) throws BusinessLogicException {
-        return zona;
+        return new ZonaDetailDTO(logica.updateZona(zona.toEntity()));
     }
     
     /**
@@ -167,7 +172,19 @@ public class ZonaResource {
      */
     @DELETE
     @Path("{id: \\d+}")
-     public void deleteZona(@PathParam("id") Long id) {
-        // Void
+     public void deleteZona(@PathParam("id") Long id) throws BusinessLogicException {
+        logica.deleteZona(logica.getZona(id));
+    }
+      /**
+      * Convierte una lista de Entity en una lista de DTOs
+      * @param zona 
+      * @return Una lista de ZonaDetailDTO
+      */
+     public List<ZonaDetailDTO>  listEntityToDTO(List<ZonaEntity> zonas)
+    {
+        List<ZonaDetailDTO> retorno = new ArrayList<>();
+        for(ZonaEntity x: zonas)
+            retorno.add(new ZonaDetailDTO(x));
+        return retorno;
     }
 }
