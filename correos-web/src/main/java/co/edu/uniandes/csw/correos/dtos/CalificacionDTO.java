@@ -75,14 +75,14 @@ public class CalificacionDTO {
     }
     
     /**
-     * @return el ID del comentario
+     * @return el id de la calificacion
      */
     public Long getId() {
         return id;
     }
     
     /**
-     * @param id el nuevo id del comentario
+     * @param id el nuevo id de de la calificacion
      */
     public void setId(Long pId) {
         this.id = pId;
@@ -90,27 +90,27 @@ public class CalificacionDTO {
     
     
     /**
-     * @return la calificacion del comentairo
+     * @return la calificacion de las calificacion
      */
     public double getCalificacion() {
         return calificacion;
     }
     
     /**
-     * @param pCalificacion del nuevo comentario
+     * @param pCalificacion de la calificacion
      */
     public void setCalificacion(int pCalificacion) {
         this.calificacion = pCalificacion;
     }
     /**
-     * @return el comentario del comentairo
+     * @return el comentario de la calificacion
      */
     public String getComentario() {
         return comentario;
     }
     
     /**
-     * @param pComentario comentario del comentario
+     * @param pComentario comentario dela calificacion
      */
     public void setComentario(String pComentario) {
         this.comentario = pComentario;

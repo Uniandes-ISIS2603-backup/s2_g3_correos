@@ -7,6 +7,7 @@ package co.edu.uniandes.csw.corres.test.logic;
 
 import co.edu.uniandes.csw.correos.ejb.CalificacionLogic;
 import co.edu.uniandes.csw.correos.entities.CalificacionEntity;
+import co.edu.uniandes.csw.correos.entities.MensajeroEntity;
 
 import co.edu.uniandes.csw.correos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.correos.persistence.CalificacionPersistence;
@@ -113,6 +114,7 @@ public class CalificacionLogicTest {
     @Test
     public void createCalificacionTest() throws BusinessLogicException {
         CalificacionEntity newEntity = factory.manufacturePojo(CalificacionEntity.class);
+        newEntity.setMensajero(new MensajeroEntity());
         CalificacionEntity result = calificacionLogic.createCalificacion(newEntity);
         Assert.assertNotNull(result);
         CalificacionEntity entity = em.find(CalificacionEntity.class, result.getId());
@@ -182,6 +184,7 @@ public class CalificacionLogicTest {
         CalificacionEntity pojoEntity = factory.manufacturePojo(CalificacionEntity.class);
 
         pojoEntity.setId(entity.getId());
+
 
         calificacionLogic.updateCalificacion(pojoEntity);
 

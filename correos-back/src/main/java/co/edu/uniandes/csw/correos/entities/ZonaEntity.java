@@ -5,11 +5,13 @@
  */
 package co.edu.uniandes.csw.correos.entities;
 
+import co.edu.uniandes.csw.correos.podamstrategy.DoubleZonaStrategy;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import uk.co.jemos.podam.common.PodamExclude;
+import uk.co.jemos.podam.common.PodamStrategyValue;
 
 /**
  *
@@ -18,8 +20,10 @@ import uk.co.jemos.podam.common.PodamExclude;
 @Entity
 public class ZonaEntity extends BaseEntity implements Serializable{
     
-    private Long latitud;
-    private Long longitud;
+    @PodamStrategyValue(DoubleZonaStrategy.class)
+    private Double latitud;
+    @PodamStrategyValue(DoubleZonaStrategy.class)
+    private Double longitud;
     
     @PodamExclude
     @ManyToMany
@@ -30,26 +34,26 @@ public class ZonaEntity extends BaseEntity implements Serializable{
     /**
      * @return la latitud
      */    
-    public Long getLatitud(){
+    public Double getLatitud(){
         return this.latitud;
     }
     /**
      * @param latitud a insertar
      */
-    public void setLatitud(Long latitud){
+    public void setLatitud(Double latitud){
         this.latitud=latitud;
     }
     /**
      * @return la longitud
      */
-    public Long getLongitud(){
+    public Double getLongitud(){
         return this.longitud;
     }
     /**
      * @param longitud a insertar
      */
     
-    public void setLongitud(Long longitud){
+    public void setLongitud(Double longitud){
         this.longitud=longitud;
     }
 
