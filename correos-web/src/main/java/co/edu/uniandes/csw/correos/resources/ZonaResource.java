@@ -178,7 +178,7 @@ public class ZonaResource {
       /**
       * Convierte una lista de Entity en una lista de DTOs
       * @param zona 
-      * @return Una lista de CalifiacionDetailDTO
+      * @return Una lista de ZonaDetailDTO
       */
      public List<ZonaDetailDTO>  listEntityToDTO(List<ZonaEntity> zonas)
     {
