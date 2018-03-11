@@ -19,8 +19,11 @@ import uk.co.jemos.podam.common.PodamStrategyValue;
 @Entity
 public class CalificacionEntity extends BaseEntity implements Serializable{
     
+
     @PodamStrategyValue(IntegerCalificacionStrategy.class)
     private Integer calificacion;
+
+
     private String comentario;
     
     @PodamExclude
@@ -29,14 +32,14 @@ public class CalificacionEntity extends BaseEntity implements Serializable{
      /**
      * @return la calificacion
      */
-    public Integer getCalificacion(){
+    public int getCalificacion(){
         return this.calificacion;
     }
     
      /**
      * @param calificacion a insertar
      */
-    public void setCalificacion(Integer calificacion){
+    public void setCalificacion(int calificacion){
         this.calificacion=calificacion;
     }
      /**

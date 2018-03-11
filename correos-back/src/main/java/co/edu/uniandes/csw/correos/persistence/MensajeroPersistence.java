@@ -96,7 +96,7 @@ public class MensajeroPersistence {
     
      public List<MensajeroEntity> findByCorreo(String correo)
     {
-        TypedQuery query= em.createQuery("select u From MensajeroEntity where u.correo= :correo", MensajeroEntity.class);
+        TypedQuery query= em.createQuery("select u From MensajeroEntity u where u.correo= :correo", MensajeroEntity.class);
         query=query.setParameter("correo", correo);
         List<MensajeroEntity> x= query.getResultList();
         if(x.isEmpty())
@@ -107,8 +107,8 @@ public class MensajeroPersistence {
      
       public List<MensajeroEntity> findByNumero(String celular)
     {
-        TypedQuery query= em.createQuery("select u From MensajeroEntity where u.celular= :celular", MensajeroEntity.class);
-        query=query.setParameter("nombre", celular);
+        TypedQuery query= em.createQuery("select u From MensajeroEntity u where u.celular= :celular", MensajeroEntity.class);
+        query=query.setParameter("celular", celular);
         List<MensajeroEntity> x= query.getResultList();
         if(x.isEmpty())
             return null;

@@ -46,7 +46,7 @@ public class MensajeroEntity extends BaseEntity implements Serializable {
     private Double calificacionPromedio;
     
     @PodamExclude
-   @OneToOne(fetch = FetchType.EAGER)
+   @OneToOne(cascade= CascadeType.PERSIST,fetch = FetchType.EAGER)
     private CuentaBancariaEntity cuenta;
    
     @PodamExclude
@@ -58,7 +58,7 @@ public class MensajeroEntity extends BaseEntity implements Serializable {
    private List<CalificacionEntity> calificaciones;
 
     @PodamExclude
-    @OneToMany(mappedBy="mensajero", fetch = FetchType.EAGER)
+    @OneToMany(cascade=CascadeType.PERSIST,mappedBy="mensajero", fetch = FetchType.EAGER)
     private List<EnvioEntity> envios;
     
     @PodamExclude

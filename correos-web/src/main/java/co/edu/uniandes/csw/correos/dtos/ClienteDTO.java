@@ -23,7 +23,7 @@ SOFTWARE.
  */
 package co.edu.uniandes.csw.correos.dtos;
 
-// import co.edu.uniandes.csw.correos.entities.ClienteEntity;
+ import co.edu.uniandes.csw.correos.entities.ClienteEntity;
 
 /**
  * ClienteDTO Objeto de transferencia de datos de cliente. Los DTO contienen las
@@ -60,19 +60,33 @@ public class ClienteDTO
     /**
      * Constructor por defecto
      */
-    public ClienteDTO
-        () {
+    public ClienteDTO() 
+    {
+        // este metodo se deja vacio
     }
 
     /**
      * Conviertir Entity a DTO (Crea un nuevo DTO con los valores que recibe en
      * la entidad que viene de argumento.
      *
-     * @param cliente: Es la entidad que se va a convertir a DTO
+     * @param ClienteEntity: Es la entidad que se va a convertir a DTO
      */
-   // public ClienteDTO se hace con la persistencia 
-   
-    
+   public ClienteDTO(ClienteEntity entity){
+    this.idCliente = entity.getId();
+    this.nombre = entity.getNombre();
+
+}
+    /**
+     * metodo que transforma a entidad 
+     * @return la entidad 
+     */
+public ClienteEntity toEntity(){
+    ClienteEntity entity = new ClienteEntity();
+    entity.setId(this.idCliente);
+    entity.setNombre(this.nombre);
+    return entity;
+}
+
 
     /**
      * @return El ID del usuario 
@@ -102,10 +116,4 @@ public class ClienteDTO
         this.nombre = nombre;
     }
 
-   
-
-    /**
-     * Convertir DTO a Entity se hace con la persistencia 
-     *
-**/  
-}
+ }
