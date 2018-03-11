@@ -125,20 +125,13 @@ public class EnvioLogicTest {
      * Prueba para crear un Envio.
      */
     @Test
-    public void createEnvioTest() throws BusinessLogicException {
+    public void createEnvioTest() throws BusinessLogicException {        
         
-        EnvioEntity newEntity = factory.manufacturePojo(EnvioEntity.class);
-        newEntity.setCliente(factory.manufacturePojo(ClienteEntity.class));        
-        List<PaqueteEntity> paquetes = new ArrayList<PaqueteEntity>();
-        for (int j = 0; j < 3; j++) {
-                PaqueteEntity paquete = factory.manufacturePojo(PaqueteEntity.class);
-                paquetes.add(paquete);
-            }  
-        newEntity.setPaquetes(paquetes); 
+        EnvioEntity newEntity = factory.manufacturePojo(EnvioEntity.class);        
+        newEntity.setCliente(dataClientes.get(0));                
+        newEntity.setPaquetes(dataPaquetes);
+        
         EnvioEntity result = envioLogic.createEnvio(newEntity);
-        
-        
-        newEntity.setPaquetes(result.getPaquetes());
         
         Assert.assertNotNull(result);
         EnvioEntity entity = em.find(EnvioEntity.class, result.getId());

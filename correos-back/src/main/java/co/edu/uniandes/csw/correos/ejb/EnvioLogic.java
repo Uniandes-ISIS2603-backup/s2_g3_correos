@@ -45,8 +45,7 @@ public class EnvioLogic {
         }
         if (entity.getEstado()==null){
             throw new BusinessLogicException("No se reconoce un estado.");
-        }
-        if (entity.getPaquetes().isEmpty()){
+        }if (entity.getPaquetes().isEmpty()){
             throw new BusinessLogicException("No hay paquetes en el envio.");
         }
         
