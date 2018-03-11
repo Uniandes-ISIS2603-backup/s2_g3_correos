@@ -6,6 +6,7 @@
 package co.edu.uniandes.csw.correos.ejb;
 
 import co.edu.uniandes.csw.correos.entities.EnvioEntity;
+import co.edu.uniandes.csw.correos.entities.EventoEntity;
 import co.edu.uniandes.csw.correos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.correos.persistence.EnvioPersistence;
 import java.util.List;
@@ -127,6 +128,19 @@ public class EnvioLogic {
         else {
             return envio.getHoraInicio()+2000;
         }     
+    }
+    /**
+     * 
+     * @param id el ID del evento al que se le va a anadir el nuevo detalle
+     * @param evento el evento a ser anadido
+     */
+    public void agregarEvento(Long id, EventoEntity evento)
+    {
+       EnvioEntity envio= persistence.find(id);
+       List<EventoEntity> eventos = envio.getEventos();
+       eventos.add(evento);
+       envio.setEventos(eventos);
+       persistence.update(envio);
     }
 }
 
