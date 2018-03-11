@@ -24,8 +24,11 @@ SOFTWARE.
 
 package co.edu.uniandes.csw.correos.dtos;
 
+import co.edu.uniandes.csw.correos.entities.CalificacionEntity;
 import co.edu.uniandes.csw.correos.entities.EnvioEntity;
 import co.edu.uniandes.csw.correos.entities.MensajeroEntity;
+import co.edu.uniandes.csw.correos.entities.TransporteEntity;
+import co.edu.uniandes.csw.correos.entities.ZonaEntity;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -52,6 +55,24 @@ public class MensajeroDetailDTO extends MensajeroDTO
         super();
     }
     
+    public MensajeroDetailDTO(MensajeroEntity entity)
+    {
+        super(entity);
+        if(entity.getCalificaciones()!=null)
+            for(CalificacionEntity x : entity.getCalificaciones())
+                this.comentarios.add(new CalificacionDTO(x));
+        if(entity.getEnvios()!=null)
+            for(EnvioEntity x:entity.getEnvios())
+               this.envios.add(new EnvioDTO(x));
+        if(entity.getZonas() !=null)
+            for(ZonaEntity x: entity.getZonas())
+                this.zonas.add(new ZonaDTO(x));
+        if(entity.getTransportes()!=null)
+            for(TransporteEntity x: entity.getTransportes())
+                this.transportes.add(new TransporteDTO(x));
+        if(entity.getCuenta()!=null)
+            this.cuentaBancaria=new CuentaBancariaDTO(entity.getCuenta());
+    }
     /**
      * @return La lista de los trasnportes asociados al mensajero
      */
@@ -122,16 +143,39 @@ public class MensajeroDetailDTO extends MensajeroDTO
         this.zonas = zonas;
     }
     
+    @Override
     public MensajeroEntity toEntity()
     {
-        MensajeroEntity entity=new MensajeroEntity();
-        entity.setCalificacionPromedio(getCalificacionPromedio());
-        entity.setNombre(getNombre());
-        entity.setCelular(getCelular());
-        entity.setCorreo(getCorreo());
-        entity.setId(getId());
-        ArrayList<EnvioEntity> nuevaEnvios=new ArrayList<>();
+        MensajeroEntity entity= super.toEntity();        
+        if(this.envios!=null){
+            ArrayList<EnvioEntity> nuevaEnvios=new ArrayList<>();
+            for(EnvioDTO x: this.envios)
+                nuevaEnvios.add(x.toEntity());
+            entity.setEnvios(nuevaEnvios);
+        }
+        if(this.comentarios!=null){
+            ArrayList<CalificacionEntity> nuevaCalificaciones=new ArrayList<>();
+            for(CalificacionDTO x: this.comentarios)
+                nuevaCalificaciones.add(x.toEntity());
+            entity.setCalificaciones(nuevaCalificaciones);
+        }
+        if(this.transportes!=null){
+            ArrayList<TransporteEntity> nuevaTransportes=new ArrayList<>();
+            for(TransporteDTO x: this.transportes)
+                nuevaTransportes.add(x.toEntity());
+            entity.setTransportes(nuevaTransportes);
+        }
+        if(this.zonas!=null){
+            ArrayList<ZonaEntity> nuevaZonas=new ArrayList<>();
+            for(ZonaDTO x: this.zonas)
+                nuevaZonas.add(x.toEntity());
+            entity.setZonas(nuevaZonas);
+        }
+        if(this.cuentaBancaria!=null)
+            entity.setCuenta(this.cuentaBancaria.toEntity());
         return entity;
     }
+
+    
             
 }
