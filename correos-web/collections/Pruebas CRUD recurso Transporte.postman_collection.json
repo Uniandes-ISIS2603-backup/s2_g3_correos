@@ -1,0 +1,320 @@
+{
+	"variables": [],
+	"info": {
+		"name": "Pruebas CRUD recurso Transporte",
+		"_postman_id": "3d71eade-8a50-bf14-902c-830356b4a75f",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Obtener todos los transportes}",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 404\"] =responseCode.code===404;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/correos-web/api/mensajeros/1000/transportes",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": "Unsuccesful GET request\n404 not found, el mensajero no existe"
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener todos los transportes",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] =responseCode.code===200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/correos-web/api/mensajeros/10001/transportes",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": "Succesful GET request\n200 OK"
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener un transporte",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] =responseCode.code===200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/correos-web/api/mensajeros/10001/transportes/10001",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": "Succesful GET request\n200 OK"
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener un transporte",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 404\"] =responseCode.code===404;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/correos-web/api/mensajeros/10001/transportes/1000",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": "Unsuccesful GET request\n404 not found no existe el transporte"
+			},
+			"response": []
+		},
+		{
+			"name": "Crear un transporte",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] =responseCode.code===200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/correos-web/api/mensajeros/10001/transportes",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n      \"tipo\": \"Moto\",\n      \"capacidad\": \"4 kg\",\n      \"activo\": \"false\"\n}"
+				},
+				"description": "Succesful POST\n200 ok"
+			},
+			"response": []
+		},
+		{
+			"name": "Crear un transporte",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 404\"] =responseCode.code===404;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/correos-web/api/mensajeros/1000/transportes",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n      \"tipo\": \"Moto\",\n      \"capacidad\": \"4 kg\",\n      \"activo\": \"false\"\n}"
+				},
+				"description": "Unsuccesful POST request\n404 no existe el mensjaero al que se le queria agregar el transporte"
+			},
+			"response": []
+		},
+		{
+			"name": "Cambiar un transporte",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] =responseCode.code===200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/correos-web/api/mensajeros/10001/transportes/10001",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n      \"tipo\": \"camioneta\",\n      \"capacidad\": \"4 kg\",\n      \"activo\": \"false\"\n}"
+				},
+				"description": "Succesful PUT request\n200 OK"
+			},
+			"response": []
+		},
+		{
+			"name": "Cambiar un transporte",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 404\"] =responseCode.code===404;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/correos-web/api/mensajeros/10001/transportes/1000",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n      \"tipo\": \"camioneta\",\n      \"capacidad\": \"4 kg\",\n      \"activo\": \"false\"\n}"
+				},
+				"description": "Unsuccesful PUT request\n404 no existe el transporte que se queria cambiar"
+			},
+			"response": []
+		},
+		{
+			"name": "Cambiar un transporte",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 404\"] =responseCode.code===404;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/correos-web/api/mensajeros/1000/transportes/10001",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n      \"tipo\": \"camioneta\",\n      \"capacidad\": \"4 kg\",\n      \"activo\": \"false\"\n}"
+				},
+				"description": "Unsuccesful PUT request\n404 no existe el mensajero"
+			},
+			"response": []
+		},
+		{
+			"name": "Eliminar un transporte",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 204\"] =responseCode.code===204;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/correos-web/api/mensajeros/10001/transportes/10001",
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"description": "Succesful DELETE request\n200 OK"
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar un Transporte",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 404\"] =responseCode.code===404;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/correos-web/api/mensajeros/10001/transportes/1000",
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"description": "Unsuccesful DELETE request\n404 no existe el transporte"
+			},
+			"response": []
+		},
+		{
+			"name": "Eliminar un transporte",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 404\"] =responseCode.code===404;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/correos-web/api/mensajeros/1000/transportes/10001",
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"description": "Unsuccesful DELETE request\n404 no existe el mensajero"
+			},
+			"response": []
+		}
+	]
+}

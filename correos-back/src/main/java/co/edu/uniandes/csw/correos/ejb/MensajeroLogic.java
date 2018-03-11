@@ -87,14 +87,18 @@ public class MensajeroLogic {
     
     public MensajeroEntity putMensajero(MensajeroEntity mensajero) throws BusinessLogicException
     {
-        if(persistence.findByCorreo(mensajero.getCorreo())!=null)
-            throw new BusinessLogicException("ya existe un mensajero con ese Correo Electrónico!");
-        else if(persistence.findByNumero(mensajero.getCelular())!=null)
-            throw new BusinessLogicException("ya existe un mensajero con ese numero telefónico!");
-        else{
+        if(!persistence.find(mensajero.getId()).getCorreo().equals(mensajero.getCorreo()) ||!persistence.find(mensajero.getId()).getCelular().equals(mensajero.getCelular()))
+        {
+            if(persistence.findByCorreo(mensajero.getCorreo())!=null )
+                throw new BusinessLogicException("ya existe un mensajero con ese Correo Electrónico!");
+            else if(persistence.findByNumero(mensajero.getCelular())!=null)
+                throw new BusinessLogicException("ya existe un mensajero con ese numero telefónico!");
+        }
+        
             mensajero.setCalificacionPromedio(calcularCalificaionPromedio(mensajero));
             return persistence.update(mensajero);
-        }
+        
+        
     }
     
     public void deleteMensajero(MensajeroEntity mensajero)
