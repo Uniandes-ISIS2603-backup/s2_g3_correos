@@ -126,8 +126,20 @@ public class EnvioLogicTest {
      */
     @Test
     public void createEnvioTest() throws BusinessLogicException {
+        
         EnvioEntity newEntity = factory.manufacturePojo(EnvioEntity.class);
+        newEntity.setCliente(factory.manufacturePojo(ClienteEntity.class));        
+        List<PaqueteEntity> paquetes = new ArrayList<PaqueteEntity>();
+        for (int j = 0; j < 3; j++) {
+                PaqueteEntity paquete = factory.manufacturePojo(PaqueteEntity.class);
+                paquetes.add(paquete);
+            }  
+        newEntity.setPaquetes(paquetes); 
         EnvioEntity result = envioLogic.createEnvio(newEntity);
+        
+        
+        newEntity.setPaquetes(result.getPaquetes());
+        
         Assert.assertNotNull(result);
         EnvioEntity entity = em.find(EnvioEntity.class, result.getId());
         Assert.assertEquals(newEntity.getId(), entity.getId());
@@ -190,6 +202,8 @@ public class EnvioLogicTest {
         EnvioEntity entity = data.get(0);
         EnvioEntity pojoEntity = factory.manufacturePojo(EnvioEntity.class);
         pojoEntity.setId(entity.getId());
+        pojoEntity.setCliente(entity.getCliente());
+        pojoEntity.setPaquetes(entity.getPaquetes());
 
         envioLogic.updateEnvio(pojoEntity);
 
