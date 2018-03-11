@@ -15,9 +15,16 @@ import co.edu.uniandes.csw.correos.entities.MensajeroEntity;
 public class CalificacionDetailDTO  extends CalificacionDTO {
     private MensajeroDTO mensajero;
     
+    /**
+     * Constructor de la clase vacio
+     */
     public CalificacionDetailDTO(){
         super();
     }
+    /**
+     * Constrctor de la clase a partir de un entity
+     * @param entity CalificacionEntity
+     */
     
     public CalificacionDetailDTO(CalificacionEntity entity){
         super();
@@ -25,6 +32,10 @@ public class CalificacionDetailDTO  extends CalificacionDTO {
         this.mensajero=m;
         
     }
+    /**
+     * Metodo para convertir DetailDTO a Entity de la Calificaicon
+     * @return un objeto CalificacionEntity con las caracteristicas del DeatailDTO
+     */
     
     public CalificacionEntity toEntity(){
         CalificacionEntity entity= super.toEntity();
@@ -34,11 +45,17 @@ public class CalificacionDetailDTO  extends CalificacionDTO {
         }
         return entity;
     }
-
+    /**
+     * Obtener Mensajer
+     * @return MensajeroDTO el mensajero asociado a la calificacion
+     */
     public MensajeroDTO getMensajero() {
         return mensajero;
     }
-
+    /**
+     * Poner mensajer
+     * @param mensajero MensajeroDTO
+     */
     public void setMensajero(MensajeroDTO mensajero) {
         this.mensajero = mensajero;
     }

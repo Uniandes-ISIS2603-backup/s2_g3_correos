@@ -26,11 +26,14 @@ package co.edu.uniandes.csw.correos.resources;
 
 import co.edu.uniandes.csw.correos.dtos.CityDetailDTO;
 import co.edu.uniandes.csw.correos.dtos.CalificacionDetailDTO;
+import co.edu.uniandes.csw.correos.ejb.CalificacionLogic;
+import co.edu.uniandes.csw.correos.entities.CalificacionEntity;
 import co.edu.uniandes.csw.correos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.correos.mappers.BusinessLogicExceptionMapper;
 import java.util.ArrayList;
 import java.util.List;
 import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 
 import javax.ws.rs.DELETE;
@@ -40,6 +43,7 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.WebApplicationException;
 
 /**
  * <pre>Clase que implementa el recurso "cities".
@@ -62,7 +66,9 @@ import javax.ws.rs.Produces;
 @Consumes("application/json")
 @RequestScoped
 public class CalificacionResource {
-
+    @Inject
+    private CalificacionLogic logica;
+    
     /**
      * <h1>POST /api/cities : Crear un comentairo.</h1>
      * 
@@ -85,8 +91,8 @@ public class CalificacionResource {
      * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} - Error de lógica que se genera cuando ya existe el comentario.
      */
 
-    public CalificacionDetailDTO createCity(CalificacionDetailDTO comentario) throws BusinessLogicException {
-        return comentario;
+    public CalificacionDetailDTO createCity(CalificacionDetailDTO calificacion) throws BusinessLogicException {
+        return new CalificacionDetailDTO(logica.createCalificacion(calificacion.toEntity()));
     }
 
     /**
@@ -102,7 +108,7 @@ public class CalificacionResource {
      */
     @GET
     public List<CalificacionDetailDTO> getComentairos() {
-        return new ArrayList<>();
+        return listEntityToDTO(logica.getCalificaciones());
     }
 
     /**
@@ -123,8 +129,8 @@ public class CalificacionResource {
      */
     @GET
     @Path("{id: \\d+}")
-    public CalificacionDetailDTO getComentario(@PathParam("id") Long id) {
-        return null;
+    public CalificacionDetailDTO getCalificacion(@PathParam("id") Long id) {
+        return new CalificacionDetailDTO(logica.getCalificacion(id));
     }
     
     /**
@@ -148,7 +154,12 @@ public class CalificacionResource {
     @PUT
     @Path("{id: \\d+}")
     public CalificacionDetailDTO updateComentario(@PathParam("id") Long id, CalificacionDetailDTO comentario) throws BusinessLogicException {
-        return comentario;
+        if(logica.getCalificacion(id)==null){
+            throw new WebApplicationException("La calificacion  con id" + id + "no existe",404);
+        }
+        
+        
+        return new CalificacionDetailDTO(logica.updateCalificacion(comentario.toEntity()));
     }
     
     /**
@@ -167,7 +178,25 @@ public class CalificacionResource {
      */
     @DELETE
     @Path("{id: \\d+}")
-     public void deletComentario(@PathParam("id") Long id) {
-        // Void
+     public void deletComentario(@PathParam("id") Long id) throws BusinessLogicException {
+       if(logica.getCalificacion(id)==null){
+            throw new WebApplicationException("La calificacion  con id" + id + "no existe",404);
+        }
+       else{
+           logica.deleteCalificacion(logica.getCalificacion(id));
+       }
+     }
+     
+     /**
+      * Convierte una lista de Entity en una lista de DTOs
+      * @param califiaciones 
+      * @return Una lista de CalifiacionDetailDTO
+      */
+     public List<CalificacionDetailDTO>  listEntityToDTO(List<CalificacionEntity> calificaciones)
+    {
+        List<CalificacionDetailDTO> retorno = new ArrayList<>();
+        for(CalificacionEntity x: calificaciones)
+            retorno.add(new CalificacionDetailDTO(x));
+        return retorno;
     }
 }
