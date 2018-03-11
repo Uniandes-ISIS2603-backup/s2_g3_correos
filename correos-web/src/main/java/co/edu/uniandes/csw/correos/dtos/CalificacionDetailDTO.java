@@ -46,14 +46,14 @@ public class CalificacionDetailDTO  extends CalificacionDTO {
         return entity;
     }
     /**
-     * Obtener Mensajer
+     * Obtener Mensajero
      * @return MensajeroDTO el mensajero asociado a la calificacion
      */
     public MensajeroDTO getMensajero() {
         return mensajero;
     }
     /**
-     * Poner mensajer
+     * Poner mensajero
      * @param mensajero MensajeroDTO
      */
     public void setMensajero(MensajeroDTO mensajero) {
