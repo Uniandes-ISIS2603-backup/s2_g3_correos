@@ -16,8 +16,8 @@ import co.edu.uniandes.csw.correos.entities.ZonaEntity;
  * <pre>
  *   {
  *      "id":long,
- *      "longitud": long,
- *      "latitud": long,
+ *      "longitud": double,
+ *      "latitud": double,
  *   }
  * </pre>
  * Por ejemplo un evento se representa asi:<br>
@@ -35,8 +35,8 @@ import co.edu.uniandes.csw.correos.entities.ZonaEntity;
  */
 public class ZonaDTO {
     private long id;
-    private long latitud;
-    private long longitud;
+    private double latitud;
+    private double longitud;
     
     /**
      * Contructor vacio
@@ -71,28 +71,28 @@ public class ZonaDTO {
      /**
      * @return La latidud asociada a la zona
      */
-    public Long getLatitud() {
-        return id;
+    public Double getLatitud() {
+        return latitud;
     }
 
     /**
      * @param latitud La nueva latitud
      */
-    public void setLatitud(Long latitud) {
+    public void setLatitud(Double latitud) {
         this.latitud = latitud;
     }
     
      /**
-     * @return El ID de la ciudad
+     * @return La longitud asociada a la zona
      */
-    public Long getLongitud() {
-        return longitud;
+    public Double getLongitud() {
+        return latitud;
     }
 
     /**
-     * @param id El nuevo ID
+     * @param longitud asociada a la zona
      */
-    public void setLongitud(Long longitud) {
+    public void setLongitud(Double longitud) {
         this.longitud = longitud;
     }
     /**

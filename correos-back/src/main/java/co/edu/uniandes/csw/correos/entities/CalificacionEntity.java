@@ -5,10 +5,12 @@
  */
 package co.edu.uniandes.csw.correos.entities;
 
+import co.edu.uniandes.csw.correos.podamstrategy.IntegerCalificacionStrategy;
 import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import uk.co.jemos.podam.common.PodamExclude;
+import uk.co.jemos.podam.common.PodamStrategyValue;
 
 /**
  *
@@ -17,6 +19,7 @@ import uk.co.jemos.podam.common.PodamExclude;
 @Entity
 public class CalificacionEntity extends BaseEntity implements Serializable{
     
+    @PodamStrategyValue(IntegerCalificacionStrategy.class)
     private Integer calificacion;
     private String comentario;
     
@@ -51,11 +54,17 @@ public class CalificacionEntity extends BaseEntity implements Serializable{
     public void setComentario(String comentario){
         this.comentario=comentario;
     }
-
+    /**
+     * Obtener Mensajero
+     * @return un mensajeroEntity
+     */
     public MensajeroEntity getMensajero() {
         return mensajero;
     }
-
+    /**
+     * Poner mensajero
+     * @param mensajero MensajeroEntity
+     */
     public void setMensajero(MensajeroEntity mensajero) {
         this.mensajero = mensajero;
     }

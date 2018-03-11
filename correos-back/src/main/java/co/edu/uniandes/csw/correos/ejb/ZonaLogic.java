@@ -30,10 +30,10 @@ public class ZonaLogic {
     public ZonaEntity createZona(ZonaEntity Zona) throws BusinessLogicException{
         LOGGER.info("Inicia proceso de creación de la Zona");
         // Verifica la regla de negocio que dice que una zona siempre debe tener la latitud entre 90 y -90
-        if (Zona.getLatitud()<90 &&Zona.getLatitud()>-90 ) {
+        if (Zona.getLatitud()>90.0 &&Zona.getLatitud()<-90.0 ) {
             throw new BusinessLogicException("La zona debe tener  una latitud en el rango \"" + Zona.getLatitud() + "\"");
         }
-        else if (Zona.getLongitud()<90 && Zona.getLongitud()>-90 ) {
+        else if (Zona.getLongitud()>90.0 && Zona.getLongitud()<-90.0 ) {
             throw new BusinessLogicException("La zona debe tener  una longitud en el rango \"" + Zona.getLongitud() + "\"");
         }
         
@@ -55,10 +55,10 @@ public class ZonaLogic {
         return zP.find(id);
     }
     public ZonaEntity updateZona(ZonaEntity Zona) throws BusinessLogicException  {
-         if (Zona.getLatitud()<90 &&Zona.getLatitud()>-90 ) {
+         if (Zona.getLatitud()>90 &&Zona.getLatitud()<-90 ) {
             throw new BusinessLogicException("La zona debe tener  una latitud en el rango  \"" + Zona.getLatitud() + "\"");
         }
-        else if (Zona.getLongitud()<90 && Zona.getLongitud()>-90 ) {
+        else if (Zona.getLongitud()>90 && Zona.getLongitud()<-90 ) {
             throw new BusinessLogicException("La zona debe tener  una longitud en el rango \"" + Zona.getLongitud() + "\"");
         }
         return zP.update(Zona);
