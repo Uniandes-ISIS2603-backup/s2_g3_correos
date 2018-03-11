@@ -127,7 +127,6 @@ public class EnvioLogicTest {
     @Test
     public void createEnvioTest() throws BusinessLogicException {
         EnvioEntity newEntity = factory.manufacturePojo(EnvioEntity.class);
-        //newEntity.setCliente(dataClientes.get(0));
         EnvioEntity result = envioLogic.createEnvio(newEntity);
         Assert.assertNotNull(result);
         EnvioEntity entity = em.find(EnvioEntity.class, result.getId());
@@ -190,7 +189,6 @@ public class EnvioLogicTest {
     public void updateEnvioTest() throws BusinessLogicException {
         EnvioEntity entity = data.get(0);
         EnvioEntity pojoEntity = factory.manufacturePojo(EnvioEntity.class);
-        //entity.setCliente(dataClientes.get(0));
         pojoEntity.setId(entity.getId());
 
         envioLogic.updateEnvio(pojoEntity);

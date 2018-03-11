@@ -46,7 +46,6 @@ import co.edu.uniandes.csw.correos.entities.EnvioEntity;
     private String direccionEntrega;
     private String direccionRecogida;
     private String estado;
-    private String name; 
 
     public EnvioDTO() {
      /**
@@ -61,7 +60,6 @@ import co.edu.uniandes.csw.correos.entities.EnvioEntity;
     public EnvioDTO(EnvioEntity entity) {
         this.idEnvio = entity.getId();
         this.horaInicio = entity.getHoraInicio();
-        this.name = entity.getName();
         this.horaFinal = entity.getHoraFinal();
         this.estado = entity.getEstado();
         this.direccionEntrega = entity.getDireccionEntrega();
@@ -74,7 +72,6 @@ import co.edu.uniandes.csw.correos.entities.EnvioEntity;
     public EnvioEntity toEntity() {
         EnvioEntity entity = new EnvioEntity();
         entity.setId(this.idEnvio);
-        entity.setName(this.name);
         entity.setEstado(this.estado);
         entity.setHoraInicio(this.horaInicio);
         entity.setHoraFinal(this.horaFinal);
@@ -126,13 +123,6 @@ import co.edu.uniandes.csw.correos.entities.EnvioEntity;
     }
     /**
      * 
-     * @return Nombre del envio
-     */    
-    public String getName(){
-        return name;
-    }
-    /**
-     * 
      * @param id la nueva ID del Envio (?)
      */
     public void setId(long id) {
@@ -172,12 +162,5 @@ import co.edu.uniandes.csw.correos.entities.EnvioEntity;
      */
     public void setEstado(String estado) {
         this.estado = estado; 
-    }  
-    /**
-     * 
-     * @param name nuevo nombre del envio
-     */
-    public void setName(String name) {
-        this.name = name; 
-    } 
+    }
 }

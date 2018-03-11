@@ -74,7 +74,7 @@ public class PaqueteEntity extends BaseEntity implements Serializable{
     /**
      * @param detalle the detalles to set
      */
-    public void setDetallePaqueteEntity(DetallePaqueteEntity detalle) {
+    public void setDetallePaquete(DetallePaqueteEntity detalle) {
         this.detalle = detalle;
     }
     
