@@ -49,7 +49,7 @@ import co.edu.uniandes.csw.correos.entities.PaqueteEntity;
             for(int i = 0; i< entity.getPaquetes().size(); i++){
                 this.paquetes.add(new PaqueteDTO(entity.getPaquetes().get(i)));
             }
-            //this.cliente=new ClienteDTO(entity.getCliente());
+            this.cliente=new ClienteDTO(entity.getCliente());
             this.mensajero=new MensajeroDTO(entity.getMensajero());
             this.pago=new PagoDTO(entity.getPago());
         }
@@ -80,7 +80,7 @@ import co.edu.uniandes.csw.correos.entities.PaqueteEntity;
             entity.setEventos(newEventos);
             entity.setBonos(newBonos);
             entity.setPaquetes(newPaquetes);
-            //entity.setCliente(this.cliente.toEntity());
+            entity.setCliente(this.cliente.toEntity());
             entity.setPago(this.pago.toEntity());
             entity.setMensajero(this.mensajero.toEntity());        
         

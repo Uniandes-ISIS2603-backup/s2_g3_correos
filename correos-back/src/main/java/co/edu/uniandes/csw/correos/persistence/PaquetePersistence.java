@@ -36,26 +36,8 @@ public class PaquetePersistence {
     {
         LOGGER.info("Se crea un nuevo Paquete");
         em.persist(entity);
-        LOGGER.info("Se creó el paqurte");
+        LOGGER.info("Se creó el paquete");
         return entity;
-    }
-    
-    /**
-     * @param name el nombre del paquete existente que se esta buscando.
-     * @return el paquete buscado.
-     */
-    public PaqueteEntity findByName(String name) {
-        LOGGER.log(Level.INFO, "Consultando paquete por nombre", name);       
-        TypedQuery query = em.createQuery("Select e From PaqueteEntity e where e.name = :name", PaqueteEntity.class);
-         
-        query = query.setParameter("name", name);
-        
-        List<PaqueteEntity> sameName = query.getResultList();
-        if (sameName.isEmpty()) {
-            return null;
-        } else {
-            return sameName.get(0);
-        }
     }
     
     /**
