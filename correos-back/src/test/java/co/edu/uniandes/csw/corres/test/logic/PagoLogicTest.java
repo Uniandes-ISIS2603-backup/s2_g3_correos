@@ -213,7 +213,7 @@ public class PagoLogicTest {
         Assert.assertEquals(pojoEntity.getId(), resp.getId());
         Assert.assertEquals(pojoEntity.getTarjetaCredito(), resp.getTarjetaCredito());
         Assert.assertEquals(pojoEntity.getFecha(), resp.getFecha());
-        Assert.assertEquals(entity.getValor(), resp.getValor());
+        Assert.assertEquals(pojoEntity.getValor(), resp.getValor());
     }
 
 }
