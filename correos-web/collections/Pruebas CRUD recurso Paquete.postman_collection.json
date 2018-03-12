@@ -1,0 +1,219 @@
+{
+	"info": {
+		"name": "Collection Paquete",
+		"_postman_id": "6599ee46-0b7b-a4ff-5c05-322e5d9a4ed4",
+		"description": "Collection de Paquete",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Hace Get correctamente sobre todos los Paquetes",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": "http://localhost:8080/correos-web/api/paquetes",
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Hace Post incorrecto (volumen 0)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"tipo\": \"FRAGIL\",\r\n       \"peso\": 10,\r\n        \"dimensionA\": 0,\r\n        \"dimensionB\": 2,\r\n        \"dimensionC\": 3\r\n     }"
+				},
+				"url": "http://localhost:8080/correos-web/api/paquetes",
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Hace Post incorrecto (peso 0)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"tipo\": \"FRAGIL\",\r\n       \"peso\": 0,\r\n        \"dimensionA\": 10,\r\n        \"dimensionB\": 2,\r\n        \"dimensionC\": 3\r\n     }"
+				},
+				"url": "http://localhost:8080/correos-web/api/paquetes",
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Hace Post correctamente",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"tipo\": \"FRAGIL\",\r\n       \"peso\": 10,\r\n        \"dimensionA\": 10,\r\n        \"dimensionB\": 2,\r\n        \"dimensionC\": 3\r\n     }"
+				},
+				"url": "http://localhost:8080/correos-web/api/paquetes",
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Hace Get sobre un paquete inexistente",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"tipo\": \"FRAGIL\",\r\n       \"peso\": 10,\r\n        \"dimensionA\": 10,\r\n        \"dimensionB\": 2,\r\n        \"dimensionC\": 3\r\n     }"
+				},
+				"url": "http://localhost:8080/correos-web/api/paquetes/1000000000000000000001",
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Hace Get especifico correctamente",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"tipo\": \"FRAGIL\",\r\n       \"peso\": 10,\r\n        \"dimensionA\": 10,\r\n        \"dimensionB\": 2,\r\n        \"dimensionC\": 3\r\n     }"
+				},
+				"url": "http://localhost:8080/correos-web/api/paquetes/10002",
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Hace Delete sobre un paquete inexistente",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"tipo\": \"FRAGIL\",\r\n       \"peso\": 10,\r\n        \"dimensionA\": 10,\r\n        \"dimensionB\": 2,\r\n        \"dimensionC\": 3\r\n     }"
+				},
+				"url": "http://localhost:8080/correos-web/api/paquetes/10000000000000000000000000000000000002",
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Hace Delete correctamente",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"tipo\": \"FRAGIL\",\r\n       \"peso\": 10,\r\n        \"dimensionA\": 10,\r\n        \"dimensionB\": 2,\r\n        \"dimensionC\": 3\r\n     }"
+				},
+				"url": "http://localhost:8080/correos-web/api/paquetes/10002",
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Hace Update incorrecto (peso 0)",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"tipo\": \"MALEABLE\",\r\n       \"peso\": 0,\r\n        \"dimensionA\": 10,\r\n        \"dimensionB\": 2,\r\n        \"dimensionC\": 3\r\n     }"
+				},
+				"url": "http://localhost:8080/correos-web/api/paquetes/10002",
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Hace Update incorrecto (volumen 0)",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"tipo\": \"MALEABLE\",\r\n       \"peso\": 30,\r\n        \"dimensionA\": 0,\r\n        \"dimensionB\": 2,\r\n        \"dimensionC\": 3\r\n     }"
+				},
+				"url": "http://localhost:8080/correos-web/api/paquetes/10002",
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Hace Update correctamente",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"tipo\": \"MALEABLE\",\r\n       \"peso\": 30,\r\n        \"dimensionA\": 50,\r\n        \"dimensionB\": 2,\r\n        \"dimensionC\": 3\r\n     }"
+				},
+				"url": "http://localhost:8080/correos-web/api/paquetes/10002",
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
