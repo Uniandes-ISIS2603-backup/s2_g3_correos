@@ -16,11 +16,13 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.UserTransaction;
 import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import uk.co.jemos.podam.api.PodamFactory;
 import uk.co.jemos.podam.api.PodamFactoryImpl;
 
@@ -28,6 +30,7 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
  *
  * @author l.mejia
  */
+@RunWith(Arquillian.class)
 public class ReservaLogicTest {
     private PodamFactory factory = new PodamFactoryImpl();
     
@@ -83,7 +86,6 @@ public class ReservaLogicTest {
      */
     private void clearData() {
         em.createQuery("delete from ReservaEntity").executeUpdate();
-        em.createQuery("delete from BookEntity").executeUpdate();
     }
 
     /**
