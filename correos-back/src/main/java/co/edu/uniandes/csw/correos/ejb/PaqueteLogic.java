@@ -114,9 +114,9 @@ public class PaqueteLogic {
      */
     public void agregarDetallePaquete(Long id, DetallePaqueteEntity detalle)
     {
-        PaqueteEntity paquete= persistence.find(id);;
-        paquete.setDetallePaquete(detalle);
-        persistence.update(paquete);
+       PaqueteEntity paquete= persistence.find(id);;
+       paquete.setDetallePaquete(detalle);
+       persistence.update(paquete);
     }
 }
 
