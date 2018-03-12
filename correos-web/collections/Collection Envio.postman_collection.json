@@ -1,0 +1,295 @@
+{
+	"info": {
+		"name": "Collection Envio",
+		"_postman_id": "8a5c2852-b3a4-63b7-ba4c-65164bfe21b4",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Hace un Get sobre todos los envios",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": "http://localhost:8080/correos-web/api/envios",
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Hace un Post incorrecto (HF<HI)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n       \"horaInicio\": 15000,\r\n       \"horaFinal\": 20000,\r\n       \"direccionEntrega\": \"calle 14a # 56-34\",\r\n       \"direccionRecogida\": \"calle 114a # 56-34\",\r\n       \"estado\":\"LLEGANDO\"            \r\n    }"
+				},
+				"url": "http://localhost:8080/correos-web/api/envios",
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Hace un Post incorrecto (cliente null)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n       \"horaInicio\": 20000,\r\n       \"horaFinal\": 15000,\r\n       \"direccionEntrega\": \"calle 14a # 56-34\",\r\n       \"direccionRecogida\": \"calle 114a # 56-34\",\r\n       \"estado\":\"LLEGANDO\"            \r\n    }"
+				},
+				"url": "http://localhost:8080/correos-web/api/envios",
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Hace un Post incorrecto (estado null)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n      \"horaInicio\": 1004,\r\n      \"horaFinal\": 2000,\r\n      \"direccionEntrega\": \"calle 116 # 56-82\",\r\n      \"direccionRecogida\": \"carrera 120 # 94-32\",\r\n      \"estado\":\"LLEGANDO\",\r\n      \r\n      \"paquetes\":\r\n\t   [\r\n\t   \t{\r\n        \"tipo\": \"DURO\",\r\n        \"peso\": 100,\r\n        \"dimensionA\": 4,\r\n        \"dimensionB\": 7,\r\n        \"dimensionC\": 666             \r\n        },\r\n\t   \t{\r\n        \"tipo\": \"RADIOACTIVO\",\r\n        \"peso\": 7,\r\n        \"dimensionA\": 1,\r\n        \"dimensionB\": 1,\r\n        \"dimensionC\": 1             \r\n        }\r\n\t   ]\r\n   }"
+				},
+				"url": "http://localhost:8080/correos-web/api/envios",
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Hace un Post incorrecto (paquetes empty)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n       \"horaInicio\": 15000,\r\n       \"horaFinal\": 20000,\r\n       \"direccionEntrega\": \"calle 14a # 56-34\",\r\n       \"direccionRecogida\": \"calle 114a # 56-34\",\r\n       \"estado\":\"LLEGANDO\"            \r\n    }"
+				},
+				"url": "http://localhost:8080/correos-web/api/envios",
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Hace un Post correcto",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n      \"horaInicio\": 1004,\r\n      \"horaFinal\": 2000,\r\n      \"direccionEntrega\": \"calle 116 # 56-82\",\r\n      \"direccionRecogida\": \"carrera 120 # 94-32\",\r\n      \"estado\":\"LLEGANDO\",\r\n      \"cliente\":\r\n    \t{\r\n          \"id\": 10001,\r\n          \"nombre\": \"El Cumpatriota\"\r\n        },\r\n      \"paquetes\":\r\n\t   [\r\n\t   \t{\r\n        \"tipo\": \"DURO\",\r\n        \"peso\": 100,\r\n        \"dimensionA\": 4,\r\n        \"dimensionB\": 7,\r\n        \"dimensionC\": 666             \r\n        },\r\n\t   \t{\r\n        \"tipo\": \"RADIOACTIVO\",\r\n        \"peso\": 7,\r\n        \"dimensionA\": 1,\r\n        \"dimensionB\": 1,\r\n        \"dimensionC\": 1             \r\n        }\r\n\t   ]\r\n   }"
+				},
+				"url": "http://localhost:8080/correos-web/api/envios",
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Hace un Get sobre un envio especifico",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n      \"horaInicio\": 1004,\r\n      \"horaFinal\": 2000,\r\n      \"direccionEntrega\": \"calle 116 # 56-82\",\r\n      \"direccionRecogida\": \"carrera 120 # 94-32\",\r\n      \"estado\":\"LLEGANDO\",\r\n      \"cliente\":\r\n    \t{\r\n          \"id\": 10001,\r\n          \"nombre\": \"El Cumpatriota\"\r\n        },\r\n      \"paquetes\":\r\n\t   [\r\n\t   ]\r\n   }"
+				},
+				"url": "http://localhost:8080/correos-web/api/envios/10001",
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Hace un Get sobre un envio inexistente",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n      \"horaInicio\": 1004,\r\n      \"horaFinal\": 2000,\r\n      \"direccionEntrega\": \"calle 116 # 56-82\",\r\n      \"direccionRecogida\": \"carrera 120 # 94-32\",\r\n      \"estado\":\"LLEGANDO\",\r\n      \"cliente\":\r\n    \t{\r\n          \"id\": 10001,\r\n          \"nombre\": \"El Cumpatriota\"\r\n        },\r\n      \"paquetes\":\r\n\t   [\r\n\t   ]\r\n   }"
+				},
+				"url": "http://localhost:8080/correos-web/api/envios/100000000000000000001",
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Hace Delete sobre un envio inexistente",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": "http://localhost:8080/correos-web/api/envios/100000000000000000001",
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Hace Delete sobre un envio especifico",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": "http://localhost:8080/correos-web/api/envios/10001",
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Hace un Update incorrecto (HF<HI)",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n      \"horaInicio\": 1004,\r\n      \"horaFinal\":1000,\r\n      \"direccionEntrega\": \"calle 116 # 56-82\",\r\n      \"direccionRecogida\": \"carrera 120 # 94-32\",\r\n      \"estado\":\"TARDE\",\r\n      \"cliente\":\r\n    \t{\r\n          \"id\": 10001,\r\n          \"nombre\": \"El Cumpatriota\"\r\n        },\r\n      \"paquetes\":\r\n\t   [\r\n\t   \t{\r\n        \"tipo\": \"DURO\",\r\n        \"peso\": 100,\r\n        \"dimensionA\": 4,\r\n        \"dimensionB\": 7,\r\n        \"dimensionC\": 666             \r\n        },\r\n\t   \t{\r\n        \"tipo\": \"RADIOACTIVO\",\r\n        \"peso\": 7,\r\n        \"dimensionA\": 1,\r\n        \"dimensionB\": 1,\r\n        \"dimensionC\": 1             \r\n        }\r\n\t   ]\r\n   }"
+				},
+				"url": "http://localhost:8080/correos-web/api/envios/10001",
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Hace un Update incorrecto (cliente null)",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n      \"horaInicio\": 1004,\r\n      \"horaFinal\": 3000,\r\n      \"direccionEntrega\": \"calle 116 # 56-82\",\r\n      \"direccionRecogida\": \"carrera 120 # 94-32\",\r\n      \"estado\":\"TARDE\",\r\n      \"paquetes\":\r\n\t   [\r\n\t   \t{\r\n        \"tipo\": \"DURO\",\r\n        \"peso\": 100,\r\n        \"dimensionA\": 4,\r\n        \"dimensionB\": 7,\r\n        \"dimensionC\": 666             \r\n        },\r\n\t   \t{\r\n        \"tipo\": \"RADIOACTIVO\",\r\n        \"peso\": 7,\r\n        \"dimensionA\": 1,\r\n        \"dimensionB\": 1,\r\n        \"dimensionC\": 1             \r\n        }\r\n\t   ]\r\n   }"
+				},
+				"url": "http://localhost:8080/correos-web/api/envios/10001",
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Hace un Update incorrecto (estado null)",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n      \"horaInicio\": 1004,\r\n      \"horaFinal\": 3000,\r\n      \"direccionEntrega\": \"calle 116 # 56-82\",\r\n      \"direccionRecogida\": \"carrera 120 # 94-32\",\r\n      \r\n      \"cliente\":\r\n    \t{\r\n          \"id\": 10001,\r\n          \"nombre\": \"El Cumpatriota\"\r\n        },\r\n      \"paquetes\":\r\n\t   [\r\n\t   \t{\r\n        \"tipo\": \"DURO\",\r\n        \"peso\": 100,\r\n        \"dimensionA\": 4,\r\n        \"dimensionB\": 7,\r\n        \"dimensionC\": 666             \r\n        },\r\n\t   \t{\r\n        \"tipo\": \"RADIOACTIVO\",\r\n        \"peso\": 7,\r\n        \"dimensionA\": 1,\r\n        \"dimensionB\": 1,\r\n        \"dimensionC\": 1             \r\n        }\r\n\t   ]\r\n   }"
+				},
+				"url": "http://localhost:8080/correos-web/api/envios/10001",
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Hace un Update incorrecto (paquetes empty)",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n      \"horaInicio\": 1004,\r\n      \"horaFinal\": 3000,\r\n      \"direccionEntrega\": \"calle 116 # 56-82\",\r\n      \"direccionRecogida\": \"carrera 120 # 94-32\",\r\n      \"estado\":\"TARDE\",\r\n      \"cliente\":\r\n    \t{\r\n          \"id\": 10001,\r\n          \"nombre\": \"El Cumpatriota\"\r\n        },\r\n      \"paquetes\":\r\n\t   [\r\n\t   ]\r\n   }"
+				},
+				"url": "http://localhost:8080/correos-web/api/envios/10001",
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Hace un Update correctamente",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n      \"horaInicio\": 1004,\r\n      \"horaFinal\": 3000,\r\n      \"direccionEntrega\": \"calle 116 # 56-82\",\r\n      \"direccionRecogida\": \"carrera 120 # 94-32\",\r\n      \"estado\":\"TARDE\",\r\n      \"cliente\":\r\n    \t{\r\n          \"id\": 10001,\r\n          \"nombre\": \"El Cumpatriota\"\r\n        },\r\n      \"paquetes\":\r\n\t   [\r\n\t   \t{\r\n        \"tipo\": \"DURO\",\r\n        \"peso\": 100,\r\n        \"dimensionA\": 4,\r\n        \"dimensionB\": 7,\r\n        \"dimensionC\": 666             \r\n        },\r\n\t   \t{\r\n        \"tipo\": \"RADIOACTIVO\",\r\n        \"peso\": 7,\r\n        \"dimensionA\": 1,\r\n        \"dimensionB\": 1,\r\n        \"dimensionC\": 1             \r\n        }\r\n\t   ]\r\n   }"
+				},
+				"url": "http://localhost:8080/correos-web/api/envios/10001",
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
