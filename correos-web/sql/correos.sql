@@ -1,5 +1,4 @@
 
-
 /* 
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -83,6 +82,16 @@ insert into TransporteEntity(id,activo,capacidad,name,tipo) values (10008,0,'9kg
 insert into TransporteEntity(id,activo,capacidad,name,tipo) values (10009,0,'10kg',null,'carro');
 insert into TransporteEntity(id,activo,capacidad,name,tipo) values (100010,0,'2kg',null,'cicla');
 
+insert into mensajeroentity_transporteentity(mensajeroentity_id,transportes_id) values(10001,10001);
+insert into mensajeroentity_transporteentity(mensajeroentity_id,transportes_id) values(10001,10002);
+insert into mensajeroentity_transporteentity(mensajeroentity_id,transportes_id) values(10002,10003);
+insert into mensajeroentity_transporteentity(mensajeroentity_id,transportes_id) values(10002,10004);
+insert into mensajeroentity_transporteentity(mensajeroentity_id,transportes_id) values(10003,10005);
+insert into mensajeroentity_transporteentity(mensajeroentity_id,transportes_id) values(10003,10006);
+insert into mensajeroentity_transporteentity(mensajeroentity_id,transportes_id) values(10004,10007);
+insert into mensajeroentity_transporteentity(mensajeroentity_id,transportes_id) values(10004,10008);
+insert into mensajeroentity_transporteentity(mensajeroentity_id,transportes_id) values(10005,10009);
+insert into mensajeroentity_transporteentity(mensajeroentity_id,transportes_id) values(10005,100010);
 
 insert into PaqueteEntity(name,id,peso,tipo,dimensionA,dimensionB,dimensionC) values ('Paquete_001',10001,40.2,'FRAGIL',40,57,62);
 insert into PaqueteEntity(name,id,peso,tipo,dimensionA,dimensionB,dimensionC) values ('Paquete_002',10002,8.0,'FRAGIL',21,11,7);
@@ -109,11 +118,12 @@ insert into DetallePaqueteEntity(id,name,mensaje) Values (10002,'Detalle2','Paqu
 insert into DetallePaqueteEntity(id,name,mensaje) Values (10003,'Detalle3','Paquete 200cm x 150cm; No se puede dejar enfriar');
 insert into DetallePaqueteEntity(id,name,mensaje) Values (10004,'Detalle4','Paquete 55cm x 65cm; No tiene algun cuidado especial');
 
+
+
 insert into PagoEntity(id,name,valor,fecha, tarjetaCredito_id, cuentaBancaria_id) values (10001,'Pago 001', 3455,'1998-10-10 00:00:00',10001,10001);
 insert into PagoEntity(id,name,valor,fecha, tarjetaCredito_id, cuentaBancaria_id) values (10002,'Pago 002', 3456,'1998-10-10 00:00:00',10001,10001);
 insert into PagoEntity(id,name,valor,fecha, tarjetaCredito_id, cuentaBancaria_id) values (10003,'Pago 003', 3457,'1998-10-10 00:00:00',10003,10003);
 insert into PagoEntity(id,name,valor,fecha, tarjetaCredito_id, cuentaBancaria_id) values (10004,'Pago 004', 3458,'1998-10-10 00:00:00',10004,10004);
-
 
 insert into EventoEntity(id,name, ubicacion,detalle,envio_id) values (10001,'Evento1',4.60278,'Voy retrasado con el pedido',10001);
 insert into EventoEntity(id,name, ubicacion,detalle,envio_id) values (10002,'Evento2',4.60278,'Hay mucho trancon y hay lluvia',10002);
