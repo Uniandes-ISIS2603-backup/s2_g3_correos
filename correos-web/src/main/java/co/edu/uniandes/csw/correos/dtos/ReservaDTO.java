@@ -25,6 +25,8 @@ package co.edu.uniandes.csw.correos.dtos;
 
 import co.edu.uniandes.csw.correos.entities.ReservaEntity;
 import java.util.Date;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 
 /**
@@ -56,6 +58,7 @@ import java.util.Date;
 public class ReservaDTO {
     
     Long id;
+    @Temporal(TemporalType.TIMESTAMP)
     private Date fecha;
     private String hora;
     
