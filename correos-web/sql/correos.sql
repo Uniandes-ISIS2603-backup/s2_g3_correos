@@ -4011,4 +4011,3 @@ insert into EventoEntity(id,name, ubicacion,detalle,envio_id) values (10001,'Eve
 insert into EventoEntity(id,name, ubicacion,detalle,envio_id) values (10002,'Evento2',4.60278,'Hay mucho trancon y hay lluvia',10002);
 insert into EventoEntity(id,name, ubicacion,detalle,envio_id) values (10003,'Evento3',4.60278,'Listo perfecto llego en 5',10003);
 insert into EventoEntity(id,name, ubicacion,detalle,envio_id) values (10004,'Evento4',4.60278,'voy por la 7ta con 75',10004);
-insert into EventoEntity(id,name, ubicacion,detalle,envio_id) values (10005,'Evento5',4.60278,'cambio de ruta debido a manifestacion',10005);
