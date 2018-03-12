@@ -90,10 +90,10 @@ public class TarjetaCreditoResource {
      * </pre>
      * @param nuevo {@link TarjetaCreditoDetailDTO} - La tarjeta que se desea guardar.
      * @return JSON {@link TarjetaCreditoDetailDTO}  - La tarjeta que se guardada con el atributo id autogenerado.
-     * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} - Error de lógica que se genera cuando ya existe el cliente.
+     * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} - Error de lógica que se genera cuando ya existe la tarjeta credito.
      */
      @POST
-     public TarjetaCreditoDetailDTO createCliente(TarjetaCreditoDetailDTO nuevo) throws BusinessLogicException
+     public TarjetaCreditoDetailDTO createTarjeteaCredito(TarjetaCreditoDetailDTO nuevo) throws BusinessLogicException
      {
          return new TarjetaCreditoDetailDTO(logic.createTarjetaCredito(nuevo.toEntity()));
      }
@@ -117,7 +117,7 @@ public class TarjetaCreditoResource {
      */
      @PUT
      @Path("{id: \\d+ }")
-     public TarjetaCreditoDetailDTO updateCliente(@PathParam("id") Long id , TarjetaCreditoDetailDTO actualizar) throws BusinessLogicException
+     public TarjetaCreditoDetailDTO updateTarjeteCredito(@PathParam("id") Long id , TarjetaCreditoDetailDTO actualizar) throws BusinessLogicException
      {
          if(logic.getTarjetaCredito(id)==null) 
             throw new WebApplicationException("La tarjeta con id" + id,404);
