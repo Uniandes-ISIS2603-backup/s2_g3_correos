@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 /**
  * Author:  a.silvag
  * Created: 8/03/2018
@@ -28,6 +29,16 @@ delete from CuentaBancariaEntity;
 delete from PagoEntity;
 
 delete from EventoEntity;
+
+
+delete from EnvioEntity;
+
+delete from PaqueteEntity;
+
+delete from BonoEntity;
+
+delete from DetallePaqueteEntity;
+
 
 insert into CuentaBancariaEntity(id,name,numero,banco,tipoTarjeta) values (10001,'Tarjeta1','39749179739479','Aval','Visa');
 insert into CuentaBancariaEntity(id,name,numero,banco,tipoTarjeta) values (10002,'Tarjeta2','479871973947992','GNC','Visa');
@@ -62,7 +73,6 @@ insert into TransporteEntity(id,activo,capacidad,name,tipo) values (10007,0,'8kg
 insert into TransporteEntity(id,activo,capacidad,name,tipo) values (10008,0,'9kg',null,'carro');
 insert into TransporteEntity(id,activo,capacidad,name,tipo) values (10009,0,'10kg',null,'carro');
 insert into TransporteEntity(id,activo,capacidad,name,tipo) values (100010,0,'2kg',null,'cicla');
-
 
 insert into MensajeroEntity_TransporteEntity(MensajeroEntity_id,Transportes_id) values(10001,10001);
 insert into MensajeroEntity_TransporteEntity(MensajeroEntity_id,Transportes_id) values(10001,10002);
@@ -3958,5 +3968,30 @@ insert into ZonaEntity_MensajeroEntity(mensajeros_id,zonas_id) values (10005,997
 insert into ZonaEntity_MensajeroEntity(mensajeros_id,zonas_id) values (10005,998);
 insert into ZonaEntity_MensajeroEntity(mensajeros_id,zonas_id) values (10005,999);
 insert into ZonaEntity_MensajeroEntity(mensajeros_id,zonas_id) values (10005,1000);
+
+insert into PaqueteEntity(name,id,peso,tipo,dimensionA,dimensionB,dimensionC) values ('Paquete_001',10001,40.2,'FRAGIL',40,57,62);
+insert into PaqueteEntity(name,id,peso,tipo,dimensionA,dimensionB,dimensionC) values ('Paquete_002',10002,8.0,'FRAGIL',21,11,7);
+insert into PaqueteEntity(name,id,peso,tipo,dimensionA,dimensionB,dimensionC) values ('Paquete_002',10003,29.6,'RIGIDO',104,3,82);
+insert into PaqueteEntity(name,id,peso,tipo,dimensionA,dimensionB,dimensionC) values ('Paquete_004',10004,103.1,'MALEABLE',1,27,44);
+
+insert into EnvioEntity(name,id,horaInicio,horaFinal,estado,direccionEntrega,direccionRecogida) values ('Envio_001',10001,10000,10001,'ESTADO_INICIAL','calle 114 #30-40','calle 116 # 40-20');
+insert into EnvioEntity(name,id,horaInicio,horaFinal,estado,direccionEntrega,direccionRecogida) values ('Envio_002',10002,10010,10011,'ATRASADO','calle 124 #30-40A','calle 16B # 40-20');
+insert into EnvioEntity(name,id,horaInicio,horaFinal,estado,direccionEntrega,direccionRecogida) values ('Envio_003',10003,20517,34923,'LLEGANDO','carrera 12 #84-47','calle 167C # 9-18A');
+insert into EnvioEntity(name,id,horaInicio,horaFinal,estado,direccionEntrega,direccionRecogida) values ('Envio_004',10004,12801,15403,'ESTADO_INICIAL','carrera 80A #30-16','carrera 94B # 17B-9');
+
+insert into PaqueteEntity_DetallePaqueteEntity(PaqueteEntity_id,Detalle_id) values(10001,10001);
+insert into PaqueteEntity_DetallePaqueteEntity(PaqueteEntity_id,Detalle_id) values(10002,10003);
+insert into PaqueteEntity_DetallePaqueteEntity(PaqueteEntity_id,Detalle_id) values(10003,10010);
+insert into PaqueteEntity_DetallePaqueteEntity(PaqueteEntity_id,Detalle_id) values(10004,10005);
+
+insert into BonoEntity(id,name, descripcion, descuento, condicion, fechaDeVencimiento) Values (10001,'Bono1','Bono del 50% en cualquier envio',0.5,'Sin redimir','2001-10-10 00:00:00'); 
+insert into BonoEntity(id,name, descripcion, descuento, condicion, fechaDeVencimiento) Values (10002,'Bono2','Bono del 60% en cualquier envio',0.6,'Redimido','2002-11-11 00:00:00');
+insert into BonoEntity(id,name, descripcion, descuento, condicion, fechaDeVencimiento) Values (10003,'Bono3','Bono del 70% en cualquier envio',0.7,'Sin redimir','2003-11-11 00:00:00');
+insert into BonoEntity(id,name, descripcion, descuento, condicion, fechaDeVencimiento) Values (10004,'Bono4','Bono del 80% en cualquier envio',0.8,'Redimido','2004-11-11 00:00:00');
+
+insert into DetallePaqueteEntity(id,name,mensaje) Values (10001,'Detalle1','Paquete 10cm x 10cm; Es fragil');
+insert into DetallePaqueteEntity(id,name,mensaje) Values (10002,'Detalle2','Paquete 100cm x 100cm; Se debe llevar refrigerado');
+insert into DetallePaqueteEntity(id,name,mensaje) Values (10003,'Detalle3','Paquete 200cm x 150cm; No se puede dejar enfriar');
+insert into DetallePaqueteEntity(id,name,mensaje) Values (10004,'Detalle4','Paquete 55cm x 65cm; No tiene algun cuidado especial');
 
 
