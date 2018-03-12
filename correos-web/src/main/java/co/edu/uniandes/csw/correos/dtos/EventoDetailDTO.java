@@ -13,11 +13,20 @@ import co.edu.uniandes.csw.correos.entities.EventoEntity;
  */
 public class EventoDetailDTO extends EventoDTO {
     
+    /**
+     *Constructor por defectp
+     */
+    public EventoDetailDTO(){
+        
+    }
+    
     public EventoDetailDTO(EventoEntity entity){
         super(entity);
     }
     
-    
+    /*
+    * @return el evento en una entity
+    */
     public EventoEntity toEntity(){
         return super.toEntity();
     }

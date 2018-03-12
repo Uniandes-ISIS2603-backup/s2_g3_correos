@@ -39,6 +39,10 @@ public class EventoDTO {
     private long ubicacion;
     private String detalle;
     
+    
+public EventoDTO(){
+    
+}    
 /**
  * @return el id del evento
  */
