@@ -7,6 +7,8 @@ package co.edu.uniandes.csw.correos.dtos;
 
 import co.edu.uniandes.csw.correos.entities.BonoEntity;
 import java.util.Date;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  * BonoDTO Objeto de transferencia de datos Bono. Los DTO continen las representacones de los JSON entre el cliente y el servidor
@@ -29,6 +31,7 @@ public class BonoDTO
     private String descripcion;
     private double descuento;
     private String condicion;
+    @Temporal(TemporalType.TIMESTAMP)
     private Date fechaDeVencimiento;
     
     /**

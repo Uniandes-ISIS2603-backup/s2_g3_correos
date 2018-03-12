@@ -40,7 +40,6 @@ import co.edu.uniandes.csw.correos.entities.PaqueteEntity;
    
     private long idPaquete; 
     private String tipo;
-    private String name;
     private double peso;    
     private double dimensionA;
     private double dimensionB;
@@ -58,7 +57,6 @@ import co.edu.uniandes.csw.correos.entities.PaqueteEntity;
     public PaqueteDTO(PaqueteEntity entity) {
         this.idPaquete = entity.getId();
         this.tipo = entity.getTipo();
-        this.name = entity.getName();
         this.peso = entity.getPeso();
         this.dimensionA = entity.getDimensionA();
         this.dimensionB = entity.getDimensionB();
@@ -71,7 +69,6 @@ import co.edu.uniandes.csw.correos.entities.PaqueteEntity;
     public PaqueteEntity toEntity() {
         PaqueteEntity entity = new PaqueteEntity();
         entity.setId(this.idPaquete);
-        entity.setName(this.name);
         entity.setTipo(this.tipo);
         entity.setPeso(this.peso);
         entity.setDimensionA(this.dimensionA);
@@ -162,19 +159,5 @@ import co.edu.uniandes.csw.correos.entities.PaqueteEntity;
      */
     public void setDimensionC(double c) {
         dimensionC = c;         
-    }  
-     /**
-     * 
-     * @param name nombre  
-     */
-    public void setName(String name) {
-        this.name = name;         
-    }    
-    /**
-     * 
-     * @return name nombre  
-     */
-    public String getName() {
-        return name;        
-    }  
+    }
 }

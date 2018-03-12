@@ -6,6 +6,7 @@
 
 package co.edu.uniandes.csw.correos.ejb;
 
+import co.edu.uniandes.csw.correos.entities.DetallePaqueteEntity;
 import co.edu.uniandes.csw.correos.entities.PaqueteEntity;
 import co.edu.uniandes.csw.correos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.correos.persistence.PaquetePersistence;
@@ -27,20 +28,20 @@ public class PaqueteLogic {
     @Inject
     private PaquetePersistence persistence;
 
+    /**
+     * 
+     * @param entity el paquete a ser creado
+     * @return el paquete creado
+     * @throws BusinessLogicException 
+     */
     public PaqueteEntity createPaquete(PaqueteEntity entity) throws BusinessLogicException {
         
         LOGGER.info("Se comienza a crear un Paquete"); 
         
-        if(entity.getDimensionA()==0){
+        if((entity.getDimensionA()==0)||(entity.getDimensionB()==0)||(entity.getDimensionC()==0)){
             throw new BusinessLogicException("El volumen del paquete ha sido evaluado en 0.");
         }
-        if(entity.getDimensionB()==0){
-            throw new BusinessLogicException("El volumen del paquete ha sido evaluado en 0.");
-        }
-        if(entity.getDimensionC()==0){
-            throw new BusinessLogicException("El volumen del paquete ha sido evaluado en 0.");
-        }
-        if(entity.getPeso()<=0){
+        else if(entity.getPeso()<=0){
             throw new BusinessLogicException("El peso del paquete ha sido evaluado en 0.");
         }     
         
@@ -49,6 +50,11 @@ public class PaqueteLogic {
         return entity;        
     }
 
+    /**
+     * 
+     * @return todos los paquetes del sistema
+     * @throws BusinessLogicException 
+     */
     public List<PaqueteEntity> getPaquetes() throws BusinessLogicException {
         LOGGER.info("Se comienzan a buscar todos los Paquetes");       
         List<PaqueteEntity> paquetes = persistence.findAll();
@@ -61,22 +67,27 @@ public class PaqueteLogic {
         LOGGER.info("Se terminan de buscar todos los Paquetes");
         return paquetes;
     }
-
+    
+    /**
+     * 
+     * @param id el id del paquete buscado
+     * @return  el paquete buscado
+     */
     public PaqueteEntity getPaquete(Long id) {
         return persistence.find(id);
     }
-
+    
+    /**
+     * 
+     * @param entity el paquete a ser acutalizado
+     * @return el paquete actualizado
+     * @throws BusinessLogicException 
+     */
     public PaqueteEntity updatePaquete(PaqueteEntity entity) throws BusinessLogicException  {
         
         LOGGER.log(Level.INFO, "Se comienza a actualizar un paquete");
         
-        if(entity.getDimensionA()==0){
-            throw new BusinessLogicException("El volumen del paquete ha sido evaluado en 0.");
-        }
-        if(entity.getDimensionB()==0){
-            throw new BusinessLogicException("El volumen del paquete ha sido evaluado en 0.");
-        }
-        if(entity.getDimensionC()==0){
+        if((entity.getDimensionA()==0)||(entity.getDimensionB()==0)||(entity.getDimensionC()==0)){
             throw new BusinessLogicException("El volumen del paquete ha sido evaluado en 0.");
         }
         if(entity.getPeso()<=0){
@@ -86,10 +97,26 @@ public class PaqueteLogic {
         return persistence.update(entity);
     }
     
+    /**
+     * 
+     * @param id el ID del pquete a ser eliminado
+     */
     public void deletePaquete(Long id){
         LOGGER.log(Level.INFO, "Comienza a borrar el paquete de id={0}", id);    
         persistence.delete(id);
         LOGGER.log(Level.INFO, "Termina a borrar el paquete de id={0}", id);
-    }    
+    } 
+    
+    /**
+     * 
+     * @param id el ID del paquete al que se le va a anadir el nuevo detalle
+     * @param detalle el detalle a ser anadido
+     */
+    public void agregarDetallePaquete(Long id, DetallePaqueteEntity detalle)
+    {
+       PaqueteEntity paquete= persistence.find(id);;
+       paquete.setDetallePaquete(detalle);
+       persistence.update(paquete);
+    }
 }
 

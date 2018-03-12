@@ -41,24 +41,6 @@ public class EnvioPersistence {
     }
     
     /**
-     * @param name el nombre del envio existente que se esta buscando.
-     * @return el envio buscado.
-     */
-    public EnvioEntity findByName(String name) {
-        LOGGER.log(Level.INFO, "Consultando envio por nombre", name);       
-        TypedQuery query = em.createQuery("Select e From EnvioEntity e where e.name = :name", EnvioEntity.class);
-         
-        query = query.setParameter("name", name);
-        
-        List<EnvioEntity> sameName = query.getResultList();
-        if (sameName.isEmpty()) {
-            return null;
-        } else {
-            return sameName.get(0);
-        }
-    }
-    
-    /**
      * @param id el ID del envio existente que se esta buscando.
      * @return el envio buscado.
      */

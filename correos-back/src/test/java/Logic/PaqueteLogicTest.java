@@ -1,10 +1,10 @@
-package Logic;
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
+package Logic;
 
 import co.edu.uniandes.csw.correos.ejb.PaqueteLogic;
 import co.edu.uniandes.csw.correos.entities.EnvioEntity;
@@ -48,7 +48,6 @@ public class PaqueteLogicTest {
     private UserTransaction utx;
 
     private List<PaqueteEntity> data = new ArrayList<PaqueteEntity>();
-    private List<EnvioEntity> dataEnvio = new ArrayList<EnvioEntity>();
 
     @Deployment
     public static JavaArchive createDeployment() {
@@ -84,23 +83,16 @@ public class PaqueteLogicTest {
      * Limpia las tablas que están implicadas en la prueba.
      */
     private void clearData() {
-        em.createQuery("delete from PaqueteEntity").executeUpdate();
-        em.createQuery("delete from EnvioEntity").executeUpdate();       
+        em.createQuery("delete from PaqueteEntity").executeUpdate();     
     }
     
      /**
      * Inserta los datos iniciales para el correcto funcionamiento de las pruebas.
      */
     private void insertData() throws BusinessLogicException {
-
-         for (int i = 0; i < 3; i++) {
-            EnvioEntity envio = factory.manufacturePojo(EnvioEntity.class);
-            em.persist(envio);
-            dataEnvio.add(envio);
-        }
+        
         for (int i = 0; i < 3; i++) {            
-            PaqueteEntity entity = factory.manufacturePojo(PaqueteEntity.class);
-            entity.setEnvio(dataEnvio.get(i));            
+            PaqueteEntity entity = factory.manufacturePojo(PaqueteEntity.class);;            
             em.persist(entity);
             data.add(entity);                       
         }
@@ -115,8 +107,8 @@ public class PaqueteLogicTest {
         PaqueteEntity result = paqueteLogic.createPaquete(newEntity);
         Assert.assertNotNull(result);
         PaqueteEntity entity = em.find(PaqueteEntity.class, result.getId());
+        
         Assert.assertEquals(newEntity.getId(), entity.getId());
-        Assert.assertEquals(newEntity.getName(), entity.getName());
         Assert.assertEquals(newEntity.getDimensionA(), entity.getDimensionA());
         Assert.assertEquals(newEntity.getDimensionB(), entity.getDimensionB());
         Assert.assertEquals(newEntity.getDimensionC(), entity.getDimensionC());
@@ -149,8 +141,8 @@ public class PaqueteLogicTest {
         PaqueteEntity entity = data.get(0);
         PaqueteEntity resultEntity = paqueteLogic.getPaquete(entity.getId());
         Assert.assertNotNull(resultEntity);
+        
         Assert.assertEquals(entity.getId(), resultEntity.getId());
-        Assert.assertEquals(entity.getName(), resultEntity.getName());
         Assert.assertEquals(entity.getDimensionA(), resultEntity.getDimensionA());
         Assert.assertEquals(entity.getDimensionB(), resultEntity.getDimensionB());
         Assert.assertEquals(entity.getDimensionC(), resultEntity.getDimensionC());
@@ -182,7 +174,6 @@ public class PaqueteLogicTest {
         PaqueteEntity resp = em.find(PaqueteEntity.class, entity.getId());
 
         Assert.assertEquals(pojoEntity.getId(), resp.getId());
-        Assert.assertEquals(pojoEntity.getName(), resp.getName());
         Assert.assertEquals(pojoEntity.getDimensionA(), resp.getDimensionA());
         Assert.assertEquals(pojoEntity.getDimensionB(), resp.getDimensionB());
         Assert.assertEquals(pojoEntity.getDimensionC(), resp.getDimensionC());

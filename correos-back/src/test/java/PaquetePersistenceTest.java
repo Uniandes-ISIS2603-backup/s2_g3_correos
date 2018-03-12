@@ -45,6 +45,8 @@ public class PaquetePersistenceTest {
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
+    
+    private List<PaqueteEntity> data = new ArrayList<PaqueteEntity>();
 
     /**
      * Inyección de la dependencia a la clase PaquetePersistence cuyos métodos
@@ -97,12 +99,7 @@ public class PaquetePersistenceTest {
      */
     private void clearData() {
         em.createQuery("delete from PaqueteEntity").executeUpdate();
-    }
-
-    /**
-     *
-     */
-    private List<PaqueteEntity> data = new ArrayList<PaqueteEntity>();
+    }    
 
     /**
      * Inserta los datos iniciales para el correcto funcionamiento de las pruebas.
@@ -134,8 +131,7 @@ public class PaquetePersistenceTest {
         Assert.assertNotNull(result);
 
         PaqueteEntity entity = em.find(PaqueteEntity.class, result.getId());
-
-        Assert.assertEquals(newEntity.getName(), entity.getName());
+     
         Assert.assertEquals(newEntity.getDimensionA(), entity.getDimensionA());
         Assert.assertEquals(newEntity.getDimensionB(), entity.getDimensionB());
         Assert.assertEquals(newEntity.getDimensionC(), entity.getDimensionC());
@@ -174,7 +170,7 @@ public class PaquetePersistenceTest {
         PaqueteEntity entity = data.get(0);
         PaqueteEntity newEntity = paquetePersistence.find(entity.getId());
         Assert.assertNotNull(newEntity);
-        Assert.assertEquals(entity.getName(), newEntity.getName());
+       
         Assert.assertEquals(entity.getDimensionA(), newEntity.getDimensionA());
         Assert.assertEquals(entity.getDimensionB(), newEntity.getDimensionB());
         Assert.assertEquals(entity.getDimensionC(), newEntity.getDimensionC());
@@ -213,7 +209,6 @@ public class PaquetePersistenceTest {
 
         PaqueteEntity resp = em.find(PaqueteEntity.class, entity.getId());
 
-        Assert.assertEquals(newEntity.getName(), resp.getName());
         Assert.assertEquals(newEntity.getDimensionA(), resp.getDimensionA());
         Assert.assertEquals(newEntity.getDimensionB(), resp.getDimensionB());
         Assert.assertEquals(newEntity.getDimensionC(), resp.getDimensionC());

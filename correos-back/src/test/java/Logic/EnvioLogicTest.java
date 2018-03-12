@@ -6,16 +6,12 @@ package Logic;
  * and open the template in the editor.
  */
 
-import co.edu.uniandes.csw.correos.ejb.ClienteLogic;
 import co.edu.uniandes.csw.correos.ejb.EnvioLogic;
-import co.edu.uniandes.csw.correos.ejb.PaqueteLogic;
 import co.edu.uniandes.csw.correos.entities.ClienteEntity;
 import co.edu.uniandes.csw.correos.entities.EnvioEntity;
 import co.edu.uniandes.csw.correos.entities.PaqueteEntity;
 import co.edu.uniandes.csw.correos.exceptions.BusinessLogicException;
-import co.edu.uniandes.csw.correos.persistence.ClientePersistence;
 import co.edu.uniandes.csw.correos.persistence.EnvioPersistence;
-import co.edu.uniandes.csw.correos.persistence.PaquetePersistence;
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
@@ -44,9 +40,7 @@ public class EnvioLogicTest {
     private PodamFactory factory = new PodamFactoryImpl();
 
     @Inject
-    private EnvioLogic envioLogic;
-    private ClienteLogic clienteLogic;
-    private PaqueteLogic paqueteLogic;
+    private EnvioLogic envioLogic;   
 
     @PersistenceContext
     private EntityManager em;
@@ -63,13 +57,7 @@ public class EnvioLogicTest {
         return ShrinkWrap.create(JavaArchive.class)
                 .addPackage(EnvioEntity.class.getPackage())
                 .addPackage(EnvioLogic.class.getPackage())
-                .addPackage(EnvioPersistence.class.getPackage())
-                .addPackage(ClienteEntity.class.getPackage())
-                .addPackage(ClienteLogic.class.getPackage())
-                .addPackage(ClientePersistence.class.getPackage())
-                .addPackage(PaqueteEntity.class.getPackage())
-                .addPackage(PaqueteLogic.class.getPackage())
-                .addPackage(PaquetePersistence.class.getPackage())
+                .addPackage(EnvioPersistence.class.getPackage())                
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
@@ -109,26 +97,27 @@ public class EnvioLogicTest {
     private void insertData() throws BusinessLogicException {        
             
         for (int i = 0; i < 3; i++) {
-            
-            EnvioEntity entity = factory.manufacturePojo(EnvioEntity.class);                      
-            
             ClienteEntity cliente = factory.manufacturePojo(ClienteEntity.class);
-            em.persist(cliente);            
-            dataClientes.add(cliente);           
+            em.persist(cliente);
+            dataClientes.add(cliente);
+        }        
+        for (int i = 0; i < 3; i++) {
             
+            EnvioEntity entity = factory.manufacturePojo(EnvioEntity.class);
+             
             for (int j = 0; j < 3; j++) {
-            PaqueteEntity paquete = factory.manufacturePojo(PaqueteEntity.class);
-            em.persist(paquete);
-            dataPaquetes.add(paquete);
-            }
-            
-            entity.setCliente(dataClientes.get(i));            
-            entity.setPaquetes(dataPaquetes);           
-            
+                PaqueteEntity paquete = factory.manufacturePojo(PaqueteEntity.class);
+                em.persist(paquete);
+                dataPaquetes.add(paquete);
+            }  
+           
+            entity.setCliente(dataClientes.get(i));
+            entity.setPaquetes(dataPaquetes);
+
             em.persist(entity);
             data.add(entity);
             
-            dataPaquetes = new ArrayList<PaqueteEntity>();                        
+            List<ClienteEntity> dataClientes = new ArrayList<ClienteEntity>();
         }
     }
 
@@ -136,10 +125,14 @@ public class EnvioLogicTest {
      * Prueba para crear un Envio.
      */
     @Test
-    public void createEnvioTest() throws BusinessLogicException {
-        EnvioEntity newEntity = factory.manufacturePojo(EnvioEntity.class);
-        //newEntity.setCliente(dataClientes.get(0));
+    public void createEnvioTest() throws BusinessLogicException {        
+        
+        EnvioEntity newEntity = factory.manufacturePojo(EnvioEntity.class);        
+        newEntity.setCliente(dataClientes.get(0));                
+        newEntity.setPaquetes(dataPaquetes);
+        
         EnvioEntity result = envioLogic.createEnvio(newEntity);
+        
         Assert.assertNotNull(result);
         EnvioEntity entity = em.find(EnvioEntity.class, result.getId());
         Assert.assertEquals(newEntity.getId(), entity.getId());
@@ -201,8 +194,9 @@ public class EnvioLogicTest {
     public void updateEnvioTest() throws BusinessLogicException {
         EnvioEntity entity = data.get(0);
         EnvioEntity pojoEntity = factory.manufacturePojo(EnvioEntity.class);
-        //entity.setCliente(dataClientes.get(0));
         pojoEntity.setId(entity.getId());
+        pojoEntity.setCliente(entity.getCliente());
+        pojoEntity.setPaquetes(entity.getPaquetes());
 
         envioLogic.updateEnvio(pojoEntity);
 

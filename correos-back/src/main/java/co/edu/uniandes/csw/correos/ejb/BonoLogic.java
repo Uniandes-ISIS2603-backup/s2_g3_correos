@@ -57,15 +57,7 @@ public class BonoLogic {
         if(entity.getDescuento() < 0.0)
         {
             throw new BusinessLogicException("El descuento debe ser un número mayor a cero");
-        }
-        
-        // NO SE ESTA CUMPLIENDO ESTA REGLA DE NEGOCIO
-        Date fecha = new Date();
-        if(entity.getFechaDeVencimiento().before(fecha) == true)
-        {
-           throw new BusinessLogicException("La fecha de vencimiento es invalida");
-        }
-        
+        } 
         if(entity.getCondicion().isEmpty() == true)
         {
              throw new BusinessLogicException("La condicion no puede estar vacia");
@@ -119,15 +111,7 @@ public class BonoLogic {
         if(entity.getDescuento() < 0.0)
         {
             throw new BusinessLogicException("El descuento debe ser un número mayor a cero");
-        }
-        
-        // NO SE ESTA CUMPLIENDO ESTA REGLA DE NEGOCIO
-        Date fecha = new Date();
-        if(entity.getFechaDeVencimiento().before(fecha) == true)
-        {
-            throw new BusinessLogicException("La fecha de vencimiento es invalida");
-        }
-        
+        } 
         if(entity.getCondicion().isEmpty() == true)
         {
              throw new BusinessLogicException("La condicion no puede estar vacia");

@@ -68,7 +68,8 @@ public class BonoResource
      */
     @POST
     public BonoDTO createBono(BonoDTO bono) throws BusinessLogicException {
-        return new BonoDTO(bonoLogic.createBono(bono.toEntity()));
+        BonoEntity entity=bono.toEntity();
+        return new BonoDTO(bonoLogic.createBono(entity));
     }
      /**
      * <h1>PUT /api/Bonos: Actualizar el bono con el id dado.<h1>
