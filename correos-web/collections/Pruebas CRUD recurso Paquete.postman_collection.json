@@ -7,7 +7,7 @@
 	},
 	"item": [
 		{
-			"name": "http://localhost:8080/correos-web/api/paquetes",
+			"name": "Hace Get correctamente sobre todos los Paquetes",
 			"request": {
 				"method": "GET",
 				"header": [
@@ -26,7 +26,7 @@
 			"response": []
 		},
 		{
-			"name": "http://localhost:8080/correos-web/api/paquetes",
+			"name": "Hace Post incorrecto (volumen 0)",
 			"request": {
 				"method": "POST",
 				"header": [
@@ -45,7 +45,7 @@
 			"response": []
 		},
 		{
-			"name": "http://localhost:8080/correos-web/api/paquetes",
+			"name": "Hace Post incorrecto (peso 0)",
 			"request": {
 				"method": "POST",
 				"header": [
@@ -64,7 +64,7 @@
 			"response": []
 		},
 		{
-			"name": "http://localhost:8080/correos-web/api/paquetes",
+			"name": "Hace Post correctamente",
 			"request": {
 				"method": "POST",
 				"header": [
@@ -83,7 +83,7 @@
 			"response": []
 		},
 		{
-			"name": "http://localhost:8080/correos-web/api/paquetes/1000000000000000000001",
+			"name": "Hace Get sobre un paquete inexistente",
 			"request": {
 				"method": "GET",
 				"header": [
@@ -102,7 +102,7 @@
 			"response": []
 		},
 		{
-			"name": "http://localhost:8080/correos-web/api/paquetes/10002",
+			"name": "Hace Get especifico correctamente",
 			"request": {
 				"method": "GET",
 				"header": [
@@ -121,7 +121,7 @@
 			"response": []
 		},
 		{
-			"name": "http://localhost:8080/correos-web/api/paquetes/10000000000000000000000000000000000002",
+			"name": "Hace Delete sobre un paquete inexistente",
 			"request": {
 				"method": "DELETE",
 				"header": [
@@ -140,7 +140,7 @@
 			"response": []
 		},
 		{
-			"name": "http://localhost:8080/correos-web/api/paquetes/10002",
+			"name": "Hace Delete correctamente",
 			"request": {
 				"method": "DELETE",
 				"header": [
@@ -159,7 +159,7 @@
 			"response": []
 		},
 		{
-			"name": "http://localhost:8080/correos-web/api/paquetes/10002",
+			"name": "Hace Update incorrecto (peso 0)",
 			"request": {
 				"method": "PUT",
 				"header": [
@@ -178,7 +178,7 @@
 			"response": []
 		},
 		{
-			"name": "http://localhost:8080/correos-web/api/paquetes/10002",
+			"name": "Hace Update incorrecto (volumen 0)",
 			"request": {
 				"method": "PUT",
 				"header": [
@@ -197,7 +197,7 @@
 			"response": []
 		},
 		{
-			"name": "http://localhost:8080/correos-web/api/paquetes/10002",
+			"name": "Hace Update correctamente",
 			"request": {
 				"method": "PUT",
 				"header": [

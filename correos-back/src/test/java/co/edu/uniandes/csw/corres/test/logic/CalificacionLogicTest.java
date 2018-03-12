@@ -47,6 +47,7 @@ public class CalificacionLogicTest {
     private UserTransaction utx;
 
     private List<CalificacionEntity> data = new ArrayList<CalificacionEntity>();
+    private List<MensajeroEntity> mensajeroData = new ArrayList<MensajeroEntity>();
 
 
     @Deployment
@@ -99,11 +100,17 @@ public class CalificacionLogicTest {
      */
     private void insertData() {
         for (int i = 0; i < 3; i++) {
-            CalificacionEntity entity = factory.manufacturePojo(CalificacionEntity.class);
+            MensajeroEntity entity = factory.manufacturePojo(MensajeroEntity.class);
             em.persist(entity);
-            data.add(entity);
-         
+            mensajeroData.add(entity);         
         }
+        for (int i = 0; i < 3; i++) {
+            CalificacionEntity entity = factory.manufacturePojo(CalificacionEntity.class);
+            entity.setMensajero(mensajeroData.get(i));
+            em.persist(entity);
+            data.add(entity);         
+        }
+        
     }
 
     /**
@@ -114,7 +121,7 @@ public class CalificacionLogicTest {
     @Test
     public void createCalificacionTest() throws BusinessLogicException {
         CalificacionEntity newEntity = factory.manufacturePojo(CalificacionEntity.class);
-        newEntity.setMensajero(new MensajeroEntity());
+        newEntity.setMensajero(mensajeroData.get(0));
         CalificacionEntity result = calificacionLogic.createCalificacion(newEntity);
         Assert.assertNotNull(result);
         CalificacionEntity entity = em.find(CalificacionEntity.class, result.getId());

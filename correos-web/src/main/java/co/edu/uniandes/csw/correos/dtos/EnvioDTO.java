@@ -21,7 +21,7 @@ import co.edu.uniandes.csw.correos.entities.EnvioEntity;
   *      "horaFinal": number,
   *      "direccionEntrega": String,
   *      "direccionRecogida": String,
-  *      "estado": String,             
+  *      "estado": String             
   *   }
   * </pre>
   * <pre>
@@ -31,7 +31,7 @@ import co.edu.uniandes.csw.correos.entities.EnvioEntity;
   *      "horaFinal": 0030,
   *      "direccionEntrega": calle 1 # 2-4,
   *      "direccionRecogida": calle 1 # 3-4,
-  *      "estado": INICIAL,
+  *      "estado": INICIAL
   *   }
   * </pre>
   *
