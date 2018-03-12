@@ -1,0 +1,131 @@
+{
+	"variables": [],
+	"info": {
+		"name": "Cliente ",
+		"_postman_id": "9425b2de-a3df-d760-5bb7-c521dbad717d",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Hace get de los datos en el SQL",
+			"request": {
+				"url": "http://localhost:8080/correos-web/api/clientes",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": "hace get de los clientes en el SQL"
+			},
+			"response": []
+		},
+		{
+			"name": "Hace post correctamente de un cliente",
+			"request": {
+				"url": "http://localhost:8080/correos-web/api/clientes",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"nombre\": \"Rubby Casallas\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Edita correctamente a un cliente",
+			"request": {
+				"url": "http://localhost:8080/correos-web/api/clientes/5",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"nombre\": \"Ramon Casallas\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "verifica que se haya añadido el cliente \"Ramon\"",
+			"request": {
+				"url": "http://localhost:8080/correos-web/api/clientes/",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"nombre\": \"Ramon Casallas\"\n}"
+				},
+				"description": "verifica que despues del update se haya añadido correctamente el usuario"
+			},
+			"response": []
+		},
+		{
+			"name": "hace get individual de un cliente de la DB",
+			"request": {
+				"url": "http://localhost:8080/correos-web/api/clientes/10003",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"nombre\": \"Ramon Casallas\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "elimina correctamente al cliente con id 10003",
+			"request": {
+				"url": "http://localhost:8080/correos-web/api/clientes/10003",
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}

@@ -86,7 +86,7 @@ public class MensajeroLogicTest {
      */
     private void clearData() {
         em.createQuery("delete from MensajeroEntity").executeUpdate();
-        em.createQuery("delete from BookEntity").executeUpdate();
+
     }
 
     /**

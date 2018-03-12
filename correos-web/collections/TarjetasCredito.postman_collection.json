@@ -1,0 +1,228 @@
+{
+	"variables": [],
+	"info": {
+		"name": "TarjetasCredito",
+		"_postman_id": "bc1c43d6-08f2-44e3-71b8-4813303dd1fa",
+		"description": "Coleccion de postman que prueba los metodos CRUD del recurso Tarjetas de Credito",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "trae todas las tarjetas del SQL",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"test[\"Status code is 200\"] = responseCode.code == 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/correos-web/api/tarjetasCredito",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"nombre\": '12345'\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "añade correctamente una tarjeta nueva",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"test[\"Status code is 200\"] = responseCode.code == 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/correos-web/api/tarjetasCredito",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": " {\n \t\n        \"fecha\": \"2020-9-10 00:00:00\",\n        \"numero\": \"0000000000000000\",\n        \"securityCode\":123\n    }"
+				},
+				"description": "Hace POST correctamente"
+			},
+			"response": []
+		},
+		{
+			"name": "hace correctamente get de una tarjeta particular",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"test[\"Status code is 200\"] = responseCode.code == 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/correos-web/api/tarjetasCredito/10003",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": " {\n \t\n        \"fecha\": \"2020-9-10 00:00:00\",\n        \"numero\": \"0000000000000000\",\n        \"securityCode\":123\n    }"
+				},
+				"description": "hace GET/id correctamente "
+			},
+			"response": []
+		},
+		{
+			"name": "edita correctamente una tarjeta con el id dado",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"test[\"Status code is 200\"] = responseCode.code == 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/correos-web/api/tarjetasCredito/10003",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"type\": \"tarjetaCreditoDetailDTO\",\n    \"fecha\": \"2020-10-11 00:00:00\",\n    \"numero\": \"0101010101010101\"\n}"
+				},
+				"description": "hace el metodo PUT para actualizar una tarjeta"
+			},
+			"response": []
+		},
+		{
+			"name": "hace get para verificar que se haya modificado la tarjeta",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"test[\"Status code is 200\"] = responseCode.code == 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/correos-web/api/tarjetasCredito/",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"type\": \"tarjetaCreditoDetailDTO\",\n    \"fecha\": \"2020-10-11 00:00:00\",\n    \"numero\": \"0101010101010101\"\n}"
+				},
+				"description": "hace GET/todos para verificar que se haya modificado con el id dado"
+			},
+			"response": []
+		},
+		{
+			"name": "se hace delete correctamente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"test[\"Status code is 200\"] = responseCode.code == 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/correos-web/api/tarjetasCredito/10004",
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": "prueva correctamente el delete de una tarjeta dando el id"
+			},
+			"response": []
+		},
+		{
+			"name": "verifica que se haya borrado la tarjeta mencionada",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"test[\"Status code is 200\"] = responseCode.code == 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/correos-web/api/tarjetasCredito/",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": "verifica que si se haya borrado la tarjeta mencionada"
+			},
+			"response": []
+		}
+	]
+}
