@@ -72,24 +72,24 @@ public class ClienteResource {
     private ClienteLogic logic;
     
     /**
-     * <h1>POST /api/clientes : Crear una tarjeta de credito.</h1>
+     * <h1>POST /api/clientes : Crear una cliente de credito.</h1>
      * 
      * <pre>Cuerpo de petición: JSON {@link ClienteDetailDTO}.
      * 
-     * Crea un nueva nueva tarjeta con la informacion que se recibe en el cuerpo 
+     * Crea un nueva nueva cliente con la informacion que se recibe en el cuerpo 
      * de la petición y se regresa un objeto identico con un id auto-generado 
      * por la base de datos.
      * 
      * Codigos de respuesta:
      * <code style="color: mediumseagreen; background-color: #eaffe0;">
-     * 200 OK Creó la nueva tarjeta .
+     * 200 OK Creó la nueva cliente .
      * </code>
      * <code style="color: #c7254e; background-color: #f9f2f4;">
-     * 412 Precodition Failed: Ya existe la tarjeta.
+     * 412 Precodition Failed: Ya existe la cliente.
      * </code>
      * </pre>
-     * @param nuevo {@link ClienteDetailDTO} - La tarjeta que se desea guardar.
-     * @return JSON {@link ClienteDetailDTO}  - La tarjeta que se guardada con el atributo id autogenerado.
+     * @param nuevo {@link ClienteDetailDTO} - La cliente que se desea guardar.
+     * @return JSON {@link ClienteDetailDTO}  - La cliente que se guardada con el atributo id autogenerado.
      * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} - Error de lógica que se genera cuando ya existe el cliente.
      */
      @POST
@@ -98,66 +98,66 @@ public class ClienteResource {
          return new ClienteDetailDTO(logic.createCliente(nuevo.toEntity()));
      }
      /**
-     * <h1>PUT /api/clientes/{id} : Actualizar tarjeta con el id dado.</h1>
+     * <h1>PUT /api/clientes/{id} : Actualizar cliente con el id dado.</h1>
      * <pre>Cuerpo de petición: JSON {@link ClienteDetailDTO}.
      * 
-     * Actualiza la tarjeta con el id recibido en la URL con la informacion que se recibe en el cuerpo de la petición.
+     * Actualiza la cliente con el id recibido en la URL con la informacion que se recibe en el cuerpo de la petición.
      * 
      * Codigos de respuesta:
      * <code style="color: mediumseagreen; background-color: #eaffe0;">
-     * 200 OK Actualiza la tarjeta con el id dado con la información enviada como parámetro. Retorna un objeto identico.</code> 
+     * 200 OK Actualiza la cliente con el id dado con la información enviada como parámetro. Retorna un objeto identico.</code> 
      * <code style="color: #c7254e; background-color: #f9f2f4;">
-     * 404 Not Found. No existe una tarjeta con el id dado.
+     * 404 Not Found. No existe una cliente con el id dado.
      * </code> 
      * </pre>
-     * @param id Identificador de la tarjeta que se desea actualizar.Este debe ser una cadena de dígitos.
-     * @param actualizar {@link ClienteDetailDTO} La tarjeta que se desea guardar.
-     * @return JSON {@link ClienteDetailDTO} - La tarjeta guardado.
-     * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} - Error de lógica que se genera al no poder actualizar la tarjeta porque ya existe.
+     * @param id Identificador de la cliente que se desea actualizar.Este debe ser una cadena de dígitos.
+     * @param actualizar {@link ClienteDetailDTO} La cliente que se desea guardar.
+     * @return JSON {@link ClienteDetailDTO} - La cliente guardado.
+     * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} - Error de lógica que se genera al no poder actualizar la cliente porque ya existe.
      */
      @PUT
      @Path("{id: \\d+ }")
      public ClienteDetailDTO updateCliente(@PathParam("id") Long id , ClienteDetailDTO actualizar) throws BusinessLogicException
      {
-         if(logic.getCliente(id)!=null) 
-            throw new WebApplicationException("La tarjeta con id" + id,404);
+         if(logic.getCliente(id)==null) 
+            throw new WebApplicationException("La cliente con id" + id,404);
         actualizar.setId(id);
         return new ClienteDetailDTO(logic.updateCliente(actualizar.toEntity()));
      }
    /**
-  * <h1>GET /api/clientes/{id} : Obtener tarjetas por id.</h1>
+  * <h1>GET /api/clientes/{id} : Obtener clientes por id.</h1>
   * 
-  * <pre>Busca la tarjeta con el id asociado recibido en la URL y la devuelve.
+  * <pre>Busca la cliente con el id asociado recibido en la URL y la devuelve.
   * 
   * Codigos de respuesta:
   * <code style="color: mediumseagreen; background-color: #eaffe0;">
-  * 200 OK Devuelve la tarjeta correspondiente al id.
+  * 200 OK Devuelve la cliente correspondiente al id.
   * </code> 
   * <code style="color: #c7254e; background-color: #f9f2f4;">
-  * 404 Not Found No existe una tarjeta con el id dado.
+  * 404 Not Found No existe una cliente con el id dado.
   * </code> 
   * </pre>
-  * @param id Identificador de la tarjeta que se esta buscando. Este debe ser una cadena de dígitos.
-  * @return JSON {@link ClienteDetailDTO} - La tarjeta buscada
+  * @param id Identificador de la cliente que se esta buscando. Este debe ser una cadena de dígitos.
+  * @return JSON {@link ClienteDetailDTO} - La cliente buscada
   */
      @GET
      @Path("{id: \\d+ }")
-     public ClienteDetailDTO getTarjeta(@PathParam("id") Long id)
+     public ClienteDetailDTO getCliente(@PathParam("id") Long id)
      {
-        if(logic.getCliente(id)!=null) 
-            throw new WebApplicationException("La tarjeta con id" + id,404);
+        if(logic.getCliente(id)==null) 
+            throw new WebApplicationException("La cliente con id" + id,404);
         return new ClienteDetailDTO(logic.getCliente(id));
      }
      /**
-     * <h1>GET /api/clientes : Obtener todas las tarjetas.</h1>
+     * <h1>GET /api/clientes : Obtener todas las clientes.</h1>
      * 
-     * <pre>Busca y devuelve todas las tarjetas que existen en la aplicacion.
+     * <pre>Busca y devuelve todas las clientes que existen en la aplicacion.
      * 
      * Codigos de respuesta:
      * <code style="color: mediumseagreen; background-color: #eaffe0;">
-     * 200 OK Devuelve todas las tarjetas de la aplicacion.</code> 
+     * 200 OK Devuelve todas las clientes de la aplicacion.</code> 
      * </pre>
-     * @return JSONArray {@link ClienteDetailDTO} - Las tarjetas encontradas en la aplicación. Si no hay ninguna retorna una lista vacía.
+     * @return JSONArray {@link ClienteDetailDTO} - Las clientes encontradas en la aplicación. Si no hay ninguna retorna una lista vacía.
      */
      
      
@@ -171,7 +171,7 @@ public class ClienteResource {
      @Path("{id: \\d+ }")
      public void deleteCliente(@PathParam("id") Long id) throws BusinessLogicException
      {
-         if(logic.getCliente(id)!=null) 
+         if(logic.getCliente(id)==null) 
             throw new WebApplicationException("El Mensajero con id" + id ,404);
         logic.deleteCliente(id);
     }

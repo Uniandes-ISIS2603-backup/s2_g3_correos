@@ -119,7 +119,7 @@ public class TarjetaCreditoResource {
      @Path("{id: \\d+ }")
      public TarjetaCreditoDetailDTO updateCliente(@PathParam("id") Long id , TarjetaCreditoDetailDTO actualizar) throws BusinessLogicException
      {
-         if(logic.getTarjetaCredito(id)!=null) 
+         if(logic.getTarjetaCredito(id)==null) 
             throw new WebApplicationException("La tarjeta con id" + id,404);
         actualizar.setId(id);
         return new TarjetaCreditoDetailDTO(logic.updateTarjetaCredito(actualizar.toEntity()));
@@ -144,7 +144,7 @@ public class TarjetaCreditoResource {
      @Path("{id: \\d+ }")
      public TarjetaCreditoDetailDTO getTarjeta(@PathParam("id") Long id)
      {
-        if(logic.getTarjetaCredito(id)!=null) 
+        if(logic.getTarjetaCredito(id)==null) 
             throw new WebApplicationException("La tarjeta con id" + id,404);
         return new TarjetaCreditoDetailDTO(logic.getTarjetaCredito(id));
      }
@@ -171,7 +171,7 @@ public class TarjetaCreditoResource {
      @Path("{id: \\d+ }")
      public void deleteTarjetaCredito(@PathParam("id") Long id) throws BusinessLogicException
      {
-         if(logic.getTarjetaCredito(id)!=null) 
+         if(logic.getTarjetaCredito(id)==null) 
             throw new WebApplicationException("El Mensajero con id" + id ,404);
         logic.deleteTarjetaCredito(id);
     }
