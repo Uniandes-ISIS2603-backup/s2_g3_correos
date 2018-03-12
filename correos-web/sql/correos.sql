@@ -51,11 +51,11 @@ insert into PagoEntity(id,name,valor,fecha, tarjetaCredito_id, cuentaBancaria_id
 insert into PagoEntity(id,name,valor,fecha, tarjetaCredito_id, cuentaBancaria_id) values (10003,'Pago 003', 3457,'1998-10-10 00:00:00',10003,10003);
 insert into PagoEntity(id,name,valor,fecha, tarjetaCredito_id, cuentaBancaria_id) values (10004,'Pago 004', 3458,'1998-10-10 00:00:00',10004,10004);
 
-insert into EventoEntity(id,name, ubicacion,detalle,envio_id) values (10001,'Evento1','4.60278;;;-73.064902','Voy retrasado con el pedido',10001);
-insert into EventoEntity(id,name, ubicacion,detalle,envio_id) values (10002,'Evento2','4.60278;;;-74.064902','Hay mucho trancon y hay lluvia',10002);
-insert into EventoEntity(id,name, ubicacion,detalle,envio_id) values (10003,'Evento3','6.60278;;;-74.064902','Listo perfecto llego en 5',10003);
-insert into EventoEntity(id,name, ubicacion,detalle,envio_id) values (10004,'Evento4','4.60278;;;-78.064902','voy por la 7ta con 75',10004);
-insert into EventoEntity(id,name, ubicacion,detalle,envio_id) values (10005,'Evento5','5.60278;;;-74.064902','cambio de ruta debido a manifestacion',10005);
+insert into EventoEntity(id,name, ubicacion,detalle,envio_id) values (10001,'Evento1',4.60278,'Voy retrasado con el pedido',10001);
+insert into EventoEntity(id,name, ubicacion,detalle,envio_id) values (10002,'Evento2',4.60278,'Hay mucho trancon y hay lluvia',10002);
+insert into EventoEntity(id,name, ubicacion,detalle,envio_id) values (10003,'Evento3',4.60278,'Listo perfecto llego en 5',10003);
+insert into EventoEntity(id,name, ubicacion,detalle,envio_id) values (10004,'Evento4',4.60278,'voy por la 7ta con 75',10004);
+insert into EventoEntity(id,name, ubicacion,detalle,envio_id) values (10005,'Evento5',4.60278,'cambio de ruta debido a manifestacion',10005);
 
 insert into MensajeroEntity(id,calificacionPromedio,celular,correo,name,nombre,cuenta_id) values (10001,0.0,'3124456739','mensajero10001@correo.com', null,'Mensaero10001',10001);
 insert into MensajeroEntity(id,calificacionPromedio,celular,correo,name,nombre,cuenta_id) values (10002,0.0,'3124456733','mensajero10002@correo.com', null,'Mensaero10002',10002);
