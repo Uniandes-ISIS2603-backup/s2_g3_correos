@@ -39,6 +39,10 @@ delete from BonoEntity;
 
 delete from DetallePaqueteEntity;
 
+delete from ClienteEntity;
+
+delete from TarjetaCreditoEntity;
+
 
 insert into CuentaBancariaEntity(id,name,numero,banco,tipoTarjeta) values (10001,'Tarjeta1','39749179739479','Aval','Visa');
 insert into CuentaBancariaEntity(id,name,numero,banco,tipoTarjeta) values (10002,'Tarjeta2','479871973947992','GNC','Visa');
@@ -46,16 +50,18 @@ insert into CuentaBancariaEntity(id,name,numero,banco,tipoTarjeta) values (10003
 insert into CuentaBancariaEntity(id,name,numero,banco,tipoTarjeta) values (10004,'Tarjeta4','20384080808000802','SilvaBank','maestro');
 insert into CuentaBancariaEntity(id,name,numero,banco,tipoTarjeta) values (10005,'Tarjeta5','17730740208028084','Colpatria','MasterCard');
 
-insert into PagoEntity(id,name,valor,fecha, tarjetaCredito_id, cuentaBancaria_id) values (10001,'Pago 001', 3455,'1998-10-10 00:00:00',10001,10001);
-insert into PagoEntity(id,name,valor,fecha, tarjetaCredito_id, cuentaBancaria_id) values (10002,'Pago 002', 3456,'1998-10-10 00:00:00',10001,10001);
-insert into PagoEntity(id,name,valor,fecha, tarjetaCredito_id, cuentaBancaria_id) values (10003,'Pago 003', 3457,'1998-10-10 00:00:00',10003,10003);
-insert into PagoEntity(id,name,valor,fecha, tarjetaCredito_id, cuentaBancaria_id) values (10004,'Pago 004', 3458,'1998-10-10 00:00:00',10004,10004);
 
-insert into EventoEntity(id,name, ubicacion,detalle,envio_id) values (10001,'Evento1',4.60278,'Voy retrasado con el pedido',10001);
-insert into EventoEntity(id,name, ubicacion,detalle,envio_id) values (10002,'Evento2',4.60278,'Hay mucho trancon y hay lluvia',10002);
-insert into EventoEntity(id,name, ubicacion,detalle,envio_id) values (10003,'Evento3',4.60278,'Listo perfecto llego en 5',10003);
-insert into EventoEntity(id,name, ubicacion,detalle,envio_id) values (10004,'Evento4',4.60278,'voy por la 7ta con 75',10004);
-insert into EventoEntity(id,name, ubicacion,detalle,envio_id) values (10005,'Evento5',4.60278,'cambio de ruta debido a manifestacion',10005);
+insert into ClienteEntity(id,name,nombre) values (10001,'Cliente1','Pepe Perez');
+insert into ClienteEntity(id,name,nombre) values (10002,'Cliente2','Juana Ramirez');
+insert into ClienteEntity(id,name,nombre) values (10003,'Cliente3','Cesar Noseque');
+insert into ClienteEntity(id,name,nombre) values (10004,'Cliente4','David Leon');
+insert into ClienteEntity(id,name,nombre) values (10005,'Cliente5','Felipe Nieto');
+
+insert into TarjetaCreditoEntity(id,name,numero,fechaDeVencimiento,securityCode) values (10001,'TarjetaCredito1','1234123412341234','2020-10-10 00:00:00',123);
+insert into TarjetaCreditoEntity(id,name,numero,fechaDeVencimiento,securityCode) values (10002,'TarjetaCredito2','2345234523452345','2020-10-12 00:00:00',123);
+insert into TarjetaCreditoEntity(id,name,numero,fechaDeVencimiento,securityCode) values (10003,'TarjetaCredito3','3456345634563456','2020-10-11 00:00:00',123);
+insert into TarjetaCreditoEntity(id,name,numero,fechaDeVencimiento,securityCode) values (10004,'TarjetaCredito4','4567456745674567','2020-11-10 00:00:00',123);
+insert into TarjetaCreditoEntity(id,name,numero,fechaDeVencimiento,securityCode) values (10005,'TarjetaCredito5','5678567856785678','2020-10-10 00:00:00',123);
 
 insert into MensajeroEntity(id,calificacionPromedio,celular,correo,name,nombre,cuenta_id) values (10001,0.0,'3124456739','mensajero10001@correo.com', null,'Mensaero10001',10001);
 insert into MensajeroEntity(id,calificacionPromedio,celular,correo,name,nombre,cuenta_id) values (10002,0.0,'3124456733','mensajero10002@correo.com', null,'Mensaero10002',10002);
@@ -3995,3 +4001,14 @@ insert into DetallePaqueteEntity(id,name,mensaje) Values (10003,'Detalle3','Paqu
 insert into DetallePaqueteEntity(id,name,mensaje) Values (10004,'Detalle4','Paquete 55cm x 65cm; No tiene algun cuidado especial');
 
 
+
+insert into PagoEntity(id,name,valor,fecha, tarjetaCredito_id, cuentaBancaria_id) values (10001,'Pago 001', 3455,'1998-10-10 00:00:00',10001,10001);
+insert into PagoEntity(id,name,valor,fecha, tarjetaCredito_id, cuentaBancaria_id) values (10002,'Pago 002', 3456,'1998-10-10 00:00:00',10001,10001);
+insert into PagoEntity(id,name,valor,fecha, tarjetaCredito_id, cuentaBancaria_id) values (10003,'Pago 003', 3457,'1998-10-10 00:00:00',10003,10003);
+insert into PagoEntity(id,name,valor,fecha, tarjetaCredito_id, cuentaBancaria_id) values (10004,'Pago 004', 3458,'1998-10-10 00:00:00',10004,10004);
+
+insert into EventoEntity(id,name, ubicacion,detalle,envio_id) values (10001,'Evento1',4.60278,'Voy retrasado con el pedido',10001);
+insert into EventoEntity(id,name, ubicacion,detalle,envio_id) values (10002,'Evento2',4.60278,'Hay mucho trancon y hay lluvia',10002);
+insert into EventoEntity(id,name, ubicacion,detalle,envio_id) values (10003,'Evento3',4.60278,'Listo perfecto llego en 5',10003);
+insert into EventoEntity(id,name, ubicacion,detalle,envio_id) values (10004,'Evento4',4.60278,'voy por la 7ta con 75',10004);
+insert into EventoEntity(id,name, ubicacion,detalle,envio_id) values (10005,'Evento5',4.60278,'cambio de ruta debido a manifestacion',10005);
