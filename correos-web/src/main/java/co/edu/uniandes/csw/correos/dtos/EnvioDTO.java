@@ -11,7 +11,7 @@ import co.edu.uniandes.csw.correos.entities.EnvioEntity;
  /**
   * EnvioDTO Objeto de transferencia de datos de Envios. Los DTO contienen las
   * representaciones de los JSON que se transfieren entre el cliente y el
-  * servidor.
+  * servidor..
   * 
   * Al serializarse como JSON esta clase implementa el siguiente modelo: <br>
   * <pre>
