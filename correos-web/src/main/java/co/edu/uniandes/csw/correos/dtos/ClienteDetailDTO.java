@@ -23,6 +23,8 @@ SOFTWARE.
  */
 package co.edu.uniandes.csw.correos.dtos;
 
+import co.edu.uniandes.csw.correos.entities.ClienteEntity;
+
 
 /**
  * Clase que extiende de {@link ClienteDTO} para manejar la transformacion entre
@@ -52,6 +54,11 @@ public class ClienteDetailDTO extends ClienteDTO
         return cliente;
     }
     
+     public ClienteDetailDTO(ClienteEntity entity)
+    {
+        super(entity);
+      
+    }
     /**
      * cambia el cliente 
      * @param cliente cliente que se va a cambiar 

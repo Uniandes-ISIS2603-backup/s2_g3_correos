@@ -23,6 +23,8 @@ SOFTWARE.
  */
 package co.edu.uniandes.csw.correos.dtos;
 
+import co.edu.uniandes.csw.correos.entities.TarjetaCreditoEntity;
+
 
 /**
  * Clase que extiende de {@link TarjetaCreditoDTO} para manejar la transformacion entre
@@ -41,6 +43,12 @@ public class TarjetaCreditoDetailDTO extends TarjetaCreditoDTO
     public TarjetaCreditoDetailDTO(){
     super();
 }
+    
+     public TarjetaCreditoDetailDTO(TarjetaCreditoEntity entity)
+    {
+        super(entity);
+       
+    }
    /**
     * retorna la tarjeta que corresponde
     */
