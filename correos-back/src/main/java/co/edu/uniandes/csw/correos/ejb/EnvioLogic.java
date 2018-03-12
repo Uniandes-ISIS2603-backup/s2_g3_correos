@@ -6,6 +6,7 @@
 package co.edu.uniandes.csw.correos.ejb;
 
 import co.edu.uniandes.csw.correos.entities.EnvioEntity;
+import co.edu.uniandes.csw.correos.entities.EventoEntity;
 import co.edu.uniandes.csw.correos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.correos.persistence.EnvioPersistence;
 import java.util.List;
@@ -44,8 +45,7 @@ public class EnvioLogic {
         }
         if (entity.getEstado()==null){
             throw new BusinessLogicException("No se reconoce un estado.");
-        }
-        if (entity.getPaquetes().isEmpty()){
+        }if (entity.getPaquetes().isEmpty()){
             throw new BusinessLogicException("No hay paquetes en el envio.");
         }
         
@@ -127,6 +127,19 @@ public class EnvioLogic {
         else {
             return envio.getHoraInicio()+2000;
         }     
+    }
+    /**
+     * 
+     * @param id el ID del evento al que se le va a anadir el nuevo detalle
+     * @param evento el evento a ser anadido
+     */
+    public void agregarEvento(Long id, EventoEntity evento)
+    {
+       EnvioEntity envio= persistence.find(id);
+       List<EventoEntity> eventos = envio.getEventos();
+       eventos.add(evento);
+       envio.setEventos(eventos);
+       persistence.update(envio);
     }
 }
 

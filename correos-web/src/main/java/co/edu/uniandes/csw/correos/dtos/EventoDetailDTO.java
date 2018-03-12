@@ -20,6 +20,7 @@ public class EventoDetailDTO extends EventoDTO {
         
     }
     
+
     public EventoDetailDTO(EventoEntity entity){
         super(entity);
     }

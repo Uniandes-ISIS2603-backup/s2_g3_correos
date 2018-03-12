@@ -49,7 +49,7 @@ import co.edu.uniandes.csw.correos.entities.EnvioEntity;
 
     public EnvioDTO() {
      /**
-      * Constructor basico (vacio)
+      * Constructor basico
       */   
     }
     
