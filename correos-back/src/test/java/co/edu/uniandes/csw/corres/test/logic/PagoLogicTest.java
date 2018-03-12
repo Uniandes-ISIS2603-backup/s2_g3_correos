@@ -23,13 +23,9 @@ import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
-import static org.junit.Assert.*;
 import org.junit.runner.RunWith;
 import uk.co.jemos.podam.api.PodamFactory;
 import uk.co.jemos.podam.api.PodamFactoryImpl;
@@ -213,7 +209,7 @@ public class PagoLogicTest {
         Assert.assertEquals(pojoEntity.getId(), resp.getId());
         Assert.assertEquals(pojoEntity.getTarjetaCredito(), resp.getTarjetaCredito());
         Assert.assertEquals(pojoEntity.getFecha(), resp.getFecha());
-        Assert.assertEquals(entity.getValor(), resp.getValor());
+        Assert.assertEquals(pojoEntity.getValor(), resp.getValor());
     }
 
 }

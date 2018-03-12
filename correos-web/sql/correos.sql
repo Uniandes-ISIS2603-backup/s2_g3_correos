@@ -82,6 +82,16 @@ insert into TransporteEntity(id,activo,capacidad,name,tipo) values (10008,0,'9kg
 insert into TransporteEntity(id,activo,capacidad,name,tipo) values (10009,0,'10kg',null,'carro');
 insert into TransporteEntity(id,activo,capacidad,name,tipo) values (100010,0,'2kg',null,'cicla');
 
+insert into mensajeroentity_transporteentity(mensajeroentity_id,transportes_id) values(10001,10001);
+insert into mensajeroentity_transporteentity(mensajeroentity_id,transportes_id) values(10001,10002);
+insert into mensajeroentity_transporteentity(mensajeroentity_id,transportes_id) values(10002,10003);
+insert into mensajeroentity_transporteentity(mensajeroentity_id,transportes_id) values(10002,10004);
+insert into mensajeroentity_transporteentity(mensajeroentity_id,transportes_id) values(10003,10005);
+insert into mensajeroentity_transporteentity(mensajeroentity_id,transportes_id) values(10003,10006);
+insert into mensajeroentity_transporteentity(mensajeroentity_id,transportes_id) values(10004,10007);
+insert into mensajeroentity_transporteentity(mensajeroentity_id,transportes_id) values(10004,10008);
+insert into mensajeroentity_transporteentity(mensajeroentity_id,transportes_id) values(10005,10009);
+insert into mensajeroentity_transporteentity(mensajeroentity_id,transportes_id) values(10005,100010);
 
 insert into PaqueteEntity(name,id,peso,tipo,dimensionA,dimensionB,dimensionC) values ('Paquete_001',10001,40.2,'FRAGIL',40,57,62);
 insert into PaqueteEntity(name,id,peso,tipo,dimensionA,dimensionB,dimensionC) values ('Paquete_002',10002,8.0,'FRAGIL',21,11,7);
