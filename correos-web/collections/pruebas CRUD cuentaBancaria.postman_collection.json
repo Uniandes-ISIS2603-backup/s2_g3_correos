@@ -1,0 +1,95 @@
+{
+	"variables": [],
+	"info": {
+		"name": "pruebas CRUD cuentaBancaria",
+		"_postman_id": "55815718-2b45-f57c-c9d6-77c244ab6647",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://localhost:8080/correos-web/api/cuentasBancarias",
+			"request": {
+				"url": "http://localhost:8080/correos-web/api/cuentasBancarias",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": "200 get cuentas bancarias"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/correos-web/api/cuentasBancarias/10001",
+			"request": {
+				"url": "http://localhost:8080/correos-web/api/cuentasBancarias/10001",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": "200 success get"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/correos-web/api/cuentasBancarias/10008",
+			"request": {
+				"url": "http://localhost:8080/correos-web/api/cuentasBancarias/10008",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": "error 404"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/correos-web/api/cuentasBancarias/10001",
+			"request": {
+				"url": "http://localhost:8080/correos-web/api/cuentasBancarias/10001",
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"description": "DELETE ESTA MAL"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/correos-web/api/cuentasBancarias",
+			"request": {
+				"url": "http://localhost:8080/correos-web/api/cuentasBancarias",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"type\": \"cuentaBancariaDetailDTO\",\n    \"banco\": \"Aval\",\n    \"id\": 10001,\n    \"numero\": \"39749179739479\",\n    \"tipoTarjeta\": \"Visa\",\n    \"pagos\": []}"
+				},
+				"description": "200 post"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/correos-web/api/cuentasBancarias/10001",
+			"request": {
+				"url": "http://localhost:8080/correos-web/api/cuentasBancarias/10001",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"type\": \"cuentaBancariaDetailDTO\",\n    \"banco\": \"Aval\",\n    \"id\": 10001,\n    \"numero\": \"39749179739479\",\n    \"tipoTarjeta\": \"Visa\",\n    \"pagos\": []}"
+				},
+				"description": "PUT"
+			},
+			"response": []
+		}
+	]
+}

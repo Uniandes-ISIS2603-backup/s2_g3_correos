@@ -1,6 +1,6 @@
 {
 	"info": {
-		"name": "pruebas Detalle Paquete",
+		"name": "pruebas CRUD detallePaquete.postman_collection",
 		"_postman_id": "be9e0097-941e-8bcd-c375-f4dd3864d8c0",
 		"description": "Estas son las colecciones de prueba para el recurso de DetallePaquete",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
@@ -396,6 +396,53 @@
 					]
 				},
 				"description": "Arroja 404"
+			},
+			"response": []
+		},
+		{
+			"name": "Buscar detalles",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "9deb0b5e-2c13-4cfa-82ee-1805b30c45c7",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] =responseCode.code===200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"mensaje\": \"lindo\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/correos-web/api/detalles/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"correos-web",
+						"api",
+						"detalles",
+						""
+					]
+				},
+				"description": "Arroja 200"
 			},
 			"response": []
 		}

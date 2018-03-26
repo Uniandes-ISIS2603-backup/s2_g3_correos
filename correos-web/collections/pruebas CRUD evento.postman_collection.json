@@ -1,0 +1,113 @@
+{
+	"variables": [],
+	"info": {
+		"name": "pruebas CRUD evento",
+		"_postman_id": "09ff2926-c0a7-6812-4e5c-6dc316c665f9",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://localhost:8080/correos-web/api/eventos/10001",
+			"request": {
+				"url": "http://localhost:8080/correos-web/api/eventos/10001",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": "SERVER ERROR"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/correos-web/api/eventos",
+			"request": {
+				"url": "http://localhost:8080/correos-web/api/eventos",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": "SERVER ERROR"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/correos-web/api/eventos",
+			"request": {
+				"url": "http://localhost:8080/correos-web/api/eventos",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n *      \"id\":1234567890,\r\n *      \"ubicacion\": 1234567890,\r\n *      \"detalle\": \"uniandes\"\r\n *   }"
+				},
+				"description": "Server logic exception"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/correos-web/api/eventos",
+			"request": {
+				"url": "http://localhost:8080/correos-web/api/eventos",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n *      \"id\":1234567890,\r\n *      \"ubicacion\": 1234567890,\r\n *      \"detalle\": \"uniandesd fafd agsg\"\r\n *   }"
+				},
+				"description": "200 succesa"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/correos-web/api/eventos",
+			"request": {
+				"url": "http://localhost:8080/correos-web/api/eventos",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n *      \"id\":1234567890,\n *      \"ubicacion\": 1234567890,\n *      \"detalle\": \"uniandesd fafd agsg\"\n *   }"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/correos-web/api/eventos/1234567890",
+			"request": {
+				"url": "http://localhost:8080/correos-web/api/eventos/1234567890",
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n *      \"id\":1234567890,\n *      \"ubicacion\": 1234567890,\n *      \"detalle\": \"uniandesd fafd agsg\"\n *   }"
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
