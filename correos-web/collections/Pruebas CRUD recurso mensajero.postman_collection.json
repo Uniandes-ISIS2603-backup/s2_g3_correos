@@ -145,7 +145,7 @@
 				}
 			],
 			"request": {
-				"url": "http://localhost:8080/correos-web/api/mensajeros/1",
+				"url": "http://localhost:8080/correos-web/api/mensajeros/10001",
 				"method": "GET",
 				"header": [
 					{
@@ -176,7 +176,7 @@
 				}
 			],
 			"request": {
-				"url": "http://localhost:8080/correos-web/api/mensajeros/2",
+				"url": "http://localhost:8080/correos-web/api/mensajeros/486",
 				"method": "GET",
 				"header": [
 					{
@@ -207,7 +207,7 @@
 				}
 			],
 			"request": {
-				"url": "http://localhost:8080/correos-web/api/mensajeros/1",
+				"url": "http://localhost:8080/correos-web/api/mensajeros/10001",
 				"method": "PUT",
 				"header": [
 					{
@@ -218,7 +218,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "\t{\r\n\t\"nombre\": \"Pepe\",\r\n      \"celular\": \"3182223652\",\r\n      \"correo\": \"juanElMensajero@correo.com\",\r\n      \"calificacionPromedio\": 4.9\r\n\t}"
+					"raw": "\t{\r\n\t\"nombre\": \"Pepe\",\r\n      \"celular\": \"3182223679\",\r\n      \"correo\": \"juanElMensajero46@correo.com\",\r\n      \"calificacionPromedio\": 4.9\r\n\t}"
 				},
 				"description": "Succesful PUT service Request \n200 OK"
 			},
@@ -238,7 +238,7 @@
 				}
 			],
 			"request": {
-				"url": "http://localhost:8080/correos-web/api/mensajeros/2",
+				"url": "http://localhost:8080/correos-web/api/mensajeros/5434",
 				"method": "PUT",
 				"header": [
 					{
@@ -269,7 +269,7 @@
 				}
 			],
 			"request": {
-				"url": "http://localhost:8080/correos-web/api/mensajeros/1",
+				"url": "http://localhost:8080/correos-web/api/mensajeros/10001",
 				"method": "DELETE",
 				"header": [],
 				"body": {},
@@ -291,7 +291,7 @@
 				}
 			],
 			"request": {
-				"url": "http://localhost:8080/correos-web/api/mensajeros/2",
+				"url": "http://localhost:8080/correos-web/api/mensajeros/3524",
 				"method": "DELETE",
 				"header": [],
 				"body": {},
