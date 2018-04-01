@@ -40,18 +40,30 @@ import co.edu.uniandes.csw.correos.entities.PaqueteEntity;
         {            
         super(entity);        
         
+        if(entity.getBonos()!=null){
             for(int i = 0; i< entity.getBonos().size(); i++){
                 this.bonos.add(new BonoDTO(entity.getBonos().get(i)));
             }
+        }
+        if(entity.getEventos()!=null){
             for(int i = 0; i< entity.getEventos().size(); i++){
                 this.eventos.add(new EventoDTO(entity.getEventos().get(i)));
             }
+        }
+        if(entity.getPaquetes()!=null){
             for(int i = 0; i< entity.getPaquetes().size(); i++){
                 this.paquetes.add(new PaqueteDTO(entity.getPaquetes().get(i)));
             }
+        }
+        if(entity.getCliente()!=null){
             this.cliente=new ClienteDTO(entity.getCliente());
+        }
+        if(entity.getMensajero()!=null){
             this.mensajero=new MensajeroDTO(entity.getMensajero());
+        }
+        if(entity.getPago()!=null){
             this.pago=new PagoDTO(entity.getPago());
+        }
         }
         
         /**
@@ -137,10 +149,10 @@ import co.edu.uniandes.csw.correos.entities.PaqueteEntity;
         }
         
         /**
-         * @param cliente el nuevo cliente asociado al envio
+         * @param client el nuevo cliente asociado al envio
          */
-        public void setCliente(ClienteDTO cliente) {
-            this.cliente = cliente;
+        public void setCliente(ClienteDTO client) {
+            this.cliente = client;
         }
         
         /**

@@ -147,10 +147,10 @@ public class EnvioEntity extends BaseEntity implements Serializable{
     }
 
     /**
-     * @param client the cliente to set
+     * @param cliente the cliente to set
      */
-    public void setCliente(ClienteEntity client) {
-        cliente = client;
+    public void setCliente(ClienteEntity cliente) {
+        this.cliente = cliente;
     }
 
     /**
