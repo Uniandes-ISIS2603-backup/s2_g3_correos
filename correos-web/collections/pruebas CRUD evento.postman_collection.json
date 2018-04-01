@@ -10,10 +10,19 @@
 		{
 			"name": "http://localhost:8080/correos-web/api/eventos/10001",
 			"request": {
-				"url": "http://localhost:8080/correos-web/api/eventos/10001",
-				"method": "GET",
-				"header": [],
-				"body": {},
+				"url": "http://localhost:8080/correos-web/api/pagos/3",
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"type\": \"pagoDetailDTO\",\n    \"fecha\": \"1998-10-10T00:00:00-05:00\",\n    \"id\": 10069,\n    \"valor\": 3455\n    \n}"
+				},
 				"description": "SERVER ERROR"
 			},
 			"response": []
@@ -106,6 +115,48 @@
 					"raw": "{\n *      \"id\":1234567890,\n *      \"ubicacion\": 1234567890,\n *      \"detalle\": \"uniandesd fafd agsg\"\n *   }"
 				},
 				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/correos-web/api/eventos/69696",
+			"request": {
+				"url": "http://localhost:8080/correos-web/api/eventos/69696",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": "Get fallido"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/correos-web/api/eventos/10004",
+			"request": {
+				"url": "http://localhost:8080/correos-web/api/eventos/10004",
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/correos-web/api/eventos/69696",
+			"request": {
+				"url": "http://localhost:8080/correos-web/api/eventos/69696",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": " {\n        \"detalle\": \"Hay mucho trancon y hay lluvia\",\n        \"id\": 10002,\n        \"ubicacion\": 4\n    }"
+				},
+				"description": "out fallido"
 			},
 			"response": []
 		}

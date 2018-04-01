@@ -160,6 +160,11 @@ public EventoDTO createEvento(EventoDTO evento)throws BusinessLogicException{
     @Path("{id: \\d+}")
     public void deleteEvento(@PathParam("id") Long id){
         //en espera de implementacion
+               EventoEntity entity = eventoLogic.getEvento(id);
+        if (entity == null) {
+            throw new WebApplicationException("El pago no existe", 404);
+        }
+        eventoLogic.deleteEvento(id);
     }
     
 }
