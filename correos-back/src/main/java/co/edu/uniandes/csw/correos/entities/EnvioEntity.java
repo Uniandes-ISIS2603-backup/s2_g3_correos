@@ -53,7 +53,6 @@ public class EnvioEntity extends BaseEntity implements Serializable{
    @PodamExclude
    @OneToMany(fetch = FetchType.EAGER)
    private List<BonoEntity> bonos = new ArrayList<BonoEntity>();
-
    
     /**
      * @return the horaInicio

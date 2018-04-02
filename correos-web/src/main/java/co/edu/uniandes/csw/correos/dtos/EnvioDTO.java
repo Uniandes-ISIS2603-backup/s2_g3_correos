@@ -40,9 +40,9 @@
   */
  public class EnvioDTO {    
 
-    private long idEnvio; 
-    private long horaInicio;
-    private long horaFinal;
+    private Long idEnvio; 
+    private Long horaInicio;
+    private Long horaFinal;
     private String direccionEntrega;
     private String direccionRecogida;
     private String estado;
@@ -83,21 +83,21 @@
      * 
      * @return ID del Envio
      */     
-    public long getId() {
+    public Long getId() {
         return idEnvio; 
     }
     /**
      * 
      * @return hora de recogida
      */
-    public long getHoraInicio() {
+    public Long getHoraInicio() {
         return horaInicio; 
     }
     /**
      * 
      * @return hora de entrega APROXIMADA 
      */
-    public long getHoraFinal() {
+    public Long getHoraFinal() {
         return horaFinal; 
     }
     /**
@@ -125,7 +125,7 @@
      * 
      * @param id la nueva ID del Envio (?)
      */
-    public void setId(long id) {
+    public void setId(Long id) {
         idEnvio = id; 
     }
     /**
@@ -146,14 +146,14 @@
      * 
      * @param hora nueva hora de recojida
      */
-    public void setHoraInicio(long hora) {
+    public void setHoraInicio(Long hora) {
         horaInicio = hora; 
     }
     /**
      * 
      * @param hora nueva aproximacion de hora final
      */
-    public void setHoraFinal(long hora) {
+    public void setHoraFinal(Long hora) {
         horaFinal = hora; 
     }
     /**

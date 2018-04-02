@@ -216,9 +216,9 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n        \"tipo\": \"FRAGIL\",\r\n       \"peso\": 10,\r\n        \"dimensionA\": 10,\r\n        \"dimensionB\": 2,\r\n        \"dimensionC\": 3\r\n     }"
+					"raw": ""
 				},
-				"url": "http://localhost:8080/correos-web/api/paquetes/10000000000000000000000000000000000002",
+				"url": "http://localhost:8080/correos-web/api/paquetes/12",
 				"description": null
 			},
 			"response": []
