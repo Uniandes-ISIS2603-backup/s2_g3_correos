@@ -21,7 +21,7 @@
 				}
 			],
 			"request": {
-				"url": "http://localhost:8080/correos-web/api/tarjetasCredito/",
+				"url": "http://localhost:8080/correos-web/api/clientes/",
 				"method": "GET",
 				"header": [
 					{
