@@ -163,7 +163,7 @@
 			"response": []
 		},
 		{
-			"name": "se hace delete correctamente",
+			"name": "se hace delete correcto",
 			"event": [
 				{
 					"listen": "test",
@@ -176,7 +176,7 @@
 				}
 			],
 			"request": {
-				"url": "http://localhost:8080/correos-web/api/tarjetasCredito/10004",
+				"url": "http://localhost:8080/correos-web/api/tarjetasCredito/10005",
 				"method": "DELETE",
 				"header": [
 					{
@@ -189,12 +189,12 @@
 					"mode": "raw",
 					"raw": ""
 				},
-				"description": "prueva correctamente el delete de una tarjeta dando el id"
+				"description": ""
 			},
 			"response": []
 		},
 		{
-			"name": "verifica que se haya borrado la tarjeta mencionada",
+			"name": "verifica que el delete sea correcto",
 			"event": [
 				{
 					"listen": "test",
@@ -220,7 +220,7 @@
 					"mode": "raw",
 					"raw": ""
 				},
-				"description": "verifica que si se haya borrado la tarjeta mencionada"
+				"description": ""
 			},
 			"response": []
 		}
