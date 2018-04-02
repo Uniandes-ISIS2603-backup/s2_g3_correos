@@ -9,8 +9,19 @@
 	"item": [
 		{
 			"name": "Hace get de los datos en el SQL",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"test[\"Status code is 200\"] = responseCode.code == 200;"
+						]
+					}
+				}
+			],
 			"request": {
-				"url": "http://localhost:8080/correos-web/api/clientes",
+				"url": "http://localhost:8080/correos-web/api/tarjetasCredito/",
 				"method": "GET",
 				"header": [
 					{
@@ -29,6 +40,17 @@
 		},
 		{
 			"name": "Hace post correctamente de un cliente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"test[\"Status code is 200\"] = responseCode.code == 200;"
+						]
+					}
+				}
+			],
 			"request": {
 				"url": "http://localhost:8080/correos-web/api/clientes",
 				"method": "POST",
@@ -49,6 +71,17 @@
 		},
 		{
 			"name": "Edita correctamente a un cliente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"test[\"Status code is 200\"] = responseCode.code == 200;"
+						]
+					}
+				}
+			],
 			"request": {
 				"url": "http://localhost:8080/correos-web/api/clientes/5",
 				"method": "PUT",
@@ -69,6 +102,17 @@
 		},
 		{
 			"name": "verifica que se haya añadido el cliente \"Ramon\"",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"test[\"Status code is 200\"] = responseCode.code == 200;"
+						]
+					}
+				}
+			],
 			"request": {
 				"url": "http://localhost:8080/correos-web/api/clientes/",
 				"method": "GET",
@@ -89,6 +133,17 @@
 		},
 		{
 			"name": "hace get individual de un cliente de la DB",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"test[\"Status code is 200\"] = responseCode.code == 200;"
+						]
+					}
+				}
+			],
 			"request": {
 				"url": "http://localhost:8080/correos-web/api/clientes/10003",
 				"method": "GET",
@@ -109,6 +164,17 @@
 		},
 		{
 			"name": "elimina correctamente al cliente con id 10003",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"test[\"Status code is 200\"] = responseCode.code == 200;"
+						]
+					}
+				}
+			],
 			"request": {
 				"url": "http://localhost:8080/correos-web/api/clientes/10003",
 				"method": "DELETE",
