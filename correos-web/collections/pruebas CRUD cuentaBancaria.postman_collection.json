@@ -36,7 +36,7 @@
 				"method": "GET",
 				"header": [],
 				"body": {},
-				"description": "error 404"
+				"description": "error 404 get fallido"
 			},
 			"response": []
 		},
@@ -88,6 +88,26 @@
 					"raw": "{\n    \"type\": \"cuentaBancariaDetailDTO\",\n    \"banco\": \"Aval\",\n    \"id\": 10001,\n    \"numero\": \"39749179739479\",\n    \"tipoTarjeta\": \"Visa\",\n    \"pagos\": []}"
 				},
 				"description": "PUT"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/correos-web/api/cuentasBancarias/1069",
+			"request": {
+				"url": "http://localhost:8080/correos-web/api/cuentasBancarias/1069",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"type\": \"cuentaBancariaDetailDTO\",\n    \"banco\": \"Aval\",\n    \"id\": 10001,\n    \"numero\": \"39749179739479\",\n    \"tipoTarjeta\": \"Visa\",\n    \"pagos\": []}"
+				},
+				"description": ""
 			},
 			"response": []
 		}
