@@ -13,7 +13,7 @@
   * representaciones de los JSON que se transfieren entre el cliente y el
   * servidor.
   * 
-  * Al serializarse como JSON esta clase implementa el siguiente modelo: <br>
+  * Al serializarse como JSON est clase implementa el siguiente modelo: <br>
   * <pre>
   *   {
   *      "id": number,
