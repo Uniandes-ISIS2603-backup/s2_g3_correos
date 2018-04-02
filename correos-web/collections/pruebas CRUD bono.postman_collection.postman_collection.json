@@ -1,0 +1,552 @@
+{
+	"info": {
+		"name": "pruebas CRUD bono.postman_collection",
+		"_postman_id": "b8ae9437-4534-f51f-6ea4-c395d16df2cc",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Crear un bono",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "11ebe1b5-6a00-4002-96f7-162811a57201",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\t\"descripcion\": \"Bono del 70% en cualquier envio\",\n\t\t\"descuento\": 0.6,\n        \"condicion\": \"Sin redimir\",\n        \"fechaDeVencimiento\": \"2019-11-11 00:00:00\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/correos-web/api/clientes/10001/bonos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"correos-web",
+						"api",
+						"clientes",
+						"10001",
+						"bonos"
+					]
+				},
+				"description": "Arroja 200"
+			},
+			"response": []
+		},
+		{
+			"name": "Crear un bono para un cliente inexistente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "4bb7b3d8-5cff-4235-a3c1-25b6ae338297",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 404\"] = responseCode.code === 404;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\t\"descripcion\": \"Bono del 70% en cualquier envio\",\n\t\t\"descuento\": 0.6,\n        \"condicion\": \"Sin redimir\",\n        \"fechaDeVencimiento\": \"2019-11-11 00:00:00\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/correos-web/api/clientes/10/bonos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"correos-web",
+						"api",
+						"clientes",
+						"10",
+						"bonos"
+					]
+				},
+				"description": "Arroja 404"
+			},
+			"response": []
+		},
+		{
+			"name": "Crear un bono de manera incorrecta",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "09ccfb7c-1fcd-42df-94c9-320ffec5a18b",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 412\"] = responseCode.code === 412;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\t\"descripcion\": \"Bono del 70% en cualquier envio\",\n\t\t\"descuento\": 0.7,\n        \"condicion\": \"\",\n        \"fechaDeVencimiento\": \"2019-11-11 00:00:00\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/correos-web/api/clientes/10001/bonos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"correos-web",
+						"api",
+						"clientes",
+						"10001",
+						"bonos"
+					]
+				},
+				"description": "Arroja 412"
+			},
+			"response": []
+		},
+		{
+			"name": "Consultar los bonos del cliente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c36b787f-6af6-4a7f-a519-9f75f96eebd4",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\t\"descripcion\": \"Bono del 70% en cualquier envio\",\n\t\t\"descuento\": 0.7,\n        \"condicion\": \"\",\n        \"fechaDeVencimiento\": \"2019-11-11 00:00:00\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/correos-web/api/clientes/10001/bonos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"correos-web",
+						"api",
+						"clientes",
+						"10001",
+						"bonos"
+					]
+				},
+				"description": "Arroja 200"
+			},
+			"response": []
+		},
+		{
+			"name": "Consultar un bono del cliente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c36b787f-6af6-4a7f-a519-9f75f96eebd4",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\t\"descripcion\": \"Bono del 70% en cualquier envio\",\n\t\t\"descuento\": 0.7,\n        \"condicion\": \"\",\n        \"fechaDeVencimiento\": \"2019-11-11 00:00:00\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/correos-web/api/clientes/10001/bonos/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"correos-web",
+						"api",
+						"clientes",
+						"10001",
+						"bonos",
+						"1"
+					]
+				},
+				"description": "Arroja 200"
+			},
+			"response": []
+		},
+		{
+			"name": "Consultar un bono inexistente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "514fd5d0-18b2-4178-a050-74a23280f5f1",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 404\"] = responseCode.code === 404;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\t\"descripcion\": \"Bono del 70% en cualquier envio\",\n\t\t\"descuento\": 0.7,\n        \"condicion\": \"\",\n        \"fechaDeVencimiento\": \"2019-11-11 00:00:00\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/correos-web/api/clientes/10001/bonos/100",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"correos-web",
+						"api",
+						"clientes",
+						"10001",
+						"bonos",
+						"100"
+					]
+				},
+				"description": "Arroja 404"
+			},
+			"response": []
+		},
+		{
+			"name": "Consultar bonos de un cliente inexistente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "514fd5d0-18b2-4178-a050-74a23280f5f1",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 404\"] = responseCode.code === 404;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\t\"descripcion\": \"Bono del 70% en cualquier envio\",\n\t\t\"descuento\": 0.7,\n        \"condicion\": \"\",\n        \"fechaDeVencimiento\": \"2019-11-11 00:00:00\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/correos-web/api/clientes/1/bonos/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"correos-web",
+						"api",
+						"clientes",
+						"1",
+						"bonos",
+						""
+					]
+				},
+				"description": "Arroja 404"
+			},
+			"response": []
+		},
+		{
+			"name": "Se modifica un bono",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "69358f30-9e0c-4f9d-9bdf-b38e66407998",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\t\"descripcion\": \"Bono del 10% en cualquier envio\",\n\t\t\"descuento\": 0.1,\n        \"condicion\": \"Sin redimir\",\n        \"fechaDeVencimiento\": \"2019-11-11 00:00:00\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/correos-web/api/clientes/10001/bonos/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"correos-web",
+						"api",
+						"clientes",
+						"10001",
+						"bonos",
+						"1"
+					]
+				},
+				"description": "Arroja 200"
+			},
+			"response": []
+		},
+		{
+			"name": "Se intenta modificar un bono inexistente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "0769fd12-839e-405c-a549-1a2d004cba4b",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 412\"] = responseCode.code === 412;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\t\"descripcion\": \"Bono del 10% en cualquier envio\",\n\t\t\"descuento\": 0.1,\n        \"condicion\": \"Sin redimir\",\n        \"fechaDeVencimiento\": \"2019-11-11 00:00:00\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/correos-web/api/clientes/10001/bonos/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"correos-web",
+						"api",
+						"clientes",
+						"10001",
+						"bonos",
+						"1"
+					]
+				},
+				"description": "Arroja 404"
+			},
+			"response": []
+		},
+		{
+			"name": "Se modifica mal un bono",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "9fb05fd4-c544-435a-aa8a-caf22912ca8c",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 412\"] = responseCode.code === 412;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\t\"descripcion\": \"Bono del 10% en cualquier envio\",\n\t\t\"descuento\": 0.1,\n        \"condicion\": \"\",\n        \"fechaDeVencimiento\": \"2019-11-11 00:00:00\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/correos-web/api/clientes/10001/bonos/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"correos-web",
+						"api",
+						"clientes",
+						"10001",
+						"bonos",
+						"1"
+					]
+				},
+				"description": "Arroja 412"
+			},
+			"response": []
+		},
+		{
+			"name": "Se elimina un bono del cliente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "06685ae8-9f2e-4a00-812e-1d86ad0837cf",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 204\"] = responseCode.code === 204;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/correos-web/api/clientes/10001/bonos/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"correos-web",
+						"api",
+						"clientes",
+						"10001",
+						"bonos",
+						"1"
+					]
+				},
+				"description": "Arroja 204"
+			},
+			"response": []
+		},
+		{
+			"name": "Se intenta eliminar un bono inexistente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "aa881217-ebcf-4de2-bfa7-fe1ae8b8dc06",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 404\"] = responseCode.code === 404;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/correos-web/api/clientes/10001/bonos/100",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"correos-web",
+						"api",
+						"clientes",
+						"10001",
+						"bonos",
+						"100"
+					]
+				},
+				"description": "Arroja 404"
+			},
+			"response": []
+		}
+	]
+}

@@ -1,0 +1,182 @@
+{
+	"variables": [],
+	"info": {
+		"name": "pruebas CRUD pago",
+		"_postman_id": "17ca1827-60b2-e890-0fc1-b2b49899da31",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://localhost:8080/correos-web/api/pagos",
+			"request": {
+				"url": "http://localhost:8080/correos-web/api/pagos",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n *      \"id\":1234567890,\n *      \"ubicacion\": 1234567890,\n *      \"detalle\": \"uniandesd fafd agsg\"\n *   }"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/correos-web/api/pagos/10001",
+			"request": {
+				"url": "http://localhost:8080/correos-web/api/pagos/10001",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n *      \"id\":1234567890,\n *      \"ubicacion\": 1234567890,\n *      \"detalle\": \"uniandesd fafd agsg\"\n *   }"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/correos-web/api/pagos/10001",
+			"request": {
+				"url": "http://localhost:8080/correos-web/api/pagos/10001",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"type\": \"pagoDetailDTO\",\n    \"fecha\": \"1998-10-10T00:00:00-05:00\",\n    \"id\": 10001,\n    \"valor\": 3455\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/correos-web/api/pagos/10001",
+			"request": {
+				"url": "http://localhost:8080/correos-web/api/pagos/10001",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"type\": \"pagoDetailDTO\",\n    \"fecha\": \"1998-10-10T00:00:00-05:00\",\n    \"id\": 10001,\n    \"valor\": 3455\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/correos-web/api/pagos",
+			"request": {
+				"url": "http://localhost:8080/correos-web/api/pagos",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"type\": \"pagoDetailDTO\",\n    \"fecha\": \"1998-10-10T00:00:00-05:00\",\n    \"id\": 10001,\n    \"valor\": 3455\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/correos-web/api/pagos/10001",
+			"request": {
+				"url": "http://localhost:8080/correos-web/api/pagos/10001",
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"type\": \"pagoDetailDTO\",\n    \"fecha\": \"1998-10-10T00:00:00-05:00\",\n    \"id\": 10001,\n    \"valor\": 3455\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/correos-web/api/pagos/3",
+			"request": {
+				"url": "http://localhost:8080/correos-web/api/pagos/3",
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/correos-web/api/pagos/46",
+			"request": {
+				"url": "http://localhost:8080/correos-web/api/pagos/46",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n *      \"id\":1234567890,\n *      \"ubicacion\": 1234567890,\n *      \"detalle\": \"uniandesd fafd agsg\"\n *   }"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/correos-web/api/pagos/69",
+			"request": {
+				"url": "http://localhost:8080/correos-web/api/pagos/69",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"type\": \"pagoDetailDTO\",\n        \"fecha\": \"1998-10-10T00:00:00-05:00\",\n        \"id\": 10001,\n        \"valor\": 3455\n    }"
+				},
+				"description": "put fallido"
+			},
+			"response": []
+		}
+	]
+}

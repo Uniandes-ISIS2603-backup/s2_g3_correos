@@ -119,6 +119,8 @@ public class MensajeroLogic {
     
     public double calcularCalificaionPromedio(MensajeroEntity mensajero)
     {
+        if(mensajero.getCalificaciones()==null)
+            return 0;
         if(mensajero.getCalificaciones().isEmpty())
             return 0;
         double retorno=0;

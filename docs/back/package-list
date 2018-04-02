@@ -2,3 +2,4 @@ co.edu.uniandes.csw.correos.ejb
 co.edu.uniandes.csw.correos.entities
 co.edu.uniandes.csw.correos.exceptions
 co.edu.uniandes.csw.correos.persistence
+co.edu.uniandes.csw.correos.podamstrategy

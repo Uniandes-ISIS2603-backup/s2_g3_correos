@@ -21,7 +21,7 @@ import co.edu.uniandes.csw.correos.entities.PaqueteEntity;
   *      "peso": number,
   *      "dimensionA": number,
   *      "dimensionB": number,
-  *      "dimensionC": number,             
+  *      "dimensionC": number             
   *   }
   * </pre>
   * <pre>
@@ -31,7 +31,7 @@ import co.edu.uniandes.csw.correos.entities.PaqueteEntity;
   *      "peso": 10,
   *      "dimensionA": 1,
   *      "dimensionB": 2,
-  *      "dimensionC": 3,
+  *      "dimensionC": 3
   *   }
   * </pre>
   * @author df.rengifo

@@ -59,9 +59,7 @@ public class PagoLogic {
         if(entity.getValor()<0.0){
             throw new BusinessLogicException("UUUUUY que paso aca, no les vamos a regalar plata. No se puede tener un valor menor a cero");
         }
-        if(entity.getTarjetaCredito()==null){
-            throw new BusinessLogicException("Paila mi pez, hay que cobrarle esto a alguien");
-        }
+        
         return persistence.create(entity);
     }
 

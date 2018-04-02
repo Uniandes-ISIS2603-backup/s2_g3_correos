@@ -35,7 +35,7 @@ public class EnvioEntity extends BaseEntity implements Serializable{
    private MensajeroEntity mensajero;
    
    @PodamExclude
-   @ManyToOne (fetch = FetchType.EAGER)
+   @ManyToOne (fetch = FetchType.LAZY)
    private ClienteEntity cliente;
    
    @PodamExclude
@@ -43,7 +43,7 @@ public class EnvioEntity extends BaseEntity implements Serializable{
    private PagoEntity pago;
    
    @PodamExclude
-   @OneToMany(cascade=CascadeType.ALL, orphanRemoval = true, mappedBy = "envio", fetch = FetchType.EAGER)
+   @OneToMany(cascade=CascadeType.ALL, orphanRemoval = true, mappedBy = "envio", fetch = FetchType.LAZY)
    private List<EventoEntity> eventos = new ArrayList<EventoEntity>();
    
    @PodamExclude
@@ -147,10 +147,10 @@ public class EnvioEntity extends BaseEntity implements Serializable{
     }
 
     /**
-     * @param client the cliente to set
+     * @param cliente the cliente to set
      */
-    public void setCliente(ClienteEntity client) {
-        cliente = client;
+    public void setCliente(ClienteEntity cliente) {
+        this.cliente = cliente;
     }
 
     /**

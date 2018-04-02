@@ -41,7 +41,7 @@
   * </pre>
   * @author df.rengifo
   */
-@Path("envios")
+ @Path("envios")
  @Produces("application/json")
  @Consumes("application/json")
  @RequestScoped
