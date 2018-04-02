@@ -35,7 +35,7 @@ public class EnvioEntity extends BaseEntity implements Serializable{
    private MensajeroEntity mensajero;
    
    @PodamExclude
-   @ManyToOne (fetch = FetchType.EAGER)
+   @ManyToOne (fetch = FetchType.LAZY)
    private ClienteEntity cliente;
    
    @PodamExclude
