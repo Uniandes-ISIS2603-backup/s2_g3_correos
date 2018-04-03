@@ -73,8 +73,8 @@
      * de lógica que se genera cuando ya existe el envio.
      */
      @POST
-     public PaqueteDTO createPaquete(PaqueteDTO paquete) throws BusinessLogicException{
-         return new PaqueteDTO(paqueteLogic.createPaquete(paquete.toEntity()));          
+     public PaqueteDetailDTO createPaquete(PaqueteDetailDTO paquete) throws BusinessLogicException{
+         return new PaqueteDetailDTO(paqueteLogic.createPaquete(paquete.toEntity()));          
      }
      /**
       * <h1>PUT /api/paquetes/{id} : Actualizar paquete con el id dado.</h1>
@@ -99,13 +99,11 @@
       */
      @PUT
      @Path("{id: \\d+}")
-     public PaqueteDTO updatePaquete(@PathParam("id") Long id, PaqueteDTO paquete) throws BusinessLogicException {
+     public PaqueteDTO updatePaquete(@PathParam("id") Long id, PaqueteDetailDTO paquete) throws BusinessLogicException, WebApplicationException{
+        if(paqueteLogic.getPaquete(id)==null) 
+            throw new WebApplicationException("El Paquete con id" + id + "no existe",404);
         paquete.setId(id);
-        PaqueteEntity entity = paqueteLogic.getPaquete(id);
-        if (entity == null) {
-            throw new WebApplicationException("El recurso /paquetes/" + id + " no existe.", 404);
-        }
-        return new PaqueteDTO(paqueteLogic.updatePaquete(paquete.toEntity()));
+        return new PaqueteDetailDTO(paqueteLogic.updatePaquete(paquete.toEntity()));
      } 
      /**
       * <h1>GET /api/paquetes/{id} : Obtener paquete por ID.</h1>
@@ -123,17 +121,15 @@
       * @param id ID del paquete. 
       * Debe ser un Long.
       * @return JSON {@link PaqueteDetailDTO} - el paquete buscado.
-      * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} - Error 
+      * @throws WebApplicationException {@link WebApplicationExceptionMapper} - Error 
       * de lógica que se genera cuando no se encuentra el paquete.
       */
      @GET
      @Path("{id: \\d+}")
-     public PaqueteDTO getPaquete(@PathParam("id") Long id) throws BusinessLogicException {
-        PaqueteEntity entity = paqueteLogic.getPaquete(id);
-        if (entity == null) {
-            throw new WebApplicationException("El recurso /paquetes/" + id + " no existe.", 404);
-        }
-        return new PaqueteDTO(entity);
+     public PaqueteDetailDTO getPaquete(@PathParam("id") Long id) throws WebApplicationException {
+        if(paqueteLogic.getPaquete(id)==null) 
+            throw new WebApplicationException("El Paquete con id" + id+"no existe",404);
+        return new PaqueteDetailDTO(paqueteLogic.getPaquete(id));
      }
      /**
       * <h1>GET /api/paquetes : Obtener todos los paquetes.</h1>
@@ -150,16 +146,8 @@
       * de lógica que se genera cuando no hay paquetes en el sistema.
       */
      @GET     
-     public List<PaqueteDTO> getPaquetes() throws BusinessLogicException{
-         List<PaqueteEntity> entitys = paqueteLogic.getPaquetes();
-         if (entitys.isEmpty()){
-             throw new WebApplicationException("No hay paquetes en el sistema.", 404);
-         }
-         List<PaqueteDTO> dtos = new ArrayList<PaqueteDTO>();
-         for( int i = 0; i<entitys.size();i++){
-             dtos.add(new PaqueteDTO(paqueteLogic.createPaquete(entitys.get(i))));
-         }
-          return dtos;   
+     public List<PaqueteDetailDTO> getPaquetes() throws BusinessLogicException{
+         return EntityADTO(paqueteLogic.getPaquetes());     
      }         
      /**
       * <h1>DELETE /api/paquetes/{id} : Borrar paquete por id.</h1>
@@ -179,11 +167,16 @@
       */
      @DELETE
      @Path("{id: \\d+}")
-     public void deletePaquete(@PathParam("id") Long id) throws BusinessLogicException {
-        PaqueteEntity entity = paqueteLogic.getPaquete(id);
-        if (entity == null) {
-            throw new WebApplicationException("El recurso /paquetes/" + id + " no existe.", 404);
-        }
+     public void deletePaquete(@PathParam("id") Long id) throws BusinessLogicException, WebApplicationException {
+        if(paqueteLogic.getPaquete(id)==null) 
+            throw new WebApplicationException("El Paquete con id" + id +"no existe" ,404);
         paqueteLogic.deletePaquete(id);
     } 
+     public List<PaqueteDetailDTO> EntityADTO(List<PaqueteEntity> envios)
+    {
+        List<PaqueteDetailDTO> resp = new ArrayList<>();
+        for(PaqueteEntity x: envios)
+            resp.add(new PaqueteDetailDTO(x));
+        return resp;
+    }
 }

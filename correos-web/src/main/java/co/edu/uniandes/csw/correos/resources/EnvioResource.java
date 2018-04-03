@@ -74,8 +74,8 @@
      * de lógica que se genera cuando ya existe el envio.
      */
      @POST
-     public EnvioDTO createEnvio(EnvioDTO envio) throws BusinessLogicException{
-         return new EnvioDTO(envioLogic.createEnvio(envio.toEntity()));          
+     public EnvioDetailDTO createEnvio(EnvioDetailDTO envio) throws BusinessLogicException{
+         return new EnvioDetailDTO(envioLogic.createEnvio(envio.toEntity()));          
      }
      /**
       * <h1>PUT /api/envios/{id} : Actualizar envio con el id dado.</h1>
@@ -100,13 +100,11 @@
       */
      @PUT
      @Path("{id: \\d+}")
-     public EnvioDTO updateEnvio(@PathParam("id") Long id, EnvioDTO envio) throws BusinessLogicException {
+     public EnvioDetailDTO updateEnvio(@PathParam("id") Long id, EnvioDetailDTO envio) throws BusinessLogicException, WebApplicationException{
+        if(envioLogic.getEnvio(id)==null) 
+            throw new WebApplicationException("El Envio con id" + id + "no existe",404);
         envio.setId(id);
-        EnvioEntity entity = envioLogic.getEnvio(id);
-        if (entity == null) {
-            throw new WebApplicationException("El recurso /envios/" + id + " no existe.", 404);
-        }
-        return new EnvioDTO(envioLogic.updateEnvio(envio.toEntity()));
+        return new EnvioDetailDTO(envioLogic.updateEnvio(envio.toEntity()));
      } 
      /**
       * <h1>GET /api/envios/{id} : Obtener envio por ID.</h1>
@@ -124,17 +122,15 @@
       * @param id ID del envio. 
       * Debe ser un Long.
       * @return JSON {@link EnvioDetailDTO} - el envio buscado.
-      * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} - Error 
+      * @throws WebApplicationException {@link WebApplicationException} - Error 
       * de lógica que se genera cuando no se puede encontrar el envio.
       */
      @GET
      @Path("{id: \\d+}")
-     public EnvioDTO getEnvio(@PathParam("id") Long id) throws BusinessLogicException {
-        EnvioEntity entity = envioLogic.getEnvio(id);
-        if (entity == null) {
-            throw new WebApplicationException("El recurso /envios/" + id + " no existe.", 404);
-        }
-        return new EnvioDTO(entity);
+     public EnvioDetailDTO getEnvio(@PathParam("id") Long id) throws WebApplicationException {
+        if(envioLogic.getEnvio(id)==null) 
+            throw new WebApplicationException("El Mensajero con id" + id+"no existe",404);
+        return new EnvioDetailDTO(envioLogic.getEnvio(id));
      }
      /**
       * <h1>GET /api/envios : Obtener todos los envios.</h1>
@@ -151,16 +147,8 @@
       * de lógica que se genera cuando no hay envios en el sistema.
       */
      @GET     
-     public List<EnvioDTO> getEnvios() throws BusinessLogicException{
-         List<EnvioEntity> entitys = envioLogic.getEnvios();
-         if (entitys.isEmpty()){
-             throw new WebApplicationException("No hay envios en el sistema.", 404);
-         }
-         List<EnvioDTO> dtos = new ArrayList<EnvioDTO>();
-         for( int i = 0; i<entitys.size();i++){            
-             dtos.add(new EnvioDTO(envioLogic.createEnvio(entitys.get(i))));
-         }
-          return dtos;   
+     public List<EnvioDetailDTO> getEnvios() throws BusinessLogicException{
+         return EntityADTO(envioLogic.getEnvios());   
      }     
      /**
       * <h1>DELETE /api/envios/{id} : Borrar envio por id.</h1>
@@ -180,11 +168,16 @@
       */
      @DELETE
      @Path("{id: \\d+}")
-     public void deleteEnvio(@PathParam("id") Long id) throws BusinessLogicException {
-        EnvioEntity entity = envioLogic.getEnvio(id);
-        if (entity == null) {
-            throw new WebApplicationException("El recurso /envios/" + id + " no existe.", 404);
-        }
+     public void deleteEnvio(@PathParam("id") Long id) throws WebApplicationException, BusinessLogicException {
+       if(envioLogic.getEnvio(id)==null) 
+            throw new WebApplicationException("El Mensajero con id" + id +"no existe" ,404);
         envioLogic.deleteEnvio(id);
     } 
+     public List<EnvioDetailDTO> EntityADTO(List<EnvioEntity> envios)
+    {
+        List<EnvioDetailDTO> resp = new ArrayList<>();
+        for(EnvioEntity x: envios)
+            resp.add(new EnvioDetailDTO(x));
+        return resp;
+    }
 }

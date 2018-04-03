@@ -24,33 +24,47 @@ public class EnvioLogic {
     
     private static final Logger LOGGER = Logger.getLogger(EnvioLogic.class.getName());
 
-    @Inject
     private EnvioPersistence persistence;
     
+    @Inject
+    public EnvioLogic(EnvioPersistence persistence)
+    {
+        this.persistence=persistence;
+    }
+    
+    public EnvioLogic()
+    {
+        this.persistence=null;
+    }
+    
     /**
-     * 
      * @param entity el envio a ser creado
      * @return el envio recien creado
      * @throws BusinessLogicException 
      */
     public EnvioEntity createEnvio(EnvioEntity entity) throws BusinessLogicException {
         
-        LOGGER.info("Se comienza a crear un Envio"); 
+        LOGGER.info("Se comienza a crear un Envio "); 
+        LOGGER.info(entity.getEstado()); 
+        LOGGER.info((entity.getHoraFinal().toString()));
+        LOGGER.info(entity.getHoraInicio().toString());
         
         if (entity.getHoraInicio()>entity.getHoraFinal()){
             throw new BusinessLogicException("La Hora Final es anterior a la Hora Incial.");
         }
-        if (entity.getCliente()==null){
+        else if (entity.getCliente()==null){
             throw new BusinessLogicException("No se reconoce un cliente.");
         }
-        if (entity.getEstado()==null){
+        else if (entity.getEstado()==null){
             throw new BusinessLogicException("No se reconoce un estado.");
         }
-        if (entity.getPaquetes().isEmpty()){
+        else if (entity.getPaquetes().isEmpty()){
             throw new BusinessLogicException("No hay paquetes en el envio.");
         }
+        else{
+            persistence.create(entity);      
+        }
         
-        persistence.create(entity);
         LOGGER.info("Se termina de crear un Envio");
         return entity;
     }
@@ -72,13 +86,7 @@ public class EnvioLogic {
     public List<EnvioEntity> getEnvios() throws BusinessLogicException {
         
         LOGGER.info("Se comienzan a buscar todos los Envios"); 
-        List<EnvioEntity> envios = persistence.findAll();
-        
-        if(envios.isEmpty())
-        {
-            throw new BusinessLogicException("No hay envios en el sistema.");
-        } 
-        
+        List<EnvioEntity> envios = persistence.findAll();        
         LOGGER.info("Se terminan de buscar todos los Envios");
         return envios;
     } 
@@ -118,17 +126,8 @@ public class EnvioLogic {
         LOGGER.log(Level.INFO, "Comienza a borrar el envio de id={0}", id);    
         persistence.delete(id);
         LOGGER.log(Level.INFO, "Termina a borrar el envio de id={0}", id);
-    }    
+    }   
     
-    public double calcularHoraFinal(EnvioEntity envio)
-    {
-        if(envio.getDireccionEntrega().equals(envio.getDireccionRecogida())){
-            return envio.getHoraInicio();
-        }
-        else {
-            return envio.getHoraInicio()+2000;
-        }     
-    }
     /**
      * 
      * @param id el ID del evento al que se le va a anadir el nuevo detalle

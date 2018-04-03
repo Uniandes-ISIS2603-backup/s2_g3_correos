@@ -8,6 +8,18 @@
 	"item": [
 		{
 			"name": "Hace un Get sobre todos los envios",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ea90b750-01a5-47fc-8319-2e16d9d219c2",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] =responseCode.code===200;"
+						]
+					}
+				}
+			],
 			"request": {
 				"method": "GET",
 				"header": [
@@ -21,12 +33,24 @@
 					"raw": ""
 				},
 				"url": "http://localhost:8080/correos-web/api/envios",
-				"description": ""
+				"description": null
 			},
 			"response": []
 		},
 		{
 			"name": "Hace un Post incorrecto (HF<HI)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "17f173aa-c6f6-45ea-981e-ec659022c2d3",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 412\"] =responseCode.code===412;"
+						]
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [
@@ -37,15 +61,27 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n       \"horaInicio\": 15000,\r\n       \"horaFinal\": 20000,\r\n       \"direccionEntrega\": \"calle 14a # 56-34\",\r\n       \"direccionRecogida\": \"calle 114a # 56-34\",\r\n       \"estado\":\"LLEGANDO\"            \r\n    }"
+					"raw": "{\r\n       \"horaInicio\": 15000,\r\n       \"horaFinal\": 10000,\r\n       \"direccionEntrega\": \"calle 14a # 56-34\",\r\n       \"direccionRecogida\": \"calle 114a # 56-34\",\r\n       \"estado\":\"LLEGANDO\",\r\n       \"cliente\": {\r\n            \"id\": 10001\r\n        },\r\n        \"paquetes\": [{\r\n        \"id\": 30731\r\n    },\r\n    {\r\n        \"id\": 30730\r\n    }]\r\n}\r\n"
 				},
 				"url": "http://localhost:8080/correos-web/api/envios",
-				"description": ""
+				"description": null
 			},
 			"response": []
 		},
 		{
 			"name": "Hace un Post incorrecto (cliente null)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "fe74d8f3-daf5-408a-a2bf-bc826c7e49c8",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 412\"] =responseCode.code===412;"
+						]
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [
@@ -56,15 +92,27 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n       \"horaInicio\": 20000,\r\n       \"horaFinal\": 15000,\r\n       \"direccionEntrega\": \"calle 14a # 56-34\",\r\n       \"direccionRecogida\": \"calle 114a # 56-34\",\r\n       \"estado\":\"LLEGANDO\"            \r\n    }"
+					"raw": "{\r\n       \"horaInicio\": 15000,\r\n       \"horaFinal\": 16000,\r\n       \"direccionEntrega\": \"calle 14a # 56-34\",\r\n       \"direccionRecogida\": \"calle 114a # 56-34\",\r\n       \"estado\":\"LLEGANDO\",\r\n        \"paquetes\": [{\r\n        \"id\": 30731\r\n    },\r\n    {\r\n        \"id\": 30730\r\n    }]\r\n}\r\n\r\n"
 				},
 				"url": "http://localhost:8080/correos-web/api/envios",
-				"description": ""
+				"description": null
 			},
 			"response": []
 		},
 		{
 			"name": "Hace un Post incorrecto (estado null)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "1a25cda8-e9c8-4c86-aba6-b32fec418521",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 412\"] =responseCode.code===412;"
+						]
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [
@@ -75,15 +123,27 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n      \"horaInicio\": 1004,\r\n      \"horaFinal\": 2000,\r\n      \"direccionEntrega\": \"calle 116 # 56-82\",\r\n      \"direccionRecogida\": \"carrera 120 # 94-32\",\r\n      \"estado\":\"LLEGANDO\",\r\n      \r\n      \"paquetes\":\r\n\t   [\r\n\t   \t{\r\n        \"tipo\": \"DURO\",\r\n        \"peso\": 100,\r\n        \"dimensionA\": 4,\r\n        \"dimensionB\": 7,\r\n        \"dimensionC\": 666             \r\n        },\r\n\t   \t{\r\n        \"tipo\": \"RADIOACTIVO\",\r\n        \"peso\": 7,\r\n        \"dimensionA\": 1,\r\n        \"dimensionB\": 1,\r\n        \"dimensionC\": 1             \r\n        }\r\n\t   ]\r\n   }"
+					"raw": "{\r\n       \"horaInicio\": 15000,\r\n       \"horaFinal\": 16000,\r\n       \"direccionEntrega\": \"calle 14a # 56-34\",\r\n       \"direccionRecogida\": \"calle 114a # 56-34\",\r\n       \"cliente\": {\r\n            \"id\": 10001\r\n        },\r\n        \"paquetes\": [\r\n    {\r\n        \"id\": 30731\r\n    },\r\n    {\r\n        \"id\": 30730\r\n    }\r\n    ]\r\n}\r\n"
 				},
 				"url": "http://localhost:8080/correos-web/api/envios",
-				"description": ""
+				"description": null
 			},
 			"response": []
 		},
 		{
 			"name": "Hace un Post incorrecto (paquetes empty)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "eb4c0905-9379-42d6-acba-88e5f6109940",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 412\"] =responseCode.code===412;"
+						]
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [
@@ -94,15 +154,27 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n       \"horaInicio\": 15000,\r\n       \"horaFinal\": 20000,\r\n       \"direccionEntrega\": \"calle 14a # 56-34\",\r\n       \"direccionRecogida\": \"calle 114a # 56-34\",\r\n       \"estado\":\"LLEGANDO\"            \r\n    }"
+					"raw": "{\r\n       \"horaInicio\": 15000,\r\n       \"horaFinal\": 16000,\r\n       \"direccionEntrega\": \"calle 14a # 56-34\",\r\n       \"direccionRecogida\": \"calle 114a # 56-34\",\r\n       \"estado\":\"LLEGANDO\",\r\n       \"cliente\": {\r\n            \"id\": 10001\r\n        }\r\n}\r\n"
 				},
 				"url": "http://localhost:8080/correos-web/api/envios",
-				"description": ""
+				"description": null
 			},
 			"response": []
 		},
 		{
 			"name": "Hace un Post correcto",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "76926f28-bb53-4db3-ae55-8e5b627116b8",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] =responseCode.code===200;"
+						]
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [
@@ -113,15 +185,27 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n      \"horaInicio\": 1004,\r\n      \"horaFinal\": 2000,\r\n      \"direccionEntrega\": \"calle 116 # 56-82\",\r\n      \"direccionRecogida\": \"carrera 120 # 94-32\",\r\n      \"estado\":\"LLEGANDO\",\r\n      \"cliente\":\r\n    \t{\r\n          \"id\": 10001,\r\n          \"nombre\": \"El Cumpatriota\"\r\n        },\r\n      \"paquetes\":\r\n\t   [\r\n\t   \t{\r\n        \"tipo\": \"DURO\",\r\n        \"peso\": 100,\r\n        \"dimensionA\": 4,\r\n        \"dimensionB\": 7,\r\n        \"dimensionC\": 666             \r\n        },\r\n\t   \t{\r\n        \"tipo\": \"RADIOACTIVO\",\r\n        \"peso\": 7,\r\n        \"dimensionA\": 1,\r\n        \"dimensionB\": 1,\r\n        \"dimensionC\": 1             \r\n        }\r\n\t   ]\r\n   }"
+					"raw": "{\r\n       \"horaInicio\": 15000,\r\n       \"horaFinal\": 16000,\r\n       \"direccionEntrega\": \"calle 14a # 56-34\",\r\n       \"direccionRecogida\": \"calle 114a # 56-34\",\r\n       \"estado\":\"LLEGANDO\",\r\n       \"cliente\": {\r\n            \"id\": 10001\r\n        },\r\n        \"paquetes\": [{\r\n        \"id\": 30731\r\n    },\r\n    {\r\n        \"id\": 30730\r\n    }]\r\n}\r\n"
 				},
 				"url": "http://localhost:8080/correos-web/api/envios",
-				"description": ""
+				"description": null
 			},
 			"response": []
 		},
 		{
 			"name": "Hace un Get sobre un envio especifico",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "14c0cc4f-a19b-4656-b8b2-99caa2ad537b",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] =responseCode.code===200;"
+						]
+					}
+				}
+			],
 			"request": {
 				"method": "GET",
 				"header": [
@@ -132,15 +216,27 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n      \"horaInicio\": 1004,\r\n      \"horaFinal\": 2000,\r\n      \"direccionEntrega\": \"calle 116 # 56-82\",\r\n      \"direccionRecogida\": \"carrera 120 # 94-32\",\r\n      \"estado\":\"LLEGANDO\",\r\n      \"cliente\":\r\n    \t{\r\n          \"id\": 10001,\r\n          \"nombre\": \"El Cumpatriota\"\r\n        },\r\n      \"paquetes\":\r\n\t   [\r\n\t   ]\r\n   }"
+					"raw": "{\r\n      \"horaInicio\": 1004,\r\n      \"horaFinal\": 2000,\r\n      \"direccionEntrega\": \"calle 116 # 56-82\",\r\n      \"direccionRecogida\": \"carrera 120 # 94-32\",\r\n      \"estado\":\"LLEGANDO\",\r\n      \"cliente\":\r\n      {\r\n          \"id\": 10001,\r\n          \"nombre\": \"El Cumpatriota\"\r\n        },\r\n      \"paquetes\":\r\n     [\r\n     ]\r\n   }"
 				},
 				"url": "http://localhost:8080/correos-web/api/envios/10001",
-				"description": ""
+				"description": null
 			},
 			"response": []
 		},
 		{
 			"name": "Hace un Get sobre un envio inexistente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "6c2919f6-bae7-46e2-9ec4-43528cf925c3",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 404\"] =responseCode.code===404;"
+						]
+					}
+				}
+			],
 			"request": {
 				"method": "GET",
 				"header": [
@@ -151,15 +247,27 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n      \"horaInicio\": 1004,\r\n      \"horaFinal\": 2000,\r\n      \"direccionEntrega\": \"calle 116 # 56-82\",\r\n      \"direccionRecogida\": \"carrera 120 # 94-32\",\r\n      \"estado\":\"LLEGANDO\",\r\n      \"cliente\":\r\n    \t{\r\n          \"id\": 10001,\r\n          \"nombre\": \"El Cumpatriota\"\r\n        },\r\n      \"paquetes\":\r\n\t   [\r\n\t   ]\r\n   }"
+					"raw": "{\r\n      \"horaInicio\": 1004,\r\n      \"horaFinal\": 2000,\r\n      \"direccionEntrega\": \"calle 116 # 56-82\",\r\n      \"direccionRecogida\": \"carrera 120 # 94-32\",\r\n      \"estado\":\"LLEGANDO\",\r\n      \"cliente\":\r\n      {\r\n          \"id\": 10001,\r\n          \"nombre\": \"El Cumpatriota\"\r\n        },\r\n      \"paquetes\":\r\n     [\r\n     ]\r\n   }"
 				},
 				"url": "http://localhost:8080/correos-web/api/envios/100000000000000000001",
-				"description": ""
+				"description": null
 			},
 			"response": []
 		},
 		{
 			"name": "Hace Delete sobre un envio inexistente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d41c239e-f525-44d5-84cb-2dd43c64a22b",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 404\"] =responseCode.code===404;"
+						]
+					}
+				}
+			],
 			"request": {
 				"method": "DELETE",
 				"header": [
@@ -173,12 +281,24 @@
 					"raw": ""
 				},
 				"url": "http://localhost:8080/correos-web/api/envios/100000000000000000001",
-				"description": ""
+				"description": null
 			},
 			"response": []
 		},
 		{
 			"name": "Hace Delete sobre un envio especifico",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "14728590-5d7f-43d6-8e1d-01a039ec75c8",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 204\"] =responseCode.code===204;"
+						]
+					}
+				}
+			],
 			"request": {
 				"method": "DELETE",
 				"header": [
@@ -192,12 +312,24 @@
 					"raw": ""
 				},
 				"url": "http://localhost:8080/correos-web/api/envios/10001",
-				"description": ""
+				"description": null
 			},
 			"response": []
 		},
 		{
 			"name": "Hace un Update incorrecto (HF<HI)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f7fddd8e-b7a1-462b-a2ed-0e6c5e600097",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 412\"] =responseCode.code===412;"
+						]
+					}
+				}
+			],
 			"request": {
 				"method": "PUT",
 				"header": [
@@ -208,15 +340,27 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n      \"horaInicio\": 1004,\r\n      \"horaFinal\":1000,\r\n      \"direccionEntrega\": \"calle 116 # 56-82\",\r\n      \"direccionRecogida\": \"carrera 120 # 94-32\",\r\n      \"estado\":\"TARDE\",\r\n      \"cliente\":\r\n    \t{\r\n          \"id\": 10001,\r\n          \"nombre\": \"El Cumpatriota\"\r\n        },\r\n      \"paquetes\":\r\n\t   [\r\n\t   \t{\r\n        \"tipo\": \"DURO\",\r\n        \"peso\": 100,\r\n        \"dimensionA\": 4,\r\n        \"dimensionB\": 7,\r\n        \"dimensionC\": 666             \r\n        },\r\n\t   \t{\r\n        \"tipo\": \"RADIOACTIVO\",\r\n        \"peso\": 7,\r\n        \"dimensionA\": 1,\r\n        \"dimensionB\": 1,\r\n        \"dimensionC\": 1             \r\n        }\r\n\t   ]\r\n   }"
+					"raw": "{\r\n      \"horaInicio\": 1004,\r\n      \"horaFinal\":1000,\r\n      \"direccionEntrega\": \"calle 116 # 56-82\",\r\n      \"direccionRecogida\": \"carrera 120 # 94-32\",\r\n      \"estado\":\"TARDE\",\r\n      \"cliente\":\r\n      {\r\n          \"id\": 10001,\r\n          \"nombre\": \"El Cumpatriota\"\r\n        },\r\n      \"paquetes\":\r\n     [\r\n       {\r\n        \"tipo\": \"DURO\",\r\n        \"peso\": 100,\r\n        \"dimensionA\": 4,\r\n        \"dimensionB\": 7,\r\n        \"dimensionC\": 666             \r\n        },\r\n       {\r\n        \"tipo\": \"RADIOACTIVO\",\r\n        \"peso\": 7,\r\n        \"dimensionA\": 1,\r\n        \"dimensionB\": 1,\r\n        \"dimensionC\": 1             \r\n        }\r\n     ]\r\n   }"
 				},
 				"url": "http://localhost:8080/correos-web/api/envios/10001",
-				"description": ""
+				"description": null
 			},
 			"response": []
 		},
 		{
 			"name": "Hace un Update incorrecto (cliente null)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c33ed913-3294-4409-9aec-dd9881820bed",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 412\"] =responseCode.code===412;"
+						]
+					}
+				}
+			],
 			"request": {
 				"method": "PUT",
 				"header": [
@@ -227,15 +371,27 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n      \"horaInicio\": 1004,\r\n      \"horaFinal\": 3000,\r\n      \"direccionEntrega\": \"calle 116 # 56-82\",\r\n      \"direccionRecogida\": \"carrera 120 # 94-32\",\r\n      \"estado\":\"TARDE\",\r\n      \"paquetes\":\r\n\t   [\r\n\t   \t{\r\n        \"tipo\": \"DURO\",\r\n        \"peso\": 100,\r\n        \"dimensionA\": 4,\r\n        \"dimensionB\": 7,\r\n        \"dimensionC\": 666             \r\n        },\r\n\t   \t{\r\n        \"tipo\": \"RADIOACTIVO\",\r\n        \"peso\": 7,\r\n        \"dimensionA\": 1,\r\n        \"dimensionB\": 1,\r\n        \"dimensionC\": 1             \r\n        }\r\n\t   ]\r\n   }"
+					"raw": "{\r\n      \"horaInicio\": 1004,\r\n      \"horaFinal\": 3000,\r\n      \"direccionEntrega\": \"calle 116 # 56-82\",\r\n      \"direccionRecogida\": \"carrera 120 # 94-32\",\r\n      \"estado\":\"TARDE\",\r\n      \"paquetes\":\r\n     [\r\n       {\r\n        \"tipo\": \"DURO\",\r\n        \"peso\": 100,\r\n        \"dimensionA\": 4,\r\n        \"dimensionB\": 7,\r\n        \"dimensionC\": 666             \r\n        },\r\n       {\r\n        \"tipo\": \"RADIOACTIVO\",\r\n        \"peso\": 7,\r\n        \"dimensionA\": 1,\r\n        \"dimensionB\": 1,\r\n        \"dimensionC\": 1             \r\n        }\r\n     ]\r\n   }"
 				},
 				"url": "http://localhost:8080/correos-web/api/envios/10001",
-				"description": ""
+				"description": null
 			},
 			"response": []
 		},
 		{
 			"name": "Hace un Update incorrecto (estado null)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "1eb6e1db-b804-4167-8527-ff49157882d5",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 412\"] =responseCode.code===412;"
+						]
+					}
+				}
+			],
 			"request": {
 				"method": "PUT",
 				"header": [
@@ -246,15 +402,27 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n      \"horaInicio\": 1004,\r\n      \"horaFinal\": 3000,\r\n      \"direccionEntrega\": \"calle 116 # 56-82\",\r\n      \"direccionRecogida\": \"carrera 120 # 94-32\",\r\n      \r\n      \"cliente\":\r\n    \t{\r\n          \"id\": 10001,\r\n          \"nombre\": \"El Cumpatriota\"\r\n        },\r\n      \"paquetes\":\r\n\t   [\r\n\t   \t{\r\n        \"tipo\": \"DURO\",\r\n        \"peso\": 100,\r\n        \"dimensionA\": 4,\r\n        \"dimensionB\": 7,\r\n        \"dimensionC\": 666             \r\n        },\r\n\t   \t{\r\n        \"tipo\": \"RADIOACTIVO\",\r\n        \"peso\": 7,\r\n        \"dimensionA\": 1,\r\n        \"dimensionB\": 1,\r\n        \"dimensionC\": 1             \r\n        }\r\n\t   ]\r\n   }"
+					"raw": "{\r\n      \"horaInicio\": 1004,\r\n      \"horaFinal\": 3000,\r\n      \"direccionEntrega\": \"calle 116 # 56-82\",\r\n      \"direccionRecogida\": \"carrera 120 # 94-32\",\r\n      \r\n      \"cliente\":\r\n      {\r\n          \"id\": 10001,\r\n          \"nombre\": \"El Cumpatriota\"\r\n        },\r\n      \"paquetes\":\r\n     [\r\n       {\r\n        \"tipo\": \"DURO\",\r\n        \"peso\": 100,\r\n        \"dimensionA\": 4,\r\n        \"dimensionB\": 7,\r\n        \"dimensionC\": 666             \r\n        },\r\n       {\r\n        \"tipo\": \"RADIOACTIVO\",\r\n        \"peso\": 7,\r\n        \"dimensionA\": 1,\r\n        \"dimensionB\": 1,\r\n        \"dimensionC\": 1             \r\n        }\r\n     ]\r\n   }"
 				},
 				"url": "http://localhost:8080/correos-web/api/envios/10001",
-				"description": ""
+				"description": null
 			},
 			"response": []
 		},
 		{
 			"name": "Hace un Update incorrecto (paquetes empty)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ad1d4495-1c7d-4360-a0cc-50cd4142425c",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 412\"] =responseCode.code===412;"
+						]
+					}
+				}
+			],
 			"request": {
 				"method": "PUT",
 				"header": [
@@ -265,15 +433,27 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n      \"horaInicio\": 1004,\r\n      \"horaFinal\": 3000,\r\n      \"direccionEntrega\": \"calle 116 # 56-82\",\r\n      \"direccionRecogida\": \"carrera 120 # 94-32\",\r\n      \"estado\":\"TARDE\",\r\n      \"cliente\":\r\n    \t{\r\n          \"id\": 10001,\r\n          \"nombre\": \"El Cumpatriota\"\r\n        },\r\n      \"paquetes\":\r\n\t   [\r\n\t   ]\r\n   }"
+					"raw": "{\r\n      \"horaInicio\": 1004,\r\n      \"horaFinal\": 3000,\r\n      \"direccionEntrega\": \"calle 116 # 56-82\",\r\n      \"direccionRecogida\": \"carrera 120 # 94-32\",\r\n      \"estado\":\"TARDE\",\r\n      \"cliente\":\r\n      {\r\n          \"id\": 10001,\r\n          \"nombre\": \"El Cumpatriota\"\r\n        },\r\n      \"paquetes\":\r\n     [\r\n     ]\r\n   }"
 				},
 				"url": "http://localhost:8080/correos-web/api/envios/10001",
-				"description": ""
+				"description": null
 			},
 			"response": []
 		},
 		{
 			"name": "Hace un Update correctamente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "1a8a6c7e-60fa-4acb-843f-0672acbe0255",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] =responseCode.code===200;"
+						]
+					}
+				}
+			],
 			"request": {
 				"method": "PUT",
 				"header": [
@@ -284,9 +464,40 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n      \"horaInicio\": 1004,\r\n      \"horaFinal\": 3000,\r\n      \"direccionEntrega\": \"calle 116 # 56-82\",\r\n      \"direccionRecogida\": \"carrera 120 # 94-32\",\r\n      \"estado\":\"TARDE\",\r\n      \"cliente\":\r\n    \t{\r\n          \"id\": 10001,\r\n          \"nombre\": \"El Cumpatriota\"\r\n        },\r\n      \"paquetes\":\r\n\t   [\r\n\t   \t{\r\n        \"tipo\": \"DURO\",\r\n        \"peso\": 100,\r\n        \"dimensionA\": 4,\r\n        \"dimensionB\": 7,\r\n        \"dimensionC\": 666             \r\n        },\r\n\t   \t{\r\n        \"tipo\": \"RADIOACTIVO\",\r\n        \"peso\": 7,\r\n        \"dimensionA\": 1,\r\n        \"dimensionB\": 1,\r\n        \"dimensionC\": 1             \r\n        }\r\n\t   ]\r\n   }"
+					"raw": "{\r\n      \"horaInicio\": 1004,\r\n      \"horaFinal\": 3000,\r\n      \"direccionEntrega\": \"calle 116 # 56-82\",\r\n      \"direccionRecogida\": \"carrera 120 # 94-32\",\r\n      \"estado\":\"TARDE\",\r\n      \"cliente\":\r\n      {\r\n          \"id\": 10001,\r\n          \"nombre\": \"El Cumpatriota\"\r\n        },\r\n      \"paquetes\":\r\n     [\r\n       {\r\n        \"tipo\": \"DURO\",\r\n        \"peso\": 100,\r\n        \"dimensionA\": 4,\r\n        \"dimensionB\": 7,\r\n        \"dimensionC\": 666             \r\n        },\r\n       {\r\n        \"tipo\": \"RADIOACTIVO\",\r\n        \"peso\": 7,\r\n        \"dimensionA\": 1,\r\n        \"dimensionB\": 1,\r\n        \"dimensionC\": 1             \r\n        }\r\n     ]\r\n   }"
 				},
 				"url": "http://localhost:8080/correos-web/api/envios/10001",
+				"description": null
+			},
+			"response": []
+		},
+		{
+			"name": "Hace un Update sobre un envio inexistente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "49d4daec-21f7-4bef-b6c4-aea719623dd8",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 404\"] =responseCode.code===404;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n      \"horaInicio\": 1004,\r\n      \"horaFinal\": 3000,\r\n      \"direccionEntrega\": \"calle 116 # 56-82\",\r\n      \"direccionRecogida\": \"carrera 120 # 94-32\",\r\n      \"estado\":\"TARDE\",\r\n      \"cliente\":\r\n      {\r\n          \"id\": 10001,\r\n          \"nombre\": \"El Cumpatriota\"\r\n        },\r\n      \"paquetes\":\r\n     [\r\n       {\r\n        \"tipo\": \"DURO\",\r\n        \"peso\": 100,\r\n        \"dimensionA\": 4,\r\n        \"dimensionB\": 7,\r\n        \"dimensionC\": 666             \r\n        },\r\n       {\r\n        \"tipo\": \"RADIOACTIVO\",\r\n        \"peso\": 7,\r\n        \"dimensionA\": 1,\r\n        \"dimensionB\": 1,\r\n        \"dimensionC\": 1             \r\n        }\r\n     ]\r\n   }"
+				},
+				"url": "http://localhost:8080/correos-web/api/envios/1000000000000000000000000000000000000000000001",
 				"description": ""
 			},
 			"response": []
