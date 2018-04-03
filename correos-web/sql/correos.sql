@@ -102,6 +102,17 @@ insert into Envioentity_Paqueteentity(envio_id,paquete_id) values(10004,10004);
 insert into Envioentity_Paqueteentity(envio_id,paquete_id) values(10003,10002);
 insert into Envioentity_Paqueteentity(envio_id,paquete_id) values(10002,10003);
 
+insert into ReservaEntity (id,fecha,hora) values(10001, '2020-10-11 03:00:00','3PM');
+insert into ReservaEntity (id,fecha,hora) values(10002, '2020-10-12 10:00:00','3PM');
+insert into ReservaEntity (id,fecha,hora) values(10003, '2020-10-13 24:00:00','3PM');
+insert into ReservaEntity (id,fecha,hora) values(10004, '2020-10-14 07:00:00','3PM');
+insert into ReservaEntity (id,fecha,hora) values(10005, '2020-10-15 02:34:22','3PM');
+insert into ReservaEntity (id,fecha,hora) values(10006, '2020-10-16 01:00:00','3PM');
+insert into ReservaEntity (id,fecha,hora) values(10007, '2020-10-17 09:00:00','3PM');
+insert into ReservaEntity (id,fecha,hora) values(10008, '2020-10-18 15:00:00','3PM');
+insert into ReservaEntity (id,fecha,hora) values(10009, '2020-10-19 22:00:00','3PM');
+insert into ReservaEntity (id,fecha,hora) values(100010,'2020-10-20 11:00:00','3PM');
+
 insert into PaqueteEntity(name,id,peso,tipo,dimensionA,dimensionB,dimensionC,envio_id) values ('Paquete_001',10001,40.2,'FRAGIL',40,57,62,10001);
 insert into PaqueteEntity(name,id,peso,tipo,dimensionA,dimensionB,dimensionC,envio_id) values ('Paquete_002',10002,8.0,'FRAGIL',21,11,7,10002);
 insert into PaqueteEntity(name,id,peso,tipo,dimensionA,dimensionB,dimensionC,envio_id) values ('Paquete_002',10003,29.6,'RIGIDO',104,3,82,10003);

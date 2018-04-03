@@ -59,7 +59,7 @@ import javax.ws.rs.WebApplicationException;
  * @author l.mejia  
  * @version 1.0
  */
-@Path("clientes/{clienteId:\\d+}/reservas")
+@Path("reservas")
 @Produces("application/json")
 @Consumes("application/json")
 @RequestScoped
@@ -92,12 +92,11 @@ public class ReservaResource {
      */
     @POST
     
-    public ReservaDetailDTO createReserva(@PathParam("clienteId") Long idCliente,ReservaDetailDTO reserva) throws BusinessLogicException
+    public ReservaDetailDTO createReserva(ReservaDetailDTO reserva) throws BusinessLogicException
     {
-        if(logicCliente.getCliente(idCliente)!=null)
+        
        return new ReservaDetailDTO (logic.createReserva(reserva.toEntity()));
-        else 
-            throw new WebApplicationException("No existe el cliente del cual se quiere consultar las reservas");
+
     }
     
     /**
@@ -119,17 +118,14 @@ public class ReservaResource {
      */
     @PUT
     @Path("{id: \\d+}")
-    public ReservaDetailDTO updateReserva(@PathParam("clienteId") Long idCliente, @PathParam("id") Long id , ReservaDetailDTO reserva)
+    public ReservaDetailDTO updateReserva(@PathParam("clienteId") Long idCliente, @PathParam("id") Long id , ReservaDetailDTO reserva) throws BusinessLogicException
     {
-        if(logicCliente.getCliente(idCliente)!=null){
-        if(logic.getReserva(id)!=null) 
+        if(logic.getReserva(id)==null) 
             throw new WebApplicationException("La Reserva con id " + id,404);
         reserva.setId(id);
         return new ReservaDetailDTO(logic.putReserva(reserva.toEntity()));
     }
-    else
-        throw new WebApplicationException("no existe el cliente al cual se le quiere actualizar la reserva");
-    }
+    
 
     /**
      * <h1>GET /api/reservas/{id} : Obtener reserva por id.</h1>
@@ -149,15 +145,12 @@ public class ReservaResource {
      */
     @GET
     @Path("{id: \\d+}")
-    public ReservaDetailDTO getReserva(@PathParam("clienteId") Long idCliente,@PathParam("id") Long id)
+    public ReservaDetailDTO getReserva(@PathParam("id") Long id)
     {
-        if(logicCliente.getCliente(idCliente)!=null){
-        if(logic.getReserva(id)!=null) 
+      
+        if(logic.getReserva(id)==null) 
             throw new WebApplicationException("La Reserva con id " + id,404);
         return new ReservaDetailDTO(logic.getReserva(id));
-        }
-        else
-            throw new WebApplicationException("no existe el cliente del cual se quiere obtener la reserva");
     }
     
     /**
@@ -172,12 +165,11 @@ public class ReservaResource {
      * @return JSONArray {@link ReservaDTO} - Las reservas encontradas en la aplicación. Si no hay ninguna retorna una lista vacía.
      */
     @GET
-    public List<ReservaDetailDTO> getReservas(@PathParam("clienteId") Long idCliente)
+    public List<ReservaDetailDTO> getReservas()
     {
-        if(logicCliente.getCliente(idCliente)!=null)
+        
         return listEntity2DTO(logic.getReservas());
-         else
-            throw new WebApplicationException("no existe el cliente del cual se quiere obtener la reserva");
+        
     }
     
     /**
@@ -196,16 +188,14 @@ public class ReservaResource {
      */
     @DELETE
     @Path("{id: \\d+}")
-    public void deleteReserva(@PathParam("clienteId") Long idCliente, @PathParam("id") Long id)
+    public void deleteReserva( @PathParam("id") Long id)
     {
-        if(logicCliente.getCliente(idCliente)!=null){
-        if(logic.getReserva(id)!=null) 
+        if(logic.getReserva(id)==null) 
             throw new WebApplicationException("La Reserva con id " + id,404);
         logic.deleteReserva(logic.getReserva(id));
-        }
-        else
-            throw new WebApplicationException("no existe el cliente del cual se quiere obtener la reserva");
+       
     }
+    
     public List<ReservaDetailDTO>  listEntity2DTO(List<ReservaEntity> reservas)
     {
         List<ReservaDetailDTO> retorno = new ArrayList<>();

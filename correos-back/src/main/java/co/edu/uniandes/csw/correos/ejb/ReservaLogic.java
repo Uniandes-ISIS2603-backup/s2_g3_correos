@@ -24,7 +24,9 @@ SOFTWARE.
 package co.edu.uniandes.csw.correos.ejb;
 
 import co.edu.uniandes.csw.correos.entities.ReservaEntity;
+import co.edu.uniandes.csw.correos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.correos.persistence.ReservaPersistence;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -52,9 +54,11 @@ public class ReservaLogic {
         this.persistence=null;
     }
     
-    public ReservaEntity createReserva(ReservaEntity reserva)
+    public ReservaEntity createReserva(ReservaEntity reserva) throws BusinessLogicException
     {
         LOGGER.info("Se inicia la creación de un Reserva");
+        if(reserva.getFecha().before(new Date()))
+            throw new BusinessLogicException("no se puede crear una reserva en el pasado");
         persistence.create(reserva);
         LOGGER.info("se termino de crear un reserva");
         return reserva;
@@ -73,8 +77,10 @@ public class ReservaLogic {
         return persistence.find(id);
     }
     
-    public ReservaEntity putReserva(ReservaEntity reserva)
+    public ReservaEntity putReserva(ReservaEntity reserva) throws BusinessLogicException
     {
+        if(reserva.getFecha().before(new Date()))
+            throw new BusinessLogicException("no se puede crear una reserva en el pasado");
         return persistence.update(reserva);
     }
     
