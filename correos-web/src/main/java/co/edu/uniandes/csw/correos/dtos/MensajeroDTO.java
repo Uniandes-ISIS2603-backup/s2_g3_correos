@@ -63,7 +63,7 @@ public class MensajeroDTO {
     private String celular;
     private String correo;
     private Double calificacionPromedio;
-    private boolean ocupado;
+    private Boolean ocupado;
     
     /**
      * Constructor por defecto

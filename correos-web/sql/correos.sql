@@ -29,10 +29,11 @@ delete from PagoEntity;
 
 delete from EventoEntity;
 
-delete from EnvioEntity;
+
 
 delete from PaqueteEntity;
 
+delete from EnvioEntity;
 delete from BonoEntity;
 
 delete from DetallePaqueteEntity;

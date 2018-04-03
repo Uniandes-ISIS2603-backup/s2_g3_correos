@@ -8,6 +8,7 @@ package co.edu.uniandes.csw.correos.ejb;
 import co.edu.uniandes.csw.correos.entities.EnvioEntity;
 import co.edu.uniandes.csw.correos.entities.EventoEntity;
 import co.edu.uniandes.csw.correos.entities.MensajeroEntity;
+import co.edu.uniandes.csw.correos.entities.TransporteEntity;
 import co.edu.uniandes.csw.correos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.correos.persistence.EnvioPersistence;
 import co.edu.uniandes.csw.correos.persistence.MensajeroPersistence;
@@ -105,11 +106,7 @@ public class EnvioLogic {
         LOGGER.info("Se comienzan a buscar todos los Envios"); 
 
         List<EnvioEntity> envios = persistence.findAll();
-        
-        if(envios.isEmpty())
-        {
-            throw new BusinessLogicException("No hay envios en el sistema.");
-        } 
+
         for(EnvioEntity x:envios)
         {
             if(!x.getEstado().equals("FINALIZADO"))
@@ -178,12 +175,17 @@ public class EnvioLogic {
         {
             if(!x.isOcupado())
             {
-                envio.setMensajero(x);
-                List<EnvioEntity> envios=x.getEnvios();
-                envios.add(envio);
-                x.setEnvios(envios);
-                mensajeroP.update(x);
-                break;
+                for(TransporteEntity w:x.getTransportes() ){
+                    if(w.isActivo()){
+                    envio.setMensajero(x);
+                    x.agregarEnvio(envio);
+                    x.setOcupado(true);
+                    mensajeroP.update(x);
+                    break;
+                    }
+                }
+                if(x.isOcupado())
+                    break;
             }
         }
         persistence.update(envio);
