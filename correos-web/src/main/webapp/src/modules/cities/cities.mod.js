@@ -36,6 +36,16 @@ var mod = ng.module("citiesModule", []);
                         templateUrl: basePath + 'cities.create.html'
                     }
                 }
+            }).state('cityAlgo', {
+                url: '/cities/algo',
+                views: {
+                    'mainView': {
+                        controller: 'citiesCtrl',
+                        controllerAs: 'ctrl',
+                        templateUrl: basePath + 'cities.algo.html'
+                    }
+                }
+
             });
         }]);
 

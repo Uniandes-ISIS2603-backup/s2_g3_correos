@@ -7,8 +7,11 @@ package co.edu.uniandes.csw.correos.ejb;
 
 import co.edu.uniandes.csw.correos.entities.EnvioEntity;
 import co.edu.uniandes.csw.correos.entities.EventoEntity;
+import co.edu.uniandes.csw.correos.entities.MensajeroEntity;
+import co.edu.uniandes.csw.correos.entities.TransporteEntity;
 import co.edu.uniandes.csw.correos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.correos.persistence.EnvioPersistence;
+import co.edu.uniandes.csw.correos.persistence.MensajeroPersistence;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -26,17 +29,28 @@ public class EnvioLogic {
 
     private EnvioPersistence persistence;
     
+
+    private MensajeroLogic mensajeroLogic;
+    
+    
+    private MensajeroPersistence mensajeroP;
+
     @Inject
-    public EnvioLogic(EnvioPersistence persistence)
+    public EnvioLogic(EnvioPersistence persistence, MensajeroLogic mensajeroLogic, MensajeroPersistence mensajeroP)
     {
         this.persistence=persistence;
+        this.mensajeroP=mensajeroP;
+        this.mensajeroLogic=mensajeroLogic;
     }
     
     public EnvioLogic()
     {
         this.persistence=null;
+        this.mensajeroP=null;
+        this.mensajeroLogic=null;
     }
     
+
     /**
      * @param entity el envio a ser creado
      * @return el envio recien creado
@@ -65,6 +79,10 @@ public class EnvioLogic {
             persistence.create(entity);      
         }
         
+
+        persistence.create(entity);
+        asignarMensajero(entity);
+
         LOGGER.info("Se termina de crear un Envio");
         return entity;
     }
@@ -86,7 +104,16 @@ public class EnvioLogic {
     public List<EnvioEntity> getEnvios() throws BusinessLogicException {
         
         LOGGER.info("Se comienzan a buscar todos los Envios"); 
-        List<EnvioEntity> envios = persistence.findAll();        
+
+        List<EnvioEntity> envios = persistence.findAll();
+
+        for(EnvioEntity x:envios)
+        {
+            if(!x.getEstado().equals("FINALIZADO"))
+                asignarMensajero(x);
+        }
+
+
         LOGGER.info("Se terminan de buscar todos los Envios");
         return envios;
     } 
@@ -140,6 +167,28 @@ public class EnvioLogic {
        eventos.add(evento);
        envio.setEventos(eventos);
        persistence.update(envio);
+    }
+    
+    public void asignarMensajero(EnvioEntity envio)
+    {
+        for(MensajeroEntity x:mensajeroLogic.getMensajeros())
+        {
+            if(!x.isOcupado())
+            {
+                for(TransporteEntity w:x.getTransportes() ){
+                    if(w.isActivo()){
+                    envio.setMensajero(x);
+                    x.agregarEnvio(envio);
+                    x.setOcupado(true);
+                    mensajeroP.update(x);
+                    break;
+                    }
+                }
+                if(x.isOcupado())
+                    break;
+            }
+        }
+        persistence.update(envio);
     }
 }
 

@@ -147,6 +147,7 @@
       * de lógica que se genera cuando no hay envios en el sistema.
       */
      @GET     
+
      public List<EnvioDetailDTO> getEnvios() throws BusinessLogicException{
          return EntityADTO(envioLogic.getEnvios());   
      }     

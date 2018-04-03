@@ -63,6 +63,7 @@ public class MensajeroDTO {
     private String celular;
     private String correo;
     private Double calificacionPromedio;
+    private Boolean ocupado;
     
     /**
      * Constructor por defecto
@@ -79,6 +80,7 @@ public class MensajeroDTO {
         this.celular=entity.getCelular();
         this.correo=entity.getCorreo();
         this.nombre=entity.getNombre();
+        this.ocupado=entity.isOcupado();
     } 
     
     /**
@@ -150,6 +152,14 @@ public class MensajeroDTO {
     public void setCalificacionPromedio(Double calificacionPromedio) {
         this.calificacionPromedio = calificacionPromedio;
     }
+
+    public boolean isOcupado() {
+        return ocupado;
+    }
+
+    public void setOcupado(boolean ocupado) {
+        this.ocupado = ocupado;
+    }
     
     public MensajeroEntity toEntity()
     {
@@ -159,6 +169,7 @@ public class MensajeroDTO {
         entity.setCelular(this.celular);
         entity.setCorreo(this.correo);
         entity.setId(this.id);
+        entity.setOcupado(this.ocupado);
         return entity;
     } 
 }

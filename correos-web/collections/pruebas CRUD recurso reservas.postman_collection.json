@@ -1,0 +1,276 @@
+{
+	"variables": [],
+	"info": {
+		"name": "pruebas CRUD recurso reservas",
+		"_postman_id": "8f4d1f89-6ca7-6df2-a8a9-36de6d2d407f",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "succesful GET request",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] =responseCode.code===200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/correos-web/api/reservas",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": "succesful GET request 200 OK "
+			},
+			"response": []
+		},
+		{
+			"name": "succesful GET one item only request",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] =responseCode.code===200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/correos-web/api/reservas/10001",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": "succesful GET one item only 200 OK"
+			},
+			"response": []
+		},
+		{
+			"name": "Unsuccesful GET request ",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] =responseCode.code===404;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/correos-web/api/reservas/100001",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": "Unsuccesful GET request due to asking for a nonExistant Reserva 404 not found"
+			},
+			"response": []
+		},
+		{
+			"name": "Succesful POST request",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] =responseCode.code===200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/correos-web/api/reservas",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": " {\n        \"fecha\": \"2020-10-13 23:13:25\",\n        \"hora\": \"3PM\"\n    }"
+				},
+				"description": "Succesful POST request 200 OK"
+			},
+			"response": []
+		},
+		{
+			"name": "Unsuccesful POST request",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] =responseCode.code===412;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/correos-web/api/reservas",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": " {\n        \"fecha\": \"2010-10-13 23:13:25\",\n        \"hora\": \"3PM\"\n    }"
+				},
+				"description": "Unsuccesful POST request due failing a Precondition (Not being after the current day) 412 Precondition Failed"
+			},
+			"response": []
+		},
+		{
+			"name": "Succesful PUT request",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] =responseCode.code===200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/correos-web/api/reservas/10001",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": " {\n        \"fecha\": \"2021-10-13 23:13:25\",\n        \"hora\": \"3PM\"\n    }"
+				},
+				"description": "succesful PUT request 200 OK"
+			},
+			"response": []
+		},
+		{
+			"name": "Unsuccesful PUT request",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] =responseCode.code===412;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/correos-web/api/reservas/10001",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": " {\n        \"fecha\": \"2005-10-13 23:13:25\",\n        \"hora\": \"3PM\"\n    }"
+				},
+				"description": "Unsuccesful PUT request due failing a precondition (not been before the actual date) 412 Precondition Failed"
+			},
+			"response": []
+		},
+		{
+			"name": "Unsuccesful PUT request",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] =responseCode.code===404;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/correos-web/api/reservas/100001",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": " {\n        \"fecha\": \"2005-10-13 23:13:25\",\n        \"hora\": \"3PM\"\n    }"
+				},
+				"description": "Unsuccesful PUT request due asking for an update on a nonexistant Reserva 404 Not Found"
+			},
+			"response": []
+		},
+		{
+			"name": "Succesful DELETE request",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] =responseCode.code===204;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/correos-web/api/reservas/10002",
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"description": "Succesful DELETE request 204 No Content"
+			},
+			"response": []
+		},
+		{
+			"name": "Unsuccesful DELETE request",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] =responseCode.code===404;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/correos-web/api/reservas/100001",
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"description": "Unsuccesful DELETE request do to asking for deletion of an unexistant Reserva"
+			},
+			"response": []
+		}
+	]
+}
