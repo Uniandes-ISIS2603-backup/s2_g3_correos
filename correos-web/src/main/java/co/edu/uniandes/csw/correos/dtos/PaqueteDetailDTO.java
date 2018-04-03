@@ -31,9 +31,12 @@ import co.edu.uniandes.csw.correos.entities.PaqueteEntity;
             public PaqueteDetailDTO(PaqueteEntity entity)
             {            
                 super(entity);         
-                
+                if (entity.getDetallePaquete()!=null){
                 this.detalle=new DetallePaqueteDTO(entity.getDetallePaquete());
+                }
+                if (entity.getEnvio()!=null){
                 this.envio=new EnvioDTO(entity.getEnvio());
+                }
             }
         
             /**
@@ -45,8 +48,12 @@ import co.edu.uniandes.csw.correos.entities.PaqueteEntity;
             {
                 PaqueteEntity entity= super.toEntity();
             
+                if(envio != null){
                 entity.setEnvio(this.envio.toEntity());
-                entity.setDetallePaquete(this.detalle.toEntity());        
+                }
+                if(detalle != null){
+                entity.setDetallePaquete(this.detalle.toEntity());
+                }
         
                 return entity;        
             }  

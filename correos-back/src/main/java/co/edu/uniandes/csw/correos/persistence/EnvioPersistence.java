@@ -36,7 +36,7 @@ public class EnvioPersistence {
     {
         LOGGER.info("Se crea un nuevo Envio");
         em.persist(entity);
-        LOGGER.info("Se creó el envio");
+        LOGGER.info("Se creo el envio");
         return entity;
     }
     

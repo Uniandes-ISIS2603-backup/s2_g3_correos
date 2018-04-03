@@ -15,22 +15,19 @@ delete from mensajeroentity_calificacionentity;
 
 delete from MensajeroEntity_TransporteEntity;
 
+delete from EnvioEntity_PaqueteEntity;
+
 delete from ZonaEntity;
 
 delete from CalificacionEntity;
 
 delete from ReservaEntity;
 
-
-
 delete from TransporteEntity;
-
-
 
 delete from PagoEntity;
 
 delete from EventoEntity;
-
 
 delete from EnvioEntity;
 
@@ -41,13 +38,12 @@ delete from BonoEntity;
 delete from DetallePaqueteEntity;
 
 delete from MensajeroEntity;
+
 delete from TarjetaCreditoEntity;
+
 delete from ClienteEntity;
+
 delete from CuentaBancariaEntity;
-
-
-
-
 
 insert into CuentaBancariaEntity(id,name,numero,banco,tipoTarjeta) values (10001,'Tarjeta1','39749179739479','Aval','Visa');
 insert into CuentaBancariaEntity(id,name,numero,banco,tipoTarjeta) values (10002,'Tarjeta2','479871973947992','GNC','Visa');
@@ -97,9 +93,13 @@ insert into mensajeroentity_transporteentity(mensajeroentity_id,transportes_id) 
 
 insert into EnvioEntity(name,id,horaInicio,horaFinal,estado,direccionEntrega,direccionRecogida,cliente_id) values ('Envio_001',10001,10000,10001,'ESTADO_INICIAL','calle 114 #30-40','calle 116 # 40-20',10001);
 insert into EnvioEntity(name,id,horaInicio,horaFinal,estado,direccionEntrega,direccionRecogida,cliente_id) values ('Envio_002',10002,10010,10011,'ATRASADO','calle 124 #30-40A','calle 16B # 40-20',10001);
-insert into EnvioEntity(name,id,horaInicio,horaFinal,estado,direccionEntrega,direccionRecogida,cliente_id) values ('Envio_003',10003,20517,34923,'LLEGANDO','carrera 12 #84-47','calle 167C # 9-18A',10001);
-insert into EnvioEntity(name,id,horaInicio,horaFinal,estado,direccionEntrega,direccionRecogida,cliente_id) values ('Envio_004',10004,12801,15403,'ESTADO_INICIAL','carrera 80A #30-16','carrera 94B # 17B-9',10001);
+insert into EnvioEntity(name,id,horaInicio,horaFinal,estado,direccionEntrega,direccionRecogida,cliente_id) values ('Envio_003',10003,20517,34923,'LLEGANDO','carrera 12 #84-47','calle 167C # 9-18A',10002);
+insert into EnvioEntity(name,id,horaInicio,horaFinal,estado,direccionEntrega,direccionRecogida,cliente_id) values ('Envio_004',10004,12801,15403,'ESTADO_INICIAL','carrera 80A #30-16','carrera 94B # 17B-9',10002);
 
+insert into Envioentity_Paqueteentity(envio_id,paquete_id) values(10001,10001);
+insert into Envioentity_Paqueteentity(envio_id,paquete_id) values(10004,10004);
+insert into Envioentity_Paqueteentity(envio_id,paquete_id) values(10003,10002);
+insert into Envioentity_Paqueteentity(envio_id,paquete_id) values(10002,10003);
 
 insert into PaqueteEntity(name,id,peso,tipo,dimensionA,dimensionB,dimensionC,envio_id) values ('Paquete_001',10001,40.2,'FRAGIL',40,57,62,10001);
 insert into PaqueteEntity(name,id,peso,tipo,dimensionA,dimensionB,dimensionC,envio_id) values ('Paquete_002',10002,8.0,'FRAGIL',21,11,7,10002);
