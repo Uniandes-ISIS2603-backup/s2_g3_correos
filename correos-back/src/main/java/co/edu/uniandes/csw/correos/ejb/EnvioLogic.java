@@ -7,8 +7,10 @@ package co.edu.uniandes.csw.correos.ejb;
 
 import co.edu.uniandes.csw.correos.entities.EnvioEntity;
 import co.edu.uniandes.csw.correos.entities.EventoEntity;
+import co.edu.uniandes.csw.correos.entities.MensajeroEntity;
 import co.edu.uniandes.csw.correos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.correos.persistence.EnvioPersistence;
+import co.edu.uniandes.csw.correos.persistence.MensajeroPersistence;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -27,6 +29,11 @@ public class EnvioLogic {
     @Inject
     private EnvioPersistence persistence;
     
+    @Inject 
+    private MensajeroLogic mensajeroLogic;
+    
+    @Inject
+    private MensajeroPersistence mensajeroP;
     /**
      * 
      * @param entity el envio a ser creado
@@ -51,6 +58,7 @@ public class EnvioLogic {
         }
         
         persistence.create(entity);
+        asignarMensajero(entity);
         LOGGER.info("Se termina de crear un Envio");
         return entity;
     }
@@ -78,7 +86,11 @@ public class EnvioLogic {
         {
             throw new BusinessLogicException("No hay envios en el sistema.");
         } 
-        
+        for(EnvioEntity x:envios)
+        {
+            if(!x.getEstado().equals("FINALIZADO"))
+                asignarMensajero(x);
+        }
         LOGGER.info("Se terminan de buscar todos los Envios");
         return envios;
     } 
@@ -141,6 +153,23 @@ public class EnvioLogic {
        eventos.add(evento);
        envio.setEventos(eventos);
        persistence.update(envio);
+    }
+    
+    public void asignarMensajero(EnvioEntity envio)
+    {
+        for(MensajeroEntity x:mensajeroLogic.getMensajeros())
+        {
+            if(!x.isOcupado())
+            {
+                envio.setMensajero(x);
+                List<EnvioEntity> envios=x.getEnvios();
+                envios.add(envio);
+                x.setEnvios(envios);
+                mensajeroP.update(x);
+                break;
+            }
+        }
+        persistence.update(envio);
     }
 }
 

@@ -44,6 +44,7 @@ public class MensajeroEntity extends BaseEntity implements Serializable {
     private String nombre;
     private String celular;
     private Double calificacionPromedio;
+    private boolean ocupado;
     
     @PodamExclude
    @OneToOne(cascade= CascadeType.PERSIST,fetch = FetchType.EAGER)
@@ -162,7 +163,14 @@ public class MensajeroEntity extends BaseEntity implements Serializable {
     public void setZonas(List<ZonaEntity> zonas) {
         this.zonas = zonas;
     }
-    
-    
+
+    public boolean isOcupado() {
+        return ocupado;
+    }
+
+    public void setOcupado(boolean ocupado) {
+        this.ocupado = ocupado;
+    }
+        
     
 }

@@ -173,7 +173,7 @@ public class MensajeroResource {
     }
     
     @PUT
-    @Path("zona/{id:\\d+}/{zonaId:\\d+}")
+    @Path("zona/{id:\\ d+}/{zonaId:\\d+}")
     public MensajeroDetailDTO agregarZona(@PathParam("id") Long id, @PathParam("zonaId") Long zonaId)
     {
         ZonaEntity zona= zonaLogic.getZona(zonaId);

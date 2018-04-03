@@ -158,7 +158,7 @@
          }
          List<EnvioDTO> dtos = new ArrayList<EnvioDTO>();
          for( int i = 0; i<entitys.size();i++){            
-             dtos.add(new EnvioDTO(envioLogic.createEnvio(entitys.get(i))));
+             dtos.add(new EnvioDTO(entitys.get(i)));
          }
           return dtos;   
      }     
