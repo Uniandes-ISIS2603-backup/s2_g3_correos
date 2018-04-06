@@ -29,7 +29,7 @@ public class ZonaDetailDTO extends ZonaDTO {
      * @param entity 
      */
     public ZonaDetailDTO(ZonaEntity entity){
-        super();
+        super(entity);
         if(entity.getMensajeros().size()>0){
             List<MensajeroDTO> mL=new ArrayList();
             for(MensajeroEntity m: entity.getMensajeros()){
