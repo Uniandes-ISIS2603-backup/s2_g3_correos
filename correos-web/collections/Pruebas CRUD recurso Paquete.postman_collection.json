@@ -32,7 +32,7 @@
 					"mode": "raw",
 					"raw": ""
 				},
-				"url": "http://localhost:8080/correos-web/api/paquetes",
+				"url": "http://localhost:8080/correos-web/api/envios/10002/paquetes",
 				"description": null
 			},
 			"response": []
@@ -63,7 +63,7 @@
 					"mode": "raw",
 					"raw": "{\r\n        \"tipo\": \"FRAGIL\",\r\n        \"peso\": 10,\r\n        \"dimensionA\": 0,\r\n        \"dimensionB\": 2,\r\n        \"dimensionC\": 3,\r\n        \"paquetes\":\r\n      [\r\n      {\r\n      \"id\": 100,\r\n        \"tipo\": \"string\",\r\n        \"peso\": 1,\r\n        \"dimensionA\": 1,\r\n        \"dimensionB\": 1,\r\n        \"dimensionC\": 1\r\n      },\r\n      {\r\n    \"id\": 104,\r\n        \"tipo\": \"string\",\r\n        \"peso\": 1,\r\n        \"dimensionA\": 1,\r\n        \"dimensionB\": 1,\r\n        \"dimensionC\": 1\r\n      }\r\n      ],\r\n      \"cliente\":\r\n      {\r\n       \"idCliente\": 10000001,\r\n       \"nombre\": \"string\"\r\n    }\r\n     }"
 				},
-				"url": "http://localhost:8080/correos-web/api/paquetes",
+				"url": "http://localhost:8080/correos-web/api/envios/10002/paquetes",
 				"description": null
 			},
 			"response": []
@@ -94,7 +94,7 @@
 					"mode": "raw",
 					"raw": "{\r\n        \"tipo\": \"FRAGIL\",\r\n       \"peso\": 0,\r\n        \"dimensionA\": 10,\r\n        \"dimensionB\": 2,\r\n        \"dimensionC\": 3\r\n     }"
 				},
-				"url": "http://localhost:8080/correos-web/api/paquetes",
+				"url": "http://localhost:8080/correos-web/api/envios/10002/paquetes",
 				"description": null
 			},
 			"response": []
@@ -125,7 +125,7 @@
 					"mode": "raw",
 					"raw": "{\r\n        \"tipo\": \"FRAGIL\",\r\n       \"peso\": 10,\r\n        \"dimensionA\": 10,\r\n        \"dimensionB\": 2,\r\n        \"dimensionC\": 3\r\n     }"
 				},
-				"url": "http://localhost:8080/correos-web/api/paquetes",
+				"url": "http://localhost:8080/correos-web/api/envios/10002/paquetes",
 				"description": null
 			},
 			"response": []
@@ -156,7 +156,7 @@
 					"mode": "raw",
 					"raw": "{\r\n        \"tipo\": \"FRAGIL\",\r\n       \"peso\": 10,\r\n        \"dimensionA\": 10,\r\n        \"dimensionB\": 2,\r\n        \"dimensionC\": 3\r\n     }"
 				},
-				"url": "http://localhost:8080/correos-web/api/paquetes/1000000000000000000001",
+				"url": "http://localhost:8080/correos-web/api/envios/10002/paquetes/10000000000000000000000000000001",
 				"description": null
 			},
 			"response": []
@@ -187,7 +187,7 @@
 					"mode": "raw",
 					"raw": "{\r\n        \"tipo\": \"FRAGIL\",\r\n       \"peso\": 10,\r\n        \"dimensionA\": 10,\r\n        \"dimensionB\": 2,\r\n        \"dimensionC\": 3\r\n     }"
 				},
-				"url": "http://localhost:8080/correos-web/api/paquetes/10002",
+				"url": "http://localhost:8080/correos-web/api/envios/10002/paquetes/10002",
 				"description": null
 			},
 			"response": []
@@ -218,7 +218,7 @@
 					"mode": "raw",
 					"raw": ""
 				},
-				"url": "http://localhost:8080/correos-web/api/paquetes/12",
+				"url": "http://localhost:8080/correos-web/api/envios/10002/paquetes/100000000000000000000002",
 				"description": null
 			},
 			"response": []
@@ -249,7 +249,7 @@
 					"mode": "raw",
 					"raw": ""
 				},
-				"url": "http://localhost:8080/correos-web/api/paquetes/29140",
+				"url": "http://localhost:8080/correos-web/api/envios/10002/paquetes/10002",
 				"description": null
 			},
 			"response": []
@@ -280,7 +280,7 @@
 					"mode": "raw",
 					"raw": "{\r\n        \"tipo\": \"MALEABLE\",\r\n       \"peso\": 0,\r\n        \"dimensionA\": 10,\r\n        \"dimensionB\": 2,\r\n        \"dimensionC\": 3\r\n     }"
 				},
-				"url": "http://localhost:8080/correos-web/api/paquetes/10002",
+				"url": "http://localhost:8080/correos-web/api/envios/10002/paquetes/10002",
 				"description": null
 			},
 			"response": []
@@ -311,7 +311,7 @@
 					"mode": "raw",
 					"raw": "{\r\n        \"tipo\": \"MALEABLE\",\r\n       \"peso\": 30,\r\n        \"dimensionA\": 0,\r\n        \"dimensionB\": 2,\r\n        \"dimensionC\": 3\r\n     }"
 				},
-				"url": "http://localhost:8080/correos-web/api/paquetes/10002",
+				"url": "http://localhost:8080/correos-web/api/envios/10002/paquetes/10002",
 				"description": null
 			},
 			"response": []
@@ -322,10 +322,10 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "27124761-ca14-477c-a6cb-3d9aa5308edc",
+						"id": "7c32accf-9437-440f-bb89-9d8552da3b6b",
 						"type": "text/javascript",
 						"exec": [
-							"tests[\"Status code is 404\"] =responseCode.code===404;"
+							"tests[\"Status code is 200\"] =responseCode.code===200;"
 						]
 					}
 				}
@@ -342,7 +342,7 @@
 					"mode": "raw",
 					"raw": "{\r\n        \"tipo\": \"MALEABLE\",\r\n       \"peso\": 30,\r\n        \"dimensionA\": 50,\r\n        \"dimensionB\": 2,\r\n        \"dimensionC\": 3\r\n     }"
 				},
-				"url": "http://localhost:8080/correos-web/api/paquetes/100000000000000000000000000000000000000002",
+				"url": "http://localhost:8080/correos-web/api/envios/10002/paquetes/10002",
 				"description": null
 			},
 			"response": []
@@ -373,7 +373,7 @@
 					"mode": "raw",
 					"raw": "{\r\n        \"tipo\": \"MALEABLE\",\r\n       \"peso\": 30,\r\n        \"dimensionA\": 50,\r\n        \"dimensionB\": 2,\r\n        \"dimensionC\": 3\r\n     }"
 				},
-				"url": "http://localhost:8080/correos-web/api/paquetes/100000000000000000000000000000000000000002",
+				"url": "http://localhost:8080/correos-web/api/envios/10002/paquetes/10000000000000000000000000002",
 				"description": ""
 			},
 			"response": []
