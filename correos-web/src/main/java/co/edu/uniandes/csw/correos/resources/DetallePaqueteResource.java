@@ -5,8 +5,6 @@
  */
 package co.edu.uniandes.csw.correos.resources;
 
-import java.util.ArrayList; 
-
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -15,13 +13,13 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.Consumes;
-import java.util.List; 
 import javax.enterprise.context.RequestScoped;
 import co.edu.uniandes.csw.correos.dtos.DetallePaqueteDTO;
 import co.edu.uniandes.csw.correos.ejb.DetallePaqueteLogic;
 import co.edu.uniandes.csw.correos.entities.DetallePaqueteEntity;
-import co.edu.uniandes.csw.correos.entities.PaqueteEntity;
 import co.edu.uniandes.csw.correos.exceptions.BusinessLogicException;
+import java.util.ArrayList;
+import java.util.List;
 import javax.inject.Inject;
 import javax.ws.rs.WebApplicationException;
      
@@ -42,11 +40,22 @@ import javax.ws.rs.WebApplicationException;
 @Consumes("application/json")
 @RequestScoped
 
-public class DetallePaqueteResource {
-    
+public class DetallePaqueteResource {    
     @Inject
     DetallePaqueteLogic detalleLogic;
- /**
+
+    @Inject
+    public DetallePaqueteResource(DetallePaqueteLogic detalleLogic)
+    {
+        this.detalleLogic=detalleLogic;
+    }
+    
+    public DetallePaqueteResource()
+    {
+        this.detalleLogic=null;
+    }
+    
+    /**
      * <h1>POST /api/detalles : Crear un detalle.</h1>
      *
      * <pre>Cuerpo de petición: JSON {@link DetalePaqueteDTO}.
@@ -156,5 +165,20 @@ public class DetallePaqueteResource {
         }
         detalleLogic.deleteDetallePaquete(id);
     }
+ 
+    @GET
+    public List<DetallePaqueteDTO> getDetallesPaquete()
+    {
+        return listEntity2DTO(detalleLogic.getAll());
+    }
     
+    public List<DetallePaqueteDTO> listEntity2DTO(List<DetallePaqueteEntity> list)
+    {
+        List<DetallePaqueteDTO> lista=new ArrayList<>();
+        for(DetallePaqueteEntity x:list)
+        {
+            lista.add(new DetallePaqueteDTO(x));
+        }
+        return lista;
+    }
 }

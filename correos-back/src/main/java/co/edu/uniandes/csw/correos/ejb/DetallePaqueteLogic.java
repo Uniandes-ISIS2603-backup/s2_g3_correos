@@ -6,7 +6,6 @@
 package co.edu.uniandes.csw.correos.ejb;
 
 import co.edu.uniandes.csw.correos.entities.DetallePaqueteEntity;
-import co.edu.uniandes.csw.correos.entities.PaqueteEntity;
 import co.edu.uniandes.csw.correos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.correos.persistence.DetallePaquetePersistance;
 import java.util.List;
@@ -24,22 +23,23 @@ import javax.inject.Inject;
 public class DetallePaqueteLogic {
     
      private static final Logger LOGGER= Logger.getLogger(DetallePaqueteLogic.class.getName());
-    
-    @Inject
+       
     private DetallePaquetePersistance persistence;
-    
-    @Inject
+      
     PaqueteLogic paqueteLogic;
     
-    public DetallePaqueteLogic (DetallePaquetePersistance persistence)
+    @Inject
+    public DetallePaqueteLogic (DetallePaquetePersistance persistence, PaqueteLogic paqueteLogic)
     {
         this.persistence=persistence;
+        this.paqueteLogic=paqueteLogic;
     }
     
     public DetallePaqueteLogic()
 
     {
         this.persistence=null;
+        this.paqueteLogic=null;
     }
     
      /**
@@ -105,5 +105,10 @@ public class DetallePaqueteLogic {
         LOGGER.log(Level.INFO, "Comienza a borrar el detalle de id={0}", id);    
         persistence.delete(id);
         LOGGER.log(Level.INFO, "Termina a borrar el detalle de id={0}", id);
+    }
+    
+    public List<DetallePaqueteEntity> getAll()
+    {
+        return persistence.findAll();
     }
 }

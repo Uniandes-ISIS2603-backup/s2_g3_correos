@@ -1,9 +1,10 @@
 {
+	"variables": [],
 	"info": {
 		"name": "pruebas CRUD detallePaquete.postman_collection",
-		"_postman_id": "be9e0097-941e-8bcd-c375-f4dd3864d8c0",
+		"_postman_id": "4531f71c-38d1-f4b4-f225-d2e813d219d2",
 		"description": "Estas son las colecciones de prueba para el recurso de DetallePaquete",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
 	},
 	"item": [
 		{
@@ -12,7 +13,6 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "af489de3-c34f-4116-80b6-a206586abf50",
 						"type": "text/javascript",
 						"exec": [
 							"tests[\"Status code is 200\"] = responseCode.code === 200;"
@@ -21,9 +21,7 @@
 				}
 			],
 			"request": {
-				"auth": {
-					"type": "noauth"
-				},
+				"url": "http://localhost:8080/correos-web/api/detalles",
 				"method": "POST",
 				"header": [
 					{
@@ -35,19 +33,6 @@
 					"mode": "raw",
 					"raw": "{\n\t\"mensaje\": \"lindo\"\n}\n\t"
 				},
-				"url": {
-					"raw": "http://localhost:8080/correos-web/api/detalles",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"correos-web",
-						"api",
-						"detalles"
-					]
-				},
 				"description": ""
 			},
 			"response": []
@@ -58,7 +43,6 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "e08da247-6b73-47d6-a686-107834ca1644",
 						"type": "text/javascript",
 						"exec": [
 							"tests[\"Status code is 412\"] = responseCode.code === 412;"
@@ -67,9 +51,7 @@
 				}
 			],
 			"request": {
-				"auth": {
-					"type": "noauth"
-				},
+				"url": "http://localhost:8080/correos-web/api/detalles",
 				"method": "POST",
 				"header": [
 					{
@@ -81,19 +63,6 @@
 					"mode": "raw",
 					"raw": "{\n\t\"mensaje\": \"\"\n}\n\t"
 				},
-				"url": {
-					"raw": "http://localhost:8080/correos-web/api/detalles",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"correos-web",
-						"api",
-						"detalles"
-					]
-				},
 				"description": ""
 			},
 			"response": []
@@ -104,7 +73,6 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "9deb0b5e-2c13-4cfa-82ee-1805b30c45c7",
 						"type": "text/javascript",
 						"exec": [
 							"tests[\"Status code is 200\"] =responseCode.code===200;"
@@ -113,33 +81,18 @@
 				}
 			],
 			"request": {
-				"auth": {
-					"type": "noauth"
-				},
+				"url": "http://localhost:8080/correos-web/api/detalles/10001",
 				"method": "GET",
 				"header": [
 					{
 						"key": "Content-Type",
-						"value": "application/json"
+						"value": "application/json",
+						"description": ""
 					}
 				],
 				"body": {
 					"mode": "raw",
 					"raw": "{\n\t\"mensaje\": \"lindo\"\n}"
-				},
-				"url": {
-					"raw": "http://localhost:8080/correos-web/api/detalles/1",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"correos-web",
-						"api",
-						"detalles",
-						"1"
-					]
 				},
 				"description": "Arroja 200"
 			},
@@ -151,7 +104,6 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "863af3fc-7315-4ce0-93dd-3ef629e4686b",
 						"type": "text/javascript",
 						"exec": [
 							"tests[\"Status code is 200\"] =responseCode.code===404;"
@@ -160,9 +112,7 @@
 				}
 			],
 			"request": {
-				"auth": {
-					"type": "noauth"
-				},
+				"url": "http://localhost:8080/correos-web/api/detalles/2",
 				"method": "GET",
 				"header": [
 					{
@@ -173,20 +123,6 @@
 				"body": {
 					"mode": "raw",
 					"raw": "{\n\t\"mensaje\": \"lindo\"\n}"
-				},
-				"url": {
-					"raw": "http://localhost:8080/correos-web/api/detalles/2",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"correos-web",
-						"api",
-						"detalles",
-						"2"
-					]
 				},
 				"description": "Arroja 404"
 			},
@@ -198,7 +134,6 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "75aa102e-9f1b-4bde-88fc-8ce8841da03d",
 						"type": "text/javascript",
 						"exec": [
 							"tests[\"Status code is 200\"] =responseCode.code===200;"
@@ -207,33 +142,18 @@
 				}
 			],
 			"request": {
-				"auth": {
-					"type": "noauth"
-				},
+				"url": "http://localhost:8080/correos-web/api/detalles/10001",
 				"method": "PUT",
 				"header": [
 					{
 						"key": "Content-Type",
-						"value": "application/json"
+						"value": "application/json",
+						"description": ""
 					}
 				],
 				"body": {
 					"mode": "raw",
 					"raw": "{\n\t\"mensaje\": \"RElindo\"\n}"
-				},
-				"url": {
-					"raw": "http://localhost:8080/correos-web/api/detalles/1",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"correos-web",
-						"api",
-						"detalles",
-						"1"
-					]
 				},
 				"description": "Arroja 200"
 			},
@@ -245,7 +165,6 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "b47f5841-59c1-459a-bca5-a253cae9f638",
 						"type": "text/javascript",
 						"exec": [
 							"tests[\"Status code is 412\"] =responseCode.code===412;"
@@ -254,30 +173,18 @@
 				}
 			],
 			"request": {
+				"url": "http://localhost:8080/correos-web/api/detalles/10001",
 				"method": "PUT",
 				"header": [
 					{
 						"key": "Content-Type",
-						"value": "application/json"
+						"value": "application/json",
+						"description": ""
 					}
 				],
 				"body": {
 					"mode": "raw",
 					"raw": "{\n\t\"mensaje\": \"\"\n}"
-				},
-				"url": {
-					"raw": "http://localhost:8080/correos-web/api/detalles/1",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"correos-web",
-						"api",
-						"detalles",
-						"1"
-					]
 				},
 				"description": "El mensaje no puede estar vacío, arroja 412"
 			},
@@ -289,7 +196,6 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "e8264519-5672-42b7-a788-1e5b4b53aab7",
 						"type": "text/javascript",
 						"exec": [
 							"tests[\"Status code is 404\"] =responseCode.code===404;"
@@ -298,6 +204,7 @@
 				}
 			],
 			"request": {
+				"url": "http://localhost:8080/correos-web/api/detalles/2",
 				"method": "PUT",
 				"header": [
 					{
@@ -309,20 +216,6 @@
 					"mode": "raw",
 					"raw": "{\n\t\"mensaje\": \"ok\"\n}"
 				},
-				"url": {
-					"raw": "http://localhost:8080/correos-web/api/detalles/2",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"correos-web",
-						"api",
-						"detalles",
-						"2"
-					]
-				},
 				"description": "Arroja 404"
 			},
 			"response": []
@@ -333,7 +226,6 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "3dccd3fe-7639-4d5d-a82f-c200bd4bd66a",
 						"type": "text/javascript",
 						"exec": [
 							"tests[\"Status code is 204\"] =responseCode.code===204;"
@@ -342,23 +234,10 @@
 				}
 			],
 			"request": {
+				"url": "http://localhost:8080/correos-web/api/detalles/10001",
 				"method": "DELETE",
 				"header": [],
 				"body": {},
-				"url": {
-					"raw": "http://localhost:8080/correos-web/api/detalles/23",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"correos-web",
-						"api",
-						"detalles",
-						"23"
-					]
-				},
 				"description": "Arroja 204"
 			},
 			"response": []
@@ -369,7 +248,6 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "858a1ed8-4cc8-4f09-b072-3af85f99e4ec",
 						"type": "text/javascript",
 						"exec": [
 							"tests[\"Status code is 404\"] =responseCode.code===404;"
@@ -378,23 +256,10 @@
 				}
 			],
 			"request": {
+				"url": "http://localhost:8080/correos-web/api/detalles/345",
 				"method": "DELETE",
 				"header": [],
 				"body": {},
-				"url": {
-					"raw": "http://localhost:8080/correos-web/api/detalles/1",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"correos-web",
-						"api",
-						"detalles",
-						"1"
-					]
-				},
 				"description": "Arroja 404"
 			},
 			"response": []
@@ -405,7 +270,6 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "9deb0b5e-2c13-4cfa-82ee-1805b30c45c7",
 						"type": "text/javascript",
 						"exec": [
 							"tests[\"Status code is 200\"] =responseCode.code===200;"
@@ -414,33 +278,18 @@
 				}
 			],
 			"request": {
-				"auth": {
-					"type": "noauth"
-				},
+				"url": "http://localhost:8080/correos-web/api/detalles",
 				"method": "GET",
 				"header": [
 					{
 						"key": "Content-Type",
-						"value": "application/json"
+						"value": "application/json",
+						"description": ""
 					}
 				],
 				"body": {
 					"mode": "raw",
 					"raw": "{\n\t\"mensaje\": \"lindo\"\n}"
-				},
-				"url": {
-					"raw": "http://localhost:8080/correos-web/api/detalles/",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"correos-web",
-						"api",
-						"detalles",
-						""
-					]
 				},
 				"description": "Arroja 200"
 			},
