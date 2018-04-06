@@ -41,8 +41,20 @@ public class ClienteLogic {
 
     private static final Logger LOGGER = Logger.getLogger(ClienteLogic.class.getName());
 
-    @Inject
+    
     private ClientePersistence persistence; // Variable para acceder a la persistencia de la aplicación. Es una inyección de dependencias.
+    
+    @Inject
+    public ClienteLogic(ClientePersistence clientePersistence)
+    {
+        this.persistence=clientePersistence;
+    }
+    
+    
+    public ClienteLogic()
+    {
+        this.persistence=null;
+    }
 
     public ClienteEntity createCliente(ClienteEntity entity) throws BusinessLogicException {
         LOGGER.info("Inicia proceso de creación de cliente");

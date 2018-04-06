@@ -56,7 +56,7 @@ public class BonoPersistance {
     }
        */
       
-      public BonoEntity find(long id)
+      public BonoEntity find(Long id)
     {
         return em.find(BonoEntity.class, id);
     }

@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import javax.enterprise.context.RequestScoped;
 import co.edu.uniandes.csw.correos.dtos.BonoDTO;
 import co.edu.uniandes.csw.correos.ejb.BonoLogic;
+import co.edu.uniandes.csw.correos.ejb.ClienteLogic;
 import co.edu.uniandes.csw.correos.entities.BonoEntity;
 import co.edu.uniandes.csw.correos.exceptions.BusinessLogicException;
 import javax.inject.Inject;
@@ -35,16 +36,31 @@ import javax.ws.rs.WebApplicationException;
  * @author t.vargas10
  */
 
-@Path("bonos")
+@Path("clientes/{clienteId:\\d+}/bonos")
 @Produces("application/json")
 @Consumes("application/json")
 @RequestScoped
 
 public class BonoResource 
 {    
+     
+    BonoLogic bonoLogic;
+    
+    ClienteLogic clienteLogic;
     
     @Inject
-    BonoLogic bonoLogic;
+    public BonoResource(BonoLogic bonoLogic, ClienteLogic clienteLogic)
+    {
+        this.bonoLogic=bonoLogic;
+        this.clienteLogic=clienteLogic;
+    }
+    
+    public BonoResource()
+    {
+        this.bonoLogic=null;
+        this.clienteLogic=null;
+    }
+    
     
     /**
      * <h1>POST /api/Bonos: Crear un bono.<h1>
@@ -67,7 +83,9 @@ public class BonoResource
      * @throws BusinessLogicException {@link BusinessLogicException} - Error de lógica que se genera cuando ya existeel bono
      */
     @POST
-    public BonoDTO createBono(BonoDTO bono) throws BusinessLogicException {
+    public BonoDTO createBono(@PathParam("clienteId")Long idCliente,BonoDTO bono) throws Exception {
+        if(clienteLogic.getCliente(idCliente)==null)
+            throw new WebApplicationException("No existe el cliente , por lo tanto no se le pueden agregar bonos" ,404);
         BonoEntity entity=bono.toEntity();
         return new BonoDTO(bonoLogic.createBono(entity));
     }
@@ -92,7 +110,9 @@ public class BonoResource
      */
     @PUT
     @Path("{id: \\d+}")
-    public BonoDTO updateBono(@PathParam("id") Long id, BonoDTO bono) throws BusinessLogicException {
+    public BonoDTO updateBono(@PathParam("clienteId")Long idCliente,@PathParam("id") Long id, BonoDTO bono) throws BusinessLogicException {
+        if(clienteLogic.getCliente(idCliente)==null)
+            throw new WebApplicationException("No existe el cliente , por lo tanto no tiene bonos que actualizar",404);
         bono.setId(id);
         BonoEntity entity = bonoLogic.getBono(id);
         if (entity == null) {
@@ -121,7 +141,9 @@ public class BonoResource
      */
     @GET
     @Path("{id: \\d+}")
-    public BonoDTO getBono(@PathParam("id") Long id) throws BusinessLogicException {
+    public BonoDTO getBono(@PathParam("clienteId") Long idCliente,@PathParam("id") Long id) throws BusinessLogicException {
+         if(clienteLogic.getCliente(idCliente)==null)
+            throw new WebApplicationException("No existe el cliente , por lo tanto no tiene bonos",404);
         BonoEntity entity = bonoLogic.getBono(id);
         if (entity == null) {
             throw new WebApplicationException("El recurso /bonos/" + id + " no existe.", 404);
@@ -130,7 +152,9 @@ public class BonoResource
     }
     
     @GET
-    public List<BonoDTO> getBonos() throws BusinessLogicException {
+    public List<BonoDTO> getBonos(@PathParam("clienteId")Long idCliente) throws BusinessLogicException {
+        if(clienteLogic.getCliente(idCliente)==null)
+            throw new WebApplicationException("No existe el cliente , por lo tanto no tiene bonos ",404);
         return listEntity2DTO(bonoLogic.getBonos());
     }
      /**
@@ -150,7 +174,9 @@ public class BonoResource
      */
     @DELETE
     @Path("{id: \\d+}")
-    public void deleteBono(@PathParam("id") Long id) throws BusinessLogicException {
+    public void deleteBono(@PathParam("clienteId")Long idCliente,@PathParam("id") Long id) throws BusinessLogicException {
+        if(clienteLogic.getCliente(idCliente)==null)
+            throw new WebApplicationException("No existe el cliente , por lo tanto no tiene bonos que eliminar ",404);
         BonoEntity entity = bonoLogic.getBono(id);
         if (entity == null) {
             throw new WebApplicationException("El recurso /bonos/" + id + " no existe.", 404);

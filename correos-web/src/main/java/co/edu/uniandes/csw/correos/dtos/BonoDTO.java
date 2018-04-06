@@ -26,7 +26,7 @@ import javax.persistence.TemporalType;
  */
 public class BonoDTO 
 {
-    private long id;
+    private Long id;
     private String name;
     private String descripcion;
     private double descuento;
@@ -49,6 +49,7 @@ public class BonoDTO
         this.descripcion = entity.getDescripcion();
         this.fechaDeVencimiento = entity.getFechaDeVencimiento();
         this.name = entity.getName();
+        this.descuento=entity.getDescuento();
     }
 
     public BonoEntity toEntity() {
@@ -58,6 +59,7 @@ public class BonoDTO
         entity.setCondicion(this.condicion);
         entity.setDescripcion(this.descripcion);
         entity.setFechaDeVencimiento(this.fechaDeVencimiento);
+        entity.setDescuento(this.descuento);
         return entity;
     }
 
