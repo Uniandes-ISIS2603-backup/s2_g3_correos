@@ -25,6 +25,7 @@ package co.edu.uniandes.csw.correos.resources;
 
 import co.edu.uniandes.csw.correos.dtos.ReservaDTO;
 import co.edu.uniandes.csw.correos.dtos.ReservaDetailDTO;
+import co.edu.uniandes.csw.correos.ejb.ClienteLogic;
 import co.edu.uniandes.csw.correos.ejb.ReservaLogic;
 import co.edu.uniandes.csw.correos.entities.ReservaEntity;
 import co.edu.uniandes.csw.correos.exceptions.BusinessLogicException;
@@ -65,6 +66,9 @@ import javax.ws.rs.WebApplicationException;
 public class ReservaResource {
     @Inject
     ReservaLogic logic;
+    
+    @Inject
+    ClienteLogic logicCliente;
     /**
      * <h1>POST /api/reservas : Crear una reserva.</h1>
      * 
@@ -87,9 +91,12 @@ public class ReservaResource {
      * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} - Error de lógica que se genera cuando ya existe la Reserva.
      */
     @POST
+    
     public ReservaDetailDTO createReserva(ReservaDetailDTO reserva) throws BusinessLogicException
     {
+        
        return new ReservaDetailDTO (logic.createReserva(reserva.toEntity()));
+
     }
     
     /**
@@ -111,14 +118,15 @@ public class ReservaResource {
      */
     @PUT
     @Path("{id: \\d+}")
-    public ReservaDetailDTO updateReserva(@PathParam("id") Long id , ReservaDetailDTO reserva)
+    public ReservaDetailDTO updateReserva(@PathParam("clienteId") Long idCliente, @PathParam("id") Long id , ReservaDetailDTO reserva) throws BusinessLogicException
     {
-        if(logic.getReserva(id)!=null) 
+        if(logic.getReserva(id)==null) 
             throw new WebApplicationException("La Reserva con id " + id,404);
         reserva.setId(id);
         return new ReservaDetailDTO(logic.putReserva(reserva.toEntity()));
     }
     
+
     /**
      * <h1>GET /api/reservas/{id} : Obtener reserva por id.</h1>
      * 
@@ -139,7 +147,8 @@ public class ReservaResource {
     @Path("{id: \\d+}")
     public ReservaDetailDTO getReserva(@PathParam("id") Long id)
     {
-        if(logic.getReserva(id)!=null) 
+      
+        if(logic.getReserva(id)==null) 
             throw new WebApplicationException("La Reserva con id " + id,404);
         return new ReservaDetailDTO(logic.getReserva(id));
     }
@@ -158,7 +167,9 @@ public class ReservaResource {
     @GET
     public List<ReservaDetailDTO> getReservas()
     {
+        
         return listEntity2DTO(logic.getReservas());
+        
     }
     
     /**
@@ -177,12 +188,14 @@ public class ReservaResource {
      */
     @DELETE
     @Path("{id: \\d+}")
-    public void deleteReserva(@PathParam("id") Long id)
+    public void deleteReserva( @PathParam("id") Long id)
     {
-        if(logic.getReserva(id)!=null) 
+        if(logic.getReserva(id)==null) 
             throw new WebApplicationException("La Reserva con id " + id,404);
         logic.deleteReserva(logic.getReserva(id));
+       
     }
+    
     public List<ReservaDetailDTO>  listEntity2DTO(List<ReservaEntity> reservas)
     {
         List<ReservaDetailDTO> retorno = new ArrayList<>();

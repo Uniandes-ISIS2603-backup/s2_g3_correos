@@ -52,7 +52,7 @@ public class MensajeroDetailDTO extends MensajeroDTO
      */
     public MensajeroDetailDTO()
     {
-        super();
+
     }
     
     public MensajeroDetailDTO(MensajeroEntity entity)

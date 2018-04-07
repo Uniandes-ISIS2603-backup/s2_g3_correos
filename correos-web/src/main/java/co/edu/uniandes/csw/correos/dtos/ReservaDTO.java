@@ -24,6 +24,7 @@ SOFTWARE.
 package co.edu.uniandes.csw.correos.dtos;
 
 import co.edu.uniandes.csw.correos.entities.ReservaEntity;
+import java.sql.Timestamp;
 import java.util.Date;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -58,8 +59,8 @@ import javax.persistence.TemporalType;
 public class ReservaDTO {
     
     Long id;
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date fecha;
+  
+    private String fecha;
     private String hora;
     
     /**
@@ -73,7 +74,7 @@ public class ReservaDTO {
     public ReservaDTO(ReservaEntity reserva)
     {
         this.id=reserva.getId();
-        this.fecha=reserva.getFecha();
+        this.fecha=reserva.getFecha().toString();
         this.hora=reserva.getHora();
     }
     
@@ -96,14 +97,14 @@ public class ReservaDTO {
     /**
      * @return la fecha de la reserva
      */
-    public Date getFecha() {
+    public String getFecha() {
         return fecha;
     }
     
     /**
      * @param fecha la nueva fecha de la reserva
      */
-    public void setFecha(Date fecha) {
+    public void setFecha(String fecha) {
         this.fecha = fecha;
     }
     
@@ -124,7 +125,7 @@ public class ReservaDTO {
     public ReservaEntity toEntity()
     {
         ReservaEntity reserva=new ReservaEntity();
-        reserva.setFecha(this.fecha);
+        reserva.setFecha(Timestamp.valueOf(this.fecha));
         reserva.setHora(this.hora);
         reserva.setId(this.id);
         return reserva;

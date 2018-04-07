@@ -26,7 +26,10 @@ package co.edu.uniandes.csw.correos.resources;
 import co.edu.uniandes.csw.correos.dtos.MensajeroDTO;
 import co.edu.uniandes.csw.correos.dtos.MensajeroDetailDTO;
 import co.edu.uniandes.csw.correos.ejb.MensajeroLogic;
+import co.edu.uniandes.csw.correos.ejb.ZonaLogic;
+import co.edu.uniandes.csw.correos.ejb.ZonaMensajeroLogic;
 import co.edu.uniandes.csw.correos.entities.MensajeroEntity;
+import co.edu.uniandes.csw.correos.entities.ZonaEntity;
 import co.edu.uniandes.csw.correos.exceptions.BusinessLogicException;
 import java.util.ArrayList;
 import java.util.List;
@@ -66,8 +69,29 @@ import javax.ws.rs.WebApplicationException;
 @RequestScoped
 public class MensajeroResource {
     
-    @Inject
+    
     private MensajeroLogic logic;
+    
+    private ZonaMensajeroLogic zonaMensajeroLogic;
+    
+    private ZonaLogic zonaLogic;
+    
+    
+    @Inject
+    public MensajeroResource(MensajeroLogic logic, ZonaMensajeroLogic zonaMensajeroLogic, ZonaLogic zonaLogic)
+    {
+        this.logic=logic;
+        this.zonaMensajeroLogic=zonaMensajeroLogic;
+        this.zonaLogic=zonaLogic;
+    }
+    
+    public MensajeroResource()
+    {
+        this.logic=null;
+        this.zonaMensajeroLogic=null;
+        this.zonaLogic=null;
+    }
+    
     /**
      * <h1>POST /api/mensajeros : Crear un mensajero.</h1>
      * 
@@ -148,6 +172,17 @@ public class MensajeroResource {
         return new MensajeroDetailDTO(logic.getMensajero(id));
     }
     
+    @PUT
+    @Path("zona/{id:\\ d+}/{zonaId:\\d+}")
+    public MensajeroDetailDTO agregarZona(@PathParam("id") Long id, @PathParam("zonaId") Long zonaId)
+    {
+        ZonaEntity zona= zonaLogic.getZona(zonaId);
+        MensajeroEntity mensajero= logic.getMensajero(id);
+        
+        zonaMensajeroLogic.agregarRelacion(mensajero, zona);
+        
+        return new MensajeroDetailDTO(logic.getMensajero(id));
+    }
     /**
      * <h1>GET /api/mensajeros : Obtener todos los mensajeros.</h1>
      * 

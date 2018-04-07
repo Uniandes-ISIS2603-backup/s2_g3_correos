@@ -8,6 +8,18 @@
 	"item": [
 		{
 			"name": "Hace Get correctamente sobre todos los Paquetes",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a1787955-755a-4cf7-a07c-204d3214ed9e",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] =responseCode.code===200;"
+						]
+					}
+				}
+			],
 			"request": {
 				"method": "GET",
 				"header": [
@@ -20,13 +32,25 @@
 					"mode": "raw",
 					"raw": ""
 				},
-				"url": "http://localhost:8080/correos-web/api/paquetes",
-				"description": ""
+				"url": "http://localhost:8080/correos-web/api/envios/10002/paquetes",
+				"description": null
 			},
 			"response": []
 		},
 		{
 			"name": "Hace Post incorrecto (volumen 0)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "47765904-c3c0-49af-a159-5a1d84a89a5b",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 412\"] =responseCode.code===412;"
+						]
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [
@@ -37,15 +61,27 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n        \"tipo\": \"FRAGIL\",\r\n       \"peso\": 10,\r\n        \"dimensionA\": 0,\r\n        \"dimensionB\": 2,\r\n        \"dimensionC\": 3\r\n     }"
+					"raw": "{\r\n        \"tipo\": \"FRAGIL\",\r\n        \"peso\": 10,\r\n        \"dimensionA\": 0,\r\n        \"dimensionB\": 2,\r\n        \"dimensionC\": 3,\r\n        \"paquetes\":\r\n      [\r\n      {\r\n      \"id\": 100,\r\n        \"tipo\": \"string\",\r\n        \"peso\": 1,\r\n        \"dimensionA\": 1,\r\n        \"dimensionB\": 1,\r\n        \"dimensionC\": 1\r\n      },\r\n      {\r\n    \"id\": 104,\r\n        \"tipo\": \"string\",\r\n        \"peso\": 1,\r\n        \"dimensionA\": 1,\r\n        \"dimensionB\": 1,\r\n        \"dimensionC\": 1\r\n      }\r\n      ],\r\n      \"cliente\":\r\n      {\r\n       \"idCliente\": 10000001,\r\n       \"nombre\": \"string\"\r\n    }\r\n     }"
 				},
-				"url": "http://localhost:8080/correos-web/api/paquetes",
-				"description": ""
+				"url": "http://localhost:8080/correos-web/api/envios/10002/paquetes",
+				"description": null
 			},
 			"response": []
 		},
 		{
 			"name": "Hace Post incorrecto (peso 0)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "4c1dc183-f16a-4909-b624-6477d73562da",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 412\"] =responseCode.code===412;"
+						]
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [
@@ -58,13 +94,25 @@
 					"mode": "raw",
 					"raw": "{\r\n        \"tipo\": \"FRAGIL\",\r\n       \"peso\": 0,\r\n        \"dimensionA\": 10,\r\n        \"dimensionB\": 2,\r\n        \"dimensionC\": 3\r\n     }"
 				},
-				"url": "http://localhost:8080/correos-web/api/paquetes",
-				"description": ""
+				"url": "http://localhost:8080/correos-web/api/envios/10002/paquetes",
+				"description": null
 			},
 			"response": []
 		},
 		{
 			"name": "Hace Post correctamente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ae145205-033b-4ae8-b16e-f165864a129f",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] =responseCode.code===200;"
+						]
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [
@@ -77,13 +125,25 @@
 					"mode": "raw",
 					"raw": "{\r\n        \"tipo\": \"FRAGIL\",\r\n       \"peso\": 10,\r\n        \"dimensionA\": 10,\r\n        \"dimensionB\": 2,\r\n        \"dimensionC\": 3\r\n     }"
 				},
-				"url": "http://localhost:8080/correos-web/api/paquetes",
-				"description": ""
+				"url": "http://localhost:8080/correos-web/api/envios/10002/paquetes",
+				"description": null
 			},
 			"response": []
 		},
 		{
 			"name": "Hace Get sobre un paquete inexistente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "40b4518b-4c32-44f9-8608-4a127c0bad2c",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 404\"] =responseCode.code===404;"
+						]
+					}
+				}
+			],
 			"request": {
 				"method": "GET",
 				"header": [
@@ -96,13 +156,25 @@
 					"mode": "raw",
 					"raw": "{\r\n        \"tipo\": \"FRAGIL\",\r\n       \"peso\": 10,\r\n        \"dimensionA\": 10,\r\n        \"dimensionB\": 2,\r\n        \"dimensionC\": 3\r\n     }"
 				},
-				"url": "http://localhost:8080/correos-web/api/paquetes/1000000000000000000001",
-				"description": ""
+				"url": "http://localhost:8080/correos-web/api/envios/10002/paquetes/10000000000000000000000000000001",
+				"description": null
 			},
 			"response": []
 		},
 		{
 			"name": "Hace Get especifico correctamente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d7ba1f5a-923d-423d-8717-9c9b6f1b3c01",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] =responseCode.code===200;"
+						]
+					}
+				}
+			],
 			"request": {
 				"method": "GET",
 				"header": [
@@ -115,13 +187,25 @@
 					"mode": "raw",
 					"raw": "{\r\n        \"tipo\": \"FRAGIL\",\r\n       \"peso\": 10,\r\n        \"dimensionA\": 10,\r\n        \"dimensionB\": 2,\r\n        \"dimensionC\": 3\r\n     }"
 				},
-				"url": "http://localhost:8080/correos-web/api/paquetes/10002",
-				"description": ""
+				"url": "http://localhost:8080/correos-web/api/envios/10002/paquetes/10002",
+				"description": null
 			},
 			"response": []
 		},
 		{
 			"name": "Hace Delete sobre un paquete inexistente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "1d8a4f3e-2825-4b77-827d-4219c48d4d75",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 404\"] =responseCode.code===404;"
+						]
+					}
+				}
+			],
 			"request": {
 				"method": "DELETE",
 				"header": [
@@ -132,15 +216,27 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n        \"tipo\": \"FRAGIL\",\r\n       \"peso\": 10,\r\n        \"dimensionA\": 10,\r\n        \"dimensionB\": 2,\r\n        \"dimensionC\": 3\r\n     }"
+					"raw": ""
 				},
-				"url": "http://localhost:8080/correos-web/api/paquetes/10000000000000000000000000000000000002",
-				"description": ""
+				"url": "http://localhost:8080/correos-web/api/envios/10002/paquetes/100000000000000000000002",
+				"description": null
 			},
 			"response": []
 		},
 		{
 			"name": "Hace Delete correctamente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5ad4d41d-27ac-4ab8-acf3-7010eded982d",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 204\"] =responseCode.code===204;"
+						]
+					}
+				}
+			],
 			"request": {
 				"method": "DELETE",
 				"header": [
@@ -151,15 +247,27 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n        \"tipo\": \"FRAGIL\",\r\n       \"peso\": 10,\r\n        \"dimensionA\": 10,\r\n        \"dimensionB\": 2,\r\n        \"dimensionC\": 3\r\n     }"
+					"raw": ""
 				},
-				"url": "http://localhost:8080/correos-web/api/paquetes/10002",
-				"description": ""
+				"url": "http://localhost:8080/correos-web/api/envios/10002/paquetes/10002",
+				"description": null
 			},
 			"response": []
 		},
 		{
 			"name": "Hace Update incorrecto (peso 0)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "bd7b4525-eb2e-45dc-807c-ac8a944a3ca3",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 412\"] =responseCode.code===412;"
+						]
+					}
+				}
+			],
 			"request": {
 				"method": "PUT",
 				"header": [
@@ -172,13 +280,25 @@
 					"mode": "raw",
 					"raw": "{\r\n        \"tipo\": \"MALEABLE\",\r\n       \"peso\": 0,\r\n        \"dimensionA\": 10,\r\n        \"dimensionB\": 2,\r\n        \"dimensionC\": 3\r\n     }"
 				},
-				"url": "http://localhost:8080/correos-web/api/paquetes/10002",
-				"description": ""
+				"url": "http://localhost:8080/correos-web/api/envios/10002/paquetes/10002",
+				"description": null
 			},
 			"response": []
 		},
 		{
 			"name": "Hace Update incorrecto (volumen 0)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e8245c58-95f1-4c93-953c-657240d58515",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 412\"] =responseCode.code===412;"
+						]
+					}
+				}
+			],
 			"request": {
 				"method": "PUT",
 				"header": [
@@ -191,13 +311,25 @@
 					"mode": "raw",
 					"raw": "{\r\n        \"tipo\": \"MALEABLE\",\r\n       \"peso\": 30,\r\n        \"dimensionA\": 0,\r\n        \"dimensionB\": 2,\r\n        \"dimensionC\": 3\r\n     }"
 				},
-				"url": "http://localhost:8080/correos-web/api/paquetes/10002",
-				"description": ""
+				"url": "http://localhost:8080/correos-web/api/envios/10002/paquetes/10002",
+				"description": null
 			},
 			"response": []
 		},
 		{
 			"name": "Hace Update correctamente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7c32accf-9437-440f-bb89-9d8552da3b6b",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] =responseCode.code===200;"
+						]
+					}
+				}
+			],
 			"request": {
 				"method": "PUT",
 				"header": [
@@ -210,7 +342,38 @@
 					"mode": "raw",
 					"raw": "{\r\n        \"tipo\": \"MALEABLE\",\r\n       \"peso\": 30,\r\n        \"dimensionA\": 50,\r\n        \"dimensionB\": 2,\r\n        \"dimensionC\": 3\r\n     }"
 				},
-				"url": "http://localhost:8080/correos-web/api/paquetes/10002",
+				"url": "http://localhost:8080/correos-web/api/envios/10002/paquetes/10002",
+				"description": null
+			},
+			"response": []
+		},
+		{
+			"name": "Hace Update sobre un paquete inexitente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "27124761-ca14-477c-a6cb-3d9aa5308edc",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 404\"] =responseCode.code===404;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"tipo\": \"MALEABLE\",\r\n       \"peso\": 30,\r\n        \"dimensionA\": 50,\r\n        \"dimensionB\": 2,\r\n        \"dimensionC\": 3\r\n     }"
+				},
+				"url": "http://localhost:8080/correos-web/api/envios/10002/paquetes/10000000000000000000000000002",
 				"description": ""
 			},
 			"response": []

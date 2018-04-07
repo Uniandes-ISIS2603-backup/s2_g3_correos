@@ -7,8 +7,12 @@ package co.edu.uniandes.csw.correos.ejb;
 
 import co.edu.uniandes.csw.correos.entities.EnvioEntity;
 import co.edu.uniandes.csw.correos.entities.EventoEntity;
+import co.edu.uniandes.csw.correos.entities.MensajeroEntity;
+import co.edu.uniandes.csw.correos.entities.PaqueteEntity;
+import co.edu.uniandes.csw.correos.entities.TransporteEntity;
 import co.edu.uniandes.csw.correos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.correos.persistence.EnvioPersistence;
+import co.edu.uniandes.csw.correos.persistence.MensajeroPersistence;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -24,33 +28,62 @@ public class EnvioLogic {
     
     private static final Logger LOGGER = Logger.getLogger(EnvioLogic.class.getName());
 
-    @Inject
     private EnvioPersistence persistence;
     
+
+    private MensajeroLogic mensajeroLogic;
+    
+    
+    private MensajeroPersistence mensajeroP;
+
+    @Inject
+    public EnvioLogic(EnvioPersistence persistence, MensajeroLogic mensajeroLogic, MensajeroPersistence mensajeroP)
+    {
+        this.persistence=persistence;
+        this.mensajeroP=mensajeroP;
+        this.mensajeroLogic=mensajeroLogic;
+    }
+    
+    public EnvioLogic()
+    {
+        this.persistence=null;
+        this.mensajeroP=null;
+        this.mensajeroLogic=null;
+    }
+    
+
     /**
-     * 
      * @param entity el envio a ser creado
      * @return el envio recien creado
      * @throws BusinessLogicException 
      */
     public EnvioEntity createEnvio(EnvioEntity entity) throws BusinessLogicException {
         
-        LOGGER.info("Se comienza a crear un Envio"); 
+        LOGGER.info("Se comienza a crear un Envio "); 
+        LOGGER.info(entity.getEstado()); 
+        LOGGER.info((entity.getHoraFinal().toString()));
+        LOGGER.info(entity.getHoraInicio().toString());
         
         if (entity.getHoraInicio()>entity.getHoraFinal()){
             throw new BusinessLogicException("La Hora Final es anterior a la Hora Incial.");
         }
-        if (entity.getCliente()==null){
+        else if (entity.getCliente()==null){
             throw new BusinessLogicException("No se reconoce un cliente.");
         }
-        if (entity.getEstado()==null){
+        else if (entity.getEstado()==null){
             throw new BusinessLogicException("No se reconoce un estado.");
         }
-        if (entity.getPaquetes().isEmpty()){
+        else if (entity.getPaquetes().isEmpty()){
             throw new BusinessLogicException("No hay paquetes en el envio.");
         }
+        else{
+            persistence.create(entity);      
+        }
         
+
         persistence.create(entity);
+        asignarMensajero(entity);
+
         LOGGER.info("Se termina de crear un Envio");
         return entity;
     }
@@ -72,13 +105,16 @@ public class EnvioLogic {
     public List<EnvioEntity> getEnvios() throws BusinessLogicException {
         
         LOGGER.info("Se comienzan a buscar todos los Envios"); 
+
         List<EnvioEntity> envios = persistence.findAll();
-        
-        if(envios.isEmpty())
+
+        for(EnvioEntity x:envios)
         {
-            throw new BusinessLogicException("No hay envios en el sistema.");
-        } 
-        
+            if(!x.getEstado().equals("FINALIZADO"))
+                asignarMensajero(x);
+        }
+
+
         LOGGER.info("Se terminan de buscar todos los Envios");
         return envios;
     } 
@@ -118,17 +154,8 @@ public class EnvioLogic {
         LOGGER.log(Level.INFO, "Comienza a borrar el envio de id={0}", id);    
         persistence.delete(id);
         LOGGER.log(Level.INFO, "Termina a borrar el envio de id={0}", id);
-    }    
+    }   
     
-    public double calcularHoraFinal(EnvioEntity envio)
-    {
-        if(envio.getDireccionEntrega().equals(envio.getDireccionRecogida())){
-            return envio.getHoraInicio();
-        }
-        else {
-            return envio.getHoraInicio()+2000;
-        }     
-    }
     /**
      * 
      * @param id el ID del evento al que se le va a anadir el nuevo detalle
@@ -141,6 +168,42 @@ public class EnvioLogic {
        eventos.add(evento);
        envio.setEventos(eventos);
        persistence.update(envio);
+    }
+    
+    /**
+     * 
+     * @param id el ID del envio al que se le va a anadir el nuevo paquete
+     * @param paquete el paquete a ser anadido
+     */
+    public void agregarPaquete(Long id, PaqueteEntity paquete)
+    {
+       EnvioEntity envio= persistence.find(id);
+       List<PaqueteEntity> paquetes = envio.getPaquetes();
+       paquetes.add(paquete);
+       envio.setPaquetes(paquetes);
+       persistence.update(envio);
+    }
+    
+    public void asignarMensajero(EnvioEntity envio)
+    {
+        for(MensajeroEntity x:mensajeroLogic.getMensajeros())
+        {
+            if(!x.isOcupado())
+            {
+                for(TransporteEntity w:x.getTransportes() ){
+                    if(w.isActivo()){
+                    envio.setMensajero(x);
+                    x.agregarEnvio(envio);
+                    x.setOcupado(true);
+                    mensajeroP.update(x);
+                    break;
+                    }
+                }
+                if(x.isOcupado())
+                    break;
+            }
+        }
+        persistence.update(envio);
     }
 }
 
