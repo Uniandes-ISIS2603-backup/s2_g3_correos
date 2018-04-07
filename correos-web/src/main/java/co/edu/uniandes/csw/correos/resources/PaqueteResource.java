@@ -8,6 +8,7 @@
  
  import co.edu.uniandes.csw.correos.dtos.PaqueteDTO;
  import co.edu.uniandes.csw.correos.dtos.PaqueteDetailDTO;
+import co.edu.uniandes.csw.correos.ejb.EnvioLogic;
  import co.edu.uniandes.csw.correos.ejb.PaqueteLogic;
  import co.edu.uniandes.csw.correos.entities.PaqueteEntity;
  import co.edu.uniandes.csw.correos.exceptions.BusinessLogicException;
@@ -41,7 +42,7 @@
   * </pre>
   * @author df.rengifo
   */
-@Path("paquetes")
+@Path("envios/{envioId:\\d+}/paquetes")
  @Produces("application/json")
  @Consumes("application/json")
  @RequestScoped
@@ -49,6 +50,8 @@
     
     @Inject
     PaqueteLogic paqueteLogic;
+    @Inject
+    EnvioLogic envioLogic;
 	/**
      * <h1>POST /api/paquetes : Crear un paquete.</h1>
      * 
@@ -73,9 +76,13 @@
      * de lógica que se genera cuando ya existe el envio.
      */
      @POST
-     public PaqueteDetailDTO createPaquete(PaqueteDetailDTO paquete) throws BusinessLogicException{
-         return new PaqueteDetailDTO(paqueteLogic.createPaquete(paquete.toEntity()));          
-     }
+     public PaqueteDetailDTO createPaquete(@PathParam("envioId") Long envioId, PaqueteDetailDTO paquete) throws BusinessLogicException
+    {
+        if(envioLogic.getEnvio(envioId)==null) 
+            throw new WebApplicationException("no existe el Envio con el id" + envioId, 404);
+        envioLogic.agregarPaquete(envioId, paquete.toEntity());
+        return new PaqueteDetailDTO(paqueteLogic.createPaquete(paquete.toEntity()));        
+    }
      /**
       * <h1>PUT /api/paquetes/{id} : Actualizar paquete con el id dado.</h1>
       * <pre>Cuerpo de peticion: JSON {@link PaqueteDetailDTO}.
@@ -98,13 +105,16 @@
       * de lógica que se genera cuando no se encuentra el paquete a actualizar.
       */
      @PUT
-     @Path("{id: \\d+}")
-     public PaqueteDTO updatePaquete(@PathParam("id") Long id, PaqueteDetailDTO paquete) throws BusinessLogicException, WebApplicationException{
-        if(paqueteLogic.getPaquete(id)==null) 
-            throw new WebApplicationException("El Paquete con id" + id + "no existe",404);
+    @Path("{id: \\d+}")
+    public PaqueteDetailDTO updatePaquete(@PathParam("envioId") Long envioId, @PathParam("id") Long id , PaqueteDetailDTO paquete) throws BusinessLogicException
+    {
+        if(envioLogic.getEnvio(envioId)==null)
+            throw new WebApplicationException("no existe el Envio con el id " + envioId, 404);
+        if(paqueteLogic.getPaquete(id)==null)
+            throw new WebApplicationException("no existe el Transporte con el id " + id, 404);
         paquete.setId(id);
         return new PaqueteDetailDTO(paqueteLogic.updatePaquete(paquete.toEntity()));
-     } 
+    }
      /**
       * <h1>GET /api/paquetes/{id} : Obtener paquete por ID.</h1>
       * 
@@ -126,11 +136,14 @@
       */
      @GET
      @Path("{id: \\d+}")
-     public PaqueteDetailDTO getPaquete(@PathParam("id") Long id) throws WebApplicationException {
-        if(paqueteLogic.getPaquete(id)==null) 
-            throw new WebApplicationException("El Paquete con id" + id+"no existe",404);
+    public PaqueteDetailDTO getPaquete(@PathParam("envioId") Long envioId,@PathParam("id") Long id)
+    {
+        if(envioLogic.getEnvio(envioId)==null)
+            throw new WebApplicationException("no existe el envio con el id " + envioId, 404);
+        if(paqueteLogic.getPaquete(id)==null)
+            throw new WebApplicationException("no existe el paquete con el id " + id, 404);
         return new PaqueteDetailDTO(paqueteLogic.getPaquete(id));
-     }
+    }
      /**
       * <h1>GET /api/paquetes : Obtener todos los paquetes.</h1>
       * 
@@ -146,9 +159,12 @@
       * de lógica que se genera cuando no hay paquetes en el sistema.
       */
      @GET     
-     public List<PaqueteDetailDTO> getPaquetes() throws BusinessLogicException{
-         return EntityADTO(paqueteLogic.getPaquetes());     
-     }         
+     public List<PaqueteDetailDTO> getPaquetes(@PathParam("envioId") Long envioId)
+    {
+        if(envioLogic.getEnvio(envioId)==null)
+            throw new WebApplicationException("no existe el envio con el id " + envioId, 404);
+        return EntityADTO(envioLogic.getEnvio(envioId).getPaquetes());
+    }         
      /**
       * <h1>DELETE /api/paquetes/{id} : Borrar paquete por id.</h1>
       * 
@@ -167,9 +183,12 @@
       */
      @DELETE
      @Path("{id: \\d+}")
-     public void deletePaquete(@PathParam("id") Long id) throws BusinessLogicException, WebApplicationException {
-        if(paqueteLogic.getPaquete(id)==null) 
-            throw new WebApplicationException("El Paquete con id" + id +"no existe" ,404);
+     public void deletePaquete(@PathParam("envioId") Long envioId,@PathParam("id") Long id)
+    {
+        if(envioLogic.getEnvio(envioId)==null)
+            throw new WebApplicationException("no existe el envio con el id " + envioId, 404);
+        if(paqueteLogic.getPaquete(id)==null)
+            throw new WebApplicationException("no existe el paquete con el id " + id, 404);
         paqueteLogic.deletePaquete(id);
     } 
      public List<PaqueteDetailDTO> EntityADTO(List<PaqueteEntity> envios)
