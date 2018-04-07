@@ -10,6 +10,8 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import uk.co.jemos.podam.common.PodamExclude;
 
@@ -26,6 +28,10 @@ public class ClienteEntity extends BaseEntity implements Serializable {
     @PodamExclude
     @OneToMany(mappedBy = "cliente", cascade = CascadeType.PERSIST, orphanRemoval = true)
     private List<BonoEntity> bonos = new ArrayList<BonoEntity>();
+    
+    @PodamExclude
+    @OneToMany (fetch = FetchType.EAGER)
+    private List<EnvioEntity> envios; 
 
     /**
      * Obtiene el nombre del cliente
@@ -59,4 +65,18 @@ public class ClienteEntity extends BaseEntity implements Serializable {
         this.bonos = bonos;
     }
     
+    
+     /**
+     * @return los envios asociados
+     */
+    public List<EnvioEntity> getEnvios() {
+        return envios;
+    }
+
+    /**
+     * @param envios que se modifican
+     */
+    public void setEnvio(List<EnvioEntity> envios) {
+        this.envios = envios;
+    }
 }
