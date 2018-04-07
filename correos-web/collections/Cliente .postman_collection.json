@@ -15,7 +15,7 @@
 					"script": {
 						"type": "text/javascript",
 						"exec": [
-							"test[\"Status code is 200\"] = responseCode.code == 200;"
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
 						]
 					}
 				}
@@ -46,7 +46,7 @@
 					"script": {
 						"type": "text/javascript",
 						"exec": [
-							"test[\"Status code is 200\"] = responseCode.code == 200;"
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
 						]
 					}
 				}
@@ -77,13 +77,13 @@
 					"script": {
 						"type": "text/javascript",
 						"exec": [
-							"test[\"Status code is 200\"] = responseCode.code == 200;"
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
 						]
 					}
 				}
 			],
 			"request": {
-				"url": "http://localhost:8080/correos-web/api/clientes/5",
+				"url": "http://localhost:8080/correos-web/api/clientes/10004",
 				"method": "PUT",
 				"header": [
 					{
@@ -108,7 +108,7 @@
 					"script": {
 						"type": "text/javascript",
 						"exec": [
-							"test[\"Status code is 200\"] = responseCode.code == 200;"
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
 						]
 					}
 				}
@@ -139,7 +139,7 @@
 					"script": {
 						"type": "text/javascript",
 						"exec": [
-							"test[\"Status code is 200\"] = responseCode.code == 200;"
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
 						]
 					}
 				}
@@ -170,7 +170,7 @@
 					"script": {
 						"type": "text/javascript",
 						"exec": [
-							"test[\"Status code is 200\"] = responseCode.code == 200;"
+							"tests[\"Status code is 204\"] = responseCode.code === 204;"
 						]
 					}
 				}
