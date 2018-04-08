@@ -159,3 +159,16 @@ insert into zonaentity (id, latitud, longitud) values (7, 53.45973534, 13.973007
 insert into zonaentity (id, latitud, longitud) values (8, 22.786189884, 10.173581667);
 insert into zonaentity (id, latitud, longitud) values (9, 58.803844881, 22.486051588);
 insert into zonaentity (id, latitud, longitud) values (10, 31.283228616, 15.765712135);
+
+insert into mensajeroentity_calificacionentity(mensajeroentity_id, calificaciones_id) values(10001,10001);
+insert into mensajeroentity_calificacionentity(mensajeroentity_id, calificaciones_id) values(10001,10002);
+insert into mensajeroentity_calificacionentity(mensajeroentity_id, calificaciones_id) values(10002,10003);
+insert into mensajeroentity_calificacionentity(mensajeroentity_id, calificaciones_id) values(10002,10004);
+insert into mensajeroentity_calificacionentity(mensajeroentity_id, calificaciones_id) values(10003,10005);
+insert into mensajeroentity_calificacionentity(mensajeroentity_id, calificaciones_id) values(10003,10006);
+insert into mensajeroentity_calificacionentity(mensajeroentity_id, calificaciones_id) values(10004,10007);
+insert into mensajeroentity_calificacionentity(mensajeroentity_id, calificaciones_id) values(10004,10008);
+insert into mensajeroentity_calificacionentity(mensajeroentity_id, calificaciones_id) values(10005,10009);
+insert into mensajeroentity_calificacionentity(mensajeroentity_id, calificaciones_id) values(10005,100010);
+
+

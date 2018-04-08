@@ -148,25 +148,25 @@ public class MensajeroDetailDTO extends MensajeroDTO
     {
         MensajeroEntity entity= super.toEntity();        
         if(this.envios!=null){
-            ArrayList<EnvioEntity> nuevaEnvios=new ArrayList<>();
+            List<EnvioEntity> nuevaEnvios=new ArrayList<>();
             for(EnvioDTO x: this.envios)
                 nuevaEnvios.add(x.toEntity());
             entity.setEnvios(nuevaEnvios);
         }
         if(this.comentarios!=null){
-            ArrayList<CalificacionEntity> nuevaCalificaciones=new ArrayList<>();
+            List<CalificacionEntity> nuevaCalificaciones=new ArrayList<>();
             for(CalificacionDTO x: this.comentarios)
                 nuevaCalificaciones.add(x.toEntity());
             entity.setCalificaciones(nuevaCalificaciones);
         }
         if(this.transportes!=null){
-            ArrayList<TransporteEntity> nuevaTransportes=new ArrayList<>();
+            List<TransporteEntity> nuevaTransportes=new ArrayList<>();
             for(TransporteDTO x: this.transportes)
                 nuevaTransportes.add(x.toEntity());
             entity.setTransportes(nuevaTransportes);
         }
         if(this.zonas!=null){
-            ArrayList<ZonaEntity> nuevaZonas=new ArrayList<>();
+            List<ZonaEntity> nuevaZonas=new ArrayList<>();
             for(ZonaDTO x: this.zonas)
                 nuevaZonas.add(x.toEntity());
             entity.setZonas(nuevaZonas);
