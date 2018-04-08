@@ -27,9 +27,6 @@ public class CalificacionEntity extends BaseEntity implements Serializable{
 
     private String comentario;
     
-    @PodamExclude
-    @ManyToOne(cascade = CascadeType.PERSIST)
-    private MensajeroEntity mensajero;
      /**
      * @return la calificacion
      */
@@ -58,22 +55,5 @@ public class CalificacionEntity extends BaseEntity implements Serializable{
     public void setComentario(String comentario){
         this.comentario=comentario;
     }
-    /**
-     * Obtener Mensajero
-     * @return un mensajeroEntity
-     */
-    public MensajeroEntity getMensajero() {
-        return mensajero;
-    }
-    /**
-     * Poner mensajero
-     * @param mensajero MensajeroEntity
-     */
-    public void setMensajero(MensajeroEntity mensajero) {
-        this.mensajero = mensajero;
-    }
-    
-    
-    
     
 }

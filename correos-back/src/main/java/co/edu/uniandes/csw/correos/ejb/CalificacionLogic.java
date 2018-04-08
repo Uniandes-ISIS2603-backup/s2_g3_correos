@@ -70,9 +70,6 @@ public class CalificacionLogic {
      * @throws BusinessLogicException 
      */
     public CalificacionEntity updateCalificacion(CalificacionEntity entity) throws BusinessLogicException  {
-        if(entity.getMensajero()==null){
-            
-        }
             
         return cP.update(entity);
     }
