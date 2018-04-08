@@ -47,7 +47,7 @@ public class EnvioEntity extends BaseEntity implements Serializable{
    private List<EventoEntity> eventos = new ArrayList<EventoEntity>();
    
    @PodamExclude
-   @OneToMany(mappedBy = "envio", fetch = FetchType.LAZY)
+   @OneToMany(cascade=CascadeType.ALL, orphanRemoval = true, mappedBy = "envio", fetch = FetchType.LAZY)
    private List<PaqueteEntity> paquetes = new ArrayList<PaqueteEntity>();
    
    @PodamExclude

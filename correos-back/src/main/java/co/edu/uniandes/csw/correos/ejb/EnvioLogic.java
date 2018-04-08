@@ -8,6 +8,7 @@ package co.edu.uniandes.csw.correos.ejb;
 import co.edu.uniandes.csw.correos.entities.EnvioEntity;
 import co.edu.uniandes.csw.correos.entities.EventoEntity;
 import co.edu.uniandes.csw.correos.entities.MensajeroEntity;
+import co.edu.uniandes.csw.correos.entities.PaqueteEntity;
 import co.edu.uniandes.csw.correos.entities.TransporteEntity;
 import co.edu.uniandes.csw.correos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.correos.persistence.EnvioPersistence;
@@ -166,6 +167,20 @@ public class EnvioLogic {
        List<EventoEntity> eventos = envio.getEventos();
        eventos.add(evento);
        envio.setEventos(eventos);
+       persistence.update(envio);
+    }
+    
+    /**
+     * 
+     * @param id el ID del envio al que se le va a anadir el nuevo paquete
+     * @param paquete el paquete a ser anadido
+     */
+    public void agregarPaquete(Long id, PaqueteEntity paquete)
+    {
+       EnvioEntity envio= persistence.find(id);
+       List<PaqueteEntity> paquetes = envio.getPaquetes();
+       paquetes.add(paquete);
+       envio.setPaquetes(paquetes);
        persistence.update(envio);
     }
     
