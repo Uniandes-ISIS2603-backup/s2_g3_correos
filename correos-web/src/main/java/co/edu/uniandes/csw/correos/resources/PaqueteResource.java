@@ -42,7 +42,7 @@ import co.edu.uniandes.csw.correos.ejb.EnvioLogic;
   * </pre>
   * @author df.rengifo
   */
-@Path("envios/{envioId:\\d+}/paquetes")
+ @Path("envios/{envioId:\\d+}/paquetes")
  @Produces("application/json")
  @Consumes("application/json")
  @RequestScoped
@@ -164,7 +164,28 @@ import co.edu.uniandes.csw.correos.ejb.EnvioLogic;
         if(envioLogic.getEnvio(envioId)==null)
             throw new WebApplicationException("no existe el envio con el id " + envioId, 404);
         return EntityADTO(envioLogic.getEnvio(envioId).getPaquetes());
-    }         
+    }     
+     /**
+      * <h1>GET /api/envios : Obtener todos los envios.</h1>
+      * 
+      * <pre>Busca y devuelve todos los envios que existen en la aplicacion.
+      * 
+      * Codigos de respuesta:
+      * <code style="color: mediumseagreen; background-color: #eaffe0;">
+      * 200 OK Devuelve todos los envios de la aplicacion.</code> 
+      * </pre>**
+      * @return JSONArray {@link EnvioDTO} - Los envios encontrados 
+      * en la aplicacion. Si no hay ninguno retorna una lista vacia.
+      * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} - Error 
+      * de lógica que se genera cuando no hay envios en el sistema.
+      
+     @GET     
+     public List<PaqueteDetailDTO> getAllPaquetes(@PathParam("envioId") Long envioId) throws BusinessLogicException
+    {
+        if(envioLogic.getEnvio(envioId)==null)
+            throw new WebApplicationException("no existe el envio con el id " + envioId, 404);
+        return EntityADTO(paqueteLogic.getPaquetes());
+    }*/  
      /**
       * <h1>DELETE /api/paquetes/{id} : Borrar paquete por id.</h1>
       * 
