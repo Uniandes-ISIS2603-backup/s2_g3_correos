@@ -1,62 +1,49 @@
-(function(ng){
-    var mod=ng.module("mensajerosModule");
-    
-    mod.controller("mensajerosCtrl",['$scope','$state','$stateParams','$http','mensajerosContext',function($scope,$state,$stateParams,$http,context)
-    {
-        $scope.records={};
-        
-        $http.get(context).then(function(response)
+(function(ng)
+{
+   var mod=ng.module("mensajerosModule");
+   mod.constant("mensajerosContext","api/mensajeros");
+   mod.controller('mensajerosCtrl',['$scope', '$http', 'mensajerosContext', '$state',
+   
+          /**
+         * @ngdoc controller
+         * @name mensajeros.controller:mensajerosCtrl
+         * @description
+         * Definición del controlador de Angular del módulo mensajeros. 
+         * Se crea el controlador con el cual se maneja el módulo.
+         * En el controlador se definen los atributos y métodos que pueden
+         * ser accedidos desde el HTML utilizando el $scope.
+         * @param {Object} $scope Referencia injectada al Scope definida para este
+         * controlador, el scope es el objeto que contiene las variables o 
+         * funciones que se definen en este controlador y que son utilizadas 
+         * desde el HTML.
+         * @param {Object} $http Objeto injectado para la manejar consultas HTTP
+         * @param {Object} mensajeros Context Constante injectada que contiene la ruta
+         * donde se encuentra el API de Correos en el Backend.
+         * @param {Object} $state Dependencia injectada en la que se recibe el 
+         * estado actual de la navegación definida en el módulo.
+         */
+        function($scope,$http, mensajerosContext,$state)
         {
-            $scope.records= response.data;
-        });
-        
-        if($stateParams.mensajeroId!==null && $stateParams.mensajeroId!==undefined)
-        {
-            id=$stateParams.mensajeroId;
-            $http.get(context+"/"+id).then(function(response)
+            /**
+             * @ngdoc function
+             * @name getMensajeros
+             * @methodOf mensajeros.controller:mensajerosCtrl
+             * @description
+             * Esta función utiliza el protocolo HTTP para obtener el recurso 
+             * donde se encuentran los mensajeros en formato JSON. El recurso
+             * puede ser un archivo o un API Rest. La función se ejecuta
+             * automáticamente cuando el controlador es accedido desde el
+             * navegador.
+             * @param {String} URL Dirección donde se encuentra el recurso
+             * de los mensajeros o API donde se puede consultar.
+             */
+            $http.get(mensajerosContext).then(function(response)
             {
-                $scope.currentRecord=response.data;
+                $scope.mensajerosRecords=response.data;
             });
-            
         }
-        else
-        {
-            $scope.currentRecord=
-                    {
-                        id:undefined,
-                        name:''
-                    };
-             $scope.alerts=[];
-        }
-        this.saveRecord=function(id)
-        {
-            currentRecord=$scope.currentRecord;
-            
-            if(id===null || id===undefined)
-            {
-                return $http.post(context,currentRecord)
-                        .then(function()
-                {
-                    $state.go('mensajerosList');
-                });
-            }
-            else
-            {
-                return $http.put(context+"/"+currentRecord.id, currentRecord)
-                        .then(function()
-                            {
-                                $state.go('mensajerosList');
-                            });
-            }
-            ;
-        };
-        this.deleteRecord=function(id)
-        {
-            $http.delete(context+"/"+id);
-            $state.reload('citiesList');
-        };
-    }]);
-    
-})(window.angular);
-
+        
+   ]);
+}
+)(window.angular);
 
