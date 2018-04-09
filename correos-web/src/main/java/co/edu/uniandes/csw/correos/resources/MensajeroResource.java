@@ -116,6 +116,8 @@ public class MensajeroResource {
     @POST
     public MensajeroDetailDTO createMensajero(MensajeroDetailDTO mensajero) throws BusinessLogicException
     {
+        mensajero.setOcupado(false);
+        mensajero.setCalificacionPromedio(0.0);
         return new MensajeroDetailDTO(logic.createMensajero(mensajero.toEntity()));
     }
     

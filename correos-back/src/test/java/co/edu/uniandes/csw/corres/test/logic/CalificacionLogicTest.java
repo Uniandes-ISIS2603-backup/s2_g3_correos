@@ -106,7 +106,7 @@ public class CalificacionLogicTest {
         }
         for (int i = 0; i < 3; i++) {
             CalificacionEntity entity = factory.manufacturePojo(CalificacionEntity.class);
-            entity.setMensajero(mensajeroData.get(i));
+
             em.persist(entity);
             data.add(entity);         
         }
@@ -121,14 +121,12 @@ public class CalificacionLogicTest {
     @Test
     public void createCalificacionTest() throws BusinessLogicException {
         CalificacionEntity newEntity = factory.manufacturePojo(CalificacionEntity.class);
-        newEntity.setMensajero(mensajeroData.get(0));
         CalificacionEntity result = calificacionLogic.createCalificacion(newEntity);
         Assert.assertNotNull(result);
         CalificacionEntity entity = em.find(CalificacionEntity.class, result.getId());
         Assert.assertEquals(newEntity.getId(), entity.getId());
         Assert.assertEquals(newEntity.getCalificacion(), entity.getCalificacion());
         Assert.assertEquals(newEntity.getComentario(), entity.getComentario());
-        Assert.assertEquals(newEntity.getMensajero(), entity.getMensajero());
     }
 
     /**
@@ -162,7 +160,6 @@ public class CalificacionLogicTest {
         CalificacionEntity resultEntity = calificacionLogic.getCalificacion(entity.getId());
         Assert.assertNotNull(resultEntity);
         Assert.assertEquals(entity.getId(), resultEntity.getId());
-        Assert.assertEquals(entity.getMensajero(), resultEntity.getMensajero());
         Assert.assertEquals(entity.getCalificacion(), resultEntity.getCalificacion());
         Assert.assertEquals(entity.getComentario(), resultEntity.getComentario());
     }
@@ -198,7 +195,6 @@ public class CalificacionLogicTest {
         CalificacionEntity resp = em.find(CalificacionEntity.class, entity.getId());
 
         Assert.assertEquals(pojoEntity.getId(), resp.getId());
-        Assert.assertEquals(pojoEntity.getMensajero(), resp.getMensajero());
         Assert.assertEquals(pojoEntity.getComentario(), resp.getComentario());
         Assert.assertEquals(pojoEntity.getCalificacion(), resp.getCalificacion());
     }

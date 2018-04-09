@@ -74,6 +74,11 @@ public class MensajeroLogic {
     {
         LOGGER.info("Se inicia la consulta de todos los mensajeros");
         List<MensajeroEntity> retorno=persistence.findAll();
+        for(MensajeroEntity x: retorno)
+        {
+            x.setCalificacionPromedio(calcularCalificaionPromedio(x));
+            persistence.update(x);
+        }
         LOGGER.info("Se retornaron todos los mensajeros");
         return retorno;
     }
