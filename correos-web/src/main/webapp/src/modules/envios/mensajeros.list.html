@@ -1,0 +1,34 @@
+<alert class="alert alert-danger" ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert()">{{alert.msg}} </alert>
+<div class="container-fluid">    
+    <table class="table table-striped col-md-4">
+        <thead>
+            <tr>
+                <th>Estado</th>
+                <th>Hora Final</th>
+                <th>Hora Incial</th>
+                <th>Direccion Recogida</th>
+                <th>Direccion Entrega</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="record in enviosRecords">
+
+                <td id="{{$index}}-nombre" > <a ui-sref="envioDetail({envioId: record.id})">{{record.estado}}</a></td>
+                <td id="{{$index}}-celular">{{record.horaInicial}}</td>
+                <td id="{{$index}}-celular">{{record.horaFinal}}</td>
+                <td id="{{$index}}-calificacionPromedio">{{record.direccionRecogida}}</td>
+                <td id="{{$index}}-calificacionPromedio">{{record.direccionEntrega}}</td>
+                <td>
+                    <button id="{{$index}}-edit-btn" class="btn btn-default btn-sm" ><span class="glyphicon glyphicon-edit"></span> Edit</button>
+                    <button id="{{$index}}-delete-btn" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-minus"></span> Remove</button>
+
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+        <div class="btn-group mr-2" role="group" aria-label="First group">
+            <a class="btn btn-info" ui-sref="envioCreate"><span class="glyphicon glyphicon-plus-sign"></span> el bamboleo de los envios LOL</a>
+        </div>
+    </div>
+</div>
