@@ -1,0 +1,56 @@
+<div class="panel panel-default"> 
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-12">
+                <dl>
+                    <dt>Nombre</dt>
+                    <dd>{{mensajeroActual.nombre}}</dd>
+                    <hr>
+                    <dt> Correo</dt>
+                    <dd>{{mensajeroActual.correo}}</dd>
+                    <hr>
+                    <dt>Telefono </dt>
+                    <dd>{{mensajeroActual.celular}}</dd>
+                    <hr>
+                    <dt class="bold">Calificación Promedio</dt>
+
+                    <dd>{{mensajeroActual.calificacionPromedio}}</dd>
+                    <hr>
+                   <dd><div class="panel-group" id="accordion">
+                    <div class="panel panel-default">
+                      <div class="panel-heading">
+                        <h4 class="panel-title">
+                          <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">Cuenta Bancaria</a>
+                        </h4>
+                      </div>
+                      <div id="collapse1" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <dl>
+                                <dt> Banco :</dt>
+                                <dd>{{mensajeroActual.cuentaBancaria.banco}}</dd>
+                                <hr>
+                                <dt> Tipo :</dt>
+                                <dd>{{mensajeroActual.cuentaBancaria.tipoTarjeta}}</dd>
+                                <hr>
+                                <dt> Número :</dt>
+                                <dd>{{mensajeroActual.cuentaBancaria.numero}}</dd>
+                                <hr>
+                                <dd><button type="button" class="btn btn-info">Ver más</button></dd>                                
+                            </dl>
+                        </div>
+                      </div>
+                    </div></dd>
+                </dl>
+                <ul class="nav nav-tabs">
+                    <li role="presentation" class="active"> <a ui-sref="reviewsList({bookId: mensajeroActual.id})">transportes</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-9">
+                <div ui-view="childrenView"></div>
+            </div>
+        </div>
+    </div>
+</div>
