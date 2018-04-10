@@ -25,6 +25,12 @@
  * | mensajeroCreate | /create                    | detailView: (/create)  |
  * |                 |                            | /mensajeros.create.html|
  * |                 |                            |                        |
+ * | mensajeroUpdate | /update/{mensajeroId:int}  | detailView: (/new)     |
+ * |                 |                            | /mensajeros.new.html   |
+ * |                 |                            |                        |
+ * | mensajeroDelete | /delete/{mensajeroId:int}  | detailView: (/delete)  |
+ * |                 |                            | /mensajeros.delete.html|
+ * |                 |                            |                        |
  * |-----------------|----------------------------|------------------------|
  *```
  */
@@ -73,6 +79,38 @@
                                 }
                                 
                             }
+                }).state('mensajeroUpdate',{
+                    url:'update/{mensajeroId}',
+                    parent:'mensajeros',
+                    param:
+                            {
+                                mensajeroId:null
+                            },
+                    views:
+                            {
+                                'detailView':
+                                {
+                                    templateUrl:basePath+'/create/mensajeros.create.html',
+                                    controller:'mensajerosUpdateCtrl',
+                                    controllerAs:'ctrl'
+                                }
+                            }
+                }).state('mensajeroDelete',{
+                    url:'/delete/{mensajeroId:int}',
+                    parent:'mensajeros',
+                    param:
+                            {
+                                mensajeroId:null
+                            },
+                    views:
+                            {
+                              'detailView':
+                              {
+                                  templateUrl:basePath+'/delete/mensajeros.delete.html',
+                                  controller:'mensajeroDeleteCtrl',
+                                  controllerAs:'Ctrl'
+                              }  
+                            }
                 }).state('mensajeroDetail',{
                     url: '/{mensajeroId:int}/detail',
                     parent: 'mensajeros',
@@ -80,11 +118,7 @@
                         mensajeroId: null
                     },
                     views: {
-                        'listView': {
-                            templateUrl: basePath + 'mensajeros.list.html',
-                            controller: 'mensajerosDetailCtrl',
-                            controllerAs: 'ctrl'
-                        },
+                       
                         'detailView': {
                         templateUrl: basePath + 'mensajeros.detail.html',
                         controller: 'mensajerosDetailCtrl',

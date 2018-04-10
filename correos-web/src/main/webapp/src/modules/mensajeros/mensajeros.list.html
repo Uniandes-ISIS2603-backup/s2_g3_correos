@@ -17,8 +17,8 @@
                 <td id="{{$index}}-celular">{{record.correo}}</td>
                 <td id="{{$index}}-calificacionPromedio">{{record.calificacionPromedio}}</td>
                 <td>
-                    <button id="{{$index}}-edit-btn" class="btn btn-default btn-sm" ><span class="glyphicon glyphicon-edit"></span> Edit</button>
-                    <button id="{{$index}}-delete-btn" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-minus"></span> Remove</button>
+                    <button id="{{$index}}-edit-btn" class="btn btn-default btn-sm" ><a ui-sref="mensajeroUpdate({mensajeroId: record.id})"><span class="glyphicon glyphicon-edit"></span> Editar</a></button>
+                    <button id="{{$index}}-delete-btn" class="btn btn-default btn-sm"><a ui-sref="mensajeroDelete({mensajeroId: record.id})"><span class="glyphicon glyphicon-minus"></span> Remove</a></button>
 
                 </td>
             </tr>
