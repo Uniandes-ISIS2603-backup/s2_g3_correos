@@ -55,7 +55,7 @@ public class MensajeroEntity extends BaseEntity implements Serializable {
    private List<TransporteEntity> transportes;
   
     @PodamExclude
-   @OneToMany(cascade=CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+   @OneToMany(cascade=CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
    private List<CalificacionEntity> calificaciones;
 
     @PodamExclude

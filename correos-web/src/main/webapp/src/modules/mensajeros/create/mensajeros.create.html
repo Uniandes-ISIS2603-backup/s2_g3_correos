@@ -1,0 +1,48 @@
+ <alert class="alert alert-danger" ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert()">{{alert.msg}} </alert>
+ <div class="container-fluid">
+    <div class="panel-group">
+        <div class="panel panel-primary">
+         
+               
+            <div class="panel-body">
+                <form  name="mensajero">
+                    
+                    <div class="form-group row">
+                        <div class="form-group col-md-12">
+                            <label for="nombreMensajero" class="col-sm-2">Nombre :</label>
+                            <input id="nombreMensajero" required ng-model="data.nombre" class="col-sm-6"/>
+                    </div>
+                    
+                    <div class="form-group row">
+                        <div class="form-group col-md-12">
+                            <label for="correoMensajero" class="col-sm-2">Correo :</label>
+                            <input type="email" id="correoMensajero" required ng-model="data.correo" class="col-sm-6"/>
+                        </div>
+                    </div>                               
+                    <div class="form-group row">
+                        <div class="form-group col-md-12">
+                            <label for="celularMensajero" class="col-sm-2">Celular :</label>
+                            <input pattern="[0-9]{10}" id="celularMensajero" required ng-model="data.celular" class="col-sm-6"/>
+                        </div>
+                    </div> 
+                    <div class="form-group row">
+                        <div class="form-group col-sm-6" ng-if="!mensajero.$valid">
+
+                            <div class="alert alert-warning" >
+                                <strong>Error!</strong><p>Se requieren todos los campos y una direccion celular validos!</p>
+                            </div> 
+                        </div> 
+                    </div> 
+                    <div class="form-group row">
+                        <div class="form-group col-sm-4">
+                            <input ng-click=createMensajero() ng-show="mensajero.$valid" value="Save" class="btn btn-success"/>
+                            <a class="btn btn-info" ui-sref="mensajerosList">Cancel</a>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+

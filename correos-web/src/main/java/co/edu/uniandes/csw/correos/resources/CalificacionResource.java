@@ -23,8 +23,9 @@ SOFTWARE.
  */
 package co.edu.uniandes.csw.correos.resources;
 
-import co.edu.uniandes.csw.correos.dtos.CalificacionDetailDTO;
+import co.edu.uniandes.csw.correos.dtos.CalificacionDTO;
 import co.edu.uniandes.csw.correos.ejb.CalificacionLogic;
+import co.edu.uniandes.csw.correos.ejb.MensajeroLogic;
 import co.edu.uniandes.csw.correos.entities.CalificacionEntity;
 import co.edu.uniandes.csw.correos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.correos.mappers.BusinessLogicExceptionMapper;
@@ -67,10 +68,13 @@ public class CalificacionResource {
     @Inject
     private CalificacionLogic logica;
     
+    @Inject
+    private MensajeroLogic logicMensajero;
+    
     /**
      * <h1>POST /api/cities : Crear un comentairo.</h1>
      * 
-     * <pre>Cuerpo de petición: JSON {@link CalificacionDetailDTO}.
+     * <pre>Cuerpo de petición: JSON {@link CalificacionDTO}.
      * 
      * Crea un nuevo  comentario con la informacion que se recibe en el cuerpo 
      * de la petición y se regresa un objeto identico con un id auto-generado 
@@ -84,13 +88,16 @@ public class CalificacionResource {
      * 412 Precodition Failed: Ya existe el comentario.
      * </code>
      * </pre>
-     * @param calificacion {@link CalificacionDetailDTO} - El comentairo  que se desea guardar.
+     * @param calificacion {@link CalificacionDTO} - El comentairo  que se desea guardar.
      * @return JSON {@link CalidicacionDetailDTO}  - El comentario que se guardada con el atributo id autogenerado.
      * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} - Error de lógica que se genera cuando ya existe el comentario.
      */
-
-    public CalificacionDetailDTO createCalificacion(CalificacionDetailDTO calificacion) throws BusinessLogicException {
-        return new CalificacionDetailDTO(logica.createCalificacion(calificacion.toEntity()));
+    @POST
+    public CalificacionDTO createCalificacion(@PathParam("mensajeroId") Long mensajeroId, CalificacionDTO calificacion) throws BusinessLogicException {
+        if(logicMensajero.getMensajero(mensajeroId)==null) 
+            throw new WebApplicationException("no existe el Mensajero con el id" + mensajeroId, 404);
+        logicMensajero.agregarCalificacion(mensajeroId, calificacion.toEntity());
+        return new CalificacionDTO(logica.createCalificacion(calificacion.toEntity()));
     }
 
     /**
@@ -105,8 +112,10 @@ public class CalificacionResource {
      * @return JSONArray {@link CalidicacionDetailDTO} - Los comentarios encontrados en la aplicación. Si no hay ninguno retorna una lista vacía.
      */
     @GET
-    public List<CalificacionDetailDTO> getCalificacions() {
-        return listEntityToDTO(logica.getCalificaciones());
+    public List<CalificacionDTO> getCalificacions(@PathParam("mensajeroId") Long mensajeroId) {
+         if(logicMensajero.getMensajero(mensajeroId)==null)
+            throw new WebApplicationException("no existe el Mensajero con el id " + mensajeroId, 404);
+        return listEntityToDTO(logicMensajero.getMensajero(mensajeroId).getCalificaciones());
     }
 
     /**
@@ -127,13 +136,17 @@ public class CalificacionResource {
      */
     @GET
     @Path("{id: \\d+}")
-    public CalificacionDetailDTO getCalificacion(@PathParam("id") Long id) {
-        return new CalificacionDetailDTO(logica.getCalificacion(id));
+    public CalificacionDTO getCalificacion(@PathParam("mensajeroId") Long mensajeroId,@PathParam("id") Long id) {
+        if(logicMensajero.getMensajero(mensajeroId)==null)
+            throw new WebApplicationException("no existe el Mensajero con el id " + mensajeroId, 404);
+        if(logica.getCalificacion(id)== null)
+            throw new WebApplicationException("no existe la calidicacion con el id " + id, 404);
+        return new CalificacionDTO(logica.getCalificacion(id));
     }
     
     /**
      * <h1>PUT /api/comentarioss/{id} : Actualizar ciudad con el id dado.</h1>
-     * <pre>Cuerpo de petición: JSON {@link CalificacionDetailDTO}.
+     * <pre>Cuerpo de petición: JSON {@link CalificacionDTO}.
      * 
      * Actualiza el comentario con el id recibido en la URL con la informacion que se recibe en el cuerpo de la petición.
      * 
@@ -145,18 +158,20 @@ public class CalificacionResource {
      * </code> 
      * </pre>
      * @param id Identificador del comentario que se desea actualizar.Este debe ser una cadena de dígitos.
-     * @param calificacion {@link CalificacionDetailDTO} El comentario que se desea guardar.
-     * @return JSON {@link CalificacionDetailDTO} - El comentario guardada.
+     * @param calificacion {@link CalificacionDTO} El comentario que se desea guardar.
+     * @return JSON {@link CalificacionDTO} - El comentario guardada.
      * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} - Error de lógica que se genera al no poder actualizar el comentario porque ya existe una con ese nombre.
      */
     @PUT
     @Path("{id: \\d+}")
-    public CalificacionDetailDTO updateCalificacion(@PathParam("id") Long id, CalificacionDetailDTO comentario) throws BusinessLogicException {
+    public CalificacionDTO updateCalificacion(@PathParam("mensajeroId") Long mensajeroId, @PathParam("id") Long id, CalificacionDTO comentario) throws BusinessLogicException {
+        if(logicMensajero.getMensajero(mensajeroId)==null)
+            throw new WebApplicationException("no existe el Mensajero con el id " + mensajeroId, 404);
         if(logica.getCalificacion(id)==null){
             throw new WebApplicationException("La calificacion  con id" + id + "no existe",404);
         }
 
-        return new CalificacionDetailDTO(logica.updateCalificacion(comentario.toEntity()));
+        return new CalificacionDTO(logica.updateCalificacion(comentario.toEntity()));
     }
     
     /**
@@ -175,8 +190,11 @@ public class CalificacionResource {
      */
     @DELETE
     @Path("{id: \\d+}")
-     public void deleteCalificacion(@PathParam("id") Long id) throws BusinessLogicException {
-       if(logica.getCalificacion(id)==null){
+     public void deleteCalificacion(@PathParam("mensajeroId") Long mensajeroId,@PathParam("id") Long id) throws BusinessLogicException {
+        if(logicMensajero.getMensajero(mensajeroId)==null)
+            throw new WebApplicationException("no existe el Mensajero con el id " + mensajeroId, 404);
+        
+         if(logica.getCalificacion(id)==null){
             throw new WebApplicationException("La calificacion  con id" + id + "no existe",404);
         }
        else{
@@ -189,11 +207,11 @@ public class CalificacionResource {
       * @param califiaciones 
       * @return Una lista de CalifiacionDetailDTO
       */
-     public List<CalificacionDetailDTO>  listEntityToDTO(List<CalificacionEntity> calificaciones)
+     public List<CalificacionDTO>  listEntityToDTO(List<CalificacionEntity> calificaciones)
     {
-        List<CalificacionDetailDTO> retorno = new ArrayList<>();
+        List<CalificacionDTO> retorno = new ArrayList<>();
         for(CalificacionEntity x: calificaciones)
-            retorno.add(new CalificacionDetailDTO(x));
+            retorno.add(new CalificacionDTO(x));
         return retorno;
     }
 }

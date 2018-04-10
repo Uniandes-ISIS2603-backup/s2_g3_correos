@@ -74,6 +74,11 @@ public class MensajeroLogic {
     {
         LOGGER.info("Se inicia la consulta de todos los mensajeros");
         List<MensajeroEntity> retorno=persistence.findAll();
+        for(MensajeroEntity x: retorno)
+        {
+            x.setCalificacionPromedio(calcularCalificaionPromedio(x));
+            persistence.update(x);
+        }
         LOGGER.info("Se retornaron todos los mensajeros");
         return retorno;
     }
@@ -87,16 +92,16 @@ public class MensajeroLogic {
     
     public MensajeroEntity putMensajero(MensajeroEntity mensajero) throws BusinessLogicException
     {
-        if(!persistence.find(mensajero.getId()).getCorreo().equals(mensajero.getCorreo()) ||!persistence.find(mensajero.getId()).getCelular().equals(mensajero.getCelular()))
-        {
+        if(!persistence.find(mensajero.getId()).getCorreo().equals(mensajero.getCorreo()))
+        
             if(persistence.findByCorreo(mensajero.getCorreo())!=null )
                 throw new BusinessLogicException("ya existe un mensajero con ese Correo Electrónico!");
-            else if(persistence.findByNumero(mensajero.getCelular())!=null)
+        if(!persistence.find(mensajero.getId()).getCelular().equals(mensajero.getCelular()))
+            if(persistence.findByNumero(mensajero.getCelular())!=null)
                 throw new BusinessLogicException("ya existe un mensajero con ese numero telefónico!");
-        }
         
-            mensajero.setCalificacionPromedio(calcularCalificaionPromedio(mensajero));
-            return persistence.update(mensajero);
+        mensajero.setCalificacionPromedio(calcularCalificaionPromedio(mensajero));
+        return persistence.update(mensajero);
         
         
     }
@@ -116,6 +121,16 @@ public class MensajeroLogic {
         agregar.setTransportes(lista);
         persistence.update(agregar);
     }
+    
+    public void agregarCalificacion(Long id, CalificacionEntity calificacion)
+    {
+        MensajeroEntity agregar= persistence.find(id);
+        List <CalificacionEntity> lista=agregar.getCalificaciones();
+        lista.add(calificacion);
+        agregar.setCalificaciones(lista);
+        persistence.update(agregar);
+    }
+    
     
     public double calcularCalificaionPromedio(MensajeroEntity mensajero)
     {
