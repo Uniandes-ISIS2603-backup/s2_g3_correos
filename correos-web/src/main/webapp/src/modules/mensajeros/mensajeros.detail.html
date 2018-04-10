@@ -42,7 +42,7 @@
                     </div></dd>
                 </dl>
                 <ul class="nav nav-tabs">
-                    <li role="presentation" class="active"> <a ui-sref="reviewsList({bookId: mensajeroActual.id})">transportes</a></li>
+                    <li role="presentation" class="active"> <a ui-sref="transportesList({mensajeroId: mensajeroActual.id})">transportes</a></li>
                 </ul>
             </div>
         </div>
@@ -52,5 +52,8 @@
                 <div ui-view="childrenView"></div>
             </div>
         </div>
+     
     </div>
+
 </div>
+<div><button type="button" class="btn btn-secondary" > <a ui-sref="mensajerosList">Volver</a></button></div>
