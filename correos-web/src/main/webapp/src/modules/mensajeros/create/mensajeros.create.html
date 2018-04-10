@@ -8,35 +8,34 @@
                 <form  name="mensajero">
                     
                     <div class="form-group row">
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-12">
                             <label for="nombreMensajero" class="col-sm-2">Nombre :</label>
-                            <input id="nombreMensajero" required ng-model="currentRecord.nombre" class="col-sm-6"/>
-                        </div>
+                            <input id="nombreMensajero" required ng-model="data.nombre" class="col-sm-6"/>
                     </div>
                     
                     <div class="form-group row">
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-12">
                             <label for="correoMensajero" class="col-sm-2">Correo :</label>
-                            <input id="correoMensajero" required ng-model="currentRecord.correo" class="col-sm-6"/>
+                            <input type="email" id="correoMensajero" required ng-model="data.correo" class="col-sm-6"/>
                         </div>
                     </div>                               
                     <div class="form-group row">
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-12">
                             <label for="celularMensajero" class="col-sm-2">Celular :</label>
-                            <input id="celularMensajero" required ng-model="currentRecord.celular" class="col-sm-6"/>
+                            <input pattern="[0-9]{10}" id="celularMensajero" required ng-model="data.celular" class="col-sm-6"/>
                         </div>
                     </div> 
                     <div class="form-group row">
-                        <div class="form-group col-sm-4" ng-if="!mensajero.$valid">
+                        <div class="form-group col-sm-6" ng-if="!mensajero.$valid">
 
                             <div class="alert alert-warning" >
-                                <strong>Warning!</strong><p>All inputs are required*</p>
+                                <strong>Error!</strong><p>Se requieren todos los campos y una direccion celular validos!</p>
                             </div> 
                         </div> 
                     </div> 
                     <div class="form-group row">
-                        <div class="form-group col-sm-12">
-                            <input ng-click=createMensajero() ng-show="mensajero.$valid" type="submit" value="Save" class="btn btn-success"/>
+                        <div class="form-group col-sm-4">
+                            <input ng-click=createMensajero() ng-show="mensajero.$valid" value="Save" class="btn btn-success"/>
                             <a class="btn btn-info" ui-sref="mensajerosList">Cancel</a>
                         </div>
                     </div>

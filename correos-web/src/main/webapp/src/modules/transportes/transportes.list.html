@@ -1,0 +1,29 @@
+<div class="container-fluid">   
+    <div class="col-sm-12">
+        <br>
+        <table class="table table-striped">
+             <thead>
+            <tr>
+                <th>Tipo</th>
+                <th>Activo</th>
+                <th>Capacidad</th>
+            </tr>
+        </thead>
+            <tbody>
+                <tr ng-repeat="record in transporteRecords">
+                    <td id="{{$index}}-tipo">{{record.tipo}}
+                    <td id="{{$index}}-activo">{{record.activo}}
+                        <div class="checkbox">
+                            <label>
+                              <input type="checkbox" data-toggle="toggle">
+                              Option one is enabled
+                            </label>
+                        </div>
+                    <td id="{{$index}}-capacidad">{{record.capacidad}}     
+                            
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
