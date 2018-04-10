@@ -122,6 +122,16 @@ public class MensajeroLogic {
         persistence.update(agregar);
     }
     
+    public void agregarCalificacion(Long id, CalificacionEntity calificacion)
+    {
+        MensajeroEntity agregar= persistence.find(id);
+        List <CalificacionEntity> lista=agregar.getCalificaciones();
+        lista.add(calificacion);
+        agregar.setCalificaciones(lista);
+        persistence.update(agregar);
+    }
+    
+    
     public double calcularCalificaionPromedio(MensajeroEntity mensajero)
     {
         if(mensajero.getCalificaciones()==null)
