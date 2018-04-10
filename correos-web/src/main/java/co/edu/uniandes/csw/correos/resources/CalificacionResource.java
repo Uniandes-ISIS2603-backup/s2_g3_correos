@@ -25,6 +25,7 @@ package co.edu.uniandes.csw.correos.resources;
 
 import co.edu.uniandes.csw.correos.dtos.CalificacionDTO;
 import co.edu.uniandes.csw.correos.ejb.CalificacionLogic;
+import co.edu.uniandes.csw.correos.ejb.MensajeroLogic;
 import co.edu.uniandes.csw.correos.entities.CalificacionEntity;
 import co.edu.uniandes.csw.correos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.correos.mappers.BusinessLogicExceptionMapper;
@@ -67,6 +68,9 @@ public class CalificacionResource {
     @Inject
     private CalificacionLogic logica;
     
+    @Inject
+    private MensajeroLogic logicMensajero;
+    
     /**
      * <h1>POST /api/cities : Crear un comentairo.</h1>
      * 
@@ -88,8 +92,11 @@ public class CalificacionResource {
      * @return JSON {@link CalidicacionDetailDTO}  - El comentario que se guardada con el atributo id autogenerado.
      * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} - Error de lógica que se genera cuando ya existe el comentario.
      */
-
-    public CalificacionDTO createCalificacion(CalificacionDTO calificacion) throws BusinessLogicException {
+    @POST
+    public CalificacionDTO createCalificacion(@PathParam("mensajeroId") Long mensajeroId, CalificacionDTO calificacion) throws BusinessLogicException {
+        if(logicMensajero.getMensajero(mensajeroId)==null) 
+            throw new WebApplicationException("no existe el Mensajero con el id" + mensajeroId, 404);
+        logicMensajero.agregarCalificacion(mensajeroId, calificacion.toEntity());
         return new CalificacionDTO(logica.createCalificacion(calificacion.toEntity()));
     }
 
@@ -105,8 +112,10 @@ public class CalificacionResource {
      * @return JSONArray {@link CalidicacionDetailDTO} - Los comentarios encontrados en la aplicación. Si no hay ninguno retorna una lista vacía.
      */
     @GET
-    public List<CalificacionDTO> getCalificacions() {
-        return listEntityToDTO(logica.getCalificaciones());
+    public List<CalificacionDTO> getCalificacions(@PathParam("mensajeroId") Long mensajeroId) {
+         if(logicMensajero.getMensajero(mensajeroId)==null)
+            throw new WebApplicationException("no existe el Mensajero con el id " + mensajeroId, 404);
+        return listEntityToDTO(logicMensajero.getMensajero(mensajeroId).getCalificaciones());
     }
 
     /**
@@ -127,7 +136,11 @@ public class CalificacionResource {
      */
     @GET
     @Path("{id: \\d+}")
-    public CalificacionDTO getCalificacion(@PathParam("id") Long id) {
+    public CalificacionDTO getCalificacion(@PathParam("mensajeroId") Long mensajeroId,@PathParam("id") Long id) {
+        if(logicMensajero.getMensajero(mensajeroId)==null)
+            throw new WebApplicationException("no existe el Mensajero con el id " + mensajeroId, 404);
+        if(logica.getCalificacion(id)== null)
+            throw new WebApplicationException("no existe la calidicacion con el id " + id, 404);
         return new CalificacionDTO(logica.getCalificacion(id));
     }
     
@@ -151,7 +164,9 @@ public class CalificacionResource {
      */
     @PUT
     @Path("{id: \\d+}")
-    public CalificacionDTO updateCalificacion(@PathParam("id") Long id, CalificacionDTO comentario) throws BusinessLogicException {
+    public CalificacionDTO updateCalificacion(@PathParam("mensajeroId") Long mensajeroId, @PathParam("id") Long id, CalificacionDTO comentario) throws BusinessLogicException {
+        if(logicMensajero.getMensajero(mensajeroId)==null)
+            throw new WebApplicationException("no existe el Mensajero con el id " + mensajeroId, 404);
         if(logica.getCalificacion(id)==null){
             throw new WebApplicationException("La calificacion  con id" + id + "no existe",404);
         }
@@ -175,8 +190,11 @@ public class CalificacionResource {
      */
     @DELETE
     @Path("{id: \\d+}")
-     public void deleteCalificacion(@PathParam("id") Long id) throws BusinessLogicException {
-       if(logica.getCalificacion(id)==null){
+     public void deleteCalificacion(@PathParam("mensajeroId") Long mensajeroId,@PathParam("id") Long id) throws BusinessLogicException {
+        if(logicMensajero.getMensajero(mensajeroId)==null)
+            throw new WebApplicationException("no existe el Mensajero con el id " + mensajeroId, 404);
+        
+         if(logica.getCalificacion(id)==null){
             throw new WebApplicationException("La calificacion  con id" + id + "no existe",404);
         }
        else{

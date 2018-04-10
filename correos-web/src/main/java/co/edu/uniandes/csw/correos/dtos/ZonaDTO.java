@@ -86,7 +86,7 @@ public class ZonaDTO {
      * @return La longitud asociada a la zona
      */
     public Double getLongitud() {
-        return latitud;
+        return longitud;
     }
 
     /**
