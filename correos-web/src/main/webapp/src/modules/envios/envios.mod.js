@@ -25,6 +25,14 @@
  * | envioCreate     | /create                    | detailView: (/create)  |
  * |                 |                            | /envios.create.html    |
  * |                 |                            |                        |
+ * |                 |                            |                        |
+ * | enviooUpdate    | /update/{envioId:int}      | detailView: (/new)     |
+ * |                 |                            | /envios.new.html       |
+ * |                 |                            |                        |
+ * | enviooDelete    | /delete/{envioId:int}      | detailView: (/delete)  |
+ * |                 |                            | /envios.delete.html    |
+ * |                 |                            |                        |
+ * |-----------------|----------------------------|------------------------|
  * |-----------------|----------------------------|------------------------|
  *```
  */
@@ -72,6 +80,38 @@
                                     templateUrl:basePath+ '/create/envios.create.html'
                                 }
                                 
+                            }
+                            }).state('envioUpdate',{
+                    url:'update/{envioId}',
+                    parent:'envios',
+                    param:
+                            {
+                                envioId:null
+                            },
+                    views:
+                            {
+                                'detailView':
+                                {
+                                    templateUrl:basePath+'/create/envios.create.html',
+                                    controller:'enviosUpdateCtrl',
+                                    controllerAs:'ctrl'
+                                }
+                            }
+                }).state('envioDelete',{
+                    url:'/delete/{envioId:int}',
+                    parent:'envios',
+                    param:
+                            {
+                                envioId:null
+                            },
+                    views:
+                            {
+                              'detailView':
+                              {
+                                  templateUrl:basePath+'/delete/envios.delete.html',
+                                  controller:'envioDeleteCtrl',
+                                  controllerAs:'Ctrl'
+                              }  
                             }
                 }).state('envioDetail',{
                     url: '/{envioId:int}/detail',
