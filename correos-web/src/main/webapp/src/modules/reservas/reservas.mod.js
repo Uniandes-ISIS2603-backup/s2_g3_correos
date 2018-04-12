@@ -24,9 +24,8 @@
  *```
  */
 (function (ng) {
-    var mod = ng.module("reservasModule", ['mensajerosModule', 'ui.router']);
-    mod.constant("reservasContext", "reservas");
-    mod.constant("mensajerosContext", "api/mensajeros");
+    var mod = ng.module("reservasModule",[]);
+    mod.constant("reservasContext", "api/reservas");
 
     mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
             var basePath = 'src/modules/reservas/';
@@ -35,10 +34,11 @@
             $stateProvider.state('reservas', {
                 url: '/reservas',
                 abstract: true,
-                parent: 'mensajeroDetail',
                 views: {
-                    childrenView: {
-                        templateUrl: basePath + 'reservas.html'
+                    'mainView': {
+                        templateUrl: basePath + 'reservas.html',
+                        controller:'reservaCtrl',
+                        controllerAs:'ctrl'
                     }
                 }
             }).state('reservasList', {
