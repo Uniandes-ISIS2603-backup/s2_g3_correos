@@ -6,7 +6,8 @@
         // Internal modules dependencies       
         'citiesModule',
         'mensajerosModule',
-        'transportesModule'
+        'transportesModule',
+        'reservasModule'
         
 
     ]);
