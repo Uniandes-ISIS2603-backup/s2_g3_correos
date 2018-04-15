@@ -9,7 +9,8 @@
         'transportesModule',
         'reservasModule',
         'eventosModule'/*,
-        'cuentasBancariasModule'*/
+        'cuentasBancariasModule'*/,
+        'pagosModule'
         
 
     ]);
