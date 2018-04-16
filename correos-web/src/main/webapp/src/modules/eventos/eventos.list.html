@@ -1,0 +1,28 @@
+<alert class="alert alert-danger" ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert()">{{alert.msg}} </alert>
+<div class="container-fluid">    
+    <table class="table table-striped col-md-4">
+        <thead>
+            <tr>
+                <th>ubicacion</th>
+                <th>detalle</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="record in mensajerosRecords">
+
+                <td id="{{$index}}-ubicacion"> <a ui-sref="eventoDetail({eventoId: record.id})">{{record.ubicacion}}</a></td>
+                <td id="{{$index}}-detalle">{{record.detalle}}</td>
+                <td>
+                    <button id="{{$index}}-edit-btn" class="btn btn-default btn-sm" ><a ui-sref="eventoUpdate({eventoId: record.id})"><span class="glyphicon glyphicon-edit"></span> Editar</a></button>
+                    <button id="{{$index}}-delete-btn" class="btn btn-default btn-sm"><a ui-sref="eventoDelete({eventoId: record.id})"><span class="glyphicon glyphicon-minus"></span>Eliminar</a></button>
+
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+        <div class="btn-group mr-2" role="group" aria-label="First group">
+            <a class="btn btn-info" ui-sref="eventoCreate"><span class="glyphicon glyphicon-plus-sign"></span>reportar evento</a>
+        </div>
+    </div>
+</div>
