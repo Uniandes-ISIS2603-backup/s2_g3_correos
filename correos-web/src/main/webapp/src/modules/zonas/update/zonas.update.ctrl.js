@@ -19,7 +19,7 @@
          * @param {Object} $state Dependencia injectada en la que se recibe el 
          * estado actual de la navegación definida en el módulo.
          */
-        function($scope, $http , zonaContext, $state, $rootScope)
+        function($scope, $http , zonasContext, $state, $rootScope)
         {
             $rootScope.edit=true;
             $scope.data={};
