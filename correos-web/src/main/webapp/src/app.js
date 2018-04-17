@@ -12,7 +12,8 @@
         'cuentasBancariasModule'*/,
         'pagosModule',
         'zonasModule',
-        'clientesModule'
+        'clientesModule',
+        'calificacionesModule'
 
         
 
