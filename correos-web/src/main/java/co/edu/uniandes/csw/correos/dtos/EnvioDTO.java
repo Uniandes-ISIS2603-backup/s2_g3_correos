@@ -65,6 +65,7 @@
         this.direccionEntrega = entity.getDireccionEntrega();
         this.direccionRecogida = entity.getDireccionRecogida();        
     }
+    
 /**
  * 
  * @return  entidad de paquete
