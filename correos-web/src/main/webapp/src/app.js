@@ -7,7 +7,10 @@
         'citiesModule',
         'mensajerosModule',
         'transportesModule',
-        'reservasModule'
+        'reservasModule',
+        'eventosModule'/*,
+        'cuentasBancariasModule'*/,
+        'pagosModule'
         
 
     ]);
