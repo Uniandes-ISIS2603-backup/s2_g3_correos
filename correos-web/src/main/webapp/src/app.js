@@ -11,7 +11,10 @@
         'eventosModule'/*,
         'cuentasBancariasModule'*/,
         'pagosModule',
-        'clientesModule'
+        'zonasModule',
+        'clientesModule',
+        'calificacionesModule'
+
         
 
     ]);
