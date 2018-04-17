@@ -1,0 +1,26 @@
+<div class="container-fluid">   
+    <div class="col-sm-12">
+        <br>
+        <table class="table table-striped">
+             <thead>
+            <tr>
+                <th>Peso</th>
+                <th>Tipo</th>
+                <th>Dimension A</th>
+                <th>Dimension B</th>
+                <th>Dimension C</th>
+            </tr>
+        </thead>
+            <tbody>
+                <tr ng-repeat="record in paqueteRecords">
+                    <td id="{{$index}}-peso">{{record.peso}}
+                    <td id="{{$index}}-tipo">{{record.tipo}}
+                    <td id="{{$index}}-dimensionA">{{record.dimensionA}}                          
+                    <td id="{{$index}}-dimensionB">{{record.dimensionB}}                         
+                    <td id="{{$index}}-dimensionC">{{record.dimensionC}}                             
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
