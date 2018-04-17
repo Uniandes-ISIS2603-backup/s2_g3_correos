@@ -1,0 +1,56 @@
+<div class="panel panel-default"> 
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-12">
+                <dl>
+                    <dt class="bold">Estado</dt>
+                    <dd>{{envioActual.nombre}}</dd>
+                    <hr>
+                    <dt>HoraFinal</dt>
+                    <dd>{{envioActual.horaFinal}}</dd>
+                    <hr>
+                    <dt>HoraInicio</dt>
+                    <dd>{{envioActual.horaInicio}}</dd>
+                    <hr>
+                    <dt>DireccionEntrega</dt>
+                    <dd>{{envioActual.direccionEntrega}}</dd>
+                    <hr>
+                    <dt>DireccionRecogida</dt>
+                    <dd>{{envioActual.direccionRecogida}}</dd>
+                    <hr>
+                    
+                   <dd><div class="panel-group" id="accordion">
+                    <div class="panel panel-default">
+                      <div class="panel-heading">
+                        <h4 class="panel-title">
+                          <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">Cliente</a>
+                        </h4>
+                      </div>
+                      <div id="collapse1" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <dl>
+                                <dt> Nombre :</dt>
+                                <dd>{{envioActual.cliente.nombre}}</dd>
+                                <hr>                              
+                            </dl>
+                        </div>
+                      </div>
+                    </div></dd>
+                    
+                </dl>
+                <ul class="nav nav-tabs">
+                    <li role="presentation" class="active"> <a ui-sref="paquetesList({envioId: envioActual.id})">paquetes</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-9">
+                <div ui-view="childrenView"></div>
+            </div>
+        </div>
+     
+    </div>
+
+</div>
+<div><button type="button" class="btn btn-secondary" > <a ui-sref="enviosList">Volver</a></button></div>

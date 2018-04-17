@@ -7,11 +7,12 @@
         'citiesModule',
         'mensajerosModule',
         'transportesModule',
+        'enviosModule',
+        'paquetesModule',
         'reservasModule',
         'eventosModule'/*,
         'cuentasBancariasModule'*/,
-        'pagosModule',
-        'clientesModule'
+        'pagosModule'
         
 
     ]);

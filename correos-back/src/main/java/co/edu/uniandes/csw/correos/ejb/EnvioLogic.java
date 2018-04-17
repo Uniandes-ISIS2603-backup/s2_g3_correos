@@ -60,9 +60,8 @@ public class EnvioLogic {
     public EnvioEntity createEnvio(EnvioEntity entity) throws BusinessLogicException {
         
         LOGGER.info("Se comienza a crear un Envio "); 
-        LOGGER.info(entity.getEstado()); 
-        LOGGER.info((entity.getHoraFinal().toString()));
-        LOGGER.info(entity.getHoraInicio().toString());
+        LOGGER.info(entity.getDireccionRecogida());
+        LOGGER.info(entity.getDireccionEntrega());
         
         if (entity.getHoraInicio()>entity.getHoraFinal()){
             throw new BusinessLogicException("La Hora Final es anterior a la Hora Incial.");
@@ -75,11 +74,7 @@ public class EnvioLogic {
         }
         else if (entity.getPaquetes().isEmpty()){
             throw new BusinessLogicException("No hay paquetes en el envio.");
-        }
-        else{
-            persistence.create(entity);      
-        }
-        
+        }      
 
         persistence.create(entity);
         asignarMensajero(entity);
@@ -113,7 +108,6 @@ public class EnvioLogic {
             if(!x.getEstado().equals("FINALIZADO"))
                 asignarMensajero(x);
         }
-
 
         LOGGER.info("Se terminan de buscar todos los Envios");
         return envios;

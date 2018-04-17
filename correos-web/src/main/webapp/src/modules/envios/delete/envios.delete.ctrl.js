@@ -1,43 +1,43 @@
 (function(ng)
 {
-    var mod=ng.module("clientesModule");
-    mod.constant("clientesContext","api/clientes");
+    var mod=ng.module("enviosModule");
+    mod.constant("enviosContext","api/envios");
     
-    mod.controller("clienteDeleteCtrl",['$scope','$state','clientesContext','$http',
+    mod.controller("envioDeleteCtrl",['$scope','$state','enviosContext','$http',
     
         /**
          * @ngdoc controller
-         * @name clientes.controller:clienteDeleteCtrl
+         * @name envios.controller:envioDeleteCtrl
          * @description
-         * Definición del controlador auxiliar para eliminar Clientes. 
+         * Definición del controlador auxiliar para eliminar Envios. 
          * @param {Object} $scope Referencia injectada al Scope definida para este
          * controlador, el scope es el objeto que contiene las variables o 
          * funciones que se definen en este controlador y que son utilizadas 
          * desde el HTML.
          * @param {Object} $http Objeto injectado para la manejar consultas HTTP
-         * @param {Object} clientesContext Constante injectada que contiene la ruta
-         * donde se encuentra el API de Clientes en el Backend.
+         * @param {Object} enviosContext Constante injectada que contiene la ruta
+         * donde se encuentra el API de Envios en el Backend.
          * @param {Object} $state Dependencia injectada en la que se recibe el 
          * estado actual de la navegación definida en el módulo.
          * @param {Object} $rootScope Referencia injectada al Scope definida para
          * toda la aplicación.
          */
-        function($scope,$state,clientesContext,$http)
+        function($scope,$state,enviosContext,$http)
         {
-            var idCliente=$state.params.clienteId;
+            var idEnvio=$state.params.envioId;
             
             /**
              * @ngdoc function
-             * @name deleteCliente
-             * @methodOf clientes.controller:clientesDeleteCtrl
+             * @name deleteEnvio
+             * @methodOf envios.controller:enviosDeleteCtrl
              * @description
              * Esta función utiliza el protocolo HTTP para eliminar la editorial.
              * @param {String} id El ID de la editorial a eliminar.
              */
-            $scope.deleteCliente=function()
+            $scope.deleteEnvio=function()
             {
-                $http.delete(clientesContext + '/' + idCliente, {}).then(function (response) {
-                    $state.go('clientesList', {clienteId: response.data.id}, {reload: true});
+                $http.delete(enviosContext + '/' + idEnvio, {}).then(function (response) {
+                    $state.go('enviosList', {envioId: response.data.id}, {reload: true});
                 });
             };
         }

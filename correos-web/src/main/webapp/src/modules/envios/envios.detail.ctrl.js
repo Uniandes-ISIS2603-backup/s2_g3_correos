@@ -1,12 +1,12 @@
 (function (ng) {
-    var mod = ng.module("clientesModule");
-    mod.constant("clientesContext", "api/clientes");
-    mod.controller('clientesDetailCtrl', ['$scope', '$http', 'clientesContext', '$state',
+    var mod = ng.module("enviosModule");
+    mod.constant("enviosContext", "api/envios");
+    mod.controller('enviosDetailCtrl', ['$scope', '$http', 'enviosContext', '$state',
          /**
          * @ngdoc controller
-         * @name clientes.controller:clientesDetailCtrl
+         * @name envios.controller:enviosDetailCtrl
          * @description
-         * Definición de un controlador auxiliar del módulo Clientes. 
+         * Definición de un controlador auxiliar del módulo Envios. 
          * Se crea el controlador con el cual se manejan las vistas de detalle
          * del módulo.
          * @param {Object} $scope Referencia injectada al Scope definida para este
@@ -19,23 +19,23 @@
          * @param {Object} $state Dependencia injectada en la que se recibe el 
          * estado actual de la navegación definida en el módulo.
          */
-        function($scope,$http, clientesContext,$state)
+        function($scope,$http, enviosContext,$state)
         {
-            if($state.params.clienteId!==null&&$state.params.clienteId!==undefined)
+            if($state.params.envioId!==null&&$state.params.envioId!==undefined)
             {
                  /**
                 * @ngdoc function
-                * @name getClienteID
-                * @methodOf Clientes.controller:clientesDetailCtrl
+                * @name getEnvioID
+                * @methodOf Envios.controller:enviosDetailCtrl
                 * @description
                 * Esta función utiliza el protocolo HTTP para obtener el recurso 
-                * donde se encuentra el cliente por ID en formato JSON.
+                * donde se encuentra el envio por ID en formato JSON.
                 * @param {String} URL Dirección donde se encuentra el recurso
-                * del cliente o API donde se puede consultar.
+                * del envio o API donde se puede consultar.
                 */
-                $http.get(clientesContext+"/"+$state.params.clienteId).then(function(response)
+                $http.get(enviosContext+"/"+$state.params.envioId).then(function(response)
                 {
-                    $scope.clienteActual=response.data;
+                    $scope.envioActual=response.data;
                 });
             }
         }
