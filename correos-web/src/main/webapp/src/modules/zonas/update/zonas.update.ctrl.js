@@ -37,6 +37,7 @@
             $http.get(zonasContext+'/'+idZona).then(function(response)
             {
                 var zona=response.data;
+                $scope.data.id=idZona;
                 $scope.data.latitud=zona.latitud;
                 $scope.data.longitud=zona.longitud;
             });
@@ -51,8 +52,9 @@
              * @param {String} id El ID de la zona que se va a actualizar.
              * @param {Object} zona Objeto con la información nueva de la zona.
              */
-            $scope.createZona=function()
+            $scope.updateZona=function()
             {
+                console.log($scope.data.id);
                 $http.put(zonasContext+'/'+idZona,$scope.data).then(function(response)
                 {
                     $state.go('zonasList',{zonaId:response.data.id},{reload:true});
