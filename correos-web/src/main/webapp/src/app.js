@@ -8,8 +8,8 @@
         'mensajerosModule',
         'transportesModule',
         'reservasModule',
-        'eventosModule'/*,
-        'cuentasBancariasModule'*/,
+        'eventosModule',
+        'cuentasBancariasModule',
         'pagosModule',
 
         'enviosModule',
