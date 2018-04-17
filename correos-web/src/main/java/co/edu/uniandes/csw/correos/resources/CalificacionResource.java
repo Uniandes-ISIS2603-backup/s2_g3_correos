@@ -60,7 +60,7 @@ import javax.ws.rs.WebApplicationException;
  * @author ed.diaz11
  * @version 1.0
  */
-@Path("calificaciones")
+@Path("mensajeros/{mensajeroId: \\d+}/calificaciones")
 @Produces("application/json")
 @Consumes("application/json")
 @RequestScoped
