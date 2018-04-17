@@ -92,7 +92,7 @@ public class CalificacionDTO {
     /**
      * @return la calificacion de las calificacion
      */
-    public double getCalificacion() {
+    public int getCalificacion() {
         return this.calificacion;
     }
     
