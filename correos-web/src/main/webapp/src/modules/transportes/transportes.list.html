@@ -10,11 +10,16 @@
             </tr>
         </thead>
             <tbody>
-                <tr ng-repeat="record in transporteRecords">
+                <tr ng-repeat="record in transporteRecords" data-toggle="collapse" data-parent="#accordion" href="#collapse{{record.id}}">
                     <td id="{{$index}}-tipo">{{record.tipo}}
                     <td id="{{$index}}-activo">{{record.activo}}       
                     <td id="{{$index}}-capacidad">{{record.capacidad}}     
-                            
+                            <div id="collapse{{record.id}}" class="panel-collapse collapse">
+                        <div class="panel-body">
+                                                           
+                            Si los transportes tuviesen un detail iria aqui!!!!
+                        </div>
+                      </div>
                 </tr>
             </tbody>
         </table>

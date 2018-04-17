@@ -65,6 +65,7 @@
         this.direccionEntrega = entity.getDireccionEntrega();
         this.direccionRecogida = entity.getDireccionRecogida();        
     }
+    
 /**
  * 
  * @return  entidad de paquete
@@ -132,14 +133,14 @@
      * 
      * @param entrega nueva direccion de entrega
      */
-    public void setEntrega(String entrega) {
+    public void setDireccionEntrega(String entrega) {
         direccionEntrega = entrega; 
     }
     /**
      * 
      * @param recogida nueva direccion de recogida
      */
-    public void setRecogida(String recogida) {
+    public void setDireccionRecogida(String recogida) {
         direccionRecogida = recogida; 
     }
     /**

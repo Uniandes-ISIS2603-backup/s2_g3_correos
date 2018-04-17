@@ -11,8 +11,16 @@
         'eventosModule'/*,
         'cuentasBancariasModule'*/,
         'pagosModule',
+
+        'enviosModule',
+        'paquetesModule',        
         'clientesModule'
-        
+
+        'zonasModule',
+        'clientesModule',
+        'calificacionesModule'
+
+
 
     ]);
     // Resuelve problemas de las promesas
