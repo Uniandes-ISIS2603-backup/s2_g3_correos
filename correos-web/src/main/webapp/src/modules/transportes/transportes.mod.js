@@ -51,6 +51,16 @@
                         controllerAs: 'ctrl'
                     }
                 }
+            }).state('transportesCreate', {
+                url: '/create',
+                parent: 'transportes',
+                views: {
+                    'listView': {
+                        templateUrl: basePath + 'create/transportes.create.html',
+                        controller: 'transportesCreateCtrl',
+                        controllerAs: 'ctrl'
+                    }
+                }
             });
         }]);
 })(window.angular);
