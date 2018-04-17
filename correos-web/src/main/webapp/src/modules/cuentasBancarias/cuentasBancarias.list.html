@@ -1,0 +1,33 @@
+<alert class="alert alert-danger" ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert()">{{alert.msg}} </alert>
+<div class="container-fluid">    
+    <table class="table table-striped col-md-4">
+        <thead>
+            <tr>
+                <th>numero</th>
+                <th>banco</th>
+                <th>tipoTarjeta</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="record in cuentasBancariasRecords">
+
+                <td id="{{$index}}-numero" > <a ui-sref="cuentaBancariaDetail({cuentaBancariaId: record.id})">{{record.numero}}</a></td>
+                <td id="{{$index}}-banco">{{record.banco}}</td>
+                <td id="{{$index}}-tipoTarjeta">{{record.tipoTarjeta}}</td>
+                
+                
+                <td>
+                    <button id="{{$index}}-edit-btn" class="btn btn-default btn-sm" ><a ui-sref="cuentaBancariaUpdate({cuentaBancariaId: record.id})"><span class="glyphicon glyphicon-edit"></span> Editar</a></button>
+                    <button id="{{$index}}-delete-btn" class="btn btn-default btn-sm"><a ui-sref="cuentaBancariaDelete({cuentaBancariaId: record.id})"><span class="glyphicon glyphicon-minus"></span> Remove</a></button>
+
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+        <div class="btn-group mr-2" role="group" aria-label="First group">
+            <a class="btn btn-info" ui-sref="cuentaBancariaCreate"><span class="glyphicon glyphicon-plus-sign"></span> Reserva ya!</a>
+        </div>
+    </div>
+</div>

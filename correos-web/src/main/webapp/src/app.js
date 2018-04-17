@@ -6,7 +6,11 @@
         // Internal modules dependencies       
         'citiesModule',
         'mensajerosModule',
-        'transportesModule'
+        'transportesModule',
+        'reservasModule',
+        'eventosModule'/*,
+        'cuentasBancariasModule'*/,
+        'pagosModule'
         
 
     ]);
