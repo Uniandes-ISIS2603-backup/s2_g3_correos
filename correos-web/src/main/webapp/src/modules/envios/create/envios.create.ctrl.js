@@ -12,7 +12,7 @@
          * funciones que se definen en este controlador y que son utilizadas 
          * desde el HTML.
          * @param {Object} $http Objeto injectado para la manejar consultas HTTP
-         * @param {Object} editorialContext Constante injectada que contiene la ruta
+         * @param {Object} envioContext Constante injectada que contiene la ruta
          * donde se encuentra el API de Envios en el Backend.
          * @param {Object} $state Dependencia injectada en la que se recibe el 
          * estado actual de la navegación definida en el módulo.
@@ -22,7 +22,7 @@
         function($scope,$http,enviosContext,$state,$rootScope)
         {
             $rootScope.edit=false;
-            $scope.currentRecord={};
+            $scope.data={};
             
             /**
              * @ngdoc function
@@ -34,7 +34,7 @@
              */
             $scope.createEnvio=function()
             {
-                $http.post(enviosContext,$scope.currentRecord).then(function(response)
+                $http.post(enviosContext,$scope.data).then(function(response)
                 {
                     $state.go('enviosList',{envioId:response.data.id}, {reload:true});
                 });

@@ -26,10 +26,10 @@
  * |                 |                            | /envios.create.html    |
  * |                 |                            |                        |
  * |                 |                            |                        |
- * | enviooUpdate    | /update/{envioId:int}      | detailView: (/new)     |
+ * | envioUpdate     | /update/{envioId:int}      | detailView: (/new)     |
  * |                 |                            | /envios.new.html       |
  * |                 |                            |                        |
- * | enviooDelete    | /delete/{envioId:int}      | detailView: (/delete)  |
+ * | envioDelete     | /delete/{envioId:int}      | detailView: (/delete)  |
  * |                 |                            | /envios.delete.html    |
  * |                 |                            |                        |
  * |-----------------|----------------------------|------------------------|
@@ -120,11 +120,6 @@
                         enviosId: null
                     },
                     views: {
-                        'listView': {
-                            templateUrl: basePath + 'envios.list.html',
-                            controller: 'enviosDetailCtrl',
-                            controllerAs: 'ctrl'
-                        },
                         'detailView': {
                         templateUrl: basePath + 'envios.detail.html',
                         controller: 'enviosDetailCtrl',

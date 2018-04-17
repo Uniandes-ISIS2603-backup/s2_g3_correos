@@ -11,6 +11,8 @@
         'eventosModule'/*,
         'cuentasBancariasModule'*/,
         'pagosModule',
+        'enviosModule',
+        'paquetesModule',        
         'clientesModule'
         
 
