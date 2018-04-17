@@ -37,8 +37,8 @@
             $http.get(zonasContext+'/'+idZona).then(function(response)
             {
                 var zona=response.data;
-                $scope.data.nombre=zona.latitud;
-                $scope.data.correo=zona.longitud;
+                $scope.data.latitud=zona.latitud;
+                $scope.data.longitud=zona.longitud;
             });
             
             /**

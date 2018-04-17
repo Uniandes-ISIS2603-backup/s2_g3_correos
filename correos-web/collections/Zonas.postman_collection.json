@@ -1,0 +1,422 @@
+{
+	"info": {
+		"name": "David ",
+		"_postman_id": "7036e024-996d-e09b-87e9-3638688d74be",
+		"description": "Estas son las pruebas",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Obtener todas las zonas",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ab2b631c-918a-48a2-8908-01b7ebeb6f83",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"type\": \"zonaDetailDTO\",\n    \"id\": 31,\n    \"latitud\": 70.842109305,\n    \"longitud\": 70.842109305\n    \n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/correos-web/api/zonas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"correos-web",
+						"api",
+						"zonas"
+					]
+				},
+				"description": "Obtiene todas las zonas 200"
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener una zona",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ab2b631c-918a-48a2-8908-01b7ebeb6f83",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"type\": \"zonaDetailDTO\",\n    \"id\": 31,\n    \"latitud\": 70.842109305,\n    \"longitud\": 70.842109305\n    \n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/correos-web/api/zonas/6",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"correos-web",
+						"api",
+						"zonas",
+						"6"
+					]
+				},
+				"description": "Obtiene una zona de la base de datos"
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener una zona que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5a250023-b7aa-41a0-b37b-6f22ba8c3aaa",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"type\": \"zonaDetailDTO\",\n    \"id\": 31,\n    \"latitud\": 70.842109305,\n    \"longitud\": 70.842109305\n    \n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/correos-web/api/zonas/10",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"correos-web",
+						"api",
+						"zonas",
+						"10"
+					]
+				},
+				"description": "Obtiene una zona de la base de datos"
+			},
+			"response": []
+		},
+		{
+			"name": "Insertar Zona",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f989b445-92ba-4229-b69e-6b43fb534f5b",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"type\": \"zonaDetailDTO\",\n    \"latitud\": 70.842109305,\n    \"longitud\": 70.842109305\n    \n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/correos-web/api/zonas/1000101",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"correos-web",
+						"api",
+						"zonas",
+						"1000101"
+					]
+				},
+				"description": "Obtiene una zona de la base de datos"
+			},
+			"response": []
+		},
+		{
+			"name": "Insertar Zona Con parametras fuera del rango",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c524d8d0-d3b8-4926-9240-f77f04783a00",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 500\", function () {",
+							"    pm.response.to.have.status(500);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"type\": \"zonaDetailDTO\",\n    \"latitud\": 100.842109305,\n    \"longitud\": 70.842109305\n    \n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/correos-web/api/zonas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"correos-web",
+						"api",
+						"zonas"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Actualizar Zona",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c524d8d0-d3b8-4926-9240-f77f04783a00",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 500\", function () {",
+							"    pm.response.to.have.status(500);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"type\": \"zonaDetailDTO\",\n    \"id\": 5,\n    \"latitud\": 70.842109305,\n    \"longitud\": 70.1109305\n    \n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/correos-web/api/zonas/5",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"correos-web",
+						"api",
+						"zonas",
+						"5"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Actualizar Zona No Exite",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "520cb7b0-3044-446f-84b2-07830cf9a423",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 500\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"type\": \"zonaDetailDTO\",\n    \"id\": 5,\n    \"latitud\": 70.842109305,\n    \"longitud\": 70.1109305\n    \n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/correos-web/api/zonas/100101",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"correos-web",
+						"api",
+						"zonas",
+						"100101"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Eliminar Zona",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5e73814d-6438-4b7c-8da1-189c4912dba2",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 500\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/correos-web/api/zonas/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"correos-web",
+						"api",
+						"zonas",
+						"1"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Eliminar Zona No Existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7366a221-306b-4ffc-839d-712ee7cf8398",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 500\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/correos-web/api/zonas/11021012",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"correos-web",
+						"api",
+						"zonas",
+						"11021012"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}

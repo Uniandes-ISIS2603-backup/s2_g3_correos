@@ -1,0 +1,10 @@
+{
+    "elements": {
+        "hr": {}
+    },
+    "attributes": {
+        "ui-view": {},
+        "align": {},
+        "ui-sref": {}
+    }
+}
