@@ -10,7 +10,8 @@
         'reservasModule',
         'eventosModule'/*,
         'cuentasBancariasModule'*/,
-        'pagosModule'
+        'pagosModule',
+        'zonasModule'
         
 
     ]);
