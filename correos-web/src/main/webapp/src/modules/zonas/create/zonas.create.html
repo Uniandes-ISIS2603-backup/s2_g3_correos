@@ -1,0 +1,35 @@
+ <alert class="alert alert-danger" ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert()">{{alert.msg}} </alert>
+ <div class="container-fluid">
+    <div class="panel-group">
+        <div class="panel panel-primary">
+         
+               
+            <div class="panel-body">
+                <form  name="zona">
+                    
+                    <div class="form-group row">
+                        <div class="form-group col-md-12">
+                            <label for="zonaLatitud" class="col-sm-2">Latitud:</label>
+                            <input id="zonaLatitud" required ng-model="data.latitud" class="col-sm-6"/>
+                    </div>
+                    
+                    <div class="form-group row">
+                        <div class="form-group col-md-12">
+                            <label for="zonaLongitud" class="col-sm-2">Longitud :</label>
+                            <input type="email" id="zonaLongitud" required ng-model="data.longitud" class="col-sm-6"/>
+                        </div>
+                    </div>                               
+                    
+                    <div class="form-group row">
+                        <div class="form-group col-sm-4">
+                            <input ng-click="createZona()" ng-show="zona.$valid" value="Save" class="btn btn-success"/>
+                            <a class="btn btn-info" ui-sref="zonasList">Cancel</a>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+
