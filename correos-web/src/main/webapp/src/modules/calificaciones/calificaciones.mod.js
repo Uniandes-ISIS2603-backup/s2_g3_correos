@@ -51,7 +51,23 @@
                         controllerAs: 'ctrl'
                     }
                 }
-            });
+            }).state('califiacionUpdate',{
+                    url:'update/{califiacionId}',
+                    parent:'califiaciones',
+                    param:
+                            {
+                                zonaId:null
+                            },
+                    views:
+                            {
+                                'detailView':
+                                {
+                                    templateUrl:basePath+'/update/califiaciones.update.html',
+                                    controller:'calificaionesUpdateCtrl',
+                                    controllerAs:'ctrl'
+                                }
+                            }
+                });
         }]);
 })(window.angular);
 
