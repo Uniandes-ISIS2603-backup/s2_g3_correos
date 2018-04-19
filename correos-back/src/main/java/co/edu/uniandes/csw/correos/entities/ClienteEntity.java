@@ -6,12 +6,10 @@
 package co.edu.uniandes.csw.correos.entities;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import uk.co.jemos.podam.common.PodamExclude;
 
@@ -27,11 +25,19 @@ public class ClienteEntity extends BaseEntity implements Serializable {
    
     @PodamExclude
     @OneToMany(mappedBy = "cliente", cascade = CascadeType.PERSIST, orphanRemoval = true)
-    private List<BonoEntity> bonos = new ArrayList<BonoEntity>();
+    private List<BonoEntity> bonos;
     
     @PodamExclude
-    @OneToMany (fetch = FetchType.EAGER)
-    private List<EnvioEntity> envios; 
+    @OneToMany (fetch = FetchType.LAZY, mappedBy="cliente")
+    private List<EnvioEntity> envios;
+    
+    @PodamExclude
+    @OneToMany(fetch = FetchType.LAZY)
+    private List<TarjetaCreditoEntity> tarjetasCredito;
+    
+    @PodamExclude
+    @OneToMany(fetch =FetchType.LAZY)
+    private List <ReservaEntity> reservas;         
 
     /**
      * Obtiene el nombre del cliente
@@ -79,4 +85,22 @@ public class ClienteEntity extends BaseEntity implements Serializable {
     public void setEnvio(List<EnvioEntity> envios) {
         this.envios = envios;
     }
+
+    public List<TarjetaCreditoEntity> getTarjetasCredito() {
+        return tarjetasCredito;
+    }
+
+    public void setTarjetasCredito(List<TarjetaCreditoEntity> tarjetasCredito) {
+        this.tarjetasCredito = tarjetasCredito;
+    }
+
+    public List<ReservaEntity> getReservas() {
+        return reservas;
+    }
+
+    public void setReservas(List<ReservaEntity> reservas) {
+        this.reservas = reservas;
+    }
+    
+    
 }
