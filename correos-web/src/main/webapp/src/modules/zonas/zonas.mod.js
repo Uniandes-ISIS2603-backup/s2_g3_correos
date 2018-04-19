@@ -87,7 +87,7 @@
                             {
                                 'detailView':
                                 {
-                                    templateUrl:basePath+'/create/zonas.create.html',
+                                    templateUrl:basePath+'/update/zonas.update.html',
                                     controller:'zonasUpdateCtrl',
                                     controllerAs:'ctrl'
                                 }
