@@ -24,6 +24,7 @@ SOFTWARE.
 package co.edu.uniandes.csw.correos.dtos;
 
 import co.edu.uniandes.csw.correos.entities.ClienteEntity;
+import java.util.List;
 
 
 /**
@@ -35,37 +36,53 @@ import co.edu.uniandes.csw.correos.entities.ClienteEntity;
 public class ClienteDetailDTO extends ClienteDTO
 {
 
-   
- private ClienteDTO cliente;
-   /**
-    * contructor
-    */
+    
+    public List<EnvioDTO> envios;
+    public List<TarjetaCreditoDTO> tarjetas;
+    public List<ReservaDTO> reservas;
+    public List<BonoDTO> bonos;
+
     public ClienteDetailDTO()
     {
-    super();
     }
     
-   /**
-    * retorna el cliente que corresponde
-    */
-    
-    public ClienteDTO getTarjeta()
+    public ClienteDetailDTO(ClienteEntity cliente)
     {
-        return cliente;
     }
     
-     public ClienteDetailDTO(ClienteEntity entity)
-    {
-        super(entity);
-      
+    
+    public List<EnvioDTO> getEnvios() {
+        return envios;
     }
-    /**
-     * cambia el cliente 
-     * @param cliente cliente que se va a cambiar 
-     */
-    public void setCliente( ClienteDTO cliente)
-    {
-        this.cliente = cliente;
+
+    public void setEnvios(List<EnvioDTO> envios) {
+        this.envios = envios;
     }
+
+    public List<TarjetaCreditoDTO> getTarjetas() {
+        return tarjetas;
+    }
+
+    public void setTarjetas(List<TarjetaCreditoDTO> tarjetas) {
+        this.tarjetas = tarjetas;
+    }
+
+    public List<ReservaDTO> getReservas() {
+        return reservas;
+    }
+
+    public void setReservas(List<ReservaDTO> reservas) {
+        this.reservas = reservas;
+    }
+
+    public List<BonoDTO> getBonos() {
+        return bonos;
+    }
+
+    public void setBonos(List<BonoDTO> bonos) {
+        this.bonos = bonos;
+    }
+    
+    
 
 }

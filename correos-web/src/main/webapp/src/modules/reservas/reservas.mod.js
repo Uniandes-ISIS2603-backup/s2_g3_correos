@@ -51,6 +51,19 @@
                         controllerAs: 'ctrl'
                     }
                 }
+            }).state('reservasCreate', {
+                url: '/create',
+                parent: 'reservas',
+                views:
+                            {
+                                'detailView':
+                                {
+                                    controller:'reservasCreateCtrl',
+                                    controllerAs:'ctrl',
+                                    templateUrl:basePath+ '/create/reservas.create.html'
+                                }
+                                
+                            }
             });
         }]);
 })(window.angular);
