@@ -25,6 +25,8 @@ package co.edu.uniandes.csw.correos.entities;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
@@ -36,6 +38,26 @@ public class TransporteEntity extends BaseEntity implements Serializable {
     private String tipo;
     private String capacidad;
     private Boolean activo;
+    
+    @PodamExclude
+    @ManyToOne
+    private MensajeroEntity mensajero;
+
+    public Boolean getActivo() {
+        return activo;
+    }
+
+    public void setActivo(Boolean activo) {
+        this.activo = activo;
+    }
+
+    public MensajeroEntity getMensajero() {
+        return mensajero;
+    }
+
+    public void setMensajero(MensajeroEntity mensajero) {
+        this.mensajero = mensajero;
+    }    
     
     /**
      * @return El tipo de transporte

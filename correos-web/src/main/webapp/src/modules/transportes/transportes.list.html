@@ -18,6 +18,9 @@
                         <div class="panel-body">
                                                            
                             Si los transportes tuviesen un detail iria aqui!!!!
+                            </br>
+                            <button id="{{$index}}-edit-btn" class="btn btn-default btn-sm" ><a ui-sref="transportesUpdate({transporteId:record.id})"><span class="glyphicon glyphicon-edit"></span> Editar</a></button>
+                    <button id="{{$index}}-delete-btn" class="btn btn-default btn-sm"><a ui-sref="transportesDelete({transporteId:record.id})"><span class="glyphicon glyphicon-minus"></span> Remove</a></button>
                         </div>
                       </div>
                 </tr>

@@ -190,13 +190,13 @@ public class TransporteResource {
      */
     @DELETE
     @Path("{id: \\d+}")
-    public void deleteTransporte(@PathParam("mensajeroId") Long mensajeroId,@PathParam("id") Long id)
+    public void deleteTransporte(@PathParam("mensajeroId") Long mensajeroId,@PathParam("id") Long id) throws BusinessLogicException
     {
         if(logicMensajero.getMensajero(mensajeroId)==null)
             throw new WebApplicationException("no existe el Mensajero con el id " + mensajeroId, 404);
         if(logic.getTransporte(id)==null)
             throw new WebApplicationException("no existe el Transporte con el id " + id, 404);
-        logic.deleteTransporte(logic.getTransporte(id));
+        logicMensajero.borrarTransporte(mensajeroId, id);
     }
     
     
