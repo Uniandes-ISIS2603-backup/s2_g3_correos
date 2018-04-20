@@ -36,7 +36,7 @@ public class ClienteEntity extends BaseEntity implements Serializable {
     private List<TarjetaCreditoEntity> tarjetasCredito;
     
     @PodamExclude
-    @OneToMany(fetch =FetchType.LAZY, mappedBy = "cliente")
+    @OneToMany(fetch =FetchType.LAZY, mappedBy = "cliente",orphanRemoval = true)
     private List <ReservaEntity> reservas;         
 
     /**
