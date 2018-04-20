@@ -9,6 +9,12 @@
  * Author:  a.silvag
  * Created: 8/03/2018
  */
+delete from clienteentity_envioentity;
+
+delete from clienteentity_reservaentity;
+
+delete from clienteentity_tarjetacreditoentity;
+
 delete from zonaentity_mensajeroentity;
 
 delete from mensajeroentity_calificacionentity;
@@ -172,3 +178,7 @@ insert into mensajeroentity_calificacionentity(mensajeroentity_id, calificacione
 insert into mensajeroentity_calificacionentity(mensajeroentity_id, calificaciones_id) values(10005,100010);
 
 
+insert into clienteentity_envioentity(clienteentity_id,envios_id) values(10001 , 10001);
+insert into clienteentity_envioentity(clienteentity_id,envios_id) values(10002,10002);
+insert into clienteentity_envioentity(clienteentity_id,envios_id) values(10003,10003);
+insert into clienteentity_envioentity(clienteentity_id,envios_id) values(10004,10005);
