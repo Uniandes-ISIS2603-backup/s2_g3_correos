@@ -32,11 +32,11 @@ public class ClienteEntity extends BaseEntity implements Serializable {
     private List<EnvioEntity> envios;
     
     @PodamExclude
-    @OneToMany(fetch = FetchType.LAZY)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "cliente", cascade = CascadeType.PERSIST, orphanRemoval = true )
     private List<TarjetaCreditoEntity> tarjetasCredito;
     
     @PodamExclude
-    @OneToMany(fetch =FetchType.LAZY)
+    @OneToMany(fetch =FetchType.LAZY, mappedBy = "cliente")
     private List <ReservaEntity> reservas;         
 
     /**

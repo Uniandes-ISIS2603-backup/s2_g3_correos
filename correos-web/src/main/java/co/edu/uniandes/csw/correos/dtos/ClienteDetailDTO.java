@@ -23,7 +23,12 @@ SOFTWARE.
  */
 package co.edu.uniandes.csw.correos.dtos;
 
+import co.edu.uniandes.csw.correos.entities.BonoEntity;
 import co.edu.uniandes.csw.correos.entities.ClienteEntity;
+import co.edu.uniandes.csw.correos.entities.EnvioEntity;
+import co.edu.uniandes.csw.correos.entities.ReservaEntity;
+import co.edu.uniandes.csw.correos.entities.TarjetaCreditoEntity;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -44,10 +49,24 @@ public class ClienteDetailDTO extends ClienteDTO
 
     public ClienteDetailDTO()
     {
+        super();
     }
     
     public ClienteDetailDTO(ClienteEntity cliente)
     {
+        super(cliente);
+        if(cliente.getEnvios()!=null)
+            for(EnvioEntity x: cliente.getEnvios())
+                this.envios.add(new EnvioDTO(x));
+        if(cliente.getTarjetasCredito()!=null)
+            for(TarjetaCreditoEntity x: cliente.getTarjetasCredito())
+                this.tarjetas.add(new TarjetaCreditoDTO(x));
+        if(cliente.getReservas()!=null)
+            for(ReservaEntity x: cliente.getReservas())
+                this.reservas.add(new ReservaDTO(x));
+        if(cliente.getBonos()!=null)
+            for(BonoEntity x: cliente.getBonos())
+                this.bonos.add(new BonoDTO(x));
     }
     
     
@@ -84,5 +103,35 @@ public class ClienteDetailDTO extends ClienteDTO
     }
     
     
-
+    public ClienteEntity toEntity()
+    {
+        ClienteEntity cliente=super.toEntity();
+        if(this.bonos!=null)
+        {
+            List<BonoEntity> bonosN=new ArrayList<>();
+            for(BonoDTO x: this.bonos)
+                bonosN.add(x.toEntity());
+            cliente.setBonos(bonosN);
+        }
+        if(this.envios!=null)
+        {
+            List<EnvioEntity> nuevaEnvios=new ArrayList<>();
+            for(EnvioDTO x: this.envios)
+                nuevaEnvios.add(x.toEntity());
+            cliente.setEnvio(nuevaEnvios);
+        }
+        if(this.reservas!=null)
+        {
+            List<ReservaEntity> nuevaReservas=new ArrayList<>();
+            for(ReservaDTO x: this.reservas)
+                nuevaReservas.add(x.toEntity());
+        }
+        if(this.tarjetas!=null)
+        {
+            List<TarjetaCreditoEntity> nuevaTarjetas=new ArrayList<>();
+            for(TarjetaCreditoDTO x: this.tarjetas)
+                nuevaTarjetas.add(x.toEntity());
+        }
+        return cliente;
+    }
 }

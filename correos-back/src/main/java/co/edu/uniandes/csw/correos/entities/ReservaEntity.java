@@ -26,7 +26,7 @@ package co.edu.uniandes.csw.correos.entities;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Entity;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import uk.co.jemos.podam.common.PodamExclude;
@@ -43,8 +43,8 @@ public class ReservaEntity extends BaseEntity implements Serializable{
     private String hora;
     
     @PodamExclude
-    @OneToOne
-    private EnvioEntity envio;
+    @ManyToOne
+    private ClienteEntity cliente;
     
     /**
      * @return la fecha de la reserva
@@ -74,12 +74,12 @@ public class ReservaEntity extends BaseEntity implements Serializable{
         this.hora = hora;
     }
 
-    public EnvioEntity getEnvio() {
-        return envio;
+    public ClienteEntity getCliente() {
+        return cliente;
     }
 
-    public void setEnvio(EnvioEntity envio) {
-        this.envio = envio;
+    public void setCliente(ClienteEntity cliente) {
+        this.cliente = cliente;
     }
-    
+ 
 }
