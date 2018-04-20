@@ -42,10 +42,10 @@ public class ClienteDetailDTO extends ClienteDTO
 {
 
     
-    public List<EnvioDTO> envios;
-    public List<TarjetaCreditoDTO> tarjetas;
-    public List<ReservaDTO> reservas;
-    public List<BonoDTO> bonos;
+    public List<EnvioDTO> envios=new ArrayList<>();
+    public List<TarjetaCreditoDTO> tarjetas=new ArrayList<>();
+    public List<ReservaDTO> reservas=new ArrayList<>();
+    public List<BonoDTO> bonos=new ArrayList<>();
 
     public ClienteDetailDTO()
     {
@@ -125,12 +125,14 @@ public class ClienteDetailDTO extends ClienteDTO
             List<ReservaEntity> nuevaReservas=new ArrayList<>();
             for(ReservaDTO x: this.reservas)
                 nuevaReservas.add(x.toEntity());
+            cliente.setReservas(nuevaReservas);
         }
         if(this.tarjetas!=null)
         {
             List<TarjetaCreditoEntity> nuevaTarjetas=new ArrayList<>();
             for(TarjetaCreditoDTO x: this.tarjetas)
                 nuevaTarjetas.add(x.toEntity());
+            cliente.setTarjetasCredito(nuevaTarjetas);
         }
         return cliente;
     }
