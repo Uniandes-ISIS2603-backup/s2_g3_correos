@@ -2,7 +2,7 @@
 {
    var mod=ng.module("pagosModule");
    mod.constant("pagosContext","api/pagos");
-   mod.controller('pagosCtrl',['$scope', '$http', 'pagosContext', '$state',
+   mod.controller('pagoCtrl',['$scope', '$http', 'pagosContext', '$state',
    
           /**
          * @ngdoc controller
@@ -37,7 +37,7 @@
              * @param {String} URL Dirección donde se encuentra el recurso
              * de los eventos o API donde se puede consultar.
              */
-            $http.get(eventosContext).then(function(response)
+            $http.get(pagosContext).then(function(response)
             {
                 $scope.eventosRecords=response.data;
             });

@@ -13,7 +13,7 @@
                 views: {
                     'mainView': {
                         templateUrl: basePath + 'pagos.html',
-                        controller: 'pagosCtrl',
+                        controller: 'pagoCtrl',
                         controllerAs: 'ctrl'
                     }
                 }

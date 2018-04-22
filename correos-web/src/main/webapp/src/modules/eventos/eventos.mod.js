@@ -13,7 +13,7 @@
                 views: {
                     'mainView': {
                         templateUrl: basePath + 'eventos.html',
-                        controller: 'eventosCtrl',
+                        controller: 'eventoCtrl',
                         controllerAs: 'ctrl'
                     }
                 }
