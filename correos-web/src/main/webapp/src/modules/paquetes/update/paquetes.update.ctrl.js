@@ -39,7 +39,10 @@
             {
                 var paquete=response.data;
                 $scope.data.tipo=paquete.tipo;
-                $scope.data.capacidad=paquete.capacidad;
+                $scope.data.peso=paquete.peso;
+                $scope.data.dimensionA=paquete.dimensionA;
+                $scope.data.dimensionB=paquete.dimensionB;
+                $scope.data.dimensionC=paquete.dimensionC;
             });
             
             /**
