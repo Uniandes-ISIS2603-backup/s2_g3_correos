@@ -16,6 +16,7 @@
 
                     <dd>{{envioActual.calificacionPromedio}}</dd>
                     <hr>
+                    
                    <dd><div class="panel-group" id="accordion">
                     <div class="panel panel-default">
                       <div class="panel-heading">
@@ -40,10 +41,45 @@
                         </div>
                       </div>
                     </div></dd>
+                    
+                    <dd><div class="panel-group" id="accordion">
+                    <div class="panel panel-default">
+                      <div class="panel-heading">
+                        <h4 class="panel-title">
+                          <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">Mensajero</a>
+                        </h4>
+                      </div>
+                      <div id="collapse2" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <dl>
+                                <dt> Correo :</dt>
+                                <dd>{{envioActual.mensajero.correo}}</dd>
+                                <hr>  
+                                <dt> Celular :</dt>
+                                <dd>{{envioActual.mensajero.celular}}</dd>
+                                <hr>
+                                <dt> Nombre :</dt>
+                                <dd>{{envioActual.mensajero.nombre}}</dd>
+                                <hr>
+                                <dt> Caificacion Promedio :</dt>
+                                <dd>{{envioActual.mensajero.calificacionPromedio}}</dd>
+                                <hr>
+                            </dl>
+                        </div>
+                      </div>
+                    </div></dd>                    
+                    
                 </dl>
                 <ul class="nav nav-tabs">
+<<<<<<< OURS
+                    <li role="presentation" class="active"> <a ui-sref="paquetesList({envioId: envioActual.id})">Paquetes</a></li>
+                    <li role="presentation" class="active"> <a ui-sref="bonosList({envioId: envioActual.id})">Bonos</a></li>
+                    <li role="presentation" class="active"> <a ui-sref="eventosList({envioId: envioActual.id})">Eventos</a></li>
+=======
                     <li role="presentation" class="active"> <a ui-sref="reviewsList({envioId: envioActual.id})">transportes</a></li>
+>>>>>>> THEIRS
                 </ul>
+                
             </div>
         </div>
         <div class="row">

@@ -25,14 +25,17 @@
  * | envioCreate     | /create                    | detailView: (/create)  |
  * |                 |                            | /envios.create.html    |
  * |                 |                            |                        |
+<<<<<<< OURS
+ * | envioUpdate     | /update/{envioId:int}      | detailView: (/new)     |
+=======
  * |                 |                            |                        |
  * | enviooUpdate    | /update/{envioId:int}      | detailView: (/new)     |
+>>>>>>> THEIRS
  * |                 |                            | /envios.new.html       |
  * |                 |                            |                        |
  * | enviooDelete    | /delete/{envioId:int}      | detailView: (/delete)  |
  * |                 |                            | /envios.delete.html    |
  * |                 |                            |                        |
- * |-----------------|----------------------------|------------------------|
  * |-----------------|----------------------------|------------------------|
  *```
  */
@@ -81,7 +84,7 @@
                                 }
                                 
                             }
-                            }).state('envioUpdate',{
+                }).state('envioUpdate',{
                     url:'update/{envioId}',
                     parent:'envios',
                     param:
@@ -117,14 +120,18 @@
                     url: '/{envioId:int}/detail',
                     parent: 'envios',
                     param: {
-                        enviosId: null
+                        envioId: null
                     },
                     views: {
+<<<<<<< OURS
+                       
+=======
                         'listView': {
                             templateUrl: basePath + 'envios.list.html',
                             controller: 'enviosDetailCtrl',
                             controllerAs: 'ctrl'
                         },
+>>>>>>> THEIRS
                         'detailView': {
                         templateUrl: basePath + 'envios.detail.html',
                         controller: 'enviosDetailCtrl',
