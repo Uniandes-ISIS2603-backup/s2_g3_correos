@@ -4,10 +4,13 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <script src="toggle.js" type="text/javascript"></script>
+        <link rel="stylesheet" href="src/bootstrap-datetimepicker.min.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="bower_components/bootstrap/js/collapse.js"></script>
+        <script src="bower_components/bootstrap/js/transition.js"></script>
+        <script src="bower_components/momentjs/moment.js" type="text/javascript"></script> 
         <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
        <title> Correos</title>
 
@@ -15,7 +18,8 @@
         <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
         <script src="bower_components/angular/angular.js"></script>
         <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
-    
+        <script src="src/bootstrap-datetimepicker.min.js">
+        </Script>    
         <!-- Cities -->
         <script src="src/modules/cities/cities.mod.js" type="text/javascript"></script>
         <script src="src/modules/cities/cities.ctrl.js" type="text/javascript"></script>
@@ -53,7 +57,9 @@
         <!-- Transportes -->
         <script src="src/modules/transportes/transportes.mod.js" type="text/javascript"></script>
         <script src="src/modules/transportes/transportes.ctrl.js" type="text/javascript"></script>
-        
+        <script src="src/modules/transportes/create/transportes.create.ctrl.js" type="text/javascript"></script>
+        <script src="src/modules/transportes/update/transportes.update.ctrl.js" type="text/javascript"></script>
+        <script src="src/modules/transportes/delete/transportes.delete.ctrl.js" type="text/javascript"></script>
 
         <!-- Envios -->
         <script src="src/modules/envios/envios.mod.js" type="text/javascript"></script>
@@ -75,6 +81,7 @@
         <!-- reservas -->
         <script src="src/modules/reservas/reservas.mod.js" type="text/javascript"></script>
         <script src="src/modules/reservas/reservas.ctrl.js" type="text/javascript"></script>
+        <script src="src/modules/reservas/create/reservas.create.ctrl.js" type="text/javascript"></script>
         
          <!-- Clientes -->
         <script src="src/modules/clientes/clientes.mod.js" type="text/javascript"></script>

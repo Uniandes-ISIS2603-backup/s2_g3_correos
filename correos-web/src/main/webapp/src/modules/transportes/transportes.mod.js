@@ -51,6 +51,38 @@
                         controllerAs: 'ctrl'
                     }
                 }
+            }).state('transportesCreate', {
+                url: '/create',
+                parent: 'transportes',
+                views: {
+                    'listView': {
+                        templateUrl: basePath + 'create/transportes.create.html',
+                        controller: 'transportesCreateCtrl',
+                        controllerAs: 'ctrl'
+                    }
+                }
+            }).state('transportesUpdate', {
+                url: '/update',
+                parent: 'transportes',
+                params:{transporteId:null},
+                views: {
+                    'listView': {
+                        templateUrl: basePath + 'create/transportes.create.html',
+                        controller: 'transportesUpdateCtrl',
+                        controllerAs: 'ctrl'
+                    }
+                }
+            }).state('transportesDelete', {
+                url: '/delete',
+                parent: 'transportes',
+                params:{transporteId:null},
+                views: {
+                    'listView': {
+                        templateUrl: basePath + 'delete/transportes.delete.html',
+                        controller: 'transportesDeleteCtrl',
+                        controllerAs: 'ctrl'
+                    }
+                }
             });
         }]);
 })(window.angular);

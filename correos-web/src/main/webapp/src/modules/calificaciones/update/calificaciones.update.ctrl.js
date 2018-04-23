@@ -1,9 +1,9 @@
 (function(ng){
     
-    var mod=ng.module("zonasModule");
-    mod.constant("zonasContext","api/zonas");
-    
-    mod.controller('zonasUpdateCtrl',['$scope','$http','zonasContext','$state','$rootScope',
+    var mod = ng.module("calificacionesModule");
+    mod.constant("calificacionesContext", "calificaciones");
+    mod.constant("mensajerosContext", "api/mensajeros");
+    mod.controller('calificacionCtrl', ['$scope', '$http', 'mensajerosContext', '$state', 'calificacionesContext',
         /**
          * @ngdoc controller
          * @name zonas.controller:zonasUpdateCtrl
@@ -19,11 +19,11 @@
          * @param {Object} $state Dependencia injectada en la que se recibe el 
          * estado actual de la navegación definida en el módulo.
          */
-        function($scope, $http , zonasContext, $state, $rootScope)
+        function($scope, $http , mensajerosContext , $state, $rootScope, calificacionesContext)
         {
             $rootScope.edit=true;
             $scope.data={};
-            var idZona=$state.params.zonaId;
+            var idCalificacion=$state.params.calificacionId;
             /**
              * @ngdoc function
              * @name getZonaID
@@ -34,12 +34,12 @@
              * @param {String} URL Dirección donde se encuentra el recurso
              * del zona o API donde se puede consultar.
              */
-            $http.get(zonasContext+'/'+idZona).then(function(response)
+            $http.get(mensajerosContext +calificacionesContext+'/'+ idCalificacion).then(function(response)
             {
-                var zona=response.data;
-                $scope.data.id=idZona;
-                $scope.data.latitud=zona.latitud;
-                $scope.data.longitud=zona.longitud;
+                var calificacion=response.data;
+                $scope.data.id=idCalificacion;
+                $scope.data.latitud=calificacion.calificacion;
+                $scope.data.longitud=calificacion.comentario;
             });
             
             /**
@@ -52,17 +52,16 @@
              * @param {String} id El ID de la zona que se va a actualizar.
              * @param {Object} zona Objeto con la información nueva de la zona.
              */
-            $scope.updateZona=function()
+            $scope.updateCalificacion=function()
             {
                 console.log($scope.data.id);
-                $http.put(zonasContext+'/'+idZona,$scope.data).then(function(response)
+                $http.put(mensajerosContext  + $state.params.mensajeroId + calificacionesContext +'/'+idCalificacion,$scope.data).then(function(response)
                 {
-                    $state.go('zonasList',{zonaId:response.data.id},{reload:true});
+                    $state.go('calificacionesList',{calificacionId:response.data.id},{reload:true});
                 });
             };
         }
     ]);
     
 })(window.angular);
-
 

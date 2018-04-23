@@ -162,7 +162,7 @@ public class ClienteResource {
      
      
      @GET
-     public List<ClienteDTO> getCliente()
+     public List<ClienteDetailDTO> getCliente()
      {
          return listEntity2DTO(logic.getClientes());
      }
@@ -176,11 +176,11 @@ public class ClienteResource {
         logic.deleteCliente(id);
     }
     
-    public List<ClienteDTO>  listEntity2DTO(List<ClienteEntity> clientes)
+    public List<ClienteDetailDTO>  listEntity2DTO(List<ClienteEntity> clientes)
     {
-        List<ClienteDTO> retorno = new ArrayList<>();
+        List<ClienteDetailDTO> retorno = new ArrayList<>();
         for(ClienteEntity x: clientes)
-            retorno.add(new ClienteDTO(x));
+            retorno.add(new ClienteDetailDTO(x));
         return retorno;
     }
      

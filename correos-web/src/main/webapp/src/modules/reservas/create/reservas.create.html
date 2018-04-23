@@ -1,0 +1,28 @@
+<div class="container">
+    <div class="row">
+        <div class='col-sm-6'>
+            <div class="form-group">
+                <form name="reserva">
+                <div class='input-group date' id='datetimepicker3'>
+                    <input type="text" ng-model="hola" class="form-control"/>
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-time"></span>
+                    </span>
+                </div>
+                    </form>
+            </div>
+        </div>
+        <script type="text/javascript">
+            $(function () {
+                $('#datetimepicker3').datetimepicker({
+                    format: 'YYYY-MM-DD hh:mm:ss'
+                });
+                console.log($('#datetimepicker3').datetimepicker().update());
+    });
+        </script>
+        <div class="form-group col-sm-4">
+                            <input ng-click=createReserva() value="Save" class="btn btn-success"/>
+                            <a class="btn btn-info" ui-sref="reservasList">Cancel</a>
+                        </div>
+    </div>
+</div>
