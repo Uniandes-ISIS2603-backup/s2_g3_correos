@@ -73,9 +73,9 @@ public class EnvioLogic {
         else if (entity.getEstado()==null){
             throw new BusinessLogicException("No se reconoce un estado.");
         }
-        else if (entity.getPaquetes().isEmpty()){
-            throw new BusinessLogicException("No hay paquetes en el envio.");
-        }
+        //else if (entity.getPaquetes().isEmpty()){
+        //    throw new BusinessLogicException("No hay paquetes en el envio.");
+        //}
         else{
             persistence.create(entity);      
         }
@@ -138,9 +138,9 @@ public class EnvioLogic {
         if (entity.getEstado()==null){
             throw new BusinessLogicException("No se reconoce un estado.");
         }
-        if (entity.getPaquetes().isEmpty()){
-           throw new BusinessLogicException("No hay paquetes en el envio.");
-        }
+        //if (entity.getPaquetes().isEmpty()){
+        //   throw new BusinessLogicException("No hay paquetes en el envio.");
+        //}
         
         return persistence.update(entity);
     }

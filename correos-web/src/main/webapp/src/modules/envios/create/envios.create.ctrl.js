@@ -23,7 +23,7 @@
         function($scope,$http,enviosContext,$state,$rootScope)
         {
             $rootScope.edit=false;
-            $scope.currentRecord={};
+            $scope.data={};
             
             /**
              * @ngdoc function
@@ -35,7 +35,7 @@
              */
             $scope.createEnvio=function()
             {
-                $http.post(enviosContext,$scope.currentRecord).then(function(response)
+                $http.post(enviosContext,$scope.data).then(function(response)
                 {
                     $state.go('enviosList',{envioId:response.data.id}, {reload:true});
                 });
