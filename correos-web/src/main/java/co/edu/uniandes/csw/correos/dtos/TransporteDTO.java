@@ -57,7 +57,7 @@ public class TransporteDTO {
     
     private Long id;
     private String tipo;
-    private String capacidad;
+    private Double capacidad;
     private boolean activo;
     
     public TransporteDTO()
@@ -105,14 +105,14 @@ public class TransporteDTO {
     /**
      * @return la capacidad del transporte
      */
-    public String getCapacidad() {
+    public Double getCapacidad() {
         return capacidad;
     }
     
     /**
      * @param capacidad la nueva capacidad del transporte
      */
-    public void setCapacidad(String capacidad) {
+    public void setCapacidad(Double capacidad) {
         this.capacidad = capacidad;
     }
     

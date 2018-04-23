@@ -36,7 +36,7 @@ import uk.co.jemos.podam.common.PodamExclude;
 public class TransporteEntity extends BaseEntity implements Serializable {
     
     private String tipo;
-    private String capacidad;
+    private Double capacidad;
     private Boolean activo;
     
     @PodamExclude
@@ -76,14 +76,14 @@ public class TransporteEntity extends BaseEntity implements Serializable {
     /**
      * @return la capacidad del transporte
      */
-    public String getCapacidad() {
+    public Double getCapacidad() {
         return capacidad;
     }
     
     /**
      * @param capacidad la nueva capacidad del transporte
      */
-    public void setCapacidad(String capacidad) {
+    public void setCapacidad(Double capacidad) {
         this.capacidad = capacidad;
     }
     
