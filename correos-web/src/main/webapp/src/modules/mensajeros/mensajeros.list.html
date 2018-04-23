@@ -12,7 +12,7 @@
         <tbody>
             <tr ng-repeat="record in mensajerosRecords">
 
-                <td id="{{$index}}-nombre" > <a ui-sref="mensajeroDetail({mensajeroId: record.id})">{{record.nombre}}</a></td>
+                <td id="{{$index}}-nombre" ui-sref="mensajeroDetail({mensajeroId: record.id})" > {{record.nombre}}</td>
                 <td id="{{$index}}-celular">{{record.celular}}</td>
                 <td id="{{$index}}-celular">{{record.correo}}</td>
                 <td id="{{$index}}-calificacionPromedio">{{record.calificacionPromedio}}</td>
@@ -26,7 +26,7 @@
     </table>
     <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
         <div class="btn-group mr-2" role="group" aria-label="First group">
-            <a class="btn btn-info" ui-sref="mensajeroCreate"><span class="glyphicon glyphicon-plus-sign"></span> Contrate a otro socito :v</a>
+            <a class="btn btn-info" ui-sref="mensajeroCreate"><span class="glyphicon glyphicon-plus-sign"></span> Inscribete como mensajero! </a>
         </div>
     </div>
 </div>

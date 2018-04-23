@@ -9,7 +9,7 @@
  * cuales se accede al módulo. Por ejemplo, para mostrar las editoriales en la 
  * URL: 'localhost:8080/transportes/list' es necesario configurar el router por 
  * medio del stateProvider que informa a AngularJS de la relación entre la URL, 
- * un estado definido (estado de mostrar editoriales), el controlador y la vista 
+ * un estado definido (estado de mostrar transportes), el controlador y la vista 
  * correspondiente. Los estados definidos en este modulo son:
  * ```
  * | ESTADO          | URL                        | VISTAS                 |
@@ -48,6 +48,38 @@
                     'listView': {
                         templateUrl: basePath + 'transportes.list.html',
                         controller: 'transporteCtrl',
+                        controllerAs: 'ctrl'
+                    }
+                }
+            }).state('transportesCreate', {
+                url: '/create',
+                parent: 'transportes',
+                views: {
+                    'listView': {
+                        templateUrl: basePath + 'create/transportes.create.html',
+                        controller: 'transportesCreateCtrl',
+                        controllerAs: 'ctrl'
+                    }
+                }
+            }).state('transportesUpdate', {
+                url: '/update',
+                parent: 'transportes',
+                params:{transporteId:null},
+                views: {
+                    'listView': {
+                        templateUrl: basePath + 'create/transportes.create.html',
+                        controller: 'transportesUpdateCtrl',
+                        controllerAs: 'ctrl'
+                    }
+                }
+            }).state('transportesDelete', {
+                url: '/delete',
+                parent: 'transportes',
+                params:{transporteId:null},
+                views: {
+                    'listView': {
+                        templateUrl: basePath + 'delete/transportes.delete.html',
+                        controller: 'transportesDeleteCtrl',
                         controllerAs: 'ctrl'
                     }
                 }

@@ -25,15 +25,10 @@
  * | envioCreate     | /create                    | detailView: (/create)  |
  * |                 |                            | /envios.create.html    |
  * |                 |                            |                        |
-<<<<<<< OURS
  * | envioUpdate     | /update/{envioId:int}      | detailView: (/new)     |
-=======
- * |                 |                            |                        |
- * | enviooUpdate    | /update/{envioId:int}      | detailView: (/new)     |
->>>>>>> THEIRS
  * |                 |                            | /envios.new.html       |
  * |                 |                            |                        |
- * | enviooDelete    | /delete/{envioId:int}      | detailView: (/delete)  |
+ * | envioDelete     | /delete/{envioId:int}      | detailView: (/delete)  |
  * |                 |                            | /envios.delete.html    |
  * |                 |                            |                        |
  * |-----------------|----------------------------|------------------------|
@@ -43,6 +38,7 @@
     {
         var mod=ng.module("enviosModule",[]);
         mod.constant("enviosContext","api/envios");
+        mod.constant("paquetesContext", "paquetes");
         mod.config(['$stateProvider','$urlRouterProvider',function($stateProvider,$urlRouterProvider)
             {
                 var basePath='src/modules/envios/';
@@ -123,15 +119,7 @@
                         envioId: null
                     },
                     views: {
-<<<<<<< OURS
                        
-=======
-                        'listView': {
-                            templateUrl: basePath + 'envios.list.html',
-                            controller: 'enviosDetailCtrl',
-                            controllerAs: 'ctrl'
-                        },
->>>>>>> THEIRS
                         'detailView': {
                         templateUrl: basePath + 'envios.detail.html',
                         controller: 'enviosDetailCtrl',

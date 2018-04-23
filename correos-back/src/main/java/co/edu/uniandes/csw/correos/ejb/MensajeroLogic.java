@@ -145,4 +145,20 @@ public class MensajeroLogic {
         return retorno;        
     }
     
+    public void borrarTransporte(Long mensajero, Long transporte) throws BusinessLogicException
+    {
+        MensajeroEntity cambiar= getMensajero(mensajero);
+        List<TransporteEntity> trans=cambiar.getTransportes();
+        for(int i=0; i<trans.size(); i++)
+        {
+            if(trans.get(i).getId().equals(transporte))
+            {
+                trans.remove(i);
+                break;
+            }
+        }
+        cambiar.setTransportes(trans);
+        putMensajero(cambiar);
+    }
+    
 }

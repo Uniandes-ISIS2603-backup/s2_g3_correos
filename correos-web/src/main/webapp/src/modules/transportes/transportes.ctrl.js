@@ -24,9 +24,7 @@
          * donde se encuentra el API de Transportes en el Backend.
          */
         function ($scope, $http, mensajerosContext, $state, transportesContext) {
-            console.log($state.params.mensajeroId);
             $http.get(mensajerosContext + '/' + $state.params.mensajeroId + '/' + transportesContext).then(function (response) {
-                console.log(response.data);
                 $scope.transporteRecords = response.data;
             });
         }

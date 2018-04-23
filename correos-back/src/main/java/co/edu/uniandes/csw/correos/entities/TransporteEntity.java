@@ -25,6 +25,8 @@ package co.edu.uniandes.csw.correos.entities;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
@@ -34,8 +36,28 @@ import javax.persistence.Entity;
 public class TransporteEntity extends BaseEntity implements Serializable {
     
     private String tipo;
-    private String capacidad;
+    private Double capacidad;
     private Boolean activo;
+    
+    @PodamExclude
+    @ManyToOne
+    private MensajeroEntity mensajero;
+
+    public Boolean getActivo() {
+        return activo;
+    }
+
+    public void setActivo(Boolean activo) {
+        this.activo = activo;
+    }
+
+    public MensajeroEntity getMensajero() {
+        return mensajero;
+    }
+
+    public void setMensajero(MensajeroEntity mensajero) {
+        this.mensajero = mensajero;
+    }    
     
     /**
      * @return El tipo de transporte
@@ -54,14 +76,14 @@ public class TransporteEntity extends BaseEntity implements Serializable {
     /**
      * @return la capacidad del transporte
      */
-    public String getCapacidad() {
+    public Double getCapacidad() {
         return capacidad;
     }
     
     /**
      * @param capacidad la nueva capacidad del transporte
      */
-    public void setCapacidad(String capacidad) {
+    public void setCapacidad(Double capacidad) {
         this.capacidad = capacidad;
     }
     

@@ -60,7 +60,7 @@ import javax.ws.rs.WebApplicationException;
  * @author ed.diaz11
  * @version 1.0
  */
-@Path("calificaciones")
+@Path("mensajeros/{mensajeroId:\\d+}/calificaciones")
 @Produces("application/json")
 @Consumes("application/json")
 @RequestScoped
@@ -112,10 +112,10 @@ public class CalificacionResource {
      * @return JSONArray {@link CalidicacionDetailDTO} - Los comentarios encontrados en la aplicación. Si no hay ninguno retorna una lista vacía.
      */
     @GET
-    public List<CalificacionDTO> getCalificacions(@PathParam("mensajeroId") Long mensajeroId) {
-         if(logicMensajero.getMensajero(mensajeroId)==null)
-            throw new WebApplicationException("no existe el Mensajero con el id " + mensajeroId, 404);
-        return listEntityToDTO(logicMensajero.getMensajero(mensajeroId).getCalificaciones());
+    public List<CalificacionDTO> getCalificaciones(@PathParam("mensajeroId") Long mensajeroId) {
+        if(logicMensajero.getMensajero(mensajeroId)==null) 
+            throw new WebApplicationException("no existe el Mensajero con el id" + mensajeroId, 404);
+         return listEntityToDTO(logicMensajero.getMensajero(mensajeroId).getCalificaciones());
     }
 
     /**
@@ -136,9 +136,7 @@ public class CalificacionResource {
      */
     @GET
     @Path("{id: \\d+}")
-    public CalificacionDTO getCalificacion(@PathParam("mensajeroId") Long mensajeroId,@PathParam("id") Long id) {
-        if(logicMensajero.getMensajero(mensajeroId)==null)
-            throw new WebApplicationException("no existe el Mensajero con el id " + mensajeroId, 404);
+    public CalificacionDTO getCalificacion(@PathParam("id") Long id) {
         if(logica.getCalificacion(id)== null)
             throw new WebApplicationException("no existe la calidicacion con el id " + id, 404);
         return new CalificacionDTO(logica.getCalificacion(id));

@@ -5,7 +5,7 @@
             <tr>
                 <th>Estado</th>
                 <th>Hora Final</th>
-                <th>Hora Incial</th>
+                <th>Hora Incio</th>
                 <th>Direccion Recogida</th>
                 <th>Direccion Entrega</th>
             </tr>
@@ -13,14 +13,14 @@
         <tbody>
             <tr ng-repeat="record in enviosRecords">
 
-                <td id="{{$index}}-nombre" > <a ui-sref="envioDetail({envioId: record.id})">{{record.estado}}</a></td>
-                <td id="{{$index}}-celular">{{record.horaInicial}}</td>
-                <td id="{{$index}}-celular">{{record.horaFinal}}</td>
-                <td id="{{$index}}-calificacionPromedio">{{record.direccionRecogida}}</td>
-                <td id="{{$index}}-calificacionPromedio">{{record.direccionEntrega}}</td>
+                <td id="{{$index}}-estado" > <a ui-sref="envioDetail({envioId: record.id})">{{record.estado}}</a></td>
+                <td id="{{$index}}-horaInicio">{{record.horaInicio}}</td>
+                <td id="{{$index}}-horaFinal">{{record.horaFinal}}</td>
+                <td id="{{$index}}-direccionRecogida">{{record.direccionRecogida}}</td>
+                <td id="{{$index}}-direccionEntrega">{{record.direccionEntrega}}</td>
                 <td>
-                    <button id="{{$index}}-edit-btn" class="btn btn-default btn-sm" ><span class="glyphicon glyphicon-edit"></span> Edit</button>
-                    <button id="{{$index}}-delete-btn" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-minus"></span> Remove</button>
+                    <button id="{{$index}}-edit-btn" class="btn btn-default btn-sm" ><a ui-sref="envioUpdate({envioId: record.id})"><span class="glyphicon glyphicon-edit"></span>Editar</a></button>
+                    <button id="{{$index}}-delete-btn" class="btn btn-default btn-sm"><a ui-sref="envioDelete({envioId: record.id})"><span class="glyphicon glyphicon-minus"></span>Matar</a></button>
 
                 </td>
             </tr>
@@ -28,7 +28,7 @@
     </table>
     <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
         <div class="btn-group mr-2" role="group" aria-label="First group">
-            <a class="btn btn-info" ui-sref="envioCreate"><span class="glyphicon glyphicon-plus-sign"></span> el bamboleo de los envios LOL</a>
+            <a class="btn btn-info" ui-sref="envioCreate"><span class="glyphicon glyphicon-plus-sign"></span>Crear un nuevo Envio!</a>
         </div>
     </div>
 </div>

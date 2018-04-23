@@ -35,7 +35,7 @@ import co.edu.uniandes.csw.correos.entities.CalificacionEntity;
  */
 public class CalificacionDTO {
     private long id;
-    private int calificacion;
+    private Integer calificacion;
     private String comentario ;
     
     
@@ -92,8 +92,8 @@ public class CalificacionDTO {
     /**
      * @return la calificacion de las calificacion
      */
-    public double getCalificacion() {
-        return calificacion;
+    public int getCalificacion() {
+        return this.calificacion;
     }
     
     /**

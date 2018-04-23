@@ -37,11 +37,11 @@
             $http.get(enviosContext+'/'+idEnvio).then(function(response)
             {
                 var envio=response.data;
-                $scope.data.peso=envio.nombre;
-                $scope.data.tipo=envio.correo;
-                $scope.data.dimensionA=envio.dimensionA;
-                $scope.data.dimensionB=envio.dimensionB;
-                $scope.data.dimensionC=envio.dimensionC;
+                $scope.data.estado=envio.estado;
+                $scope.data.horaInicio=envio.horaInicio;
+                $scope.data.horaFinal=envio.horaFinal;
+                $scope.data.direccionEntrega=envio.direccionEntrega;
+                $scope.data.direccionRecogida=envio.direccionRecogida;
             });
             
             /**

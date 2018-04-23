@@ -1,0 +1,30 @@
+<alert class="alert alert-danger" ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert()">{{alert.msg}} </alert>
+<div class="container-fluid">    
+    <table class="table table-striped col-md-4">
+        <thead>
+            <tr>
+                <th>fecha</th>
+                <th>hora</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="record in reservasRecords">
+
+                <td id="{{$index}}-fecha" > <a ui-sref="reservasDetail({reservaId: record.id})">{{record.fecha}}</a></td>
+                <td id="{{$index}}-hora">{{record.hora}}</td>
+
+                <td>
+                    <button id="{{$index}}-edit-btn" class="btn btn-default btn-sm" ><a ui-sref="reservasUpdate({reservaId: record.id})"><span class="glyphicon glyphicon-edit"></span> Editar</a></button>
+                    <button id="{{$index}}-delete-btn" class="btn btn-default btn-sm"><a ui-sref="reservasDelete({reservaId: record.id})"><span class="glyphicon glyphicon-minus"></span> Remove</a></button>
+
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+        <div class="btn-group mr-2" role="group" aria-label="First group">
+            <a class="btn btn-info" ui-sref="reservasCreate"><span class="glyphicon glyphicon-plus-sign"></span> Reserva ya!</a>
+        </div>
+    </div>
+</div>

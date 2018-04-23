@@ -1,0 +1,28 @@
+<alert class="alert alert-danger" ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert()">{{alert.msg}} </alert>
+<div class="container-fluid">    
+    <table class="table table-striped col-md-4">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Latitud</th>
+                <th>Longitud</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="record in zonasRecords">
+
+                <td id="{{$index}}-nombre" > <a ui-sref="zonaDetail({zonaId: record.id})">{{record.id}}</a></td>
+                <td id="{{$index}}-celular">{{record.latitud}}</td>
+                <td id="{{$index}}-celular">{{record.longitud}}</td>
+                <td>
+                    <button id="{{$index}}-edit-btn" class="btn btn-default btn-sm" ><a ui-sref="zonaUpdate({zonaId: record.id})"><span class="glyphicon glyphicon-edit"></span> Editar</a></button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+        <div class="btn-group mr-2" role="group" aria-label="First group">
+            <a class="btn btn-info" ui-sref="zonaCreate"><span class="glyphicon glyphicon-plus-sign"></span>Crea una zona </a>
+        </div>
+    </div>
+</div>
