@@ -122,7 +122,11 @@ insert into ReservaEntity (id,fecha,hora,CLIENTE_ID) values(100010,'2020-10-20 1
 insert into PaqueteEntity(name,id,peso,tipo,dimensionA,dimensionB,dimensionC,envio_id) values ('Paquete_001',10001,40.2,'FRAGIL',40,57,62,10001);
 insert into PaqueteEntity(name,id,peso,tipo,dimensionA,dimensionB,dimensionC,envio_id) values ('Paquete_002',10002,8.0,'FRAGIL',21,11,7,10002);
 insert into PaqueteEntity(name,id,peso,tipo,dimensionA,dimensionB,dimensionC,envio_id) values ('Paquete_002',10003,29.6,'RIGIDO',104,3,82,10003);
-insert into PaqueteEntity(name,id,peso,tipo,dimensionA,dimensionB,dimensionC,envio_id) values ('Paquete_004',10004,103.1,'MALEABLE',1,27,44,10004);
+insert into PaqueteEntity(name,id,peso,tipo,dimensionA,dimensionB,dimensionC,envio_id) values ('Paquete_004',10004,1,'MALEABLE',1,27,44,10004);
+insert into PaqueteEntity(name,id,peso,tipo,dimensionA,dimensionB,dimensionC,envio_id) values ('Paquete_005',10005,2,'GARY',40,57,62,10002);
+insert into PaqueteEntity(name,id,peso,tipo,dimensionA,dimensionB,dimensionC,envio_id) values ('Paquete_006',10006,3,'BABYJESUSCRY',21,11,7,10002);
+insert into PaqueteEntity(name,id,peso,tipo,dimensionA,dimensionB,dimensionC,envio_id) values ('Paquete_007',10007,4,'LOL',104,3,82,10003);
+insert into PaqueteEntity(name,id,peso,tipo,dimensionA,dimensionB,dimensionC,envio_id) values ('Paquete_008',10008,5,'MALEABLE',1,27,44,10004);
 
 insert into BonoEntity(id,name, descripcion, descuento, condicion, fechaDeVencimiento,cliente_id) Values (10001,'Bono1','Bono del 50% en cualquier envio',0.5,'Sin redimir','2001-10-10 00:00:00',10001); 
 insert into BonoEntity(id,name, descripcion, descuento, condicion, fechaDeVencimiento,cliente_id) Values (10002,'Bono2','Bono del 60% en cualquier envio',0.6,'Redimido','2002-11-11 00:00:00',10002);

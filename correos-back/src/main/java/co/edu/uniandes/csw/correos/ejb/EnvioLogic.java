@@ -13,6 +13,7 @@ import co.edu.uniandes.csw.correos.entities.TransporteEntity;
 import co.edu.uniandes.csw.correos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.correos.persistence.EnvioPersistence;
 import co.edu.uniandes.csw.correos.persistence.MensajeroPersistence;
+import co.edu.uniandes.csw.correos.persistence.PaquetePersistence;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -29,6 +30,7 @@ public class EnvioLogic {
     private static final Logger LOGGER = Logger.getLogger(EnvioLogic.class.getName());
 
     private EnvioPersistence persistence;
+    private PaquetePersistence pPaquete;
     
 
     private MensajeroLogic mensajeroLogic;
@@ -178,10 +180,16 @@ public class EnvioLogic {
     public void agregarPaquete(Long id, PaqueteEntity paquete)
     {
        EnvioEntity envio= persistence.find(id);
+       System.out.println("lo encontre");
        List<PaqueteEntity> paquetes = envio.getPaquetes();
+       System.out.println("saque los paquetes");
        paquetes.add(paquete);
+       System.out.println("lo meti en los paquetes");
        envio.setPaquetes(paquetes);
+       System.out.println("lo setee en los paquetes");
        persistence.update(envio);
+       System.out.println(envio.getPaquetes().get(envio.getPaquetes().size()-1).getTipo()); 
+       pPaquete.update(paquete);
     }
     
     public void asignarMensajero(EnvioEntity envio)
