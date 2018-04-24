@@ -188,8 +188,8 @@ public class EnvioLogic {
        envio.setPaquetes(paquetes);
        System.out.println("lo setee en los paquetes");
        persistence.update(envio);
-       System.out.println(envio.getPaquetes().get(envio.getPaquetes().size()-1).getTipo()); 
-       pPaquete.update(paquete);
+       System.out.println(envio.getPaquetes().get(envio.getPaquetes().size()-1).getTipo());
+       System.out.println(persistence.find(id).getPaquetes().get(envio.getPaquetes().size()-1).getTipo());
     }
     
     public void asignarMensajero(EnvioEntity envio)
