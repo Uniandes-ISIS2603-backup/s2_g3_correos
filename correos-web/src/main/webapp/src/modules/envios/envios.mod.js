@@ -88,7 +88,7 @@
                                 envioId:null
                             },
                     views:
-                            {8/8
+                            {
                                 'detailView':
                                 {
                                     templateUrl:basePath+'/create/envios.create.html',
