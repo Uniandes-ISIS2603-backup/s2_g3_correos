@@ -2,14 +2,14 @@
  * @ngdoc overview
  * @name paquetes.module:paqueteModule
  * @description
- * Definición del módulo de Angular de Paquete. El módulo encapsula todos los 
+ * Definición del módulo de Angular de Editorial. El módulo encapsula todos los 
  * controladores y los templates HTML que estén relacionados con el paquete 
  * directamente. En la configuración del módulo se injecta la dependencia de 
  * ui.router que es la que se utiliza para la configuración de las URLs bajo las
  * cuales se accede al módulo. Por ejemplo, para mostrar las editoriales en la 
  * URL: 'localhost:8080/paquetes/list' es necesario configurar el router por 
  * medio del stateProvider que informa a AngularJS de la relación entre la URL, 
- * un estado definido (estado de mostrar editoriales), el controlador y la vista 
+ * un estado definido (estado de mostrar paquetes), el controlador y la vista 
  * correspondiente. Los estados definidos en este modulo son:
  * ```
  * | ESTADO          | URL                        | VISTAS                 |
@@ -51,8 +51,38 @@
                         controllerAs: 'ctrl'
                     }
                 }
+            }).state('paquetesCreate', {
+                url: '/create',
+                parent: 'paquetes',
+                views: {
+                    'listView': {
+                        templateUrl: basePath + 'create/paquetes.create.html',
+                        controller: 'paquetesCreateCtrl',
+                        controllerAs: 'ctrl'
+                    }
+                }
+            }).state('paquetesUpdate', {
+                url: '/update',
+                parent: 'paquetes',
+                params:{paqueteId:null},
+                views: {
+                    'listView': {
+                        templateUrl: basePath + 'create/paquetes.create.html',
+                        controller: 'paquetesUpdateCtrl',
+                        controllerAs: 'ctrl'
+                    }
+                }
+            }).state('paquetesDelete', {
+                url: '/delete',
+                parent: 'paquetes',
+                params:{paqueteId:null},
+                views: {
+                    'listView': {
+                        templateUrl: basePath + 'delete/paquetes.delete.html',
+                        controller: 'paquetesDeleteCtrl',
+                        controllerAs: 'ctrl'
+                    }
+                }
             });
         }]);
 })(window.angular);
-
-

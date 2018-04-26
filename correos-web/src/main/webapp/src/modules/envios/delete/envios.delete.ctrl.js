@@ -22,7 +22,7 @@
          * @param {Object} $rootScope Referencia injectada al Scope definida para
          * toda la aplicación.
          */
-        function($scope,$state,$http,enviosContext)
+        function($scope,$state,enviosContext,$http)
         {
             var idEnvio=$state.params.envioId;
             

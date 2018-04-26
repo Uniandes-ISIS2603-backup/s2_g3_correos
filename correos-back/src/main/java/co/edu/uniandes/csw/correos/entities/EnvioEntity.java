@@ -31,7 +31,7 @@ public class EnvioEntity extends BaseEntity implements Serializable{
    private String direccionRecogida; 
    
    @PodamExclude
-   @ManyToOne (fetch = FetchType.EAGER )
+   @ManyToOne (fetch = FetchType.LAZY)
    private MensajeroEntity mensajero;
    
    @PodamExclude
@@ -39,7 +39,7 @@ public class EnvioEntity extends BaseEntity implements Serializable{
    private ClienteEntity cliente;
    
    @PodamExclude
-   @OneToOne (fetch = FetchType.EAGER)
+   @OneToOne (fetch = FetchType.LAZY)
    private PagoEntity pago;
    
    @PodamExclude

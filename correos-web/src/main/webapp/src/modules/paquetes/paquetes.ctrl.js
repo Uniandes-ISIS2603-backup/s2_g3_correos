@@ -21,12 +21,10 @@
          * @param {Object} $state Dependencia injectada en la que se recibe el 
          * estado actual de la navegación definida en el módulo.
          * @param {Object} paqueteContext Constante injectada que contiene la ruta
-         * donde se encuentra el API de Transportes en el Backend.
+         * donde se encuentra el API de Paquetes en el Backend.
          */
         function ($scope, $http, enviosContext, $state, paquetesContext) {
-            console.log($state.params.envioId);
             $http.get(enviosContext + '/' + $state.params.envioId + '/' + paquetesContext).then(function (response) {
-                console.log(response.data);
                 $scope.paqueteRecords = response.data;
             });
         }

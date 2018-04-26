@@ -25,7 +25,6 @@
  * | envioCreate     | /create                    | detailView: (/create)  |
  * |                 |                            | /envios.create.html    |
  * |                 |                            |                        |
- * |                 |                            |                        |
  * | envioUpdate     | /update/{envioId:int}      | detailView: (/new)     |
  * |                 |                            | /envios.new.html       |
  * |                 |                            |                        |
@@ -33,13 +32,13 @@
  * |                 |                            | /envios.delete.html    |
  * |                 |                            |                        |
  * |-----------------|----------------------------|------------------------|
- * |-----------------|----------------------------|------------------------|
  *```
  */
 (function(ng)
     {
         var mod=ng.module("enviosModule",[]);
         mod.constant("enviosContext","api/envios");
+        mod.constant("paquetesContext", "paquetes");
         mod.config(['$stateProvider','$urlRouterProvider',function($stateProvider,$urlRouterProvider)
             {
                 var basePath='src/modules/envios/';
@@ -81,7 +80,7 @@
                                 }
                                 
                             }
-                            }).state('envioUpdate',{
+                }).state('envioUpdate',{
                     url:'update/{envioId}',
                     parent:'envios',
                     param:
@@ -117,9 +116,10 @@
                     url: '/{envioId:int}/detail',
                     parent: 'envios',
                     param: {
-                        enviosId: null
+                        envioId: null
                     },
                     views: {
+                       
                         'detailView': {
                         templateUrl: basePath + 'envios.detail.html',
                         controller: 'enviosDetailCtrl',

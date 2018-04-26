@@ -6,10 +6,12 @@
 
 package Logic;
 
+import co.edu.uniandes.csw.correos.ejb.EnvioLogic;
 import co.edu.uniandes.csw.correos.ejb.PaqueteLogic;
 import co.edu.uniandes.csw.correos.entities.EnvioEntity;
 import co.edu.uniandes.csw.correos.entities.PaqueteEntity;
 import co.edu.uniandes.csw.correos.exceptions.BusinessLogicException;
+import co.edu.uniandes.csw.correos.persistence.EnvioPersistence;
 import co.edu.uniandes.csw.correos.persistence.PaquetePersistence;
 import java.util.ArrayList;
 import java.util.List;
@@ -40,6 +42,9 @@ public class PaqueteLogicTest {
 
     @Inject
     private PaqueteLogic paqueteLogic;
+    
+    @Inject
+    private EnvioLogic envioLogic;
 
     @PersistenceContext
     private EntityManager em;
@@ -53,8 +58,11 @@ public class PaqueteLogicTest {
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
                 .addPackage(PaqueteEntity.class.getPackage())
-                .addPackage(PaqueteLogic.class.getPackage())
+                .addPackage(EnvioEntity.class.getPackage())
+                .addPackage(PaqueteLogic.class.getPackage())                
+                .addPackage(EnvioLogic.class.getPackage())
                 .addPackage(PaquetePersistence.class.getPackage())
+                .addPackage(EnvioPersistence.class.getPackage())
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
@@ -83,7 +91,8 @@ public class PaqueteLogicTest {
      * Limpia las tablas que están implicadas en la prueba.
      */
     private void clearData() {
-        em.createQuery("delete from PaqueteEntity").executeUpdate();     
+        em.createQuery("delete from PaqueteEntity").executeUpdate();  
+        em.createQuery("delete from EnvioEntity").executeUpdate(); 
     }
     
      /**
@@ -137,9 +146,9 @@ public class PaqueteLogicTest {
      * Prueba para consultar un Paquete.    
      */
     @Test
-    public void getPaqueteTest() {
+    public void getPaqueteTest() throws BusinessLogicException {
         PaqueteEntity entity = data.get(0);
-        PaqueteEntity resultEntity = paqueteLogic.getPaquete(entity.getId());
+        PaqueteEntity resultEntity = paqueteLogic.getPaqueteFull(entity.getId());
         Assert.assertNotNull(resultEntity);
         
         Assert.assertEquals(entity.getId(), resultEntity.getId());
