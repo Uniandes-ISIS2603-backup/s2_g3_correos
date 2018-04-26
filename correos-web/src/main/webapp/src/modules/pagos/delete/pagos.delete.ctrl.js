@@ -2,7 +2,7 @@
 {
     var mod=ng.module("pagosModule");
     mod.constant("pagosContext","/pagos");
-    mod.constant("cuentasBancariasContext","api/cuentasBancarias")
+    mod.constant("cuentasBancariasContext","api/cuentasBancarias");
     mod.controller("pagoDeleteCtrl",['$scope','$state','pagosContext','cuentasBancariasContext','$http',
     
         /**

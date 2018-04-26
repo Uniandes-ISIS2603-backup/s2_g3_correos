@@ -2,8 +2,8 @@
     
     var mod=ng.module("eventosModule");
     mod.constant("eventosContext","api/eventos");
-    
-    mod.controller('eventosUpdateCtrl',['$scope','$http','eventosContext','$state','$rootScope',
+    mod.constant("enviosContext","api/envios");
+    mod.controller('eventosUpdateCtrl',['$scope','$http','eventosContext', 'enviosContext','$state','$rootScope',
         /**
          * @ngdoc controller
          * @name eventos.controller:eventosUpdateCtrl
@@ -19,7 +19,7 @@
          * @param {Object} $state Dependencia injectada en la que se recibe el 
          * estado actual de la navegación definida en el módulo.
          */
-        function($scope, $http , eventosContext, $state, $rootScope)
+        function($scope, $http , eventosContext,enviosContext, $state, $rootScope)
         {
             $rootScope.edit=true;
             $scope.data={};
@@ -34,7 +34,7 @@
              * @param {String} URL Dirección donde se encuentra el recurso
              * del evento o API donde se puede consultar.
              */
-            $http.get(eventosContext+'/'+idEvento).then(function(response)
+            $http.get(enviosContext+'/'+$state.params.envioId+'/'+eventosContext+'/'+idEvento).then(function(response)
             {
                 var evento=response.data;
                 $scope.data.name=evento.name;
@@ -54,7 +54,7 @@
              */
             $scope.createEvento=function()
             {
-                $http.put(eventosContext+'/'+idEvento,$scope.data).then(function(response)
+                $http.put(enviosContext+'/'+$state.params.envioId+'/'+eventosContext+'/'+idEvento,$scope.data).then(function(response)
                 {
                     $state.go('eventosList',{eventoId:response.data.id},{reload:true});
                 });

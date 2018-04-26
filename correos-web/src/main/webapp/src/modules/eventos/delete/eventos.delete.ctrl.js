@@ -1,9 +1,9 @@
 (function(ng)
 {
     var mod=ng.module("eventosModule");
-    mod.constant("eventosContext","api/eventos");
-    
-    mod.controller("eventoDeleteCtrl",['$scope','$state','eventosContext','$http',
+    mod.constant("eventosContext","/eventos");
+    mod.constant("enviosContext","api/envios");
+    mod.controller("eventoDeleteCtrl",['$scope','$state','eventosContext','enviosContext','$http',
     
         /**
          * @ngdoc controller
@@ -22,7 +22,7 @@
          * @param {Object} $rootScope Referencia injectada al Scope definida para
          * toda la aplicación.
          */
-        function($scope,$state,eventosContext,$http)
+        function($scope,$state,eventosContext,enviosContext,$http)
         {
             var idEvento=$state.params.eventoId;
             
@@ -36,7 +36,7 @@
              */
             $scope.deleteEvento=function()
             {
-                $http.delete(eventosContext + '/' + idEvento, {}).then(function (response) {
+                $http.delete(enviosContext+'/'+$state.params.envioId+'/'+eventosContext + '/' + idEvento, {}).then(function (response) {
                     $state.go('eventosList', {eventoId: response.data.id}, {reload: true});
                 });
             };
