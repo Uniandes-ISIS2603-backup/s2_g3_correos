@@ -1,14 +1,12 @@
 (function (ng) {
-    var mod = ng.module("pagosModule");
-    
-    mod.constant("pagosContext", "/pagos");
-    mod.constant("cuentasBancariasContext","api/cuentasBancarias");
-    mod.controller('pagosDetailCtrl', ['$scope','$http','cuentasBancariasContext', 'pagosContext', '$state',
+    var mod = ng.module("eventosModule");
+    mod.constant("eventosContext", "api/eventos");
+    mod.controller('eventosDetailCtrl', ['$scope', '$http', 'eventosContext', '$state',
          /**
          * @ngdoc controller
-         * @name pagos.controller:pagosDetailCtrl
+         * @name eventos.controller:eventosDetailCtrl
          * @description
-         * Definición de un controlador auxiliar del módulo pagos. 
+         * Definición de un controlador auxiliar del módulo Eventos. 
          * Se crea el controlador con el cual se manejan las vistas de detalle
          * del módulo.
          * @param {Object} $scope Referencia injectada al Scope definida para este
@@ -21,23 +19,23 @@
          * @param {Object} $state Dependencia injectada en la que se recibe el 
          * estado actual de la navegación definida en el módulo.
          */
-        function($scope,$http, pagosContext,cuentasBancariasContext,$state)
+        function($scope,$http, eventosContext,$state)
         {
-            if($state.params.pagoId!==null&&$state.params.pagoId!==undefined)
+            if($state.params.eventoId!==null&&$state.params.eventoId!==undefined)
             {
                  /**
                 * @ngdoc function
-                * @name getPagoID
-                * @methodOf Pagos.controller:pagosDetailCtrl
+                * @name getEventoID
+                * @methodOf Eventos.controller:eventosDetailCtrl
                 * @description
                 * Esta función utiliza el protocolo HTTP para obtener el recurso 
-                * donde se encuentra la pago por ID en formato JSON.
+                * donde se encuentra el evento por ID en formato JSON.
                 * @param {String} URL Dirección donde se encuentra el recurso
-                * de la pago o API donde se puede consultar.
+                * del evento o API donde se puede consultar.
                 */
-                $http.get(cuentasBancariasContext+'/'+$state.params.cuentaBancariaId+'/'+pagosContext+"/"+$state.params.pagoId).then(function(response)
+                $http.get(eventosContext+"/"+$state.params.eventoId).then(function(response)
                 {
-                    $scope.pagoActual=response.data;
+                    $scope.eventoActual=response.data;
                 });
             }
         }
