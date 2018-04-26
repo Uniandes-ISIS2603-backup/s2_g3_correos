@@ -76,16 +76,16 @@ insert into MensajeroEntity(id,calificacionPromedio,celular,correo,name,nombre,o
 insert into MensajeroEntity(id,calificacionPromedio,celular,correo,name,nombre,ocupado,cuenta_id) values (10004,0.0,'3124456735','mensajero10004@correo.com', null,'Mensaero10004',0,10004);
 insert into MensajeroEntity(id,calificacionPromedio,celular,correo,name,nombre,ocupado,cuenta_id) values (10005,0.0,'3124456736','mensajero10005@correo.com', null,'Mensaero10005',0,10005);
 
-insert into TransporteEntity(id,activo,capacidad,name,tipo) values (10001,0,'6kg',null,'carro');
-insert into TransporteEntity(id,activo,capacidad,name,tipo) values (10002,0,'7kg',null,'moto');
-insert into TransporteEntity(id,activo,capacidad,name,tipo) values (10003,0,'8kg',null,'camion');
-insert into TransporteEntity(id,activo,capacidad,name,tipo) values (10004,0,'9kg',null,'carro');
-insert into TransporteEntity(id,activo,capacidad,name,tipo) values (10005,0,'10kg',null,'carro');
-insert into TransporteEntity(id,activo,capacidad,name,tipo) values (10006,0,'2kg',null,'cicla');
-insert into TransporteEntity(id,activo,capacidad,name,tipo) values (10007,0,'8kg',null,'camion');
-insert into TransporteEntity(id,activo,capacidad,name,tipo) values (10008,0,'9kg',null,'carro');
-insert into TransporteEntity(id,activo,capacidad,name,tipo) values (10009,0,'10kg',null,'carro');
-insert into TransporteEntity(id,activo,capacidad,name,tipo) values (100010,0,'2kg',null,'cicla');
+insert into TransporteEntity(id,activo,capacidad,name,tipo) values (10001,0,6,null,'carro');
+insert into TransporteEntity(id,activo,capacidad,name,tipo) values (10002,0,7,null,'moto');
+insert into TransporteEntity(id,activo,capacidad,name,tipo) values (10003,0,8,null,'camion');
+insert into TransporteEntity(id,activo,capacidad,name,tipo) values (10004,0,9,null,'carro');
+insert into TransporteEntity(id,activo,capacidad,name,tipo) values (10005,0,10,null,'carro');
+insert into TransporteEntity(id,activo,capacidad,name,tipo) values (10006,0,2,null,'cicla');
+insert into TransporteEntity(id,activo,capacidad,name,tipo) values (10007,0,8,null,'camion');
+insert into TransporteEntity(id,activo,capacidad,name,tipo) values (10008,0,9,null,'carro');
+insert into TransporteEntity(id,activo,capacidad,name,tipo) values (10009,0,10,null,'carro');
+insert into TransporteEntity(id,activo,capacidad,name,tipo) values (100010,0,2,null,'cicla');
 
 insert into mensajeroentity_transporteentity(mensajeroentity_id,transportes_id) values(10001,10001);
 insert into mensajeroentity_transporteentity(mensajeroentity_id,transportes_id) values(10001,10002);

@@ -1,0 +1,38 @@
+<div class="panel panel-default"> 
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-12">
+                <dl>
+                    <dt>Fecha </dt>
+                    <dd>{{reservaActual.fecha}}</dd>
+                    <hr>
+                    <dt> Hora</dt>
+                    <dd>{{reservaActual.hora}}</dd>
+                    <hr>
+             
+                   <dd><div class="panel-group" id="accordion">
+                    <div class="panel panel-default">
+                      <div class="panel-heading">
+                        <h4 class="panel-title">
+                          <a data-toggle="collapse" data-parent="#accordion" href="#collapse">Cliente</a>
+                        </h4>
+                      </div>
+                      <div id="collapse" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <dl>
+                                <dt> Nombre :</dt>
+                                <dd>{{reservaActual.cliente.nombre}}</dd>
+                                <hr>
+                                <dd><button type="button" class="btn btn-info">Ver más</button></dd>                                
+                            </dl>
+                        </div>
+                      </div>
+                    </div></dd>
+                </dl>
+            </div>
+        </div>
+     
+    </div>
+
+</div>
+<div><button type="button" class="btn btn-secondary" > <a ui-sref="reservasList">Volver</a></button></div>

@@ -51,6 +51,20 @@
                         controllerAs: 'ctrl'
                     }
                 }
+            }).state('reservasDetail', {
+                url: '/detail',
+                parent: 'reservas',
+                params:{reservaId:null},
+                views:
+                            {
+                                'detailView':
+                                {
+                                    controller:'reservasDetailCtrl',
+                                    controllerAs:'ctrl',
+                                    templateUrl:basePath+ 'reservas.detail.html'
+                                }
+                                
+                            }
             }).state('reservasCreate', {
                 url: '/create',
                 parent: 'reservas',
@@ -60,7 +74,35 @@
                                 {
                                     controller:'reservasCreateCtrl',
                                     controllerAs:'ctrl',
-                                    templateUrl:basePath+ '/create/reservas.create.html'
+                                    templateUrl:basePath+ 'create/reservas.create.html'
+                                }
+                                
+                            }
+            }).state('reservasUpdate', {
+                url: '/update',
+                parent: 'reservas',
+                params:{reservaId:null},
+                views:
+                            {
+                                'detailView':
+                                {
+                                    controller:'reservasUpdateCtrl',
+                                    controllerAs:'ctrl',
+                                    templateUrl:basePath+ 'create/reservas.create.html'
+                                }
+                                
+                            }
+            }).state('reservasDelete', {
+                url: '/delete',
+                parent: 'reservas',
+                params:{reservaId:null},
+                views:
+                            {
+                                'detailView':
+                                {
+                                    controller:'reservaDeleteCtrl',
+                                    controllerAs:'ctrl',
+                                    templateUrl:basePath+ 'delete/reservas.delete.html'
                                 }
                                 
                             }
