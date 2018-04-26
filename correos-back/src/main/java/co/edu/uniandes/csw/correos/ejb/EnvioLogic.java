@@ -213,5 +213,20 @@ public class EnvioLogic {
         }
         persistence.update(envio);
     }
+    
+    public void borrarEvento(Long envio, Long evento) throws BusinessLogicException{
+        EnvioEntity cambiar = getEnvio(envio);
+        List<EventoEntity> trans = cambiar.getEventos();
+        for(int i=0; i<trans.size(); i++)
+        {
+            if(trans.get(i).getId().equals(evento))
+            {
+                trans.remove(i);
+                break;
+            }
+        }       
+        cambiar.setEventos(trans);
+        updateEnvio(cambiar);
+    }
 }
 

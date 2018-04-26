@@ -1,8 +1,9 @@
 (function(ng)
 {
    var mod=ng.module("pagosModule");
-   mod.constant("pagosContext","api/pagos");
-   mod.controller('pagosCtrl',['$scope', '$http', 'pagosContext', '$state',
+   mod.constant("pagosContext","pagos");
+   mod.constant("cuentasBancariasContext","api/cuentasBancarias");
+   mod.controller('pagoCtrl',['$scope', '$http', 'cuentasBancariasContext', '$state', 'pagosContext',
    
           /**
          * @ngdoc controller
@@ -22,24 +23,24 @@
          * @param {Object} $state Dependencia injectada en la que se recibe el 
          * estado actual de la navegación definida en el módulo.
          */
-        function($scope,$http, pagosContext,$state)
+        function($scope,$http, cuentasBancariasContext,$state, pagosContext)
         {
             /**
              * @ngdoc function
-             * @name getEventos
-             * @methodOf eventos.controller:eventosCtrl
+             * @name getPagos
+             * @methodOf pagos.controller:pagosCtrl
              * @description
              * Esta función utiliza el protocolo HTTP para obtener el recurso 
-             * donde se encuentran los eventos en formato JSON. El recurso
+             * donde se encuentran los pagos en formato JSON. El recurso
              * puede ser un archivo o un API Rest. La función se ejecuta
              * automáticamente cuando el controlador es accedido desde el
              * navegador.
              * @param {String} URL Dirección donde se encuentra el recurso
-             * de los eventos o API donde se puede consultar.
+             * de los pagos o API donde se puede consultar.
              */
-            $http.get(eventosContext).then(function(response)
+            $http.get(cuentasBancariasContext+'/'+$state.params.cuentaBancariaId+'/'+pagosContext).then(function(response)
             {
-                $scope.eventosRecords=response.data;
+                $scope.pagosRecords=response.data;
             });
         }
         
