@@ -70,6 +70,12 @@ insert into TarjetaCreditoEntity(id,name,numero,fechaDeVencimiento,securityCode,
 insert into TarjetaCreditoEntity(id,name,numero,fechaDeVencimiento,securityCode,cliente_id) values (10004,'TarjetaCredito4','4567456745674567','2020-11-10 00:00:00',123,10004);
 insert into TarjetaCreditoEntity(id,name,numero,fechaDeVencimiento,securityCode,cliente_id) values (10005,'TarjetaCredito5','5678567856785678','2020-10-10 00:00:00',123,10005);
 
+insert into clienteentity_tarjetacreditoentity(clienteentity_id,tarjetacreditoentity_id) values(10001,10001);
+insert into clienteentity_tarjetacreditoentity(clienteentity_id,tarjetacreditoentity_id) values(10002,10002);
+insert into clienteentity_tarjetacreditoentity(clienteentity_id,tarjetacreditoentity_id) values(10003,10003);
+insert into clienteentity_tarjetacreditoentity(clienteentity_id,tarjetacreditoentity_id) values(10004,10004);
+insert into clienteentity_tarjetacreditoentity(clienteentity_id,tarjetacreditoentity_id) values(10005,10005);
+
 insert into MensajeroEntity(id,calificacionPromedio,celular,correo,name,nombre,ocupado,cuenta_id) values (10001,0.0,'3124456739','mensajero10001@correo.com', null,'Mensaero10001',0,10001);
 insert into MensajeroEntity(id,calificacionPromedio,celular,correo,name,nombre,ocupado,cuenta_id) values (10002,0.0,'3124456733','mensajero10002@correo.com', null,'Mensaero10002',0,10002);
 insert into MensajeroEntity(id,calificacionPromedio,celular,correo,name,nombre,ocupado,cuenta_id) values (10003,0.0,'3124456734','mensajero10003@correo.com', null,'Mensaero10003',0,10003);

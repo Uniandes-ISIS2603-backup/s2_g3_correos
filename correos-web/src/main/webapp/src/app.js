@@ -15,6 +15,7 @@
         'enviosModule',
         'paquetesModule',        
         'clientesModule',
+        'tarjetasCreditoModule',
 
         'zonasModule',
         'clientesModule',

@@ -1,0 +1,43 @@
+<alert class="alert alert-danger" ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert()">{{alert.msg}} </alert>
+ <div class="container-fluid">
+    <div class="panel-group">
+        <div class="panel panel-primary">
+         
+               
+            <div class="panel-body">
+                <form  name="tarjetaCredito">
+                    
+                    <div class="form-group row">
+                        <div class="form-group col-md-12">
+                            <label for="fechaTarjetaCredito" class="col-sm-2">fecha :</label>
+                            <input id="fechaTarjetaCredito" required ng-model="data.tipo" class="col-sm-6"/>
+                    </div>
+                    
+                    <div class="form-group row">
+                        <div class="form-group col-md-12">
+                            <label for="numero" class="col-sm-2">Numero :</label>
+                            <input id="numeroTarjeta" required ng-model="data.capacidad" class="col-sm-6"/>
+                        </div>
+                    </div>                               
+                    
+                    <div class="form-group row">
+                        <div class="form-group col-sm-6" ng-if="!tarjetaCredito.$valid">
+
+                            <div class="alert alert-warning" >
+                                <strong>Error!</strong><p>Se requieren todos los campos!</p>
+                            </div> 
+                        </div> 
+                    </div> 
+                    <div class="form-group row">
+                        <div class="form-group col-sm-4">
+                            <input ng-click=createTarjetaCredito() ng-show="tarjetaCredito.$valid" value="Save" class="btn btn-success"/>
+                            <a class="btn btn-info" ui-sref="tarjetasCreditoList"> Cancel </a>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+
