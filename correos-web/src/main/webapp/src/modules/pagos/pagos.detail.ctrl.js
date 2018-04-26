@@ -1,7 +1,8 @@
+
+
 (function (ng) {
     var mod = ng.module("pagosModule");
-    
-    mod.constant("pagosContext", "/pagos");
+    mod.constant("pagosContext", "pagos");
     mod.constant("cuentasBancariasContext","api/cuentasBancarias");
     mod.controller('pagosDetailCtrl', ['$scope','$http','cuentasBancariasContext', 'pagosContext', '$state',
          /**
@@ -21,7 +22,7 @@
          * @param {Object} $state Dependencia injectada en la que se recibe el 
          * estado actual de la navegación definida en el módulo.
          */
-        function($scope,$http, pagosContext,cuentasBancariasContext,$state)
+        function($scope,$http, cuentasBancariasContext, pagosContext,$state)
         {
             if($state.params.pagoId!==null&&$state.params.pagoId!==undefined)
             {
