@@ -9,6 +9,7 @@ import co.edu.uniandes.csw.correos.entities.CuentaBancariaEntity;
 import co.edu.uniandes.csw.correos.entities.PagoEntity;
 import co.edu.uniandes.csw.correos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.correos.persistence.CuentaBancariaPersistence;
+import java.time.Clock;
 import java.util.List;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
@@ -45,8 +46,11 @@ public class CuentaBancariaLogic {
             throw new BusinessLogicException("Ya existe una cuenta bancaria con el nombre, por dios que esta pasando?");
         }
         if(entity.getNumero().length()<10){
-            throw new BusinessLogicException("Se necesitan 10 digitos caballero");
+            throw new BusinessLogicException("Se necesitan 10 digitos caballero"+ entity.getNumero()+"length"+entity.getNumero().length());
+        
         }
+                    System.out.println("llego");
+
         if(!entity.getNumero().matches("[0-9]+")){
             throw new BusinessLogicException("Numeros no letras");
         }
@@ -61,7 +65,7 @@ public class CuentaBancariaLogic {
         }
         }
         if(entity.getNumero().length()<10){
-            throw new BusinessLogicException("Se necesitan 10 digitos caballero");
+            throw new BusinessLogicException("Se necesitan 10 digitos caballero" + entity.getNumero()+"length"+entity.getNumero().length());
         }
         if(!entity.getNumero().matches("[0-9]+")){
             throw new BusinessLogicException("Numeros no letras");

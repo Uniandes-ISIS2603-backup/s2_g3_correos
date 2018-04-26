@@ -36,6 +36,7 @@
              */
             $http.get(enviosContext+'/'+$state.params.envioId+'/'+eventosContext+'/'+idEvento).then(function(response)
             {
+               
                 var evento=response.data;
                 $scope.data.name=evento.name;
                 $scope.data.ubicacion=evento.ubicacion;

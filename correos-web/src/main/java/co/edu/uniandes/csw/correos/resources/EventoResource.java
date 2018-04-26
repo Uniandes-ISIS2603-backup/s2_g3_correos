@@ -102,7 +102,10 @@ public EventoDTO createEvento(@PathParam("envioId") Long envioId, EventoDTO even
            throw new WebApplicationException("No existe el evento");
        }
        evento.setId(id);
-        return new EventoDTO(eventoLogic.updateEvento(evento.toEntity()));
+       EventoEntity evento2=evento.toEntity();
+       evento2.setEnvio(envioLogic.getEnvio(envioId));
+       eventoLogic.updateEvento(evento2);
+        return new EventoDTO(evento.toEntity());
     }
         /**
      * <h1>GET /api/eventos/{id} : Obtener eventos por id.</h1>
