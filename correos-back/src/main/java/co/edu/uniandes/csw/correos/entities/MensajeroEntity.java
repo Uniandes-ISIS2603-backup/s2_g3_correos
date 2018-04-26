@@ -47,7 +47,7 @@ public class MensajeroEntity extends BaseEntity implements Serializable {
     private boolean ocupado;
     
     @PodamExclude
-   @OneToOne(cascade= CascadeType.PERSIST,fetch = FetchType.EAGER)
+   @OneToOne(cascade= CascadeType.PERSIST, orphanRemoval = true, fetch = FetchType.EAGER)
     private CuentaBancariaEntity cuenta;
    
     @PodamExclude

@@ -1,7 +1,8 @@
 (function(ng)
     {
-        var mod=ng.module("pagosModule",[]);
-        mod.constant("pagosContext","api/pagos");
+        var mod=ng.module("pagosModule",['cuentasBancariasModule','ui.router']);
+   mod.constant("pagosContext","pagos");
+   mod.constant("cuentasBancariasContext","api/cuentasBancarias");
         mod.config(['$stateProvider','$urlRouterProvider',function($stateProvider,$urlRouterProvider)
             {
                 var basePath='src/modules/pagos/';
@@ -10,11 +11,10 @@
             $stateProvider.state('pagos', {
                url: '/pagos',
                abstract: true,
+                parent: 'cuentaBancariaDetail',
                 views: {
-                    'mainView': {
-                        templateUrl: basePath + 'pagos.html',
-                        controller: 'pagosCtrl',
-                        controllerAs: 'ctrl'
+                    childrenView: {
+                        templateUrl: basePath + 'pagos.html'
                     }
                 }
             }).state('pagosList',
@@ -31,6 +31,67 @@
                                 }
                             }
                     
+                }).state('pagoCreate',
+                {
+                    url:'/create',
+                    parent:'pagos',
+                    views:
+                            {
+                                'detailView':
+                                {
+                                    controller:'pagosCreateCtrl',
+                                    controllerAs:'ctrl',
+                                    templateUrl:basePath+ '/create/pagos.create.html'
+                                }
+                                
+                            }
+                }).state('pagoDetail',{
+                    url: '/{pagoId:int}/detail',
+                    parent: 'pagos',
+                    param: {
+                        pagoId: null
+                    },
+                    views: {
+                       
+                        'detailView': {
+                        templateUrl: basePath + 'pagos.detail.html',
+                        controller: 'pagosDetailCtrl',
+                        controllerAs: 'ctrl'
+                    }
+
+                }
+                }).state('pagoDelete',{
+                    url:'/delete/{pagoId:int}',
+                    parent:'pagos',
+                    param:
+                            {
+                                pagoId:null
+                            },
+                    views:
+                            {
+                              'detailView':
+                              {
+                                  templateUrl:basePath+'/delete/pagos.delete.html',
+                                  controller:'pagoDeleteCtrl',
+                                  controllerAs:'Ctrl'
+                              }  
+                            }
+                }).state('pagoUpdate',{
+                    url:'update/{pagoId}',
+                    parent:'pagos',
+                    param:
+                            {
+                                pagoId:null
+                            },
+                    views:
+                            {
+                                'detailView':
+                                {
+                                    templateUrl:basePath+'/create/pagos.create.html',
+                                    controller:'pagosUpdateCtrl',
+                                    controllerAs:'ctrl'
+                                }
+                            }
                 });
             }]);
     })(window.angular);
