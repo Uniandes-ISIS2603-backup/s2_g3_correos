@@ -7,6 +7,7 @@ package co.edu.uniandes.csw.correos.resources;
 
 import co.edu.uniandes.csw.correos.dtos.PagoDTO;
 import co.edu.uniandes.csw.correos.dtos.PagoDetailDTO;
+import co.edu.uniandes.csw.correos.ejb.CuentaBancariaLogic;
 import co.edu.uniandes.csw.correos.ejb.PagoLogic;
 import co.edu.uniandes.csw.correos.entities.PagoEntity;
 import co.edu.uniandes.csw.correos.exceptions.BusinessLogicException;
@@ -30,7 +31,7 @@ import javax.ws.rs.WebApplicationException;
  * @pago a.silvag
  */
 
-@Path("pagos")
+@Path("cuentasBancarias/{cuentaBancariaId:\\d+}/pagos")
 @Produces("application/json")
 @Consumes("application/json")
 @RequestScoped
@@ -57,8 +58,16 @@ public class PagoResource {
      */
     @Inject
     private PagoLogic pagoLogic;
+    
+    @Inject
+    private CuentaBancariaLogic logicCuentas;
+    
 @POST
-public PagoDetailDTO createPago(PagoDetailDTO pago)throws BusinessLogicException{
+public PagoDetailDTO createPago(@PathParam("cuentaBancariaId") Long cuentaBancariaId, PagoDetailDTO pago)throws BusinessLogicException{
+    if(logicCuentas.getCuentaBancaria(cuentaBancariaId)==null){
+        throw new WebApplicationException("No existe la cuenta bancaria");
+    }
+    logicCuentas.agregarPago(cuentaBancariaId, pago.toEntity());
     return new PagoDetailDTO(pagoLogic.createPago(pago.toEntity()));
 }
 /**
@@ -81,13 +90,17 @@ public PagoDetailDTO createPago(PagoDetailDTO pago)throws BusinessLogicException
      */
     @PUT
     @Path("{id: \\d+}")
-    public PagoDetailDTO updatePago(@PathParam("idCuentaBancaria")Long idCuentaBancaria, @PathParam("id") Long id , PagoDetailDTO pago) throws BusinessLogicException{
-        pago.setId(id);
-        PagoEntity entity = pagoLogic.getPago(id);
-        if(entity == null){
-            throw new WebApplicationException("El recurso /books/" + idCuentaBancaria + "/reviews/" + id + " no existe.", 404);
+    public PagoDetailDTO updatePago(@PathParam("cuentaBancariaId")Long idCuentaBancaria, @PathParam("id") Long id , PagoDetailDTO pago) throws BusinessLogicException{
+        
+        
+        if(logicCuentas.getCuentaBancaria(idCuentaBancaria)==null){
+            throw new WebApplicationException("No existe esa cuenta bancaria");
         }
-        return new PagoDetailDTO(pagoLogic.updatePago(entity));
+        if(pagoLogic.getPago(id) == null){
+            throw new WebApplicationException("El recurso /cuentasBancarias/" + idCuentaBancaria + "/reviews/" + id + " no existe.", 404);
+        }
+        pago.setId(id);
+        return new PagoDetailDTO(pagoLogic.updatePago(pago.toEntity()));
     }
     /**
      * <h1>GET /api/pagos/{id} : Obtener pagos por id.</h1>
@@ -107,12 +120,14 @@ public PagoDetailDTO createPago(PagoDetailDTO pago)throws BusinessLogicException
      */
     @GET
     @Path("{id: \\d+}")
-    public PagoDetailDTO getPago(@PathParam("id") Long id){
-         PagoEntity entity = pagoLogic.getPago(id);
-        if (entity == null) {
+    public PagoDetailDTO getPago(@PathParam("cuentaBancariaId") Long cuentaBancariaId, @PathParam("id") Long id){
+        if(logicCuentas.getCuentaBancaria(cuentaBancariaId)==null){
+            throw new WebApplicationException("No existe la cuenta bancaria");
+        }
+        if (pagoLogic.getPago(id) == null) {
             throw new WebApplicationException("El pago no existe", 404);
         }
-        return new PagoDetailDTO(entity);
+        return new PagoDetailDTO(pagoLogic.getPago(id));
     }
     /**
      * <h1>GET /api/pagos : Obtener todos los pagos.</h1>
@@ -133,8 +148,12 @@ public PagoDetailDTO createPago(PagoDetailDTO pago)throws BusinessLogicException
         return list;
     }
     @GET
-    public List<PagoDetailDTO> getPagos() throws BusinessLogicException{
-        return listEntity2DTO(pagoLogic.getPagos());
+    public List<PagoDetailDTO> getPagos(@PathParam("cuentaBancariaId") Long cuentaBancariaId) throws BusinessLogicException{
+       if(logicCuentas.getCuentaBancaria(cuentaBancariaId)==null){
+           throw new WebApplicationException("no existe la cuenta bancaria");
+       }
+        
+        return listEntity2DTO(logicCuentas.getCuentaBancaria(cuentaBancariaId).getPagos());
     }
     /**
      * <h1>DELETE /api/pagos/{id} : Borrar pago por id.</h1>
@@ -152,13 +171,16 @@ public PagoDetailDTO createPago(PagoDetailDTO pago)throws BusinessLogicException
      */
     @DELETE
     @Path("{id: \\d+}")
-    public void deletePago(@PathParam("id") Long id){
+    public void deletePago(@PathParam("cuentaBancariaId") Long cuentaBancariaId,@PathParam("id") Long id) throws BusinessLogicException{
         //en espera de implementacion
+        if(logicCuentas.getCuentaBancaria(cuentaBancariaId)==null){
+            throw new WebApplicationException("No existe la cuenta bancaria");
+        }
         PagoEntity entity = pagoLogic.getPago(id);
         if (entity == null) {
             throw new WebApplicationException("El pago no existe", 404);
         }
-        pagoLogic.deletePago(id);
+        logicCuentas.deletePago(cuentaBancariaId,id);
     }
 
 }
