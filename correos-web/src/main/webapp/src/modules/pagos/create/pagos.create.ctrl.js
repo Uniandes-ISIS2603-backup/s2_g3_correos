@@ -1,7 +1,8 @@
 (function(ng){
     var mod=ng.module("pagosModule");
     mod.constant("pagosContext","api/pagos");
-    mod.controller('pagosCreateCtrl',['$scope','$http','pagosContext','$state','$rootScope',
+    mod.constant("cuentasBancariasContext","api/cuentasBancarias");
+    mod.controller('pagosCreateCtrl',['$scope','$http','pagosContext','cuentasBancariasContext','$state','$rootScope',
          /**
          * @ngdoc controller
          * @name pagos.controller:pagosCreateCtrl
@@ -19,7 +20,7 @@
          * @param {Object} $rootScope Referencia injectada al Scope definida para
          * toda la aplicación.
          */
-        function($scope,$http,pagosContext,$state,$rootScope)
+        function($scope,$http,pagosContext,cuentasBancariasContext,$state,$rootScope)
         {
             $rootScope.edit=false;
             $scope.data={};
@@ -34,7 +35,7 @@
              */
             $scope.createPago=function()
             {
-                $http.post(pagosContext,$scope.data).then(function(response)
+                $http.post(cuentasBancariasContext+'/'+$state.params.cuentaBancariaId+'/'+pagosContext,$scope.data).then(function(response)
                 {
                     $state.go('pagosList',{pagoId:response.data.id}, {reload:true});
                 });

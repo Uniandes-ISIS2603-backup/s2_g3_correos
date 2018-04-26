@@ -2,8 +2,8 @@
     
     var mod=ng.module("pagosModule");
     mod.constant("pagosContext","api/pagos");
-    
-    mod.controller('pagosUpdateCtrl',['$scope','$http','pagosContext','$state','$rootScope',
+    mod.constant("cuentasBancariasContext","api/cuentasBancarias");
+    mod.controller('pagosUpdateCtrl',['$scope','$http','pagosContext','cuentasBancariasContext','$state','$rootScope',
         /**
          * @ngdoc controller
          * @name pagos.controller:pagosUpdateCtrl
@@ -19,7 +19,7 @@
          * @param {Object} $state Dependencia injectada en la que se recibe el 
          * estado actual de la navegación definida en el módulo.
          */
-        function($scope, $http , pagosContext, $state, $rootScope)
+        function($scope, $http , pagosContext,cuentasBancariasContext, $state, $rootScope)
         {
             $rootScope.edit=true;
             $scope.data={};
@@ -34,7 +34,7 @@
              * @param {String} URL Dirección donde se encuentra el recurso
              * del pago o API donde se puede consultar.
              */
-            $http.get(pagosContext+'/'+idPago).then(function(response)
+            $http.get(cuentasBancariasContext+'/'+$state.params.cuentaBancariaId+'/'+pagosContext+'/'+idPago).then(function(response)
             {
                 var pago=response.data;
                 $scope.data.name=pago.name;
@@ -54,7 +54,7 @@
              */
             $scope.createPago=function()
             {
-                $http.put(pagosContext+'/'+idPago,$scope.data).then(function(response)
+                $http.put(cuentasBancariasContext+'/'+$state.params.cuentaBancariaId+'/'+pagosContext+'/'+idPago,$scope.data).then(function(response)
                 {
                     $state.go('pagosList',{pagoId:response.data.id},{reload:true});
                 });
