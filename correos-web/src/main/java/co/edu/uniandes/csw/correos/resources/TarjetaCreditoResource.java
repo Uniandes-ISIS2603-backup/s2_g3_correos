@@ -23,20 +23,17 @@ SOFTWARE.
  */
 package co.edu.uniandes.csw.correos.resources;
 
-
 import co.edu.uniandes.csw.correos.dtos.TarjetaCreditoDTO;
-import co.edu.uniandes.csw.correos.dtos.TarjetaCreditoDetailDTO
-        ;
+import co.edu.uniandes.csw.correos.dtos.TarjetaCreditoDetailDTO;
+import co.edu.uniandes.csw.correos.ejb.ClienteLogic;
 import co.edu.uniandes.csw.correos.ejb.TarjetaCreditoLogic;
 import co.edu.uniandes.csw.correos.entities.TarjetaCreditoEntity;
 import co.edu.uniandes.csw.correos.exceptions.BusinessLogicException;
-import co.edu.uniandes.csw.correos.mappers.BusinessLogicExceptionMapper;
 import java.util.ArrayList;
 import java.util.List;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
-
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -47,11 +44,11 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.WebApplicationException;
 
 /**
- * <pre>Clase que implementa el recurso "tarjetaCredito".
+ * <pre>Clase que implementa el recurso "tarjetasCredito".
  * URL: /api/tarjetasCredito
  * </pre>
  * <i>Note que la aplicación (definida en {@link RestConfig}) define la ruta "/api" y
- * este recurso tiene la ruta "tarjetaCredito".</i>
+ * este recurso tiene la ruta "tarjetasCredito".</i>
  *
  * <h2>Anotaciones </h2>
  * <pre>
@@ -62,119 +59,148 @@ import javax.ws.rs.WebApplicationException;
  * @author da.leon  
  * @version 1.0
  */
-@Path("tarjetasCredito")
+@Path("clientes/{clienteId:\\d+}/tarjetasCredito")
 @Produces("application/json")
 @Consumes("application/json")
 @RequestScoped
 public class TarjetaCreditoResource {
-
-     @Inject
+    @Inject
     private TarjetaCreditoLogic logic;
     
+    @Inject
+    private ClienteLogic logicCliente;
     /**
-     * <h1>POST /api/tarjetasCredito : Crear una tarjeta de credito.</h1>
+     * <h1>POST /api/tarjetasCredito : Crear un tarjetaCredito.</h1>
      * 
-     * <pre>Cuerpo de petición: JSON {@link TarjetaCreditoDetailDTO}.
+     * <pre>Cuerpo de petición: JSON {@link TrasnporteDTO}.
      * 
-     * Crea un nueva nueva tarjeta con la informacion que se recibe en el cuerpo 
+     * Crea un nuevo tarjetaCredito con la informacion que se recibe en el cuerpo 
      * de la petición y se regresa un objeto identico con un id auto-generado 
      * por la base de datos.
      * 
      * Codigos de respuesta:
      * <code style="color: mediumseagreen; background-color: #eaffe0;">
-     * 200 OK Creó la nueva tarjeta .
+     * 200 OK Creó el nuevo tarjetaCredito .
      * </code>
      * <code style="color: #c7254e; background-color: #f9f2f4;">
-     * 412 Precodition Failed: Ya existe la tarjeta.
+     * 412 Precodition Failed: Ya existe el tarjetaCredito.
      * </code>
      * </pre>
-     * @param nuevo {@link TarjetaCreditoDetailDTO} - La tarjeta que se desea guardar.
-     * @return JSON {@link TarjetaCreditoDetailDTO}  - La tarjeta que se guardada con el atributo id autogenerado.
-     * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} - Error de lógica que se genera cuando ya existe la tarjeta credito.
+     * @param tarjetaCredito {@link TarjetaCreditoDTO} - El tarjetaCredito que se desea guardar.
+     * @return JSON {@link tarjetaCreditoDTO}  - El tarjetaCredito guardado con el atributo id autogenerado.
+     * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} - Error de lógica que se genera cuando ya existe el Trasnporte.
      */
-     @POST
-     public TarjetaCreditoDetailDTO createTarjeteaCredito(TarjetaCreditoDetailDTO nuevo) throws BusinessLogicException
-     {
-         return new TarjetaCreditoDetailDTO(logic.createTarjetaCredito(nuevo.toEntity()));
-     }
-     /**
-     * <h1>PUT /api/tarjetasCredito/{id} : Actualizar tarjeta con el id dado.</h1>
-     * <pre>Cuerpo de petición: JSON {@link TarjetaCreditoDetailDTO}.
+    @POST
+    public TarjetaCreditoDTO createTarjetaCredito(@PathParam("clienteId") Long clienteId, TarjetaCreditoDTO tarjetaCredito) throws BusinessLogicException
+    {
+        if(logicCliente.getCliente(clienteId)==null) 
+            throw new WebApplicationException("no existe el Cliente con el id" + clienteId, 404);
+        logicCliente.agregarTarjetaCredito(clienteId, tarjetaCredito.toEntity());
+   
+        return new TarjetaCreditoDTO(logic.createTarjetaCredito(tarjetaCredito.toEntity()));
+    }
+    
+    /**
+     * <h1>PUT /api/tarjetasCredito/{id} : Actualizar tarjetaCredito con el id dado.</h1>
+     * <pre>Cuerpo de petición: JSON {@link TarjetaCreditoDTO}.
      * 
-     * Actualiza la tarjeta con el id recibido en la URL con la informacion que se recibe en el cuerpo de la petición.
+     * Actualiza el tarjetaCredito con el id recibido en la URL con la informacion que se recibe en el cuerpo de la petición.
      * 
      * Codigos de respuesta:
      * <code style="color: mediumseagreen; background-color: #eaffe0;">
-     * 200 OK Actualiza la tarjeta con el id dado con la información enviada como parámetro. Retorna un objeto identico.</code> 
+     * 200 OK Actualiza el tarjetaCredito con el id dado con la información enviada como parámetro. Retorna un objeto identico.</code> 
      * <code style="color: #c7254e; background-color: #f9f2f4;">
-     * 404 Not Found. No existe una tarjeta con el id dado.
+     * 404 Not Found. No existe un tarjetaCredito con el id dado.
      * </code> 
      * </pre>
-     * @param id Identificador de la tarjeta que se desea actualizar.Este debe ser una cadena de dígitos.
-     * @param actualizar {@link TarjetaCreditoDetailDTO} La tarjeta que se desea guardar.
-     * @return JSON {@link TarjetaCreditoDetailDTO} - La tarjeta guardado.
-     * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} - Error de lógica que se genera al no poder actualizar la tarjeta porque ya existe.
+     * @param clienteId
+     * @param id Identificador del cliente que se desea actualizar.Este debe ser una cadena de dígitos.
+     * @param tarjetaCredito {@link TarjetaCreditoDTO} El TarjetaCredito que se desea guardar.
+     * @return JSON {@link TarjetaCreditoDTO} - El traansporte guardado.
      */
-     @PUT
-     @Path("{id: \\d+ }")
-     public TarjetaCreditoDetailDTO updateTarjeteCredito(@PathParam("id") Long id , TarjetaCreditoDetailDTO actualizar) throws BusinessLogicException
-     {
-         if(logic.getTarjetaCredito(id)==null) 
-            throw new WebApplicationException("La tarjeta con id" + id,404);
-        actualizar.setId(id);
-        return new TarjetaCreditoDetailDTO(logic.updateTarjetaCredito(actualizar.toEntity()));
-     }
-   /**
-  * <h1>GET /api/tarjetasCredito/{id} : Obtener tarjetas por id.</h1>
-  * 
-  * <pre>Busca la tarjeta con el id asociado recibido en la URL y la devuelve.
-  * 
-  * Codigos de respuesta:
-  * <code style="color: mediumseagreen; background-color: #eaffe0;">
-  * 200 OK Devuelve la tarjeta correspondiente al id.
-  * </code> 
-  * <code style="color: #c7254e; background-color: #f9f2f4;">
-  * 404 Not Found No existe una tarjeta con el id dado.
-  * </code> 
-  * </pre>
-  * @param id Identificador de la tarjeta que se esta buscando. Este debe ser una cadena de dígitos.
-  * @return JSON {@link TarjetaCreditoDetailDTO} - La tarjeta buscada
-  */
-     @GET
-     @Path("{id: \\d+ }")
-     public TarjetaCreditoDetailDTO getTarjeta(@PathParam("id") Long id)
-     {
-        if(logic.getTarjetaCredito(id)==null) 
-            throw new WebApplicationException("La tarjeta con id" + id,404);
-        return new TarjetaCreditoDetailDTO(logic.getTarjetaCredito(id));
-     }
-     /**
-     * <h1>GET /api/tarjetasCredito : Obtener todas las tarjetas.</h1>
+    @PUT
+    @Path("{id: \\d+}")
+    public TarjetaCreditoDTO updateTarjetaCredito(@PathParam("clienteId") Long clienteId, @PathParam("id") Long id , TarjetaCreditoDTO tarjetaCredito) throws BusinessLogicException
+    {
+        if(logicCliente.getCliente(clienteId)==null)
+            throw new WebApplicationException("no existe el Cliente con el id " + clienteId, 404);
+        if(logic.getTarjetaCredito(id)==null)
+            throw new WebApplicationException("no existe el TarjetaCredito con el id " + id, 404);
+        tarjetaCredito.setId(id);
+        return new TarjetaCreditoDTO(logic.updateTarjetaCredito(tarjetaCredito.toEntity()));
+    }
+    
+    /**
+     * <h1>GET /api/tarjetasCredito/{id} : Obtener tarjetaCredito por id.</h1>
      * 
-     * <pre>Busca y devuelve todas las tarjetas que existen en la aplicacion.
+     * <pre>Busca el tarjetaCredito con el id asociado recibido en la URL y lo devuelve.
      * 
      * Codigos de respuesta:
      * <code style="color: mediumseagreen; background-color: #eaffe0;">
-     * 200 OK Devuelve todas las tarjetas de la aplicacion.</code> 
+     * 200 OK Devuelve el tarjetaCredito correspondiente al id.
+     * </code> 
+     * <code style="color: #c7254e; background-color: #f9f2f4;">
+     * 404 Not Found No existe un tarjetaCredito con el id dado.
+     * </code> 
      * </pre>
-     * @return JSONArray {@link TarjetaCreditoDetailDTO} - Las tarjetas encontradas en la aplicación. Si no hay ninguna retorna una lista vacía.
+     * @param id Identificador del tarjetaCredito que se esta buscando. Este debe ser una cadena de dígitos.
+     * @return JSON {@link TarjetaCreditoDTO} - el tarjetaCredito buscado
      */
-     
-     
-     @GET
-     public List<TarjetaCreditoDTO> getTarjetaCredito()
-     {
-         return listEntity2DTO(logic.getTarjetasCredito());
-     }
-     
-     @DELETE
-     @Path("{id: \\d+ }")
-     public void deleteTarjetaCredito(@PathParam("id") Long id) throws BusinessLogicException
-     {
-         if(logic.getTarjetaCredito(id)==null) 
-            throw new WebApplicationException("El Mensajero con id" + id ,404);
-        logic.deleteTarjetaCredito(id);
+    @GET
+    @Path("{id: \\d+}")
+    public TarjetaCreditoDTO getTarjetaCredito(@PathParam("clienteId") Long clienteId,@PathParam("id") Long id)
+    {
+        if(logicCliente.getCliente(clienteId)==null)
+            throw new WebApplicationException("no existe el Cliente con el id " + clienteId, 404);
+        if(logic.getTarjetaCredito(id)==null)
+            throw new WebApplicationException("no existe el TarjetaCredito con el id " + id, 404);
+        return new TarjetaCreditoDTO(logic.getTarjetaCredito(id));
     }
+    
+    /**
+     * <h1>GET /api/tarjetasCredito : Obtener todos los tarjetasCredito.</h1>
+     * 
+     * <pre>Busca y devuelve todos los tarjetasCredito que existen en la aplicacion.
+     * 
+     * Codigos de respuesta:
+     * <code style="color: mediumseagreen; background-color: #eaffe0;">
+     * 200 OK Devuelve todos los tarjetasCredito de la aplicacion.</code> 
+     * </pre>
+     * @return JSONArray {@link TarjetaCreditoDTO} - Los tarjetasCredito encontrados en la aplicación. Si no hay ninguno retorna una lista vacía.
+     */
+    @GET
+    public List<TarjetaCreditoDTO> getTarjetasCredito(@PathParam("clienteId") Long clienteId)
+    {
+        if(logicCliente.getCliente(clienteId)==null)
+            throw new WebApplicationException("no existe el Cliente con el id " + clienteId, 404);
+        return listEntity2DTO(logicCliente.getCliente(clienteId).getTarjetasCredito());
+    }
+    
+    /**
+     * <h1>DELETE /api/tarjetasCredito/{id} : Borrar tarjetaCredito por id.</h1>
+     * 
+     * <pre>Borra el tarjetaCredito con el id asociado recibido en la URL.
+     * 
+     * Códigos de respuesta:<br>
+     * <code style="color: mediumseagreen; background-color: #eaffe0;">
+     * 200 OK Elimina el tarjetaCredito correspondiente al id dado.</code>
+     * <code style="color: #c7254e; background-color: #f9f2f4;">
+     * 404 Not Found. No existe un tarjetaCredito con el id dado.
+     * </code>
+     * </pre>
+     * @param id Identificador del tarjetaCredito que se desea borrar. Este debe ser una cadena de dígitos.
+     */
+    @DELETE
+    @Path("{id: \\d+}")
+    public void deleteTarjetaCredito(@PathParam("clienteId") Long clienteId,@PathParam("id") Long id) throws BusinessLogicException
+    {
+        if(logicCliente.getCliente(clienteId)==null)
+            throw new WebApplicationException("no existe el Cliente con el id " + clienteId, 404);
+        if(logic.getTarjetaCredito(id)==null)
+            throw new WebApplicationException("no existe el TarjetaCredito con el id " + id, 404);
+        logic.deleteTarjetaCredito( id);
+    }
+    
     
     public List<TarjetaCreditoDTO>  listEntity2DTO(List<TarjetaCreditoEntity> tarjetasCredito)
     {
@@ -183,5 +209,4 @@ public class TarjetaCreditoResource {
             retorno.add(new TarjetaCreditoDTO(x));
         return retorno;
     }
-     
 }
