@@ -9,6 +9,8 @@ import co.edu.uniandes.csw.correos.dtos.PagoDTO;
 import co.edu.uniandes.csw.correos.dtos.PagoDetailDTO;
 import co.edu.uniandes.csw.correos.ejb.CuentaBancariaLogic;
 import co.edu.uniandes.csw.correos.ejb.PagoLogic;
+import co.edu.uniandes.csw.correos.ejb.TarjetaCreditoLogic;
+import co.edu.uniandes.csw.correos.entities.CuentaBancariaEntity;
 import co.edu.uniandes.csw.correos.entities.PagoEntity;
 import co.edu.uniandes.csw.correos.exceptions.BusinessLogicException;
 import java.util.ArrayList;
@@ -62,13 +64,20 @@ public class PagoResource {
     @Inject
     private CuentaBancariaLogic logicCuentas;
     
+    @Inject
+    private TarjetaCreditoLogic logicTarjetas;
+    
 @POST
 public PagoDetailDTO createPago(@PathParam("cuentaBancariaId") Long cuentaBancariaId, PagoDetailDTO pago)throws BusinessLogicException{
+    
     if(logicCuentas.getCuentaBancaria(cuentaBancariaId)==null){
         throw new WebApplicationException("No existe la cuenta bancaria");
     }
-    logicCuentas.agregarPago(cuentaBancariaId, pago.toEntity());
-    return new PagoDetailDTO(pagoLogic.createPago(pago.toEntity()));
+    PagoEntity pe = pago.toEntity();
+    CuentaBancariaEntity cbe = logicCuentas.getCuentaBancaria(cuentaBancariaId);
+    pe.setCuentaBancaria(cbe);
+    cbe.getPagos().add(pe);
+    return new PagoDetailDTO(pagoLogic.createPago(pe));
 }
 /**
      * <h1>PUT /api/cities/{id} : Actualizar pago con el id dado.</h1>
@@ -99,8 +108,12 @@ public PagoDetailDTO createPago(@PathParam("cuentaBancariaId") Long cuentaBancar
         if(pagoLogic.getPago(id) == null){
             throw new WebApplicationException("El recurso /cuentasBancarias/" + idCuentaBancaria + "/reviews/" + id + " no existe.", 404);
         }
-        pago.setId(id);
-        return new PagoDetailDTO(pagoLogic.updatePago(pago.toEntity()));
+               pago.setId(id);
+       PagoEntity evento2=pago.toEntity();
+       evento2.setCuentaBancaria(logicCuentas.getCuentaBancaria(idCuentaBancaria));
+       pagoLogic.updatePago(evento2);
+        return new PagoDetailDTO(pago.toEntity());
+        
     }
     /**
      * <h1>GET /api/pagos/{id} : Obtener pagos por id.</h1>

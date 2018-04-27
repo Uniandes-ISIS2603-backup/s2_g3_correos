@@ -37,7 +37,6 @@
             {
                 console.log($scope.data);
                 $scope.data.fecha=new Date();
-                $scope.data.cuentaBancariaId=$state.params.cuentaBancariaId;
                 console.log($scope.data);
                 $http.post(cuentasBancariasContext+'/'+$state.params.cuentaBancariaId+'/'+pagosContext,$scope.data).then(function(response)
                 {
