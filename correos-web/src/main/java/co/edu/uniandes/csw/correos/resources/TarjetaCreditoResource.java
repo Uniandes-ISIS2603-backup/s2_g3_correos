@@ -96,8 +96,8 @@ public class TarjetaCreditoResource {
         if(logicCliente.getCliente(clienteId)==null) 
             throw new WebApplicationException("no existe el Cliente con el id" + clienteId, 404);
         logicCliente.agregarTarjetaCredito(clienteId, tarjetaCredito.toEntity());
-        return new TarjetaCreditoDetailDTO(logic.createTarjetaCredito(tarjetaCredito.toEntity()));
-        
+   
+        return new TarjetaCreditoDTO(logic.createTarjetaCredito(tarjetaCredito.toEntity()));
     }
     
     /**
@@ -120,14 +120,14 @@ public class TarjetaCreditoResource {
      */
     @PUT
     @Path("{id: \\d+}")
-    public TarjetaCreditoDTO updateTarjetaCredito(@PathParam("clienteId") Long clienteId, @PathParam("id") Long id , TarjetaCreditoDetailDTO tarjetaCredito) throws BusinessLogicException
+    public TarjetaCreditoDTO updateTarjetaCredito(@PathParam("clienteId") Long clienteId, @PathParam("id") Long id , TarjetaCreditoDTO tarjetaCredito) throws BusinessLogicException
     {
         if(logicCliente.getCliente(clienteId)==null)
             throw new WebApplicationException("no existe el Cliente con el id " + clienteId, 404);
         if(logic.getTarjetaCredito(id)==null)
             throw new WebApplicationException("no existe el TarjetaCredito con el id " + id, 404);
         tarjetaCredito.setId(id);
-        return new TarjetaCreditoDetailDTO(logic.updateTarjetaCredito(tarjetaCredito.toEntity()));
+        return new TarjetaCreditoDTO(logic.updateTarjetaCredito(tarjetaCredito.toEntity()));
     }
     
     /**

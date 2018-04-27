@@ -59,9 +59,9 @@ public class TarjetaCreditoLogic {
     public List<TarjetaCreditoEntity> getTarjetasCredito() {
         LOGGER.info("Inicia proceso de consultar todas las tarjetas");
         // Note que, por medio de la inyección de dependencias se llama al método "findAll()" que se encuentra en la persistencia.
-        List<TarjetaCreditoEntity> editorials = persistence.findAll();
+        List<TarjetaCreditoEntity> tarjetas = persistence.findAll();
         LOGGER.info("Termina proceso de consultar todas las tarjetas");
-        return editorials;
+        return tarjetas;
     }
 
     public TarjetaCreditoEntity getTarjetaCredito(Long id) {
