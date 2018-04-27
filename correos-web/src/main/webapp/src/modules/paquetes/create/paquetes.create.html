@@ -1,0 +1,63 @@
+<alert class="alert alert-danger" ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert()">{{alert.msg}} </alert>
+ <div class="container-fluid">
+    <div class="panel-group">
+        <div class="panel panel-primary">         
+               
+            <div class="panel-body">
+                <form  name="paquete">
+                    
+                    <div class="form-group row">
+                        <div class="form-group col-md-12">
+                            <label for="pesoPaquete" class="col-lg-2">Peso :</label>
+                            <input id="pesoPaquete" required ng-model="data.peso" class="col-sm-6"/>
+                    </div>
+                    
+                    <div class="form-group row">
+                        <div class="form-group col-md-12">
+                            <label for="dimensionAPaquete" class="col-lg-2">DimensionA :</label>
+                            <input id="dimensionAPaquete" required ng-model="data.dimensionA" class="col-sm-6"/>
+                        </div>
+                    </div> 
+                        
+                    <div class="form-group row">
+                        <div class="form-group col-md-12">
+                            <label for="dimensionBPaquete" class="col-lg-2">DimensionB :</label>
+                            <input id="dimensionBPaquete" required ng-model="data.dimensionB" class="col-sm-6"/>
+                        </div>
+                    </div>  
+                        
+                    <div class="form-group row">
+                        <div class="form-group col-md-12">
+                            <label for="dimensionCPaquete" class="col-lg-2">DimensionC :</label>
+                            <input id="dimensionCPaquete" required ng-model="data.dimensionC" class="col-sm-6"/>
+                        </div>
+                    </div> 
+                        
+                    <div class="form-group row">
+                        <div class="form-group col-md-12">
+                            <label for="tipoPaquete" class="col-lg-2">Tipo :</label>
+                            <input id="tipoPaquete" required ng-model="data.tipo" class="col-sm-6"/>
+                        </div>
+                    </div>  
+                    
+                    <div class="form-group row">
+                        <div class="form-group col-sm-6" ng-if="!paquete.$valid">
+
+                            <div class="alert alert-warning" >
+                                <strong>WTF!</strong><p>Where u at?!</p>
+                            </div> 
+                        </div> 
+                    </div> 
+                    <div class="form-group row">
+                        <div class="form-group col-sm-4">
+                            <input ng-click=createPaquete() ng-show="paquete.$valid" value="Save" class="btn btn-success"/>
+                            <a class="btn btn-info" ui-sref="paquetesList"> Cancel </a>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -7,8 +7,10 @@
 package co.edu.uniandes.csw.correos.ejb;
 
 import co.edu.uniandes.csw.correos.entities.DetallePaqueteEntity;
+import co.edu.uniandes.csw.correos.entities.EnvioEntity;
 import co.edu.uniandes.csw.correos.entities.PaqueteEntity;
 import co.edu.uniandes.csw.correos.exceptions.BusinessLogicException;
+import co.edu.uniandes.csw.correos.persistence.EnvioPersistence;
 import co.edu.uniandes.csw.correos.persistence.PaquetePersistence;
 import java.util.List;
 import java.util.logging.Level;
@@ -27,6 +29,8 @@ public class PaqueteLogic {
 
     @Inject
     private PaquetePersistence persistence;
+    @Inject
+    private EnvioPersistence pEnvio;
 
     /**
      * 
@@ -73,7 +77,28 @@ public class PaqueteLogic {
      * @param id el id del paquete buscado
      * @return  el paquete buscado
      */
-    public PaqueteEntity getPaquete(Long id) {
+    public PaqueteEntity getPaquete(Long id, Long envioId) throws BusinessLogicException {
+        EnvioEntity envio = pEnvio.find(envioId);
+        boolean found = false;
+        for (int i = 0 ;envio.getPaquetes().size()>i && !found;i++)
+        {
+            if(id.equals(envio.getPaquetes().get(i).getId()))
+            {
+                found = true;
+            }
+        }
+        if (found)
+        {
+        return persistence.find(id);
+        }
+        else
+        {
+           throw new BusinessLogicException("No se encuentra el paquete en el sistema."); 
+        }
+    }
+    
+    public PaqueteEntity getPaqueteFull(Long id)
+    {
         return persistence.find(id);
     }
     
