@@ -1,0 +1,44 @@
+ <alert class="alert alert-danger" ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert()">{{alert.msg}} </alert>
+ <div class="container-fluid">
+    <div class="panel-group">
+        <div class="panel panel-primary">
+         
+               
+            <div class="panel-body">
+                <form  name="pago">
+                    
+                    
+                    <div class="form-group row">
+                        <div class="form-group col-md-12">
+                            <label for="namePago" class="col-sm-2">Name :</label>
+                            <input type="text" id="namePago" required ng-model="data.name" class="col-sm-6"/>
+                        </div>
+                    </div>                               
+                    <div class="form-group row">
+                        <div class="form-group col-md-12">
+                            <label for="valorPago" class="col-sm-2">Valor :</label>
+                            <input pattern="number"  id="valorPago" required ng-model="data.valor" class="col-sm-6"/>
+                        </div>
+                    </div> 
+                   
+                    <div class="form-group row">
+                        <div class="form-group col-sm-6" ng-if="!pago.$valid">
+
+                            <div class="alert alert-warning" >
+                                <strong>Error!</strong><p>Se requieren todos los campos y un mensaje valido!</p>
+                            </div> 
+                        </div> 
+                    </div> 
+                    <div class="form-group row">
+                        <div class="form-group col-sm-4">
+                            <input ng-click=createPago() ng-show="pago.$valid" value="Save" class="btn btn-success"/>
+                            <a class="btn btn-info" ui-sref="pagosList">Cancel</a>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+

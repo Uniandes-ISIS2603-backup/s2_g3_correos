@@ -93,16 +93,16 @@ insert into MensajeroEntity(id,calificacionPromedio,celular,correo,name,nombre,o
 insert into MensajeroEntity(id,calificacionPromedio,celular,correo,name,nombre,ocupado,cuenta_id) values (10004,0.0,'3124456735','mensajero10004@correo.com', null,'Mensaero10004',0,10004);
 insert into MensajeroEntity(id,calificacionPromedio,celular,correo,name,nombre,ocupado,cuenta_id) values (10005,0.0,'3124456736','mensajero10005@correo.com', null,'Mensaero10005',0,10005);
 
-insert into TransporteEntity(id,activo,capacidad,name,tipo) values (10001,0,'6kg',null,'carro');
-insert into TransporteEntity(id,activo,capacidad,name,tipo) values (10002,0,'7kg',null,'moto');
-insert into TransporteEntity(id,activo,capacidad,name,tipo) values (10003,0,'8kg',null,'camion');
-insert into TransporteEntity(id,activo,capacidad,name,tipo) values (10004,0,'9kg',null,'carro');
-insert into TransporteEntity(id,activo,capacidad,name,tipo) values (10005,0,'10kg',null,'carro');
-insert into TransporteEntity(id,activo,capacidad,name,tipo) values (10006,0,'2kg',null,'cicla');
-insert into TransporteEntity(id,activo,capacidad,name,tipo) values (10007,0,'8kg',null,'camion');
-insert into TransporteEntity(id,activo,capacidad,name,tipo) values (10008,0,'9kg',null,'carro');
-insert into TransporteEntity(id,activo,capacidad,name,tipo) values (10009,0,'10kg',null,'carro');
-insert into TransporteEntity(id,activo,capacidad,name,tipo) values (100010,0,'2kg',null,'cicla');
+insert into TransporteEntity(id,activo,capacidad,name,tipo) values (10001,0,6,null,'carro');
+insert into TransporteEntity(id,activo,capacidad,name,tipo) values (10002,0,7,null,'moto');
+insert into TransporteEntity(id,activo,capacidad,name,tipo) values (10003,0,8,null,'camion');
+insert into TransporteEntity(id,activo,capacidad,name,tipo) values (10004,0,9,null,'carro');
+insert into TransporteEntity(id,activo,capacidad,name,tipo) values (10005,0,10,null,'carro');
+insert into TransporteEntity(id,activo,capacidad,name,tipo) values (10006,0,2,null,'cicla');
+insert into TransporteEntity(id,activo,capacidad,name,tipo) values (10007,0,8,null,'camion');
+insert into TransporteEntity(id,activo,capacidad,name,tipo) values (10008,0,9,null,'carro');
+insert into TransporteEntity(id,activo,capacidad,name,tipo) values (10009,0,10,null,'carro');
+insert into TransporteEntity(id,activo,capacidad,name,tipo) values (100010,0,2,null,'cicla');
 
 insert into mensajeroentity_transporteentity(mensajeroentity_id,transportes_id) values(10001,10001);
 insert into mensajeroentity_transporteentity(mensajeroentity_id,transportes_id) values(10001,10002);
@@ -139,7 +139,11 @@ insert into ReservaEntity (id,fecha,hora,CLIENTE_ID) values(100010,'2020-10-20 1
 insert into PaqueteEntity(name,id,peso,tipo,dimensionA,dimensionB,dimensionC,envio_id) values ('Paquete_001',10001,40.2,'FRAGIL',40,57,62,10001);
 insert into PaqueteEntity(name,id,peso,tipo,dimensionA,dimensionB,dimensionC,envio_id) values ('Paquete_002',10002,8.0,'FRAGIL',21,11,7,10002);
 insert into PaqueteEntity(name,id,peso,tipo,dimensionA,dimensionB,dimensionC,envio_id) values ('Paquete_002',10003,29.6,'RIGIDO',104,3,82,10003);
-insert into PaqueteEntity(name,id,peso,tipo,dimensionA,dimensionB,dimensionC,envio_id) values ('Paquete_004',10004,103.1,'MALEABLE',1,27,44,10004);
+insert into PaqueteEntity(name,id,peso,tipo,dimensionA,dimensionB,dimensionC,envio_id) values ('Paquete_004',10004,1,'MALEABLE',1,27,44,10004);
+insert into PaqueteEntity(name,id,peso,tipo,dimensionA,dimensionB,dimensionC,envio_id) values ('Paquete_005',10005,2,'GARY',40,57,62,10002);
+insert into PaqueteEntity(name,id,peso,tipo,dimensionA,dimensionB,dimensionC,envio_id) values ('Paquete_006',10006,3,'BABYJESUSCRY',21,11,7,10002);
+insert into PaqueteEntity(name,id,peso,tipo,dimensionA,dimensionB,dimensionC,envio_id) values ('Paquete_007',10007,4,'LOL',104,3,82,10003);
+insert into PaqueteEntity(name,id,peso,tipo,dimensionA,dimensionB,dimensionC,envio_id) values ('Paquete_008',10008,5,'MALEABLE',1,27,44,10004);
 
 insert into BonoEntity(id,name, descripcion, descuento, condicion, fechaDeVencimiento,cliente_id) Values (10001,'Bono1','Bono del 50% en cualquier envio',0.5,'Sin redimir','2001-10-10 00:00:00',10001); 
 insert into BonoEntity(id,name, descripcion, descuento, condicion, fechaDeVencimiento,cliente_id) Values (10002,'Bono2','Bono del 60% en cualquier envio',0.6,'Redimido','2002-11-11 00:00:00',10002);

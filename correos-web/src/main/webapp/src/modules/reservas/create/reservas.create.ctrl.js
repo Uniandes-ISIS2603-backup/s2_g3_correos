@@ -22,7 +22,7 @@
         function($scope,$http,reservasContext,$state,$rootScope)
         {
             $rootScope.edit=false;
-            $scope.hola="";
+            $scope.data={};
             
             /**
              * @ngdoc function
@@ -34,8 +34,6 @@
              */
             $scope.createReserva=function()
             {
-                console.log($scope.hola);
-                $scope.data = {"fecha":$scope.hola}
                 $http.post(reservasContext,$scope.data).then(function(response)
                 {
                     $state.go('reservasList',{reservaId:response.data.id}, {reload:true});

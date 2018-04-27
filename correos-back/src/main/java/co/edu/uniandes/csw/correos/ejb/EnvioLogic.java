@@ -12,7 +12,9 @@ import co.edu.uniandes.csw.correos.entities.PaqueteEntity;
 import co.edu.uniandes.csw.correos.entities.TransporteEntity;
 import co.edu.uniandes.csw.correos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.correos.persistence.EnvioPersistence;
+import co.edu.uniandes.csw.correos.persistence.EventoPersistence;
 import co.edu.uniandes.csw.correos.persistence.MensajeroPersistence;
+import co.edu.uniandes.csw.correos.persistence.PaquetePersistence;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -29,7 +31,8 @@ public class EnvioLogic {
     private static final Logger LOGGER = Logger.getLogger(EnvioLogic.class.getName());
 
     private EnvioPersistence persistence;
-    
+
+    private PaquetePersistence pPaquete;
 
     private MensajeroLogic mensajeroLogic;
     
@@ -67,15 +70,15 @@ public class EnvioLogic {
         if (entity.getHoraInicio()>entity.getHoraFinal()){
             throw new BusinessLogicException("La Hora Final es anterior a la Hora Incial.");
         }
-        else if (entity.getCliente()==null){
-            throw new BusinessLogicException("No se reconoce un cliente.");
-        }
+        //else if (entity.getCliente()==null){
+        //    throw new BusinessLogicException("No se reconoce un cliente.");
+        //}
         else if (entity.getEstado()==null){
             throw new BusinessLogicException("No se reconoce un estado.");
         }
-        else if (entity.getPaquetes().isEmpty()){
-            throw new BusinessLogicException("No hay paquetes en el envio.");
-        }
+        //else if (entity.getPaquetes().isEmpty()){
+        //    throw new BusinessLogicException("No hay paquetes en el envio.");
+        //}
         else{
             persistence.create(entity);      
         }
@@ -132,15 +135,15 @@ public class EnvioLogic {
         if (entity.getHoraInicio()>entity.getHoraFinal()){
             throw new BusinessLogicException("La Hora Final es anterior a la Hora Incial.");
         }
-        if (entity.getCliente()==null){
-           throw new BusinessLogicException("No se reconoce un cliente.");
-        }
+        //if (entity.getCliente()==null){
+        //   throw new BusinessLogicException("No se reconoce un cliente.");
+        //}
         if (entity.getEstado()==null){
             throw new BusinessLogicException("No se reconoce un estado.");
         }
-        if (entity.getPaquetes().isEmpty()){
-           throw new BusinessLogicException("No hay paquetes en el envio.");
-        }
+        //if (entity.getPaquetes().isEmpty()){
+        //   throw new BusinessLogicException("No hay paquetes en el envio.");
+        //}
         
         return persistence.update(entity);
     }
@@ -164,9 +167,11 @@ public class EnvioLogic {
     public void agregarEvento(Long id, EventoEntity evento)
     {
        EnvioEntity envio= persistence.find(id);
+       evento.setEnvio(envio);
        List<EventoEntity> eventos = envio.getEventos();
        eventos.add(evento);
        envio.setEventos(eventos);
+       
        persistence.update(envio);
     }
     
@@ -178,10 +183,16 @@ public class EnvioLogic {
     public void agregarPaquete(Long id, PaqueteEntity paquete)
     {
        EnvioEntity envio= persistence.find(id);
+       System.out.println("lo encontre");
        List<PaqueteEntity> paquetes = envio.getPaquetes();
+       System.out.println("saque los paquetes");
        paquetes.add(paquete);
+       System.out.println("lo meti en los paquetes");
        envio.setPaquetes(paquetes);
+       System.out.println("lo setee en los paquetes");
        persistence.update(envio);
+       System.out.println(envio.getPaquetes().get(envio.getPaquetes().size()-1).getTipo());
+       System.out.println(persistence.find(id).getPaquetes().get(envio.getPaquetes().size()-1).getTipo());
     }
     
     public void asignarMensajero(EnvioEntity envio)
@@ -204,6 +215,21 @@ public class EnvioLogic {
             }
         }
         persistence.update(envio);
+    }
+    
+    public void borrarEvento(Long envio, Long evento) throws BusinessLogicException{
+        EnvioEntity cambiar = getEnvio(envio);
+        List<EventoEntity> trans = cambiar.getEventos();
+        for(int i=0; i<trans.size(); i++)
+        {
+            if(trans.get(i).getId().equals(evento))
+            {
+                trans.remove(i);
+                break;
+            }
+        }       
+        cambiar.setEventos(trans);
+        updateEnvio(cambiar);
     }
 }
 

@@ -40,9 +40,14 @@ public CuentaBancariaDetailDTO(CuentaBancariaEntity entity){
 public CuentaBancariaEntity toEntity(){
     CuentaBancariaEntity entity = super.toEntity();
     List<PagoEntity> list = new ArrayList<>();
-    for(PagoDTO pago:pagos){
-        list.add(pago.toEntity());
+    //if(pagos!=null){
+    try{
+        for(PagoDTO pago:pagos){
+          list.add(pago.toEntity());
+        }
+    }catch(Exception e){
     }
+    //}
     entity.setPagos(list);
     return entity;
 }

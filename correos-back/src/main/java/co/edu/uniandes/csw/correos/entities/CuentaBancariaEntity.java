@@ -9,6 +9,7 @@ import co.edu.uniandes.csw.correos.podamstrategy.TenPlusNumericString;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -28,7 +29,7 @@ public class CuentaBancariaEntity extends BaseEntity implements Serializable{
     private String banco;
     private String tipoTarjeta;
     @PodamExclude
-    @OneToMany(mappedBy = "cuentaBancaria")
+    @OneToMany(mappedBy = "cuentaBancaria", cascade = CascadeType.PERSIST, orphanRemoval = true)
     private List<PagoEntity> pagos = new ArrayList<PagoEntity>();
     
     @PodamExclude

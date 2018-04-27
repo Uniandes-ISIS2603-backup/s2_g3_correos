@@ -11,12 +11,12 @@
         <tbody>
             <tr ng-repeat="record in reservasRecords">
 
-                <td id="{{$index}}-fecha" > <a ui-sref="reservaDetail({reservaId: record.id})">{{record.fecha}}</a></td>
+                <td id="{{$index}}-fecha" > <a ui-sref="reservasDetail({reservaId: record.id})">{{record.fecha}}</a></td>
                 <td id="{{$index}}-hora">{{record.hora}}</td>
 
                 <td>
-                    <button id="{{$index}}-edit-btn" class="btn btn-default btn-sm" ><a ui-sref="reservaUpdate({reservaId: record.id})"><span class="glyphicon glyphicon-edit"></span> Editar</a></button>
-                    <button id="{{$index}}-delete-btn" class="btn btn-default btn-sm"><a ui-sref="reservaDelete({reservaId: record.id})"><span class="glyphicon glyphicon-minus"></span> Remove</a></button>
+                    <button id="{{$index}}-edit-btn" class="btn btn-default btn-sm" ><a ui-sref="reservasUpdate({reservaId: record.id})"><span class="glyphicon glyphicon-edit"></span> Editar</a></button>
+                    <button id="{{$index}}-delete-btn" class="btn btn-default btn-sm"><a ui-sref="reservasDelete({reservaId: record.id})"><span class="glyphicon glyphicon-minus"></span> Remove</a></button>
 
                 </td>
             </tr>

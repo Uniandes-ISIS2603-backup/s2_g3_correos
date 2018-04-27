@@ -20,10 +20,10 @@
                     <div class="panel panel-default">
                       <div class="panel-heading">
                         <h4 class="panel-title">
-                          <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">Cuenta Bancaria</a>
+                          <a data-toggle="collapse" data-parent="#accordion" href="#collapse">Cuenta Bancaria</a>
                         </h4>
                       </div>
-                      <div id="collapse1" class="panel-collapse collapse">
+                      <div id="collapse" class="panel-collapse collapse">
                         <div class="panel-body">
                             <dl>
                                 <dt> Banco :</dt>
@@ -35,7 +35,7 @@
                                 <dt> Número :</dt>
                                 <dd>{{mensajeroActual.cuentaBancaria.numero}}</dd>
                                 <hr>
-                                <dd><button type="button" class="btn btn-info">Ver más</button></dd>                                
+                                <dd><button type="button" class="btn btn-info"><a ui-sref="cuentaBancariaDetail({cuentaBancariaId: mensajeroActual.cuentaBancaria.id})"> Ver más </a></button></dd>                                
                             </dl>
                         </div>
                       </div>

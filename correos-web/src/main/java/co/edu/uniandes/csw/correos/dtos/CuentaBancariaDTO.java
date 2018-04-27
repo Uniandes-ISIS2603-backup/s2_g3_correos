@@ -98,8 +98,8 @@ public String getBanco(){
 /**
  * @param numero el nuevo nombre del banco
  */
-public void setBanco(String numero){
-    this.numero = numero;
+public void setBanco(String banco){
+    this.banco = banco;
 }
 /**
  * @return el tipo de la tarjeta

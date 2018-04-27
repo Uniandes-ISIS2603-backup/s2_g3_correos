@@ -3,41 +3,73 @@
         <div class="row">
             <div class="col-md-12">
                 <dl>
-                    <dt class="bold">Estado</dt>
+                    <dt>Estado</dt>
                     <dd>{{envioActual.estado}}</dd>
                     <hr>
-                    <dt>Hora Final</dt>
-                    <dd>{{envioActual.horaFinal}}</dd>
+                    <dt>DireccionRecogida</dt>
+                    <dd>{{envioActual.direccionRecogida}}</dd>
                     <hr>
-                    <dt>Hora Inicio</dt>
-                    <dd>{{envioActual.horaInicio}}</dd>
-                    <hr>
-                    <dt>Direccion Entrega</dt>
+                    <dt>DireccionEntrega</dt>
                     <dd>{{envioActual.direccionEntrega}}</dd>
                     <hr>
-                    <dt>Direccion Recogida</dt>
-                    <dd>{{envioActual.direccionRecogida}}</dd>
+                    <dt>HoraInicio</dt>
+                    <dd>{{envioActual.horaInicio}}</dd>
+                    <hr>
+                    <dt>HoraFinal</dt>
+                    <dd>{{envioActual.horaFinal}}</dd>
                     <hr>
                    <dd><div class="panel-group" id="accordion">
                     <div class="panel panel-default">
                       <div class="panel-heading">
                         <h4 class="panel-title">
-                          <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">Cliente</a>
+                          <a data-toggle="collapse" data-parent="#accordion" href="#collapse">Cliente</a>
                         </h4>
                       </div>
-                      <div id="collapse1" class="panel-collapse collapse">
+                      <div id="collapse" class="panel-collapse collapse">
                         <div class="panel-body">
                             <dl>
                                 <dt> Nombre :</dt>
                                 <dd>{{envioActual.cliente.nombre}}</dd>
-                                <hr>                                
+                                <hr>                                                              
                             </dl>
                         </div>
                       </div>
                     </div></dd>
+                    
+                    <dd><div class="panel-group" id="accordion">
+                    <div class="panel panel-default">
+                      <div class="panel-heading">
+                        <h4 class="panel-title">
+                          <a data-toggle="collapse" data-parent="#accordion" href="#collapse">Mensajero</a>
+                        </h4>
+                      </div>
+                      <div id="collapse" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <dl>
+                                <dt> Nombre :</dt>
+                                <dd>{{envioActual.mensajero.nombre}}</dd>
+                                <hr>   
+                                <dt> Correo :</dt>
+                                <dd>{{envioActual.mensajero.correo}}</dd>
+                                <hr> 
+                                <dt> Celular :</dt>
+                                <dd>{{envioActual.mensajero.celular}}</dd>
+                                <hr> 
+                                <dt> CalificacionPromedio :</dt>
+                                <dd>{{envioActual.mensajero.calificacionPromedio}}</dd>
+                                <hr> 
+                            </dl>
+                        </div>
+                      </div>
+                    </div></dd>
+                    
                 </dl>
                 <ul class="nav nav-tabs">
                     <li role="presentation" class="active"> <a ui-sref="paquetesList({envioId: envioActual.id})">Paquetes</a></li>
+
+                    <li role="presentation" class="active"> <a ui-sref="bonosList({envioId: envioActual.id})">Bonos</a></li>
+
+                    <li role="presentation" class="active"> <a ui-sref="eventosList({envioId: envioActual.id})">Eventos</a></li>
                 </ul>
             </div>
         </div>
@@ -47,5 +79,8 @@
                 <div ui-view="childrenView"></div>
             </div>
         </div>
+     
     </div>
+
 </div>
+<div><button type="button" class="btn btn-secondary" > <a ui-sref="enviosList">Volver</a></button></div>
