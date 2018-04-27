@@ -24,6 +24,7 @@ SOFTWARE.
 package co.edu.uniandes.csw.correos.resources;
 
 import co.edu.uniandes.csw.correos.dtos.TarjetaCreditoDTO;
+import co.edu.uniandes.csw.correos.dtos.TarjetaCreditoDetailDTO;
 import co.edu.uniandes.csw.correos.ejb.ClienteLogic;
 import co.edu.uniandes.csw.correos.ejb.TarjetaCreditoLogic;
 import co.edu.uniandes.csw.correos.entities.TarjetaCreditoEntity;
@@ -85,7 +86,7 @@ public class TarjetaCreditoResource {
      * 412 Precodition Failed: Ya existe el tarjetaCredito.
      * </code>
      * </pre>
-     * @param trasnporte {@link TrasporteDTO} - El tarjetaCredito que se desea guardar.
+     * @param tarjetaCredito {@link TarjetaCreditoDTO} - El tarjetaCredito que se desea guardar.
      * @return JSON {@link tarjetaCreditoDTO}  - El tarjetaCredito guardado con el atributo id autogenerado.
      * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} - Error de lógica que se genera cuando ya existe el Trasnporte.
      */
@@ -95,7 +96,7 @@ public class TarjetaCreditoResource {
         if(logicCliente.getCliente(clienteId)==null) 
             throw new WebApplicationException("no existe el Cliente con el id" + clienteId, 404);
         logicCliente.agregarTarjetaCredito(clienteId, tarjetaCredito.toEntity());
-        return new TarjetaCreditoDTO(logic.createTarjetaCredito(tarjetaCredito.toEntity()));
+        return new TarjetaCreditoDetailDTO(logic.createTarjetaCredito(tarjetaCredito.toEntity()));
         
     }
     
@@ -112,20 +113,21 @@ public class TarjetaCreditoResource {
      * 404 Not Found. No existe un tarjetaCredito con el id dado.
      * </code> 
      * </pre>
+     * @param clienteId
      * @param id Identificador del cliente que se desea actualizar.Este debe ser una cadena de dígitos.
      * @param tarjetaCredito {@link TarjetaCreditoDTO} El TarjetaCredito que se desea guardar.
      * @return JSON {@link TarjetaCreditoDTO} - El traansporte guardado.
      */
     @PUT
     @Path("{id: \\d+}")
-    public TarjetaCreditoDTO updateTarjetaCredito(@PathParam("clienteId") Long clienteId, @PathParam("id") Long id , TarjetaCreditoDTO tarjetaCredito) throws BusinessLogicException
+    public TarjetaCreditoDTO updateTarjetaCredito(@PathParam("clienteId") Long clienteId, @PathParam("id") Long id , TarjetaCreditoDetailDTO tarjetaCredito) throws BusinessLogicException
     {
         if(logicCliente.getCliente(clienteId)==null)
             throw new WebApplicationException("no existe el Cliente con el id " + clienteId, 404);
         if(logic.getTarjetaCredito(id)==null)
             throw new WebApplicationException("no existe el TarjetaCredito con el id " + id, 404);
         tarjetaCredito.setId(id);
-        return new TarjetaCreditoDTO(logic.updateTarjetaCredito(tarjetaCredito.toEntity()));
+        return new TarjetaCreditoDetailDTO(logic.updateTarjetaCredito(tarjetaCredito.toEntity()));
     }
     
     /**
@@ -196,7 +198,7 @@ public class TarjetaCreditoResource {
             throw new WebApplicationException("no existe el Cliente con el id " + clienteId, 404);
         if(logic.getTarjetaCredito(id)==null)
             throw new WebApplicationException("no existe el TarjetaCredito con el id " + id, 404);
-        logicCliente.borrarTarjetaCredito(clienteId, id);
+        logic.deleteTarjetaCredito( id);
     }
     
     
