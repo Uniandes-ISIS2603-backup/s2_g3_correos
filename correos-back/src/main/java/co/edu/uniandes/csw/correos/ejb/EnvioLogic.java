@@ -12,6 +12,7 @@ import co.edu.uniandes.csw.correos.entities.PaqueteEntity;
 import co.edu.uniandes.csw.correos.entities.TransporteEntity;
 import co.edu.uniandes.csw.correos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.correos.persistence.EnvioPersistence;
+import co.edu.uniandes.csw.correos.persistence.EventoPersistence;
 import co.edu.uniandes.csw.correos.persistence.MensajeroPersistence;
 import co.edu.uniandes.csw.correos.persistence.PaquetePersistence;
 import java.util.List;
@@ -30,8 +31,8 @@ public class EnvioLogic {
     private static final Logger LOGGER = Logger.getLogger(EnvioLogic.class.getName());
 
     private EnvioPersistence persistence;
+
     private PaquetePersistence pPaquete;
-    
 
     private MensajeroLogic mensajeroLogic;
     
@@ -166,9 +167,11 @@ public class EnvioLogic {
     public void agregarEvento(Long id, EventoEntity evento)
     {
        EnvioEntity envio= persistence.find(id);
+       evento.setEnvio(envio);
        List<EventoEntity> eventos = envio.getEventos();
        eventos.add(evento);
        envio.setEventos(eventos);
+       
        persistence.update(envio);
     }
     

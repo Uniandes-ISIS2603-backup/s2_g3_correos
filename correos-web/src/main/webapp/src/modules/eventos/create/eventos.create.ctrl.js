@@ -1,6 +1,6 @@
 (function(ng){
     var mod=ng.module("eventosModule");
-    mod.constant("eventosContext","api/eventos");
+    mod.constant("eventosContext","eventos");
     mod.constant("enviosContext","api/envios");
     mod.controller('eventosCreateCtrl',['$scope','$http','eventosContext','enviosContext','$state','$rootScope',
          /**
