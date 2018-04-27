@@ -7,8 +7,10 @@ package co.edu.uniandes.csw.correos.ejb;
 
 import co.edu.uniandes.csw.correos.entities.CuentaBancariaEntity;
 import co.edu.uniandes.csw.correos.entities.PagoEntity;
+import co.edu.uniandes.csw.correos.entities.TarjetaCreditoEntity;
 import co.edu.uniandes.csw.correos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.correos.persistence.PagoPersistence;
+import co.edu.uniandes.csw.correos.persistence.TarjetaCreditoPersistence;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -25,6 +27,9 @@ public class PagoLogic {
 
     @Inject
     private PagoPersistence persistence;
+    
+    @Inject
+    private TarjetaCreditoPersistence tcPersistence;
 
     /**
      * Obtiene la lista de los registros de Pago.
@@ -55,7 +60,10 @@ public class PagoLogic {
      */
     public PagoEntity createPago(PagoEntity entity) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "Inicia proceso de crear un pago ");
-        
+        Long idTarjetaDeCredito = entity.getTarjetaCredito().getId();
+        TarjetaCreditoEntity tcEntiy = tcPersistence.find(idTarjetaDeCredito);
+        entity.setTarjetaCredito(tcEntiy);
+        tcEntiy.getPagos().add(entity);
         if(entity.getValor()<0.0){
             throw new BusinessLogicException("UUUUUY que paso aca, no les vamos a regalar plata. No se puede tener un valor menor a cero");
         }
