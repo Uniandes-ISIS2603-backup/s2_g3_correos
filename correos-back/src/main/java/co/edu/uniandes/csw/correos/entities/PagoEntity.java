@@ -96,4 +96,7 @@ public class PagoEntity extends BaseEntity implements Serializable{
     public void setCuentaBancaria(CuentaBancariaEntity cuentaBancaria) {
         this.cuentaBancaria = cuentaBancaria;
     }
+    
+   
+            
 }
