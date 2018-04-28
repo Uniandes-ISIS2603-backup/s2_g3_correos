@@ -15,7 +15,7 @@
  * | ESTADO          | URL                        | VISTAS                 |
  * |-----------------|----------------------------|------------------------|
  * | bonos           | /bonos                     | mainView:              |
- * |                 |                            | paquetes.html          |
+ * |                 |                            | bonos.html             |
  * |                 |                            |                        |
  * | bonosList       | /list                      | listView:              |
  * |                 |                            | bonos.list.html        |
