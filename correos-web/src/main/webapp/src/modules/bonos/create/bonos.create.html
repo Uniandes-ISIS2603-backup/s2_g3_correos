@@ -1,0 +1,55 @@
+<alert class="alert alert-danger" ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert()">{{alert.msg}} </alert>
+ <div class="container-fluid">
+    <div class="panel-group">
+        <div class="panel panel-primary">         
+               
+            <div class="panel-body">
+                <form  name="bono">
+                    
+                    <div class="form-group row">
+                        <div class="form-group col-md-12">
+                            <label for="descripcionBono" class="col-lg-2">Descripción :</label>
+                            <input id="descripcionBono" required ng-model="data.descripcion" class="col-sm-6"/>
+                    </div>
+                    
+                    <div class="form-group row">
+                        <div class="form-group col-md-12">
+                            <label for="descuentoBono" class="col-lg-2">Descuento :</label>
+                            <input id="descuentoBono" required ng-model="data.descuento" class="col-sm-6"/>
+                        </div>
+                    </div> 
+                        
+                    <div class="form-group row">
+                        <div class="form-group col-md-12">
+                            <label for="condicionBono" class="col-lg-2">Condición :</label>
+                            <input id="condicionBono" required ng-model="data.condicion" class="col-sm-6"/>
+                        </div>
+                    </div>  
+                        
+                    <div class="form-group row">
+                        <div class="form-group col-md-12">
+                            <label for="fechaDeVencimientoBono" class="col-lg-2">Fecha de Vencimiento :</label>
+                            <input id="fechaDeVencimientoBono" required ng-model="data.fechaDeVencimiento" class="col-sm-6"/>
+                        </div>
+                    </div> 
+                        
+                    <div class="form-group row">
+                        <div class="form-group col-sm-6" ng-if="!bono.$valid">
+
+                            <div class="alert alert-warning" >
+                                <strong>WTF!</strong><p>Where u at?!</p>
+                            </div> 
+                        </div> 
+                    </div> 
+                    <div class="form-group row">
+                        <div class="form-group col-sm-4">
+                            <input ng-click=createBono() ng-show="bono.$valid" value="Save" class="btn btn-success"/>
+                            <a class="btn btn-info" ui-sref="bonosList"> Cancel </a>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>

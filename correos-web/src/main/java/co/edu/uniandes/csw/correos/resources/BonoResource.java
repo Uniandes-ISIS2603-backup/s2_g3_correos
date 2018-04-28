@@ -148,7 +148,7 @@ public class BonoResource
         if (entity == null) {
             throw new WebApplicationException("El recurso /bonos/" + id + " no existe.", 404);
         }
-        return new BonoDTO(entity);
+        return new BonoDTO(bonoLogic.getBono(id));
     }
     
     @GET

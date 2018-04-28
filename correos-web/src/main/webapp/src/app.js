@@ -20,7 +20,8 @@
 
         'zonasModule',
         'clientesModule',
-        'calificacionesModule'
+        'calificacionesModule',
+        'bonosModule'
 
 
 
