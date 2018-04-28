@@ -35,7 +35,7 @@
              * @param {String} URL Dirección donde se encuentra el recurso
              * del bono o API donde se puede consultar.
              */
-            $http.get(clientesContext+'/'+$state.params.envioId+'/'+clientesContext+'/'+idBono).then(function(response)
+            $http.get(clientesContext+'/'+$state.params.clienteId+'/'+bonosContext+'/'+idBono).then(function(response)
             {
                 var bono=response.data;
                 $scope.data.descripcion=bono.descripcion;
@@ -56,7 +56,7 @@
              */
             $scope.createBono=function()
             {
-                $http.put(clientesContext+'/'+$state.params.envioId+'/'+bonosContext+'/'+idBono,$scope.data).then(function(response)
+                $http.put(clientesContext+'/'+$state.params.clienteId+'/'+bonosContext+'/'+idBono,$scope.data).then(function(response)
                 {
                     $state.go('bonosList',{bonoId:$state.params.id},{reload:true});
                 });
