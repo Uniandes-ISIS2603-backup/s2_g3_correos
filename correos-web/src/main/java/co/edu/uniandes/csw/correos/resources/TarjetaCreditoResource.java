@@ -27,6 +27,7 @@ import co.edu.uniandes.csw.correos.dtos.TarjetaCreditoDTO;
 import co.edu.uniandes.csw.correos.dtos.TarjetaCreditoDetailDTO;
 import co.edu.uniandes.csw.correos.ejb.ClienteLogic;
 import co.edu.uniandes.csw.correos.ejb.TarjetaCreditoLogic;
+import co.edu.uniandes.csw.correos.entities.ClienteEntity;
 import co.edu.uniandes.csw.correos.entities.TarjetaCreditoEntity;
 import co.edu.uniandes.csw.correos.exceptions.BusinessLogicException;
 import java.util.ArrayList;
@@ -95,9 +96,11 @@ public class TarjetaCreditoResource {
     {
         if(logicCliente.getCliente(clienteId)==null) 
             throw new WebApplicationException("no existe el Cliente con el id" + clienteId, 404);
-        logicCliente.agregarTarjetaCredito(clienteId, tarjetaCredito.toEntity());
-   
-        return new TarjetaCreditoDTO(logic.createTarjetaCredito(tarjetaCredito.toEntity()));
+         TarjetaCreditoEntity pe = tarjetaCredito.toEntity();
+         ClienteEntity cbe = logicCliente.getCliente(clienteId);
+         pe.setCliente(cbe);
+         cbe.getTarjetasCredito().add(pe);
+         return new TarjetaCreditoDetailDTO(logic.createTarjetaCredito(pe));
     }
     
     /**
@@ -127,7 +130,10 @@ public class TarjetaCreditoResource {
         if(logic.getTarjetaCredito(id)==null)
             throw new WebApplicationException("no existe el TarjetaCredito con el id " + id, 404);
         tarjetaCredito.setId(id);
-        return new TarjetaCreditoDTO(logic.updateTarjetaCredito(tarjetaCredito.toEntity()));
+       TarjetaCreditoEntity variable = tarjetaCredito.toEntity();
+       variable.setCliente(logicCliente.getCliente(clienteId));
+       logic.updateTarjetaCredito(variable);
+        return new TarjetaCreditoDetailDTO(tarjetaCredito.toEntity());
     }
     
     /**

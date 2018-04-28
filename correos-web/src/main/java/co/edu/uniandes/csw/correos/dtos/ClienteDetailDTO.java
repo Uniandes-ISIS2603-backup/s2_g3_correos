@@ -49,7 +49,7 @@ public class ClienteDetailDTO extends ClienteDTO
 
     public ClienteDetailDTO()
     {
-        super();
+      
     }
     
     public ClienteDetailDTO(ClienteEntity cliente)

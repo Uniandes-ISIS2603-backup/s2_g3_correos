@@ -2,8 +2,7 @@
     
     var mod=ng.module("tarjetasCreditoModule");
     mod.constant("tarjetasCreditoContext","api/tarjetasCredito");
-    mod.constant("clientesContext","api/clientes");
-    
+    mod.constant("clientesContext","api/clientes");  
     mod.controller('tarjetasCreditoUpdateCtrl',['$scope','$http','tarjetasCreditoContext','clientesContext','$state','$rootScope',
         /**
          * @ngdoc controller
@@ -38,8 +37,8 @@
             $http.get(clientesContext+'/'+$state.params.clienteId+'/'+tarjetasCreditoContext+'/'+idtarjetaCredito).then(function(response)
             {
                 var tarjetaCredito=response.data;
-                $scope.data.tipo=tarjetaCredito.tipo;
-                $scope.data.capacidad=tarjetaCredito.capacidad;
+                $scope.data.numero=tarjetaCredito.numero;
+                $scope.data.fecha=tarjetaCredito.fecha;
             });
             
             /**
@@ -52,7 +51,7 @@
              * @param {String} id El ID del tarjetaCredito que se va a actualizar.
              * @param {Object} tarjetaCredito Objeto con la información nueva del tarjetaCredito.
              */
-            $scope.createtarjetaCredito=function()
+            $scope.createTarjetaCredito=function()
             {
                 $http.put(clientesContext+'/'+$state.params.clienteId+'/'+tarjetasCreditoContext+'/'+idtarjetaCredito,$scope.data).then(function(response)
                 {
