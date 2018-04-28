@@ -8,7 +8,7 @@
 	},
 	"item": [
 		{
-			"name": "trae todas las tarjetas del SQL",
+			"name": "trae todas las tarjetas de un cliente",
 			"event": [
 				{
 					"listen": "test",
@@ -21,7 +21,7 @@
 				}
 			],
 			"request": {
-				"url": "http://localhost:8080/correos-web/api/tarjetasCredito",
+				"url": "http://localhost:8080/correos-web/api/clientes/10001/tarjetasCredito",
 				"method": "GET",
 				"header": [
 					{
@@ -39,7 +39,7 @@
 			"response": []
 		},
 		{
-			"name": "añade correctamente una tarjeta nueva",
+			"name": "añade correctamente una tarjeta nueva a un cliente",
 			"event": [
 				{
 					"listen": "test",
@@ -52,7 +52,7 @@
 				}
 			],
 			"request": {
-				"url": "http://localhost:8080/correos-web/api/tarjetasCredito",
+				"url": "http://localhost:8080/correos-web/api/clientes/10001/tarjetasCredito",
 				"method": "POST",
 				"header": [
 					{
@@ -83,7 +83,7 @@
 				}
 			],
 			"request": {
-				"url": "http://localhost:8080/correos-web/api/tarjetasCredito/10003",
+				"url": "http://localhost:8080/correos-web/api/clientes/10003/tarjetasCredito/10003",
 				"method": "GET",
 				"header": [
 					{
@@ -114,7 +114,7 @@
 				}
 			],
 			"request": {
-				"url": "http://localhost:8080/correos-web/api/tarjetasCredito/10003",
+				"url": "http://localhost:8080/correos-web/api/clientes/10003/tarjetasCredito/10003",
 				"method": "PUT",
 				"header": [
 					{
@@ -125,7 +125,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"type\": \"tarjetaCreditoDetailDTO\",\n    \"fecha\": \"2020-10-11 00:00:00\",\n    \"numero\": \"0101010101010101\"\n}"
+					"raw": "{\n    \"fecha\": \"2020-10-11 00:00:00\",\n    \"numero\": \"0101010101010101\",\n    \"securityCode\": \"000\"\n}"
 				},
 				"description": "hace el metodo PUT para actualizar una tarjeta"
 			},
@@ -145,7 +145,7 @@
 				}
 			],
 			"request": {
-				"url": "http://localhost:8080/correos-web/api/tarjetasCredito/",
+				"url": "http://localhost:8080/correos-web/api/clientes/10003/tarjetasCredito",
 				"method": "GET",
 				"header": [
 					{
@@ -176,7 +176,7 @@
 				}
 			],
 			"request": {
-				"url": "http://localhost:8080/correos-web/api/tarjetasCredito/10005",
+				"url": "http://localhost:8080/correos-web/api/clientes/10001/tarjetasCredito/10010",
 				"method": "DELETE",
 				"header": [
 					{
@@ -207,7 +207,7 @@
 				}
 			],
 			"request": {
-				"url": "http://localhost:8080/correos-web/api/tarjetasCredito/",
+				"url": "http://localhost:8080/correos-web/api/clientes/10001/tarjetasCredito",
 				"method": "GET",
 				"header": [
 					{
@@ -221,6 +221,134 @@
 					"raw": ""
 				},
 				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "hace GET incorrecto",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 404\"] = responseCode.code === 404;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/correos-web/api/clientes/10006/tarjetasCredito",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": "el cliente no existe"
+			},
+			"response": []
+		},
+		{
+			"name": "Hace GET individual incorrecto",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 404\"] = responseCode.code === 404;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/correos-web/api/clientes/10006/tarjetasCredito/10000",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": "La tarjeta no existe"
+			},
+			"response": []
+		},
+		{
+			"name": "hace POST incorrecto",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 405\"] = responseCode.code === 405;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/correos-web/api/clientes/10001/tarjetasCredito/10001",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": " {\n \t\n        \"fecha\": \"2020-9-10 00:00:00\",\n        \"numero\": \"0000000000000000\",\n        \"securityCode\":123\n }"
+				},
+				"description": "tiene la URL mal"
+			},
+			"response": []
+		},
+		{
+			"name": "Hace PUT incorrecto",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 404\"] = responseCode.code === 404;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/correos-web/api/clientes/10001/tarjetasCredito/10011",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": " {\n \t\n        \"fecha\": \"2020-9-10 00:00:00\",\n        \"numero\": \"0000000000000000\",\n        \"securityCode\":123\n }"
+				},
+				"description": "La tarjeta que va a modificar no existe"
+			},
+			"response": []
+		},
+		{
+			"name": "hace DELETE incorrecto",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 404\"] = responseCode.code === 404;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/correos-web/api/clientes/10001/tarjetasCredito/10011",
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"description": "la tarjeta que va a borrar no existe"
 			},
 			"response": []
 		}

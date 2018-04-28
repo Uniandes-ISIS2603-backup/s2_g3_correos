@@ -83,7 +83,7 @@
 				}
 			],
 			"request": {
-				"url": "http://localhost:8080/correos-web/api/clientes/10004",
+				"url": "http://localhost:8080/correos-web/api/clientes/10005",
 				"method": "PUT",
 				"header": [
 					{
@@ -94,7 +94,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"nombre\": \"Ramon Casallas\"\n}"
+					"raw": "{\n\t\"nombre\": \"Rubby Casallas\"\n}"
 				},
 				"description": ""
 			},
@@ -176,7 +176,82 @@
 				}
 			],
 			"request": {
-				"url": "http://localhost:8080/correos-web/api/clientes/10003",
+				"url": "http://localhost:8080/correos-web/api/clientes/10005",
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "hace PUT incorrecto",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 404\"] = responseCode.code === 404;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/correos-web/api/clientes/10008",
+				"method": "PUT",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Hace GET incorrecto",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 404\"] = responseCode.code === 404;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/correos-web/api/clientes/10008",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Hace DELETE incorrecto",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 404\"] = responseCode.code === 404;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/correos-web/api/clientes/10008",
 				"method": "DELETE",
 				"header": [
 					{
