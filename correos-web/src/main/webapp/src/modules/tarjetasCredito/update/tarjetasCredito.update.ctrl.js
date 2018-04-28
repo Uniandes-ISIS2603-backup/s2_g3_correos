@@ -38,8 +38,8 @@
             $http.get(clientesContext+'/'+$state.params.clienteId+'/'+tarjetasCreditoContext+'/'+idtarjetaCredito).then(function(response)
             {
                 var tarjetaCredito=response.data;
-                $scope.data.tipo=tarjetaCredito.tipo;
-                $scope.data.capacidad=tarjetaCredito.capacidad;
+                $scope.data.numero=tarjetaCredito.numero;
+                $scope.data.fecha=tarjetaCredito.fecha;
             });
             
             /**
@@ -56,7 +56,7 @@
             {
                 $http.put(clientesContext+'/'+$state.params.clienteId+'/'+tarjetasCreditoContext+'/'+idtarjetaCredito,$scope.data).then(function(response)
                 {
-                    $state.go('tarjetasCreditoList',{tarjetaCreditoId:$state.params.id},{reload:true});
+                    $state.go('tarjetasCreditoList',{tarjetaCreditoId:response.params.id},{reload:true});
                 });
             };
         }

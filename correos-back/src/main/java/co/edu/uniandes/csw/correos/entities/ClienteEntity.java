@@ -93,6 +93,11 @@ public class ClienteEntity extends BaseEntity implements Serializable {
     public void setTarjetasCredito(List<TarjetaCreditoEntity> tarjetasCredito) {
         this.tarjetasCredito = tarjetasCredito;
     }
+    
+    public void agregarTarjetas(TarjetaCreditoEntity tarjeta)
+    {
+        this.tarjetasCredito.add(tarjeta);
+    }
 
     public List<ReservaEntity> getReservas() {
         return reservas;

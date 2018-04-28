@@ -62,9 +62,9 @@
                     }
                 }
             }).state('tarjetasCreditoUpdate', {
-                url: '/update',
+                url: 'update/{tarjetaCreditoId}',
                 parent: 'tarjetasCredito',
-                params:{tarjetaCreditoId:null},
+                param:{tarjetaCreditoId:null},
                 views: {
                     'listView': {
                         templateUrl: basePath + 'create/tarjetasCredito.create.html',
