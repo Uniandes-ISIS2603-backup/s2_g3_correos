@@ -1,0 +1,429 @@
+{
+	"info": {
+		"_postman_id": "694650ea-25ab-c06f-35e7-9e7eb314d11f",
+		"name": "Calificaciones",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Obtener Calificaciones",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "75d00e58-4bb6-494e-986f-1e5c69f5ab8e",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"type\": \"zonaDetailDTO\",\n    \"id\": 5,\n    \"latitud\": 70.842109305,\n    \"longitud\": 78.1109305\n    \n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/correos-web/api/mensajeros/10001/calificaciones",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"correos-web",
+						"api",
+						"mensajeros",
+						"10001",
+						"calificaciones"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener Calificaciones id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "75d00e58-4bb6-494e-986f-1e5c69f5ab8e",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"type\": \"zonaDetailDTO\",\n    \"id\": 5,\n    \"latitud\": 70.842109305,\n    \"longitud\": 78.1109305\n    \n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/correos-web/api/mensajeros/10001/calificaciones/10001",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"correos-web",
+						"api",
+						"mensajeros",
+						"10001",
+						"calificaciones",
+						"10001"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener Calificaciones id no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f1e4b0cd-f0c1-4dba-9b48-46989b5c529d",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"type\": \"zonaDetailDTO\",\n    \"id\": 5,\n    \"latitud\": 70.842109305,\n    \"longitud\": 78.1109305\n    \n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/correos-web/api/mensajeros/10001/calificaciones/100",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"correos-web",
+						"api",
+						"mensajeros",
+						"10001",
+						"calificaciones",
+						"100"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Insertar Calificacione",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "45b0a115-fb46-4e0c-bcff-e21966cf53ae",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"calificacion\": 3,\n    \"comentario\": \"Pickerfin\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/correos-web/api/mensajeros/10001/calificaciones",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"correos-web",
+						"api",
+						"mensajeros",
+						"10001",
+						"calificaciones"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Insertar Calificacione fuera rango",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ad1867f1-0c39-4f9a-a8cc-dc209427d175",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 412\", function () {",
+							"    pm.response.to.have.status(412);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"calificacion\": 6,\n    \"comentario\": \"Pickerfin\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/correos-web/api/mensajeros/10001/calificaciones",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"correos-web",
+						"api",
+						"mensajeros",
+						"10001",
+						"calificaciones"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Modificar Calificacion",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "50394aad-4a75-4260-afa0-99a766d878f8",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"calificacion\": 2,\n    \"comentario\": \"Pickerin\",\n    \"id\": 10001\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/correos-web/api/mensajeros/10001/calificaciones/10001",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"correos-web",
+						"api",
+						"mensajeros",
+						"10001",
+						"calificaciones",
+						"10001"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Modificar Calificacion fuera de rango",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "434f240e-6cdc-4007-9544-2826e218c3ff",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"calificacion\": 6,\n    \"comentario\": \"Pickerin\",\n    \"id\": 10001\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/correos-web/api/mensajeros/10001/calificaciones/10001",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"correos-web",
+						"api",
+						"mensajeros",
+						"10001",
+						"calificaciones",
+						"10001"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Eliminar Calificacion fuera de rango",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "434f240e-6cdc-4007-9544-2826e218c3ff",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"calificacion\": 6,\n    \"comentario\": \"Pickerin\",\n    \"id\": 10001\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/correos-web/api/mensajeros/10001/calificaciones/10001",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"correos-web",
+						"api",
+						"mensajeros",
+						"10001",
+						"calificaciones",
+						"10001"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Eliminar Calificacion inexistente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "734d6aef-e73b-40e6-98d6-a9bdb13ce033",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"calificacion\": 6,\n    \"comentario\": \"Pickerin\",\n    \"id\": 10001\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/correos-web/api/mensajeros/10001/calificaciones/10001",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"correos-web",
+						"api",
+						"mensajeros",
+						"10001",
+						"calificaciones",
+						"10001"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
