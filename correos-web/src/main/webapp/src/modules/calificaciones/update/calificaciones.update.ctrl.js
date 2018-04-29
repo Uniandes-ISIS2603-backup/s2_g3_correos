@@ -3,18 +3,18 @@
     var mod = ng.module("calificacionesModule");
     mod.constant("calificacionesContext", "calificaciones");
     mod.constant("mensajerosContext", "api/mensajeros");
-    mod.controller('calificacionCtrl', ['$scope', '$http', 'mensajerosContext', '$state', 'calificacionesContext',
+    mod.controller('calificacionesUpdateCtrl', ['$scope', '$http', 'mensajerosContext', '$state', 'calificacionesContext',
         /**
          * @ngdoc controller
-         * @name zonas.controller:zonasUpdateCtrl
+         * @name calificaciones.controller:calificacionesUpdateCtrl
          * @description
-         * Definición del controlador auxiliar para actualizar Zonas. 
+         * Definición del controlador auxiliar para actualizar Calificacioness. 
          * @param {Object} $scope Referencia injectada al Scope definida para este
          * controlador, el scope es el objeto que contiene las variables o 
          * funciones que se definen en este controlador y que son utilizadas 
          * desde el HTML.
          * @param {Object} $http Objeto injectado para la manejar consultas HTTP
-         * @param {Object} zonasContext Constante injectada que contiene la ruta
+         * @param {Object} CalifiacionesContext Constante injectada que contiene la ruta
          * donde se encuentra el API de Editoriales en el Backend.
          * @param {Object} $state Dependencia injectada en la que se recibe el 
          * estado actual de la navegación definida en el módulo.
@@ -34,12 +34,13 @@
              * @param {String} URL Dirección donde se encuentra el recurso
              * del zona o API donde se puede consultar.
              */
-            $http.get(mensajerosContext +calificacionesContext+'/'+ idCalificacion).then(function(response)
+            $http.get(mensajerosContext +"/" + $state.params.mensajeroId +"/" + 'calificaciones/'+ idCalificacion).then(function(response)
             {
+                
                 var calificacion=response.data;
                 $scope.data.id=idCalificacion;
-                $scope.data.latitud=calificacion.calificacion;
-                $scope.data.longitud=calificacion.comentario;
+                $scope.data.calificacion=calificacion.calificacion;
+                $scope.data.comentario=calificacion.comentario;
             });
             
             /**
@@ -54,8 +55,8 @@
              */
             $scope.updateCalificacion=function()
             {
-                console.log($scope.data.id);
-                $http.put(mensajerosContext  + $state.params.mensajeroId + calificacionesContext +'/'+idCalificacion,$scope.data).then(function(response)
+                
+                $http.put(mensajerosContext  + "/"+$state.params.mensajeroId + "/calificaciones" +'/'+idCalificacion,$scope.data).then(function(response)
                 {
                     $state.go('calificacionesList',{calificacionId:response.data.id},{reload:true});
                 });

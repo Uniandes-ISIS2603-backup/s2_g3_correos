@@ -12,15 +12,21 @@
  * un estado definido (estado de mostrar calificaciones), el controlador y la vista 
  * correspondiente. Los estados definidos en este modulo son:
  * ```
- * | ESTADO            | URL                        | VISTAS                  |
- * |-------------------|----------------------------|-------------------------|
- * | calificaciones    | /calificaciones            | mainView:               |
- * |                   |                            | calificaciones.html     |
- * |                   |                            |                         |
- * | calificacionesList| /list                      | listView:               |
- * |                   |                            | calificaciones.list.html|
- * |                   |                            |                         |
- * |-------------------|----------------------------|-------------------------|
+ * | ESTADO                 | URL                        | VISTAS                       |
+ * |-------------------     |----------------------------|-------------------------     |
+ * | calificaciones         | /calificaciones            | mainView:                    |
+ * |                        |                            | calificaciones.html          |
+ * |                        |                            |                              |
+ * | calificacionesList     | /list                      | listView:                    |
+ * |                        |                            | calificaciones.list.html     |
+ * | calificacionesUpdate   | /update                    | updateView:                  |
+ * |                        |                            | calificaciones.delete.html   |
+ * | calificacionesCreate   | /create                    | createView:                  |
+ * |                        |                            | calificaciones.create.html   |
+ * | calificacionesDelete   | /delete                    | deleteView:                  |
+ * |                        |                            | calificaciones.update.html   |
+ * |                        |                            |                              |
+ * |-------------------     |----------------------------|-------------------------     |
  *```
  */
 (function (ng) {
@@ -51,9 +57,9 @@
                         controllerAs: 'ctrl'
                     }
                 }
-            }).state('califiacionUpdate',{
-                    url:'update/{califiacionId}',
-                    parent:'califiaciones',
+            }).state('calificacionUpdate',{
+                    url:'update/{calificacionId}',
+                    parent:'calificaciones',
                     param:
                             {
                                 zonaId:null
@@ -62,8 +68,24 @@
                             {
                                 'detailView':
                                 {
-                                    templateUrl:basePath+'/update/califiaciones.update.html',
-                                    controller:'calificaionesUpdateCtrl',
+                                    templateUrl:basePath+'/update/calificaciones.update.html',
+                                    controller:'calificacionesUpdateCtrl',
+                                    controllerAs:'ctrl'
+                                }
+                            }
+                }).state('calificacionCreate',{
+                    url:'create/{calificacionId}',
+                    parent:'calificaciones',
+                    param:
+                            {
+                                zonaId:null
+                            },
+                    views:
+                            {
+                                'detailView':
+                                {
+                                    templateUrl:basePath+'/create/calificaciones.create.html',
+                                    controller:'calificacionesCreateCtrl',
                                     controllerAs:'ctrl'
                                 }
                             }
