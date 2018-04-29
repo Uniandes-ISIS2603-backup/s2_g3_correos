@@ -92,6 +92,22 @@
                                     controllerAs:'ctrl'
                                 }
                             }
+                }).state('zonaDelete',{
+                    url:'/delete/{zonaId:int}',
+                    parent:'zonas',
+                    param:
+                            {
+                                zonaId:null
+                            },
+                    views:
+                            {
+                              'detailView':
+                              {
+                                  templateUrl:basePath+'/delete/zonas.delete.html',
+                                  controller:'zonasDeleteCtrl',
+                                  controllerAs:'Ctrl'
+                              }  
+                            }
                 }).state('zonaDetail',{
                     url: '/{zonaId:int}/detail',
                     parent: 'zonas',
