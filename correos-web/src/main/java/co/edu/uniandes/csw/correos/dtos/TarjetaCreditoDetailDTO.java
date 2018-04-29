@@ -40,15 +40,21 @@ public class TarjetaCreditoDetailDTO extends TarjetaCreditoDTO
 /**
  * contructor
  */
-    public TarjetaCreditoDetailDTO(){
-    super();
-}
+   
     
      public TarjetaCreditoDetailDTO(TarjetaCreditoEntity entity)
     {
         super(entity);
        
     }
+     
+      public TarjetaCreditoEntity toEntity(){
+        TarjetaCreditoEntity entity =  super.toEntity();
+        //entity.setCuentaBancaria(cuentaBancaria.toEntity());
+       
+        return entity;
+    }
+
    /**
     * retorna la tarjeta que corresponde
     */

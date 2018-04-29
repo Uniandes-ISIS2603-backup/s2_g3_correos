@@ -33,6 +33,67 @@
                         controllerAs: 'ctrl'
                     }
                 }
-            });
+            }).state('cuentaBancariaCreate',
+                {
+                    url:'/create',
+                    parent:'cuentasBancarias',
+                    views:
+                            {
+                                'detailView':
+                                {
+                                    controller:'cuentasBancariasCreateCtrl',
+                                    controllerAs:'ctrl',
+                                    templateUrl:basePath+ '/create/cuentasBancarias.create.html'
+                                }
+                                
+                            }
+                }).state('cuentaBancariaUpdate',{
+                    url:'update/{cuentaBancariaId}',
+                    parent:'cuentasBancarias',
+                    param:
+                            {
+                                cuentaBancariaId:null
+                            },
+                    views:
+                            {
+                                'detailView':
+                                {
+                                    templateUrl:basePath+'/create/cuentasBancarias.create.html',
+                                    controller:'cuentasBancariasUpdateCtrl',
+                                    controllerAs:'ctrl'
+                                }
+                            }
+                }).state('cuentaBancariaDetail',{
+                    url: '/{cuentaBancariaId:int}/detail',
+                    parent: 'cuentasBancarias',
+                    param: {
+                        cuentaBancariaId: null
+                    },
+                    views: {
+                       
+                        'detailView': {
+                        templateUrl: basePath + 'cuentasBancarias.detail.html',
+                        controller: 'cuentasBancariasDetailCtrl',
+                        controllerAs: 'ctrl'
+                    }
+
+                }
+                }).state('cuentaBancariaDelete',{
+                    url:'/delete/{cuentaBancariaId:int}',
+                    parent:'cuentasBancarias',
+                    param:
+                            {
+                                cuentaBancariaId:null
+                            },
+                    views:
+                            {
+                              'detailView':
+                              {
+                                  templateUrl:basePath+'/delete/cuentasBancarias.delete.html',
+                                  controller:'cuentaBancariaDeleteCtrl',
+                                  controllerAs:'Ctrl'
+                              }  
+                            }
+                });
         }]);
 })(window.angular);

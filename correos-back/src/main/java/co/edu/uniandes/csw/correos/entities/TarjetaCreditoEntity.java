@@ -6,7 +6,12 @@
 package co.edu.uniandes.csw.correos.entities;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
@@ -19,10 +24,16 @@ public class TarjetaCreditoEntity extends BaseEntity implements Serializable {
     private Short securityCode; // codigo de seguridad de la tarjeta
     private String numero; // numero de la tarjeta
     private String fechaDeVencimiento; // fecha de vencimiento de la tarjeta
+    
+    @PodamExclude
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "tarjetaCredito")
+    private List<PagoEntity> pagos;
+    
+    @PodamExclude
+    @ManyToOne(fetch=FetchType.LAZY)
+    private ClienteEntity cliente;
 
-   
-
-  
+    
 
     /**
      * Obtiene el atributo securityCode
@@ -70,6 +81,22 @@ public class TarjetaCreditoEntity extends BaseEntity implements Serializable {
      */
     public void setFechaDeVencimiento(String fechaDeVencimiento) {
         this.fechaDeVencimiento = fechaDeVencimiento;
+    }
+
+    public List<PagoEntity> getPagos() {
+        return pagos;
+    }
+
+    public void setPagos(List<PagoEntity> pagos) {
+        this.pagos = pagos;
+    }
+
+    public ClienteEntity getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(ClienteEntity cliente) {
+        this.cliente = cliente;
     }
     
     

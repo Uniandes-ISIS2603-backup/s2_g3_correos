@@ -74,6 +74,7 @@ public class TarjetaCreditoDTO
      * Conviertir Entity a DTO (Crea un nuevo DTO con los valores que recibe en
      * la entidad que viene de argumento.
      *
+     * @param entity
      * @param TarjetaCredito: Es la entidad que se va a convertir a DTO
      */
    public TarjetaCreditoDTO(TarjetaCreditoEntity entity){
@@ -88,12 +89,12 @@ public class TarjetaCreditoDTO
     * @return la entidad
     */
    public TarjetaCreditoEntity toEntity(){
-    TarjetaCreditoEntity entity = new TarjetaCreditoEntity();
-    entity.setId(this.id);
-    entity.setNumero(this.numero);
-    entity.setFechaDeVencimiento(this.fecha);
-    entity.setSecurityCode(this.securityCode);
-    return entity;
+    TarjetaCreditoEntity tarjeta = new TarjetaCreditoEntity();
+    tarjeta.setId(this.id);
+    tarjeta.setNumero(this.numero);
+    tarjeta.setFechaDeVencimiento(this.fecha);
+    tarjeta.setSecurityCode(this.securityCode);
+    return tarjeta;
 }
    
       /**

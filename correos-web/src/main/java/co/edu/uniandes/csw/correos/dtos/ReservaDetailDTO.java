@@ -33,7 +33,7 @@ import co.edu.uniandes.csw.correos.entities.ReservaEntity;
  */
 public class ReservaDetailDTO extends ReservaDTO{
     
-    private EnvioDTO envio;
+    private ClienteDTO cliente;
     
     /**
      * constructor por defecto
@@ -45,23 +45,18 @@ public class ReservaDetailDTO extends ReservaDTO{
     public ReservaDetailDTO(ReservaEntity reserva)
     {
          super(reserva);
-         if(reserva.getEnvio()!=null)
-             this.envio=new EnvioDTO(reserva.getEnvio());
+         if(reserva.getCliente()!=null)
+             this.cliente=new ClienteDTO(reserva.getCliente());
+    }
+
+    public ClienteDTO getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(ClienteDTO cliente) {
+        this.cliente = cliente;
     }
     
-    /**
-     * @return El envio al que corresponde la reserva
-     */
-    public EnvioDTO getEnvio() {
-        return envio;
-    }
-    
-    /**
-     * @param envio El nuevo envio reservado
-     */
-    public void setEnvio(EnvioDTO envio) {
-        this.envio = envio;
-    }
     
     
     

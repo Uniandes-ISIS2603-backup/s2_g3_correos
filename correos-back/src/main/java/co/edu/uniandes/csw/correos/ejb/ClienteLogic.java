@@ -24,6 +24,7 @@ SOFTWARE.
 package co.edu.uniandes.csw.correos.ejb;
 
 import co.edu.uniandes.csw.correos.entities.ClienteEntity;
+import co.edu.uniandes.csw.correos.entities.TarjetaCreditoEntity;
 import co.edu.uniandes.csw.correos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.correos.persistence.ClientePersistence;
 import java.util.List;
@@ -92,4 +93,30 @@ public class ClienteLogic {
         persistence.delete(id);
         LOGGER.log(Level.INFO, "Termina proceso de borrar cliente con id={0}", id);
     }
+    
+    public void agregarTarjetaCredito(Long id, TarjetaCreditoEntity tarjetaCredito)
+    {
+        ClienteEntity agregar= persistence.find(id);
+        List <TarjetaCreditoEntity> lista=agregar.getTarjetasCredito();
+        lista.add(tarjetaCredito);
+        agregar.setTarjetasCredito(lista);
+        persistence.update(agregar);
+    }
+  
+    public void borrarTarjetaCredito(Long cliente, Long tarjetaCredito) throws BusinessLogicException
+    {
+        ClienteEntity cambiar= getCliente(cliente);
+        List<TarjetaCreditoEntity> tarjeta=cambiar.getTarjetasCredito();
+        for(int i=0; i<tarjeta.size(); i++)
+        {
+            if(tarjeta.get(i).getId().equals(tarjetaCredito))
+            {
+                tarjeta.remove(i);
+                break;
+            }
+        }
+        cambiar.setTarjetasCredito(tarjeta);
+        updateCliente(cambiar);
+    }
+    
 }

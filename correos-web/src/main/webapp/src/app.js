@@ -1,3 +1,4 @@
+
 (function (ng) {
     var app = angular.module('mainApp', [
         // External dependencies
@@ -15,10 +16,12 @@
         'enviosModule',
         'paquetesModule',        
         'clientesModule',
+        'tarjetasCreditoModule',
 
         'zonasModule',
         'clientesModule',
-        'calificacionesModule'
+        'calificacionesModule',
+        'bonosModule'
 
 
 

@@ -1,0 +1,34 @@
+<div class="panel panel-default"> 
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-12">
+                <dl>
+                    <dt>Numero</dt>
+                    <dd>{{cuentaBancariaActual.numero}}</dd>
+                    <hr>
+                    <dt> Banco</dt>
+                    <dd>{{cuentaBancariaActual.banco}}</dd>
+                    <hr>
+                    <dt>TipoTarjeta</dt>
+                    <dd>{{cuentaBancariaActual.tipoTarjeta}}</dd>
+                    <hr>
+                   <dd><div class="panel-group" id="accordion">
+                    <div class="panel panel-default">
+                    </div></dd>
+                </dl>
+                <ul class="nav nav-tabs">
+                    <li role="presentation" class="active"> <a ui-sref="pagosList({cuentaBancariaId: cuentaBancariaActual.id})">pagos</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-9">
+                <div ui-view="childrenView"></div>
+            </div>
+        </div>
+     
+    </div>
+
+</div>
+<div><button type="button" class="btn btn-secondary" > <a ui-sref="cuentasBancariasList">Volver</a></button></div>

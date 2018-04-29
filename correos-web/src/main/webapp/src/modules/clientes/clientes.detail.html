@@ -10,11 +10,7 @@
                     <hr>
                    <dd><div class="panel-group" id="accordion">
                     <div class="panel panel-default">
-                      <div class="panel-heading">
-                        <h4 class="panel-title">
-                          <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">Tarjetas de Credito</a>
-                        </h4>
-                      </div>
+                    
                       <div id="collapse1" class="panel-collapse collapse">
                         <div class="panel-body">
                             
@@ -22,7 +18,12 @@
                       </div>
                     </div></dd>
                 </dl>
-               
+             <ul class="nav nav-tabs">
+                    <li role="presentation" class="active"> <a ui-sref="tarjetasCreditoList({clienteId: clienteActual.id})">Tarjetas de crédito</a></li>
+                    
+                    <li role="presentation" class="active"> <a ui-sref="bonosList({clienteId: clienteActual.id})">Bonos</a></li>
+                    
+                </ul>
             </div>
         </div>
         <div class="row">

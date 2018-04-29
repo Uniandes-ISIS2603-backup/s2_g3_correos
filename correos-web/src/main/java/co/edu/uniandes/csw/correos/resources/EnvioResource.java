@@ -129,7 +129,7 @@
      @Path("{id: \\d+}")
      public EnvioDetailDTO getEnvio(@PathParam("id") Long id) throws WebApplicationException {
         if(envioLogic.getEnvio(id)==null) 
-            throw new WebApplicationException("El Mensajero con id" + id+"no existe",404);
+            throw new WebApplicationException("El Envio con id" + id+"no existe",404);
         return new EnvioDetailDTO(envioLogic.getEnvio(id));
      }
      /**
@@ -171,7 +171,7 @@
      @Path("{id: \\d+}")
      public void deleteEnvio(@PathParam("id") Long id) throws WebApplicationException, BusinessLogicException {
        if(envioLogic.getEnvio(id)==null) 
-            throw new WebApplicationException("El Mensajero con id" + id +"no existe" ,404);
+            throw new WebApplicationException("El Envio con id" + id +"no existe" ,404);
         envioLogic.deleteEnvio(id);
     } 
      public List<EnvioDetailDTO> EntityADTO(List<EnvioEntity> envios)

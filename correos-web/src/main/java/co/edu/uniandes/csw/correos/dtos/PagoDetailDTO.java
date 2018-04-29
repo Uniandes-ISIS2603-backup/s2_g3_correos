@@ -26,11 +26,9 @@ public class PagoDetailDTO extends PagoDTO {
     
     
     public PagoEntity toEntity(){
-        PagoEntity entity = new PagoEntity();
+        PagoEntity entity =  super.toEntity();
         //entity.setCuentaBancaria(cuentaBancaria.toEntity());
-        entity.setFecha(super.getFecha());
-        entity.setValor(super.getValor());
-        entity.setId(super.getId());
+        entity.setTarjetaCredito(this.tarjetaDeCredito.toEntity());
         return entity;
     }
 
