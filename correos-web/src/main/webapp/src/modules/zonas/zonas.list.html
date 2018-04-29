@@ -16,6 +16,8 @@
                 <td id="{{$index}}-celular">{{record.longitud}}</td>
                 <td>
                     <button id="{{$index}}-edit-btn" class="btn btn-default btn-sm" ><a ui-sref="zonaUpdate({zonaId: record.id})"><span class="glyphicon glyphicon-edit"></span> Editar</a></button>
+                    <button id="{{$index}}-delete-btn" class="btn btn-default btn-sm"><a ui-sref="zonaDelete({zonaId: record.id})"><span class="glyphicon glyphicon-minus"></span> Remove</a></button>
+
                 </td>
             </tr>
         </tbody>
