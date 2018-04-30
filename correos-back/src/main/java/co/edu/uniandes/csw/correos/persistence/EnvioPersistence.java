@@ -65,7 +65,7 @@ public class EnvioPersistence {
      */
     public EnvioEntity update(EnvioEntity entity)
     {
-       LOGGER.info("Modificando envio con id " + entity.getId()+ entity.getPaquetes().get(entity.getPaquetes().size()-1).getTipo());
+       LOGGER.info("Modificando envio con id " + entity.getId());
        return em.merge(entity);
     }
     

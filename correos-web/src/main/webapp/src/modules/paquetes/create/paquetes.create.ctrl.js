@@ -35,10 +35,8 @@
              */
             $scope.createPaquete=function()
             {
-                alert("hola")
                 $http.post(enviosContext+'/'+$state.params.envioId+'/'+paquetesContext,$scope.data).then(function(response)
                 {
-                     alert(response)
                     $state.go('paquetesList',{paqueteId:response.data.id}, {reload:true});
                 });
             };

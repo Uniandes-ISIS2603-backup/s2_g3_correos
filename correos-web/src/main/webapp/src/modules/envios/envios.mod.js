@@ -38,7 +38,6 @@
     {
         var mod=ng.module("enviosModule",[]);
         mod.constant("enviosContext","api/envios");
-        mod.constant("paquetesContext", "paquetes");
         mod.config(['$stateProvider','$urlRouterProvider',function($stateProvider,$urlRouterProvider)
             {
                 var basePath='src/modules/envios/';
@@ -76,7 +75,7 @@
                                 {
                                     controller:'enviosCreateCtrl',
                                     controllerAs:'ctrl',
-                                    templateUrl:basePath+ '/create/envios.create.html'
+                                    templateUrl:basePath+ '/create/envio.create.html'
                                 }
                                 
                             }
@@ -91,7 +90,7 @@
                             {
                                 'detailView':
                                 {
-                                    templateUrl:basePath+'/create/envios.create.html',
+                                    templateUrl:basePath+'/create/envio.create.html',
                                     controller:'enviosUpdateCtrl',
                                     controllerAs:'ctrl'
                                 }
