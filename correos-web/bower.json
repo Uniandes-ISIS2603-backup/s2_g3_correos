@@ -8,8 +8,7 @@
     "angular-ui-router": "~0.2.14",
     "angular-bootstrap": "^0.13.4",
     "momentjs":"*",
-    "gmaps": "^0.4.25"
-        
+    "angular-google-maps": "^2.4.1"      
   },
   "devDependencies": {}
 }
