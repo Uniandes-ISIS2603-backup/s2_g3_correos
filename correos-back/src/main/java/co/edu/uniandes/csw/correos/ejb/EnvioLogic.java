@@ -59,9 +59,6 @@ public class EnvioLogic {
     public EnvioEntity createEnvio(EnvioEntity entity) throws BusinessLogicException {
         
         LOGGER.info("Se comienza a crear un Envio "); 
-        LOGGER.info(entity.getEstado()); 
-        LOGGER.info((entity.getHoraFinal().toString()));
-        LOGGER.info(entity.getHoraInicio().toString());
         
         if (entity.getHoraInicio()>entity.getHoraFinal()){
             throw new BusinessLogicException("La Hora Final es anterior a la Hora Incial.");
@@ -76,9 +73,8 @@ public class EnvioLogic {
             throw new BusinessLogicException("No hay paquetes en el envio.");
         }
         else{
-            persistence.create(entity);      
-        }
-        
+            persistence.create(entity);     
+        }        
 
         persistence.create(entity);
         asignarMensajero(entity);
@@ -111,9 +107,8 @@ public class EnvioLogic {
         {
             if(!("FINALIZADO").equals(x.getEstado()))
                 asignarMensajero(x);
-        }
-
-
+        } 
+        
         LOGGER.info("Se terminan de buscar todos los Envios");
         return envios;
     } 
@@ -179,13 +174,9 @@ public class EnvioLogic {
     public void agregarPaquete(Long id, PaqueteEntity paquete)
     {
        EnvioEntity envio= persistence.find(id);
-       LOGGER.info("lo encontre");
        List<PaqueteEntity> paquetes = envio.getPaquetes();
-       LOGGER.info("saque los paquetes");
        paquetes.add(paquete);
-       LOGGER.info("lo meti en los paquetes");
        envio.setPaquetes(paquetes);
-       LOGGER.info("lo setee en los paquetes");
        persistence.update(envio);
        LOGGER.info(envio.getPaquetes().get(envio.getPaquetes().size()-1).getTipo());
        LOGGER.info(persistence.find(id).getPaquetes().get(envio.getPaquetes().size()-1).getTipo());
