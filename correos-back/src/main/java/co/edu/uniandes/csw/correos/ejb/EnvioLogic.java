@@ -12,7 +12,6 @@ import co.edu.uniandes.csw.correos.entities.PaqueteEntity;
 import co.edu.uniandes.csw.correos.entities.TransporteEntity;
 import co.edu.uniandes.csw.correos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.correos.persistence.EnvioPersistence;
-import co.edu.uniandes.csw.correos.persistence.EventoPersistence;
 import co.edu.uniandes.csw.correos.persistence.MensajeroPersistence;
 import co.edu.uniandes.csw.correos.persistence.PaquetePersistence;
 import java.util.List;
@@ -63,9 +62,6 @@ public class EnvioLogic {
     public EnvioEntity createEnvio(EnvioEntity entity) throws BusinessLogicException {
         
         LOGGER.info("Se comienza a crear un Envio "); 
-        LOGGER.info(entity.getEstado()); 
-        LOGGER.info((entity.getHoraFinal().toString()));
-        LOGGER.info(entity.getHoraInicio().toString());
         
         if (entity.getHoraInicio()>entity.getHoraFinal()){
             throw new BusinessLogicException("La Hora Final es anterior a la Hora Incial.");
@@ -80,9 +76,8 @@ public class EnvioLogic {
         //    throw new BusinessLogicException("No hay paquetes en el envio.");
         //}
         else{
-            persistence.create(entity);      
-        }
-        
+            persistence.create(entity);     
+        }        
 
         persistence.create(entity);
         asignarMensajero(entity);
@@ -115,9 +110,8 @@ public class EnvioLogic {
         {
             if(!x.getEstado().equals("FINALIZADO"))
                 asignarMensajero(x);
-        }
-
-
+        } 
+        
         LOGGER.info("Se terminan de buscar todos los Envios");
         return envios;
     } 
@@ -183,13 +177,9 @@ public class EnvioLogic {
     public void agregarPaquete(Long id, PaqueteEntity paquete)
     {
        EnvioEntity envio= persistence.find(id);
-       System.out.println("lo encontre");
        List<PaqueteEntity> paquetes = envio.getPaquetes();
-       System.out.println("saque los paquetes");
        paquetes.add(paquete);
-       System.out.println("lo meti en los paquetes");
        envio.setPaquetes(paquetes);
-       System.out.println("lo setee en los paquetes");
        persistence.update(envio);
        System.out.println(envio.getPaquetes().get(envio.getPaquetes().size()-1).getTipo());
        System.out.println(persistence.find(id).getPaquetes().get(envio.getPaquetes().size()-1).getTipo());
