@@ -21,7 +21,8 @@
         'zonasModule',
         'clientesModule',
         'calificacionesModule',
-        'bonosModule'
+        'bonosModule',
+        'gmapsModule'
 
 
 
