@@ -52,7 +52,7 @@ public class MensajeroDetailDTO extends MensajeroDTO
      */
     public MensajeroDetailDTO()
     {
-
+        //Constructor vacio para la construccion del JSON
     }
     
     public MensajeroDetailDTO(MensajeroEntity entity)

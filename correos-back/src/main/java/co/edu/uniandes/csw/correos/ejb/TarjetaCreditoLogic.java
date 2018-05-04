@@ -40,10 +40,21 @@ import javax.inject.Inject;
 public class TarjetaCreditoLogic {
 
     private static final Logger LOGGER = Logger.getLogger(TarjetaCreditoLogic.class.getName());
-
-    @Inject
+    
     private TarjetaCreditoPersistence persistence; // Variable para acceder a la persistencia de la aplicación. Es una inyección de dependencias.
-
+    
+    @Inject
+    public TarjetaCreditoLogic(TarjetaCreditoPersistence tP)
+    {
+        this.persistence=tP;
+    }
+    
+    public TarjetaCreditoLogic()
+    {
+        this.persistence=null;
+    }
+    
+    
     public TarjetaCreditoEntity createTarjetaCredito(TarjetaCreditoEntity entity) throws BusinessLogicException {
         LOGGER.info("Inicia proceso de creación de la tarjeta de credito");
         // Verifica la regla de negocio que dice que no puede haber dos tarjetas repetidas

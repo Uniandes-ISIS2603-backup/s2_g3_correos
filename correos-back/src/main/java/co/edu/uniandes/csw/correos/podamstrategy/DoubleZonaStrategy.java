@@ -13,10 +13,9 @@ import uk.co.jemos.podam.common.AttributeStrategy;
  */
 public class DoubleZonaStrategy implements AttributeStrategy<Double>{
 
-
+    @Override
     public Double getValue() {
-        double random= Math.random()*89.10213;
-        return random;
+        return Math.random()*89.10213;
     }
     
 }

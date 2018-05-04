@@ -15,8 +15,9 @@ public class PagoDetailDTO extends PagoDTO {
     
     private CuentaBancariaDTO cuentaBancaria;
     private TarjetaCreditoDTO tarjetaDeCredito;
+    
     public PagoDetailDTO(){
-        
+             //Constructor vacio para la construccion del JSON   
     }
     
     public PagoDetailDTO(PagoEntity entity){
@@ -24,10 +25,12 @@ public class PagoDetailDTO extends PagoDTO {
         
     }
     
-    
+    @Override
     public PagoEntity toEntity(){
         PagoEntity entity =  super.toEntity();
-        //entity.setCuentaBancaria(cuentaBancaria.toEntity());
+        if(cuentaBancaria!=null)
+            entity.setCuentaBancaria(cuentaBancaria.toEntity());
+        
         entity.setTarjetaCredito(this.tarjetaDeCredito.toEntity());
         return entity;
     }

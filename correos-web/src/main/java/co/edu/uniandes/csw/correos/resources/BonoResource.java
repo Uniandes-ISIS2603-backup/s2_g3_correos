@@ -48,6 +48,9 @@ public class BonoResource
     
     ClienteLogic clienteLogic;
     
+    private static final String NRECURSO="El recurso /bonos/";
+    private static final String NOEXISTE=" no existe.";
+    
     @Inject
     public BonoResource(BonoLogic bonoLogic, ClienteLogic clienteLogic)
     {
@@ -83,7 +86,7 @@ public class BonoResource
      * @throws BusinessLogicException {@link BusinessLogicException} - Error de lógica que se genera cuando ya existeel bono
      */
     @POST
-    public BonoDTO createBono(@PathParam("clienteId")Long idCliente,BonoDTO bono) throws Exception {
+    public BonoDTO createBono(@PathParam("clienteId")Long idCliente,BonoDTO bono) throws BusinessLogicException {
         if(clienteLogic.getCliente(idCliente)==null)
             throw new WebApplicationException("No existe el cliente , por lo tanto no se le pueden agregar bonos" ,404);
         BonoEntity entity=bono.toEntity();
@@ -116,7 +119,7 @@ public class BonoResource
         bono.setId(id);
         BonoEntity entity = bonoLogic.getBono(id);
         if (entity == null) {
-            throw new WebApplicationException("El recurso /bonos/" + id + " no existe.", 404);
+            throw new WebApplicationException(NRECURSO+ id + NOEXISTE, 404);
         }
         return new BonoDTO(bonoLogic.updateBono(bono.toEntity()));
 
@@ -146,7 +149,7 @@ public class BonoResource
             throw new WebApplicationException("No existe el cliente , por lo tanto no tiene bonos",404);
         BonoEntity entity = bonoLogic.getBono(id);
         if (entity == null) {
-            throw new WebApplicationException("El recurso /bonos/" + id + " no existe.", 404);
+            throw new WebApplicationException(NRECURSO+ id + NOEXISTE, 404);
         }
         return new BonoDTO(bonoLogic.getBono(id));
     }
@@ -179,7 +182,7 @@ public class BonoResource
             throw new WebApplicationException("No existe el cliente , por lo tanto no tiene bonos que eliminar ",404);
         BonoEntity entity = bonoLogic.getBono(id);
         if (entity == null) {
-            throw new WebApplicationException("El recurso /bonos/" + id + " no existe.", 404);
+            throw new WebApplicationException(NRECURSO + id + NOEXISTE, 404);
         }
         bonoLogic.deleteBono(id);
     }

@@ -70,6 +70,7 @@ import javax.ws.rs.WebApplicationException;
 public class MensajeroResource {
     
     
+    
     private MensajeroLogic logic;
     
     private ZonaMensajeroLogic zonaMensajeroLogic;
@@ -141,10 +142,10 @@ public class MensajeroResource {
      */
     @PUT
     @Path("{id:\\d+}")
-    public MensajeroDetailDTO updateMensajero(@PathParam("id") Long id , MensajeroDetailDTO mensajero) throws BusinessLogicException, WebApplicationException
+    public MensajeroDetailDTO updateMensajero(@PathParam("id") Long id , MensajeroDetailDTO mensajero) throws BusinessLogicException
     {
         if(logic.getMensajero(id)==null) 
-            throw new WebApplicationException("El Mensajero con id" + id,404);
+            throw new WebApplicationException("El mensajero con id" + id,404);
         mensajero.setId(id);
         return new MensajeroDetailDTO(logic.putMensajero(mensajero.toEntity()));
     }
@@ -167,7 +168,7 @@ public class MensajeroResource {
      */
     @GET
     @Path("{id:\\d+}")
-    public MensajeroDetailDTO getMensajero(@PathParam("id") Long id) throws WebApplicationException
+    public MensajeroDetailDTO getMensajero(@PathParam("id") Long id) throws BusinessLogicException
     {
         if(logic.getMensajero(id)==null) 
             throw new WebApplicationException("El Mensajero con id" + id,404);
@@ -218,10 +219,10 @@ public class MensajeroResource {
      */
     @DELETE
     @Path("{id:\\d+}")
-    public void deleteMensajero(@PathParam("id") Long id) throws WebApplicationException
+    public void deleteMensajero(@PathParam("id") Long id) throws BusinessLogicException
     {
         if(logic.getMensajero(id)==null) 
-            throw new WebApplicationException("El Mensajero con id" + id ,404);
+            throw new WebApplicationException("El Mensajero con el id" + id ,404);
         logic.deleteMensajero(logic.getMensajero(id));
     }
     

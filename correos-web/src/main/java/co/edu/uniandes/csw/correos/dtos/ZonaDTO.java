@@ -42,7 +42,7 @@ public class ZonaDTO {
      * Contructor vacio
      */
     public ZonaDTO(){
-        
+        //Constructor vacio para la construccion del JSON
     }
     /**
      * Contructor a partir de entity

@@ -1,6 +1,6 @@
 (function (ng) {
     var appModule = angular.module('mainApp');
-
+    ng.toString()
     appModule.factory('httpInterceptor', ['$q', '$rootScope', function ($q, $rootScope) {
 
             //Se define el arreglo de alerts que va almacenar la alerta que se mostrará dependiendo del error
@@ -15,8 +15,6 @@
                     return response;
                 },
                 responseError: function (rejection) {
-
-                    var status = rejection.status;
 
                     function showError(message, type) {
 

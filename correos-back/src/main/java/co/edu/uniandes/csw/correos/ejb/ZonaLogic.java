@@ -23,45 +23,55 @@ public class ZonaLogic {
     
     private static final Logger LOGGER = Logger.getLogger(ZonaLogic.class.getName());
 
-    @Inject
+    
     private ZonaPersistence zP;
     
+    @Inject
+    public ZonaLogic(ZonaPersistence zP)
+    {
+        this.zP=zP;
+    }
     
-    public ZonaEntity createZona(ZonaEntity Zona) throws BusinessLogicException{
+    public ZonaLogic()
+    {
+        this.zP=null;
+    }
+    
+    public ZonaEntity createZona(ZonaEntity zona) throws BusinessLogicException{
         LOGGER.info("Inicia proceso de creación de la Zona");
         // Verifica la regla de negocio que dice que una zona siempre debe tener la latitud entre 90 y -90
-        if (Zona.getLatitud()>90.0 &&Zona.getLatitud()<-90.0 ) {
-            throw new BusinessLogicException("La zona debe tener  una latitud en el rango \"" + Zona.getLatitud() + "\"");
+        if (zona.getLatitud()>90.0 &&zona.getLatitud()<-90.0 ) {
+            throw new BusinessLogicException("La zona debe tener  una latitud en el rango \"" + zona.getLatitud() + "\"");
         }
-        else if (Zona.getLongitud()>90.0 && Zona.getLongitud()<-90.0 ) {
-            throw new BusinessLogicException("La zona debe tener  una longitud en el rango \"" + Zona.getLongitud() + "\"");
+        else if (zona.getLongitud()>90.0 && zona.getLongitud()<-90.0 ) {
+            throw new BusinessLogicException("La zona debe tener  una longitud en el rango \"" + zona.getLongitud() + "\"");
         }
         
         
         // Invoca la persistencia para crear la Zona
-        zP.create(Zona);
+        zP.create(zona);
         LOGGER.info("Termina proceso de creación de Zona");
-        return Zona;
+        return zona;
         
     }
     public List<ZonaEntity> getZonas() {
         LOGGER.info("Inicia proceso de consultar todas las Zonas");
-        List<ZonaEntity> Zonas = zP.findAll();
+        List<ZonaEntity> zonas = zP.findAll();
         LOGGER.info("Termina proceso de consultar todas las Zonas");
-        return Zonas;
+        return zonas;
     }
     
     public ZonaEntity getZona(Long id) {
         return zP.find(id);
     }
-    public ZonaEntity updateZona(ZonaEntity Zona) throws BusinessLogicException  {
-         if (Zona.getLatitud()>90 &&Zona.getLatitud()<-90 ) {
-            throw new BusinessLogicException("La zona debe tener  una latitud en el rango  \"" + Zona.getLatitud() + "\"");
+    public ZonaEntity updateZona(ZonaEntity zona) throws BusinessLogicException  {
+         if (zona.getLatitud()>90 &&zona.getLatitud()<-90 ) {
+            throw new BusinessLogicException("La zona debe tener  una latitud en el rango  \"" + zona.getLatitud() + "\"");
         }
-        else if (Zona.getLongitud()>90 && Zona.getLongitud()<-90 ) {
-            throw new BusinessLogicException("La zona debe tener  una longitud en el rango \"" + Zona.getLongitud() + "\"");
+        else if (zona.getLongitud()>90 && zona.getLongitud()<-90 ) {
+            throw new BusinessLogicException("La zona debe tener  una longitud en el rango \"" + zona.getLongitud() + "\"");
         }
-        return zP.update(Zona);
+        return zP.update(zona);
     }
     
      public void deleteZona(ZonaEntity entity) throws BusinessLogicException {

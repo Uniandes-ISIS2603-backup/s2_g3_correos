@@ -4,8 +4,6 @@
  * and open the template in the editor.
  */
 package co.edu.uniandes.csw.correos.ejb;
-
-import co.edu.uniandes.csw.correos.entities.CuentaBancariaEntity;
 import co.edu.uniandes.csw.correos.entities.PagoEntity;
 import co.edu.uniandes.csw.correos.entities.TarjetaCreditoEntity;
 import co.edu.uniandes.csw.correos.exceptions.BusinessLogicException;
@@ -25,12 +23,24 @@ import javax.inject.Inject;
 public class PagoLogic {
      private static final Logger LOGGER = Logger.getLogger(PagoLogic.class.getName());
 
-    @Inject
+    
     private PagoPersistence persistence;
     
-    @Inject
+    
     private TarjetaCreditoPersistence tcPersistence;
-
+    
+    @Inject
+    public PagoLogic(PagoPersistence pP, TarjetaCreditoPersistence tCP)
+    {
+        this.persistence=pP;
+        this.tcPersistence=tCP;
+    }
+    
+    public PagoLogic()
+    {
+        this.persistence=null;
+        this.tcPersistence=null;
+    }
     /**
      * Obtiene la lista de los registros de Pago.
      *

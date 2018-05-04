@@ -7,9 +7,7 @@ package co.edu.uniandes.csw.correos.entities;
 
 import co.edu.uniandes.csw.correos.podamstrategy.PositiveIntegerStrategy;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;

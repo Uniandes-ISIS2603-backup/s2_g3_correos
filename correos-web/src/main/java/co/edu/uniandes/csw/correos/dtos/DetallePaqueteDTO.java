@@ -27,7 +27,9 @@ public class DetallePaqueteDTO {
     /**
      * Constructor por defecto
      */
-    public DetallePaqueteDTO() {
+    public DetallePaqueteDTO() 
+    {
+        //Constructor vacio para permitir la construccion del JSON
     }
 
     public DetallePaqueteDTO(DetallePaqueteEntity entity) {

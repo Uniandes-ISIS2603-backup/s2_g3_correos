@@ -2,7 +2,7 @@
 {
    var mod=ng.module("mensajerosModule");
    mod.constant("mensajerosContext","api/mensajeros");
-   mod.controller('mensajerosCtrl',['$scope', '$http', 'mensajerosContext', '$state',
+   mod.controller('mensajerosCtrl',['$scope', '$http', 'mensajerosContext',
    
           /**
          * @ngdoc controller
@@ -22,7 +22,7 @@
          * @param {Object} $state Dependencia injectada en la que se recibe el 
          * estado actual de la navegación definida en el módulo.
          */
-        function($scope,$http, mensajerosContext,$state)
+        function($scope,$http, mensajerosContext)
         {
             /**
              * @ngdoc function

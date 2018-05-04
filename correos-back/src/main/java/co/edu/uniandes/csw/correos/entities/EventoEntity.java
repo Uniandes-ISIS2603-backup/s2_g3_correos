@@ -9,7 +9,6 @@ import co.edu.uniandes.csw.correos.podamstrategy.ThreeWordStrategy;
 import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
-import javax.persistence.TemporalType;
 import uk.co.jemos.podam.common.PodamExclude;
 import uk.co.jemos.podam.common.PodamStrategyValue;
 

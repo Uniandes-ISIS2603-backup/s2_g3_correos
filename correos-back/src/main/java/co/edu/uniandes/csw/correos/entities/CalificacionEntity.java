@@ -7,10 +7,7 @@ package co.edu.uniandes.csw.correos.entities;
 
 import co.edu.uniandes.csw.correos.podamstrategy.IntegerCalificacionStrategy;
 import java.io.Serializable;
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
-import uk.co.jemos.podam.common.PodamExclude;
 import uk.co.jemos.podam.common.PodamStrategyValue;
 
 /**
