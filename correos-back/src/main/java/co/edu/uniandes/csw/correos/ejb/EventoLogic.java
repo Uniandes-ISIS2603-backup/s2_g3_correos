@@ -5,15 +5,12 @@
  */
 package co.edu.uniandes.csw.correos.ejb;
 
-import co.edu.uniandes.csw.correos.entities.EnvioEntity;
 import co.edu.uniandes.csw.correos.entities.EventoEntity;
 import co.edu.uniandes.csw.correos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.correos.persistence.EventoPersistence;
 import java.util.List;
-import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
-import static reactor.event.selector.Selectors.$;
 
 /**
  *
@@ -21,13 +18,23 @@ import static reactor.event.selector.Selectors.$;
  */
 @Stateless
 public class EventoLogic {
-    private static final Logger LOGGER = Logger.getLogger(EventoLogic.class.getName());
     
-    @Inject
     private EventoPersistence persistence;
+       
+    private EnvioLogic envioLogic;
     
     @Inject
-    private EnvioLogic envioLogic;
+    public EventoLogic(EventoPersistence eP, EnvioLogic eL)
+    {
+        this.persistence=eP;
+        this.envioLogic=eL;
+    }
+    
+    public EventoLogic()
+    {
+        this.persistence=null;
+        this.envioLogic=null;
+    }
     
     public List<EventoEntity> getEventos(){
         

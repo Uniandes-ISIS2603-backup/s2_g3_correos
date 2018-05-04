@@ -22,9 +22,18 @@ import javax.inject.Inject;
 public class CalificacionLogic {
     private static final Logger LOGGER = Logger.getLogger(CalificacionLogic.class.getName());
     
-    @Inject
     private CalificacionPersistence cP;
     
+    @Inject
+    public CalificacionLogic(CalificacionPersistence cP)
+    {
+       this.cP=cP;
+    }
+    
+    public CalificacionLogic()
+    {
+       this.cP=null;
+    }
     /**
      * Crar Califiacion, crea una calificacion
      * @param calificacion CalifiacionEntity
@@ -36,7 +45,7 @@ public class CalificacionLogic {
         // Verifica la regla de negocio que dice que una calificacion siempre debe tener un mensajero asociado
         
          // Verifica que la calificacion sea un numero entero de 1 a 5
-        if(calificacion.getCalificacion()!=1 && calificacion.getCalificacion()!=2 && calificacion.getCalificacion()!=3 && calificacion.getCalificacion()!=4&& calificacion.getCalificacion()!=5 ){
+        if(calificacion.getCalificacion()<0 && calificacion.getCalificacion()>5){
             throw new BusinessLogicException("Calificacion fuera del rango \"" + calificacion.getCalificacion() + "\"");
         }
         // Invoca la persistencia para crear la Zona

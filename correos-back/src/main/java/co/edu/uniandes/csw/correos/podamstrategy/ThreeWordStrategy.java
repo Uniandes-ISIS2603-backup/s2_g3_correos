@@ -21,7 +21,7 @@ public class ThreeWordStrategy implements AttributeStrategy<String> {
             double ran = Math.random();
             for(int j = 0; j<ran*10;j++){
                 Double d = random.length()*Math.random();
-                toReturn += random.charAt(d.intValue());
+                toReturn +=Character.toString(random.charAt(d.intValue()));
             }
             toReturn+=" ";
         }

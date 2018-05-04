@@ -53,7 +53,7 @@ public class DetallePaqueteLogic {
     public DetallePaqueteEntity createDetallePaquete(DetallePaqueteEntity entity) throws BusinessLogicException {
         LOGGER.info("Inicia proceso de crear detalle");
         
-        if(entity.getMensaje().isEmpty() == true)
+        if(entity.getMensaje().isEmpty())
         {
             throw new BusinessLogicException ("El mensaje del detalle no puede estar vacío");
         }
@@ -87,7 +87,7 @@ public class DetallePaqueteLogic {
      */
     public DetallePaqueteEntity updateDetallePaquete(DetallePaqueteEntity entity) throws BusinessLogicException {
         LOGGER.info("Inicia proceso de actualizar el detalle");
-         if(entity.getMensaje().isEmpty() == true)
+         if(entity.getMensaje().isEmpty())
         {
             throw new BusinessLogicException ("El mensaje del detalle no puede estar vacío");
         }

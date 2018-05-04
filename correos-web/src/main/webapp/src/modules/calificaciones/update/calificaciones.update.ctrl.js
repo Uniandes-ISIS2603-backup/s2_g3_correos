@@ -1,7 +1,7 @@
 (function(ng){
     
     var mod = ng.module("calificacionesModule");
-    mod.constant("calificacionesContext", "calificaciones");
+    mod.constant("calificacionesContext", "/calificaciones");
     mod.constant("mensajerosContext", "api/mensajeros");
     mod.controller('calificacionesUpdateCtrl', ['$scope', '$http', 'mensajerosContext', '$state', 'calificacionesContext',
         /**
@@ -34,7 +34,7 @@
              * @param {String} URL Dirección donde se encuentra el recurso
              * del zona o API donde se puede consultar.
              */
-            $http.get(mensajerosContext +"/" + $state.params.mensajeroId +"/" + 'calificaciones/'+ idCalificacion).then(function(response)
+            $http.get(mensajerosContext +"/" + $state.params.mensajeroId +calificacionesContext + '/'+ idCalificacion).then(function(response)
             {
                 
                 var calificacion=response.data;

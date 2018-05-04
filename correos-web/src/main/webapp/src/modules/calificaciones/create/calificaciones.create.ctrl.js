@@ -1,7 +1,7 @@
 (function(ng){
     
     var mod = ng.module("calificacionesModule");
-    mod.constant("calificacionesContext", "calificaciones");
+    mod.constant("calificacionesContext", "/calificaciones");
     mod.constant("mensajerosContext", "api/mensajeros");
     mod.controller('calificacionesCreateCtrl', ['$scope', '$http', 'mensajerosContext', '$state', 'calificacionesContext',
         /**
@@ -37,7 +37,7 @@
             $scope.createCalificacion=function()
             {
                 
-                $http.post(mensajerosContext  + "/"+$state.params.mensajeroId + "/calificaciones",$scope.data ).then(function(response)
+                $http.post(mensajerosContext  + "/"+$state.params.mensajeroId + calificacionesContext,$scope.data ).then(function(response)
                 {
                     $state.go('calificacionesList',{calificacionId:response.data.id},{reload:true});
                 });

@@ -7,7 +7,6 @@ package co.edu.uniandes.csw.correos.persistence;
 
 import co.edu.uniandes.csw.correos.entities.CalificacionEntity;
 import java.util.List;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;

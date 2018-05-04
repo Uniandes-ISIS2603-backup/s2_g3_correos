@@ -53,7 +53,7 @@
              */
             $scope.createTarjetaCredito=function()
             {
-                $http.put(clientesContext+'/'+$state.params.clienteId+'/'+tarjetasCreditoContext+'/'+idtarjetaCredito,$scope.data).then(function(response)
+                $http.put(clientesContext+'/'+$state.params.clienteId+'/'+tarjetasCreditoContext+'/'+idtarjetaCredito,$scope.data).then(function()
                 {
                     $state.go('tarjetasCreditoList',{tarjetaCreditoId:$state.params.id},{reload:true});
                 });

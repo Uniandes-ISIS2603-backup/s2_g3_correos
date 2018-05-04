@@ -64,11 +64,24 @@ import javax.ws.rs.WebApplicationException;
 @Consumes("application/json")
 @RequestScoped
 public class ReservaResource {
-    @Inject
+ 
     ReservaLogic logic;
     
-    @Inject
+
     ClienteLogic logicCliente;
+    
+    @Inject
+    public ReservaResource(ReservaLogic rL, ClienteLogic cL)
+    {
+        logic=rL;
+        logicCliente=cL;
+    }
+    
+    public ReservaResource()
+    {
+        logic=null;
+        logicCliente=null;
+    }
     /**
      * <h1>POST /api/reservas : Crear una reserva.</h1>
      * 

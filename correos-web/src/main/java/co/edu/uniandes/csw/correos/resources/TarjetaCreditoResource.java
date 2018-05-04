@@ -65,11 +65,24 @@ import javax.ws.rs.WebApplicationException;
 @Consumes("application/json")
 @RequestScoped
 public class TarjetaCreditoResource {
-    @Inject
+
     private TarjetaCreditoLogic logic;
     
-    @Inject
     private ClienteLogic logicCliente;
+    
+    @Inject
+    public TarjetaCreditoResource(TarjetaCreditoLogic logic, ClienteLogic logicCliente) {
+        this.logic = logic;
+        this.logicCliente = logicCliente;
+    }
+    
+    public TarjetaCreditoResource()
+    {
+        this.logic = null;
+        this.logicCliente = null;
+    }
+
+    
     /**
      * <h1>POST /api/tarjetasCredito : Crear un tarjetaCredito.</h1>
      * 
@@ -95,7 +108,7 @@ public class TarjetaCreditoResource {
     public TarjetaCreditoDTO createTarjetaCredito(@PathParam("clienteId") Long clienteId, TarjetaCreditoDTO tarjetaCredito) throws BusinessLogicException
     {
         if(logicCliente.getCliente(clienteId)==null) 
-            throw new WebApplicationException("no existe el Cliente con el id" + clienteId, 404);
+            throw new WebApplicationException("no existe el Cliente con id" + clienteId, 404);
          TarjetaCreditoEntity pe = tarjetaCredito.toEntity();
          ClienteEntity cbe = logicCliente.getCliente(clienteId);
          pe.setCliente(cbe);
@@ -157,9 +170,9 @@ public class TarjetaCreditoResource {
     public TarjetaCreditoDTO getTarjetaCredito(@PathParam("clienteId") Long clienteId,@PathParam("id") Long id)
     {
         if(logicCliente.getCliente(clienteId)==null)
-            throw new WebApplicationException("no existe el Cliente con el id " + clienteId, 404);
+            throw new WebApplicationException("no existe el cliente con ese id " + clienteId, 404);
         if(logic.getTarjetaCredito(id)==null)
-            throw new WebApplicationException("no existe el TarjetaCredito con el id " + id, 404);
+            throw new WebApplicationException("no existe el TarjetaCredito con ese id " + id, 404);
         return new TarjetaCreditoDTO(logic.getTarjetaCredito(id));
     }
     
@@ -178,7 +191,7 @@ public class TarjetaCreditoResource {
     public List<TarjetaCreditoDTO> getTarjetasCredito(@PathParam("clienteId") Long clienteId)
     {
         if(logicCliente.getCliente(clienteId)==null)
-            throw new WebApplicationException("no existe el Cliente con el id " + clienteId, 404);
+            throw new WebApplicationException("no existe el cliente " + clienteId, 404);
         return listEntity2DTO(logicCliente.getCliente(clienteId).getTarjetasCredito());
     }
     
@@ -201,9 +214,9 @@ public class TarjetaCreditoResource {
     public void deleteTarjetaCredito(@PathParam("clienteId") Long clienteId,@PathParam("id") Long id) throws BusinessLogicException
     {
         if(logicCliente.getCliente(clienteId)==null)
-            throw new WebApplicationException("no existe el Cliente con el id " + clienteId, 404);
+            throw new WebApplicationException("no existe ese Cliente " + clienteId, 404);
         if(logic.getTarjetaCredito(id)==null)
-            throw new WebApplicationException("no existe el TarjetaCredito con el id " + id, 404);
+            throw new WebApplicationException("no existe la Tarjeta de Credito con el id " + id, 404);
         logic.deleteTarjetaCredito( id);
     }
     

@@ -21,8 +21,9 @@ public class ZonaDetailDTO extends ZonaDTO {
     /**
      * Contructor vacio
      */
-    public ZonaDetailDTO(){
-        
+    public ZonaDetailDTO()
+    {
+        //Constructor vacio para la construccion del JSON
     }
     /**
      * Contructor a partir de un entity
@@ -30,12 +31,11 @@ public class ZonaDetailDTO extends ZonaDTO {
      */
     public ZonaDetailDTO(ZonaEntity entity){
         super(entity);
-        if(entity.getMensajeros().size()>0){
+        if(!entity.getMensajeros().isEmpty()){
             List<MensajeroDTO> mL=new ArrayList();
-            for(MensajeroEntity m: entity.getMensajeros()){
+            for(MensajeroEntity m: entity.getMensajeros())
                 mL.add(new MensajeroDTO(m));
-        }
-            this.setMensajeros(mL);
+            setMensajeros(mL);
             
         }
         
@@ -44,6 +44,7 @@ public class ZonaDetailDTO extends ZonaDTO {
      * Convertir a entity
      * @return ZonaEntity
      */
+    @Override
     public ZonaEntity toEntity(){
         ZonaEntity entity= super.toEntity();
         if(mensajeros!=null){

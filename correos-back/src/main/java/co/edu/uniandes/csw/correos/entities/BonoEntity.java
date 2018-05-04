@@ -112,5 +112,5 @@ public class BonoEntity extends BaseEntity implements Serializable {
     public void setCliente(ClienteEntity cliente) {
         this.cliente = cliente;
     }
-    
+     
 }

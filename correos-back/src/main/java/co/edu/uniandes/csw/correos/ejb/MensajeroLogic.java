@@ -60,9 +60,9 @@ public class MensajeroLogic {
     public MensajeroEntity createMensajero(MensajeroEntity mensajero) throws BusinessLogicException
     {
         LOGGER.info("Se inicia la creación de un Mensajero");
-        if(persistence.findByCorreo(mensajero.getCorreo())!=null)
+        if(!persistence.findByCorreo(mensajero.getCorreo()).isEmpty())
             throw new BusinessLogicException("ya existe un mensajero con ese Correo Electrónico!");
-        else if(persistence.findByNumero(mensajero.getCelular())!=null)
+        else if(!persistence.findByNumero(mensajero.getCelular()).isEmpty())
             throw new BusinessLogicException("ya existe un mensajero con ese numero telefónico!");
         else 
             persistence.create(mensajero);
@@ -92,13 +92,10 @@ public class MensajeroLogic {
     
     public MensajeroEntity putMensajero(MensajeroEntity mensajero) throws BusinessLogicException
     {
-        if(!persistence.find(mensajero.getId()).getCorreo().equals(mensajero.getCorreo()))
-        
-            if(persistence.findByCorreo(mensajero.getCorreo())!=null )
-                throw new BusinessLogicException("ya existe un mensajero con ese Correo Electrónico!");
-        if(!persistence.find(mensajero.getId()).getCelular().equals(mensajero.getCelular()))
-            if(persistence.findByNumero(mensajero.getCelular())!=null)
-                throw new BusinessLogicException("ya existe un mensajero con ese numero telefónico!");
+        if(!persistence.find(mensajero.getId()).getCorreo().equals(mensajero.getCorreo()) && !persistence.findByCorreo(mensajero.getCorreo()).isEmpty())
+            throw new BusinessLogicException("ya existe un mensajero con ese Correo Electrónico!");
+        if(!persistence.find(mensajero.getId()).getCelular().equals(mensajero.getCelular())&& !persistence.findByNumero(mensajero.getCelular()).isEmpty())
+            throw new BusinessLogicException("ya existe un mensajero con ese numero telefónico!");
         
         mensajero.setCalificacionPromedio(calcularCalificaionPromedio(mensajero));
         return persistence.update(mensajero);

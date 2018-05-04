@@ -30,7 +30,7 @@ public class CuentaBancariaEntity extends BaseEntity implements Serializable{
     private String tipoTarjeta;
     @PodamExclude
     @OneToMany(mappedBy = "cuentaBancaria", cascade = CascadeType.PERSIST, orphanRemoval = true)
-    private List<PagoEntity> pagos = new ArrayList<PagoEntity>();
+    private List<PagoEntity> pagos = new ArrayList<>();
     
     @PodamExclude
     @ManyToOne

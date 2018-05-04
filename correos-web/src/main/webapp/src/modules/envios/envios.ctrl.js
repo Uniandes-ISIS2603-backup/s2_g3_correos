@@ -2,7 +2,7 @@
 {
    var mod=ng.module("enviosModule");
    mod.constant("enviosContext","api/envios");
-   mod.controller('enviosCtrl',['$scope', '$http', 'enviosContext', '$state',
+   mod.controller('enviosCtrl',['$scope', '$http', 'enviosContext', 
    
           /**
          * @ngdoc controller
@@ -22,7 +22,7 @@
          * @param {Object} $state Dependencia injectada en la que se recibe el 
          * estado actual de la navegación definida en el módulo.
          */
-        function($scope,$http, enviosContext,$state)
+        function($scope,$http, enviosContext)
         {
             /**
              * @ngdoc function

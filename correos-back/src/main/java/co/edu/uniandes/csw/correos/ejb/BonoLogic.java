@@ -6,10 +6,8 @@
 package co.edu.uniandes.csw.correos.ejb;
 
 import co.edu.uniandes.csw.correos.entities.BonoEntity;
-import co.edu.uniandes.csw.correos.entities.ClienteEntity;
 import co.edu.uniandes.csw.correos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.correos.persistence.BonoPersistance;
-import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -26,21 +24,24 @@ public class BonoLogic {
     
     private static final Logger LOGGER= Logger.getLogger(BonoLogic.class.getName());
     
-    @Inject
+    
     private BonoPersistance persistence;
     
-    @Inject
+    
     private ClienteLogic clienteLogic;
     
-    public BonoLogic (BonoPersistance persistence)
+    @Inject
+    public BonoLogic (BonoPersistance persistence,ClienteLogic cl)
     {
         this.persistence=persistence;
+        this.clienteLogic=cl;
     }
     
     public BonoLogic()
 
     {
         this.persistence=null;
+        this.clienteLogic=null;
     }
     
     /**
@@ -58,12 +59,12 @@ public class BonoLogic {
         {
             throw new BusinessLogicException("El descuento debe ser un número mayor a cero");
         } 
-        if(entity.getCondicion().isEmpty() == true)
+        if(entity.getCondicion().isEmpty())
         {
              throw new BusinessLogicException("La condicion no puede estar vacia");
         }
         
-        if(entity.getDescripcion().isEmpty() == true)
+        if(entity.getDescripcion().isEmpty())
         {
              throw new BusinessLogicException("La descripción no puede estar vacia");
         }
@@ -78,7 +79,7 @@ public class BonoLogic {
        
         List<BonoEntity> bonos = persistence.findAll();
         
-        if(bonos.isEmpty() == true)
+        if(bonos.isEmpty())
         {
             throw new BusinessLogicException("No hay bonos en el sistema.");
         }
@@ -112,12 +113,12 @@ public class BonoLogic {
         {
             throw new BusinessLogicException("El descuento debe ser un número mayor a cero");
         } 
-        if(entity.getCondicion().isEmpty() == true)
+        if(entity.getCondicion().isEmpty())
         {
              throw new BusinessLogicException("La condicion no puede estar vacia");
         }
         
-        if(entity.getDescripcion().isEmpty() == true)
+        if(entity.getDescripcion().isEmpty())
         {
              throw new BusinessLogicException("La descripción no puede estar vacia");
         }

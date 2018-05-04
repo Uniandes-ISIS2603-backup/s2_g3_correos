@@ -63,11 +63,22 @@ import javax.ws.rs.WebApplicationException;
 @Consumes("application/json")
 @RequestScoped
 public class TransporteResource {
-    @Inject
+
     private TransporteLogic logic;
+     
+    private MensajeroLogic logicMensajero;
     
     @Inject
-    private MensajeroLogic logicMensajero;
+    public TransporteResource(TransporteLogic logic, MensajeroLogic logicMensajero) {
+        this.logic = logic;
+        this.logicMensajero = logicMensajero;
+    }
+    
+    public TransporteResource() {
+        this.logic = null;
+        this.logicMensajero = null;
+    }
+    
     /**
      * <h1>POST /api/transportes : Crear un transporte.</h1>
      * 
@@ -98,6 +109,8 @@ public class TransporteResource {
         return new TransporteDTO(logic.createTransporte(transporte.toEntity()));
         
     }
+
+
     
     /**
      * <h1>PUT /api/transportes/{id} : Actualizar transporte con el id dado.</h1>
@@ -121,7 +134,7 @@ public class TransporteResource {
     public TransporteDTO updateTransporte(@PathParam("mensajeroId") Long mensajeroId, @PathParam("id") Long id , TransporteDTO transporte)
     {
         if(logicMensajero.getMensajero(mensajeroId)==null)
-            throw new WebApplicationException("no existe el Mensajero con el id " + mensajeroId, 404);
+            throw new WebApplicationException("no existe ese Mensajero con el id " + mensajeroId, 404);
         if(logic.getTransporte(id)==null)
             throw new WebApplicationException("no existe el Transporte con el id " + id, 404);
         transporte.setId(id);
@@ -149,9 +162,9 @@ public class TransporteResource {
     public TransporteDTO getTransporte(@PathParam("mensajeroId") Long mensajeroId,@PathParam("id") Long id)
     {
         if(logicMensajero.getMensajero(mensajeroId)==null)
-            throw new WebApplicationException("no existe el Mensajero con el id " + mensajeroId, 404);
+            throw new WebApplicationException("no existe el Mensajero " + mensajeroId, 404);
         if(logic.getTransporte(id)==null)
-            throw new WebApplicationException("no existe el Transporte con el id " + id, 404);
+            throw new WebApplicationException("no existe ese Transporte con el id " + id, 404);
         return new TransporteDTO(logic.getTransporte(id));
     }
     
@@ -170,7 +183,7 @@ public class TransporteResource {
     public List<TransporteDTO> getTransportes(@PathParam("mensajeroId") Long mensajeroId)
     {
         if(logicMensajero.getMensajero(mensajeroId)==null)
-            throw new WebApplicationException("no existe el Mensajero con el id " + mensajeroId, 404);
+            throw new WebApplicationException("no hay un Mensajero con el id " + mensajeroId, 404);
         return listEntity2DTO(logicMensajero.getMensajero(mensajeroId).getTransportes());
     }
     
@@ -193,9 +206,9 @@ public class TransporteResource {
     public void deleteTransporte(@PathParam("mensajeroId") Long mensajeroId,@PathParam("id") Long id) throws BusinessLogicException
     {
         if(logicMensajero.getMensajero(mensajeroId)==null)
-            throw new WebApplicationException("no existe el Mensajero con el id " + mensajeroId, 404);
+            throw new WebApplicationException("no existe el mensajero de id " + mensajeroId, 404);
         if(logic.getTransporte(id)==null)
-            throw new WebApplicationException("no existe el Transporte con el id " + id, 404);
+            throw new WebApplicationException("no hay un Transporte con el id " + id, 404);
         logicMensajero.borrarTransporte(mensajeroId, id);
     }
     

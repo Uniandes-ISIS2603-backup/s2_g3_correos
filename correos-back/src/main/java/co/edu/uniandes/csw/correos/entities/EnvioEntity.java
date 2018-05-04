@@ -44,15 +44,15 @@ public class EnvioEntity extends BaseEntity implements Serializable{
    
    @PodamExclude
    @OneToMany(cascade=CascadeType.ALL, orphanRemoval = true, mappedBy = "envio", fetch = FetchType.LAZY)
-   private List<EventoEntity> eventos = new ArrayList<EventoEntity>();
+   private List<EventoEntity> eventos = new ArrayList<>();
    
    @PodamExclude
    @OneToMany(cascade=CascadeType.ALL, orphanRemoval = true, mappedBy = "envio", fetch = FetchType.LAZY)
-   private List<PaqueteEntity> paquetes = new ArrayList<PaqueteEntity>();
+   private List<PaqueteEntity> paquetes = new ArrayList<>();
    
    @PodamExclude
    @OneToMany(fetch = FetchType.EAGER)
-   private List<BonoEntity> bonos = new ArrayList<BonoEntity>();
+   private List<BonoEntity> bonos = new ArrayList<>();
    
     /**
      * @return the horaInicio

@@ -27,11 +27,23 @@ public class PaqueteLogic {
     
     private static final Logger LOGGER = Logger.getLogger(PaqueteLogic.class.getName());
 
-    @Inject
     private PaquetePersistence persistence;
-    @Inject
+    
     private EnvioPersistence pEnvio;
-
+    
+    @Inject
+    public PaqueteLogic(PaquetePersistence pP, EnvioPersistence eP)
+    {
+        this.persistence=pP;
+        this.pEnvio=eP;
+    }
+    
+    public PaqueteLogic()
+    {
+        this.persistence=null;
+        this.pEnvio=null;
+    }
+    
     /**
      * 
      * @param entity el paquete a ser creado

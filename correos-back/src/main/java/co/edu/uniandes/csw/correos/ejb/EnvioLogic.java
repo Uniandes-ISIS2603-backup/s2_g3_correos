@@ -13,7 +13,6 @@ import co.edu.uniandes.csw.correos.entities.TransporteEntity;
 import co.edu.uniandes.csw.correos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.correos.persistence.EnvioPersistence;
 import co.edu.uniandes.csw.correos.persistence.MensajeroPersistence;
-import co.edu.uniandes.csw.correos.persistence.PaquetePersistence;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -30,8 +29,6 @@ public class EnvioLogic {
     private static final Logger LOGGER = Logger.getLogger(EnvioLogic.class.getName());
 
     private EnvioPersistence persistence;
-
-    private PaquetePersistence pPaquete;
 
     private MensajeroLogic mensajeroLogic;
     
@@ -66,15 +63,15 @@ public class EnvioLogic {
         if (entity.getHoraInicio()>entity.getHoraFinal()){
             throw new BusinessLogicException("La Hora Final es anterior a la Hora Incial.");
         }
-        //else if (entity.getCliente()==null){
-        //    throw new BusinessLogicException("No se reconoce un cliente.");
-        //}
+        else if (entity.getCliente()==null){
+            throw new BusinessLogicException("No se reconoce un cliente.");
+        }
         else if (entity.getEstado()==null){
             throw new BusinessLogicException("No se reconoce un estado.");
         }
-        //else if (entity.getPaquetes().isEmpty()){
-        //    throw new BusinessLogicException("No hay paquetes en el envio.");
-        //}
+        else if (entity.getPaquetes().isEmpty()){
+            throw new BusinessLogicException("No hay paquetes en el envio.");
+        }
         else{
             persistence.create(entity);     
         }        
@@ -108,7 +105,7 @@ public class EnvioLogic {
 
         for(EnvioEntity x:envios)
         {
-            if(!x.getEstado().equals("FINALIZADO"))
+            if(!("FINALIZADO").equals(x.getEstado()))
                 asignarMensajero(x);
         } 
         
@@ -129,15 +126,15 @@ public class EnvioLogic {
         if (entity.getHoraInicio()>entity.getHoraFinal()){
             throw new BusinessLogicException("La Hora Final es anterior a la Hora Incial.");
         }
-        //if (entity.getCliente()==null){
-        //   throw new BusinessLogicException("No se reconoce un cliente.");
-        //}
+        if (entity.getCliente()==null){
+           throw new BusinessLogicException("No se reconoce un cliente.");
+        }
         if (entity.getEstado()==null){
             throw new BusinessLogicException("No se reconoce un estado.");
         }
-        //if (entity.getPaquetes().isEmpty()){
-        //   throw new BusinessLogicException("No hay paquetes en el envio.");
-        //}
+        if (entity.getPaquetes().isEmpty()){
+           throw new BusinessLogicException("No hay paquetes en el envio.");
+        }
         
         return persistence.update(entity);
     }
@@ -181,8 +178,8 @@ public class EnvioLogic {
        paquetes.add(paquete);
        envio.setPaquetes(paquetes);
        persistence.update(envio);
-       System.out.println(envio.getPaquetes().get(envio.getPaquetes().size()-1).getTipo());
-       System.out.println(persistence.find(id).getPaquetes().get(envio.getPaquetes().size()-1).getTipo());
+       LOGGER.info(envio.getPaquetes().get(envio.getPaquetes().size()-1).getTipo());
+       LOGGER.info(persistence.find(id).getPaquetes().get(envio.getPaquetes().size()-1).getTipo());
     }
     
     public void asignarMensajero(EnvioEntity envio)
@@ -193,11 +190,11 @@ public class EnvioLogic {
             {
                 for(TransporteEntity w:x.getTransportes() ){
                     if(w.isActivo()){
-                    envio.setMensajero(x);
-                    x.agregarEnvio(envio);
-                    x.setOcupado(true);
-                    mensajeroP.update(x);
-                    break;
+                        envio.setMensajero(x);
+                        x.agregarEnvio(envio);
+                        x.setOcupado(true);
+                        mensajeroP.update(x);
+                        break;
                     }
                 }
                 if(x.isOcupado())

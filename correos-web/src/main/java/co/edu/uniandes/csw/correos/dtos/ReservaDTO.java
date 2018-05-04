@@ -25,10 +25,6 @@ package co.edu.uniandes.csw.correos.dtos;
 
 import co.edu.uniandes.csw.correos.entities.ReservaEntity;
 import java.sql.Timestamp;
-import java.util.Date;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-
 
 /**
  * ResrvaDTO Objeto de transferencia de datos de Reservas. Los DTO contienen las

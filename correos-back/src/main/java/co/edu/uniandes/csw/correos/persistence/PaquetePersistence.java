@@ -65,7 +65,7 @@ public class PaquetePersistence {
      */
     public PaqueteEntity update(PaqueteEntity entity){
         
-        System.out.println(entity.getTipo()+"Jirafa");
+        LOGGER.info(entity.getTipo()+"Jirafa");
         
        return em.merge(entity);
     }

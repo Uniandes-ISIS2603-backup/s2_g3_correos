@@ -2,7 +2,7 @@
 {
    var mod=ng.module("clientesModule");
    mod.constant("clientesContext","api/clientes");
-   mod.controller('clientesCtrl',['$scope', '$http', 'clientesContext', '$state',
+   mod.controller('clientesCtrl',['$scope', '$http', 'clientesContext',
    
           /**
          * @ngdoc controller
@@ -22,7 +22,7 @@
          * @param {Object} $state Dependencia injectada en la que se recibe el 
          * estado actual de la navegación definida en el módulo.
          */
-        function($scope,$http, clientesContext,$state)
+        function($scope,$http, clientesContext)
         {
             /**
              * @ngdoc function

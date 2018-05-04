@@ -22,7 +22,7 @@ public class TenPlusNumericString implements AttributeStrategy<String>{
         for (int i = 0; i < sum; i++) {
             Double dou = Math.random()*num.length();
             int rad = dou.intValue();
-            ret+=num.charAt(rad);
+            ret+=Character.toString(num.charAt(rad));
         }
         return ret;
     }
