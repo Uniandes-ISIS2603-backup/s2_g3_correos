@@ -11,6 +11,9 @@ import java.io.Serializable;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import uk.co.jemos.podam.common.PodamExclude;
@@ -22,7 +25,7 @@ import uk.co.jemos.podam.common.PodamStrategyValue;
  */
 
 @Entity
-public class PaqueteEntity extends BaseEntity implements Serializable{        
+public class PaqueteEntity implements Serializable{        
    
    @PodamStrategyValue(PositiveIntegerStrategy.class)
    private Double dimensionA;
@@ -41,7 +44,18 @@ public class PaqueteEntity extends BaseEntity implements Serializable{
    @PodamExclude
    @OneToOne (cascade=CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
    private DetallePaqueteEntity detalle;  
+   
+   @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
     /**
      * @return the dimensionA
      */

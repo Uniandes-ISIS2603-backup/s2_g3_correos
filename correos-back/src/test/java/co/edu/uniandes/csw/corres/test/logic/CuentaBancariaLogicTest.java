@@ -124,7 +124,6 @@ public class CuentaBancariaLogicTest {
         Assert.assertNotNull(result);
         CuentaBancariaEntity entity = em.find(CuentaBancariaEntity.class, result.getId());
         Assert.assertEquals(newEntity.getId(), entity.getId());
-        Assert.assertEquals(newEntity.getName(), entity.getName());
         Assert.assertEquals(newEntity.getCliente(), entity.getCliente());
     }
 
@@ -159,7 +158,6 @@ public class CuentaBancariaLogicTest {
         CuentaBancariaEntity resultEntity = cuentaBancariaLogic.getCuentaBancaria(entity.getId());
         Assert.assertNotNull(resultEntity);
         Assert.assertEquals(entity.getId(), resultEntity.getId());
-        Assert.assertEquals(entity.getName(), resultEntity.getName());
         Assert.assertEquals(entity.getCliente(), resultEntity.getCliente());
         Assert.assertEquals(entity.getBanco(), resultEntity.getBanco());
         Assert.assertEquals(entity.getNumero(), resultEntity.getNumero());
@@ -197,7 +195,6 @@ public class CuentaBancariaLogicTest {
         CuentaBancariaEntity resp = em.find(CuentaBancariaEntity.class, entity.getId());
 
         Assert.assertEquals(pojoEntity.getId(), resp.getId());
-        Assert.assertEquals(pojoEntity.getName(), resp.getName());
         Assert.assertEquals(pojoEntity.getCliente(), resp.getCliente());
         Assert.assertEquals(pojoEntity.getNumero(), resp.getNumero());
     }

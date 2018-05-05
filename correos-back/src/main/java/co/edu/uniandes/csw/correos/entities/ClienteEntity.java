@@ -10,6 +10,9 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import uk.co.jemos.podam.common.PodamExclude;
 
@@ -19,7 +22,7 @@ import uk.co.jemos.podam.common.PodamExclude;
  */
 
 @Entity
-public class ClienteEntity extends BaseEntity implements Serializable {
+public class ClienteEntity implements Serializable {
     
     private String nombre; // nombre del cliente
    
@@ -38,7 +41,18 @@ public class ClienteEntity extends BaseEntity implements Serializable {
     @PodamExclude
     @OneToMany(fetch =FetchType.LAZY, mappedBy = "cliente",orphanRemoval = true)
     private List <ReservaEntity> reservas;         
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
     /**
      * Obtiene el nombre del cliente
      * @return nombre del cliente

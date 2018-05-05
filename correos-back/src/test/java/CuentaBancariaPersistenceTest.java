@@ -139,7 +139,6 @@ public class CuentaBancariaPersistenceTest {
 
         CuentaBancariaEntity entity = em.find(CuentaBancariaEntity.class, result.getId());
 
-        Assert.assertEquals(newEntity.getName(), entity.getName());
         Assert.assertEquals(newEntity.getBanco(), entity.getBanco());
         Assert.assertEquals(newEntity.getId(), entity.getId());
         Assert.assertEquals(newEntity.getNumero(), entity.getNumero());
@@ -176,7 +175,6 @@ public class CuentaBancariaPersistenceTest {
         CuentaBancariaEntity entity = data.get(0);
         CuentaBancariaEntity newEntity = cuentaBancariaPersistence.find(entity.getId());
         Assert.assertNotNull(newEntity);
-        Assert.assertEquals(entity.getName(), newEntity.getName());
         Assert.assertEquals(entity.getBanco(), newEntity.getBanco());
         Assert.assertEquals(entity.getId(), newEntity.getId());
         Assert.assertEquals(entity.getNumero(), newEntity.getNumero());
@@ -213,7 +211,6 @@ public class CuentaBancariaPersistenceTest {
 
         CuentaBancariaEntity resp = em.find(CuentaBancariaEntity.class, entity.getId());
 
-        Assert.assertEquals(newEntity.getName(), resp.getName());
         Assert.assertEquals(newEntity.getBanco(), resp.getBanco());
         Assert.assertEquals(newEntity.getNumero(), resp.getNumero());
         Assert.assertEquals(newEntity.getId(), resp.getId());

@@ -8,6 +8,9 @@ package co.edu.uniandes.csw.correos.entities;
 import co.edu.uniandes.csw.correos.podamstrategy.ThreeWordStrategy;
 import java.io.Serializable;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import uk.co.jemos.podam.common.PodamExclude;
 import uk.co.jemos.podam.common.PodamStrategyValue;
@@ -17,7 +20,7 @@ import uk.co.jemos.podam.common.PodamStrategyValue;
  * @author a.silvag
  */
 @Entity
-public class EventoEntity extends BaseEntity implements Serializable{
+public class EventoEntity implements Serializable{
     
 
     private Long ubicacion;
@@ -28,6 +31,18 @@ public class EventoEntity extends BaseEntity implements Serializable{
     @PodamExclude
     @ManyToOne
     private EnvioEntity envio;
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public EnvioEntity getEnvio() {
         return envio;

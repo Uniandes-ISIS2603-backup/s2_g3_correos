@@ -15,6 +15,9 @@ package co.edu.uniandes.csw.correos.entities;
 import java.io.Serializable;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import uk.co.jemos.podam.common.PodamExclude;
 
@@ -30,7 +33,7 @@ import uk.co.jemos.podam.common.PodamExclude;
 
 @Entity
 
-public class DetallePaqueteEntity extends BaseEntity implements Serializable {
+public class DetallePaqueteEntity implements Serializable {
 
     @PodamExclude
     @OneToOne
@@ -41,7 +44,17 @@ public class DetallePaqueteEntity extends BaseEntity implements Serializable {
 
     private String mensaje; // mensaje del paquete
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     /**
 

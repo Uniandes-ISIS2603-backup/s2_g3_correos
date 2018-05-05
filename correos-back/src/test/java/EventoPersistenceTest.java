@@ -16,13 +16,9 @@ import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
-import static org.junit.Assert.*;
 import org.junit.runner.RunWith;
 import uk.co.jemos.podam.api.PodamFactory;
 import uk.co.jemos.podam.api.PodamFactoryImpl;
@@ -140,7 +136,6 @@ public class EventoPersistenceTest {
 
         EventoEntity entity = em.find(EventoEntity.class, result.getId());
 
-        Assert.assertEquals(newEntity.getName(), entity.getName());
         Assert.assertEquals(newEntity.getDetalle(), entity.getDetalle());
         Assert.assertEquals(newEntity.getId(), entity.getId());
         Assert.assertEquals(newEntity.getUbicacion(), entity.getUbicacion());
@@ -176,7 +171,6 @@ public class EventoPersistenceTest {
         EventoEntity entity = data.get(0);
         EventoEntity newEntity = eventoPersistence.find(entity.getId());
         Assert.assertNotNull(newEntity);
-        Assert.assertEquals(entity.getName(), newEntity.getName());
         Assert.assertEquals(entity.getDetalle(), newEntity.getDetalle());
         Assert.assertEquals(entity.getId(), newEntity.getId());
         Assert.assertEquals(entity.getUbicacion(), newEntity.getUbicacion());
@@ -212,7 +206,6 @@ public class EventoPersistenceTest {
 
         EventoEntity resp = em.find(EventoEntity.class, entity.getId());
 
-        Assert.assertEquals(newEntity.getName(), resp.getName());
         Assert.assertEquals(newEntity.getDetalle(), resp.getDetalle());
         Assert.assertEquals(newEntity.getUbicacion(), resp.getUbicacion());
         Assert.assertEquals(newEntity.getId(), resp.getId());

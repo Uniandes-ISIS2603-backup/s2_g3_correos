@@ -26,6 +26,9 @@ package co.edu.uniandes.csw.correos.entities;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -36,7 +39,7 @@ import uk.co.jemos.podam.common.PodamExclude;
  * @author l.mejia
  */
 @Entity
-public class ReservaEntity extends BaseEntity implements Serializable{
+public class ReservaEntity implements Serializable{
     
     @Temporal(TemporalType.TIMESTAMP)
     private Date fecha;
@@ -45,7 +48,17 @@ public class ReservaEntity extends BaseEntity implements Serializable{
     @PodamExclude
     @ManyToOne
     private ClienteEntity cliente;
-    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
     /**
      * @return la fecha de la reserva
      */

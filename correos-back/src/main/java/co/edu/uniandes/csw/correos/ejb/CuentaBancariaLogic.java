@@ -52,9 +52,7 @@ public class CuentaBancariaLogic {
     
     public CuentaBancariaEntity createCuentaBancaria(CuentaBancariaEntity entity) throws BusinessLogicException{
             
-        if(persistence.findByName(entity.getName())!=null){
-            throw new BusinessLogicException("Ya existe una cuenta bancaria con el nombre, por dios que esta pasando?");
-        }
+        
         if(entity.getNumero().length()<10){
             throw new BusinessLogicException("Se necesitan 10 digitos caballero"+ entity.getNumero()+"length"+entity.getNumero().length());
         
@@ -69,9 +67,7 @@ public class CuentaBancariaLogic {
     }
     
     public CuentaBancariaEntity updateCuentaBancaria(CuentaBancariaEntity entity) throws BusinessLogicException{
-        if(!persistence.find(entity.getId()).getNumero().equals(entity.getName())&&persistence.findByName(entity.getName())!=null){
-           throw new BusinessLogicException("YNo se que deberia decir esta excepcion, Andres cuando documente esto ponga un mensaje Legit pls");
-        }
+       
         
         if(entity.getNumero().length()<10){
             throw new BusinessLogicException("Se necesitan 10 digitos caballero" + entity.getNumero()+"length"+entity.getNumero().length());

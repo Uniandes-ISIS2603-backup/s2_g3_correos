@@ -8,6 +8,9 @@ package co.edu.uniandes.csw.correos.entities;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -19,7 +22,12 @@ import uk.co.jemos.podam.common.PodamExclude;
  */
 
 @Entity
-public class BonoEntity extends BaseEntity implements Serializable {
+public class BonoEntity implements Serializable {
+    
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     
     @PodamExclude
     @OneToOne
@@ -30,6 +38,14 @@ public class BonoEntity extends BaseEntity implements Serializable {
     private String condicion; // condicion o estado del bono
     @Temporal(TemporalType.TIMESTAMP) 
     private Date fechaDeVencimiento; // fecha de vencimiento del bono
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
    
 
