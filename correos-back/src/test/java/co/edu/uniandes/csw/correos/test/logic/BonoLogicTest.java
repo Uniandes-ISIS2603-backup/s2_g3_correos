@@ -118,7 +118,6 @@ public class BonoLogicTest {
         Assert.assertNotNull(result);
         BonoEntity entity = em.find(BonoEntity.class, result.getId());
         Assert.assertEquals(newEntity.getId(), entity.getId());
-        Assert.assertEquals(newEntity.getName(), entity.getName());
         Assert.assertEquals(newEntity.getCondicion(), entity.getCondicion());
         Assert.assertEquals(newEntity.getDescripcion(), entity.getDescripcion());
         Assert.assertEquals(newEntity.getDescuento(), entity.getDescuento());
@@ -156,7 +155,6 @@ public class BonoLogicTest {
         BonoEntity resultEntity = bonoLogic.getBono(entity.getId());
         Assert.assertNotNull(resultEntity);
         Assert.assertEquals(entity.getId(), resultEntity.getId());
-        Assert.assertEquals(entity.getName(), resultEntity.getName());
         Assert.assertEquals(entity.getCondicion(), resultEntity.getCondicion());
         Assert.assertEquals(entity.getDescripcion(), resultEntity.getDescripcion());
         Assert.assertEquals(entity.getDescuento(), resultEntity.getDescuento());
@@ -192,7 +190,6 @@ public class BonoLogicTest {
         BonoEntity resp = em.find(BonoEntity.class, entity.getId());
 
         Assert.assertEquals(pojoEntity.getId(), resp.getId());
-        Assert.assertEquals(pojoEntity.getName(), resp.getName());
         Assert.assertEquals(pojoEntity.getCondicion(), resp.getCondicion());
         Assert.assertEquals(pojoEntity.getDescripcion(), resp.getDescripcion());
         Assert.assertEquals(pojoEntity.getFechaDeVencimiento(), resp.getFechaDeVencimiento());

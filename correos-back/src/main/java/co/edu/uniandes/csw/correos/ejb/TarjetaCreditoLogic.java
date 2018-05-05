@@ -58,9 +58,6 @@ public class TarjetaCreditoLogic {
     public TarjetaCreditoEntity createTarjetaCredito(TarjetaCreditoEntity entity) throws BusinessLogicException {
         LOGGER.info("Inicia proceso de creación de la tarjeta de credito");
         // Verifica la regla de negocio que dice que no puede haber dos tarjetas repetidas
-        if (persistence.findByName(entity.getName()) != null) {
-            throw new BusinessLogicException("Ya existe esa tarjeta \"" + entity.getName() + "\"");
-        }     
         // Invoca la persistencia para crear la tarjeta
         persistence.create(entity);
         LOGGER.info("Termina proceso de creación de la tarjeta");
@@ -80,9 +77,7 @@ public class TarjetaCreditoLogic {
     }
 
     public TarjetaCreditoEntity updateTarjetaCredito(TarjetaCreditoEntity entity) throws BusinessLogicException  {
-        if (persistence.findByName(entity.getName()) != null) {
-            throw new BusinessLogicException("Ya existe una tarjeta \"" + entity.getName() + "\"");
-        }
+
         return persistence.update(entity);
     }
     

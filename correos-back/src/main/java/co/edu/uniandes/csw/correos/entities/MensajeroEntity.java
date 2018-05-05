@@ -28,6 +28,9 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -38,13 +41,14 @@ import uk.co.jemos.podam.common.PodamExclude;
  * @author l.mejia
  */
 @Entity
-public class MensajeroEntity extends BaseEntity implements Serializable {
+public class MensajeroEntity implements Serializable {
     
     private String correo;
     private String nombre;
     private String celular;
     private Double calificacionPromedio;
     private boolean ocupado;
+    
     
     @PodamExclude
    @OneToOne(cascade= CascadeType.PERSIST, orphanRemoval = true, fetch = FetchType.EAGER)
@@ -66,7 +70,17 @@ public class MensajeroEntity extends BaseEntity implements Serializable {
     @ManyToMany(mappedBy="mensajeros", fetch = FetchType.LAZY)
     private List<ZonaEntity> zonas;
    
-    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
     
     /**
      * @return  El correo del mensajero

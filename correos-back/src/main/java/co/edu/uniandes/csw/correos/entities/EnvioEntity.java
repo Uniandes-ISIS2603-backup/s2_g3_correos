@@ -12,6 +12,9 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -22,14 +25,24 @@ import uk.co.jemos.podam.common.PodamExclude;
  * @author df.rengifo
  */
 @Entity
-public class EnvioEntity extends BaseEntity implements Serializable{   
+public class EnvioEntity implements Serializable{   
    
    private Long horaInicio;
    private Long horaFinal;    
    private String estado;
    private String direccionEntrega;
    private String direccionRecogida; 
-   
+   @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
    @PodamExclude
    @ManyToOne (fetch = FetchType.LAZY)
    private MensajeroEntity mensajero;

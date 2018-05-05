@@ -48,9 +48,6 @@ public class EventoLogic {
     
     public EventoEntity createEvento(EventoEntity entity) throws BusinessLogicException{
         
-      if(entity.getDetalle().split("\\w+").length<3||persistence.findByName(entity.getName())!=null){
-          throw new BusinessLogicException("Diga algo en el detalle");
-      }
       
       return persistence.create(entity);
     }

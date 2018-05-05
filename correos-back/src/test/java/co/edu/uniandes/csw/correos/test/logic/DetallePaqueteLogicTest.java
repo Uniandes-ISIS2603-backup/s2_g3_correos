@@ -118,7 +118,6 @@ public class DetallePaqueteLogicTest {
         Assert.assertNotNull(result);
         DetallePaqueteEntity entity = em.find(DetallePaqueteEntity.class, result.getId());
         Assert.assertEquals(newEntity.getId(), entity.getId());
-        Assert.assertEquals(newEntity.getName(), entity.getName());
         Assert.assertEquals(newEntity.getMensaje(), entity.getMensaje());
     }
 
@@ -133,7 +132,6 @@ public class DetallePaqueteLogicTest {
         DetallePaqueteEntity resultEntity = detalleLogic.getDetallePaquete(entity.getId());
         Assert.assertNotNull(resultEntity);
         Assert.assertEquals(entity.getId(), resultEntity.getId());
-        Assert.assertEquals(entity.getName(), resultEntity.getName());
         Assert.assertEquals(entity.getMensaje(), resultEntity.getMensaje());
     }
 
@@ -167,7 +165,6 @@ public class DetallePaqueteLogicTest {
         DetallePaqueteEntity resp = em.find(DetallePaqueteEntity.class, entity.getId());
 
         Assert.assertEquals(pojoEntity.getId(), resp.getId());
-        Assert.assertEquals(pojoEntity.getName(), resp.getName());
         Assert.assertEquals(pojoEntity.getMensaje(), resp.getMensaje());
     }
 }
