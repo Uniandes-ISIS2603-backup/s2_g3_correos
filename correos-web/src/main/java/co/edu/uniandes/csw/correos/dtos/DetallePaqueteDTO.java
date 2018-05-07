@@ -27,20 +27,20 @@ public class DetallePaqueteDTO {
     /**
      * Constructor por defecto
      */
-    public DetallePaqueteDTO() {
+    public DetallePaqueteDTO() 
+    {
+        //Constructor vacio para permitir la construccion del JSON
     }
 
     public DetallePaqueteDTO(DetallePaqueteEntity entity) {
 
         this.idDetalle = entity.getId();
-        this.name = entity.getName();
         this.mensaje = entity.getMensaje();
     }
 
     public DetallePaqueteEntity toEntity() {
         DetallePaqueteEntity entity = new DetallePaqueteEntity();
         entity.setId(this.idDetalle);
-        entity.setName(this.name);
         entity.setMensaje(this.mensaje);
         return entity;
     }

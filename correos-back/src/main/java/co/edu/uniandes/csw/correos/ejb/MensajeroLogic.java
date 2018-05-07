@@ -42,27 +42,46 @@ import javax.inject.Inject;
 @Stateless
 public class MensajeroLogic {
     
+    /**
+     * logger
+     */
     private static final Logger LOGGER= Logger.getLogger(MensajeroLogic.class.getName());
     
+    /**
+     * relacion con persistencia
+     */
     private MensajeroPersistence persistence;
     
+    /**
+     * constructor con parametros
+     * @param persistence 
+     */
     @Inject
     public MensajeroLogic(MensajeroPersistence persistence)
     {
         this.persistence=persistence;
     }
     
+    /**
+     * constructor sin parametros
+     */
     public MensajeroLogic()
     {
         this.persistence=null;
     }
     
+    /**
+     * 
+     * @param mensajero
+     * @return el mensajero creado
+     * @throws BusinessLogicException 
+     */
     public MensajeroEntity createMensajero(MensajeroEntity mensajero) throws BusinessLogicException
     {
         LOGGER.info("Se inicia la creación de un Mensajero");
-        if(persistence.findByCorreo(mensajero.getCorreo())!=null)
+        if(!persistence.findByCorreo(mensajero.getCorreo()).isEmpty())
             throw new BusinessLogicException("ya existe un mensajero con ese Correo Electrónico!");
-        else if(persistence.findByNumero(mensajero.getCelular())!=null)
+        else if(!persistence.findByNumero(mensajero.getCelular()).isEmpty())
             throw new BusinessLogicException("ya existe un mensajero con ese numero telefónico!");
         else 
             persistence.create(mensajero);
@@ -70,6 +89,10 @@ public class MensajeroLogic {
         return mensajero;
     }
     
+    /**
+     * 
+     * @return todos los mensajeros
+     */
     public List<MensajeroEntity> getMensajeros()
     {
         LOGGER.info("Se inicia la consulta de todos los mensajeros");
@@ -84,21 +107,28 @@ public class MensajeroLogic {
     }
     
    
-    
+    /**
+     * 
+     * @param id
+     * @return el mensajero por id
+     */
     public MensajeroEntity getMensajero(Long id)
     {
         return persistence.find(id);
     }
     
+    /**
+     * 
+     * @param mensajero
+     * @return el mensajero actualizado
+     * @throws BusinessLogicException 
+     */
     public MensajeroEntity putMensajero(MensajeroEntity mensajero) throws BusinessLogicException
     {
-        if(!persistence.find(mensajero.getId()).getCorreo().equals(mensajero.getCorreo()))
-        
-            if(persistence.findByCorreo(mensajero.getCorreo())!=null )
-                throw new BusinessLogicException("ya existe un mensajero con ese Correo Electrónico!");
-        if(!persistence.find(mensajero.getId()).getCelular().equals(mensajero.getCelular()))
-            if(persistence.findByNumero(mensajero.getCelular())!=null)
-                throw new BusinessLogicException("ya existe un mensajero con ese numero telefónico!");
+        if(!persistence.find(mensajero.getId()).getCorreo().equals(mensajero.getCorreo()) && !persistence.findByCorreo(mensajero.getCorreo()).isEmpty())
+            throw new BusinessLogicException("ya existe un mensajero con ese Correo Electrónico!");
+        if(!persistence.find(mensajero.getId()).getCelular().equals(mensajero.getCelular())&& !persistence.findByNumero(mensajero.getCelular()).isEmpty())
+            throw new BusinessLogicException("ya existe un mensajero con ese numero telefónico!");
         
         mensajero.setCalificacionPromedio(calcularCalificaionPromedio(mensajero));
         return persistence.update(mensajero);
@@ -106,6 +136,10 @@ public class MensajeroLogic {
         
     }
     
+    /**
+     * borra el mensajero por param
+     * @param mensajero 
+     */
     public void deleteMensajero(MensajeroEntity mensajero)
     {
         LOGGER.log(Level.INFO,"se elimina el mensajero con el id={0}",mensajero.getId());
@@ -113,6 +147,11 @@ public class MensajeroLogic {
         LOGGER.log(Level.INFO,"se eliminó el mensajero con el id={0}",mensajero.getId());
     }
     
+    /**
+     * agraga el transporte al mensajero
+     * @param id
+     * @param transporte 
+     */
     public void agregarTransporte(Long id, TransporteEntity transporte)
     {
         MensajeroEntity agregar= persistence.find(id);
@@ -122,6 +161,11 @@ public class MensajeroLogic {
         persistence.update(agregar);
     }
     
+    /**
+     * agrega la calificacion al mensajero promediada
+     * @param id
+     * @param calificacion 
+     */
     public void agregarCalificacion(Long id, CalificacionEntity calificacion)
     {
         MensajeroEntity agregar= persistence.find(id);
@@ -131,7 +175,11 @@ public class MensajeroLogic {
         persistence.update(agregar);
     }
     
-    
+    /**
+     * 
+     * @param mensajero
+     * @return el proedio de las calificaciones
+     */
     public double calcularCalificaionPromedio(MensajeroEntity mensajero)
     {
         if(mensajero.getCalificaciones()==null)
@@ -145,6 +193,12 @@ public class MensajeroLogic {
         return retorno;        
     }
     
+    /**
+     * borra el transporte por param
+     * @param mensajero
+     * @param transporte
+     * @throws BusinessLogicException 
+     */
     public void borrarTransporte(Long mensajero, Long transporte) throws BusinessLogicException
     {
         MensajeroEntity cambiar= getMensajero(mensajero);

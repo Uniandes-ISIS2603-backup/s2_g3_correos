@@ -84,24 +84,18 @@ public class EnvioDetailDTO extends EnvioDTO {
             for (int i = 0; i < eventos.size(); i++) {
                 newEventos.add(eventos.get(i).toEntity());
             }
+            entity.setEventos(newEventos);
         }
         if (bonos != null) {
             for (int i = 0; i < bonos.size(); i++) {
                 newBonos.add(bonos.get(i).toEntity());
             }
+            entity.setBonos(newBonos);
         }
         if (paquetes != null) {
             for (int i = 0; i < paquetes.size(); i++) {
                 newPaquetes.add(paquetes.get(i).toEntity());
             }
-        }
-        if (!newEventos.isEmpty()) {
-            entity.setEventos(newEventos);
-        }
-        if (!newBonos.isEmpty()) {
-            entity.setBonos(newBonos);
-        }
-        if (!newPaquetes.isEmpty()) {
             entity.setPaquetes(newPaquetes);
         }
         if (cliente != null) {
@@ -117,6 +111,7 @@ public class EnvioDetailDTO extends EnvioDTO {
         return entity;
     }
 
+    
     /**
      * @return La lista de los eventos asociados al envio
      */

@@ -48,14 +48,12 @@ public class BonoDTO
         this.condicion = entity.getCondicion();
         this.descripcion = entity.getDescripcion();
         this.fechaDeVencimiento = entity.getFechaDeVencimiento();
-        this.name = entity.getName();
         this.descuento=entity.getDescuento();
     }
 
     public BonoEntity toEntity() {
         BonoEntity entity = new BonoEntity();
         entity.setId(this.id);
-        entity.setName(this.name);
         entity.setCondicion(this.condicion);
         entity.setDescripcion(this.descripcion);
         entity.setFechaDeVencimiento(this.fechaDeVencimiento);
@@ -64,21 +62,7 @@ public class BonoDTO
     }
 
     //public BonoDTO(MBonoEntity entity){} este constructor sera realizado una vez se realice la capa de persistencia
-   /**
-    * @return nombre del bono
-    */
-    public String getName()
-    {    
-        return name;
-    }
 
-   /**
-    * Asigna nombre al bono
-    * @param name nombre del bono
-    */
-    public void setName(String name) {
-        this.name = name;
-    }
 
     /**
      * @return id del bono

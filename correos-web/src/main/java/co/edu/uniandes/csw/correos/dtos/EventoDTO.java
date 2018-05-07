@@ -40,8 +40,9 @@ public class EventoDTO {
     private String detalle;
     
     
-public EventoDTO(){
-    
+public EventoDTO()
+{
+    //Constructor vacio para la creacion del JSON.
 }    
 /**
  * @return el id del evento

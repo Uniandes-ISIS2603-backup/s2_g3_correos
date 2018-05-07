@@ -28,6 +28,9 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -38,13 +41,14 @@ import uk.co.jemos.podam.common.PodamExclude;
  * @author l.mejia
  */
 @Entity
-public class MensajeroEntity extends BaseEntity implements Serializable {
+public class MensajeroEntity implements Serializable {
     
     private String correo;
     private String nombre;
     private String celular;
     private Double calificacionPromedio;
     private boolean ocupado;
+    
     
     @PodamExclude
    @OneToOne(cascade= CascadeType.PERSIST, orphanRemoval = true, fetch = FetchType.EAGER)
@@ -66,7 +70,25 @@ public class MensajeroEntity extends BaseEntity implements Serializable {
     @ManyToMany(mappedBy="mensajeros", fetch = FetchType.LAZY)
     private List<ZonaEntity> zonas;
    
-    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    /**
+     * 
+     * @return the id
+     */
+    public Long getId() {
+        return id;
+    }
+
+    /**
+     * set the id
+     * @param id 
+     */
+    public void setId(Long id) {
+        this.id = id;
+    }
     
     /**
      * @return  El correo del mensajero
@@ -124,54 +146,107 @@ public class MensajeroEntity extends BaseEntity implements Serializable {
         this.calificacionPromedio = calificacionPromedio;
     }
 
+    /**
+     * 
+     * @return the cuenta bancaria
+     */
     public CuentaBancariaEntity getCuenta() {
         return cuenta;
     }
 
+    /**
+     * set the cuenta bancaria
+     * @param cuenta 
+     */
     public void setCuenta(CuentaBancariaEntity cuenta) {
         this.cuenta = cuenta;
     }
 
+    /**
+     * 
+     * @return the transportes
+     */
     public List<TransporteEntity> getTransportes() {
         return transportes;
     }
 
+    
+    /**
+     * set the transportes
+     * @param transportes 
+     */
     public void setTransportes(List<TransporteEntity> transportes) {
         this.transportes = transportes;
     }
 
+    /**
+     * 
+     * @return the calificaciones
+     */
     public List<CalificacionEntity> getCalificaciones() {
         return calificaciones;
     }
 
+    /**
+     * set the calificaciones
+     * @param calificaciones 
+     */
     public void setCalificaciones(List<CalificacionEntity> calificaciones) {
         this.calificaciones = calificaciones;
     }
 
+    /**
+     * 
+     * @return all the envios
+     */
     public List<EnvioEntity> getEnvios() {
         return envios;
     }
 
+    /**
+     * set the envios
+     * @param envios 
+     */
     public void setEnvios(List<EnvioEntity> envios) {
         this.envios = envios;
     }
 
+    /**
+     * 
+     * @return the zonas
+     */
     public List<ZonaEntity> getZonas() {
         return zonas;
     }
 
+    /**
+     * set the zonas
+     * @param zonas 
+     */
     public void setZonas(List<ZonaEntity> zonas) {
         this.zonas = zonas;
     }
 
+    /**
+     * 
+     * @return ocupado
+     */
     public boolean isOcupado() {
         return ocupado;
     }
 
+    /**
+     * set ocupado boolean
+     * @param ocupado 
+     */
     public void setOcupado(boolean ocupado) {
         this.ocupado = ocupado;
     }
     
+    /**
+     * agrega envio por param
+     * @param envio 
+     */
     public void agregarEnvio(EnvioEntity envio)
     {
         this.envios.add(envio);

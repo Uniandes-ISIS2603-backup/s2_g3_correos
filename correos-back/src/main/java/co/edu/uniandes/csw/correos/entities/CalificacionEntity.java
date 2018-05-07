@@ -7,10 +7,10 @@ package co.edu.uniandes.csw.correos.entities;
 
 import co.edu.uniandes.csw.correos.podamstrategy.IntegerCalificacionStrategy;
 import java.io.Serializable;
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
-import uk.co.jemos.podam.common.PodamExclude;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import uk.co.jemos.podam.common.PodamStrategyValue;
 
 /**
@@ -18,7 +18,7 @@ import uk.co.jemos.podam.common.PodamStrategyValue;
  * @author ed.diaz11
  */
 @Entity
-public class CalificacionEntity extends BaseEntity implements Serializable{
+public class CalificacionEntity implements Serializable{
     
 
     @PodamStrategyValue(IntegerCalificacionStrategy.class)
@@ -27,6 +27,25 @@ public class CalificacionEntity extends BaseEntity implements Serializable{
 
     private String comentario;
     
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    /**
+     * 
+     * @return el id
+     */
+    public Long getId() {
+        return id;
+    }
+
+    /**
+     * setter para el id
+     * @param id 
+     */
+    public void setId(Long id) {
+        this.id = id;
+    }
      /**
      * @return la calificacion
      */

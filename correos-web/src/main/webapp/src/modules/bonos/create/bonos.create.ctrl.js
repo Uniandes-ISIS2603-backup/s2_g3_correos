@@ -35,10 +35,8 @@
              */
             $scope.createBono=function()
             {
-                alert("hola")
                 $http.post(clientesContext+'/'+$state.params.clienteId+'/'+bonosContext,$scope.data).then(function(response)
                 {
-                     alert(response)
                     $state.go('bonosList',{bonoId:response.data.id}, {reload:true});
                 });
             };

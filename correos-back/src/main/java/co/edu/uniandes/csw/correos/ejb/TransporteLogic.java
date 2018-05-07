@@ -37,21 +37,39 @@ import javax.inject.Inject;
  */
 @Stateless
 public class TransporteLogic {
+    /**
+     * logger
+     */
       private static final Logger LOGGER= Logger.getLogger(TransporteLogic.class.getName());
     
+      /**
+       * persistencia
+       */
     private TransportePersistence persistence;
     
+    /**
+     * constructor con parametros
+     * @param persistence 
+     */
     @Inject
     public TransporteLogic(TransportePersistence persistence)
     {
         this.persistence=persistence;
     }
     
+    /**
+     * constructor vacio
+     */
     public TransporteLogic()
     {
         this.persistence=null;
     }
     
+    /**
+     * 
+     * @param transporte
+     * @return el nuevo transporte
+     */
     public TransporteEntity createTransporte(TransporteEntity transporte)
     {
         LOGGER.info("Se inicia la creación de un Transporte");
@@ -61,6 +79,10 @@ public class TransporteLogic {
         return transporte;
     }
     
+    /**
+     * 
+     * @return todos los transportes
+     */
     public List<TransporteEntity> getTransportes()
     {
         LOGGER.info("Se inicia la consulta de todos los transportes");
@@ -69,16 +91,30 @@ public class TransporteLogic {
         return retorno;
     }
     
+    /**
+     * 
+     * @param id
+     * @return el transporte con id por param
+     */
     public TransporteEntity getTransporte(Long id)
     {
         return persistence.find(id);
     }
     
+    /**
+     * 
+     * @param transporte
+     * @return el transporte actualizado
+     */
     public TransporteEntity putTransporte(TransporteEntity transporte)
     {
         return persistence.update(transporte);
     }
     
+    /**
+     * borra el transporte por param
+     * @param transporte 
+     */
     public void deleteTransporte(TransporteEntity transporte)
     {
         LOGGER.log(Level.INFO,"se elimina el transporte con el id={0}",transporte.getId());

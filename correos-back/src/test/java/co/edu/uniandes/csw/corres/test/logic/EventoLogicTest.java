@@ -120,7 +120,6 @@ public class EventoLogicTest {
         Assert.assertNotNull(result);
         EventoEntity entity = em.find(EventoEntity.class, result.getId());
         Assert.assertEquals(newEntity.getId(), entity.getId());
-        Assert.assertEquals(newEntity.getName(), entity.getName());
         Assert.assertEquals(newEntity.getDetalle(), entity.getDetalle());
         Assert.assertEquals(newEntity.getUbicacion(), entity.getUbicacion());
     }
@@ -156,7 +155,6 @@ public class EventoLogicTest {
         EventoEntity resultEntity = eventoLogic.getEvento(entity.getId());
         Assert.assertNotNull(resultEntity);
         Assert.assertEquals(entity.getId(), resultEntity.getId());
-        Assert.assertEquals(entity.getName(), resultEntity.getName());
         Assert.assertEquals(entity.getDetalle(), resultEntity.getDetalle());
         Assert.assertEquals(entity.getUbicacion(), resultEntity.getUbicacion());
     }
@@ -191,7 +189,6 @@ public class EventoLogicTest {
         EventoEntity resp = em.find(EventoEntity.class, entity.getId());
 
         Assert.assertEquals(pojoEntity.getId(), resp.getId());
-        Assert.assertEquals(pojoEntity.getName(), resp.getName());
         Assert.assertEquals(pojoEntity.getDetalle(), resp.getDetalle());
         Assert.assertEquals(pojoEntity.getUbicacion(), resp.getUbicacion());
     }

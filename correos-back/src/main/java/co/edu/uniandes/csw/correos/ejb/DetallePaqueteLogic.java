@@ -22,12 +22,26 @@ import javax.inject.Inject;
 @Stateless
 public class DetallePaqueteLogic {
     
+    /**
+     * logger
+     */
      private static final Logger LOGGER= Logger.getLogger(DetallePaqueteLogic.class.getName());
        
+     /**
+      * relacion con la persistencia
+      */
     private DetallePaquetePersistance persistence;
       
+    /**
+     * relacion con la logica
+     */
     PaqueteLogic paqueteLogic;
     
+    /**
+     * se inyecta la logica
+     * @param persistence
+     * @param paqueteLogic 
+     */
     @Inject
     public DetallePaqueteLogic (DetallePaquetePersistance persistence, PaqueteLogic paqueteLogic)
     {
@@ -35,6 +49,9 @@ public class DetallePaqueteLogic {
         this.paqueteLogic=paqueteLogic;
     }
     
+    /**
+     * constructor
+     */
     public DetallePaqueteLogic()
 
     {
@@ -53,7 +70,7 @@ public class DetallePaqueteLogic {
     public DetallePaqueteEntity createDetallePaquete(DetallePaqueteEntity entity) throws BusinessLogicException {
         LOGGER.info("Inicia proceso de crear detalle");
         
-        if(entity.getMensaje().isEmpty() == true)
+        if(entity.getMensaje().isEmpty())
         {
             throw new BusinessLogicException ("El mensaje del detalle no puede estar vacío");
         }
@@ -87,7 +104,7 @@ public class DetallePaqueteLogic {
      */
     public DetallePaqueteEntity updateDetallePaquete(DetallePaqueteEntity entity) throws BusinessLogicException {
         LOGGER.info("Inicia proceso de actualizar el detalle");
-         if(entity.getMensaje().isEmpty() == true)
+         if(entity.getMensaje().isEmpty())
         {
             throw new BusinessLogicException ("El mensaje del detalle no puede estar vacío");
         }
@@ -107,6 +124,10 @@ public class DetallePaqueteLogic {
         LOGGER.log(Level.INFO, "Termina a borrar el detalle de id={0}", id);
     }
     
+    /**
+     * 
+     * @return todos los detalle paquete
+     */
     public List<DetallePaqueteEntity> getAll()
     {
         return persistence.findAll();

@@ -6,35 +6,6 @@
                     <dt>Estado</dt>
                     <dd>{{envioActual.estado}}</dd>
                     <hr>
-                    <dt>DireccionRecogida</dt>
-                    <dd>{{envioActual.direccionRecogida}}</dd>
-                    <hr>
-                    <dt>DireccionEntrega</dt>
-                    <dd>{{envioActual.direccionEntrega}}</dd>
-                    <hr>
-                    <dt>HoraInicio</dt>
-                    <dd>{{envioActual.horaInicio}}</dd>
-                    <hr>
-                    <dt>HoraFinal</dt>
-                    <dd>{{envioActual.horaFinal}}</dd>
-                    <hr>
-                   <dd><div class="panel-group" id="accordion">
-                    <div class="panel panel-default">
-                      <div class="panel-heading">
-                        <h4 class="panel-title">
-                          <a data-toggle="collapse" data-parent="#accordion" href="#collapse">Cliente</a>
-                        </h4>
-                      </div>
-                      <div id="collapse" class="panel-collapse collapse">
-                        <div class="panel-body">
-                            <dl>
-                                <dt> Nombre :</dt>
-                                <dd>{{envioActual.cliente.nombre}}</dd>
-                                <hr>                                                              
-                            </dl>
-                        </div>
-                      </div>
-                    </div></dd>
                     
                     <dd><div class="panel-group" id="accordion">
                     <div class="panel panel-default">
@@ -58,10 +29,28 @@
                                 <dt> CalificacionPromedio :</dt>
                                 <dd>{{envioActual.mensajero.calificacionPromedio}}</dd>
                                 <hr> 
+                                <dd><button type="button" class="btn btn-info"><a ui-sref="mensajeroDetail({mensajeroId: envioActual.mensajero.id})"> Ver al cumpa </a></button></dd>                                
                             </dl>
                         </div>
                       </div>
                     </div></dd>
+                                        
+                    <dt>DireccionRecogida</dt>
+                    <dd>{{envioActual.direccionRecogida}}</dd>
+                    <hr>
+                    <dt>DireccionEntrega</dt>
+                    <dd>{{envioActual.direccionEntrega}}</dd>
+                    <hr>
+                    <dt>HoraInicio</dt>
+                    <dd>{{envioActual.horaInicio}}</dd>
+                    <hr>
+                    <dt>HoraFinal</dt>
+                    <dd>{{envioActual.horaFinal}}</dd>
+                    <hr>
+                    <dt>Cliente</dt>
+                    <dd>{{envioActual.cliente.nombre}}</dd>
+                    <dd><button type="button" class="btn btn-info"><a ui-sref="clienteDetail({clienteId: envioActual.cliente.id})">Ver Perfil</a></button></dd>                                
+                    <hr>             
                     
                 </dl>
                 <ul class="nav nav-tabs">

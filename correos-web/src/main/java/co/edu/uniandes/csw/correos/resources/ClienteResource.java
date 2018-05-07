@@ -24,7 +24,7 @@ SOFTWARE.
 package co.edu.uniandes.csw.correos.resources;
 
 
-import co.edu.uniandes.csw.correos.dtos.ClienteDTO;
+
 import co.edu.uniandes.csw.correos.dtos.ClienteDetailDTO
         ;
 import co.edu.uniandes.csw.correos.ejb.ClienteLogic;
@@ -68,9 +68,19 @@ import javax.ws.rs.WebApplicationException;
 @RequestScoped
 public class ClienteResource {
 
-     @Inject
     private ClienteLogic logic;
     
+     
+     @Inject
+     public ClienteResource(ClienteLogic cL)
+     {
+         logic=cL;
+     }
+     
+     public ClienteResource()
+     {
+         logic=null;
+     }
     /**
      * <h1>POST /api/clientes : Crear una cliente de credito.</h1>
      * 
