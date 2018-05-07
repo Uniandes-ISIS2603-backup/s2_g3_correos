@@ -6,7 +6,7 @@
          'uiGmapgoogle-maps',
        
         // Internal modules dependencies       
-        'citiesModule',
+        
         'mensajerosModule',
         'transportesModule',
         'reservasModule',
