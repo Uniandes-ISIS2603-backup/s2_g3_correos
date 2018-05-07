@@ -40,10 +40,18 @@ public class TarjetaCreditoEntity implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    /**
+     * 
+     * @return the id
+     */
     public Long getId() {
         return id;
     }
 
+    /**
+     * setter del id
+     * @param id 
+     */
     public void setId(Long id) {
         this.id = id;
     }
@@ -96,18 +104,34 @@ public class TarjetaCreditoEntity implements Serializable {
         this.fechaDeVencimiento = fechaDeVencimiento;
     }
 
+    /**
+     * 
+     * @return the pagos
+     */
     public List<PagoEntity> getPagos() {
         return pagos;
     }
 
+    /**
+     * setter de los pagos
+     * @param pagos 
+     */
     public void setPagos(List<PagoEntity> pagos) {
         this.pagos = pagos;
     }
 
+    /**
+     * 
+     * @return the cliente
+     */
     public ClienteEntity getCliente() {
         return cliente;
     }
 
+    /**
+     * setter de the cliente
+     * @param cliente 
+     */
     public void setCliente(ClienteEntity cliente) {
         this.cliente = cliente;
     }

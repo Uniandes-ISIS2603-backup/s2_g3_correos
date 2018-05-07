@@ -52,10 +52,18 @@ public class ReservaEntity implements Serializable{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    /**
+     * 
+     * @return the id
+     */
     public Long getId() {
         return id;
     }
 
+    /**
+     * setter del id
+     * @param id 
+     */
     public void setId(Long id) {
         this.id = id;
     }
@@ -87,10 +95,18 @@ public class ReservaEntity implements Serializable{
         this.hora = hora;
     }
 
+    /**
+     * 
+     * @return el cliente asociado a la reserva
+     */
     public ClienteEntity getCliente() {
         return cliente;
     }
 
+    /**
+     * setter del cliente asociado
+     * @param cliente 
+     */
     public void setCliente(ClienteEntity cliente) {
         this.cliente = cliente;
     }

@@ -74,10 +74,18 @@ public class MensajeroEntity implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    /**
+     * 
+     * @return the id
+     */
     public Long getId() {
         return id;
     }
 
+    /**
+     * set the id
+     * @param id 
+     */
     public void setId(Long id) {
         this.id = id;
     }
@@ -138,54 +146,107 @@ public class MensajeroEntity implements Serializable {
         this.calificacionPromedio = calificacionPromedio;
     }
 
+    /**
+     * 
+     * @return the cuenta bancaria
+     */
     public CuentaBancariaEntity getCuenta() {
         return cuenta;
     }
 
+    /**
+     * set the cuenta bancaria
+     * @param cuenta 
+     */
     public void setCuenta(CuentaBancariaEntity cuenta) {
         this.cuenta = cuenta;
     }
 
+    /**
+     * 
+     * @return the transportes
+     */
     public List<TransporteEntity> getTransportes() {
         return transportes;
     }
 
+    
+    /**
+     * set the transportes
+     * @param transportes 
+     */
     public void setTransportes(List<TransporteEntity> transportes) {
         this.transportes = transportes;
     }
 
+    /**
+     * 
+     * @return the calificaciones
+     */
     public List<CalificacionEntity> getCalificaciones() {
         return calificaciones;
     }
 
+    /**
+     * set the calificaciones
+     * @param calificaciones 
+     */
     public void setCalificaciones(List<CalificacionEntity> calificaciones) {
         this.calificaciones = calificaciones;
     }
 
+    /**
+     * 
+     * @return all the envios
+     */
     public List<EnvioEntity> getEnvios() {
         return envios;
     }
 
+    /**
+     * set the envios
+     * @param envios 
+     */
     public void setEnvios(List<EnvioEntity> envios) {
         this.envios = envios;
     }
 
+    /**
+     * 
+     * @return the zonas
+     */
     public List<ZonaEntity> getZonas() {
         return zonas;
     }
 
+    /**
+     * set the zonas
+     * @param zonas 
+     */
     public void setZonas(List<ZonaEntity> zonas) {
         this.zonas = zonas;
     }
 
+    /**
+     * 
+     * @return ocupado
+     */
     public boolean isOcupado() {
         return ocupado;
     }
 
+    /**
+     * set ocupado boolean
+     * @param ocupado 
+     */
     public void setOcupado(boolean ocupado) {
         this.ocupado = ocupado;
     }
     
+    /**
+     * agrega envio por param
+     * @param envio 
+     */
     public void agregarEnvio(EnvioEntity envio)
     {
         this.envios.add(envio);
