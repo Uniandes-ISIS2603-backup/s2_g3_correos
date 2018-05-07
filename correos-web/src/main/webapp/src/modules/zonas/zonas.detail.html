@@ -1,3 +1,6 @@
+<style>
+   .angular-google-map-container { height: 400px; }
+</style>   
 <div class="panel panel-default"> 
     <div class="panel-body">
         <div class="row">
@@ -12,6 +15,15 @@
                     <dt>Longitud </dt>
                     <dd>{{zonaActual.longitud}}</dd>
                     <hr>
+                    <dt>Longitud </dt>
+                    <dd>
+                       
+                    <ui-gmap-google-map center="map.center" zoom="map.zoom"></ui-gmap-google-map>
+                       
+                    </dd>
+                    <hr>
+                    
+                    
                 </dl>
             </div>
         </div>
