@@ -22,8 +22,7 @@
         'clientesModule',
         'calificacionesModule',
         'bonosModule',
-        'gmapsModule'
-
+        'uiGmapgoogle-maps'
 
 
     ]);
