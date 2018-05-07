@@ -54,7 +54,6 @@
              */
             $scope.updateZona=function()
             {
-                console.log($scope.data.id);
                 $http.put(zonasContext+'/'+idZona,$scope.data).then(function(response)
                 {
                     $state.go('zonasList',{zonaId:response.data.id},{reload:true});

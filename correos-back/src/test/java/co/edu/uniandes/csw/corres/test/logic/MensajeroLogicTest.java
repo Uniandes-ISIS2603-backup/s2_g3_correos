@@ -120,7 +120,6 @@ public class MensajeroLogicTest {
         Assert.assertNotNull(result);
         MensajeroEntity entity = em.find(MensajeroEntity.class, result.getId());
         Assert.assertEquals(newEntity.getId(), entity.getId());
-        Assert.assertEquals(newEntity.getName(), entity.getName());
         
     }
 
@@ -155,7 +154,6 @@ public class MensajeroLogicTest {
         MensajeroEntity resultEntity = mensajeroLogic.getMensajero(entity.getId());
         Assert.assertNotNull(resultEntity);
         Assert.assertEquals(entity.getId(), resultEntity.getId());
-        Assert.assertEquals(entity.getName(), resultEntity.getName());
        
     }
 
@@ -189,7 +187,6 @@ public class MensajeroLogicTest {
         MensajeroEntity resp = em.find(MensajeroEntity.class, entity.getId());
 
         Assert.assertEquals(pojoEntity.getId(), resp.getId());
-        Assert.assertEquals(pojoEntity.getName(), resp.getName());
         
     }
 }

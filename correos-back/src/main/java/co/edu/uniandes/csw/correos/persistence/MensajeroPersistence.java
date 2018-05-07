@@ -94,25 +94,29 @@ public class MensajeroPersistence {
         em.remove(em.find(MensajeroEntity.class, id));
     }
     
+    /**
+     * 
+     * @param correo
+     * @return los mensajeros con el correo por param
+     */
      public List<MensajeroEntity> findByCorreo(String correo)
     {
         TypedQuery query= em.createQuery("select u From MensajeroEntity u where u.correo= :correo", MensajeroEntity.class);
         query=query.setParameter("correo", correo);
         List<MensajeroEntity> x= query.getResultList();
-        if(x.isEmpty())
-            return null;
-        else 
-            return x;
+        return x;
     }
      
+     /**
+      * 
+      * @param celular
+      * @return los mensajeros con celular por param
+      */
       public List<MensajeroEntity> findByNumero(String celular)
     {
         TypedQuery query= em.createQuery("select u From MensajeroEntity u where u.celular= :celular", MensajeroEntity.class);
         query=query.setParameter("celular", celular);
         List<MensajeroEntity> x= query.getResultList();
-        if(x.isEmpty())
-            return null;
-        else 
-            return x;
+        return x;
     }
 }

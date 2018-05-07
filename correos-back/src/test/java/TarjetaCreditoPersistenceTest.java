@@ -140,7 +140,6 @@ public class TarjetaCreditoPersistenceTest {
 
         TarjetaCreditoEntity entity = em.find(TarjetaCreditoEntity.class, result.getId());
 
-        Assert.assertEquals(newEntity.getName(), entity.getName());
         Assert.assertEquals(newEntity.getNumero(), entity.getNumero());
         Assert.assertEquals(newEntity.getId(), entity.getId());
         Assert.assertEquals(newEntity.getSecurityCode(), entity.getSecurityCode());
@@ -178,7 +177,6 @@ public class TarjetaCreditoPersistenceTest {
         TarjetaCreditoEntity newEntity = tarjetaCreditoPersistence.find(entity.getId());
         Assert.assertNotNull(newEntity);
         
-        Assert.assertEquals(entity.getName(), newEntity.getName());
         Assert.assertEquals(entity.getFechaDeVencimiento(), newEntity.getFechaDeVencimiento());
         Assert.assertEquals(entity.getId(), newEntity.getId());
         Assert.assertEquals(entity.getNumero(), newEntity.getNumero());
@@ -215,7 +213,6 @@ public class TarjetaCreditoPersistenceTest {
 
         TarjetaCreditoEntity resp = em.find(TarjetaCreditoEntity.class, entity.getId());
 
-        Assert.assertEquals(newEntity.getName(), resp.getName());
         Assert.assertEquals(newEntity.getFechaDeVencimiento(), resp.getFechaDeVencimiento());
         Assert.assertEquals(newEntity.getNumero(), resp.getNumero());
         Assert.assertEquals(newEntity.getId(), resp.getId());

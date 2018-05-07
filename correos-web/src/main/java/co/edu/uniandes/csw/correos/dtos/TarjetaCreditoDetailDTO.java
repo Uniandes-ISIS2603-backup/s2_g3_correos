@@ -48,11 +48,9 @@ public class TarjetaCreditoDetailDTO extends TarjetaCreditoDTO
        
     }
      
-      public TarjetaCreditoEntity toEntity(){
-        TarjetaCreditoEntity entity =  super.toEntity();
-        //entity.setCuentaBancaria(cuentaBancaria.toEntity());
-       
-        return entity;
+    @Override
+    public TarjetaCreditoEntity toEntity(){
+        return super.toEntity();
     }
 
    /**

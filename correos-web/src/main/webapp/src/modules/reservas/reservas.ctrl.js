@@ -2,7 +2,7 @@
 {
    var mod=ng.module("reservasModule");
    mod.constant("reservasContext","api/reservas");
-   mod.controller('reservaCtrl',['$scope', '$http', 'reservasContext', '$state',
+   mod.controller('reservaCtrl',['$scope', '$http', 'reservasContext', 
    
           /**
          * @ngdoc controller
@@ -22,7 +22,7 @@
          * @param {Object} $state Dependencia injectada en la que se recibe el 
          * estado actual de la navegación definida en el módulo.
          */
-        function($scope,$http, reservasContext,$state)
+        function($scope,$http, reservasContext)
         {
             /**
              * @ngdoc function

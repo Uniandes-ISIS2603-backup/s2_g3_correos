@@ -14,6 +14,10 @@ import uk.co.jemos.podam.common.AttributeStrategy;
  */
 public class IntegerCalificacionStrategy implements AttributeStrategy<Integer> {
 
+   /**
+    * 
+    * @return un numero aleatorio
+    */
     @Override
     public Integer getValue() {
         Random aleatorio = new Random(System.currentTimeMillis());

@@ -25,6 +25,9 @@ package co.edu.uniandes.csw.correos.entities;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import uk.co.jemos.podam.common.PodamExclude;
 
@@ -33,7 +36,7 @@ import uk.co.jemos.podam.common.PodamExclude;
  * @author l.mejia
  */
 @Entity
-public class TransporteEntity extends BaseEntity implements Serializable {
+public class TransporteEntity implements Serializable {
     
     private String tipo;
     private Double capacidad;
@@ -42,19 +45,55 @@ public class TransporteEntity extends BaseEntity implements Serializable {
     @PodamExclude
     @ManyToOne
     private MensajeroEntity mensajero;
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
+    /**
+     * 
+     * @return id
+     */
+    public Long getId() {
+        return id;
+    }
+
+    /**
+     * 
+     * @param id 
+     */
+    public void setId(Long id) {
+        this.id = id;
+    }
+    
+    /**
+     * 
+     * @return activo
+     */
     public Boolean getActivo() {
         return activo;
     }
 
+    /**
+     * setter de activo
+     * @param activo 
+     */
     public void setActivo(Boolean activo) {
         this.activo = activo;
     }
 
+    /**
+     * getter de mensajero
+     * @return 
+     */
     public MensajeroEntity getMensajero() {
         return mensajero;
     }
 
+    /**
+     * setter de mensajero
+     * @param mensajero 
+     */
     public void setMensajero(MensajeroEntity mensajero) {
         this.mensajero = mensajero;
     }    

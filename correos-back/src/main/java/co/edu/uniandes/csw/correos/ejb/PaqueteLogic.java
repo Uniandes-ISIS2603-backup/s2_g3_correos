@@ -25,13 +25,42 @@ import javax.inject.Inject;
 @Stateless
 public class PaqueteLogic {
     
+    /**
+     * logger
+     */
     private static final Logger LOGGER = Logger.getLogger(PaqueteLogic.class.getName());
 
-    @Inject
+    /**
+     * relacion con persistencia
+     */
     private PaquetePersistence persistence;
-    @Inject
+    
+    /**
+     * relacion con envio
+     */
     private EnvioPersistence pEnvio;
-
+    
+    /**
+     * constructor con parametros
+     * @param pP
+     * @param eP 
+     */
+    @Inject
+    public PaqueteLogic(PaquetePersistence pP, EnvioPersistence eP)
+    {
+        this.persistence=pP;
+        this.pEnvio=eP;
+    }
+    
+    /**
+     * constructor vacio
+     */
+    public PaqueteLogic()
+    {
+        this.persistence=null;
+        this.pEnvio=null;
+    }
+    
     /**
      * 
      * @param entity el paquete a ser creado

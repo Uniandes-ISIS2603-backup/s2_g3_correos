@@ -1,7 +1,6 @@
 (function(ng){
     var mod=ng.module("enviosModule");
     mod.constant("enviosContext","api/envios");
-    mod.constant("paquetesContext","api/paquetes");
     mod.controller('enviosCreateCtrl',['$scope','$http','enviosContext','$state','$rootScope',
          /**
          * @ngdoc controller
@@ -38,21 +37,6 @@
                 $http.post(enviosContext,$scope.data).then(function(response)
                 {
                     $state.go('enviosList',{envioId:response.data.id}, {reload:true});
-                });
-            };
-            /**
-             * @ngdoc function
-             * @name createPaquete
-             * @methodOf paquetes.controller:paqueteNewCtrl
-             * @description
-             * Esta función utiliza el protocolo HTTP para crear el Paquete.
-             * @param {Object} Paquete Objeto con el nuevo Paquete.
-             */
-            $scope.createPaquete=function()
-            {
-                $http.post(enviosContext+'/'+$state.params.envioId+'/'+paquetesContext,$scope.data).then(function(response)
-                {
-                    $state.go('paquetesList',{paqueteId:response.data.id}, {reload:true});
                 });
             };
         }

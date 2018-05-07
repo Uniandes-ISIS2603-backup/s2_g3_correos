@@ -47,8 +47,23 @@
  @RequestScoped
  public class EnvioResource {
     
+    private static final String ENVIO="El envio con el id ";
+     
+    private static final String NOEXISTE=" no existe.";
+    
     @Inject
     EnvioLogic envioLogic;
+    
+    @Inject
+    public EnvioResource(EnvioLogic eL)
+    {
+        this.envioLogic=eL;
+    }
+    
+    public EnvioResource()
+    {
+        this.envioLogic=null;
+    }
     
     /**
      * <h1>POST /api/envios : Crear un envio.</h1>
@@ -100,9 +115,9 @@
       */
      @PUT
      @Path("{id: \\d+}")
-     public EnvioDetailDTO updateEnvio(@PathParam("id") Long id, EnvioDetailDTO envio) throws BusinessLogicException, WebApplicationException{
+     public EnvioDetailDTO updateEnvio(@PathParam("id") Long id, EnvioDetailDTO envio) throws BusinessLogicException{
         if(envioLogic.getEnvio(id)==null) 
-            throw new WebApplicationException("El Envio con id" + id + "no existe",404);
+            throw new WebApplicationException(ENVIO+ id + NOEXISTE,404);
         envio.setId(id);
         return new EnvioDetailDTO(envioLogic.updateEnvio(envio.toEntity()));
      } 
@@ -127,9 +142,9 @@
       */
      @GET
      @Path("{id: \\d+}")
-     public EnvioDetailDTO getEnvio(@PathParam("id") Long id) throws WebApplicationException {
+     public EnvioDetailDTO getEnvio(@PathParam("id") Long id) throws BusinessLogicException {
         if(envioLogic.getEnvio(id)==null) 
-            throw new WebApplicationException("El Envio con id" + id+"no existe",404);
+            throw new WebApplicationException(ENVIO + id+NOEXISTE,404);
         return new EnvioDetailDTO(envioLogic.getEnvio(id));
      }
      /**
@@ -149,7 +164,7 @@
      @GET     
 
      public List<EnvioDetailDTO> getEnvios() throws BusinessLogicException{
-         return EntityADTO(envioLogic.getEnvios());   
+         return entityADTO(envioLogic.getEnvios());   
      }     
      /**
       * <h1>DELETE /api/envios/{id} : Borrar envio por id.</h1>
@@ -169,12 +184,12 @@
       */
      @DELETE
      @Path("{id: \\d+}")
-     public void deleteEnvio(@PathParam("id") Long id) throws WebApplicationException, BusinessLogicException {
+     public void deleteEnvio(@PathParam("id") Long id) throws BusinessLogicException {
        if(envioLogic.getEnvio(id)==null) 
-            throw new WebApplicationException("El Envio con id" + id +"no existe" ,404);
+            throw new WebApplicationException(ENVIO+ id +NOEXISTE,404);
         envioLogic.deleteEnvio(id);
     } 
-     public List<EnvioDetailDTO> EntityADTO(List<EnvioEntity> envios)
+     public List<EnvioDetailDTO> entityADTO(List<EnvioEntity> envios)
     {
         List<EnvioDetailDTO> resp = new ArrayList<>();
         for(EnvioEntity x: envios)

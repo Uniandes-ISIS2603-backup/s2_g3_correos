@@ -10,6 +10,9 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import uk.co.jemos.podam.common.PodamExclude;
 
@@ -19,7 +22,7 @@ import uk.co.jemos.podam.common.PodamExclude;
  */
 
 @Entity
-public class ClienteEntity extends BaseEntity implements Serializable {
+public class ClienteEntity implements Serializable {
     
     private String nombre; // nombre del cliente
    
@@ -38,7 +41,26 @@ public class ClienteEntity extends BaseEntity implements Serializable {
     @PodamExclude
     @OneToMany(fetch =FetchType.LAZY, mappedBy = "cliente",orphanRemoval = true)
     private List <ReservaEntity> reservas;         
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
+    /**
+     * getter para el id
+     * @return 
+     */
+    public Long getId() {
+        return id;
+    }
+
+    /**
+     * setter para el id
+     * @param id 
+     */
+    public void setId(Long id) {
+        this.id = id;
+    }
     /**
      * Obtiene el nombre del cliente
      * @return nombre del cliente
@@ -86,23 +108,43 @@ public class ClienteEntity extends BaseEntity implements Serializable {
         this.envios = envios;
     }
 
+    /**
+     * 
+     * @return todas las tarjetas de credito del cliente
+     */
     public List<TarjetaCreditoEntity> getTarjetasCredito() {
         return tarjetasCredito;
     }
 
+    /**
+     * le pone al cliente las tarjetas de credito por parametro
+     * @param tarjetasCredito 
+     */
     public void setTarjetasCredito(List<TarjetaCreditoEntity> tarjetasCredito) {
         this.tarjetasCredito = tarjetasCredito;
     }
     
+    /**
+     * le agrega la tarjeta de credito por param
+     * @param tarjeta 
+     */
     public void agregarTarjetas(TarjetaCreditoEntity tarjeta)
     {
         this.tarjetasCredito.add(tarjeta);
     }
 
+    /**
+     * 
+     * @return las reservas asociadas
+     */
     public List<ReservaEntity> getReservas() {
         return reservas;
     }
 
+    /**
+     * setter para las reservas
+     * @param reservas 
+     */
     public void setReservas(List<ReservaEntity> reservas) {
         this.reservas = reservas;
     }
