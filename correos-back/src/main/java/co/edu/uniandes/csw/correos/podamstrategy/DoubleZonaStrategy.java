@@ -13,6 +13,10 @@ import uk.co.jemos.podam.common.AttributeStrategy;
  */
 public class DoubleZonaStrategy implements AttributeStrategy<Double>{
 
+    /**
+     * 
+     * @return genera un valor aleatorio acotado superiormente por 89.10213
+     */
     @Override
     public Double getValue() {
         return Math.random()*89.10213;

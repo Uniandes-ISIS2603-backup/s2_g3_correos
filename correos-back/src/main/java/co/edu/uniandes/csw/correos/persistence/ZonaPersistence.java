@@ -39,21 +39,38 @@ public class ZonaPersistence {
     }
 
 
-
+/**
+ * 
+ * @return todas las zonas
+ */
     public List<ZonaEntity> findAll() {
         LOGGER.info("Consultando todas las zonas ");
         TypedQuery query = em.createQuery("select u from ZonaEntity u", ZonaEntity.class);
         return query.getResultList();
     }
 
+    /**
+     * 
+     * @param id
+     * @return la zona con id por param
+     */
     public ZonaEntity find(Long id) {
         return em.find(ZonaEntity.class, id);
     }
 
+    /**
+     * 
+     * @param entity
+     * @return la zona actualizada
+     */
     public ZonaEntity update(ZonaEntity entity) {
          return em.merge(entity);
     }
     
+    /**
+     * borra la zona con id por param
+     * @param id 
+     */
     public void delete( Long id) {
         em.remove(em.find(ZonaEntity.class, id));
     }

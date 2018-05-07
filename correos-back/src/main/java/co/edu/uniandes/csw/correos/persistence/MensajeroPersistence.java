@@ -94,6 +94,11 @@ public class MensajeroPersistence {
         em.remove(em.find(MensajeroEntity.class, id));
     }
     
+    /**
+     * 
+     * @param correo
+     * @return los mensajeros con el correo por param
+     */
      public List<MensajeroEntity> findByCorreo(String correo)
     {
         TypedQuery query= em.createQuery("select u From MensajeroEntity u where u.correo= :correo", MensajeroEntity.class);
@@ -102,6 +107,11 @@ public class MensajeroPersistence {
         return x;
     }
      
+     /**
+      * 
+      * @param celular
+      * @return los mensajeros con celular por param
+      */
       public List<MensajeroEntity> findByNumero(String celular)
     {
         TypedQuery query= em.createQuery("select u From MensajeroEntity u where u.celular= :celular", MensajeroEntity.class);

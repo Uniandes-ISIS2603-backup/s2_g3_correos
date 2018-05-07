@@ -13,6 +13,10 @@ import uk.co.jemos.podam.common.AttributeStrategy;
  */
 public class TenPlusNumericString implements AttributeStrategy<String>{
 
+    /**
+     * 
+     * @return genera un string de numeros mayor igual a 10 caracteres
+     */
     @Override
     public String getValue() {
         String num = "0123456789";

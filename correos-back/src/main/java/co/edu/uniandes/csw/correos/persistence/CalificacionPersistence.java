@@ -37,21 +37,38 @@ public class CalificacionPersistence {
     }
 
 
-
+    /**
+     * 
+     * @return todas las calificaciones
+     */
     public List<CalificacionEntity> findAll() {
         LOGGER.info("Consultando todas las calificaciones ");
         TypedQuery query = em.createQuery("select u from CalificacionEntity u", CalificacionEntity.class);
         return query.getResultList();
     }
 
+    /**
+     * 
+     * @param id
+     * @return la calificacion con id por param
+     */
     public CalificacionEntity find(Long id) {
         return em.find(CalificacionEntity.class, id);
     }
 
+    /**
+     * 
+     * @param entity
+     * @return actualiza la califcacion
+     */
     public CalificacionEntity update(CalificacionEntity entity) {
          return em.merge(entity);
     }
     
+    /**
+     * borra la calificacion con id por param
+     * @param id 
+     */
     public void delete(Long id) {
         em.remove(em.find(CalificacionEntity.class, id));
     }

@@ -59,20 +59,38 @@ public class CuentaBancariaPersistence {
         }
     }
 
+    /**
+     * 
+     * @return todas las cuentas bancarias
+     */
     public List<CuentaBancariaEntity> findAll() {
         LOGGER.info("Consultando todas las cuentasBancarias");
         TypedQuery query = em.createQuery("select u from CuentaBancariaEntity u", CuentaBancariaEntity.class);
         return query.getResultList();
     }
 
+    /**
+     * 
+     * @param id
+     * @return la cuenta bancaria con id por param
+     */
     public CuentaBancariaEntity find(Long id) {
         return em.find(CuentaBancariaEntity.class, id);
     }
 
+    /**
+     * 
+     * @param entity
+     * @return la cuenta bancaria actualizada
+     */
     public CuentaBancariaEntity update(CuentaBancariaEntity entity) {
          return em.merge(entity);
     }
     
+    /**
+     * barra la cuenta bancaria con id por param
+     * @param id 
+     */
     public void delete(Long id) {
         LOGGER.log(Level.INFO, "Borrando cuenta bancaria con id={0}", id);
         CuentaBancariaEntity entity = em.find(CuentaBancariaEntity.class, id);
