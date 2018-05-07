@@ -21,14 +21,27 @@ import javax.inject.Inject;
  */
 @Stateless
 public class PagoLogic {
+    
+    /**
+     * logger
+     */
      private static final Logger LOGGER = Logger.getLogger(PagoLogic.class.getName());
 
-    
+    /**
+     * relacion con  persistencia
+     */
     private PagoPersistence persistence;
     
-    
+    /***
+     * relacion con tarjeta de credito
+     */
     private TarjetaCreditoPersistence tcPersistence;
     
+    /**
+     * contructor con parametros
+     * @param pP
+     * @param tCP 
+     */
     @Inject
     public PagoLogic(PagoPersistence pP, TarjetaCreditoPersistence tCP)
     {
@@ -36,6 +49,9 @@ public class PagoLogic {
         this.tcPersistence=tCP;
     }
     
+    /**
+     * constructor vacio
+     */
     public PagoLogic()
     {
         this.persistence=null;

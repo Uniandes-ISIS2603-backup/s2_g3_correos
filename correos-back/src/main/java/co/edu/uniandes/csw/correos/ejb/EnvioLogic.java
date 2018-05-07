@@ -26,15 +26,32 @@ import javax.inject.Inject;
 @Stateless
 public class EnvioLogic {
     
+    /**
+     * logger
+     */
     private static final Logger LOGGER = Logger.getLogger(EnvioLogic.class.getName());
 
+    /**
+     * relacion con la persistencia de envio
+     */
     private EnvioPersistence persistence;
 
+    /**
+     * relacion con la logica de mensajero
+     */
     private MensajeroLogic mensajeroLogic;
     
-    
+    /**
+     * relacion con la persistencia de mensajero
+     */
     private MensajeroPersistence mensajeroP;
 
+    /**
+     * se inyeta la logica
+     * @param persistence
+     * @param mensajeroLogic
+     * @param mensajeroP 
+     */
     @Inject
     public EnvioLogic(EnvioPersistence persistence, MensajeroLogic mensajeroLogic, MensajeroPersistence mensajeroP)
     {
@@ -43,6 +60,9 @@ public class EnvioLogic {
         this.mensajeroLogic=mensajeroLogic;
     }
     
+    /**
+     * constructor
+     */
     public EnvioLogic()
     {
         this.persistence=null;
@@ -182,6 +202,10 @@ public class EnvioLogic {
        LOGGER.info(persistence.find(id).getPaquetes().get(envio.getPaquetes().size()-1).getTipo());
     }
     
+    /**
+     * se le asigna mensajero al envio
+     * @param envio 
+     */
     public void asignarMensajero(EnvioEntity envio)
     {
         for(MensajeroEntity x:mensajeroLogic.getMensajeros())
@@ -204,6 +228,12 @@ public class EnvioLogic {
         persistence.update(envio);
     }
     
+    /**
+     * se porra el evento por param
+     * @param envio
+     * @param evento
+     * @throws BusinessLogicException 
+     */
     public void borrarEvento(Long envio, Long evento) throws BusinessLogicException{
         EnvioEntity cambiar = getEnvio(envio);
         List<EventoEntity> trans = cambiar.getEventos();

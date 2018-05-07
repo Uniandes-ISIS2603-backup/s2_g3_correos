@@ -21,12 +21,26 @@ import javax.inject.Inject;
 @Stateless
 public class CuentaBancariaLogic {
     
+    /**
+     * logger
+     */
     private static final Logger LOGGER = Logger.getLogger(CuentaBancariaLogic.class.getName());
     
+    /**
+     * relacion con la persistencia
+     */
     private CuentaBancariaPersistence persistence;
     
+    /**
+     * relacion con el pago
+     */ 
     private PagoLogic pagoLogic;
     
+    /**
+     * realacion con la logica
+     * @param cbp
+     * @param pL 
+     */
     @Inject
     public CuentaBancariaLogic(CuentaBancariaPersistence cbp,PagoLogic pL)
     {
@@ -34,22 +48,40 @@ public class CuentaBancariaLogic {
         this.pagoLogic=pL;
     }
     
+    /**
+     * constructor
+     */
     public CuentaBancariaLogic()
     {
         this.persistence=null;
         this.pagoLogic=null;
     }
     
+    /**
+     * da todas las cuentas bancarias
+     */ 
     public List<CuentaBancariaEntity> getCuentasBancarias(){
         
         return persistence.findAll();
     }
     
+    
+    /**
+     * 
+     * @param id
+     * @return la cuenta bancaria con id por para,
+     */
     public CuentaBancariaEntity getCuentaBancaria(Long id){
         
         return persistence.find(id);
     }
     
+    /**
+     * 
+     * @param entity
+     * @return la nueva cuenta bancaria
+     * @throws BusinessLogicException 
+     */
     public CuentaBancariaEntity createCuentaBancaria(CuentaBancariaEntity entity) throws BusinessLogicException{
             
         
@@ -66,6 +98,13 @@ public class CuentaBancariaLogic {
         return entity;
     }
     
+    
+    /**
+     * 
+     * @param entity
+     * @return la cuenta bacaria actualizada
+     * @throws BusinessLogicException 
+     */
     public CuentaBancariaEntity updateCuentaBancaria(CuentaBancariaEntity entity) throws BusinessLogicException{
        
         
@@ -78,12 +117,21 @@ public class CuentaBancariaLogic {
         return persistence.update(entity);
     }
     
+    /**
+     * borra la cuenta bancaria con id por param
+     * @param id 
+     */
     public void deleteCuentaBancaria(Long id){
         
         persistence.delete(id);
         
     }
     
+    /**
+     * se agraga pago a cuenta bancaria
+     * @param id
+     * @param pago 
+     */
         public void agregarPago(Long id, PagoEntity pago)
     {
         CuentaBancariaEntity agregar= persistence.find(id);
@@ -93,6 +141,12 @@ public class CuentaBancariaLogic {
         persistence.update(agregar);
     }
         
+        /**
+         * se borra pago de cuenta bancaria
+         * @param cuentaBancaria
+         * @param pago
+         * @throws BusinessLogicException 
+         */
         public void deletePago(Long cuentaBancaria, Long pago) throws BusinessLogicException
     {
         CuentaBancariaEntity cambiar= getCuentaBancaria(cuentaBancaria);

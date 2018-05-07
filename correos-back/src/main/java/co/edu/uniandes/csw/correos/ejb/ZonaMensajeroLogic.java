@@ -18,12 +18,33 @@ import javax.inject.Inject;
  */
 public class ZonaMensajeroLogic {
     
+    /**
+     * persistencia zona
+     */
     ZonaPersistence zonaPersistence;
+    
+    /**
+     * persistencia mensajero
+     */
     MensajeroPersistence mesnajeroPersistence;
     
+    /**
+     * logica zona
+     */
     ZonaLogic zonaLogic;
+    
+    /**
+     * logica mensajero
+     */
     MensajeroLogic mensajeroLogic;
     
+    /**
+     * constructor con parametros
+     * @param zonaPersistence
+     * @param mensajeroPersistence
+     * @param zonaLogic
+     * @param mensajeoLogic 
+     */
     @Inject
     public ZonaMensajeroLogic(ZonaPersistence zonaPersistence, MensajeroPersistence mensajeroPersistence, ZonaLogic zonaLogic, MensajeroLogic mensajeoLogic)
     {
@@ -34,6 +55,9 @@ public class ZonaMensajeroLogic {
         this.zonaLogic=zonaLogic;
     }
     
+    /**
+     * constructor
+     */
     public ZonaMensajeroLogic()
     {
         zonaPersistence=null;
@@ -43,6 +67,11 @@ public class ZonaMensajeroLogic {
         mensajeroLogic=null;
     }
     
+    /**
+     * vincula mensajero con zona
+     * @param mensajero
+     * @param zona 
+     */
     public void agregarRelacion(MensajeroEntity mensajero, ZonaEntity zona)
     {
         MensajeroEntity mensajeroAgregar=mensajeroLogic.getMensajero(mensajero.getId());
