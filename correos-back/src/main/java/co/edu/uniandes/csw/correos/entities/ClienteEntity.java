@@ -46,10 +46,18 @@ public class ClienteEntity implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    /**
+     * getter para el id
+     * @return 
+     */
     public Long getId() {
         return id;
     }
 
+    /**
+     * setter para el id
+     * @param id 
+     */
     public void setId(Long id) {
         this.id = id;
     }
@@ -100,23 +108,43 @@ public class ClienteEntity implements Serializable {
         this.envios = envios;
     }
 
+    /**
+     * 
+     * @return todas las tarjetas de credito del cliente
+     */
     public List<TarjetaCreditoEntity> getTarjetasCredito() {
         return tarjetasCredito;
     }
 
+    /**
+     * le pone al cliente las tarjetas de credito por parametro
+     * @param tarjetasCredito 
+     */
     public void setTarjetasCredito(List<TarjetaCreditoEntity> tarjetasCredito) {
         this.tarjetasCredito = tarjetasCredito;
     }
     
+    /**
+     * le agrega la tarjeta de credito por param
+     * @param tarjeta 
+     */
     public void agregarTarjetas(TarjetaCreditoEntity tarjeta)
     {
         this.tarjetasCredito.add(tarjeta);
     }
 
+    /**
+     * 
+     * @return las reservas asociadas
+     */
     public List<ReservaEntity> getReservas() {
         return reservas;
     }
 
+    /**
+     * setter para las reservas
+     * @param reservas 
+     */
     public void setReservas(List<ReservaEntity> reservas) {
         this.reservas = reservas;
     }

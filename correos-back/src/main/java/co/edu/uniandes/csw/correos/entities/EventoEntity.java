@@ -36,18 +36,34 @@ public class EventoEntity implements Serializable{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    /**
+     * 
+     * @return the id
+     */
     public Long getId() {
         return id;
     }
 
+    /**
+     * set the id
+     * @param id 
+     */
     public void setId(Long id) {
         this.id = id;
     }
 
+    /**
+     * 
+     * @return the envio
+     */
     public EnvioEntity getEnvio() {
         return envio;
     }
 
+    /**
+     * set the envio
+     * @param envio 
+     */
     public void setEnvio(EnvioEntity envio) {
         this.envio = envio;
     }

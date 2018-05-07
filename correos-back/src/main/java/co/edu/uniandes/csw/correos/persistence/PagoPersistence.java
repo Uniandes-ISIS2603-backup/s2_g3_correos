@@ -60,20 +60,38 @@ public class PagoPersistence {
         }
     }
 
+    /**
+     * 
+     * @return todos los pagos
+     */
     public List<PagoEntity> findAll() {
         LOGGER.info("Consultando todas las pagos");
         TypedQuery query = em.createQuery("select u from PagoEntity u", PagoEntity.class);
         return query.getResultList();
     }
 
+    /**
+     * 
+     * @param id
+     * @return el pago con id por param
+     */
     public PagoEntity find(Long id) {
         return em.find(PagoEntity.class, id);
     }
 
+    /**
+     * 
+     * @param entity
+     * @return el pago actualizado
+     */
     public PagoEntity update(PagoEntity entity) {
          return em.merge(entity);
     }
     
+    /**
+     * borra el pago con id por param
+     * @param id 
+     */
     public void delete(Long id) {
         LOGGER.log(Level.INFO, "Borrando pago con id={0}", id);
         PagoEntity entity = em.find(PagoEntity.class, id);

@@ -50,25 +50,50 @@ public class TransporteEntity implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    /**
+     * 
+     * @return id
+     */
     public Long getId() {
         return id;
     }
 
+    /**
+     * 
+     * @param id 
+     */
     public void setId(Long id) {
         this.id = id;
     }
+    
+    /**
+     * 
+     * @return activo
+     */
     public Boolean getActivo() {
         return activo;
     }
 
+    /**
+     * setter de activo
+     * @param activo 
+     */
     public void setActivo(Boolean activo) {
         this.activo = activo;
     }
 
+    /**
+     * getter de mensajero
+     * @return 
+     */
     public MensajeroEntity getMensajero() {
         return mensajero;
     }
 
+    /**
+     * setter de mensajero
+     * @param mensajero 
+     */
     public void setMensajero(MensajeroEntity mensajero) {
         this.mensajero = mensajero;
     }    

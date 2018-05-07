@@ -44,10 +44,18 @@ public class PagoEntity implements Serializable{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    /**
+     * 
+     * @return the id
+     */
     public Long getId() {
         return id;
     }
 
+    /**
+     * set the id
+     * @param id 
+     */
     public void setId(Long id) {
         this.id = id;
     }

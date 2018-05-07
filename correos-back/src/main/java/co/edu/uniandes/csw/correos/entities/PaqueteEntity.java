@@ -49,10 +49,18 @@ public class PaqueteEntity implements Serializable{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    public Long getId() {
+   /**
+    * 
+    * @return the id
+    */
+   public Long getId() {
         return id;
     }
 
+    /**
+     * set the id
+     * @param id 
+     */
     public void setId(Long id) {
         this.id = id;
     }

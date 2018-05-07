@@ -31,10 +31,18 @@ public class CalificacionEntity implements Serializable{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    /**
+     * 
+     * @return el id
+     */
     public Long getId() {
         return id;
     }
 
+    /**
+     * setter para el id
+     * @param id 
+     */
     public void setId(Long id) {
         this.id = id;
     }

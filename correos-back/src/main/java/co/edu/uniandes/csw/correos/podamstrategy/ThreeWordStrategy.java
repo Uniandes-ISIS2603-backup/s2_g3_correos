@@ -13,6 +13,10 @@ import uk.co.jemos.podam.common.AttributeStrategy;
  */
 public class ThreeWordStrategy implements AttributeStrategy<String> {
 
+    /**
+     * 
+     * @return genera un string con por lo menos 3 palabras
+     */
     @Override
     public String getValue() {
         String random = "qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM0123456789" ;

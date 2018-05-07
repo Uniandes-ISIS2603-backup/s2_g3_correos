@@ -39,21 +39,40 @@ import javax.inject.Inject;
  */
 @Stateless
 public class ReservaLogic {
+    /**
+     * loggger
+     */
       private static final Logger LOGGER= Logger.getLogger(ReservaLogic.class.getName());
     
+      /**
+       * persistecia
+       */
     private ReservaPersistence persistence;
     
+    /**
+     * constructor con params
+     * @param persistence 
+     */
     @Inject
     public ReservaLogic(ReservaPersistence persistence)
     {
         this.persistence=persistence;
     }
     
+    /**
+     * constructor vacio
+     */
     public ReservaLogic()
     {
         this.persistence=null;
     }
     
+    /**
+     * 
+     * @param reserva
+     * @return la reserva creada
+     * @throws BusinessLogicException 
+     */
     public ReservaEntity createReserva(ReservaEntity reserva) throws BusinessLogicException
     {
         LOGGER.info("Se inicia la creación de un Reserva");
@@ -64,6 +83,10 @@ public class ReservaLogic {
         return reserva;
     }
     
+    /**
+     * 
+     * @return todas las reservas
+     */
     public List<ReservaEntity> getReservas()
     {
         LOGGER.info("Se inicia la consulta de todos los reservas");
@@ -72,11 +95,22 @@ public class ReservaLogic {
         return retorno;
     }
     
+    /**
+     * 
+     * @param id
+     * @return la reserva con id por param
+     */
     public ReservaEntity getReserva(Long id)
     {
         return persistence.find(id);
     }
     
+    /**
+     * 
+     * @param reserva
+     * @return la reserva actualizada
+     * @throws BusinessLogicException 
+     */
     public ReservaEntity putReserva(ReservaEntity reserva) throws BusinessLogicException
     {
         if(reserva.getFecha().before(new Date()))
@@ -84,6 +118,10 @@ public class ReservaLogic {
         return persistence.update(reserva);
     }
     
+    /**
+     * borra la reserva por id
+     * @param reserva 
+     */
     public void deleteReserva(ReservaEntity reserva)
     {
         LOGGER.log(Level.INFO,"se elimina el reserva con el id={0}",reserva.getId());

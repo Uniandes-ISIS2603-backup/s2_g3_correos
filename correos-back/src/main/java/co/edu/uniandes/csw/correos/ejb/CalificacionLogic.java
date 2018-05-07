@@ -20,16 +20,27 @@ import javax.inject.Inject;
  */
 @Stateless
 public class CalificacionLogic {
+    
+    /**
+     * logger
+     */ 
     private static final Logger LOGGER = Logger.getLogger(CalificacionLogic.class.getName());
     
+    /**
+     * la persistencia de calificacion
+     */
     private CalificacionPersistence cP;
-    
+    /*
+    conexion con la logica
+    */
     @Inject
     public CalificacionLogic(CalificacionPersistence cP)
     {
        this.cP=cP;
     }
-    
+    /**
+     * constructor
+     */
     public CalificacionLogic()
     {
        this.cP=null;

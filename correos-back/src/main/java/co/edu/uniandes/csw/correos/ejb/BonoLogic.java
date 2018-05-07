@@ -21,22 +21,37 @@ import javax.inject.Inject;
 
 @Stateless
 public class BonoLogic {
+    /**
+     * Logger para cuardar todo
+     */
     
     private static final Logger LOGGER= Logger.getLogger(BonoLogic.class.getName());
     
-    
+    /**
+     * La persistencia de bono
+     */
     private BonoPersistance persistence;
     
-    
+    /**
+     * La persistencia de cliente
+     */
+   
     private ClienteLogic clienteLogic;
     
+    /**
+     * se inyecta la logica del bono
+     * @param persistence
+     * @param cl 
+     */
     @Inject
     public BonoLogic (BonoPersistance persistence,ClienteLogic cl)
     {
         this.persistence=persistence;
         this.clienteLogic=cl;
     }
-    
+    /**
+     * constructor se inicializan las persistencias a null
+     */
     public BonoLogic()
 
     {
@@ -73,7 +88,11 @@ public class BonoLogic {
         return entity;
     }
     
-    
+    /**
+     * 
+     * @return todos los bonos
+     * @throws BusinessLogicException 
+     */
        public List<BonoEntity> getBonos() throws BusinessLogicException {
         LOGGER.info("Inicia proceso de consultar todos los bonos");
        

@@ -39,10 +39,18 @@ public class BonoEntity implements Serializable {
     @Temporal(TemporalType.TIMESTAMP) 
     private Date fechaDeVencimiento; // fecha de vencimiento del bono
 
+    /**
+     * getter para el id
+     * @return 
+     */
     public Long getId() {
         return id;
     }
 
+    /**
+     * seter para el id
+     * @param id 
+     */
     public void setId(Long id) {
         this.id = id;
     }

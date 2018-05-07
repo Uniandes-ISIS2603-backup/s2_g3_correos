@@ -36,10 +36,18 @@ public class ZonaEntity implements Serializable{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    /**
+     * 
+     * @return the id
+     */
     public Long getId() {
         return id;
     }
 
+    /**
+     * 
+     * @param id 
+     */
     public void setId(Long id) {
         this.id = id;
     }
@@ -70,10 +78,18 @@ public class ZonaEntity implements Serializable{
         this.longitud=longitud;
     }
 
+    /**
+     * 
+     * @return the mensajeros
+     */
     public List<MensajeroEntity> getMensajeros() {
         return mensajeros;
     }
 
+    /**
+     * setter de the mensajeros
+     * @param mensajeros 
+     */
     public void setMensajeros(List<MensajeroEntity> mensajeros) {
         this.mensajeros = mensajeros;
     }
