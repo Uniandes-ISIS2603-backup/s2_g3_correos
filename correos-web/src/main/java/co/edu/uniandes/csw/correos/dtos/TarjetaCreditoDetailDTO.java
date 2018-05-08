@@ -41,13 +41,20 @@ public class TarjetaCreditoDetailDTO extends TarjetaCreditoDTO
  * contructor
  */
    
-    
+    /**
+ * constructor con entity por param
+ * @param entity 
+ */
      public TarjetaCreditoDetailDTO(TarjetaCreditoEntity entity)
     {
         super(entity);
        
     }
      
+     /**
+      * 
+      * @return la terjeta de  credito como entity
+      */
     @Override
     public TarjetaCreditoEntity toEntity(){
         return super.toEntity();

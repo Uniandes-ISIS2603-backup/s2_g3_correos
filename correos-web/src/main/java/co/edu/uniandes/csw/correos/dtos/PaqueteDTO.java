@@ -45,6 +45,9 @@ import co.edu.uniandes.csw.correos.entities.PaqueteEntity;
     private double dimensionB;
     private double dimensionC;
 
+    /**
+     * constructor por defecto
+     */
     public PaqueteDTO() {
      /**
       * Constructor basico (vacio)

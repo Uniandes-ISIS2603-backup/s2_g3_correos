@@ -60,11 +60,18 @@ public class TransporteDTO {
     private Double capacidad;
     private boolean activo;
     
+    /**
+     * constructor por defecto
+     */
     public TransporteDTO()
     {
         //transporteDTO metodo vacio para construccion del JSon
     }
     
+    /**
+ * constructor con entity por param
+ * @param entity 
+ */
     public TransporteDTO(TransporteEntity transporte)
     {
         this.id=transporte.getId();
@@ -130,6 +137,10 @@ public class TransporteDTO {
         this.activo = activo;
     }
     
+    /**
+     * 
+     * @return el transporte como un entity
+     */
     public TransporteEntity toEntity()
     {
         TransporteEntity transporte=new TransporteEntity();

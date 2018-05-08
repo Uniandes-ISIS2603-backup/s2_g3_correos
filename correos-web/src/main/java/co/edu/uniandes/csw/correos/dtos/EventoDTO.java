@@ -39,7 +39,9 @@ public class EventoDTO {
     private long ubicacion;
     private String detalle;
     
-    
+    /**
+     * constructor por defecto
+     */
 public EventoDTO()
 {
     //Constructor vacio para la creacion del JSON.
@@ -56,6 +58,10 @@ public EventoDTO(EventoEntity entity){
     }
 }    
     
+/**
+ * 
+ * @return el id del evento
+ */
 public long getId()
 {
         return id;
@@ -95,6 +101,10 @@ public void setDetalle(String detalle){
     this.detalle = detalle;
 }  
 
+/**
+ * 
+ * @return el evento en formato entity
+ */
 public EventoEntity toEntity(){
     EventoEntity entity = new EventoEntity();
     entity.setDetalle(this.detalle);

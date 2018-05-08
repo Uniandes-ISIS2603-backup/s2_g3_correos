@@ -72,7 +72,10 @@ public class MensajeroDTO {
     {
         //Este metodo esta vacio para permitir la construccion del JSON
     }
-    
+    /**
+ * constructor con entity por param
+ * @param entity 
+ */
     public MensajeroDTO(MensajeroEntity entity)
     {
         this.id=entity.getId();
@@ -153,14 +156,26 @@ public class MensajeroDTO {
         this.calificacionPromedio = calificacionPromedio;
     }
 
+    /**
+     * 
+     * @return estado ocupado
+     */
     public boolean isOcupado() {
         return ocupado;
     }
 
+    /**
+     * setter de ocupado
+     * @param ocupado 
+     */
     public void setOcupado(boolean ocupado) {
         this.ocupado = ocupado;
     }
     
+    /**
+     * 
+     * @return el mensajero en formato entity
+     */
     public MensajeroEntity toEntity()
     {
         MensajeroEntity entity= new MensajeroEntity();
