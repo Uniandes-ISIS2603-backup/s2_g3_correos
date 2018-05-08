@@ -54,12 +54,19 @@
     @Inject
     EnvioLogic envioLogic;
     
+    /**
+     * sontructor con params
+     * @param eL 
+     */
     @Inject
     public EnvioResource(EnvioLogic eL)
     {
         this.envioLogic=eL;
     }
     
+    /**
+     * constructor
+     */
     public EnvioResource()
     {
         this.envioLogic=null;
@@ -189,6 +196,12 @@
             throw new WebApplicationException(ENVIO+ id +NOEXISTE,404);
         envioLogic.deleteEnvio(id);
     } 
+     
+     /**
+      * 
+      * @param envios
+      * @return lista de todos los envios en DetailDto
+      */
      public List<EnvioDetailDTO> entityADTO(List<EnvioEntity> envios)
     {
         List<EnvioDetailDTO> resp = new ArrayList<>();

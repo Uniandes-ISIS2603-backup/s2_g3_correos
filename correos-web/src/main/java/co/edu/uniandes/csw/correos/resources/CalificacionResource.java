@@ -70,6 +70,11 @@ public class CalificacionResource {
     
     private MensajeroLogic logicMensajero;
     
+    /**
+     * constructor con params
+     * @param cL
+     * @param mL 
+     */
     @Inject
     public CalificacionResource(CalificacionLogic cL, MensajeroLogic mL)
     {
@@ -77,6 +82,9 @@ public class CalificacionResource {
         this.logicMensajero=mL;
     }
     
+    /**
+     * constructor
+     */
     public  CalificacionResource()
     {
         this.logicMensajero=null;
