@@ -60,8 +60,8 @@ public class TarjetaCreditoDTO
 
     private long id;
     private String numero;
-    private String fecha;
-    private short securityCode;
+    private String mes;
+    private String año;
 
     /**
      * Constructor por defecto
@@ -79,8 +79,8 @@ public class TarjetaCreditoDTO
      */
    public TarjetaCreditoDTO(TarjetaCreditoEntity entity){
     this.id = entity.getId();
-    this.fecha = entity.getFechaDeVencimiento();
-    this.securityCode = entity.getSecurityCode();
+    this.mes = entity.getMes();
+    this.año = entity.getAño();
     this.numero = entity.getNumero();
    }
    
@@ -92,8 +92,8 @@ public class TarjetaCreditoDTO
     TarjetaCreditoEntity tarjeta = new TarjetaCreditoEntity();
     tarjeta.setId(this.id);
     tarjeta.setNumero(this.numero);
-    tarjeta.setFechaDeVencimiento(this.fecha);
-    tarjeta.setSecurityCode(this.securityCode);
+    tarjeta.setAño(this.año);
+    tarjeta.setMes(this.mes);
     return tarjeta;
 }
    
@@ -126,30 +126,30 @@ public class TarjetaCreditoDTO
     }
 
     /**
-     * @return la fecha de vemcimiento de la tarjeta 
+     * @return el mes de vencimiento de la tarjeta
      */
-    public String getFecha() {
-        return fecha;
+    public String getMes() {
+        return mes;
     }
 
     /**
-     * @param fecha la nueva fecha de vencimiento de la tarjeta 
+     * @param mes la nueva fecha de vencimiento de la tarjeta 
      */
-    public void setFecha(String fecha) {
-        this.fecha = fecha;
+    public void setMes(String mes) {
+        this.mes = mes;
     }
       /**
-     * @return el securityCode de la tarjeta
+     * @return el año de vencimiento de la tarjeta
      */
-    public int getSecurityCode() {
-        return securityCode;
+    public String getAño() {
+        return año;
     }
 
     /**
-     * @param securityCode el nuevo security code de la tarjeta 
+     * @param año el año de vencimiento de la tarjeta
      */
-    public void setSecurityCode(short securityCode) {
-        this.securityCode = securityCode;
+    public void setAño(String año) {
+        this.año = año;
     }
 
    

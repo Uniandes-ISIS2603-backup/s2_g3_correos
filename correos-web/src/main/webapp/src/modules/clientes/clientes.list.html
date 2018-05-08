@@ -4,6 +4,8 @@
         <thead>
             <tr>
                 <th>Nombre</th>
+                <th>Correo</th>
+                <th>Telefono</th>
               
             </tr>
         </thead>
@@ -11,7 +13,8 @@
             <tr ng-repeat="record in clientesRecords">
 
                 <td id="{{$index}}-nombre" > <a ui-sref="clienteDetail({clienteId: record.id})">{{record.nombre}}</a></td>
-               
+               <td id="{{$index}}-correo">{{record.correo}}</td>
+                <td id="{{$index}}-telefono">{{record.telefono}}</td>
                 <td>
                     <button id="{{$index}}-edit-btn" class="btn btn-default btn-sm" ><a ui-sref="clienteUpdate({clienteId: record.id})"><span class="glyphicon glyphicon-edit"></span> Editar</a></button>
                     <button id="{{$index}}-delete-btn" class="btn btn-default btn-sm"><a ui-sref="clienteDelete({clienteId: record.id})"><span class="glyphicon glyphicon-minus"></span> Remove</a></button>
