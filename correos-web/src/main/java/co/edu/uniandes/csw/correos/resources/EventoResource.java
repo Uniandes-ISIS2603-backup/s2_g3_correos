@@ -41,6 +41,11 @@ public class EventoResource {
     
     private EnvioLogic envioLogic;
     
+    /**
+     * constructor con params
+     * @param eventoLogic
+     * @param envioLogic 
+     */
     @Inject
    public EventoResource(EventoLogic eventoLogic, EnvioLogic envioLogic)
    {
@@ -48,6 +53,9 @@ public class EventoResource {
        this.eventoLogic=this.eventoLogic;
    }
    
+   /**
+    * constructor
+    */
    public EventoResource()
    {
        this.envioLogic=null;
@@ -168,6 +176,11 @@ public EventoDTO createEvento(@PathParam("envioId") Long envioId, EventoDTO even
         return list;
     }
     
+    /**
+     * 
+     * @param envioId
+     * @return todos los eventos
+     */
     @GET
     public List<EventoDTO> getEventos(@PathParam("envioId")Long envioId){
         if(envioLogic.getEnvio(envioId)==null){

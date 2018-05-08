@@ -45,6 +45,12 @@ public class PagoResource {
     
     private TarjetaCreditoLogic logicTarjetas;
     
+    /**
+     * constructor con params
+     * @param pL
+     * @param cBL
+     * @param lT 
+     */
     @Inject
     public PagoResource(PagoLogic pL, CuentaBancariaLogic cBL, TarjetaCreditoLogic lT)
     {
@@ -53,6 +59,9 @@ public class PagoResource {
         logicTarjetas=lT;
     }
     
+    /**
+     * constructor
+     */
     public PagoResource()
     {
         pagoLogic=null;
@@ -173,6 +182,13 @@ public PagoDetailDTO createPago(@PathParam("cuentaBancariaId") Long cuentaBancar
         }
         return list;
     }
+    
+    /**
+     * 
+     * @param cuentaBancariaId
+     * @return todos los pagos de la cuenta bancaria
+     * @throws BusinessLogicException 
+     */
     @GET
     public List<PagoDetailDTO> getPagos(@PathParam("cuentaBancariaId") Long cuentaBancariaId) throws BusinessLogicException{
        if(logicCuentas.getCuentaBancaria(cuentaBancariaId)==null){

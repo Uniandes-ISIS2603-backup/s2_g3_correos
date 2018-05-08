@@ -78,6 +78,12 @@ public class MensajeroResource {
     private ZonaLogic zonaLogic;
     
     
+    /**
+     * constructor con params
+     * @param logic
+     * @param zonaMensajeroLogic
+     * @param zonaLogic 
+     */
     @Inject
     public MensajeroResource(MensajeroLogic logic, ZonaMensajeroLogic zonaMensajeroLogic, ZonaLogic zonaLogic)
     {
@@ -86,6 +92,9 @@ public class MensajeroResource {
         this.zonaLogic=zonaLogic;
     }
     
+    /**
+     * constructor
+     */
     public MensajeroResource()
     {
         this.logic=null;
@@ -175,6 +184,12 @@ public class MensajeroResource {
         return new MensajeroDetailDTO(logic.getMensajero(id));
     }
     
+    /**
+     * le pone a un mensajero una zona
+     * @param id
+     * @param zonaId
+     * @return 
+     */
     @PUT
     @Path("zona/{id:\\ d+}/{zonaId:\\d+}")
     public MensajeroDetailDTO agregarZona(@PathParam("id") Long id, @PathParam("zonaId") Long zonaId)
@@ -226,6 +241,11 @@ public class MensajeroResource {
         logic.deleteMensajero(logic.getMensajero(id));
     }
     
+    /**
+     * 
+     * @param mensajeros
+     * @return lista de mensajeros en detailDto
+     */
     public List<MensajeroDetailDTO>  listEntity2DTO(List<MensajeroEntity> mensajeros)
     {
         List<MensajeroDetailDTO> retorno = new ArrayList<>();

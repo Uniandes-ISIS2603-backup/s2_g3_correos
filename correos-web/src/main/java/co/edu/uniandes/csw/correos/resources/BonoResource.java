@@ -51,6 +51,11 @@ public class BonoResource
     private static final String NRECURSO="El recurso /bonos/";
     private static final String NOEXISTE=" no existe.";
     
+    /**
+     * constructor con params
+     * @param bonoLogic
+     * @param clienteLogic 
+     */
     @Inject
     public BonoResource(BonoLogic bonoLogic, ClienteLogic clienteLogic)
     {
@@ -58,6 +63,9 @@ public class BonoResource
         this.clienteLogic=clienteLogic;
     }
     
+    /**
+     * constructor
+     */
     public BonoResource()
     {
         this.bonoLogic=null;
@@ -154,6 +162,12 @@ public class BonoResource
         return new BonoDTO(bonoLogic.getBono(id));
     }
     
+    /**
+     * 
+     * @param idCliente
+     * @returntodos los bonos
+     * @throws BusinessLogicException 
+     */
     @GET
     public List<BonoDTO> getBonos(@PathParam("clienteId")Long idCliente) throws BusinessLogicException {
         if(clienteLogic.getCliente(idCliente)==null)
@@ -187,6 +201,11 @@ public class BonoResource
         bonoLogic.deleteBono(id);
     }
     
+    /**
+     * 
+     * @param entityList
+     * @return Una lista de bonos en DTO
+     */
     private List<BonoDTO> listEntity2DTO(List<BonoEntity> entityList) {
         List<BonoDTO> list = new ArrayList<>();
         for (BonoEntity entity : entityList) {
