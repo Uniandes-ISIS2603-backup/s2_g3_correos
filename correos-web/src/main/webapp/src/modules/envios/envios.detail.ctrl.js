@@ -60,7 +60,7 @@
                 directionsService.route(request, function (response, status) {
                     if (status === google.maps.DirectionsStatus.OK) {
                         directionsDisplay.setDirections(response);
-                        return $scope.ruta_info = response.routes[0].legs[0];
+                        $scope.ruta_info = response.routes[0].legs[0];
                         directionsDisplay.setPanel(document.getElementById('directionsList'));
                         $scope.directions.showList = true;
                     } else {
