@@ -9,6 +9,9 @@ import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import uk.co.jemos.podam.common.PodamExclude;
@@ -19,7 +22,7 @@ import uk.co.jemos.podam.common.PodamExclude;
  */
 
 @Entity
-public class TarjetaCreditoEntity extends BaseEntity implements Serializable {
+public class TarjetaCreditoEntity implements Serializable {
    
     private Short securityCode; // codigo de seguridad de la tarjeta
     private String numero; // numero de la tarjeta
@@ -33,7 +36,25 @@ public class TarjetaCreditoEntity extends BaseEntity implements Serializable {
     @ManyToOne(fetch=FetchType.LAZY)
     private ClienteEntity cliente;
 
-    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    /**
+     * 
+     * @return the id
+     */
+    public Long getId() {
+        return id;
+    }
+
+    /**
+     * setter del id
+     * @param id 
+     */
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     /**
      * Obtiene el atributo securityCode
@@ -83,18 +104,34 @@ public class TarjetaCreditoEntity extends BaseEntity implements Serializable {
         this.fechaDeVencimiento = fechaDeVencimiento;
     }
 
+    /**
+     * 
+     * @return the pagos
+     */
     public List<PagoEntity> getPagos() {
         return pagos;
     }
 
+    /**
+     * setter de los pagos
+     * @param pagos 
+     */
     public void setPagos(List<PagoEntity> pagos) {
         this.pagos = pagos;
     }
 
+    /**
+     * 
+     * @return the cliente
+     */
     public ClienteEntity getCliente() {
         return cliente;
     }
 
+    /**
+     * setter de the cliente
+     * @param cliente 
+     */
     public void setCliente(ClienteEntity cliente) {
         this.cliente = cliente;
     }

@@ -136,7 +136,6 @@ public class EnvioLogicTest {
         Assert.assertNotNull(result);
         EnvioEntity entity = em.find(EnvioEntity.class, result.getId());
         Assert.assertEquals(newEntity.getId(), entity.getId());
-        Assert.assertEquals(newEntity.getName(), entity.getName());
         Assert.assertEquals(newEntity.getHoraInicio(), entity.getHoraInicio());
         Assert.assertEquals(newEntity.getHoraFinal(), entity.getHoraFinal());
         Assert.assertEquals(newEntity.getEstado(), entity.getEstado());
@@ -170,7 +169,6 @@ public class EnvioLogicTest {
         EnvioEntity resultEntity = envioLogic.getEnvio(entity.getId());
         Assert.assertNotNull(resultEntity);
         Assert.assertEquals(entity.getId(), resultEntity.getId());
-        Assert.assertEquals(entity.getName(), resultEntity.getName());
         Assert.assertEquals(entity.getHoraFinal(), resultEntity.getHoraFinal());
         Assert.assertEquals(entity.getHoraInicio(), resultEntity.getHoraInicio());
         Assert.assertEquals(entity.getEstado(), resultEntity.getEstado());
@@ -203,7 +201,6 @@ public class EnvioLogicTest {
         EnvioEntity resp = em.find(EnvioEntity.class, entity.getId());
 
         Assert.assertEquals(pojoEntity.getId(), resp.getId());
-        Assert.assertEquals(pojoEntity.getName(), resp.getName());
         Assert.assertEquals(pojoEntity.getHoraFinal(), resp.getHoraFinal());
         Assert.assertEquals(pojoEntity.getHoraInicio(), resp.getHoraInicio());
         Assert.assertEquals(pojoEntity.getEstado(), resp.getEstado());

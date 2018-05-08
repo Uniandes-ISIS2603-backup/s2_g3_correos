@@ -41,15 +41,24 @@ import javax.ws.rs.WebApplicationException;
 @RequestScoped
 
 public class DetallePaqueteResource {    
-    @Inject
+
+    private static final String NOEXISTE="no existe.";
+    
     DetallePaqueteLogic detalleLogic;
 
+    /**
+     * constructor con params
+     * @param detalleLogic 
+     */
     @Inject
     public DetallePaqueteResource(DetallePaqueteLogic detalleLogic)
     {
         this.detalleLogic=detalleLogic;
     }
     
+    /**
+     * constructor
+     */
     public DetallePaqueteResource()
     {
         this.detalleLogic=null;
@@ -108,7 +117,7 @@ public class DetallePaqueteResource {
         review.setId(id);
         DetallePaqueteEntity entity = detalleLogic.getDetallePaquete(id);
         if (entity == null) {
-            throw new WebApplicationException("El recurso /detalles/" + id + " no existe.", 404);
+            throw new WebApplicationException("El recurso /detalles/" + id + NOEXISTE, 404);
         }
         return new DetallePaqueteDTO(detalleLogic.updateDetallePaquete(review.toEntity()));
 
@@ -135,7 +144,7 @@ public class DetallePaqueteResource {
     public DetallePaqueteDTO getReview(@PathParam("id") Long id) throws BusinessLogicException {
         DetallePaqueteEntity entity = detalleLogic.getDetallePaquete(id);
         if (entity == null) {
-            throw new WebApplicationException("El recurso /detalle/" + id + " no existe.", 404);
+            throw new WebApplicationException("El recurso /detalle/" + id + NOEXISTE, 404);
         }
         return new DetallePaqueteDTO(entity);
     }
@@ -161,7 +170,7 @@ public class DetallePaqueteResource {
     public void deleteDetallePaquete(@PathParam("id") Long id) throws BusinessLogicException {
         DetallePaqueteEntity entity = detalleLogic.getDetallePaquete(id);
         if (entity == null) {
-            throw new WebApplicationException("El recurso /paquetes/" + id + " no existe.", 404);
+            throw new WebApplicationException("El recurso /paquetes/" + id + NOEXISTE, 404);
         }
         detalleLogic.deleteDetallePaquete(id);
     }

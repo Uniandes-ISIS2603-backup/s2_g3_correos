@@ -11,6 +11,9 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import uk.co.jemos.podam.common.PodamExclude;
@@ -21,7 +24,7 @@ import uk.co.jemos.podam.common.PodamStrategyValue;
  * @author a.silvag
  */
 @Entity
-public class CuentaBancariaEntity extends BaseEntity implements Serializable{
+public class CuentaBancariaEntity implements Serializable{
 
 
     @PodamStrategyValue(TenPlusNumericString.class)
@@ -30,12 +33,31 @@ public class CuentaBancariaEntity extends BaseEntity implements Serializable{
     private String tipoTarjeta;
     @PodamExclude
     @OneToMany(mappedBy = "cuentaBancaria", cascade = CascadeType.PERSIST, orphanRemoval = true)
-    private List<PagoEntity> pagos = new ArrayList<PagoEntity>();
+    private List<PagoEntity> pagos = new ArrayList<>();
     
     @PodamExclude
     @ManyToOne
     private ClienteEntity cliente;
- 
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    /**
+     * 
+     * @return el id
+     */
+    public Long getId() {
+        return id;
+    }
+
+    /**
+     * setter del id
+     * @param id 
+     */
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     /**
      * @return the numero

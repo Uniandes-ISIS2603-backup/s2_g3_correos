@@ -41,10 +41,17 @@ public class PagoDTO {
     private double valor;
     private Date fecha;
     
+    /**
+     * constructor por defecto
+     */
 public PagoDTO(){
         //Este metodo esta vacio para permitir la construccion del JSON
     }
 
+/**
+ * constructor con entity por param
+ * @param entity 
+ */
 public PagoDTO(PagoEntity entity){
     if(entity!=null){
         this.id = entity.getId();
@@ -52,7 +59,10 @@ public PagoDTO(PagoEntity entity){
         this.fecha = entity.getFecha();
     }
 }
-
+/**
+ * 
+ * @return el pago en formato entity
+ */
 public PagoEntity toEntity(){
     PagoEntity entity = new PagoEntity();
     entity.setFecha(fecha);

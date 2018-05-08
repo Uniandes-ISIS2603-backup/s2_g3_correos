@@ -61,20 +61,38 @@ public class EventoPersistence {
         }
     }
 
+    /**
+     * 
+     * @return todos los eventos
+     */
     public List<EventoEntity> findAll() {
         LOGGER.info("Consultando todas las eventos");
         TypedQuery query = em.createQuery("select u from EventoEntity u", EventoEntity.class);
         return query.getResultList();
     }
 
+    /**
+     * 
+     * @param id
+     * @return el evento con id pr param
+     */
     public EventoEntity find(Long id) {
         return em.find(EventoEntity.class, id);
     }
 
+    /**
+     * 
+     * @param entity
+     * @return el evento actualizado
+     */
     public EventoEntity update(EventoEntity entity) {
          return em.merge(entity);
     }
     
+    /**
+     * bora el evento con id por param
+     * @param id 
+     */
     public void delete(Long id) {
         LOGGER.log(Level.INFO, "Borrando company con id={0}", id);
         EventoEntity entity = em.find(EventoEntity.class, id);

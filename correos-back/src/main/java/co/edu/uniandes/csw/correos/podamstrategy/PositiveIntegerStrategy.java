@@ -13,6 +13,9 @@ import uk.co.jemos.podam.common.AttributeStrategy;
  */
 public class PositiveIntegerStrategy implements AttributeStrategy<Double> {
 
+   /**
+    * genera un entero positivo
+    */ 
     @Override
     public Double getValue() {
         return Math.random()*Integer.MAX_VALUE;

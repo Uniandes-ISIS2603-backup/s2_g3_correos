@@ -65,9 +65,25 @@ import javax.ws.rs.Produces;
 @RequestScoped
 public class ZonaResource {
     
-    @Inject
+    
     private ZonaLogic logica;
 
+    /**
+     * constructor con params
+     * @param logica 
+     */
+    @Inject
+    public ZonaResource(ZonaLogic logica) {
+        this.logica = logica;
+    }
+
+    /**
+     * constructor
+     */
+    public ZonaResource() {
+        this.logica = null;
+    }
+    
     /**
      * <h1>POST /api/cities : Crear una zona.</h1>
      * 

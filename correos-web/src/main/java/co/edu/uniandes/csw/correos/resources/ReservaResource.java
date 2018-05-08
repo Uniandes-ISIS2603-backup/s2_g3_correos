@@ -64,11 +64,32 @@ import javax.ws.rs.WebApplicationException;
 @Consumes("application/json")
 @RequestScoped
 public class ReservaResource {
-    @Inject
+ 
     ReservaLogic logic;
     
-    @Inject
+
     ClienteLogic logicCliente;
+    
+    /**
+     * constructor con params
+     * @param rL
+     * @param cL 
+     */
+    @Inject
+    public ReservaResource(ReservaLogic rL, ClienteLogic cL)
+    {
+        logic=rL;
+        logicCliente=cL;
+    }
+    
+    /**
+     * constructor
+     */
+    public ReservaResource()
+    {
+        logic=null;
+        logicCliente=null;
+    }
     /**
      * <h1>POST /api/reservas : Crear una reserva.</h1>
      * 
@@ -196,6 +217,12 @@ public class ReservaResource {
        
     }
     
+    
+    /**
+     * 
+     * @param reservas
+     * @return lista de las reservas en dto
+     */
     public List<ReservaDetailDTO>  listEntity2DTO(List<ReservaEntity> reservas)
     {
         List<ReservaDetailDTO> retorno = new ArrayList<>();

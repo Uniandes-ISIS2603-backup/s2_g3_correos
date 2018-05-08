@@ -280,7 +280,6 @@ public class DetallePaquetePersistanceTest {
 
 
 
-        Assert.assertEquals(newEntity.getName(), entity.getName());
 
         Assert.assertEquals(newEntity.getId(), entity.getId());
 
@@ -347,7 +346,6 @@ public class DetallePaquetePersistanceTest {
         DetallePaqueteEntity entity = data.get(0);
         DetallePaqueteEntity newEntity = detallePaquetePersistence.find(entity.getId());
         Assert.assertNotNull(newEntity);
-        Assert.assertEquals(entity.getName(), newEntity.getName());
         Assert.assertEquals(entity.getMensaje(), newEntity.getMensaje());
     }
 
@@ -413,7 +411,6 @@ public class DetallePaquetePersistanceTest {
 
         
 
-        Assert.assertEquals(newEntity.getName(), resp.getName());
 
         Assert.assertEquals(newEntity.getMensaje(), resp.getMensaje());
 

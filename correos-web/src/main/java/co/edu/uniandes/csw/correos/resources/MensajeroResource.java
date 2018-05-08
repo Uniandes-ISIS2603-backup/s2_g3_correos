@@ -70,6 +70,7 @@ import javax.ws.rs.WebApplicationException;
 public class MensajeroResource {
     
     
+    
     private MensajeroLogic logic;
     
     private ZonaMensajeroLogic zonaMensajeroLogic;
@@ -77,6 +78,12 @@ public class MensajeroResource {
     private ZonaLogic zonaLogic;
     
     
+    /**
+     * constructor con params
+     * @param logic
+     * @param zonaMensajeroLogic
+     * @param zonaLogic 
+     */
     @Inject
     public MensajeroResource(MensajeroLogic logic, ZonaMensajeroLogic zonaMensajeroLogic, ZonaLogic zonaLogic)
     {
@@ -85,6 +92,9 @@ public class MensajeroResource {
         this.zonaLogic=zonaLogic;
     }
     
+    /**
+     * constructor
+     */
     public MensajeroResource()
     {
         this.logic=null;
@@ -141,10 +151,10 @@ public class MensajeroResource {
      */
     @PUT
     @Path("{id:\\d+}")
-    public MensajeroDetailDTO updateMensajero(@PathParam("id") Long id , MensajeroDetailDTO mensajero) throws BusinessLogicException, WebApplicationException
+    public MensajeroDetailDTO updateMensajero(@PathParam("id") Long id , MensajeroDetailDTO mensajero) throws BusinessLogicException
     {
         if(logic.getMensajero(id)==null) 
-            throw new WebApplicationException("El Mensajero con id" + id,404);
+            throw new WebApplicationException("El mensajero con id" + id,404);
         mensajero.setId(id);
         return new MensajeroDetailDTO(logic.putMensajero(mensajero.toEntity()));
     }
@@ -167,13 +177,19 @@ public class MensajeroResource {
      */
     @GET
     @Path("{id:\\d+}")
-    public MensajeroDetailDTO getMensajero(@PathParam("id") Long id) throws WebApplicationException
+    public MensajeroDetailDTO getMensajero(@PathParam("id") Long id) throws BusinessLogicException
     {
         if(logic.getMensajero(id)==null) 
             throw new WebApplicationException("El Mensajero con id" + id,404);
         return new MensajeroDetailDTO(logic.getMensajero(id));
     }
     
+    /**
+     * le pone a un mensajero una zona
+     * @param id
+     * @param zonaId
+     * @return 
+     */
     @PUT
     @Path("zona/{id:\\ d+}/{zonaId:\\d+}")
     public MensajeroDetailDTO agregarZona(@PathParam("id") Long id, @PathParam("zonaId") Long zonaId)
@@ -218,13 +234,18 @@ public class MensajeroResource {
      */
     @DELETE
     @Path("{id:\\d+}")
-    public void deleteMensajero(@PathParam("id") Long id) throws WebApplicationException
+    public void deleteMensajero(@PathParam("id") Long id) throws BusinessLogicException
     {
         if(logic.getMensajero(id)==null) 
-            throw new WebApplicationException("El Mensajero con id" + id ,404);
+            throw new WebApplicationException("El Mensajero con el id" + id ,404);
         logic.deleteMensajero(logic.getMensajero(id));
     }
     
+    /**
+     * 
+     * @param mensajeros
+     * @return lista de mensajeros en detailDto
+     */
     public List<MensajeroDetailDTO>  listEntity2DTO(List<MensajeroEntity> mensajeros)
     {
         List<MensajeroDetailDTO> retorno = new ArrayList<>();

@@ -24,7 +24,7 @@ SOFTWARE.
 package co.edu.uniandes.csw.correos.resources;
 
 
-import co.edu.uniandes.csw.correos.dtos.ClienteDTO;
+
 import co.edu.uniandes.csw.correos.dtos.ClienteDetailDTO
         ;
 import co.edu.uniandes.csw.correos.ejb.ClienteLogic;
@@ -68,9 +68,25 @@ import javax.ws.rs.WebApplicationException;
 @RequestScoped
 public class ClienteResource {
 
-     @Inject
     private ClienteLogic logic;
     
+     /**
+      * constructor con params
+      * @param cL 
+      */
+     @Inject
+     public ClienteResource(ClienteLogic cL)
+     {
+         logic=cL;
+     }
+     
+     /**
+      * constructor
+      */
+     public ClienteResource()
+     {
+         logic=null;
+     }
     /**
      * <h1>POST /api/clientes : Crear una cliente de credito.</h1>
      * 
@@ -167,6 +183,11 @@ public class ClienteResource {
          return listEntity2DTO(logic.getClientes());
      }
      
+     /**
+      * borra el cliente con id por param
+      * @param id
+      * @throws BusinessLogicException 
+      */
      @DELETE
      @Path("{id: \\d+ }")
      public void deleteCliente(@PathParam("id") Long id) throws BusinessLogicException
@@ -176,6 +197,11 @@ public class ClienteResource {
         logic.deleteCliente(id);
     }
     
+     /**
+      * 
+      * @param clientes
+      * @return lista de clientes en formato detailDTO
+      */
     public List<ClienteDetailDTO>  listEntity2DTO(List<ClienteEntity> clientes)
     {
         List<ClienteDetailDTO> retorno = new ArrayList<>();

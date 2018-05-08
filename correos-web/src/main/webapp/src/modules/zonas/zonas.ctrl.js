@@ -2,7 +2,7 @@
 {
    var mod=ng.module("zonasModule");
    mod.constant("zonasContext","api/zonas");
-   mod.controller('zonasCtrl',['$scope', '$http', 'zonasContext', '$state',
+   mod.controller('zonasCtrl',['$scope', '$http', 'zonasContext', 
    
           /**
          * @ngdoc controller
@@ -22,7 +22,7 @@
          * @param {Object} $state Dependencia injectada en la que se recibe el 
          * estado actual de la navegación definida en el módulo.
          */
-        function($scope,$http,zonasContext,$state)
+        function($scope,$http,zonasContext)
         {
             /**
              * @ngdoc function

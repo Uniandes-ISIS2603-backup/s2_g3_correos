@@ -119,7 +119,6 @@ public class ReservaLogicTest {
         Assert.assertNotNull(result);
         ReservaEntity entity = em.find(ReservaEntity.class, result.getId());
         Assert.assertEquals(newEntity.getId(), entity.getId());
-        Assert.assertEquals(newEntity.getName(), entity.getName());
         
     }
 
@@ -154,7 +153,6 @@ public class ReservaLogicTest {
         ReservaEntity resultEntity = reservaLogic.getReserva(entity.getId());
         Assert.assertNotNull(resultEntity);
         Assert.assertEquals(entity.getId(), resultEntity.getId());
-        Assert.assertEquals(entity.getName(), resultEntity.getName());
        
     }
 
@@ -188,7 +186,6 @@ public class ReservaLogicTest {
         ReservaEntity resp = em.find(ReservaEntity.class, entity.getId());
 
         Assert.assertEquals(pojoEntity.getId(), resp.getId());
-        Assert.assertEquals(pojoEntity.getName(), resp.getName());
         
     }
 }

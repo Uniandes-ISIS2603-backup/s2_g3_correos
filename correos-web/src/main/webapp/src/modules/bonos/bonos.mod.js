@@ -61,7 +61,7 @@
                         controllerAs: 'ctrl'
                     }
                 }
-            }).state('bonosUpdate', {
+            }).state('bonoUpdate', {
                 url: '/update',
                 parent: 'bonos',
                 params:{bonoId:null},

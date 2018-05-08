@@ -40,35 +40,53 @@ import javax.inject.Inject;
 @Stateless
 public class ClienteLogic {
 
+    /**
+     * logger
+     */
     private static final Logger LOGGER = Logger.getLogger(ClienteLogic.class.getName());
 
-    
+    /**
+     * conexcion con la persistencia
+     */
     private ClientePersistence persistence; // Variable para acceder a la persistencia de la aplicación. Es una inyección de dependencias.
-    
+    /*
+    conexion con la logica
+    */
     @Inject
     public ClienteLogic(ClientePersistence clientePersistence)
     {
         this.persistence=clientePersistence;
     }
     
-    
+    /*
+    constructor
+    */
     public ClienteLogic()
     {
         this.persistence=null;
     }
-
+    /**
+     * 
+     * @param entity
+     * @return un nuevo cliente
+     * @throws BusinessLogicException 
+     */
     public ClienteEntity createCliente(ClienteEntity entity) throws BusinessLogicException {
         LOGGER.info("Inicia proceso de creación de cliente");
         // Verifica la regla de negocio que dice que no puede haber dos cliente con el mismo nombre
-        if (persistence.findByName(entity.getName()) != null) {
-            throw new BusinessLogicException("Ya existe un cliente con el nombre \"" + entity.getName() + "\"");
+        if (persistence.findByName(entity.getNombre()) != null) {
+            throw new BusinessLogicException("Ya existe un cliente con el nombre \"" + entity.getNombre() + "\"");
         }
         // Invoca la persistencia para crear el cliente
         persistence.create(entity);
         LOGGER.info("Termina proceso de creación del cliente");
         return entity;
     }
-
+    
+    /**
+     * 
+     * @return todos los clientes
+     */
     public List<ClienteEntity> getClientes() {
         LOGGER.info("Inicia proceso de consultar todos los clientes");
         // Note que, por medio de la inyección de dependencias se llama al método "findAll()" que se encuentra en la persistencia.
@@ -76,24 +94,48 @@ public class ClienteLogic {
         LOGGER.info("Termina proceso de consultar todos los clientes");
         return editorials;
     }
-
+    
+    /**
+     * 
+     * @param id
+     * @return el cliennte con id por param
+     */
     public ClienteEntity getCliente(Long id) {
         return persistence.find(id);
     }
 
+    
+    /**
+     * 
+     * @param entity
+     * @return el nuevo cliente actualizado
+     * @throws BusinessLogicException 
+     */
     public ClienteEntity updateCliente(ClienteEntity entity) throws BusinessLogicException  {
-        if (persistence.findByName(entity.getName()) != null) {
-            throw new BusinessLogicException("Ya existe un cliente con el nombre \"" + entity.getName() + "\"");
+        if (persistence.findByName(entity.getNombre()) != null) {
+            throw new BusinessLogicException("Ya existe un cliente con el nombre \"" + entity.getNombre() + "\"");
         }
         return persistence.update(entity);
     }
     
+    
+    /**
+     * se borra el cliente por id
+     * @param id
+     * @throws BusinessLogicException 
+     */
     public void deleteCliente(Long id) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "Inicia proceso de borrar el cliente con id={0}", id);    
         persistence.delete(id);
         LOGGER.log(Level.INFO, "Termina proceso de borrar cliente con id={0}", id);
     }
     
+    
+    /**
+     * se crea una nueva tarjeta de credito
+     * @param id
+     * @param tarjetaCredito 
+     */
     public void agregarTarjetaCredito(Long id, TarjetaCreditoEntity tarjetaCredito)
     {
         ClienteEntity agregar= persistence.find(id);
@@ -103,6 +145,12 @@ public class ClienteLogic {
         persistence.update(agregar);
     }
   
+    /**
+     * se borra la tarjeta de credito
+     * @param cliente
+     * @param tarjetaCredito
+     * @throws BusinessLogicException 
+     */
     public void borrarTarjetaCredito(Long cliente, Long tarjetaCredito) throws BusinessLogicException
     {
         ClienteEntity cambiar= getCliente(cliente);

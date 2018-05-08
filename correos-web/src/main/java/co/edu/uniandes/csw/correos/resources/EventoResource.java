@@ -11,7 +11,6 @@ import co.edu.uniandes.csw.correos.ejb.EventoLogic;
 import co.edu.uniandes.csw.correos.entities.EventoEntity;
 import co.edu.uniandes.csw.correos.exceptions.BusinessLogicException;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
@@ -35,6 +34,33 @@ import javax.ws.rs.WebApplicationException;
 @RequestScoped
 
 public class EventoResource {
+
+    private static final String NOEXISTE="El envio no existe";
+    
+    private EventoLogic eventoLogic;
+    
+    private EnvioLogic envioLogic;
+    
+    /**
+     * constructor con params
+     * @param eventoLogic
+     * @param envioLogic 
+     */
+    @Inject
+   public EventoResource(EventoLogic eventoLogic, EnvioLogic envioLogic)
+   {
+       this.envioLogic=this.envioLogic;
+       this.eventoLogic=this.eventoLogic;
+   }
+   
+   /**
+    * constructor
+    */
+   public EventoResource()
+   {
+       this.envioLogic=null;
+       this.eventoLogic=null;
+   }
     
     /** <h1>POST /api/evento : Crear un evento.</h1>
      * 
@@ -56,17 +82,12 @@ public class EventoResource {
      * @return JSON {@link EventoDTO}  - el evento guardada con el atributo id autogenerado.
      * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} - Error de lógica que se genera cuando ya existe el evento.
      */
-    
-    @Inject
-    private EventoLogic eventoLogic;
-    
-    @Inject
-    private EnvioLogic envioLogic;
+
     
     @POST
 public EventoDTO createEvento(@PathParam("envioId") Long envioId, EventoDTO evento)throws BusinessLogicException{
     if(envioLogic.getEnvio(envioId)==null){
-        throw new WebApplicationException("no existe el envio");
+        throw new WebApplicationException(NOEXISTE);
     }
     envioLogic.agregarEvento(envioId, evento.toEntity());
     return new EventoDTO(eventoLogic.createEvento(evento.toEntity()));
@@ -96,10 +117,10 @@ public EventoDTO createEvento(@PathParam("envioId") Long envioId, EventoDTO even
     public EventoDTO updateEvento(@PathParam("envioId")Long envioId,@PathParam("id") Long id , EventoDTO evento) throws BusinessLogicException{
          
         if(envioLogic.getEnvio(envioId)==null){
-        throw new WebApplicationException("no existe el envio");
+        throw new WebApplicationException(NOEXISTE);
     }
        if(eventoLogic.getEvento(id)==null){
-           throw new WebApplicationException("No existe el evento");
+           throw new WebApplicationException(NOEXISTE);
        }
        evento.setId(id);
        EventoEntity evento2=evento.toEntity();
@@ -127,12 +148,12 @@ public EventoDTO createEvento(@PathParam("envioId") Long envioId, EventoDTO even
     @Path("{id: \\d+}")
     public EventoDTO getEvento(@PathParam("envioId")Long envioId,@PathParam("id") Long id){
         if(envioLogic.getEnvio(envioId)==null){
-        throw new WebApplicationException("no existe el envio");
+        throw new WebApplicationException(NOEXISTE);
     }   
         
         EventoEntity entity = eventoLogic.getEvento(id);
         if (entity == null) {
-            throw new WebApplicationException("El evento no existe", 404);
+            throw new WebApplicationException(NOEXISTE, 404);
         }
         return new EventoDTO(entity);
     }
@@ -155,10 +176,15 @@ public EventoDTO createEvento(@PathParam("envioId") Long envioId, EventoDTO even
         return list;
     }
     
+    /**
+     * 
+     * @param envioId
+     * @return todos los eventos
+     */
     @GET
     public List<EventoDTO> getEventos(@PathParam("envioId")Long envioId){
         if(envioLogic.getEnvio(envioId)==null){
-        throw new WebApplicationException("no existe el envio");
+        throw new WebApplicationException(NOEXISTE);
     }
         return listEntity2DTO(envioLogic.getEnvio(envioId).getEventos());
     }
@@ -183,7 +209,7 @@ public EventoDTO createEvento(@PathParam("envioId") Long envioId, EventoDTO even
     public void deleteEvento(@PathParam("envioId")Long envioId,@PathParam("id") Long id)throws BusinessLogicException{
         //en espera de implementacion
         if(envioLogic.getEnvio(envioId)==null){
-        throw new WebApplicationException("no existe el envio");
+        throw new WebApplicationException(NOEXISTE);
     }       
         EventoEntity entity = eventoLogic.getEvento(id);
         if (entity == null) {

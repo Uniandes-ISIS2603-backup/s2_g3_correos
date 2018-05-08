@@ -11,7 +11,6 @@ import co.edu.uniandes.csw.correos.ejb.CuentaBancariaLogic;
 import co.edu.uniandes.csw.correos.entities.CuentaBancariaEntity;
 import co.edu.uniandes.csw.correos.exceptions.BusinessLogicException;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
@@ -36,6 +35,26 @@ import javax.ws.rs.WebApplicationException;
 @RequestScoped
 public class CuentaBancariaResource {
   
+
+    CuentaBancariaLogic cuentaBancariaLogic;
+    
+    /**
+     * constructor con params
+     * @param cBL 
+     */
+    @Inject
+    public CuentaBancariaResource(CuentaBancariaLogic cBL)
+    {
+        this.cuentaBancariaLogic=cBL;       
+    }
+
+    /**
+     * constructor
+     */
+    public CuentaBancariaResource()
+    {
+        this.cuentaBancariaLogic=null;       
+    }
      /** <h1>POST /api/cuentasBancarias : Crear una cuentaBancaria.</h1>
      * 
      * <pre>Cuerpo de petición: JSON {@link CuentaBancariaDetailDTO}.
@@ -56,8 +75,7 @@ public class CuentaBancariaResource {
      * @return JSON {@link CuentaBancariaDetailDTO}  - la cuentaBancaria guardada con el atributo id autogenerado.
      * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} - Error de lógica que se genera cuando ya existe la cuenta bancaria.
      */
-    @Inject
-    CuentaBancariaLogic cuentaBancariaLogic;
+    
     @POST
 public CuentaBancariaDetailDTO createCuentaBancaria(CuentaBancariaDetailDTO cuentaBancaria)throws BusinessLogicException{
     return new CuentaBancariaDetailDTO(cuentaBancariaLogic.createCuentaBancaria(cuentaBancaria.toEntity()));
@@ -138,6 +156,11 @@ public CuentaBancariaDetailDTO createCuentaBancaria(CuentaBancariaDetailDTO cuen
         }
         return list;
     }
+    
+    /**
+     * 
+     * @return todas las cuentas bancarias
+     */
     @GET
     public List<CuentaBancariaDetailDTO> getCuentaBancaria(){
         return listEntity2DTO(cuentaBancariaLogic.getCuentasBancarias());

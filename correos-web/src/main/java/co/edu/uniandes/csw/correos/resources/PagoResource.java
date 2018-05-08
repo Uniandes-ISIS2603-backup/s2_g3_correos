@@ -14,7 +14,6 @@ import co.edu.uniandes.csw.correos.entities.CuentaBancariaEntity;
 import co.edu.uniandes.csw.correos.entities.PagoEntity;
 import co.edu.uniandes.csw.correos.exceptions.BusinessLogicException;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
@@ -39,6 +38,37 @@ import javax.ws.rs.WebApplicationException;
 @RequestScoped
 public class PagoResource {
     
+    
+    private PagoLogic pagoLogic;
+    
+    private CuentaBancariaLogic logicCuentas;
+    
+    private TarjetaCreditoLogic logicTarjetas;
+    
+    /**
+     * constructor con params
+     * @param pL
+     * @param cBL
+     * @param lT 
+     */
+    @Inject
+    public PagoResource(PagoLogic pL, CuentaBancariaLogic cBL, TarjetaCreditoLogic lT)
+    {
+        pagoLogic=pL;
+        logicCuentas=cBL;
+        logicTarjetas=lT;
+    }
+    
+    /**
+     * constructor
+     */
+    public PagoResource()
+    {
+        pagoLogic=null;
+        logicCuentas=null;
+        logicTarjetas=null;
+    }
+    
     /** <h1>POST /api/pago : Crear un pago.</h1>
      * 
      * <pre>Cuerpo de petición: JSON {@link PagoDetailDTO}.
@@ -58,20 +88,12 @@ public class PagoResource {
      * @return JSON {@link PagoDetailDTO}  - el pago guardado con el atributo id autogenerado.
      * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} - Error de lógica que se genera cuando ya existe el pago.
      */
-    @Inject
-    private PagoLogic pagoLogic;
-    
-    @Inject
-    private CuentaBancariaLogic logicCuentas;
-    
-    @Inject
-    private TarjetaCreditoLogic logicTarjetas;
     
 @POST
 public PagoDetailDTO createPago(@PathParam("cuentaBancariaId") Long cuentaBancariaId, PagoDetailDTO pago)throws BusinessLogicException{
     
     if(logicCuentas.getCuentaBancaria(cuentaBancariaId)==null){
-        throw new WebApplicationException("No existe la cuenta bancaria");
+        throw new WebApplicationException("no existe la cuenta bancaria");
     }
     PagoEntity pe = pago.toEntity();
     CuentaBancariaEntity cbe = logicCuentas.getCuentaBancaria(cuentaBancariaId);
@@ -135,7 +157,7 @@ public PagoDetailDTO createPago(@PathParam("cuentaBancariaId") Long cuentaBancar
     @Path("{id: \\d+}")
     public PagoDetailDTO getPago(@PathParam("cuentaBancariaId") Long cuentaBancariaId, @PathParam("id") Long id){
         if(logicCuentas.getCuentaBancaria(cuentaBancariaId)==null){
-            throw new WebApplicationException("No existe la cuenta bancaria");
+            throw new WebApplicationException("No existe esta cuenta bancaria");
         }
         if (pagoLogic.getPago(id) == null) {
             throw new WebApplicationException("El pago no existe", 404);
@@ -160,10 +182,17 @@ public PagoDetailDTO createPago(@PathParam("cuentaBancariaId") Long cuentaBancar
         }
         return list;
     }
+    
+    /**
+     * 
+     * @param cuentaBancariaId
+     * @return todos los pagos de la cuenta bancaria
+     * @throws BusinessLogicException 
+     */
     @GET
     public List<PagoDetailDTO> getPagos(@PathParam("cuentaBancariaId") Long cuentaBancariaId) throws BusinessLogicException{
        if(logicCuentas.getCuentaBancaria(cuentaBancariaId)==null){
-           throw new WebApplicationException("no existe la cuenta bancaria");
+           throw new WebApplicationException("no existe la cuenta ");
        }
         
         return listEntity2DTO(logicCuentas.getCuentaBancaria(cuentaBancariaId).getPagos());
@@ -187,7 +216,7 @@ public PagoDetailDTO createPago(@PathParam("cuentaBancariaId") Long cuentaBancar
     public void deletePago(@PathParam("cuentaBancariaId") Long cuentaBancariaId,@PathParam("id") Long id) throws BusinessLogicException{
         //en espera de implementacion
         if(logicCuentas.getCuentaBancaria(cuentaBancariaId)==null){
-            throw new WebApplicationException("No existe la cuenta bancaria");
+            throw new WebApplicationException("Ese id no corresponde a una cuenta bancaria");
         }
         PagoEntity entity = pagoLogic.getPago(id);
         if (entity == null) {

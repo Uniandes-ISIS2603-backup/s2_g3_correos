@@ -1,5 +1,12 @@
 {
     "elements": {
+        "ui-gmap-google-map": {
+            "attributes": {
+                "center": {},
+                "options": {},
+                "zoom": {}
+            }
+        },
         "hr": {}
     },
     "attributes": {

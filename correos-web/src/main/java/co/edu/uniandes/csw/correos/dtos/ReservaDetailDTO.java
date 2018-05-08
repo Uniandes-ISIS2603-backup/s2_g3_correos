@@ -42,6 +42,11 @@ public class ReservaDetailDTO extends ReservaDTO{
     {
         super();
     }
+    
+    /**
+ * constructor con entity por param
+ * @param entity 
+ */
     public ReservaDetailDTO(ReservaEntity reserva)
     {
          super(reserva);
@@ -49,10 +54,18 @@ public class ReservaDetailDTO extends ReservaDTO{
              this.cliente=new ClienteDTO(reserva.getCliente());
     }
 
+    /**
+     * 
+     * @return cliente
+     */
     public ClienteDTO getCliente() {
         return cliente;
     }
 
+    /**
+     * setter de cliente
+     * @param cliente 
+     */
     public void setCliente(ClienteDTO cliente) {
         this.cliente = cliente;
     }

@@ -65,11 +65,31 @@ import javax.ws.rs.WebApplicationException;
 @Consumes("application/json")
 @RequestScoped
 public class CalificacionResource {
-    @Inject
+ 
     private CalificacionLogic logica;
     
-    @Inject
     private MensajeroLogic logicMensajero;
+    
+    /**
+     * constructor con params
+     * @param cL
+     * @param mL 
+     */
+    @Inject
+    public CalificacionResource(CalificacionLogic cL, MensajeroLogic mL)
+    {
+        this.logica=cL;
+        this.logicMensajero=mL;
+    }
+    
+    /**
+     * constructor
+     */
+    public  CalificacionResource()
+    {
+        this.logicMensajero=null;
+        this.logica=null;
+    }
     
     /**
      * <h1>POST /api/cities : Crear un comentairo.</h1>

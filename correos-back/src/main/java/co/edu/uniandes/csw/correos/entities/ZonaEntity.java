@@ -9,6 +9,9 @@ import co.edu.uniandes.csw.correos.podamstrategy.DoubleZonaStrategy;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import uk.co.jemos.podam.common.PodamExclude;
 import uk.co.jemos.podam.common.PodamStrategyValue;
@@ -18,7 +21,7 @@ import uk.co.jemos.podam.common.PodamStrategyValue;
  * @author ed.diaz11
  */
 @Entity
-public class ZonaEntity extends BaseEntity implements Serializable{
+public class ZonaEntity implements Serializable{
     
     @PodamStrategyValue(DoubleZonaStrategy.class)
     private Double latitud;
@@ -29,7 +32,25 @@ public class ZonaEntity extends BaseEntity implements Serializable{
     @ManyToMany
     private List<MensajeroEntity> mensajeros;
     
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
+    /**
+     * 
+     * @return the id
+     */
+    public Long getId() {
+        return id;
+    }
+
+    /**
+     * 
+     * @param id 
+     */
+    public void setId(Long id) {
+        this.id = id;
+    }
     
     /**
      * @return la latitud
@@ -57,10 +78,18 @@ public class ZonaEntity extends BaseEntity implements Serializable{
         this.longitud=longitud;
     }
 
+    /**
+     * 
+     * @return the mensajeros
+     */
     public List<MensajeroEntity> getMensajeros() {
         return mensajeros;
     }
 
+    /**
+     * setter de the mensajeros
+     * @param mensajeros 
+     */
     public void setMensajeros(List<MensajeroEntity> mensajeros) {
         this.mensajeros = mensajeros;
     }

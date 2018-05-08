@@ -47,6 +47,9 @@
     private String direccionRecogida;
     private String estado;
 
+    /**
+     * constructor por defecto
+     */
     public EnvioDTO() {
      /**
       * Constructor basico

@@ -39,23 +39,53 @@ import javax.inject.Inject;
 @Stateless
 public class TarjetaCreditoLogic {
 
+    /**
+     * logger
+     */
     private static final Logger LOGGER = Logger.getLogger(TarjetaCreditoLogic.class.getName());
-
+    
+    /**
+     * // Variable para acceder a la persistencia de la aplicación. Es una inyección de dependencias.
+     */
+    private TarjetaCreditoPersistence persistence; 
+    
+    /**
+     * constructor con parametros
+     * @param tP 
+     */
     @Inject
-    private TarjetaCreditoPersistence persistence; // Variable para acceder a la persistencia de la aplicación. Es una inyección de dependencias.
-
+    public TarjetaCreditoLogic(TarjetaCreditoPersistence tP)
+    {
+        this.persistence=tP;
+    }
+    
+    /**
+     * constructor vacio
+     */
+    public TarjetaCreditoLogic()
+    {
+        this.persistence=null;
+    }
+    
+    /**
+     * 
+     * @param entity
+     * @returnla nueva tarjeta de credito
+     * @throws BusinessLogicException 
+     */
     public TarjetaCreditoEntity createTarjetaCredito(TarjetaCreditoEntity entity) throws BusinessLogicException {
         LOGGER.info("Inicia proceso de creación de la tarjeta de credito");
         // Verifica la regla de negocio que dice que no puede haber dos tarjetas repetidas
-        if (persistence.findByName(entity.getName()) != null) {
-            throw new BusinessLogicException("Ya existe esa tarjeta \"" + entity.getName() + "\"");
-        }     
         // Invoca la persistencia para crear la tarjeta
         persistence.create(entity);
         LOGGER.info("Termina proceso de creación de la tarjeta");
         return entity;
     }
 
+    /**
+     * 
+     * @return todas las tarjetas de credito
+     */
     public List<TarjetaCreditoEntity> getTarjetasCredito() {
         LOGGER.info("Inicia proceso de consultar todas las tarjetas");
         // Note que, por medio de la inyección de dependencias se llama al método "findAll()" que se encuentra en la persistencia.
@@ -64,17 +94,31 @@ public class TarjetaCreditoLogic {
         return tarjetas;
     }
 
+    /**
+     * 
+     * @param id
+     * @return la tarjeta de credito por id
+     */
     public TarjetaCreditoEntity getTarjetaCredito(Long id) {
         return persistence.find(id);
     }
 
+    /**
+     * 
+     * @param entity
+     * @return la tarjeta de credito actualizada
+     * @throws BusinessLogicException 
+     */
     public TarjetaCreditoEntity updateTarjetaCredito(TarjetaCreditoEntity entity) throws BusinessLogicException  {
-        if (persistence.findByName(entity.getName()) != null) {
-            throw new BusinessLogicException("Ya existe una tarjeta \"" + entity.getName() + "\"");
-        }
+
         return persistence.update(entity);
     }
     
+    /**
+     * borra la tarjeta de credito por id
+     * @param id
+     * @throws BusinessLogicException 
+     */
     public void deleteTarjetaCredito(Long id) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "Inicia proceso de borrar la tarjeta de credito con id={0}", id);    
         persistence.delete(id);

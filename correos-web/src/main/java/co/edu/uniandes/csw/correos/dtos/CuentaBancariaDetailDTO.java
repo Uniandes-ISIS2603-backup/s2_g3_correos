@@ -18,10 +18,17 @@ public class CuentaBancariaDetailDTO extends CuentaBancariaDTO {
 
 private List<PagoDTO> pagos;
 
+/**
+ * constructor vacio
+ */
 public CuentaBancariaDetailDTO(){
-    
+    //constructor vacio para permitir la construccion de JSON
 }
 
+/**
+ * constructor con entity por param
+ * @param entity 
+ */
 public CuentaBancariaDetailDTO(CuentaBancariaEntity entity){
     super(entity);
         if (entity != null) {
@@ -37,17 +44,18 @@ public CuentaBancariaDetailDTO(CuentaBancariaEntity entity){
  * @return la lista de pagos
  */
 
+@Override
 public CuentaBancariaEntity toEntity(){
     CuentaBancariaEntity entity = super.toEntity();
     List<PagoEntity> list = new ArrayList<>();
-    //if(pagos!=null){
     try{
         for(PagoDTO pago:pagos){
           list.add(pago.toEntity());
         }
-    }catch(Exception e){
+    }catch(Exception e)
+    {
+        System.out.println(e.getMessage());
     }
-    //}
     entity.setPagos(list);
     return entity;
 }

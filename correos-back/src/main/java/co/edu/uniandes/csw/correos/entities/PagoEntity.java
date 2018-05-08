@@ -7,10 +7,11 @@ package co.edu.uniandes.csw.correos.entities;
 
 import co.edu.uniandes.csw.correos.podamstrategy.PositiveIntegerStrategy;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -22,7 +23,7 @@ import uk.co.jemos.podam.common.PodamStrategyValue;
  * @author a.silvag
  */
 @Entity
-public class PagoEntity extends BaseEntity implements Serializable{
+public class PagoEntity implements Serializable{
     
     @PodamExclude
     @ManyToOne
@@ -39,7 +40,25 @@ public class PagoEntity extends BaseEntity implements Serializable{
     @Temporal(TemporalType.TIMESTAMP)
     private Date fecha;
 
-    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    /**
+     * 
+     * @return the id
+     */
+    public Long getId() {
+        return id;
+    }
+
+    /**
+     * set the id
+     * @param id 
+     */
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     /**
      * @return the valor

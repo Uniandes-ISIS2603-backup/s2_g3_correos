@@ -21,6 +21,9 @@
          */
         function($scope,$http, zonasContext,$state)
         {
+           $scope.map = { center: {latitude: 51.219053, longitude: 4.404418 }, zoom: 14 };
+                    
+                   
             if($state.params.zonaId!==null&&$state.params.zonaId!==undefined)
             {
                  /**
@@ -35,8 +38,14 @@
                 */
                 $http.get(zonasContext+"/"+$state.params.zonaId).then(function(response)
                 {
+                   
+                    
                     $scope.zonaActual=response.data;
-                });
+                    $scope.map.center.latitude=$scope.zonaActual.latitud;
+                    $scope.map.center.longitude=$scope.zonaActual.longitud;
+                    
+                   
+               });
             }
         }
     ]);

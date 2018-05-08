@@ -331,7 +331,6 @@ public class BonoPersistanceTest
         BonoEntity entity = data.get(0);
         BonoEntity newEntity = bonoPersistence.find(entity.getId());
         Assert.assertNotNull(newEntity);
-        Assert.assertEquals(entity.getName(), newEntity.getName());
         Assert.assertEquals(entity.getCondicion(), newEntity.getCondicion());
         Assert.assertEquals(entity.getDescripcion(), newEntity.getDescripcion());
         Assert.assertEquals(entity.getDescuento(), newEntity.getDescuento());
@@ -400,7 +399,6 @@ public class BonoPersistanceTest
 
 
 
-        Assert.assertEquals(newEntity.getName(), resp.getName());
 
         Assert.assertEquals(newEntity.getDescripcion(), resp.getDescripcion());
 

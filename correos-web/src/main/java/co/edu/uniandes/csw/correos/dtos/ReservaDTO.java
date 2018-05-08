@@ -25,10 +25,6 @@ package co.edu.uniandes.csw.correos.dtos;
 
 import co.edu.uniandes.csw.correos.entities.ReservaEntity;
 import java.sql.Timestamp;
-import java.util.Date;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-
 
 /**
  * ResrvaDTO Objeto de transferencia de datos de Reservas. Los DTO contienen las
@@ -71,6 +67,10 @@ public class ReservaDTO {
         //Constructor vacio para construir el objeto del JSon
     }
     
+    /**
+ * constructor con entity por param
+ * @param entity 
+ */
     public ReservaDTO(ReservaEntity reserva)
     {
         this.id=reserva.getId();
@@ -122,6 +122,10 @@ public class ReservaDTO {
         this.hora = hora;
     }
     
+    /**
+     * 
+     * @return la reserva como un entity
+     */
     public ReservaEntity toEntity()
     {
         ReservaEntity reserva=new ReservaEntity();

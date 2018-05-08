@@ -130,7 +130,6 @@ public class PagoLogicTest {
         Assert.assertNotNull(result);
         PagoEntity entity = em.find(PagoEntity.class, result.getId());
         Assert.assertEquals(newEntity.getId(), entity.getId());
-        Assert.assertEquals(newEntity.getName(), entity.getName());
         Assert.assertEquals(newEntity.getFecha(), entity.getFecha());
         Assert.assertEquals(newEntity.getValor(), entity.getValor());
     }
@@ -168,7 +167,6 @@ public class PagoLogicTest {
         PagoEntity resultEntity = pagoLogic.getPago( entity.getId());
         Assert.assertNotNull(resultEntity);
         Assert.assertEquals(entity.getId(), resultEntity.getId());
-        Assert.assertEquals(entity.getName(), resultEntity.getName());
         Assert.assertEquals(entity.getFecha(), resultEntity.getFecha());
         Assert.assertEquals(entity.getValor(), resultEntity.getValor());
         Assert.assertEquals(entity.getCuentaBancaria(), resultEntity.getCuentaBancaria());

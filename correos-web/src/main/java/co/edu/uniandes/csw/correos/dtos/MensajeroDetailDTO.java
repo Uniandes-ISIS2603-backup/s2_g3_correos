@@ -52,9 +52,13 @@ public class MensajeroDetailDTO extends MensajeroDTO
      */
     public MensajeroDetailDTO()
     {
-
+        //Constructor vacio para la construccion del JSON
     }
     
+    /**
+    * constructor con entity por param
+    * @param entity 
+    */
     public MensajeroDetailDTO(MensajeroEntity entity)
     {
         super(entity);
@@ -143,6 +147,10 @@ public class MensajeroDetailDTO extends MensajeroDTO
         this.zonas = zonas;
     }
     
+    /**
+     * 
+     * @return el mensajero en formato entity
+     */
     @Override
     public MensajeroEntity toEntity()
     {
