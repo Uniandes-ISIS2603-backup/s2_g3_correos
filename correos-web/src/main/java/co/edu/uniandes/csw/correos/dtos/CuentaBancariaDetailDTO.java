@@ -18,10 +18,17 @@ public class CuentaBancariaDetailDTO extends CuentaBancariaDTO {
 
 private List<PagoDTO> pagos;
 
+/**
+ * constructor vacio
+ */
 public CuentaBancariaDetailDTO(){
     //constructor vacio para permitir la construccion de JSON
 }
 
+/**
+ * constructor con entity por param
+ * @param entity 
+ */
 public CuentaBancariaDetailDTO(CuentaBancariaEntity entity){
     super(entity);
         if (entity != null) {

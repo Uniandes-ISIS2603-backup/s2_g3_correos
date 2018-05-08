@@ -67,6 +67,10 @@ public class ReservaDTO {
         //Constructor vacio para construir el objeto del JSon
     }
     
+    /**
+ * constructor con entity por param
+ * @param entity 
+ */
     public ReservaDTO(ReservaEntity reserva)
     {
         this.id=reserva.getId();
@@ -118,6 +122,10 @@ public class ReservaDTO {
         this.hora = hora;
     }
     
+    /**
+     * 
+     * @return la reserva como un entity
+     */
     public ReservaEntity toEntity()
     {
         ReservaEntity reserva=new ReservaEntity();

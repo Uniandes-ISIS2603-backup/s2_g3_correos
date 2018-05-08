@@ -42,6 +42,10 @@ public class BonoDTO
          //Este metodo esta vacio para permitir la construccion del JSON 
     }
     
+    /**
+     * constructor con entity por param
+     * @param entity 
+     */
     public BonoDTO(BonoEntity entity) {
 
         this.id = entity.getId();
@@ -51,6 +55,10 @@ public class BonoDTO
         this.descuento=entity.getDescuento();
     }
 
+    /**
+     * 
+     * @return el bono en formato entity
+     */
     public BonoEntity toEntity() {
         BonoEntity entity = new BonoEntity();
         entity.setId(this.id);

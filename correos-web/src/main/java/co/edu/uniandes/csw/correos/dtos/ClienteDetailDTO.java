@@ -42,16 +42,23 @@ public class ClienteDetailDTO extends ClienteDTO
 {
 
     
-    public List<EnvioDTO> envios=new ArrayList<>();
-    public List<TarjetaCreditoDTO> tarjetas=new ArrayList<>();
-    public List<ReservaDTO> reservas=new ArrayList<>();
-    public List<BonoDTO> bonos=new ArrayList<>();
+    private List<EnvioDTO> envios=new ArrayList<>();
+    private List<TarjetaCreditoDTO> tarjetas=new ArrayList<>();
+    private List<ReservaDTO> reservas=new ArrayList<>();
+    private List<BonoDTO> bonos=new ArrayList<>();
 
+    /**
+     * constructor por defecto
+     */
     public ClienteDetailDTO()
     {
       
     }
     
+    /**
+     * constructor con entity por param
+     * @param cliente
+     */
     public ClienteDetailDTO(ClienteEntity cliente)
     {
         super(cliente);
@@ -69,68 +76,102 @@ public class ClienteDetailDTO extends ClienteDTO
                 this.bonos.add(new BonoDTO(x));
     }
     
-    
+    /**
+     * 
+     * @return lista de todos los envios
+     */
     public List<EnvioDTO> getEnvios() {
         return envios;
     }
 
+    /**
+     * setter atributo envios
+     * @param envios 
+     */
     public void setEnvios(List<EnvioDTO> envios) {
         this.envios = envios;
     }
 
+    /**
+     * 
+     * @return todas las tarjetas
+     */
     public List<TarjetaCreditoDTO> getTarjetas() {
         return tarjetas;
     }
 
+    /**
+     * setter atributo tarjetas
+     * @param tarjetas 
+     */
     public void setTarjetas(List<TarjetaCreditoDTO> tarjetas) {
         this.tarjetas = tarjetas;
     }
 
+    /**
+     * 
+     * @return todas las reservas
+     */
     public List<ReservaDTO> getReservas() {
         return reservas;
     }
 
+    /**
+     * setter para las reservas
+     * @param reservas 
+     */
     public void setReservas(List<ReservaDTO> reservas) {
         this.reservas = reservas;
     }
 
+    /**
+     * 
+     * @return todos los bonos
+     */
     public List<BonoDTO> getBonos() {
         return bonos;
     }
 
+    /**
+     * setter atributo bonos
+     * @param bonos 
+     */
     public void setBonos(List<BonoDTO> bonos) {
         this.bonos = bonos;
     }
     
-    
+    /**
+     * 
+     * @return el cliente como un entity
+     */
     public ClienteEntity toEntity()
     {
         ClienteEntity cliente=super.toEntity();
-        if(this.bonos!=null)
+        if(this.getBonos()!=null)
         {
             List<BonoEntity> bonosN=new ArrayList<>();
-            for(BonoDTO x: this.bonos)
+            for(BonoDTO x: this.getBonos())
                 bonosN.add(x.toEntity());
             cliente.setBonos(bonosN);
         }
-        if(this.envios!=null)
+        if(this.getEnvios()!=null)
         {
             List<EnvioEntity> nuevaEnvios=new ArrayList<>();
-            for(EnvioDTO x: this.envios)
+            for(EnvioDTO x: this.getEnvios())
                 nuevaEnvios.add(x.toEntity());
             cliente.setEnvio(nuevaEnvios);
         }
-        if(this.reservas!=null)
+        if(this.getReservas()!=null)
         {
             List<ReservaEntity> nuevaReservas=new ArrayList<>();
-            for(ReservaDTO x: this.reservas)
+            for(ReservaDTO x: this.getReservas())
                 nuevaReservas.add(x.toEntity());
             cliente.setReservas(nuevaReservas);
         }
-        if(this.tarjetas!=null)
+        if(this.getTarjetas()!=null)
         {
             List<TarjetaCreditoEntity> nuevaTarjetas=new ArrayList<>();
-            for(TarjetaCreditoDTO x: this.tarjetas)
+            for(TarjetaCreditoDTO x: this.getTarjetas())
                 nuevaTarjetas.add(x.toEntity());
             cliente.setTarjetasCredito(nuevaTarjetas);
         }
