@@ -83,15 +83,15 @@ public class EnvioLogic {
         if (entity.getHoraInicio()>entity.getHoraFinal()){
             throw new BusinessLogicException("La Hora Final es anterior a la Hora Incial.");
         }
-        else if (entity.getCliente()==null){
-            throw new BusinessLogicException("No se reconoce un cliente.");
-        }
+        //else if (entity.getCliente()==null){
+        //    throw new BusinessLogicException("No se reconoce un cliente.");
+        //}
         else if (entity.getEstado()==null){
             throw new BusinessLogicException("No se reconoce un estado.");
         }
-        else if (entity.getPaquetes().isEmpty()){
-            throw new BusinessLogicException("No hay paquetes en el envio.");
-        }
+        //else if (entity.getPaquetes().isEmpty()){
+        //    throw new BusinessLogicException("No hay paquetes en el envio.");
+        //}
         else{
             persistence.create(entity);     
         }        
@@ -146,15 +146,15 @@ public class EnvioLogic {
         if (entity.getHoraInicio()>entity.getHoraFinal()){
             throw new BusinessLogicException("La Hora Final es anterior a la Hora Incial.");
         }
-        if (entity.getCliente()==null){
-           throw new BusinessLogicException("No se reconoce un cliente.");
-        }
+        //if (entity.getCliente()==null){
+         //  throw new BusinessLogicException("No se reconoce un cliente.");
+        //}
         if (entity.getEstado()==null){
             throw new BusinessLogicException("No se reconoce un estado.");
         }
-        if (entity.getPaquetes().isEmpty()){
-           throw new BusinessLogicException("No hay paquetes en el envio.");
-        }
+        //if (entity.getPaquetes().isEmpty()){
+        //   throw new BusinessLogicException("No hay paquetes en el envio.");
+        //}
         
         return persistence.update(entity);
     }

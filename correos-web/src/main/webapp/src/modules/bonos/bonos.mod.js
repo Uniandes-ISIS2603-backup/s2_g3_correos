@@ -61,6 +61,16 @@
                         controllerAs: 'ctrl'
                     }
                 }
+            }).state('amigo', {
+                url: '/createAmigo',
+                parent: 'bonos',
+                views: {
+                    'listView': {
+                        templateUrl: basePath + 'createAmigo/bonosAmigo.create.html',
+                        controller: 'bonosAmigoCreateCtrl',
+                        controllerAs: 'ctrl'
+                    }
+                }
             }).state('bonoUpdate', {
                 url: '/update',
                 parent: 'bonos',
