@@ -54,8 +54,10 @@ package co.edu.uniandes.csw.correos.dtos;
 public class ClienteDTO
 {
 
-    private Long idCliente;
-    private String nombre;
+    private Long idCliente; // id del cliente
+    private String nombre; // nombre del cliente
+    private String correo; // correo del cliente
+    private String telefono; //telefono del cliente
 
     /**
      * Constructor por defecto
@@ -74,6 +76,8 @@ public class ClienteDTO
    public ClienteDTO(ClienteEntity entity){
     this.idCliente = entity.getId();
     this.nombre = entity.getNombre();
+    this.correo = entity.getCorreo();
+    this.telefono = entity.getTelefono();
 
 }
     /**
@@ -84,6 +88,8 @@ public ClienteEntity toEntity(){
     ClienteEntity entity = new ClienteEntity();
     entity.setId(this.idCliente);
     entity.setNombre(this.nombre);
+    entity.setCorreo(this.correo);
+    entity.setTelefono(this.telefono);
     return entity;
 }
 
@@ -114,6 +120,43 @@ public ClienteEntity toEntity(){
      */
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+    
+    /**
+     * retorna el correo del cliente
+     * @return el correo del cliente
+     */
+    public String getCorreo()
+    {
+        return correo;
+    }
+    
+    /**
+     * cambia el correo del cliente
+     * 
+     * @param correo que se va a cambiar
+     */
+    public void setCorreo(String correo)
+    {
+        this.correo = correo;
+    }
+    
+    /**
+     * retorna el telefono del cliente
+     * @return el telefono del cliente
+     */
+    public String getTelefono()
+    {
+        return correo;
+    }
+    
+    /**
+     * cambia el telefono del cliente
+     * @param telefono del cliente que se va a cambiar 
+     */
+    public void setTelefono(String telefono)
+    {
+        this.telefono = telefono;
     }
 
  }
