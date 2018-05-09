@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package co.edu.uniandes.csw.correos.resources;
 
 import javax.ws.rs.DELETE;
@@ -21,6 +22,7 @@ import co.edu.uniandes.csw.correos.ejb.BonoLogic;
 import co.edu.uniandes.csw.correos.ejb.ClienteLogic;
 import co.edu.uniandes.csw.correos.entities.BonoEntity;
 import co.edu.uniandes.csw.correos.exceptions.BusinessLogicException;
+import java.util.Calendar;
 import javax.inject.Inject;
 import javax.ws.rs.WebApplicationException;
 
@@ -97,7 +99,22 @@ public class BonoResource
     public BonoDTO createBono(@PathParam("clienteId")Long idCliente,BonoDTO bono) throws BusinessLogicException {
         if(clienteLogic.getCliente(idCliente)==null)
             throw new WebApplicationException("No existe el cliente , por lo tanto no se le pueden agregar bonos" ,404);
-        BonoEntity entity=bono.toEntity();
+        BonoEntity entity=new BonoEntity();
+        if(bono.getDescripcion().equals(""))
+        {            
+            entity.setDescuento(0.25);
+            entity.setDescripcion("tu Amigo es un Cumpa");
+            Calendar cal = Calendar.getInstance(); 
+            cal.add(Calendar.MONTH, 1);
+            entity.setFechaDeVencimiento(cal.getTime());
+            entity.setCliente(clienteLogic.getCliente(idCliente));
+            entity.setCondicion("No Redimido");            
+        }
+        else
+        {
+            entity=bono.toEntity();
+        }
+        
         return new BonoDTO(bonoLogic.createBono(entity));
     }
      /**
