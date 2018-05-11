@@ -32,17 +32,11 @@ public class EnvioEntity implements Serializable{
    private String estado;
    private String direccionEntrega;
    private String direccionRecogida; 
+   
    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
+   @GeneratedValue(strategy = GenerationType.IDENTITY)
+   private Long id;
+   
    @PodamExclude
    @ManyToOne (fetch = FetchType.LAZY)
    private MensajeroEntity mensajero;
@@ -67,6 +61,21 @@ public class EnvioEntity implements Serializable{
    @OneToMany(fetch = FetchType.EAGER)
    private List<BonoEntity> bonos = new ArrayList<>();
    
+   
+    /**
+     * @return the id
+     */
+    public Long getId() {
+        return id;
+    }
+    
+    /**
+     * @return the id
+     */
+    public void setId(Long id) {
+        this.id = id;
+    }
+    
     /**
      * @return the horaInicio
      */

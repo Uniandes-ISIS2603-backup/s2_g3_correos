@@ -2,10 +2,10 @@
     var mod=ng.module("bonosModule");
     mod.constant("bonosContext","api/bonos");
     mod.constant("clientesContext","api/clientes");
-    mod.controller('bonosAmigoCreateCtrl',['$scope','$http','bonosContext','clientesContext','$state','$rootScope',
+    mod.controller('bonosamigoCreateCtrl',['$scope','$http','bonosContext','clientesContext','$state','$rootScope',
          /**
          * @ngdoc controller
-         * @name bonos.controller:bonosCreateCtrl
+         * @name bonos.controller:bonosamigoCreateCtrl
          * @description
          * Definición del controlador auxiliar para crear bonos. 
          * @param {Object} $scope Referencia injectada al Scope definida para este
@@ -35,7 +35,7 @@
              */
             $scope.createBonoAmigo=function()
             {
-                $http.post(clientesContext+'/'+$state.params.idAmigo+'/'+bonosContext).then(function(response)
+                $http.post(clientesContext+'/'+$scope.data.idAmigo+'/'+bonosContext, $scope.data).then(function(response)
                 {
                     $state.go('bonosList',{bonoId:response.data.id}, {reload:true});
                 });

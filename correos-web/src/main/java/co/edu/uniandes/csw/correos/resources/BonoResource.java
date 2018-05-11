@@ -100,7 +100,7 @@ public class BonoResource
         if(clienteLogic.getCliente(idCliente)==null)
             throw new WebApplicationException("No existe el cliente , por lo tanto no se le pueden agregar bonos" ,404);
         BonoEntity entity=new BonoEntity();
-        if(bono.getDescripcion().equals(""))
+        if(bono.getDescripcion() == null || bono.getDescripcion().isEmpty() )
         {            
             entity.setDescuento(0.25);
             entity.setDescripcion("tu Amigo es un Cumpa");
