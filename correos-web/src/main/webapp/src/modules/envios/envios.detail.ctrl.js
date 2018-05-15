@@ -41,7 +41,7 @@
             // instantiate google map objects for directions
             var directionsDisplay = new google.maps.DirectionsRenderer();
             var directionsService = new google.maps.DirectionsService();
-            var geocoder = new google.maps.Geocoder();
+            //var geocoder = new google.maps.Geocoder();
 
             // directions object -- with defaults
             $scope.directions = {
