@@ -64,7 +64,7 @@
                         directionsDisplay.setPanel(document.getElementById('directionsList'));
                         $scope.directions.showList = true;
                     } else {
-                        alert('Google route unsuccesfull!');
+                        $scope.error_ruta="no fue posible identificar las direcicones";
                     }
                      $scope.ruta_info = response.routes[0].legs[0];
                 });
