@@ -46,12 +46,19 @@ public class DetallePaqueteResource {
     
     DetallePaqueteLogic detalleLogic;
 
+    /**
+     * constructor con params
+     * @param detalleLogic 
+     */
     @Inject
     public DetallePaqueteResource(DetallePaqueteLogic detalleLogic)
     {
         this.detalleLogic=detalleLogic;
     }
     
+    /**
+     * constructor
+     */
     public DetallePaqueteResource()
     {
         this.detalleLogic=null;

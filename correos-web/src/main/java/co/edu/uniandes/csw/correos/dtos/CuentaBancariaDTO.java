@@ -41,10 +41,17 @@ private String numero;
 private String banco;
 private String tipoTarjeta;
 
+/**
+ * constructor
+ */
 public CuentaBancariaDTO(){
         //Este metodo esta vacio para permitir la construccion del JSON
     }
 
+/**
+ * constructor con entity por param
+ * @param entity 
+ */
 public CuentaBancariaDTO(CuentaBancariaEntity entity){
     this.id = entity.getId();
     this.numero = entity.getNumero();
@@ -52,6 +59,10 @@ public CuentaBancariaDTO(CuentaBancariaEntity entity){
     this.tipoTarjeta = entity.getTipoTarjeta();
 }
 
+/**
+ * 
+ * @return la cuenta bancaria como un entity
+ */
 public CuentaBancariaEntity toEntity(){
     CuentaBancariaEntity entity = new CuentaBancariaEntity();
     entity.setBanco(this.banco);

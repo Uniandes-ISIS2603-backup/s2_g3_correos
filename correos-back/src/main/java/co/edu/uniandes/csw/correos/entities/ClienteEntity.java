@@ -25,6 +25,8 @@ import uk.co.jemos.podam.common.PodamExclude;
 public class ClienteEntity implements Serializable {
     
     private String nombre; // nombre del cliente
+    private String correo; // correo del cliente
+    private String telefono; // telefono del cliente
    
     @PodamExclude
     @OneToMany(mappedBy = "cliente", cascade = CascadeType.PERSIST, orphanRemoval = true)
@@ -76,7 +78,40 @@ public class ClienteEntity implements Serializable {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
+    
+    /**
+     * obtiene el correo del cliente
+     * @return correo del cliente
+     */
+    public String getCorreo(){
+        return correo;
+    }
 
+    /**
+     * cambia el correo del cliente
+     *  @param correo del cliente
+     */
+    public void setCorreo(String correo){
+        this.correo = correo;
+    }
+    
+    /**
+     * retorna el telefono del cliente
+     * @return el telefono del cliente
+     */
+    public String getTelefono()
+    {
+        return telefono;
+    }
+    
+    /**
+     * cambia el telefono del cliente
+     * @param telefono el telefono del cliente
+     */
+    public void setTelefono(String telefono)
+    {
+        this.telefono = telefono;
+    }
      /**
      * Devuelve los bonos del cliente.
      * @return Lista de entidades de tipo bono

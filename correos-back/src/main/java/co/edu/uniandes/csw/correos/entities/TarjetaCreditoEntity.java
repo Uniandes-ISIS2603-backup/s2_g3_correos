@@ -24,9 +24,9 @@ import uk.co.jemos.podam.common.PodamExclude;
 @Entity
 public class TarjetaCreditoEntity implements Serializable {
    
-    private Short securityCode; // codigo de seguridad de la tarjeta
+    private String año; // año de vencimiento de la tarjeta
     private String numero; // numero de la tarjeta
-    private String fechaDeVencimiento; // fecha de vencimiento de la tarjeta
+    private String mes; // mes de vencimiento de la tarjeta
     
     @PodamExclude
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "tarjetaCredito")
@@ -58,18 +58,18 @@ public class TarjetaCreditoEntity implements Serializable {
 
     /**
      * Obtiene el atributo securityCode
-     * @return seurityCode de la tarjeta
+     * @return año de la tarjeta
      */
-    public Short getSecurityCode() {
-        return securityCode;
+    public String getAño() {
+        return año;
     }
 
     /**
      * asigna el security code deseado
-     * @param securityCode quee se va a añadir
+     * @param año que se va a añadir de la tarjeta
      */
-    public void setSecurityCode(Short securityCode) {
-        this.securityCode = securityCode;
+    public void setAño(String año) {
+        this.año = año;
     }
 
     /**
@@ -90,18 +90,18 @@ public class TarjetaCreditoEntity implements Serializable {
 
     /**
      * Obtiene el atributo fecha de vencimiento
-     * @return fecha de vencimiento de la tarjeta
+     * @return mes de vencimiento de la tarjeta
      */
-    public String getFechaDeVencimiento() {
-        return fechaDeVencimiento;
+    public String getMes() {
+        return mes;
     }
 
     /**
      * Asigna la fecha de vencimiento a la tarjeta
-     * @param fechaDeVencimiento fecha de vencimiento de la tarjeta
+     * @param mes fecha de vencimiento de la tarjeta
      */
-    public void setFechaDeVencimiento(String fechaDeVencimiento) {
-        this.fechaDeVencimiento = fechaDeVencimiento;
+    public void setMes(String mes) {
+        this.mes = mes;
     }
 
     /**

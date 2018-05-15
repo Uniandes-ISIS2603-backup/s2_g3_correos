@@ -68,12 +68,20 @@ public class TransporteResource {
      
     private MensajeroLogic logicMensajero;
     
+    /**
+     * constructor con params
+     * @param logic
+     * @param logicMensajero 
+     */
     @Inject
     public TransporteResource(TransporteLogic logic, MensajeroLogic logicMensajero) {
         this.logic = logic;
         this.logicMensajero = logicMensajero;
     }
     
+    /**
+     * constructor
+     */
     public TransporteResource() {
         this.logic = null;
         this.logicMensajero = null;
@@ -212,7 +220,11 @@ public class TransporteResource {
         logicMensajero.borrarTransporte(mensajeroId, id);
     }
     
-    
+    /**
+     * 
+     * @param transportes
+     * @return lista de los transportes en dto
+     */
     public List<TransporteDTO>  listEntity2DTO(List<TransporteEntity> transportes)
     {
         List<TransporteDTO> retorno = new ArrayList<>();

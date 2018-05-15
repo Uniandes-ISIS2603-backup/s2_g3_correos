@@ -70,13 +70,19 @@ public class ClienteResource {
 
     private ClienteLogic logic;
     
-     
+     /**
+      * constructor con params
+      * @param cL 
+      */
      @Inject
      public ClienteResource(ClienteLogic cL)
      {
          logic=cL;
      }
      
+     /**
+      * constructor
+      */
      public ClienteResource()
      {
          logic=null;
@@ -177,6 +183,11 @@ public class ClienteResource {
          return listEntity2DTO(logic.getClientes());
      }
      
+     /**
+      * borra el cliente con id por param
+      * @param id
+      * @throws BusinessLogicException 
+      */
      @DELETE
      @Path("{id: \\d+ }")
      public void deleteCliente(@PathParam("id") Long id) throws BusinessLogicException
@@ -186,6 +197,11 @@ public class ClienteResource {
         logic.deleteCliente(id);
     }
     
+     /**
+      * 
+      * @param clientes
+      * @return lista de clientes en formato detailDTO
+      */
     public List<ClienteDetailDTO>  listEntity2DTO(List<ClienteEntity> clientes)
     {
         List<ClienteDetailDTO> retorno = new ArrayList<>();

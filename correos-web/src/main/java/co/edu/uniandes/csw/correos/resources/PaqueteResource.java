@@ -54,6 +54,11 @@ import co.edu.uniandes.csw.correos.entities.EnvioEntity;
 
     EnvioLogic envioLogic;
     
+    /**
+     * constructor con params
+     * @param pL
+     * @param eL 
+     */
     @Inject
     public PaqueteResource(PaqueteLogic pL, EnvioLogic eL)
     {
@@ -61,6 +66,9 @@ import co.edu.uniandes.csw.correos.entities.EnvioEntity;
        this.envioLogic=eL;
     }
     
+    /**
+     * constructor
+     */
     public PaqueteResource()
     {
         paqueteLogic=null;
@@ -236,6 +244,12 @@ import co.edu.uniandes.csw.correos.entities.EnvioEntity;
             throw new WebApplicationException("no existe el paquete con el id " + id, 404);
         paqueteLogic.deletePaquete(id);
     } 
+     
+     /**
+      * 
+      * @param envios
+      * @return lista de los paquetes en detail dto
+      */
      public List<PaqueteDetailDTO> entityADTO(List<PaqueteEntity> envios)
     {
         List<PaqueteDetailDTO> resp = new ArrayList<>();

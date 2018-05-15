@@ -70,12 +70,20 @@ public class TarjetaCreditoResource {
     
     private ClienteLogic logicCliente;
     
+    /**
+     * constructor con params
+     * @param logic
+     * @param logicCliente 
+     */
     @Inject
     public TarjetaCreditoResource(TarjetaCreditoLogic logic, ClienteLogic logicCliente) {
         this.logic = logic;
         this.logicCliente = logicCliente;
     }
     
+    /**
+     * constructor
+     */
     public TarjetaCreditoResource()
     {
         this.logic = null;
@@ -220,7 +228,11 @@ public class TarjetaCreditoResource {
         logic.deleteTarjetaCredito( id);
     }
     
-    
+    /**
+     * 
+     * @param tarjetasCredito
+     * @return lista de tarjetas de credito en dto
+     */
     public List<TarjetaCreditoDTO>  listEntity2DTO(List<TarjetaCreditoEntity> tarjetasCredito)
     {
         List<TarjetaCreditoDTO> retorno = new ArrayList<>();

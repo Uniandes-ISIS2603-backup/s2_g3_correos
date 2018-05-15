@@ -5,14 +5,16 @@
              <thead>
             <tr>
                 <th>Número</th>
-                <th>Fecha</th>
+                <th>Mes</th>
+                <th>Año</th>
      
             </tr>
         </thead>
             <tbody>
                 <tr ng-repeat="record in tarjetaCreditoRecords" data-toggle="collapse" data-parent="#accordion" href="#collapse{{record.id}}">
                     <td id="{{$index}}-tipo">{{record.numero}}
-                    <td id="{{$index}}-activo">{{record.fecha}}       
+                    <td id="{{$index}}-activo">{{record.mes}}     
+                    <td id="{{$index}}-activo">{{record.año}}    
                   
                             <div id="collapse{{record.id}}" class="panel-collapse collapse">
                         <div class="panel-body">

@@ -70,6 +70,11 @@ public class ReservaResource {
 
     ClienteLogic logicCliente;
     
+    /**
+     * constructor con params
+     * @param rL
+     * @param cL 
+     */
     @Inject
     public ReservaResource(ReservaLogic rL, ClienteLogic cL)
     {
@@ -77,6 +82,9 @@ public class ReservaResource {
         logicCliente=cL;
     }
     
+    /**
+     * constructor
+     */
     public ReservaResource()
     {
         logic=null;
@@ -209,6 +217,12 @@ public class ReservaResource {
        
     }
     
+    
+    /**
+     * 
+     * @param reservas
+     * @return lista de las reservas en dto
+     */
     public List<ReservaDetailDTO>  listEntity2DTO(List<ReservaEntity> reservas)
     {
         List<ReservaDetailDTO> retorno = new ArrayList<>();

@@ -38,12 +38,19 @@ public class CuentaBancariaResource {
 
     CuentaBancariaLogic cuentaBancariaLogic;
     
+    /**
+     * constructor con params
+     * @param cBL 
+     */
     @Inject
     public CuentaBancariaResource(CuentaBancariaLogic cBL)
     {
         this.cuentaBancariaLogic=cBL;       
     }
 
+    /**
+     * constructor
+     */
     public CuentaBancariaResource()
     {
         this.cuentaBancariaLogic=null;       
@@ -149,6 +156,11 @@ public CuentaBancariaDetailDTO createCuentaBancaria(CuentaBancariaDetailDTO cuen
         }
         return list;
     }
+    
+    /**
+     * 
+     * @return todas las cuentas bancarias
+     */
     @GET
     public List<CuentaBancariaDetailDTO> getCuentaBancaria(){
         return listEntity2DTO(cuentaBancariaLogic.getCuentasBancarias());
