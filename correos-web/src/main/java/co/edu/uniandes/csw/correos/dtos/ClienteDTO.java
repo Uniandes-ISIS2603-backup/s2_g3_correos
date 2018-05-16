@@ -34,7 +34,9 @@ package co.edu.uniandes.csw.correos.dtos;
  * <pre>
  *   {
  *      "idCliente": number,
- *      "nombre: string
+ *      "nombre": string,
+ *      "correo": String,
+ *      "telefono": String
  *   
  *   }
  * </pre>
@@ -44,8 +46,9 @@ package co.edu.uniandes.csw.correos.dtos;
  * 
  *   {
  *      "id": 91852,
- *      "name: "Pepito Perez"
- *     
+ *      "name: "Pepito Perez",
+ *      "correo":"correo1@uniandes.edu.co",
+ *      "telefono": "3000000000" 
  *   }
  *
  * </pre>
@@ -147,7 +150,7 @@ public ClienteEntity toEntity(){
      */
     public String getTelefono()
     {
-        return correo;
+        return telefono;
     }
     
     /**
