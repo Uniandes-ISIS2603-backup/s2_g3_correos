@@ -13,8 +13,6 @@ delete from clienteentity_envioentity;
 
 delete from clienteentity_reservaentity;
 
-delete from clienteentity_tarjetacreditoentity;
-
 delete from zonaentity_mensajeroentity;
 
 delete from mensajeroentity_calificacionentity;
@@ -58,34 +56,28 @@ insert into CuentaBancariaEntity(id,numero,banco,tipoTarjeta) values (10003,'028
 insert into CuentaBancariaEntity(id,numero,banco,tipoTarjeta) values (10004,'20384080808000802','SilvaBank','maestro');
 insert into CuentaBancariaEntity(id,numero,banco,tipoTarjeta) values (10005,'17730740208028084','Colpatria','MasterCard');
 
-insert into ClienteEntity(id,nombre) values (10001,'Pepe Perez');
-insert into ClienteEntity(id,nombre) values (10002,'Juana Ramirez');
-insert into ClienteEntity(id,nombre) values (10003,'Cesar Noseque');
-insert into ClienteEntity(id,nombre) values (10004,'David Leon');
-insert into ClienteEntity(id,nombre) values (10005,'Felipe Nieto');
+insert into ClienteEntity(id,nombre,correo,telefono) values (10001,'Pepe Perez','usuario1@uniandes.edu.co','3111111111');
+insert into ClienteEntity(id,nombre,correo,telefono) values (10002,'Juana Ramirez','usuario2@uniandes.edu.co','3222222222');
+insert into ClienteEntity(id,nombre,correo,telefono) values (10003,'Cesar Noseque','usuario3@uniandes.edu.co','3333333333');
+insert into ClienteEntity(id,nombre,correo,telefono) values (10004,'David Leon','usuario4@uniandes.edu.co','3444444444');
+insert into ClienteEntity(id,nombre,correo,telefono) values (10005,'Felipe Nieto','usuario5@uniandes.edu.co','3555555555');
+insert into ClienteEntity(id,nombre,correo,telefono) values (10006,'Pipe Diaz','usuario6@uniandes.edu.co','3666666666');
+insert into ClienteEntity(id,nombre,correo,telefono) values (10007,'Juan Rodriguez','usuario7@uniandes.edu.co','3777777777');
+insert into ClienteEntity(id,nombre,correo,telefono) values (10008,'Rubby Casallas','usuario8@uniandes.edu.co','3888888888');
+insert into ClienteEntity(id,nombre,correo,telefono) values (10009,'Andres Mejia','usuario9@uniandes.edu.co','3999999999');
+insert into ClienteEntity(id,nombre,correo,telefono) values (10010,'Daniel Torres','usuario10@uniandes.edu.co','3000000000');
 
-insert into TarjetaCreditoEntity(id,numero,fechaDeVencimiento,securityCode,cliente_id) values (10001,'1234123412341234','2020-10-10 00:00:00',123,10001);
-insert into TarjetaCreditoEntity(id,numero,fechaDeVencimiento,securityCode,cliente_id) values (10002,'2345234523452345','2020-10-12 00:00:00',123,10002);
-insert into TarjetaCreditoEntity(id,numero,fechaDeVencimiento,securityCode,cliente_id) values (10003,'3456345634563456','2020-10-11 00:00:00',123,10003);
-insert into TarjetaCreditoEntity(id,numero,fechaDeVencimiento,securityCode,cliente_id) values (10004,'4567456745674567','2020-11-10 00:00:00',123,10004);
-insert into TarjetaCreditoEntity(id,numero,fechaDeVencimiento,securityCode,cliente_id) values (10005,'5678567856785678','2020-10-10 00:00:00',123,10005);
-insert into TarjetaCreditoEntity(id,numero,fechaDeVencimiento,securityCode,cliente_id) values (10006,'1234123412341234','2020-10-10 00:00:00',123,10005);
-insert into TarjetaCreditoEntity(id,numero,fechaDeVencimiento,securityCode,cliente_id) values (10007,'2345234523452345','2020-10-12 00:00:00',123,10003);
-insert into TarjetaCreditoEntity(id,numero,fechaDeVencimiento,securityCode,cliente_id) values (10008,'3456345634563456','2020-10-11 00:00:00',123,10004);
-insert into TarjetaCreditoEntity(id,numero,fechaDeVencimiento,securityCode,cliente_id) values (10009,'4567456745674567','2020-11-10 00:00:00',123,10002);
-insert into TarjetaCreditoEntity(id,numero,fechaDeVencimiento,securityCode,cliente_id) values (10010,'5678567856785678','2020-10-10 00:00:00',123,10001);
+insert into TarjetaCreditoEntity(id,numero,mes,año,cliente_id) values (10001,'1234123412341234','01','2021',10001);
+insert into TarjetaCreditoEntity(id,numero,mes,año,cliente_id) values (10002,'2345234523452345','02','2022',10002);
+insert into TarjetaCreditoEntity(id,numero,mes,año,cliente_id) values (10003,'3456345634563456','03','2023',10003);
+insert into TarjetaCreditoEntity(id,numero,mes,año,cliente_id) values (10004,'4567456745674567','04','2024',10004);
+insert into TarjetaCreditoEntity(id,numero,mes,año,cliente_id) values (10005,'5678567856785678','05','2025',10005);
+insert into TarjetaCreditoEntity(id,numero,mes,año,cliente_id) values (10006,'1234123412341234','06','2026',10005);
+insert into TarjetaCreditoEntity(id,numero,mes,año,cliente_id) values (10007,'2345234523452345','07','2027',10003);
+insert into TarjetaCreditoEntity(id,numero,mes,año,cliente_id) values (10008,'3456345634563456','08','2028',10004);
+insert into TarjetaCreditoEntity(id,numero,mes,año,cliente_id) values (10009,'4567456745674567','09','2029',10002);
+insert into TarjetaCreditoEntity(id,numero,mes,año,cliente_id) values (10010,'5678567856785678','10','2030',10001);
 
-
-insert into clienteentity_tarjetacreditoentity(clienteentity_id,tarjetacreditoentity_id) values(10001,10001);
-insert into clienteentity_tarjetacreditoentity(clienteentity_id,tarjetacreditoentity_id) values(10002,10002);
-insert into clienteentity_tarjetacreditoentity(clienteentity_id,tarjetacreditoentity_id) values(10003,10003);
-insert into clienteentity_tarjetacreditoentity(clienteentity_id,tarjetacreditoentity_id) values(10004,10004);
-insert into clienteentity_tarjetacreditoentity(clienteentity_id,tarjetacreditoentity_id) values(10005,10005);
-insert into clienteentity_tarjetacreditoentity(clienteentity_id,tarjetacreditoentity_id) values(10001,10010);
-insert into clienteentity_tarjetacreditoentity(clienteentity_id,tarjetacreditoentity_id) values(10002,10009);
-insert into clienteentity_tarjetacreditoentity(clienteentity_id,tarjetacreditoentity_id) values(10004,10008);
-insert into clienteentity_tarjetacreditoentity(clienteentity_id,tarjetacreditoentity_id) values(10003,10007);
-insert into clienteentity_tarjetacreditoentity(clienteentity_id,tarjetacreditoentity_id) values(10005,10006);
 
 insert into MensajeroEntity(id,calificacionPromedio,celular,correo,nombre,ocupado,cuenta_id) values (10001,0.0,'3124456739','mensajero10001@correo.com','Mensaero10001',0,10001);
 insert into MensajeroEntity(id,calificacionPromedio,celular,correo,nombre,ocupado,cuenta_id) values (10002,0.0,'3124456733','mensajero10002@correo.com', 'Mensaero10002',0,10002);
@@ -115,10 +107,10 @@ insert into mensajeroentity_transporteentity(mensajeroentity_id,transportes_id) 
 insert into mensajeroentity_transporteentity(mensajeroentity_id,transportes_id) values(10005,10009);
 insert into mensajeroentity_transporteentity(mensajeroentity_id,transportes_id) values(10005,100010);
 
-insert into EnvioEntity(id,horaInicio,horaFinal,estado,direccionEntrega,direccionRecogida,cliente_id) values (10001,10000,10001,'ESTADO_INICIAL','calle 114 #30-40','calle 116 # 40-20',10001);
-insert into EnvioEntity(id,horaInicio,horaFinal,estado,direccionEntrega,direccionRecogida,cliente_id) values (10002,10010,10011,'ATRASADO','calle 124 #30-40A','calle 16B # 40-20',10002);
-insert into EnvioEntity(id,horaInicio,horaFinal,estado,direccionEntrega,direccionRecogida,cliente_id) values (10003,20517,34923,'LLEGANDO','carrera 12 #84-47','calle 167C # 9-18A',10003);
-insert into EnvioEntity(id,horaInicio,horaFinal,estado,direccionEntrega,direccionRecogida,cliente_id) values (10004,12801,15403,'ESTADO_INICIAL','carrera 80A #30-16','carrera 94B # 17B-9',10004);
+insert into EnvioEntity(id,horaInicio,horaFinal,estado,direccionEntrega,direccionRecogida,cliente_id,fecha) values (10001,10000,10001,'ESTADO_INICIAL','calle 114 #30-40','calle 116 # 40-20',10001,'2001-10-10 00:00:00');
+insert into EnvioEntity(id,horaInicio,horaFinal,estado,direccionEntrega,direccionRecogida,cliente_id,fecha) values (10002,10010,10011,'ATRASADO','calle 124 #30-40A','calle 16B # 40-20',10002,'2001-10-10 00:00:00');
+insert into EnvioEntity(id,horaInicio,horaFinal,estado,direccionEntrega,direccionRecogida,cliente_id,fecha) values (10003,20517,34923,'LLEGANDO','carrera 12 #84-47','calle 167C # 9-18A',10003,'2002-10-10 00:00:00');
+insert into EnvioEntity(id,horaInicio,horaFinal,estado,direccionEntrega,direccionRecogida,cliente_id,fecha) values (10004,12801,15403,'ESTADO_INICIAL','carrera 80A #30-16','carrera 94B # 17B-9',10004,'2003-10-10 00:00:00');
 
 insert into Envioentity_Paqueteentity(envio_id,paquete_id) values(10001,10001);
 insert into Envioentity_Paqueteentity(envio_id,paquete_id) values(10004,10004);

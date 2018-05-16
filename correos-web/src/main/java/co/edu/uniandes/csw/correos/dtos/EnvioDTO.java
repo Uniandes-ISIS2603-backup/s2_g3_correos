@@ -7,6 +7,7 @@
  package co.edu.uniandes.csw.correos.dtos;
 
  import co.edu.uniandes.csw.correos.entities.EnvioEntity;
+import java.util.Date;
 
  /**
   * EnvioDTO Objeto de transferencia de datos de Envios. Los DTO contienen las
@@ -21,7 +22,8 @@
   *      "horaFinal": number,
   *      "direccionEntrega": String,
   *      "direccionRecogida": String,
-  *      "estado": String             
+  *      "estado": String,
+  *      "fecha": String
   *   }
   * </pre>
   * <pre>
@@ -31,7 +33,8 @@
   *      "horaFinal": 0030,
   *      "direccionEntrega": calle 1 # 2-4,
   *      "direccionRecogida": calle 1 # 3-4,
-  *      "estado": INICIAL
+  *      "estado": INICIAL,
+  *      "fecha": "5/4/2016"
   *   }
   * </pre>
   *
@@ -46,6 +49,7 @@
     private String direccionEntrega;
     private String direccionRecogida;
     private String estado;
+    private Date fecha;
 
     /**
      * constructor por defecto
@@ -66,7 +70,8 @@
         this.horaFinal = entity.getHoraFinal();
         this.estado = entity.getEstado();
         this.direccionEntrega = entity.getDireccionEntrega();
-        this.direccionRecogida = entity.getDireccionRecogida();        
+        this.direccionRecogida = entity.getDireccionRecogida();
+        this.fecha = entity.getFecha();        
     }
     
 /**
@@ -81,6 +86,7 @@
         entity.setHoraFinal(this.horaFinal);
         entity.setDireccionEntrega(this.direccionEntrega);
         entity.setDireccionRecogida(this.direccionRecogida);
+        entity.setFecha(fecha);
         return entity;
     }
     /**
@@ -167,4 +173,16 @@
     public void setEstado(String estado) {
         this.estado = estado; 
     }
-}
+    /**
+     * @return la fecha del pago
+     */
+    public Date getFecha(){
+        return fecha;
+    }    
+    /**
+     * @param fecha la nueva fecha que tiene el pago
+     */
+    public void setFecha(Date fecha){
+        this.fecha = fecha;
+    }
+    }
