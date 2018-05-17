@@ -14,12 +14,15 @@ and open the template in the editor.
     margin: auto;
 }
 .imgall{
-    -webkit-filter: grayscale(90%);
-    filter: grayscale(90%);
+    -webkit-filter: grayscale(100%);
+    filter: grayscale(100%);
 }
 
 .carousel-caption h3 {
     color: #fff !important;
+}
+.dorado{
+    color: #C8AD5B;
 }
 
 @media (max-width: 600px) {
