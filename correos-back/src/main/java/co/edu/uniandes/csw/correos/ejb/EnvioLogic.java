@@ -94,8 +94,8 @@ public class EnvioLogic {
         persistence.create(entity);
         asignarMensajero(entity);
         MensajeroEntity mensajero = entity.getMensajero();
-        TarjetaCreditoEntity tarjeta = entity.getCliente().getTarjetaCredito();
-        asignarPago(entity, mensajero, );
+        TarjetaCreditoEntity tarjeta = entity.getCliente().getPrimeraTarjeta();
+        asignarPago(entity, mensajero, tarjeta);
 
         LOGGER.info("Se termina de crear un Envio");
         return entity;
@@ -201,15 +201,14 @@ public class EnvioLogic {
      * @param tarjeta tarjeta de la cual se paga
      */
     public void asignarPago(EnvioEntity envio, MensajeroEntity mensajero, TarjetaCreditoEntity tarjeta)          
-    {
-        EnvioEntity envioPago = new EnvioEntity();
+    {     
         PagoEntity nuevoPago = new PagoEntity();
         nuevoPago.setValor(100000.0);
         nuevoPago.setCuentaBancaria(mensajero.getCuenta());
         nuevoPago.setTarjetaCredito(tarjeta);
         nuevoPago.setFecha(new Date());
         
-        envioPago.setPago(nuevoPago);
+        envio.setPago(nuevoPago);
         
     }
     
