@@ -22,7 +22,8 @@
         'zonasModule',
         'clientesModule',
         'calificacionesModule',
-        'bonosModule'
+        'bonosModule',
+        'webModule'
        
 
 
