@@ -4,7 +4,12 @@
         <thead>
             <tr>
                 <th>fecha</th>
-                <th>hora</th>
+                <th>hora Inicio</th>
+                 <th>hora final</th>
+                <th>direccion entrega</th>
+                 <th>direccion recogida</th>
+                <th>estado </th>
+                
 
             </tr>
         </thead>
@@ -12,7 +17,11 @@
             <tr ng-repeat="record in reservasRecords">
 
                 <td id="{{$index}}-fecha" > <a ui-sref="reservasDetail({reservaId: record.id})">{{record.fecha}}</a></td>
-                <td id="{{$index}}-hora">{{record.hora}}</td>
+                <td id="{{$index}}-horaInicio">{{record.horaInicio}}</td>
+                 <td id="{{$index}}-horaFinal">{{record.horaFinal}}</td>
+                  <td id="{{$index}}-direccionEntrega">{{record.direccionEntrega}}</td>
+                   <td id="{{$index}}-direccionRecogida">{{record.direccionRecogida}}</td>
+                    <td id="{{$index}}-estado">{{record.estado}}</td>
 
                 <td>
                     <button id="{{$index}}-edit-btn" class="btn btn-default btn-sm" ><a ui-sref="reservasUpdate({reservaId: record.id})"><span class="glyphicon glyphicon-edit"></span> Editar</a></button>
