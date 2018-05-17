@@ -41,7 +41,7 @@ import uk.co.jemos.podam.common.PodamExclude;
  * @author l.mejia
  */
 @Entity
-public class MensajeroEntity implements Serializable {
+public class MensajeroEntity implements Serializable, Comparable {
     
     private String correo;
     private String nombre;
@@ -252,4 +252,13 @@ public class MensajeroEntity implements Serializable {
         this.envios.add(envio);
     }
     
+    
+    @Override
+    public int compareTo(Object o) {
+      MensajeroEntity  pCliente= (MensajeroEntity)o;
+        return this.envios.size()<pCliente.envios.size()?-1:this.envios.size()>pCliente.envios.size()?1:0;    }
+    
+    public int compareTo2(MensajeroEntity pMensajero){
+        return this.calificacionPromedio< pMensajero.calificacionPromedio?-1:this.calificacionPromedio>pMensajero.calificacionPromedio?1:0;
+    }
 }
