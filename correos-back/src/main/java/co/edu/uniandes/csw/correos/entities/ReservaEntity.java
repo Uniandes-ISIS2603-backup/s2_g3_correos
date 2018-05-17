@@ -43,7 +43,11 @@ public class ReservaEntity implements Serializable{
     
     @Temporal(TemporalType.TIMESTAMP)
     private Date fecha;
-    private String hora;
+    private Long horaInicio;
+    private Long horaFinal;
+    private String direccionEntrega;
+    private String direccionRecogida;
+    private String estado;
     
     @PodamExclude
     @ManyToOne
@@ -82,19 +86,85 @@ public class ReservaEntity implements Serializable{
     }
     
     /**
-     * @return la hora de la reserva
+     * @return la hora inicial de la reserva
      */
-    public String getHora() {
-        return hora;
+    public Long getHoraInicio() {
+        return horaInicio;
     }
     
     /**
-     * @param hora la nueva hora de la reserva
+     * @param hora la nueva hora inicial de la reserva
      */
-    public void setHora(String hora) {
-        this.hora = hora;
+    public void setHoraInicio (Long horaInicio) {
+        this.horaInicio = horaInicio;
+    }
+        
+    /**
+     * @return la hora de la reserva
+     */
+    public Long getHoraFinal() {
+        return horaFinal;
+    }
+    
+    /**
+     * @param hora la nueva hora final de la reserva
+     */
+    public void setHoraFinal (Long horaFinal) {
+        this.horaFinal = horaFinal;
+    }
+    
+    /**
+     * direccion de recogida 
+     * @return la direccion de recogida
+     */
+    public String getDireccionRecogida()
+    {
+        return direccionRecogida;
     }
 
+    /**
+     * direccion recogida 
+     * @param direccionRecogida 
+     */
+    public void setDireccionRecogida(String direccionRecogida)
+    {
+        this.direccionRecogida = direccionRecogida;
+    }
+    
+    /**
+     * direccion de entrega 
+     * @return la direccion de entrega
+     */
+    public String getDireccionEntrga()
+    {
+        return direccionEntrega;
+    }
+
+    /**
+     * direccion recogida 
+     * @param direccionRecogida 
+     */
+    public void setDireccionEntrega(String direccionEntrega)
+    {
+        this.direccionEntrega = direccionEntrega;
+    }
+    
+    /**
+    * hace get del estado 
+     * @return el estado
+     */
+    public String getEstado(){
+        return estado;
+    }
+    
+    /**
+     * cambia el estado 
+     * @param estado que se va a cambiar 
+     */
+    public void setEstado(String estado)
+    {
+        this.estado = estado;
+    }
     /**
      * 
      * @return el cliente asociado a la reserva

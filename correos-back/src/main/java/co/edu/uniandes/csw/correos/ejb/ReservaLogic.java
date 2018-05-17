@@ -128,4 +128,10 @@ public class ReservaLogic {
         persistence.delete(reserva.getId());
         LOGGER.log(Level.INFO,"se eliminó el reserva con el id={0}",reserva.getId());
     }
+    
+    public void convertirAReserva (ReservaEntity reseva)
+    {
+      
+        
+    }
 }

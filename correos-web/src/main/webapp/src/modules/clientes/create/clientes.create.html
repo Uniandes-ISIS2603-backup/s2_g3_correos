@@ -11,18 +11,27 @@
                         <div class="form-group col-md-12">
                             <label for="nombreCliente" class="col-sm-2">Nombre :</label>
                             <input id="nombreCliente" required ng-model="data.nombre" class="col-sm-6"/>
-                             <label for="correoCliente" class="col-sm-2">Correo :</label>
-                            <input id="correoCliente" required ng-model="data.correo" class="col-sm-6"/>
-                             <label for="telefonoCliente" class="col-sm-2">Telefono :</label>
-                            <input id="telefonoCliente" required ng-model="data.telefono" class="col-sm-6"/>
                     </div>
                     
+                    <div class="form-group row">
+                        <div class="form-group col-md-12">
+                            <label for="correoCliente" class="col-sm-2">Correo :</label>
+                            <input type="email" id="correoCliente" required ng-model="data.correo" class="col-sm-6"/>
+                        </div>
+                    </div>                               
+                    <div class="form-group row">
+                        <div class="form-group col-md-12">
+                            <label for="telefonoCliente" class="col-sm-2"> Telefono :</label>
+                            <input pattern="[0-9]{10}" id="telefonoCliente" required ng-model="data.telefono" class="col-sm-6"/>
+                        </div>
+                    </div> 
                
+   </div> 
                     <div class="form-group row">
                         <div class="form-group col-sm-6" ng-if="!cliente.$valid">
 
                             <div class="alert alert-warning" >
-                                <strong>Error!</strong><p>Se requieren todos los campos</p>
+                                <strong>Error!</strong><p>Se requieren todos los campos!</p>
                             </div> 
                         </div> 
                     </div> 
