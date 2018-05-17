@@ -187,6 +187,11 @@ public class EnvioLogic {
        LOGGER.info(persistence.find(id).getPaquetes().get(envio.getPaquetes().size()-1).getTipo());
     }
     
+    public void asignarPago(EnvioEntity envio)          
+    {
+        
+    }
+    
     /**
      * se le asigna mensajero al envio
      * @param envio 

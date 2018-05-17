@@ -103,7 +103,7 @@ public class ReservaLogic {
     }
     
     /**
-     * 
+     * cuando trae una reserva verifica si sucedio la reserva y la convierte en envio de lo contrario retona la reserva
      * @param id
      * @return la reserva con id por param
      */

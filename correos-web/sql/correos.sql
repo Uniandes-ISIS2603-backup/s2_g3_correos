@@ -67,16 +67,16 @@ insert into ClienteEntity(id,nombre,correo,telefono) values (10008,'Rubby Casall
 insert into ClienteEntity(id,nombre,correo,telefono) values (10009,'Andres Mejia','usuario9@uniandes.edu.co','3999999999');
 insert into ClienteEntity(id,nombre,correo,telefono) values (10010,'Daniel Torres','usuario10@uniandes.edu.co','3000000000');
 
-insert into TarjetaCreditoEntity(id,numero,mes,año,cliente_id) values (10001,'1234123412341234','01','2021',10001);
-insert into TarjetaCreditoEntity(id,numero,mes,año,cliente_id) values (10002,'2345234523452345','02','2022',10002);
-insert into TarjetaCreditoEntity(id,numero,mes,año,cliente_id) values (10003,'3456345634563456','03','2023',10003);
-insert into TarjetaCreditoEntity(id,numero,mes,año,cliente_id) values (10004,'4567456745674567','04','2024',10004);
-insert into TarjetaCreditoEntity(id,numero,mes,año,cliente_id) values (10005,'5678567856785678','05','2025',10005);
-insert into TarjetaCreditoEntity(id,numero,mes,año,cliente_id) values (10006,'1234123412341234','06','2026',10005);
-insert into TarjetaCreditoEntity(id,numero,mes,año,cliente_id) values (10007,'2345234523452345','07','2027',10003);
-insert into TarjetaCreditoEntity(id,numero,mes,año,cliente_id) values (10008,'3456345634563456','08','2028',10004);
-insert into TarjetaCreditoEntity(id,numero,mes,año,cliente_id) values (10009,'4567456745674567','09','2029',10002);
-insert into TarjetaCreditoEntity(id,numero,mes,año,cliente_id) values (10010,'5678567856785678','10','2030',10001);
+insert into TarjetaCreditoEntity(id,numero,mes,anio,cliente_id) values (10001,'1234123412341234','01','2021',10001);
+insert into TarjetaCreditoEntity(id,numero,mes,anio,cliente_id) values (10002,'2345234523452345','02','2022',10002);
+insert into TarjetaCreditoEntity(id,numero,mes,anio,cliente_id) values (10003,'3456345634563456','03','2023',10003);
+insert into TarjetaCreditoEntity(id,numero,mes,anio,cliente_id) values (10004,'4567456745674567','04','2024',10004);
+insert into TarjetaCreditoEntity(id,numero,mes,anio,cliente_id) values (10005,'5678567856785678','05','2025',10005);
+insert into TarjetaCreditoEntity(id,numero,mes,anio,cliente_id) values (10006,'1234123412341234','06','2026',10005);
+insert into TarjetaCreditoEntity(id,numero,mes,anio,cliente_id) values (10007,'2345234523452345','07','2027',10003);
+insert into TarjetaCreditoEntity(id,numero,mes,anio,cliente_id) values (10008,'3456345634563456','08','2028',10004);
+insert into TarjetaCreditoEntity(id,numero,mes,anio,cliente_id) values (10009,'4567456745674567','09','2029',10002);
+insert into TarjetaCreditoEntity(id,numero,mes,anio,cliente_id) values (10010,'5678567856785678','10','2030',10001);
 
 
 insert into MensajeroEntity(id,calificacionPromedio,celular,correo,nombre,ocupado,cuenta_id) values (10001,0.0,'3124456739','mensajero10001@correo.com','Mensaero10001',0,10001);
