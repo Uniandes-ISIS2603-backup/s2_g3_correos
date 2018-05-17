@@ -25,7 +25,6 @@ import co.edu.uniandes.csw.correos.entities.PaqueteEntity;
 	    }
 	    
             /**
-             * 
              * @param entity El paquete a ser creado
              */
             public PaqueteDetailDTO(PaqueteEntity entity)
