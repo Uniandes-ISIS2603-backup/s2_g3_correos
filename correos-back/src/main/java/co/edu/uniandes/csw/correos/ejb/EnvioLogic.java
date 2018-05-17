@@ -8,6 +8,7 @@ package co.edu.uniandes.csw.correos.ejb;
 import co.edu.uniandes.csw.correos.entities.EnvioEntity;
 import co.edu.uniandes.csw.correos.entities.EventoEntity;
 import co.edu.uniandes.csw.correos.entities.MensajeroEntity;
+import co.edu.uniandes.csw.correos.entities.PagoEntity;
 import co.edu.uniandes.csw.correos.entities.PaqueteEntity;
 import co.edu.uniandes.csw.correos.entities.TransporteEntity;
 import co.edu.uniandes.csw.correos.exceptions.BusinessLogicException;
@@ -89,6 +90,7 @@ public class EnvioLogic {
 
         persistence.create(entity);
         asignarMensajero(entity);
+       // asignarPago(entity,Mensajero);
 
         LOGGER.info("Se termina de crear un Envio");
         return entity;
@@ -187,8 +189,13 @@ public class EnvioLogic {
        LOGGER.info(persistence.find(id).getPaquetes().get(envio.getPaquetes().size()-1).getTipo());
     }
     
-    public void asignarPago(EnvioEntity envio)          
+    public void asignarPago(EnvioEntity envio, MensajeroEntity mensajero)          
     {
+        EnvioEntity envioPago = new EnvioEntity();
+        PagoEntity nuevoPago = new PagoEntity();
+        nuevoPago.setValor(100000.0);
+        nuevoPago.setCuentaBancaria(mensajero.getCuenta());
+        envioPago.setPago(nuevoPago);
         
     }
     
