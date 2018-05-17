@@ -117,16 +117,15 @@ insert into Envioentity_Paqueteentity(envio_id,paquete_id) values(10004,10004);
 insert into Envioentity_Paqueteentity(envio_id,paquete_id) values(10003,10002);
 insert into Envioentity_Paqueteentity(envio_id,paquete_id) values(10002,10003);
 
-insert into ReservaEntity (id,fecha,hora,CLIENTE_ID) values(10001, '2020-10-11 03:00:00','3PM',10005);
-insert into ReservaEntity (id,fecha,hora,CLIENTE_ID) values(10002, '2020-10-12 10:00:00','3PM',10004);
-insert into ReservaEntity (id,fecha,hora,CLIENTE_ID) values(10003, '2020-10-13 24:00:00','3PM',10003);
-insert into ReservaEntity (id,fecha,hora,CLIENTE_ID) values(10004, '2020-10-14 07:00:00','3PM',10002);
-insert into ReservaEntity (id,fecha,hora,CLIENTE_ID) values(10005, '2020-10-15 02:34:22','3PM',10001);
-insert into ReservaEntity (id,fecha,hora,CLIENTE_ID) values(10006, '2020-10-16 01:00:00','3PM',10002);
-insert into ReservaEntity (id,fecha,hora,CLIENTE_ID) values(10007, '2020-10-17 09:00:00','3PM',10001);
-insert into ReservaEntity (id,fecha,hora,CLIENTE_ID) values(10008, '2020-10-18 15:00:00','3PM',10003);
-insert into ReservaEntity (id,fecha,hora,CLIENTE_ID) values(10009, '2020-10-19 22:00:00','3PM',10004);
-insert into ReservaEntity (id,fecha,hora,CLIENTE_ID) values(100010,'2020-10-20 11:00:00','3PM',10005);
+insert into ReservaEntity (id,fecha,horaInicio,horaFinal,direccionEntrega,direccionRecogida,estado,CLIENTE_ID) values(10001, '2020-10-11 03:00:00',10000,10001,'calle 114 #30-40','calle 116 # 40-20','ESTADO_INICIAL',10005);
+insert into ReservaEntity (id,fecha,horaInicio,horaFinal,direccionEntrega,direccionRecogida,estado,CLIENTE_ID) values(10002, '2020-10-11 03:00:00',10000,10001,'calle 114 #30-40','calle 116 # 40-20','ESTADO_INICIAL',10005);
+insert into ReservaEntity (id,fecha,horaInicio,horaFinal,direccionEntrega,direccionRecogida,estado,CLIENTE_ID) values(10003, '2020-10-11 03:00:00',10000,10001,'calle 114 #30-40','calle 116 # 40-20','ESTADO_INICIAL',10005);
+insert into ReservaEntity (id,fecha,horaInicio,horaFinal,direccionEntrega,direccionRecogida,estado,CLIENTE_ID) values(10004, '2020-10-11 03:00:00',10000,10001,'calle 114 #30-40','calle 116 # 40-20','ESTADO_INICIAL',10005);
+insert into ReservaEntity (id,fecha,horaInicio,horaFinal,direccionEntrega,direccionRecogida,estado,CLIENTE_ID) values(10005, '2020-10-11 03:00:00',10000,10001,'calle 114 #30-40','calle 116 # 40-20','ESTADO_INICIAL',10005);
+insert into ReservaEntity (id,fecha,horaInicio,horaFinal,direccionEntrega,direccionRecogida,estado,CLIENTE_ID) values(10006, '2020-10-11 03:00:00',10000,10001,'calle 114 #30-40','calle 116 # 40-20','ESTADO_INICIAL',10005);
+insert into ReservaEntity (id,fecha,horaInicio,horaFinal,direccionEntrega,direccionRecogida,estado,CLIENTE_ID) values(10007, '2020-10-11 03:00:00',10000,10001,'calle 114 #30-40','calle 116 # 40-20','ESTADO_INICIAL',10005);
+insert into ReservaEntity (id,fecha,horaInicio,horaFinal,direccionEntrega,direccionRecogida,estado,CLIENTE_ID) values(10008, '2020-10-11 03:00:00',10000,10001,'calle 114 #30-40','calle 116 # 40-20','ESTADO_INICIAL',10005);
+
 
 insert into PaqueteEntity(id,peso,tipo,dimensionA,dimensionB,dimensionC,envio_id) values (10001,40.2,'FRAGIL',40,57,62,10001);
 insert into PaqueteEntity(id,peso,tipo,dimensionA,dimensionB,dimensionC,envio_id) values (10002,8.0,'FRAGIL',21,11,7,10002);
