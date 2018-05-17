@@ -4,6 +4,7 @@
         // External dependencies
         'ui.router',
          'uiGmapgoogle-maps',
+         
        
         // Internal modules dependencies       
         
