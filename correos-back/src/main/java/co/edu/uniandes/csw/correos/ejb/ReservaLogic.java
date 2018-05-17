@@ -23,8 +23,10 @@ SOFTWARE.
  */
 package co.edu.uniandes.csw.correos.ejb;
 
+import co.edu.uniandes.csw.correos.entities.EnvioEntity;
 import co.edu.uniandes.csw.correos.entities.ReservaEntity;
 import co.edu.uniandes.csw.correos.exceptions.BusinessLogicException;
+import co.edu.uniandes.csw.correos.persistence.EnvioPersistence;
 import co.edu.uniandes.csw.correos.persistence.ReservaPersistence;
 import java.util.Date;
 import java.util.List;
@@ -48,6 +50,11 @@ public class ReservaLogic {
        * persistecia
        */
     private ReservaPersistence persistence;
+    
+    /**
+     * persistencia del envio
+     */
+    private EnvioPersistence envioPersistence;
     
     /**
      * constructor con params
@@ -96,13 +103,23 @@ public class ReservaLogic {
     }
     
     /**
-     * 
+     * cuando trae una reserva verifica si sucedio la reserva y la convierte en envio de lo contrario retona la reserva
      * @param id
      * @return la reserva con id por param
      */
-    public ReservaEntity getReserva(Long id)
+    public ReservaEntity getReserva(Long id) throws BusinessLogicException
     {
-        return persistence.find(id);
+        ReservaEntity reserva = persistence.find(id);
+        
+        if (reserva.getFecha().after(new Date()))
+                {
+                    convertirAEnvio(reserva);
+                    throw new BusinessLogicException("la reserva esta vigente, revise la lista de envios");
+                     
+                }
+        else 
+        return reserva;
+        
     }
     
     /**
@@ -129,8 +146,27 @@ public class ReservaLogic {
         LOGGER.log(Level.INFO,"se eliminó el reserva con el id={0}",reserva.getId());
     }
     
-    public void convertirAReserva (ReservaEntity reseva)
+    /**
+     * convierte la reserva a envio 
+     * @param reseva que se va a convertir 
+     */
+    public void convertirAEnvio (ReservaEntity reserva) throws BusinessLogicException
     {
+         if(reserva.getFecha().before(new Date()))
+         {
+             
+         EnvioEntity nuevoEnvio= new EnvioEntity();
+         nuevoEnvio.setDireccionEntrega(reserva.getDireccionEntrga());
+         nuevoEnvio.setDireccionRecogida(reserva.getDireccionRecogida());
+         nuevoEnvio.setEstado(reserva.getEstado());
+         nuevoEnvio.setHoraFinal(reserva.getHoraFinal());
+         nuevoEnvio.setHoraInicio(reserva.getHoraInicio());
+             envioPersistence.create(nuevoEnvio);
+             persistence.delete(reserva.getId());
+             
+         }
+         else 
+            throw new BusinessLogicException("no se puede crear un envio en el pasado");
       
         
     }
