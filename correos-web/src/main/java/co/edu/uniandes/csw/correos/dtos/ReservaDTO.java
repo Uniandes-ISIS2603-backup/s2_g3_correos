@@ -79,7 +79,10 @@ public class ReservaDTO {
     {
         this.id=reserva.getId();
         this.fecha=reserva.getFecha().toString();
+        if(reserva.getHoraInicio()!= null)
+        {
         this.horaInicio=reserva.getHoraInicio();
+        }
         this.horaFinal=reserva.getHoraFinal();
         this.direccionEntrega=reserva.getDireccionEntrga();
         this.direccionRecogida=reserva.getDireccionRecogida();

@@ -23,6 +23,7 @@ SOFTWARE.
  */
 package co.edu.uniandes.csw.correos.ejb;
 
+import co.edu.uniandes.csw.correos.entities.BonoEntity;
 import co.edu.uniandes.csw.correos.entities.ClienteEntity;
 import co.edu.uniandes.csw.correos.entities.TarjetaCreditoEntity;
 import co.edu.uniandes.csw.correos.exceptions.BusinessLogicException;
@@ -167,6 +168,20 @@ public class ClienteLogic {
         }
         cambiar.setTarjetasCredito(tarjeta);
         updateCliente(cambiar);
+    }
+    /**
+     * 
+     * @param id el ID del Cliente al que se le va a anadir el nuevo detalle
+     * @param bono el bono a ser anadido
+     */
+    public void agregarBono(Long id, BonoEntity evento)
+    {
+       ClienteEntity cliente= persistence.find(id);
+       evento.setCliente(cliente);
+       List<BonoEntity> eventos = cliente.getBonos();
+       eventos.add(evento);
+       cliente.setBonos(eventos);       
+       persistence.update(cliente);
     }
     
 }

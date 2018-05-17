@@ -67,7 +67,7 @@
                 views: {
                     'listView': {
                         templateUrl: basePath + 'createAmigo/bonosAmigo.create.html',
-                        controller: 'bonosamigoCreateCtrl',
+                        controller: 'bonosAmigoCreateCtrl',
                         controllerAs: 'ctrl'
                     }
                 }

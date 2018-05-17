@@ -83,6 +83,18 @@ public class BonoLogic {
         {
              throw new BusinessLogicException("La descripción no puede estar vacia");
         }
+       /* if(entity.getDescripcion().endsWith("Cumpa"))
+        {
+            String id = entity.getDescripcion();
+            String arr[] = id.split(" ", 8);
+            id = arr[4];
+            if(id.equals(entity.getId().toString()))
+        {
+            
+             throw new BusinessLogicException("Ole, avispao se iba a mandar un auto bono");
+        }
+            
+        }*/
        persistence.create(entity);
         LOGGER.info("Se termina de crear un Bono");
         return entity;
