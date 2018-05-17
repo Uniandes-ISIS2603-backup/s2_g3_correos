@@ -12,12 +12,46 @@
                             <label for="fechaReserva" class="col-lg-2">Fecha :</label>
                             <input id="fechaReserva" required ng-model="data.fecha" class="col-sm-6"/>  (YYYY-MM-DD HH:MM:SS)
                     </div>    
-                        <div class="form-group row">
-                        <div class="form-group col-md-12">
-                            <label for="fechaReserva" class="col-lg-2">Hora :</label>
-                            <input id="fechaReserva" required ng-model="data.hora" class="col-sm-6"/>  
-                    </div> 
+                       <div class="form-group row">
+                        <div class="form-group col-md-4">
+                            <label for="estadoReserva" class="col-sm-4">Estado:</label>
+                            <input id="estadoReserva" required ng-model="data.estado" class="col-sm-6"/>
+                        </div>
+                    </div>
                     
+                    <div class="form-group row">
+                        <div class="form-group col-md-4">
+                            <label for="direccionEntregaReserva" class="col-sm-6">Direccion Entrega :</label>
+                            <input id="direccionEntregaReserva" required ng-model="data.direccionEntrega" class="col-sm-6"/>
+                        </div>
+                    </div>                               
+                    <div class="form-group row">
+                        <div class="form-group col-md-4">
+                            <label for="direccionRecogidaReserva" class="col-sm-6">Direccion Recogida :</label>
+                            <input id="direccionRecogidaReserva" required ng-model="data.direccionRecogida" class="col-sm-6"/>
+                        </div>
+                    </div> 
+                    <div class="form-group row">
+                        <div class="form-group col-md-6">
+                            <label for="horaInicioReserva" class="col-sm-3">Hora Inicio :</label>
+                            <input id="horaInicioReserva" required ng-model="data.horaInicio" class="col-sm-6"/>
+                        </div>
+                    </div> 
+                    <div class="form-group row">
+                        <div class="form-group col-md-6">
+                            <label for="horaFinalReserva" class="col-sm-3">Hora Final :</label>
+                            <input id="horaFinalReserva" required ng-model="data.horaFinal" class="col-sm-6"/>
+                        </div>
+                    </div>
+                                        
+                    <div class="form-group row">
+                        <div class="form-group col-sm-6" ng-if="!reserva.$valid">
+
+                            <div class="alert alert-warning" >
+                                <strong>Peligro!</strong><p>Error </p>
+                            </div> 
+                        </div> 
+                    </div> 
                     <div class="form-group row">
                         <div class="form-group col-sm-6" ng-if="!reserva.$valid">
 
