@@ -144,6 +144,12 @@ public class Analitica {
             return counter/envios.size();
         }
         
+        public List<CalificacionEntity> darMejoresCalificaciones(){
+            List<CalificacionEntity> clientes = calificacionP.findAll();
+            Collections.sort(clientes);
+            return clientes;
+        }
+        
         
         
         
