@@ -1,47 +1,58 @@
-
-        <!-- jumbotron-->
-
-  	<div class="jumbotron">
+<div class="jumbotron">
   		<div class="container text-center">
   			<h1>Bienvenido a Hermes</h1>
   			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse consectetur </p>
 
   			<div class="btn-group">
   				<a ui-sref="mensajerosList" class="btn btn-lg btn-info">Mensajeros</a>
-  				<a href="" class="btn btn-lg btn-info">Clientes</a>
-  				<a href="" class="btn btn-lg btn-info">Reservas</a>
-                                <a href="" class="btn btn-lg btn-info">Cuentas</a>
-                                <a href="" class="btn btn-lg btn-info">Envios</a>
-                                <a href="" class="btn btn-lg btn-info">Zonas</a>
+  				<a ui-sref="clientesList" class="btn btn-lg btn-info">Clientes</a>
+  				<a ui-sref="reservasList" class="btn btn-lg btn-info">Reservas</a>
+                                <a ui-sref="cuentasBancariasList" class="btn btn-lg btn-info">Cuentas</a>
+                                <a ui-sref="enviosList" class="btn btn-lg btn-info">Envios</a>
+                                <a ui-sref="zonasList" class="btn btn-lg btn-info">Zonas</a>
   			</div>
+                        <div ui-view="mainView" ></div>
   		</div><!-- End container -->
   	</div><!-- End jumbotron-->
+        
+        
+        <div class="container text-center">
+            <div class="btn-group" role="group" aria-label="...">
+  <button type="button" class="btn btn-default">Comentarios</button>
+  <button type="button" class="btn btn-default">Galeria</button>
+  <button type="button" class="btn btn-default">Funcionalidades</button>
+  <button type="button" class="btn btn-default">FAQ</button>
+  <button type="button" class="btn btn-default">Contacto</button>
+</div>
+            
+        </div>
+        
+        
         
         <!-- Feedback-->
   	<div class="container">
   		<section>
   			<div class="page-header" id="feedback">
-  				<h2>Comentarios.<small> Conoce la opinion de los clientes satisfechos con el servicio de Correos</small></h2>
+  				<h2>Comentarios.<small> Conozca la opinión de nuestros diferentes clientes</small></h2>
   			</div>
 
   			<div class="row">
   				<div class="col-md-4">
   					<blockquote>
-  						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi gravida quam ac ante rutrum, in mollis ligula mattis. Integer nulla nisi, ullamcorper et posuere vel</p>
-  						<footer class="blockquote-footer" style="color:white">Someone famous in <cite title="Source Title">Source Title</cite></footer>
-
+  						<p>Me encanta. La página me párece muy sencilla de usar. Puedo hacer los envios que desee de forma rápida y efectiva, sin importar el tamaño del paquete. No puedo estar más contenta :D</p>
+  						<footer class="blockquote-footer" style="color:white">En Bogotá DC por <cite title="Source Title">Juliana Leon</cite></footer>
   					</blockquote>
   				</div>
   				<div class="col-md-4">
   					<blockquote>
-  						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi gravida quam ac ante rutrum, in mollis ligula mattis. Integer nulla nisi, ullamcorper et posuere vel</p>
-  						<footer class="blockquote-footer" style="color:white">Someone famous in <cite title="Source Title">Source Title</cite></footer>
+  						<p>No me convenció del todo. Luego de hacer el envio el mensajero demoró en llegar, y no reportó ningun problema en la página. Lo bueno es que el paquete llego a salvo y pude calificar al mensajero de modo que los demas usuarios sepan que llego tarde.</p>
+  						<footer class="blockquote-footer" style="color:white">En Bogotá DC por <cite title="Source Title">Armando Fuentes</cite></footer>
   					</blockquote>
   				</div>
   				<div class="col-md-4">
   					<blockquote>
-  						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi gravida quam ac ante rutrum, in mollis ligula mattis. Integer nulla nisi, ullamcorper et posuere vel</p>
-  						<footer class="blockquote-footer" style="color:white">Someone famous in <cite title="Source Title">Source Title</cite></footer>
+  						<p>Es un buen incio para este servicio que debuta en el mercado. Pocas compañías ofrecen la seguridad y la confianza que Correos ofrece. Estaba tranquilo con respecto a la integridad de mi paquete y la puntualidad del envío.</p>
+  						<footer class="blockquote-footer" style="color:white">En Bogotá DC por <cite title="Source Title">Julian Vargas</cite></footer>
   					</blockquote>
   				</div>
   			</div><!-- End row -->
@@ -52,7 +63,7 @@
 	<section>
 		<div class="well">
 			<div class="container text-center">
-				<h3>Conviertete en miembro Premium</h3>
+                            <h3><b>Conviertete en miembro Premium</b></h3>
 				<p>Ingresa tu nombre y correo electronico</p>
 
 				<form action="" class="form-inline">
@@ -64,7 +75,7 @@
 						<label for="email">Email</label>
 						<input type="text" class="form-control" id="email" placeholder="Ingresa tu Email">
 					</div>
-					<button type="submit" class="btn btn-default">Quiero ser Premium</button>
+                                    <button type="submit" class="btn btn-default"><b>Quiero ser Premium</b></button>
 					<hr>
 				</form>
 
@@ -90,31 +101,35 @@
   				</ol>
   				<div class="carousel-inner">
   					<div class="item active">
-  						<img src="src\images\regalito.jpg" alt="Text of the image">
+  						<img src="src\images\regalito.jpg"  alt="Text of the image">
   						<div class="carousel-caption">
-  							<h3>Encabezado regalito</h3>
-  							<p>This is the caption</p>
+                                                    <h3><b>NO IMPORTA EL TAMAÑO</b></h3>
+                                                    <p><b>En Correos nos comprometemos a enviar lo que sea</b> <br>
+                                                        (Mientras sea legal y viable)
+                                                    </p>
   						</div>
   					</div>
   					<div class="item">
-  						<img src="src\images\mensajero.jpg" alt="Text of the image">
+                                            <img src="src\images\mensajero.jpg" alt="Text of the image">
   						<div class="carousel-caption">
-  							<h3>Encabezado menajero</h3>
-  							<p>This is the caption</p>
+                                                    <h3><b>MENSAJEROS COMPROMETIDOS </b></h3>
+                                                    <p><b>Nuestros mensajeros comprenden la importancia de tu envío,y trabajan con esto en mente. <br>
+                                                            Puntualidad, calidad y esfuerzo
+                                                        </b></p>
   						</div>
   					</div>
   					<div class="item">
   						<img src="src\images\mapa.jpg" alt="Text of the image">
   						<div class="carousel-caption">
-  							<h3>Encabezado mapa</h3>
-  							<p>This is the caption</p>
+                                                    <h3><b>SOLO DINOS DONDE ESTAS</b></h3>
+                                                    <p><b>Correos se adapta a tus necesidades. <br> Te aseguramos mensajeros cercanos y disponibles.</b></p>
   						</div>
   					</div>
   					<div class="item">
   						<img src="src\images\calle.jpg" alt="Text of the image">
   						<div class="carousel-caption">
-  							<h3>Encabezado calle</h3>
-  							<p>This is the caption</p>
+                                                    <h3><b>¿NO QUIERES SALIR?</b></h3>
+                                                    <p><b>Nosotros llegamos a donde estes, solo dinos a donde ir</b></p>
   						</div>
   					</div>
 
@@ -135,34 +150,46 @@
 	<div class="container">
 		<section>
 			<div class="page-header" id="features">
-  				<h2>Funcionalidades.<small> Algunas de las funciones más increibles de nuestro servicio</small></h2>
+  				<h2>Funcionalidades.<small> Qué hacemos. Cómo lo hacemos</small></h2>
   			</div><!-- End Page Header -->
 
   			<div class="row">
   				<div class="col-sm-8">
-  					<h3>Este es el encabezado</h3>
-  					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam mauris tortor, eleifend sit amet fringilla ac, tincidunt id massa. Proin et odio mattis, venenatis lacus vel, faucibus elit</p>
+                                    <h3><b>Planea tus envios</b></h3>
+                                        <p>En correos te ofrecemos un servicio de envios facil y rápido en el cual, con unos simples pasos podras hacer tus paquetes a cualquier lugar de Bogotá DC <br>
+                                            <br>
+                                            <br>
+                                            <b>1) </b>Dinos donde estas!<br>
+                                            <br>
+                                            <b>2) </b>Cuentanos que debemos llevar <br>
+                                            <br>
+                                            <b>3) </b>Adónde lo debemos llevar<br>
+                                            <br>
+                                            <b>4) </b>Selecciona el mensajero que desees<br>
+                                            <br>
+                                            
+                                        </p>
   				</div>
   				<div class="col-sm-4">
-  					<img src="src\images\fondoInicio.jpg" class="img-responsive" alt="image">
+                                    <img src="src\images\caja.png" class="img-responsive imgall" alt="image">
   				</div>
   			</div><!-- End row -->
   			<div class="row">
   				<div class="col-sm-8">
-  					<h3>Este es el encabezado</h3>
-  					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam mauris tortor, eleifend sit amet fringilla ac, tincidunt id massa. Proin et odio mattis, venenatis lacus vel, faucibus elit</p>
+                                    <h3><b>Sabemos donde estas; sabemos que hacer</b></h3>
+                                        <p>Correos funciona y se adapta segun la posición en la cual te encuentres. Te ofrecemos aquellos mensajeros que esten mejor ubicados para llegar a tiempo a recoger el paquete, ademas de contar con los recursos para cumplir con las necesidades de tu paquete.</p>
   				</div>
   				<div class="col-sm-4">
-  					<img src="src\images\celular.jpg" class="img-responsive" alt="image">
+  					<img src="src\images\gps.png" width="256" height="256" class="img-responsive imgall" alt="image">
   				</div>
   			</div>
   			<div class="row">
   				<div class="col-sm-8">
-  					<h3>Este es el encabezado</h3>
-  					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam mauris tortor, eleifend sit amet fringilla ac, tincidunt id massa. Proin et odio mattis, venenatis lacus vel, faucibus elit</p>
+                                    <h3><b>Paga fácil y rápido</b></h3>
+  					<p>Hermes se preocupa por tu comodidad, por eso además de poder quedarte en casa no deberás de preocuparte por el método de págo. <br> <br>Simplemente registrando un tarjeta de credito válida podrás realizar todos los envios que desees, Hermes se encargara de efectuar el pago con la tarjeta registrada. </p>
   				</div>
   				<div class="col-sm-4">
-  					<img src="src\images\tarjeta.jpg" class="img-responsive" alt="image">
+  					<img src="src\images\TCredito.jpg" width="300" height="300" class="img-responsive imgall" alt="image">
   				</div>
   			</div>
 
@@ -173,8 +200,8 @@
   					<div class="panel panel-default text-center">
   						<div class="panel-body">
   							<span class="glyphicon glyphicon-ok"></span>
-  							<h4>Este es el encabezado</h4>
-  							<p>Nam velit est, tempor vel posuere et, auctor a lectus. Aenean gravida, est accumsan dictum rhoncus, lectus mi suscipit lacus, suscipit accumsan augue tellus vitae dolor. Morbi in euismod dui</p>
+  							<h4>Nos adaptamos a tu páquete</h4>
+  							<p>Durante la planeación del envío podran especificar las caracteristicas de tu páquete con el fin de que nuestro mensajero cuente con el transporte y los recursos adecuados para transportarlo de manera segura. </p>
   						</div>
   					</div>
   				</div>
@@ -183,8 +210,8 @@
   					<div class="panel panel-default text-center">
   						<div class="panel-body">
   							<span class="glyphicon glyphicon-star"></span>
-  							<h4>Este es el encabezado</h4>
-  							<p>Nam velit est, tempor vel posuere et, auctor a lectus. Aenean gravida, est accumsan dictum rhoncus, lectus mi suscipit lacus, suscipit accumsan augue tellus vitae dolor. Morbi in euismod dui</p>
+  							<h4>Sistema de calificaciones</h4>
+  							<p>Como usuario podra calificar y consultar calificaciones de mensajeros. De esta manera entre los usuarios se creará un sistema de filtración para solo usar a los mensajeros de calidad.</p>
   						</div>
   					</div>
   				</div>
@@ -193,8 +220,8 @@
   					<div class="panel panel-default text-center">
   						<div class="panel-body">
   							<span class="glyphicon glyphicon-play-circle"></span>
-  							<h4>Este es el encabezado</h4>
-  							<p>Nam velit est, tempor vel posuere et, auctor a lectus. Aenean gravida, est accumsan dictum rhoncus, lectus mi suscipit lacus, suscipit accumsan augue tellus vitae dolor. Morbi in euismod dui</p>
+  							<h4>Somos una comunidad, invita a tus amigos</h4>
+  							<p>Hermes te da la posibilidad de invitar amigos a la plataforma. Si lo haces, obtendras descuentos increibles.</p>
   						</div>
   					</div>
   				</div>
@@ -216,12 +243,12 @@
             <div class="panel-heading">
               <div class="panel-title">
                 <a href="#collapse-1" data-toggle="collapse" data-parent="#accordion">
-                  Pregunta uno?
+                  ¿Qué debo hacer si mi pedido es fragil?
                 </a>
               </div><!-- End panel title -->
               <div id="collapse-1" class="panel-collapse collapse">
                 <div class="panel-body">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec egestas non urna in fringilla. Praesent consequat est at feugiat faucibus
+                  Asegurate de hacerlo explicito en las caracteristicas del paquete de forma que nuestro mensajero sea consciente de ello.
                 </div>
               </div><!-- End Panel collapse -->
             </div>
@@ -231,12 +258,12 @@
             <div class="panel-heading">
               <div class="panel-title">
                 <a href="#collapse-2" data-toggle="collapse" data-parent="#accordion">
-                  Pregunta Dos?
+                  ¿Por qué aun no llega mi pedido?
                 </a>
               </div><!-- End panel title -->
               <div id="collapse-2" class="panel-collapse collapse">
                 <div class="panel-body">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec egestas non urna in fringilla. Praesent consequat est at feugiat faucibus
+                  A lo largo del envío, si se presento algún inconveniente el mensajero le debió haber reportado. Asegurate de revisar los reportes de tus mensajeros para conocer la razón de la demora.
                 </div>
               </div><!-- End Panel collapse -->
             </div>
@@ -246,12 +273,12 @@
             <div class="panel-heading">
               <div class="panel-title">
                 <a href="#collapse-3" data-toggle="collapse" data-parent="#accordion">
-                  Pregunta Tres?
+                  ¿Qué mensajero debo escoger?
                 </a>
               </div><!-- End panel title -->
               <div id="collapse-3" class="panel-collapse collapse">
                 <div class="panel-body">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec egestas non urna in fringilla. Praesent consequat est at feugiat faucibus
+                  Hermes filtra el resultado del mensajero segun tu ubicación. Elige aquel que consideres tenga una buena calificación y cuente con el transporte apropiado para tu páquete.
                 </div>
               </div><!-- End Panel collapse -->
             </div>
@@ -261,16 +288,3 @@
       </section>
     </div><!-- End container -->
         
-        <!-- Contact Us -->
-        <div class="container">
-        <div class="page-header" id="contact">
-          <h2>Contactanos<small> ¿En qué podemos ayudarte?</small></h2>
-        </div>
-        </div><!-- End Page Header -->
-
-
-        <div ui-view="mainView" ></div>
-        
-        <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
-	<!-- Latest compiled and minified JavaScript -->
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
