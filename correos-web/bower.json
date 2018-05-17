@@ -9,7 +9,8 @@
     "angular-bootstrap": "^0.13.4",
     "momentjs":"*",
     "google-maps-utility-library-v3-markerwithlabel": "https://github.com/nmccready/google-maps-utility-library-v3-markerwithlabel.git",
-    "angular-google-maps": "^2.4.1"      
+    "angular-google-maps": "^2.4.1",
+    "angular-chart":"*"
   },
   "devDependencies": {
   
