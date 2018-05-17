@@ -159,6 +159,11 @@ public class ClienteEntity implements Serializable, Comparable {
         this.tarjetasCredito = tarjetasCredito;
     }
     
+    public TarjetaCreditoEntity getPrimeraTarjeta()
+    {
+       return getTarjetasCredito().get(1);
+    }
+    
     /**
      * le agrega la tarjeta de credito por param
      * @param tarjeta 
