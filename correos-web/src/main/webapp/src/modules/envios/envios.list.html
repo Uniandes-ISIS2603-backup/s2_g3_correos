@@ -14,8 +14,7 @@
             <tr ng-repeat="record in enviosRecords">
 
                 <td id="{{$index}}-estado" > <a ui-sref="envioDetail({envioId: record.id})">{{record.estado}}</a></td>
-                <td id="{{$index}}-horaInicio">{{record.horaInicio}}</td>
-                <td id="{{$index}}-horaFinal">{{record.horaFinal}}</td>
+               
                 <td id="{{$index}}-direccionRecogida">{{record.direccionRecogida}}</td>
                 <td id="{{$index}}-direccionEntrega">{{record.direccionEntrega}}</td>
                 <td>
