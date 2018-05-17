@@ -5,14 +5,18 @@
  */
 package co.edu.uniandes.csw.correos.ejb;
 
+import co.edu.uniandes.csw.correos.entities.ClienteEntity;
 import co.edu.uniandes.csw.correos.entities.EnvioEntity;
 import co.edu.uniandes.csw.correos.entities.EventoEntity;
 import co.edu.uniandes.csw.correos.entities.MensajeroEntity;
+import co.edu.uniandes.csw.correos.entities.PagoEntity;
 import co.edu.uniandes.csw.correos.entities.PaqueteEntity;
+import co.edu.uniandes.csw.correos.entities.TarjetaCreditoEntity;
 import co.edu.uniandes.csw.correos.entities.TransporteEntity;
 import co.edu.uniandes.csw.correos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.correos.persistence.EnvioPersistence;
 import co.edu.uniandes.csw.correos.persistence.MensajeroPersistence;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -89,6 +93,9 @@ public class EnvioLogic {
 
         persistence.create(entity);
         asignarMensajero(entity);
+        MensajeroEntity mensajero = entity.getMensajero();
+        TarjetaCreditoEntity tarjeta = entity.getCliente().getPrimeraTarjeta();
+        asignarPago(entity, mensajero, tarjeta);
 
         LOGGER.info("Se termina de crear un Envio");
         return entity;
@@ -187,8 +194,21 @@ public class EnvioLogic {
        LOGGER.info(persistence.find(id).getPaquetes().get(envio.getPaquetes().size()-1).getTipo());
     }
     
-    public void asignarPago(EnvioEntity envio)          
-    {
+    /**
+     * se llama cuando se crea un envio y crea un pago asociado al envio
+     * @param envio que se esta creando 
+     * @param mensajero mensajero a quien se va a consignar el pago
+     * @param tarjeta tarjeta de la cual se paga
+     */
+    public void asignarPago(EnvioEntity envio, MensajeroEntity mensajero, TarjetaCreditoEntity tarjeta)          
+    {     
+        PagoEntity nuevoPago = new PagoEntity();
+        nuevoPago.setValor(100000.0);
+        nuevoPago.setCuentaBancaria(mensajero.getCuenta());
+        nuevoPago.setTarjetaCredito(tarjeta);
+        nuevoPago.setFecha(new Date());
+        
+        envio.setPago(nuevoPago);
         
     }
     
