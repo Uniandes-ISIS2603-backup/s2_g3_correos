@@ -1,3 +1,14 @@
+<!-- Latest compiled and minified CSS -->
+	 <!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+
+        <!-- CSS -->
+        <link href="style.css" rel="stylesheet">
+
+
 <div class="row">
     <div class="columns small-12 text-center">
         <h1>
@@ -6,28 +17,20 @@
             <small>Para disfruta de la mejor experiencia urbana de envios</small>
 
         </h1>
-    </div>
-</div>
-<div class="row">
-    <hr>
-    <div class="col-md-5"></div>
-    <div class="col-md-4"> 
-        <p style="text-align: left;">
-            <strong>Correo</strong> 
-            <br>
-            <input type="email" name="correo" id="correo" placeholder="Ingresa usando tu correo!" value="" tabindex="1" style="width: 300px;" ng-model="data.correo">
-            <br>
-            <strong>Contraseña</strong> 
-            <br>
-            <input type="password" name="password" id="password" placeholder="contraseña" value="" tabindex="1" style="width: 300px;" ng-model="data.password">
-            <br>
-            <a ui-sref="signup" class="sign-link">Aún no eres parte de nosotros? Unete!</a>
-        </p>
+        <div class="row">
+      <div class="col">
+        <input type="text" name="username" placeholder="Username" required>
+        <input type="password" name="password" placeholder="Password" required>
+        
+      </div>
 
     </div>
-    <div class="col-md-2"></div>
 </div>
-<br>
+    </div>
+
+<div class="container">
+  <form action="/action_page.php">
+    
 <div class="btn-group" style="text-align:center">
 <select class="form-control" name="singleSelect" id="singleSelect" ng-model="data.role" required="true" style="text-align: center">
            <option value="">--- Como eres parte de nosotros? ---</option> <!-- not selected / blank option -->
