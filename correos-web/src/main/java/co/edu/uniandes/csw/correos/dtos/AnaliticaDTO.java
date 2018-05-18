@@ -6,6 +6,7 @@
 package co.edu.uniandes.csw.correos.dtos;
 
 import co.edu.uniandes.csw.correos.entities.*;
+import com.sun.javafx.scene.control.skin.VirtualFlow;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,30 +18,51 @@ import java.util.List;
 public class AnaliticaDTO {
     
     private Double precioPromedioTodosLosEnvios;
-    private List<ClienteEntity> clientesMasFieles;
-    private List<ClienteEntity> clientesQuePerdieronActividadHaceUnMes;
+    private List<ClienteDTO> clientesMasFieles;
+    private List<ClienteDTO> clientesQuePerdieronActividadHaceUnMes;
     private Double promedioTarjetasDeCreditoPorCliente;
-    private List<MensajeroEntity> mensajerosMasProductivos;
-    private List<ArrayList<EnvioEntity>> enviosPorHora;
+    private List<MensajeroDTO> mensajerosMasProductivos;
     private Double volumenPromedioPorPaquete;
     private Double promedioEventosPorEnvio;
-    private List<CalificacionEntity> mejoresCalificaciones;
+    private List<CalificacionDTO> mejoresCalificaciones;
 
     public AnaliticaDTO(){
         
     }
 
-    public AnaliticaDTO(Double precioPromedioTodosLosEnvios, List<ClienteEntity> clientesMasFieles, List<ClienteEntity> clientesQuePerdieronActividadHaceUnMes, Double promedioTarjetasDeCreditoPorCliente, List<MensajeroEntity> mensajerosMasProductivos, List<ArrayList<EnvioEntity>> enviosPorHora, Double volumenPromedioPorPaquete, Double promedioEventosPorEnvio, List<CalificacionEntity> mejoresCalificaciones) {
-        this.precioPromedioTodosLosEnvios = precioPromedioTodosLosEnvios;
-        this.clientesMasFieles = clientesMasFieles;
-        this.clientesQuePerdieronActividadHaceUnMes = clientesQuePerdieronActividadHaceUnMes;
-        this.promedioTarjetasDeCreditoPorCliente = promedioTarjetasDeCreditoPorCliente;
-        this.mensajerosMasProductivos = mensajerosMasProductivos;
-        this.enviosPorHora = enviosPorHora;
-        this.volumenPromedioPorPaquete = volumenPromedioPorPaquete;
-        this.promedioEventosPorEnvio = promedioEventosPorEnvio;
-        this.mejoresCalificaciones = mejoresCalificaciones;
+    public AnaliticaDTO(Double pPrecioPromedioTodosLosEnvios, List<ClienteEntity> pClientesMasFieles, List<ClienteEntity> pClientesQuePerdieronActividadHaceUnMes, Double pPromedioTarjetasDeCreditoPorCliente, List<MensajeroEntity> pMensajerosMasProductivos,  Double pVolumenPromedioPorPaquete, Double pPromedioEventosPorEnvio, List<CalificacionEntity> pMejoresCalificaciones) {
+
+        this.precioPromedioTodosLosEnvios = pPrecioPromedioTodosLosEnvios;
+        this.clientesMasFieles = new ArrayList<>();
+        if(pClientesMasFieles!=null){
+            for (ClienteEntity x : pClientesMasFieles) {
+                this.clientesMasFieles.add(new ClienteDTO(x));
+            }
+        }
+        this.clientesQuePerdieronActividadHaceUnMes = new ArrayList<>();
+        if(pClientesQuePerdieronActividadHaceUnMes!=null){
+            for (ClienteEntity x : pClientesQuePerdieronActividadHaceUnMes) {
+                this.clientesQuePerdieronActividadHaceUnMes.add(new ClienteDTO(x));
+            }
+        }
+        this.promedioTarjetasDeCreditoPorCliente = pPromedioTarjetasDeCreditoPorCliente;
+        this.mensajerosMasProductivos = new ArrayList<>();
+                if(pMensajerosMasProductivos!=null){
+            for (MensajeroEntity x : pMensajerosMasProductivos) {
+                this.mensajerosMasProductivos.add(new MensajeroDTO(x));
+            }
+        }
+        this.volumenPromedioPorPaquete = pVolumenPromedioPorPaquete;
+        this.promedioEventosPorEnvio = pPromedioEventosPorEnvio;
+        this.mejoresCalificaciones = new ArrayList<>();
+        if(pMejoresCalificaciones!=null){
+            for (CalificacionEntity x : pMejoresCalificaciones) {
+                this.mejoresCalificaciones.add(new CalificacionDTO(x));
+            }
+        }
     }
+
+   
 
 
     
@@ -63,28 +85,28 @@ public class AnaliticaDTO {
     /**
      * @return the clientesMasFieles
      */
-    public List<ClienteEntity> getClientesMasFieles() {
+    public List<ClienteDTO> getClientesMasFieles() {
         return clientesMasFieles;
     }
 
     /**
      * @param clientesMasFieles the clientesMasFieles to set
      */
-    public void setClientesMasFieles(List<ClienteEntity> clientesMasFieles) {
+    public void setClientesMasFieles(List<ClienteDTO> clientesMasFieles) {
         this.clientesMasFieles = clientesMasFieles;
     }
 
     /**
      * @return the clientesQuePerdieronActividadHaceUnMes
      */
-    public List<ClienteEntity> getClientesQuePerdieronActividadHaceUnMes() {
+    public List<ClienteDTO> getClientesQuePerdieronActividadHaceUnMes() {
         return clientesQuePerdieronActividadHaceUnMes;
     }
 
     /**
      * @param clientesQuePerdieronActividadHaceUnMes the clientesQuePerdieronActividadHaceUnMes to set
      */
-    public void setClientesQuePerdieronActividadHaceUnMes(List<ClienteEntity> clientesQuePerdieronActividadHaceUnMes) {
+    public void setClientesQuePerdieronActividadHaceUnMes(List<ClienteDTO> clientesQuePerdieronActividadHaceUnMes) {
         this.clientesQuePerdieronActividadHaceUnMes = clientesQuePerdieronActividadHaceUnMes;
     }
 
@@ -105,30 +127,18 @@ public class AnaliticaDTO {
     /**
      * @return the mensajerosMasProductivos
      */
-    public List<MensajeroEntity> getMensajerosMasProductivos() {
+    public List<MensajeroDTO> getMensajerosMasProductivos() {
         return mensajerosMasProductivos;
     }
 
     /**
      * @param mensajerosMasProductivos the mensajerosMasProductivos to set
      */
-    public void setMensajerosMasProductivos(List<MensajeroEntity> mensajerosMasProductivos) {
+    public void setMensajerosMasProductivos(List<MensajeroDTO> mensajerosMasProductivos) {
         this.mensajerosMasProductivos = mensajerosMasProductivos;
     }
 
-    /**
-     * @return the enviosPorHora
-     */
-    public List<ArrayList<EnvioEntity>> getEnviosPorHora() {
-        return enviosPorHora;
-    }
 
-    /**
-     * @param enviosPorHora the enviosPorHora to set
-     */
-    public void setEnviosPorHora(List<ArrayList<EnvioEntity>> enviosPorHora) {
-        this.enviosPorHora = enviosPorHora;
-    }
 
     /**
      * @return the promedioEventosPorEnvio
@@ -147,14 +157,14 @@ public class AnaliticaDTO {
     /**
      * @return the mejoresCalificaciones
      */
-    public List<CalificacionEntity> getMejoresCalificaciones() {
+    public List<CalificacionDTO> getMejoresCalificaciones() {
         return mejoresCalificaciones;
     }
 
     /**
      * @param mejoresCalificaciones the mejoresCalificaciones to set
      */
-    public void setMejoresCalificaciones(List<CalificacionEntity> mejoresCalificaciones) {
+    public void setMejoresCalificaciones(List<CalificacionDTO> mejoresCalificaciones) {
         this.mejoresCalificaciones = mejoresCalificaciones;
     }
 
@@ -171,6 +181,8 @@ public class AnaliticaDTO {
     public void setVolumenPromedioPorPaquete(Double volumenPromedioPorPaquete) {
         this.volumenPromedioPorPaquete = volumenPromedioPorPaquete;
     }
+
+   
     
     
     
