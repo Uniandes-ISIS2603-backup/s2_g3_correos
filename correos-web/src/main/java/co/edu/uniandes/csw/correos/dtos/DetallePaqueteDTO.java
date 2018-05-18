@@ -21,9 +21,9 @@ import co.edu.uniandes.csw.correos.entities.DetallePaqueteEntity;
  * @author t.vargas10
  */
 public class DetallePaqueteDTO {
-    private String name;
-    private long idDetalle;
-    private String mensaje;
+    private String name; // name 
+    private long idDetalle; // id del detalle
+    private String mensaje; // mensaje del detalle 
     /**
      * Constructor por defecto
      */

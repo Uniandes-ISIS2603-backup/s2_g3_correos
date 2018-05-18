@@ -41,10 +41,21 @@ import java.util.List;
 public class ClienteDetailDTO extends ClienteDTO
 {
 
-    
+    /**
+     * lista de envios
+     */
     private List<EnvioDTO> envios=new ArrayList<>();
+    /**
+     * tarjetas 
+     */
     private List<TarjetaCreditoDTO> tarjetas=new ArrayList<>();
+    /**
+     * lista de reservas 
+     */
     private List<ReservaDTO> reservas=new ArrayList<>();
+    /**
+     * lista de bonos 
+     */
     private List<BonoDTO> bonos=new ArrayList<>();
 
     /**

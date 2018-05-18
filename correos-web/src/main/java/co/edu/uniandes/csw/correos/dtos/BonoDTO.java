@@ -26,11 +26,27 @@ import javax.persistence.TemporalType;
  */
 public class BonoDTO 
 {
+    /**
+     * id del bono 
+     */
     private Long id;
     private String name;
+    /**
+     * descripcion del bono 
+     */
     private String descripcion;
+    
+    /**
+     * descuento 
+     */
     private double descuento;
+    /**
+     * condicion del bono 
+     */
     private String condicion;
+    /**
+     * fecha del bono 
+     */
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaDeVencimiento;
     
@@ -143,7 +159,6 @@ public class BonoDTO
         this.fechaDeVencimiento = fechaDeVenc;
     }
     
-    // public BonoEntity toEntity(){} este metododo se realizara una vez se haya realizado la capa de persistencia 
 }
 
 
