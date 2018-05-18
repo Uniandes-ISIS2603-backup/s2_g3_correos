@@ -1,4 +1,3 @@
- 
 (function(ng)
     {
         var mod=ng.module("webModule",[]);
@@ -8,11 +7,7 @@
                 $urlRouterProvider.otherwise("/web");
                 
             $stateProvider.state('home', {
-               url: '/index',
-                       data: {
-                    requireLogin: true,
-                    roles:['administrador']
-                },
+               url: '/webIndex',
                 views: {
                     'mainView': {
                         templateUrl: basePath + 'web.home.html',
@@ -23,4 +18,5 @@
             });
             }]);
     })(window.angular);
+
 

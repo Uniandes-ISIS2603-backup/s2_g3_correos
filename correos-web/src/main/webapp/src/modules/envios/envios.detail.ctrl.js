@@ -21,22 +21,11 @@
          */
         function ($scope, $http, enviosContext, $state)
         {
-            $scope.map = {
-                control: {},
-                center: {
-                    latitude: -37.812150,
-                    longitude: 144.971008
-                },
-                zoom: 14
-            };
+            $scope.map = {center: {latitude: 4.6449116, longitude: -74.0769849}, zoom: 11};
 
-            // marker object
-            $scope.marker = {
-                center: {
-                    latitude: -37.812150,
-                    longitude: 144.971008
-                }
-            }
+            $scope.options = {scrollwheel: false};
+            $scope.coordsUpdates = 0;
+            $scope.dynamicMoveCtr = 0;
 
             // instantiate google map objects for directions
             var directionsDisplay = new google.maps.DirectionsRenderer();
@@ -45,11 +34,11 @@
 
             // directions object -- with defaults
             $scope.directions = {
-                origin: "Collins St, Melbourne, Australia",
-                destination: "MCG Melbourne, Australia",
+                origin: "",
+                destination: "",
                 showList: true
             }
-            
+
             // get directions using google maps api
             getDirections = function () {
                 var request = {
@@ -61,16 +50,67 @@
                     if (status === google.maps.DirectionsStatus.OK) {
                         directionsDisplay.setDirections(response);
                         $scope.ruta_info = response.routes[0].legs[0];
+                        $scope.cordi=response.routes[0].legs[0].start_location.toJSON();
+                        $scope.cordf=response.routes[0].legs[0].end_location.toJSON();
                         directionsDisplay.setPanel(document.getElementById('directionsList'));
                         $scope.directions.showList = true;
                     } else {
-                        $scope.error_ruta="no fue posible identificar las direcicones";
+                        $scope.error_ruta = "no fue posible identificar las direcicones";
                     }
-                     $scope.ruta_info = response.routes[0].legs[0];
+                    
+                    $scope.marker1 = {
+                        id: 0,
+                        coords: {
+                            latitude: $scope.cordi.lat,
+                            longitude:  $scope.cordi.lng
+                        },
+                        options: {draggable: true,icon:'src/images/start.png'},
+                        events: {
+                            dragend: function (marker, eventName, args) {
+                                $log.log('marker dragend');
+                                var lat = marker.getPosition().lat();
+                                var lon = marker.getPosition().lng();
+                                $log.log(lat);
+                                $log.log(lon);
+
+                                $scope.marker.options = {
+                                    draggable: true,
+                                    labelContent: "lat: " + $scope.marker.coords.latitude + ' ' + 'lon: ' + $scope.marker.coords.longitude,
+                                    labelAnchor: "100 0",
+                                    labelClass: "marker-labels"
+                                };
+                            }
+                        }
+                    };
+                    $scope.marker2 = {
+                        id: 1,
+                        coords: {
+                            latitude: $scope.cordf.lat,
+                            longitude: $scope.cordf.lng
+                        },
+                        options: {draggable: true,icon:'src/images/end.png'},
+                        events: {
+                            dragend: function (marker, eventName, args) {
+                                $log.log('marker dragend');
+                                var lat = marker.getPosition().lat();
+                                var lon = marker.getPosition().lng();
+                                $log.log(lat);
+                                $log.log(lon);
+
+                                $scope.marker.options = {
+                                    draggable: true,
+                                    labelContent: "lat: " + $scope.marker.coords.latitude + ' ' + 'lon: ' + $scope.marker.coords.longitude,
+                                    labelAnchor: "100 0",
+                                    labelClass: "marker-labels"
+                                };
+                            }
+                        }
+                    };
+
                 });
-               
+
             }
-            $scope.getDirections= getDirections();
+            $scope.getDirections = getDirections();
 
             if ($state.params.envioId !== null && $state.params.envioId !== undefined)
             {
