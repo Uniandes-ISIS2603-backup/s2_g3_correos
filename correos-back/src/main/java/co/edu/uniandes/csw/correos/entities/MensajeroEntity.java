@@ -63,7 +63,7 @@ public class MensajeroEntity implements Serializable, Comparable {
      */
     private Double calificacionPromedio;
 
-    private boolean ocupado;
+
     private String password;
 
     /**

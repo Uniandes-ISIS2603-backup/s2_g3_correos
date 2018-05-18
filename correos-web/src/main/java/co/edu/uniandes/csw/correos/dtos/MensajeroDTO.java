@@ -58,23 +58,17 @@ import co.edu.uniandes.csw.correos.entities.MensajeroEntity;
  */
 public class MensajeroDTO {
     
-<<<<<<< HEAD
+
     private Long id; // id del mensajero 
     private String nombre; // nombre del mensajero 
     private String celular; // celular del mensajero 
     private String correo; // correo del mensajero 
     private Double calificacionPromedio; // calificacion promedio del mensajero 
     private Boolean ocupado; // boolean que informa si esta ocupado o no 
-    
-=======
-    private Long id;
-    private String nombre;
-    private String celular;
-    private String correo;
-    private Double calificacionPromedio;
-    private Boolean ocupado;
     private String password;
->>>>>>> f393779427d50863595ab3389a28e56a08659d33
+
+
+
     /**
      * Constructor por defecto
      */
