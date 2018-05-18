@@ -85,16 +85,10 @@ public class PagoLogic {
      * @return Objeto de PagoEntity con los datos nuevos y su ID.
      */
     public PagoEntity createPago(PagoEntity entity) throws BusinessLogicException {
-        LOGGER.log(Level.INFO, "Inicia proceso de crear un pago ");
-        Long idTarjetaDeCredito = entity.getTarjetaCredito().getId();
-        TarjetaCreditoEntity tcEntiy = tcPersistence.find(idTarjetaDeCredito);
-        entity.setTarjetaCredito(tcEntiy);
-        tcEntiy.getPagos().add(entity);
-        if(entity.getValor()<0.0){
-            throw new BusinessLogicException("UUUUUY que paso aca, no les vamos a regalar plata. No se puede tener un valor menor a cero");
-        }
-        
-        return persistence.create(entity);
+        LOGGER.info("Inicia proceso de creación del pago");
+        persistence.create(entity);
+        LOGGER.info("Termina proceso de creación del pago");
+        return entity;
     }
 
     /**

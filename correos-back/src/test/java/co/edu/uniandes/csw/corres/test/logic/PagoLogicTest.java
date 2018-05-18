@@ -116,22 +116,20 @@ public class PagoLogicTest {
      * Prueba para crear un Pago
      *
      * 
+     * @throws co.edu.uniandes.csw.correos.exceptions.BusinessLogicException
      */
     @Test
-    public void createPagoTest() {
+    public void createPagoTest() throws BusinessLogicException {
         PagoEntity newEntity = factory.manufacturePojo(PagoEntity.class);
-        PagoEntity result;
-         try {
-             result = pagoLogic.createPago(newEntity);
-         } catch (BusinessLogicException ex) {
-             Logger.getLogger(PagoLogicTest.class.getName()).log(Level.SEVERE, null, ex);
-             return;
-         }
-        Assert.assertNotNull(result);
-        PagoEntity entity = em.find(PagoEntity.class, result.getId());
+        PagoEntity resultado = pagoLogic.createPago(newEntity);
+        Assert.assertNotNull(resultado);
+        PagoEntity entity = em.find(PagoEntity.class, resultado.getId());
         Assert.assertEquals(newEntity.getId(), entity.getId());
+        Assert.assertEquals(newEntity.getCuentaBancaria(), entity.getCuentaBancaria());
         Assert.assertEquals(newEntity.getFecha(), entity.getFecha());
+        Assert.assertEquals(newEntity.getTarjetaCredito(), entity.getTarjetaCredito());
         Assert.assertEquals(newEntity.getValor(), entity.getValor());
+      
     }
 
     /**
