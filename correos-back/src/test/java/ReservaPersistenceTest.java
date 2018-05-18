@@ -132,7 +132,7 @@ public class ReservaPersistenceTest {
 
         Assert.assertEquals(newEntity.getFecha(), entity.getFecha());
         Assert.assertEquals(newEntity.getHoraInicio(), entity.getHoraInicio());
-        Assert.assertEquals(newEntity.getHoraFinal(), entity.getHoraInicio());
+        Assert.assertEquals(newEntity.getHoraFinal(), entity.getHoraFinal());
         Assert.assertEquals(newEntity.getDireccionEntrga(), entity.getDireccionEntrga());
         Assert.assertEquals(newEntity.getDireccionRecogida(), entity.getDireccionRecogida());
         Assert.assertEquals(newEntity.getEstado(), entity.getEstado());
