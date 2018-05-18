@@ -27,7 +27,6 @@ import javax.persistence.TemporalType;
 public class BonoDTO 
 {
     private Long id;
-    private String name;
     private String descripcion;
     private double descuento;
     private String condicion;

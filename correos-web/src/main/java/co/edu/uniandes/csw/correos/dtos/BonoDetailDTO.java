@@ -59,6 +59,7 @@ public class BonoDetailDTO extends BonoDTO
      * 
      * @return el bono como un entity
      */
+    @Override
     public BonoEntity toEntity()
     {
         BonoEntity bono=super.toEntity();
