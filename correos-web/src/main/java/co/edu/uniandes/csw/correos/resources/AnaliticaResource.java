@@ -37,7 +37,7 @@ public class AnaliticaResource {
     
     @GET
     public AnaliticaDTO getAnal(){
-            return new AnaliticaDTO(anal.darPrecioPromedioTodosLosEnvios(), anal.darClientesMasFieles(), anal.darClientesQuePerdieronActividadHaceUnMes(), anal.darPromedioTarjetasDeCreditoPorCliente(), anal.darMensajerosMasProductivos(),  anal.darVolumenPromedioPaquetes(), anal.darPromedioEventosPorEnvio(), anal.darMejoresCalificaciones());
+            return new AnaliticaDTO(anal.darPrecioPromedioTodosLosEnvios(), anal.darClientesMasFieles(), anal.darClientesQuePerdieronActividadHaceUnMes(), anal.darPromedioTarjetasDeCreditoPorCliente(), anal.darMensajerosMasProductivos(),  anal.darVolumenPromedioPaquetes(), anal.darPromedioEventosPorEnvio(), anal.darMejoresCalificaciones(), anal.darMensajerosConMayorCalificacion());
     }
     
     

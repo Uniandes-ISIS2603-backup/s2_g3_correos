@@ -1,3 +1,9 @@
-<canvas id="base" class="chart-bubble" chart-data="data"
-  chart-series="series" >
-</canvas> 
+<alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert()">{{alert.msg}} </alert>
+<div class="container-fluid">
+    <div class="row">
+        <div ui-view="detailView"></div>
+    </div>
+    <div class="row">
+        <div ui-view="listView"></div>
+    </div>
+</div>

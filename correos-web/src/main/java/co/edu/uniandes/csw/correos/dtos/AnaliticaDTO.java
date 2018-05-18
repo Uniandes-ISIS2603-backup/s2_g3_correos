@@ -25,12 +25,13 @@ public class AnaliticaDTO {
     private Double volumenPromedioPorPaquete;
     private Double promedioEventosPorEnvio;
     private List<CalificacionDTO> mejoresCalificaciones;
+    private List<MensajeroDTO> mensajerosConMejorCalificacion;
 
     public AnaliticaDTO(){
         
     }
 
-    public AnaliticaDTO(Double pPrecioPromedioTodosLosEnvios, List<ClienteEntity> pClientesMasFieles, List<ClienteEntity> pClientesQuePerdieronActividadHaceUnMes, Double pPromedioTarjetasDeCreditoPorCliente, List<MensajeroEntity> pMensajerosMasProductivos,  Double pVolumenPromedioPorPaquete, Double pPromedioEventosPorEnvio, List<CalificacionEntity> pMejoresCalificaciones) {
+    public AnaliticaDTO(Double pPrecioPromedioTodosLosEnvios, List<ClienteEntity> pClientesMasFieles, List<ClienteEntity> pClientesQuePerdieronActividadHaceUnMes, Double pPromedioTarjetasDeCreditoPorCliente, List<MensajeroEntity> pMensajerosMasProductivos,  Double pVolumenPromedioPorPaquete, Double pPromedioEventosPorEnvio, List<CalificacionEntity> pMejoresCalificaciones, List<MensajeroEntity> brevPa2) {
 
         this.precioPromedioTodosLosEnvios = pPrecioPromedioTodosLosEnvios;
         this.clientesMasFieles = new ArrayList<>();
@@ -58,6 +59,12 @@ public class AnaliticaDTO {
         if(pMejoresCalificaciones!=null){
             for (CalificacionEntity x : pMejoresCalificaciones) {
                 this.mejoresCalificaciones.add(new CalificacionDTO(x));
+            }
+        }
+        this.mensajerosConMejorCalificacion = new ArrayList<>();
+        if(brevPa2!=null){
+             for (MensajeroEntity x : brevPa2) {
+                this.mensajerosConMejorCalificacion.add(new MensajeroDTO(x));
             }
         }
     }
@@ -180,6 +187,20 @@ public class AnaliticaDTO {
      */
     public void setVolumenPromedioPorPaquete(Double volumenPromedioPorPaquete) {
         this.volumenPromedioPorPaquete = volumenPromedioPorPaquete;
+    }
+
+    /**
+     * @return the mensajerosConMejorCalificacion
+     */
+    public List<MensajeroDTO> getMensajerosConMejorCalificacion() {
+        return mensajerosConMejorCalificacion;
+    }
+
+    /**
+     * @param mensajerosConMejorCalificacion the mensajerosConMejorCalificacion to set
+     */
+    public void setMensajerosConMejorCalificacion(List<MensajeroDTO> mensajerosConMejorCalificacion) {
+        this.mensajerosConMejorCalificacion = mensajerosConMejorCalificacion;
     }
 
    
