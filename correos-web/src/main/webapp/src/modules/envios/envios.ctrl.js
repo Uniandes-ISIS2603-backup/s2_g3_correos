@@ -24,6 +24,10 @@
          */
         function($scope,$http, enviosContext)
         {
+            
+                console.log("asf");
+
+            
             /**
              * @ngdoc function
              * @name getEnvios
