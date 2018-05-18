@@ -16,7 +16,8 @@
         function ($rootScope, $state) {
             if (sessionStorage.getItem("correo")) {
                 sessionStorage.clear();
-            } else {
+            } 
+            else {
                 $state.go('home', {}, {reload: true});
             }
         }

@@ -149,9 +149,10 @@
         <script src="src/modules/tarjetasCredito/update/tarjetasCredito.update.ctrl.js" type="text/javascript"></script>
         <script src="src/modules/tarjetasCredito/delete/tarjetasCredito.delete.ctrl.js" type="text/javascript"></script>
 
-                <!-- Login -->
+        <!-- Login -->
         <script src="src/modules/login/login.mod.js" type="text/javascript"></script>
-        <script src="src/modules/login/login.ctrl.js" type="text/javascript"></script>
+        <script src="src/modules/login/login.ctrl.js" type="text/javascript"></script>      
+        <script src="src/modules/login/logout.ctrl.js" type="text/javascript"></script>
         
         <!-- Bonos -->
         <script src="src/modules/bonos/bonos.mod.js" type="text/javascript"></script>
@@ -187,8 +188,7 @@
 
                                         <li ><a ui-sref="home">Inicio</a> 
                                         <li><a ui-sref="signup" ng-if="!isAuthenticated()">Unete!</a> 
-                                        <li><a ui-sref="login" ng-if="!isAuthenticated()">Acceder</a>
-                                        <li ng-if="isAuthenticated()"> Hola! {{nombre}}    
+                                        <li><a ui-sref="login" ng-if="!isAuthenticated()">Acceder</a> 
                                         <li><a ui-sref="logout" ng-if="isAuthenticated()">Salir</a>    
 
   				</ul>

@@ -2,11 +2,14 @@
   		<div class="container text-center">
                     <h1>Bienvenido a <B class="dorado">Hermes</B></h1>
 
+  			<p>...</p>
+                        <br>
+                        <p>{{currentUser}}</p>
   			<div class="btn-group">
-  				<a ui-sref="mensajerosList" class="btn btn-lg btn-info" ng-if="isAuthenticated()">Mensajeros</a>
-  				<a ui-sref="clientesList" class="btn btn-lg btn-info" ng-if="isAuthenticated()">Clientes</a>
+  				<a ui-sref="mensajerosList" class="btn btn-lg btn-info" ng-if="isAuthenticated()&&hasPermissions()">Mensajeros</a>
+  				<a ui-sref="clientesList" class="btn btn-lg btn-info" ng-if="isAuthenticated()&&hasPermissions()">Clientes</a>
   				<a ui-sref="reservasList" class="btn btn-lg btn-info" ng-if="isAuthenticated()">Reservas</a>
-                                <a ui-sref="cuentasBancariasList" class="btn btn-lg btn-info" ng-if="isAuthenticated()">Cuentas</a>
+                                <a ui-sref="cuentasBancariasList" class="btn btn-lg btn-info" ng-if="isAuthenticated()&&hasPermissions()">Cuentas</a>
                                 <a ui-sref="enviosList" class="btn btn-lg btn-info" ng-if="isAuthenticated()">Envios</a>
                                 <a ui-sref="zonasList" class="btn btn-lg btn-info" ng-if="isAuthenticated()">Zonas</a>
   			</div>
