@@ -69,7 +69,6 @@ public class BonoLogic {
      */
     public BonoEntity createBono(BonoEntity entity) throws BusinessLogicException {
         LOGGER.info("Inicia proceso de crear bono");
-        
         if(entity.getDescuento() < 0.0)
         {
             throw new BusinessLogicException("El descuento debe ser un número mayor a cero");
