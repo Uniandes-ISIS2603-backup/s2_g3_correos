@@ -8,6 +8,7 @@ package co.edu.uniandes.csw.correos.entities;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -18,6 +19,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import uk.co.jemos.podam.common.PodamExclude;
 
 /**
@@ -32,6 +35,9 @@ public class EnvioEntity implements Serializable{
    private String estado;
    private String direccionEntrega;
    private String direccionRecogida; 
+   
+   @Temporal(TemporalType.TIMESTAMP)
+   private Date fecha;
    
    @Id
    @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -194,7 +200,7 @@ public class EnvioEntity implements Serializable{
     public List<EventoEntity> getEventos() {
         return eventos;
     }
-
+    
     /**
      * @param eventos the eventos to set
      */
@@ -228,5 +234,19 @@ public class EnvioEntity implements Serializable{
      */
     public void setBonos(List<BonoEntity> bonos) {
         this.bonos = bonos;
+    }
+    
+    /**
+     * @return the fecha
+     */
+    public Date getFecha() {
+        return fecha;
+    }
+
+    /**
+     * @param fecha the fecha to set
+     */
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
     }
 }

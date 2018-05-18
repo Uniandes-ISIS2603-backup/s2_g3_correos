@@ -22,7 +22,7 @@ import uk.co.jemos.podam.common.PodamExclude;
  */
 
 @Entity
-public class ClienteEntity implements Serializable {
+public class ClienteEntity implements Serializable, Comparable {
     
     private String nombre; // nombre del cliente
     private String correo; // correo del cliente
@@ -160,6 +160,11 @@ public class ClienteEntity implements Serializable {
         this.tarjetasCredito = tarjetasCredito;
     }
     
+    public TarjetaCreditoEntity getPrimeraTarjeta()
+    {
+       return getTarjetasCredito().get(1);
+    }
+    
     /**
      * le agrega la tarjeta de credito por param
      * @param tarjeta 
@@ -184,6 +189,12 @@ public class ClienteEntity implements Serializable {
     public void setReservas(List<ReservaEntity> reservas) {
         this.reservas = reservas;
     }
+
+
+    @Override
+    public int compareTo(Object o) {
+      ClienteEntity  pCliente= (ClienteEntity)o;
+        return this.envios.size()<pCliente.envios.size()?-1:this.envios.size()>pCliente.envios.size()?1:0;    }
     
     public String getPassword() {
         return password;

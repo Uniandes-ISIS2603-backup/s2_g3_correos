@@ -148,10 +148,11 @@
         
         <!-- Bonos -->
         <script src="src/modules/bonos/bonos.mod.js" type="text/javascript"></script>
-        <script src="src/modules/bonos/bonos.ctrl.js" type="text/javascript"></script>
+        <script src="src/modules/bonos/bonos.ctrl.js" type="text/javascript"></script>       
         <script src="src/modules/bonos/create/bonos.create.ctrl.js" type="text/javascript"></script>
         <script src="src/modules/bonos/update/bonos.update.ctrl.js" type="text/javascript"></script>
         <script src="src/modules/bonos/delete/bonos.delete.ctrl.js" type="text/javascript"></script>
+        <script src="src/modules/bonos/createAmigo/bonosAmigo.create.ctrl.js" type="text/javascript"></script>
         
 
         
@@ -198,12 +199,14 @@
   			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse consectetur </p>
 
   			<div class="btn-group">
+
   				<a ui-sref="mensajerosList" class="btn btn-lg btn-info" ng-if="isAuthenticated()">Mensajeros</a>
   				<a ui-sref="clientesList" class="btn btn-lg btn-info">Clientes</a>
   				<a ui-sref="reservasList" class="btn btn-lg btn-info">Reservas</a>
                                 <a ui-sref="cuentasList" class="btn btn-lg btn-info">Cuentas</a>
                                 <a ui-sref="enviosList" class="btn btn-lg btn-info">Envios</a>
                                 <a ui-sref="zonasList" class="btn btn-lg btn-info">Zonas</a>
+
   			</div>
   		</div><!-- End container -->
   	</div><!-- End jumbotron-->         

@@ -64,27 +64,30 @@ public class ClientePersistence {
         return em.find(ClienteEntity.class, id);
     }
     
-     /**
-     * Busca si hay alguna Cliente con el nombre que se envía de argumento
-     *
-     * @param name: Nombre de la Cliente que se está buscando
-     * @return null si no existe ningun Cliente con el nombre del argumento. Si
-     * existe alguno devuelve el primero.
+      /**
+     * 
+     * @param correo
+     * @return los clientes con el correo por param
      */
-    public ClienteEntity findByName(String name) {
-        LOGGER.log(Level.INFO, "Consultando Cliente por nombre ", name);
-
-        // Se crea un query para buscar Clientees con el nombre que recibe el método como argumento. ":name" es un placeholder que debe ser remplazado
-        TypedQuery query = em.createQuery("Select e From ClienteEntity e where e.name = :name", ClienteEntity.class);
-        // Se remplaza el placeholder ":name" con el valor del argumento 
-        query = query.setParameter("name", name);
-        // Se invoca el query se obtiene la lista resultado
-        List<ClienteEntity> sameName = query.getResultList();
-        if (sameName.isEmpty()) {
-            return null;
-        } else {
-            return sameName.get(0);
-        }
+     public List<ClienteEntity> findByCorreo(String correo)
+    {
+        TypedQuery query= em.createQuery("select u From ClienteEntity u where u.correo= :correo", ClienteEntity.class);
+        query=query.setParameter("correo", correo);
+        List<ClienteEntity> x= query.getResultList();
+        return x;
+    }
+     
+     /**
+      * 
+      * @param telefono
+      * @return los clientes con telefono por param
+      */
+      public List<ClienteEntity> findByNumero(String telefono)
+    {
+        TypedQuery query= em.createQuery("select u From ClienteEntity u where u.telefono= :telefono", ClienteEntity.class);
+        query=query.setParameter("telefono", telefono);
+        List<ClienteEntity> x= query.getResultList();
+        return x;
     }
     
     /**

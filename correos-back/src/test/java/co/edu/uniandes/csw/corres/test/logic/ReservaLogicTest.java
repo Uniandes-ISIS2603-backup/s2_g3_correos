@@ -148,7 +148,7 @@ public class ReservaLogicTest {
      *
      */
     @Test
-    public void getReservaTest() {
+    public void getReservaTest() throws BusinessLogicException {
         ReservaEntity entity = data.get(0);
         ReservaEntity resultEntity = reservaLogic.getReserva(entity.getId());
         Assert.assertNotNull(resultEntity);

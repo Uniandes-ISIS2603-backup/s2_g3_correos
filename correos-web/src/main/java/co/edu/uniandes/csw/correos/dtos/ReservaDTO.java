@@ -57,7 +57,11 @@ public class ReservaDTO {
     Long id;
   
     private String fecha;
-    private String hora;
+    private Long horaInicio;
+    private Long horaFinal;
+    private String direccionEntrega;
+    private String direccionRecogida;
+    private String estado;
     
     /**
      * constructor por defecto
@@ -75,7 +79,14 @@ public class ReservaDTO {
     {
         this.id=reserva.getId();
         this.fecha=reserva.getFecha().toString();
-        this.hora=reserva.getHora();
+        if(reserva.getHoraInicio()!= null)
+        {
+        this.horaInicio=reserva.getHoraInicio();
+        }
+        this.horaFinal=reserva.getHoraFinal();
+        this.direccionEntrega=reserva.getDireccionEntrga();
+        this.direccionRecogida=reserva.getDireccionRecogida();
+        this.estado=reserva.getEstado();
     }
     
     //public ReservaDTO(ReservaEntity reserva){} este se realizara cuando se implemente la capa de persistencia
@@ -109,17 +120,79 @@ public class ReservaDTO {
     }
     
     /**
-     * @return la hora de la reserva
+     * @return la hora inicio de la reserva
      */
-    public String getHora() {
-        return hora;
+    public Long getHoraInicio() {
+        return horaInicio;
     }
     
     /**
-     * @param hora la nueva hora de la reserva
+     * @param hora la nueva hora inicio de la reserva
      */
-    public void setHora(String hora) {
-        this.hora = hora;
+    public void setHoraInicio(Long horaInicio) {
+        this.horaInicio = horaInicio;
+    }
+     /**
+     * @return la hora final de la reserva
+     */
+    public Long getHoraFinal() {
+        return horaFinal;
+    }
+    
+    /**
+     * @param hora la nueva hora final de la reserva
+     */
+    public void setHoraFinal(Long horaFinal) {
+        this.horaFinal = horaFinal;
+    }
+    
+    /**
+     * trae la direccion de la entrega
+     * @return la direccion de la entrega
+     */
+    public String getDireccionEntrega()
+    {
+        return direccionEntrega;
+    }
+    
+    /**
+     * cambia la direccion de la entrega
+     * @param direccionEntrega que se va a cambiar 
+     */
+    public void setDireccionEntrega(String direccionEntrega){
+        this.direccionEntrega = direccionEntrega;
+    }
+    
+    /**
+     * hace get de la direccion de recogida 
+     * @return la direccion de recogida
+     */
+    public String getDireccionRecogida()
+    {
+        return direccionRecogida;
+    }
+    
+    /**
+     * cambia la direccion de recogida 
+     * @param direccionRecogida la direccion de recogida que se va a cambiar 
+     */
+    public void setDireccionRecogida(String direccionRecogida)
+    {
+        this.direccionRecogida = direccionRecogida;
+    }
+    
+    /**
+     * hace get del estado 
+     * @return 
+     */
+    public String getEstado()         
+    {
+        return estado;
+    }
+    
+    public void setEstado(String estado)
+    {
+        this.estado = estado;
     }
     
     /**
@@ -130,7 +203,11 @@ public class ReservaDTO {
     {
         ReservaEntity reserva=new ReservaEntity();
         reserva.setFecha(Timestamp.valueOf(this.fecha));
-        reserva.setHora(this.hora);
+        reserva.setHoraInicio(this.horaInicio);
+        reserva.setHoraFinal(this.horaFinal);
+        reserva.setDireccionEntrega(this.direccionEntrega);
+        reserva.setDireccionRecogida(this.direccionRecogida);
+        reserva.setEstado(this.estado);
         reserva.setId(this.id);
         return reserva;
     } 

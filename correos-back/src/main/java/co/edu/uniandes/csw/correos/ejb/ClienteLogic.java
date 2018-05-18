@@ -23,6 +23,7 @@ SOFTWARE.
  */
 package co.edu.uniandes.csw.correos.ejb;
 
+import co.edu.uniandes.csw.correos.entities.BonoEntity;
 import co.edu.uniandes.csw.correos.entities.ClienteEntity;
 import co.edu.uniandes.csw.correos.entities.TarjetaCreditoEntity;
 import co.edu.uniandes.csw.correos.exceptions.BusinessLogicException;
@@ -71,16 +72,16 @@ public class ClienteLogic {
      * @return un nuevo cliente
      * @throws BusinessLogicException 
      */
-    public ClienteEntity createCliente(ClienteEntity entity) throws BusinessLogicException {
-        LOGGER.info("Inicia proceso de creación de cliente");
-        // Verifica la regla de negocio que dice que no puede haber dos cliente con el mismo nombre
-        if (persistence.findByName(entity.getNombre()) != null) {
-            throw new BusinessLogicException("Ya existe un cliente con el nombre \"" + entity.getNombre() + "\"");
-        }
-        // Invoca la persistencia para crear el cliente
-        persistence.create(entity);
-        LOGGER.info("Termina proceso de creación del cliente");
-        return entity;
+    public ClienteEntity createCliente(ClienteEntity cliente) throws BusinessLogicException {
+       LOGGER.info("Se inicia la creación de un Cliente");
+        if(!persistence.findByCorreo(cliente.getCorreo()).isEmpty())
+            throw new BusinessLogicException("ya existe un cliente con ese Correo");
+        else if(!persistence.findByNumero(cliente.getTelefono()).isEmpty())
+            throw new BusinessLogicException("ya existe un cliente con ese telefono");
+        else 
+            persistence.create(cliente);
+        LOGGER.info("se termino de crear un cliente");
+        return cliente;
     }
     
     /**
@@ -111,12 +112,14 @@ public class ClienteLogic {
      * @return el nuevo cliente actualizado
      * @throws BusinessLogicException 
      */
-    public ClienteEntity updateCliente(ClienteEntity entity) throws BusinessLogicException  {
-        if (persistence.findByName(entity.getNombre()) != null) {
-            throw new BusinessLogicException("Ya existe un cliente con el nombre \"" + entity.getNombre() + "\"");
-        }
-        return persistence.update(entity);
-    }
+    public ClienteEntity updateCliente(ClienteEntity cliente) throws BusinessLogicException  {
+      if(!persistence.find(cliente.getId()).getCorreo().equals(cliente.getCorreo()) && !persistence.findByCorreo(cliente.getCorreo()).isEmpty())
+            throw new BusinessLogicException("ya existe un cliente con ese Correo Electrónico!");
+        if(!persistence.find(cliente.getId()).getTelefono().equals(cliente.getTelefono())&& !persistence.findByNumero(cliente.getTelefono()).isEmpty())
+            throw new BusinessLogicException("ya existe un cliente con ese numero telefónico!");
+       
+        return persistence.update(cliente);
+            }
     
     
     /**
@@ -165,6 +168,20 @@ public class ClienteLogic {
         }
         cambiar.setTarjetasCredito(tarjeta);
         updateCliente(cambiar);
+    }
+    /**
+     * 
+     * @param id el ID del Cliente al que se le va a anadir el nuevo detalle
+     * @param bono el bono a ser anadido
+     */
+    public void agregarBono(Long id, BonoEntity evento)
+    {
+       ClienteEntity cliente= persistence.find(id);
+       evento.setCliente(cliente);
+       List<BonoEntity> eventos = cliente.getBonos();
+       eventos.add(evento);
+       cliente.setBonos(eventos);       
+       persistence.update(cliente);
     }
     
 }

@@ -2,7 +2,7 @@
     var mod=ng.module("bonosModule");
     mod.constant("bonosContext","api/bonos");
     mod.constant("clientesContext","api/clientes");
-    mod.controller('bonosamigoCreateCtrl',['$scope','$http','bonosContext','clientesContext','$state','$rootScope',
+    mod.controller('bonosAmigoCreateCtrl',['$scope','$http','bonosContext','clientesContext','$state','$rootScope',
          /**
          * @ngdoc controller
          * @name bonos.controller:bonosamigoCreateCtrl
@@ -35,6 +35,9 @@
              */
             $scope.createBonoAmigo=function()
             {
+                $scope.data.descripcion=$state.params.clienteId + 'REFERIDO';
+                console.log($scope.data.descripcion);
+                console.log($scope.data);
                 $http.post(clientesContext+'/'+$scope.data.idAmigo+'/'+bonosContext, $scope.data).then(function(response)
                 {
                     $state.go('bonosList',{bonoId:response.data.id}, {reload:true});
@@ -44,4 +47,3 @@
         
     ]);
 })(window.angular);
-

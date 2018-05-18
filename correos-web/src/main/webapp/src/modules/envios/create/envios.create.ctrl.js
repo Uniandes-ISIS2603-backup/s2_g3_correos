@@ -32,8 +32,10 @@
              * Esta función utiliza el protocolo HTTP para crear el Envio.
              * @param {Object} Envio Objeto con el nuevo Envio.
              */
+            
             $scope.createEnvio=function()
             {
+                $scope.data.fecha=new Date();
                 $http.post(enviosContext,$scope.data).then(function(response)
                 {
                     $state.go('enviosList',{envioId:response.data.id}, {reload:true});

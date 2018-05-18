@@ -61,7 +61,7 @@ public class TarjetaCreditoDTO
     private long id;
     private String numero;
     private String mes;
-    private String año;
+    private String anio;
 
     /**
      * Constructor por defecto
@@ -80,7 +80,7 @@ public class TarjetaCreditoDTO
    public TarjetaCreditoDTO(TarjetaCreditoEntity entity){
     this.id = entity.getId();
     this.mes = entity.getMes();
-    this.año = entity.getAño();
+    this.anio = entity.getAnio();
     this.numero = entity.getNumero();
    }
    
@@ -92,7 +92,7 @@ public class TarjetaCreditoDTO
     TarjetaCreditoEntity tarjeta = new TarjetaCreditoEntity();
     tarjeta.setId(this.id);
     tarjeta.setNumero(this.numero);
-    tarjeta.setAño(this.año);
+    tarjeta.setAnio(this.anio);
     tarjeta.setMes(this.mes);
     return tarjeta;
 }
@@ -139,17 +139,17 @@ public class TarjetaCreditoDTO
         this.mes = mes;
     }
       /**
-     * @return el año de vencimiento de la tarjeta
+     * @return el anio de vencimiento de la tarjeta
      */
-    public String getAño() {
-        return año;
+    public String getAnio() {
+        return anio;
     }
 
     /**
-     * @param año el año de vencimiento de la tarjeta
+     * @param anio el anio de vencimiento de la tarjeta
      */
-    public void setAño(String año) {
-        this.año = año;
+    public void setAnio(String anio) {
+        this.anio = anio;
     }
 
    

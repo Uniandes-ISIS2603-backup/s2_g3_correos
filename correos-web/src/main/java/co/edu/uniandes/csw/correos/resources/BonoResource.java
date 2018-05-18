@@ -22,6 +22,7 @@ import co.edu.uniandes.csw.correos.ejb.BonoLogic;
 import co.edu.uniandes.csw.correos.ejb.ClienteLogic;
 import co.edu.uniandes.csw.correos.entities.BonoEntity;
 import co.edu.uniandes.csw.correos.exceptions.BusinessLogicException;
+ import co.edu.uniandes.csw.correos.dtos.BonoDetailDTO;
 import java.util.Calendar;
 import javax.inject.Inject;
 import javax.ws.rs.WebApplicationException;
@@ -96,26 +97,33 @@ public class BonoResource
      * @throws BusinessLogicException {@link BusinessLogicException} - Error de lógica que se genera cuando ya existeel bono
      */
     @POST
-    public BonoDTO createBono(@PathParam("clienteId")Long idCliente,BonoDTO bono) throws BusinessLogicException {
+    public BonoDetailDTO createBono(@PathParam("clienteId")Long idCliente,BonoDetailDTO bono) throws BusinessLogicException {
         if(clienteLogic.getCliente(idCliente)==null)
             throw new WebApplicationException("No existe el cliente , por lo tanto no se le pueden agregar bonos" ,404);
         BonoEntity entity=new BonoEntity();
-        if(bono.getDescripcion() == null || bono.getDescripcion().isEmpty() )
-        {            
+        if(bono.getDescripcion()==null||bono.getDescripcion().isEmpty()||bono.getDescripcion().endsWith("REFERIDO"))
+        {    
+            /*String id = bono.getDescripcion();
+            String arr[] = id.split(" ", 2);
+            id = arr[0];*/
             entity.setDescuento(0.25);
-            entity.setDescripcion("tu Amigo es un Cumpa");
+            entity.setDescripcion("Tienes un amigo de los buenos cumpas");
             Calendar cal = Calendar.getInstance(); 
             cal.add(Calendar.MONTH, 1);
             entity.setFechaDeVencimiento(cal.getTime());
             entity.setCliente(clienteLogic.getCliente(idCliente));
-            entity.setCondicion("No Redimido");            
+            entity.setCondicion("Sin redimir"); 
+            entity.setCliente(clienteLogic.getCliente(idCliente));
         }
         else
         {
             entity=bono.toEntity();
+            entity.setCliente(clienteLogic.getCliente(idCliente));
+            
         }
-        
-        return new BonoDTO(bonoLogic.createBono(entity));
+        BonoDetailDTO bonoNew = new BonoDetailDTO(bonoLogic.createBono(entity));
+        clienteLogic.agregarBono(idCliente, bonoNew.toEntity());
+        return bonoNew;
     }
      /**
      * <h1>PUT /api/Bonos: Actualizar el bono con el id dado.<h1>
@@ -138,7 +146,7 @@ public class BonoResource
      */
     @PUT
     @Path("{id: \\d+}")
-    public BonoDTO updateBono(@PathParam("clienteId")Long idCliente,@PathParam("id") Long id, BonoDTO bono) throws BusinessLogicException {
+    public BonoDetailDTO updateBono(@PathParam("clienteId")Long idCliente,@PathParam("id") Long id, BonoDetailDTO bono) throws BusinessLogicException {
         if(clienteLogic.getCliente(idCliente)==null)
             throw new WebApplicationException("No existe el cliente , por lo tanto no tiene bonos que actualizar",404);
         bono.setId(id);
@@ -146,7 +154,7 @@ public class BonoResource
         if (entity == null) {
             throw new WebApplicationException(NRECURSO+ id + NOEXISTE, 404);
         }
-        return new BonoDTO(bonoLogic.updateBono(bono.toEntity()));
+        return new BonoDetailDTO(bonoLogic.updateBono(bono.toEntity()));
 
     }
      /**
@@ -169,14 +177,14 @@ public class BonoResource
      */
     @GET
     @Path("{id: \\d+}")
-    public BonoDTO getBono(@PathParam("clienteId") Long idCliente,@PathParam("id") Long id) throws BusinessLogicException {
+    public BonoDetailDTO getBono(@PathParam("clienteId") Long idCliente,@PathParam("id") Long id) throws BusinessLogicException {
          if(clienteLogic.getCliente(idCliente)==null)
             throw new WebApplicationException("No existe el cliente , por lo tanto no tiene bonos",404);
         BonoEntity entity = bonoLogic.getBono(id);
         if (entity == null) {
             throw new WebApplicationException(NRECURSO+ id + NOEXISTE, 404);
         }
-        return new BonoDTO(bonoLogic.getBono(id));
+        return new BonoDetailDTO(bonoLogic.getBono(id));
     }
     
     /**
@@ -186,10 +194,12 @@ public class BonoResource
      * @throws BusinessLogicException 
      */
     @GET
-    public List<BonoDTO> getBonos(@PathParam("clienteId")Long idCliente) throws BusinessLogicException {
+    public List<BonoDetailDTO> getBonos(@PathParam("clienteId")Long idCliente) throws BusinessLogicException {
         if(clienteLogic.getCliente(idCliente)==null)
             throw new WebApplicationException("No existe el cliente , por lo tanto no tiene bonos ",404);
-        return listEntity2DTO(bonoLogic.getBonos());
+         List<BonoDetailDTO> bonitos = listEntity2DTO(clienteLogic.getCliente(idCliente).getBonos());
+        
+         return bonitos;
     }
      /**
      * <h1>DELETE /api/Bonos: Borrar el bono con el id dado.<h1>
@@ -223,10 +233,10 @@ public class BonoResource
      * @param entityList
      * @return Una lista de bonos en DTO
      */
-    private List<BonoDTO> listEntity2DTO(List<BonoEntity> entityList) {
-        List<BonoDTO> list = new ArrayList<>();
+    private List<BonoDetailDTO> listEntity2DTO(List<BonoEntity> entityList) {
+        List<BonoDetailDTO> list = new ArrayList<>();
         for (BonoEntity entity : entityList) {
-            list.add(new BonoDTO(entity));
+            list.add(new BonoDetailDTO(entity));
         }
         return list;
     }
