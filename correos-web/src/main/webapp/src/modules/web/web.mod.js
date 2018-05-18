@@ -9,6 +9,10 @@
                 
             $stateProvider.state('home', {
                url: '/index',
+                       data: {
+                    requireLogin: true,
+                    roles:['administrador']
+                },
                 views: {
                     'mainView': {
                         templateUrl: basePath + 'web.home.html',

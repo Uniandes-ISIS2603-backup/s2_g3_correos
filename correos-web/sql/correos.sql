@@ -56,16 +56,16 @@ insert into CuentaBancariaEntity(id,numero,banco,tipoTarjeta) values (10003,'028
 insert into CuentaBancariaEntity(id,numero,banco,tipoTarjeta) values (10004,'20384080808000802','SilvaBank','maestro');
 insert into CuentaBancariaEntity(id,numero,banco,tipoTarjeta) values (10005,'17730740208028084','Colpatria','MasterCard');
 
-insert into ClienteEntity(id,nombre,correo,telefono) values (10001,'Pepe Perez','usuario1@uniandes.edu.co','3111111111');
-insert into ClienteEntity(id,nombre,correo,telefono) values (10002,'Juana Ramirez','usuario2@uniandes.edu.co','3222222222');
-insert into ClienteEntity(id,nombre,correo,telefono) values (10003,'Cesar Noseque','usuario3@uniandes.edu.co','3333333333');
-insert into ClienteEntity(id,nombre,correo,telefono) values (10004,'David Leon','usuario4@uniandes.edu.co','3444444444');
-insert into ClienteEntity(id,nombre,correo,telefono) values (10005,'Felipe Nieto','usuario5@uniandes.edu.co','3555555555');
-insert into ClienteEntity(id,nombre,correo,telefono) values (10006,'Pipe Diaz','usuario6@uniandes.edu.co','3666666666');
-insert into ClienteEntity(id,nombre,correo,telefono) values (10007,'Juan Rodriguez','usuario7@uniandes.edu.co','3777777777');
-insert into ClienteEntity(id,nombre,correo,telefono) values (10008,'Rubby Casallas','usuario8@uniandes.edu.co','3888888888');
-insert into ClienteEntity(id,nombre,correo,telefono) values (10009,'Andres Mejia','usuario9@uniandes.edu.co','3999999999');
-insert into ClienteEntity(id,nombre,correo,telefono) values (10010,'Daniel Torres','usuario10@uniandes.edu.co','3000000000');
+insert into ClienteEntity(id,nombre,correo,telefono,password) values (10001,'Pepe Perez','usuario1@uniandes.edu.co','3111111111','111');
+insert into ClienteEntity(id,nombre,correo,telefono,password) values (10002,'Juana Ramirez','usuario2@uniandes.edu.co','3222222222','111');
+insert into ClienteEntity(id,nombre,correo,telefono,password) values (10003,'Cesar Noseque','usuario3@uniandes.edu.co','3333333333','111');
+insert into ClienteEntity(id,nombre,correo,telefono,password) values (10004,'David Leon','usuario4@uniandes.edu.co','3444444444','111');
+insert into ClienteEntity(id,nombre,correo,telefono,password) values (10005,'Felipe Nieto','usuario5@uniandes.edu.co','3555555555','111');
+insert into ClienteEntity(id,nombre,correo,telefono,password) values (10006,'Pipe Diaz','usuario6@uniandes.edu.co','3666666666','111');
+insert into ClienteEntity(id,nombre,correo,telefono,password) values (10007,'Juan Rodriguez','usuario7@uniandes.edu.co','3777777777','111');
+insert into ClienteEntity(id,nombre,correo,telefono,password) values (10008,'Rubby Casallas','usuario8@uniandes.edu.co','3888888888','111');
+insert into ClienteEntity(id,nombre,correo,telefono,password) values (10009,'Andres Mejia','usuario9@uniandes.edu.co','3999999999','111');
+insert into ClienteEntity(id,nombre,correo,telefono,password) values (10010,'Daniel Torres','usuario10@uniandes.edu.co','3000000000','111');
 
 insert into TarjetaCreditoEntity(id,numero,mes,anio,cliente_id) values (10001,'1234123412341234','01','2021',10001);
 insert into TarjetaCreditoEntity(id,numero,mes,anio,cliente_id) values (10002,'2345234523452345','02','2022',10002);

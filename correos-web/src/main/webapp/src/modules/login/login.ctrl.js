@@ -61,7 +61,7 @@
                     if ($scope.users[item].correo == $scope.data.correo && $scope.users[item].password == $scope.data.password) {
                         flag = true;
                         $scope.user = $scope.users[item];
-                        $state.go('mensajerosList', {}, {reload: true});
+                        $state.go('home', {}, {reload: true});
                         break;
                     }
                 }
