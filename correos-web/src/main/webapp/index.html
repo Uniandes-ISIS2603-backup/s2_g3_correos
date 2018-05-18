@@ -187,7 +187,9 @@
 
                                         <li ><a ui-sref="home">Inicio</a> 
                                         <li><a ui-sref="signup" ng-if="!isAuthenticated()">Unete!</a> 
-                                        <li><a ui-sref="login">Acceder</a> 
+                                        <li><a ui-sref="login" ng-if="!isAuthenticated()">Acceder</a>
+                                        <li ng-if="isAuthenticated()"> Hola! {{nombre}}    
+                                        <li><a ui-sref="logout" ng-if="isAuthenticated()">Salir</a>    
 
   				</ul>
   			</div>

@@ -30,8 +30,8 @@
 
             $scope.users = {};
             $scope.data = {};
-            
-            
+            $scope.user={};
+            $scope.user.token=1;
             
             $scope.autenticar = function () {
                 if($scope.data.role===undefined)
@@ -48,7 +48,6 @@
                         $scope.users = response.data;
                     });
                 else if($scope.data.role=='administrador')
-                    console.log("geez");
                     $http.get('data/users.json').then(function (response) {
                         console.log(response.data);
                         $scope.users = response.data;
@@ -68,7 +67,6 @@
                 }
                 if (!flag) {
                     $rootScope.alerts.push({type: "danger", msg: "Incorrect username or password."});
-                    console.log("estupido mi login idiota")
                 } else {
                     sessionStorage.token = $scope.user.token;
                     sessionStorage.setItem("correo", $scope.user.correo);
