@@ -89,7 +89,7 @@ public class CalificacionLogic {
      * @return el entity de la calificacion actualizada
      * @throws BusinessLogicException 
      */
-    public CalificacionEntity updateCalificacion(CalificacionEntity entity) throws BusinessLogicException  {
+    public CalificacionEntity updateCalificacion(CalificacionEntity entity) {
             
         return cP.update(entity);
     }

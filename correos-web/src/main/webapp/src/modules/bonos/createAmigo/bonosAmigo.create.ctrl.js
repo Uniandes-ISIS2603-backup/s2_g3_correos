@@ -35,6 +35,9 @@
              */
             $scope.createBonoAmigo=function()
             {
+                $scope.data.descripcion=$state.params.clienteId + 'REFERIDO';
+                console.log($scope.data.descripcion);
+                console.log($scope.data);
                 $http.post(clientesContext+'/'+$scope.data.idAmigo+'/'+bonosContext, $scope.data).then(function(response)
                 {
                     $state.go('bonosList',{bonoId:response.data.id}, {reload:true});

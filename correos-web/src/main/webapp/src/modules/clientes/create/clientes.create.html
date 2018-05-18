@@ -1,3 +1,4 @@
+
  <alert class="alert alert-danger" ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert()">{{alert.msg}} </alert>
  <div class="container-fluid">
     <div class="panel-group">
@@ -27,7 +28,13 @@
                     </div> 
                
    </div> 
-                    <div class="form-group row">
+                  <div class="form-group row">
+                        <div class="form-group col-md-12">
+                  <label for="passwordCliente" class="col-sm-2">Password :</label>
+                   <input id="passwordCliente" required ng-model="data.password" class="col-sm-6"/>  
+                          </div>
+                    </div> 
+                  <div class="form-group row">
                         <div class="form-group col-sm-6" ng-if="!cliente.$valid">
 
                             <div class="alert alert-warning" >
