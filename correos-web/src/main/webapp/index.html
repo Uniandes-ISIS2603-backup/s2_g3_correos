@@ -1,6 +1,7 @@
 
 <html ng-app="mainApp">
     <head>
+        <link rel="shortcut icon" type="image/png" href="favicon.png"/>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -18,7 +19,7 @@
         
         <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
        <meta charset="utf-8">
-	<title>Correos </title>
+	<title>Hermes </title>
 	<meta name="description" content="Wiredwiki App">
 	<!-- Latest compiled and minified CSS -->
 	 <!-- Latest compiled and minified CSS -->
@@ -47,6 +48,11 @@
         
         <script src="src/app.js" type="text/javascript"></script> 
         <script src="src/http-interceptor.factory.js" type="text/javascript"></script>
+        
+        <!-- Web -->
+        <script src="src/modules/web/web.mod.js" type="text/javascript"></script>
+        <script src="src/modules/web/web.home.ctrl.js" type="text/javascript"></script>
+        
         
         <!-- Mensajeros -->
         <script src="src/modules/mensajeros/mensajeros.mod.js" type="text/javascript"></script>
@@ -104,6 +110,7 @@
         <script src="src/modules/envios/create/envios.create.ctrl.js" type="text/javascript"></script>
         <script src="src/modules/envios/update/envios.update.ctrl.js" type="text/javascript"></script>
         <script src="src/modules/envios/delete/envios.delete.ctrl.js" type="text/javascript"></script>
+        <script src="src/modules/envios/prueba/envios.prueba.ctrl.js" type="text/javascript"></script>
         
         <!-- Paquetes -->
         <script src="src/modules/paquetes/paquetes.mod.js" type="text/javascript"></script>
@@ -172,24 +179,35 @@
                                         <span class="icon-bar"></span>
   				</button>
 
-                            <a href="" class="navbar-brand"><img src="src\images\logoAT.png" width="100" height="57"></a>
+                            <a href="" class="navbar-brand"><img src="src\images\logoc.png" width="60"></a>
   			</div><!-- Navbar Header-->
   			<div class="collapse navbar-collapse" id="navbar-collapse">
   				
   				<ul class="nav navbar-nav navbar-right">
-  					<li><a href="#feedback">Comentarios</a> 
+
+                                        <li ><a ui-sref="home">Inicio</a> 
+					<li><a href="#feedback">Comentarios</a> 
   					<li><a href="#gallery">Galeria</a> 
   					<li><a href="#features">Funcionalidades</a> 
   					<li><a href="#faq">FAQ</a> 
   					<li><a href="#contact">Contactanos</a>
                                         <li><a ui-sref="signup" ng-if="!isAuthenticated()">Unete!</a> 
                                         <li><a ui-sref="login">Acceder</a> 
+
   				</ul>
   			</div>
                        
   		</div><!-- End Container-->
                 
   	</nav><!-- End navbar -->
+
+        <br><br>
+        <br><br>
+        <div class="container" ui-view="mainView" ></div>
+                <br><br>
+                <br><br>
+   
+
         
         <!-- jumbotron-->
 
@@ -461,40 +479,38 @@
           <h2>Contactanos<small> ¿En qué podemos ayudarte?</small></h2>
         </div>
         </div><!-- End Page Header -->
+
         <footer>
             <div class="container-fluid padding">
                 <div class="row text-center">
                     <div class="col-md-4"> 
-                        <img src="src\images\logoPrueba.png" width="160" height="43">
-                        <hr class="light">
-                        <p>555-555-555</p>
-                        <p>email@myemail.com</p>
-                        <p>100 Street Name</p>
-                        <p>City, State, 00000</p>
+                        
+                        <img src="src\images\logotipo.png" class="logo_footer" height="29">
+                        
+                        <p>(304) 250 2245</p>
+                        <p>contacto@hermes.com</p>
+                        <p>Carrera 1 18a 11</p>
+                        <p class="dorado">Bogota D.C., Colombia</p>
                     </div>
                     <div class="col-md-4">
-                        <hr class="light">
-                        <h5><b>Our Hours</b></h5>
-                        <hr class="light">
-                        <p>Monday: 9am - 5am</p>
-                        <p>Saturday: 9am - 5am</p>
-                        <p>Sunday: Closed</p>
-                        <h5><b>&copy; correos.com</b></h5>
+                         <br> <br> <br>
+                         <h1 class="dorado"><b>&copy; Hermes</b></h1>
                     </div>
                     <div class="col-md-4">
-                        <hr class="light">
-                        <h5><b>Our Places</b></h5>
-                        <hr class="light">
-                        <p>City, State, 00000</p>
-                        <p>City, State, 00000</p>
-                        <p>City, State, 00000</p>
-                </div>
+                        <br>
+                        <h4 class="dorado"><b>Horarios</b></h4>
+                        <br>
+                        <p>Lun - Vie: 7am - 5pm</p>
+                        <p>Sab: 9am - 3pm</p>
+                       
+                    </div>
+                    
                     
             </div>
             </div>
         </footer>
 
-        
+
         
         <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
 	<!-- Latest compiled and minified JavaScript -->
