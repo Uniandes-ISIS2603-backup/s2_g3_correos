@@ -27,7 +27,8 @@ public class ClienteEntity implements Serializable {
     private String nombre; // nombre del cliente
     private String correo; // correo del cliente
     private String telefono; // telefono del cliente
-   
+    private String password;
+
     @PodamExclude
     @OneToMany(mappedBy = "cliente", cascade = CascadeType.PERSIST, orphanRemoval = true)
     private List<BonoEntity> bonos;
@@ -184,5 +185,12 @@ public class ClienteEntity implements Serializable {
         this.reservas = reservas;
     }
     
-    
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+   
 }

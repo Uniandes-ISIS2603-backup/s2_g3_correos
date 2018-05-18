@@ -48,6 +48,7 @@ public class MensajeroEntity implements Serializable {
     private String celular;
     private Double calificacionPromedio;
     private boolean ocupado;
+    private String password;
     
     
     @PodamExclude
@@ -250,6 +251,16 @@ public class MensajeroEntity implements Serializable {
     public void agregarEnvio(EnvioEntity envio)
     {
         this.envios.add(envio);
+    }
+    
+    public String getPassword()
+    {
+        return this.password;
+    }
+    
+    public void setPassword(String password)
+    {
+        this.password=password;
     }
     
 }

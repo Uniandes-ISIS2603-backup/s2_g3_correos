@@ -87,11 +87,11 @@ insert into clienteentity_tarjetacreditoentity(clienteentity_id,tarjetacreditoen
 insert into clienteentity_tarjetacreditoentity(clienteentity_id,tarjetacreditoentity_id) values(10003,10007);
 insert into clienteentity_tarjetacreditoentity(clienteentity_id,tarjetacreditoentity_id) values(10005,10006);
 
-insert into MensajeroEntity(id,calificacionPromedio,celular,correo,nombre,ocupado,cuenta_id) values (10001,0.0,'3124456739','mensajero10001@correo.com','Mensaero10001',0,10001);
-insert into MensajeroEntity(id,calificacionPromedio,celular,correo,nombre,ocupado,cuenta_id) values (10002,0.0,'3124456733','mensajero10002@correo.com', 'Mensaero10002',0,10002);
-insert into MensajeroEntity(id,calificacionPromedio,celular,correo,nombre,ocupado,cuenta_id) values (10003,0.0,'3124456734','mensajero10003@correo.com','Mensaero10003',0,10003);
-insert into MensajeroEntity(id,calificacionPromedio,celular,correo,nombre,ocupado,cuenta_id) values (10004,0.0,'3124456735','mensajero10004@correo.com', 'Mensaero10004',0,10004);
-insert into MensajeroEntity(id,calificacionPromedio,celular,correo,nombre,ocupado,cuenta_id) values (10005,0.0,'3124456736','mensajero10005@correo.com', 'Mensaero10005',0,10005);
+insert into MensajeroEntity(id,calificacionPromedio,celular,correo,nombre,ocupado,cuenta_id,password) values (10001,0.0,'3124456739','mensajero10001@correo.com','Mensajero10001',0,10001, 'mensajero');
+insert into MensajeroEntity(id,calificacionPromedio,celular,correo,nombre,ocupado,cuenta_id,password) values (10002,0.0,'3124456733','mensajero10002@correo.com', 'Mensajero10002',0,10002,'mensajero');
+insert into MensajeroEntity(id,calificacionPromedio,celular,correo,nombre,ocupado,cuenta_id,password) values (10003,0.0,'3124456734','mensajero10003@correo.com','Mensajero10003',0,10003,'mensajero');
+insert into MensajeroEntity(id,calificacionPromedio,celular,correo,nombre,ocupado,cuenta_id,password) values (10004,0.0,'3124456735','mensajero10004@correo.com', 'Mensajero10004',0,10004,'mensajero');
+insert into MensajeroEntity(id,calificacionPromedio,celular,correo,nombre,ocupado,cuenta_id,password) values (10005,0.0,'3124456736','mensajero10005@correo.com', 'Mensajero10005',0,10005,'mensajero');
 
 insert into TransporteEntity(id,activo,capacidad,tipo) values (10001,0,6,'carro');
 insert into TransporteEntity(id,activo,capacidad,tipo) values (10002,0,7,'moto');
