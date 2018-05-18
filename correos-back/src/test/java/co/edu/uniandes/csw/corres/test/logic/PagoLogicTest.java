@@ -36,25 +36,42 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
  */
 @RunWith(Arquillian.class)
 public class PagoLogicTest {
-    
-     private PodamFactory factory = new PodamFactoryImpl();
+   
+    /**
+     * fabrica
+     */
+    private PodamFactory factory = new PodamFactoryImpl();
 
+    /**
+     * logica de pago 
+     */
       @Inject
     private PagoLogic pagoLogic;
 
-    
+    /**
+     * entity manager 
+     */
     @PersistenceContext
     private EntityManager em;
 
  
+    /**
+     * user transaction 
+     */
     @Inject
     private UserTransaction utx;
 
   
+    /**
+     * lista de pagos 
+     */
     private List<PagoEntity> data = new ArrayList<PagoEntity>();
 
 
-    
+    /**
+     * crea el deployement 
+     * @return 
+     */
     @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)

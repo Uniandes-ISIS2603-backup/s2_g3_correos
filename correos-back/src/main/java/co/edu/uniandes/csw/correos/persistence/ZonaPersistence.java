@@ -21,8 +21,14 @@ import javax.persistence.TypedQuery;
 @Stateless
 public class ZonaPersistence {
 
+    /**
+     * logger
+     */
     private static final Logger LOGGER = Logger.getLogger(CalificacionPersistence.class.getName());
 
+    /**
+     * entity manager 
+     */
     @PersistenceContext(unitName = "CorreosPU")
     protected EntityManager em;
 

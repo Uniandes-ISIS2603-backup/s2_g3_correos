@@ -36,9 +36,25 @@ import co.edu.uniandes.csw.correos.entities.CuentaBancariaEntity;
  * @author a.silvag
  */
 public class CuentaBancariaDTO {
+    
+    /**
+     * id de la cuenta
+     */
 private long id;
+
+/**
+ * numero de la cuenta 
+ */
 private String numero;
+
+/**
+ * banco de la cuenta 
+ */
 private String banco;
+
+/**
+ * tipo de tarjeta 
+ */
 private String tipoTarjeta;
 
 /**

@@ -23,15 +23,27 @@ import uk.co.jemos.podam.common.PodamStrategyValue;
 public class EventoEntity implements Serializable{
     
 
+    /**
+     * ubicacion del evento
+     */
     private Long ubicacion;
    
+    /**
+     * detalle del evento
+     */
     @PodamStrategyValue(ThreeWordStrategy.class)
     private String detalle;
     
+    /**
+     * envio asociado al evento 
+     */
     @PodamExclude
     @ManyToOne
     private EnvioEntity envio;
     
+    /**
+     * id del evento
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

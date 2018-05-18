@@ -22,40 +22,23 @@ import javax.persistence.TypedQuery;
 @Stateless
 public class BonoPersistance {
     
+    /**
+     * logger
+     */
       private static final Logger LOGGER = Logger.getLogger(BonoPersistance.class.getName());
       
+      /**
+       * entity manager
+       */
       @PersistenceContext(unitName = "CorreosPU")
       protected EntityManager em;
       
-      /**
-     * Buscar un bono
-     * 
-     * Busca si hay algun bono asociado a un cliente y con un ID específico
-     * @param clienteid El ID del cliente con respecto al cual se busca
-     * @param bonoid El ID del bono buscada
-     * @return El bono encontrada o null. Nota: Si existe uno o más bonos 
-     * devuelve siempre el primero que encuentra
-     */
-      
-      /**
-       * public BonoEntity find(Long clienteid, Long bonoid) {
-        TypedQuery<BonoEntity> q = em.createQuery("select p from BonoEntity p where (p.cliente.id = :bookid) and (p.id = :reviewid)", BonoEntity.class);
-        q.setParameter("bookid", clienteid);
-        q.setParameter("reviewid", bonoid);
-        List<BonoEntity> results = q.getResultList();
-        BonoEntity review = null;
-        if (results == null) {
-            review = null;
-        } else if (results.isEmpty()) {
-            review = null;
-        } else if (results.size() >= 1) {
-            review = results.get(0);
-        }
 
-        return review;
-    }
+      /**
+       * metodo find
+       * @param id que se va a buscar 
+       * @return un bono entity 
        */
-      
       public BonoEntity find(Long id)
     {
         return em.find(BonoEntity.class, id);

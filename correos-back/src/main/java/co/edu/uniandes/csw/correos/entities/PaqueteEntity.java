@@ -27,24 +27,51 @@ import uk.co.jemos.podam.common.PodamStrategyValue;
 @Entity
 public class PaqueteEntity implements Serializable{        
    
+    /**
+     * dimension del paquete 1
+     */
    @PodamStrategyValue(PositiveIntegerStrategy.class)
    private Double dimensionA;
+   
+   /**
+    * dimension del paquete 2
+    */
    @PodamStrategyValue(PositiveIntegerStrategy.class)
    private Double dimensionB;
+   
+   /**
+    * dimension del pauete 3
+    */
    @PodamStrategyValue(PositiveIntegerStrategy.class)
    private Double dimensionC;
+   /**
+    * peso del paquete 
+    */
    @PodamStrategyValue(PositiveIntegerStrategy.class)
    private Double peso;
+   
+   /**
+    * tipo de paquete 
+    */
    private String tipo;
 
+   /**
+    * relacion con envio 
+    */
    @PodamExclude
    @ManyToOne (fetch = FetchType.EAGER)
    private EnvioEntity envio; 
 
+   /**
+    * relacion con detalle
+    */
    @PodamExclude
    @OneToOne (cascade=CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
    private DetallePaqueteEntity detalle;  
    
+   /**
+    * id del paquete
+    */
    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

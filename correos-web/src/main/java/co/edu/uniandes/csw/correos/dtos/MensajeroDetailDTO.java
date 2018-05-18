@@ -40,11 +40,26 @@ import java.util.List;
  */
 public class MensajeroDetailDTO extends MensajeroDTO
 {   
-    
+    /**
+     * lista de transportes
+     */
     private List<TransporteDTO> transportes= new ArrayList<>();
+    /**
+     * cueta bancaria 
+     */
     private CuentaBancariaDTO cuentaBancaria;
+    /**
+     * envios 
+     */
     private List<EnvioDTO> envios=new ArrayList<>();
+    /**
+     * lista de comentaios
+     */
     private List<CalificacionDTO> comentarios=new ArrayList<>();
+    
+    /**
+     * lista de zonas 
+     */
     private List<ZonaDTO> zonas= new ArrayList<>();
     
     /**

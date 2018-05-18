@@ -38,12 +38,12 @@ import co.edu.uniandes.csw.correos.entities.PaqueteEntity;
   */
  public class PaqueteDTO {
    
-    private long idPaquete; 
-    private String tipo;
-    private double peso;    
-    private double dimensionA;
-    private double dimensionB;
-    private double dimensionC;
+    private long idPaquete; // id del paquete
+    private String tipo; // tipo del paquete 
+    private double peso;    // pero del paquete
+    private double dimensionA; // dimension1 del paquete
+    private double dimensionB; // dimension 2 del paquete
+    private double dimensionC; // dimensaion 3 del paquete 
 
     /**
      * constructor por defecto

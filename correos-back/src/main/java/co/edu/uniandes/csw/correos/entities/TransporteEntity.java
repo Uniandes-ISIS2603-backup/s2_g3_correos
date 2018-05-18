@@ -38,14 +38,31 @@ import uk.co.jemos.podam.common.PodamExclude;
 @Entity
 public class TransporteEntity implements Serializable {
     
+    /**
+     * string que define el tipo 
+     */
     private String tipo;
+    
+    /**
+     * capacidad del transporte
+     */
     private Double capacidad;
+    
+    /**
+     * boolean que decide si el transpote esta activo o no 
+     */
     private Boolean activo;
     
+    /**
+     * asociacion con mensajero 
+     */
     @PodamExclude
     @ManyToOne
     private MensajeroEntity mensajero;
     
+    /**
+     * id del transporte 
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
