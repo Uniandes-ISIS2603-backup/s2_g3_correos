@@ -95,14 +95,14 @@ public class PaqueteEntity implements Serializable{
     /**
      * @return the detalle
      */
-    public DetallePaqueteEntity getDetallePaquete() {
+    public DetallePaqueteEntity getDetalle() {
         return detalle;
     }
 
     /**
      * @param detalle the detalles to set
      */
-    public void setDetallePaquete(DetallePaqueteEntity detalle) {
+    public void setDetalle(DetallePaqueteEntity detalle) {
         this.detalle = detalle;
     }
     

@@ -48,6 +48,7 @@ public class MensajeroEntity implements Serializable, Comparable {
     private String celular;
     private Double calificacionPromedio;
     private boolean ocupado;
+    private String password;
     
     
     @PodamExclude
@@ -252,6 +253,7 @@ public class MensajeroEntity implements Serializable, Comparable {
         this.envios.add(envio);
     }
     
+
     
     @Override
     public int compareTo(Object o) {
@@ -261,4 +263,16 @@ public class MensajeroEntity implements Serializable, Comparable {
     public int compareTo2(MensajeroEntity pMensajero){
         return this.calificacionPromedio< pMensajero.calificacionPromedio?-1:this.calificacionPromedio>pMensajero.calificacionPromedio?1:0;
     }
+
+    public String getPassword()
+    {
+        return this.password;
+    }
+    
+    public void setPassword(String password)
+    {
+        this.password=password;
+    }
+    
+
 }

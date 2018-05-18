@@ -149,12 +149,19 @@
         <script src="src/modules/tarjetasCredito/update/tarjetasCredito.update.ctrl.js" type="text/javascript"></script>
         <script src="src/modules/tarjetasCredito/delete/tarjetasCredito.delete.ctrl.js" type="text/javascript"></script>
 
+                <!-- Login -->
+        <script src="src/modules/login/login.mod.js" type="text/javascript"></script>
+        <script src="src/modules/login/login.ctrl.js" type="text/javascript"></script>
+        
         <!-- Bonos -->
         <script src="src/modules/bonos/bonos.mod.js" type="text/javascript"></script>
-        <script src="src/modules/bonos/bonos.ctrl.js" type="text/javascript"></script>
+        <script src="src/modules/bonos/bonos.ctrl.js" type="text/javascript"></script>       
         <script src="src/modules/bonos/create/bonos.create.ctrl.js" type="text/javascript"></script>
         <script src="src/modules/bonos/update/bonos.update.ctrl.js" type="text/javascript"></script>
         <script src="src/modules/bonos/delete/bonos.delete.ctrl.js" type="text/javascript"></script>
+        <script src="src/modules/bonos/createAmigo/bonosAmigo.create.ctrl.js" type="text/javascript"></script>
+        
+
         
     </head>
     
@@ -177,17 +184,302 @@
   			<div class="collapse navbar-collapse" id="navbar-collapse">
   				
   				<ul class="nav navbar-nav navbar-right">
+
                                         <li ><a ui-sref="home">Inicio</a> 
+					<li><a href="#feedback">Comentarios</a> 
+  					<li><a href="#gallery">Galeria</a> 
+  					<li><a href="#features">Funcionalidades</a> 
+  					<li><a href="#faq">FAQ</a> 
+  					<li><a href="#contact">Contactanos</a>
+                                        <li><a ui-sref="signup" ng-if="!isAuthenticated()">Unete!</a> 
+                                        <li><a ui-sref="login">Acceder</a> 
+
   				</ul>
   			</div>
+                       
   		</div><!-- End Container-->
+                
   	</nav><!-- End navbar -->
+
         <br><br>
         <br><br>
         <div class="container" ui-view="mainView" ></div>
                 <br><br>
                 <br><br>
    
+
+        
+        <!-- jumbotron-->
+
+  	<div class="jumbotron">
+  		<div class="container text-center">
+  			<h1>Bienvenido a Correos!</h1>
+  			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse consectetur </p>
+
+  			<div class="btn-group">
+
+  				<a ui-sref="mensajerosList" class="btn btn-lg btn-info" ng-if="isAuthenticated()">Mensajeros</a>
+  				<a ui-sref="clientesList" class="btn btn-lg btn-info">Clientes</a>
+  				<a ui-sref="reservasList" class="btn btn-lg btn-info">Reservas</a>
+                                <a ui-sref="cuentasList" class="btn btn-lg btn-info">Cuentas</a>
+                                <a ui-sref="enviosList" class="btn btn-lg btn-info">Envios</a>
+                                <a ui-sref="zonasList" class="btn btn-lg btn-info">Zonas</a>
+
+  			</div>
+  		</div><!-- End container -->
+  	</div><!-- End jumbotron-->         
+         <div ui-view="mainView" ></div>
+        <!-- Feedback-->
+  	<div class="container">
+  		<section>
+  			<div class="page-header" id="feedback">
+  				<h2>Comentarios.<small> Conoce la opinion de los clientes satisfechos con el servicio de Correos</small></h2>
+  			</div>
+
+  			<div class="row">
+  				<div class="col-md-4">
+  					<blockquote>
+  						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi gravida quam ac ante rutrum, in mollis ligula mattis. Integer nulla nisi, ullamcorper et posuere vel</p>
+  						<footer class="blockquote-footer" style="color:white">Someone famous in <cite title="Source Title">Source Title</cite></footer>
+
+  					</blockquote>
+  				</div>
+  				<div class="col-md-4">
+  					<blockquote>
+  						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi gravida quam ac ante rutrum, in mollis ligula mattis. Integer nulla nisi, ullamcorper et posuere vel</p>
+  						<footer class="blockquote-footer" style="color:white">Someone famous in <cite title="Source Title">Source Title</cite></footer>
+  					</blockquote>
+  				</div>
+  				<div class="col-md-4">
+  					<blockquote>
+  						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi gravida quam ac ante rutrum, in mollis ligula mattis. Integer nulla nisi, ullamcorper et posuere vel</p>
+  						<footer class="blockquote-footer" style="color:white">Someone famous in <cite title="Source Title">Source Title</cite></footer>
+  					</blockquote>
+  				</div>
+  			</div><!-- End row -->
+  		</section>
+  	</div><!--End Container-->
+
+<!-- call to action -->
+	<section>
+		<div class="well">
+			<div class="container text-center">
+				<h3>Conviertete en miembro Premium</h3>
+				<p>Ingresa tu nombre y correo electronico</p>
+
+				<form action="" class="form-inline">
+					<div class="form-group">
+						<label for="subscription">Suscribete</label>
+						<input type="text" class="form-control" id="subscription" placeholder="Nombre">
+					</div>
+					<div class="form-group">
+						<label for="email">Email</label>
+						<input type="text" class="form-control" id="email" placeholder="Ingresa tu Email">
+					</div>
+					<button type="submit" class="btn btn-default">Quiero ser Premium</button>
+					<hr>
+				</form>
+
+
+			</div><!-- end Container-->
+
+		</div><!-- end well-->
+	</section><!-- Call to action -->
+        
+        <!-- Gallery -->
+	<div class="container">
+		<section>
+			<div class="page-header" id="gallery">
+  				<h2>Galeria.<small> Aprecia nuestras mejores fotos</small></h2>
+  			</div>
+
+  			<div class="carousel slide" id="screenshot-carousel" data-ride="carousel">
+  				<ol class="carousel-indicators">
+  					<li data-target="#screenshot-carousel" data-slide-to="0" class="active"></li>
+  					<li data-target="#screenshot-carousel" data-slide-to="1"></li>
+  					<li data-target="#screenshot-carousel" data-slide-to="2"></li>
+  					<li data-target="#screenshot-carousel" data-slide-to="3"></li>
+  				</ol>
+  				<div class="carousel-inner">
+  					<div class="item active">
+  						<img src="src\images\regalito.jpg" alt="Text of the image">
+  						<div class="carousel-caption">
+  							<h3>Encabezado regalito</h3>
+  							<p>This is the caption</p>
+  						</div>
+  					</div>
+  					<div class="item">
+  						<img src="src\images\mensajero.jpg" alt="Text of the image">
+  						<div class="carousel-caption">
+  							<h3>Encabezado menajero</h3>
+  							<p>This is the caption</p>
+  						</div>
+  					</div>
+  					<div class="item">
+  						<img src="src\images\mapa.jpg" alt="Text of the image">
+  						<div class="carousel-caption">
+  							<h3>Encabezado mapa</h3>
+  							<p>This is the caption</p>
+  						</div>
+  					</div>
+  					<div class="item">
+  						<img src="src\images\calle.jpg" alt="Text of the image">
+  						<div class="carousel-caption">
+  							<h3>Encabezado calle</h3>
+  							<p>This is the caption</p>
+  						</div>
+  					</div>
+
+  				</div><!-- End Carousel inner -->
+  				<a href="#screenshot-carousel" class="left carousel-control" data-slide="prev">
+  					<span class="glyphicon glyphicon-chevron-left"></span>
+  				</a>
+  				<a href="#screenshot-carousel" class="right carousel-control" data-slide="next">
+  					<span class="glyphicon glyphicon-chevron-right"></span>
+  				</a>
+  			</div><!-- End Carousel -->
+
+		</section>
+        </div>
+	
+        
+        <!-- features -->
+	<div class="container">
+		<section>
+			<div class="page-header" id="features">
+  				<h2>Funcionalidades.<small> Algunas de las funciones más increibles de nuestro servicio</small></h2>
+  			</div><!-- End Page Header -->
+
+  			<div class="row">
+  				<div class="col-sm-8">
+  					<h3>Este es el encabezado</h3>
+  					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam mauris tortor, eleifend sit amet fringilla ac, tincidunt id massa. Proin et odio mattis, venenatis lacus vel, faucibus elit</p>
+  				</div>
+  				<div class="col-sm-4">
+  					<img src="src\images\fondoInicio.jpg" class="img-responsive" alt="image">
+  				</div>
+  			</div><!-- End row -->
+  			<div class="row">
+  				<div class="col-sm-8">
+  					<h3>Este es el encabezado</h3>
+  					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam mauris tortor, eleifend sit amet fringilla ac, tincidunt id massa. Proin et odio mattis, venenatis lacus vel, faucibus elit</p>
+  				</div>
+  				<div class="col-sm-4">
+  					<img src="src\images\celular.jpg" class="img-responsive" alt="image">
+  				</div>
+  			</div>
+  			<div class="row">
+  				<div class="col-sm-8">
+  					<h3>Este es el encabezado</h3>
+  					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam mauris tortor, eleifend sit amet fringilla ac, tincidunt id massa. Proin et odio mattis, venenatis lacus vel, faucibus elit</p>
+  				</div>
+  				<div class="col-sm-4">
+  					<img src="src\images\tarjeta.jpg" class="img-responsive" alt="image">
+  				</div>
+  			</div>
+
+  			<hr>
+
+  			<div class="row">
+  				<div class="col-sm-4">
+  					<div class="panel panel-default text-center">
+  						<div class="panel-body">
+  							<span class="glyphicon glyphicon-ok"></span>
+  							<h4>Este es el encabezado</h4>
+  							<p>Nam velit est, tempor vel posuere et, auctor a lectus. Aenean gravida, est accumsan dictum rhoncus, lectus mi suscipit lacus, suscipit accumsan augue tellus vitae dolor. Morbi in euismod dui</p>
+  						</div>
+  					</div>
+  				</div>
+
+  				<div class="col-sm-4">
+  					<div class="panel panel-default text-center">
+  						<div class="panel-body">
+  							<span class="glyphicon glyphicon-star"></span>
+  							<h4>Este es el encabezado</h4>
+  							<p>Nam velit est, tempor vel posuere et, auctor a lectus. Aenean gravida, est accumsan dictum rhoncus, lectus mi suscipit lacus, suscipit accumsan augue tellus vitae dolor. Morbi in euismod dui</p>
+  						</div>
+  					</div>
+  				</div>
+
+  				<div class="col-sm-4">
+  					<div class="panel panel-default text-center">
+  						<div class="panel-body">
+  							<span class="glyphicon glyphicon-play-circle"></span>
+  							<h4>Este es el encabezado</h4>
+  							<p>Nam velit est, tempor vel posuere et, auctor a lectus. Aenean gravida, est accumsan dictum rhoncus, lectus mi suscipit lacus, suscipit accumsan augue tellus vitae dolor. Morbi in euismod dui</p>
+  						</div>
+  					</div>
+  				</div>
+  			</div><!-- end row -->
+
+		</section>
+	</div><!-- End Container -->
+        
+        <!-- Faq -->
+
+    <div class="container">
+      <section>
+        <div class="page-header" id="faq">
+          <h2>FAQ.<small> Atentos a tus inquietudes</small></h2>
+        </div><!-- End Page Header -->
+
+        <div class="panel-group" id="accordion">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <div class="panel-title">
+                <a href="!#collapse-1" data-toggle="collapse" data-parent="#accordion">
+                  Pregunta uno?
+                </a>
+              </div><!-- End panel title -->
+              <div id="collapse-1" class="panel-collapse collapse">
+                <div class="panel-body">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec egestas non urna in fringilla. Praesent consequat est at feugiat faucibus
+                </div>
+              </div><!-- End Panel collapse -->
+            </div>
+          </div>
+
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <div class="panel-title">
+                <a href="!#collapse-2" data-toggle="collapse" data-parent="#accordion">
+                  Pregunta Dos?
+                </a>
+              </div><!-- End panel title -->
+              <div id="collapse-2" class="panel-collapse collapse">
+                <div class="panel-body">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec egestas non urna in fringilla. Praesent consequat est at feugiat faucibus
+                </div>
+              </div><!-- End Panel collapse -->
+            </div>
+          </div>
+
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <div class="panel-title">
+                <a href="!#collapse-3" data-toggle="collapse" data-parent="#accordion">
+                  Pregunta Tres?
+                </a>
+              </div><!-- End panel title -->
+              <div id="collapse-3" class="panel-collapse collapse">
+                <div class="panel-body">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec egestas non urna in fringilla. Praesent consequat est at feugiat faucibus
+                </div>
+              </div><!-- End Panel collapse -->
+            </div>
+          </div>
+        </div><!-- End panel group -->
+
+      </section>
+    </div><!-- End container -->
+        
+        <!-- Contact Us -->
+        <div class="container">
+        <div class="page-header" id="contact">
+          <h2>Contactanos<small> ¿En qué podemos ayudarte?</small></h2>
+        </div>
+        </div><!-- End Page Header -->
+
         <footer>
             <div class="container-fluid padding">
                 <div class="row text-center">

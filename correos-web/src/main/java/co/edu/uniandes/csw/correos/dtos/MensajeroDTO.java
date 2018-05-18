@@ -64,7 +64,7 @@ public class MensajeroDTO {
     private String correo;
     private Double calificacionPromedio;
     private Boolean ocupado;
-    
+    private String password;
     /**
      * Constructor por defecto
      */
@@ -84,7 +84,16 @@ public class MensajeroDTO {
         this.correo=entity.getCorreo();
         this.nombre=entity.getNombre();
         this.ocupado=entity.isOcupado();
+        this.password=entity.getPassword();
     } 
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
     
     /**
      * @return el ID del mensajero
@@ -185,6 +194,7 @@ public class MensajeroDTO {
         entity.setCorreo(this.correo);
         entity.setId(this.id);
         entity.setOcupado(this.ocupado);
+        entity.setPassword(password);
         return entity;
     } 
 }

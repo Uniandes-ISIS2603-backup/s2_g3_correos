@@ -67,23 +67,23 @@ insert into ClienteEntity(id,nombre,correo,telefono) values (10008,'Rubby Casall
 insert into ClienteEntity(id,nombre,correo,telefono) values (10009,'Andres Mejia','usuario9@uniandes.edu.co','3999999999');
 insert into ClienteEntity(id,nombre,correo,telefono) values (10010,'Daniel Torres','usuario10@uniandes.edu.co','3000000000');
 
-insert into TarjetaCreditoEntity(id,numero,mes,año,cliente_id) values (10001,'1234123412341234','01','2021',10001);
-insert into TarjetaCreditoEntity(id,numero,mes,año,cliente_id) values (10002,'2345234523452345','02','2022',10002);
-insert into TarjetaCreditoEntity(id,numero,mes,año,cliente_id) values (10003,'3456345634563456','03','2023',10003);
-insert into TarjetaCreditoEntity(id,numero,mes,año,cliente_id) values (10004,'4567456745674567','04','2024',10004);
-insert into TarjetaCreditoEntity(id,numero,mes,año,cliente_id) values (10005,'5678567856785678','05','2025',10005);
-insert into TarjetaCreditoEntity(id,numero,mes,año,cliente_id) values (10006,'1234123412341234','06','2026',10005);
-insert into TarjetaCreditoEntity(id,numero,mes,año,cliente_id) values (10007,'2345234523452345','07','2027',10003);
-insert into TarjetaCreditoEntity(id,numero,mes,año,cliente_id) values (10008,'3456345634563456','08','2028',10004);
-insert into TarjetaCreditoEntity(id,numero,mes,año,cliente_id) values (10009,'4567456745674567','09','2029',10002);
-insert into TarjetaCreditoEntity(id,numero,mes,año,cliente_id) values (10010,'5678567856785678','10','2030',10001);
+insert into TarjetaCreditoEntity(id,numero,mes,anio,cliente_id) values (10001,'1234123412341234','01','2021',10001);
+insert into TarjetaCreditoEntity(id,numero,mes,anio,cliente_id) values (10002,'2345234523452345','02','2022',10002);
+insert into TarjetaCreditoEntity(id,numero,mes,anio,cliente_id) values (10003,'3456345634563456','03','2023',10003);
+insert into TarjetaCreditoEntity(id,numero,mes,anio,cliente_id) values (10004,'4567456745674567','04','2024',10004);
+insert into TarjetaCreditoEntity(id,numero,mes,anio,cliente_id) values (10005,'5678567856785678','05','2025',10005);
+insert into TarjetaCreditoEntity(id,numero,mes,anio,cliente_id) values (10006,'1234123412341234','06','2026',10005);
+insert into TarjetaCreditoEntity(id,numero,mes,anio,cliente_id) values (10007,'2345234523452345','07','2027',10003);
+insert into TarjetaCreditoEntity(id,numero,mes,anio,cliente_id) values (10008,'3456345634563456','08','2028',10004);
+insert into TarjetaCreditoEntity(id,numero,mes,anio,cliente_id) values (10009,'4567456745674567','09','2029',10002);
+insert into TarjetaCreditoEntity(id,numero,mes,anio,cliente_id) values (10010,'5678567856785678','10','2030',10001);
 
 
-insert into MensajeroEntity(id,calificacionPromedio,celular,correo,nombre,ocupado,cuenta_id) values (10001,0.0,'3124456739','mensajero10001@correo.com','Mensaero10001',0,10001);
-insert into MensajeroEntity(id,calificacionPromedio,celular,correo,nombre,ocupado,cuenta_id) values (10002,0.0,'3124456733','mensajero10002@correo.com', 'Mensaero10002',0,10002);
-insert into MensajeroEntity(id,calificacionPromedio,celular,correo,nombre,ocupado,cuenta_id) values (10003,0.0,'3124456734','mensajero10003@correo.com','Mensaero10003',0,10003);
-insert into MensajeroEntity(id,calificacionPromedio,celular,correo,nombre,ocupado,cuenta_id) values (10004,0.0,'3124456735','mensajero10004@correo.com', 'Mensaero10004',0,10004);
-insert into MensajeroEntity(id,calificacionPromedio,celular,correo,nombre,ocupado,cuenta_id) values (10005,0.0,'3124456736','mensajero10005@correo.com', 'Mensaero10005',0,10005);
+insert into MensajeroEntity(id,calificacionPromedio,celular,correo,nombre,ocupado,cuenta_id,password) values (10001,0.0,'3124456739','mensajero10001@correo.com','Mensajero10001',0,10001, 'mensajero');
+insert into MensajeroEntity(id,calificacionPromedio,celular,correo,nombre,ocupado,cuenta_id,password) values (10002,0.0,'3124456733','mensajero10002@correo.com', 'Mensajero10002',0,10002,'mensajero');
+insert into MensajeroEntity(id,calificacionPromedio,celular,correo,nombre,ocupado,cuenta_id,password) values (10003,0.0,'3124456734','mensajero10003@correo.com','Mensajero10003',0,10003,'mensajero');
+insert into MensajeroEntity(id,calificacionPromedio,celular,correo,nombre,ocupado,cuenta_id,password) values (10004,0.0,'3124456735','mensajero10004@correo.com', 'Mensajero10004',0,10004,'mensajero');
+insert into MensajeroEntity(id,calificacionPromedio,celular,correo,nombre,ocupado,cuenta_id,password) values (10005,0.0,'3124456736','mensajero10005@correo.com', 'Mensajero10005',0,10005,'mensajero');
 
 insert into TransporteEntity(id,activo,capacidad,tipo) values (10001,0,6,'carro');
 insert into TransporteEntity(id,activo,capacidad,tipo) values (10002,0,7,'moto');
@@ -117,16 +117,15 @@ insert into Envioentity_Paqueteentity(envio_id,paquete_id) values(10004,10004);
 insert into Envioentity_Paqueteentity(envio_id,paquete_id) values(10003,10002);
 insert into Envioentity_Paqueteentity(envio_id,paquete_id) values(10002,10003);
 
-insert into ReservaEntity (id,fecha,hora,CLIENTE_ID) values(10001, '2020-10-11 03:00:00','3PM',10005);
-insert into ReservaEntity (id,fecha,hora,CLIENTE_ID) values(10002, '2020-10-12 10:00:00','3PM',10004);
-insert into ReservaEntity (id,fecha,hora,CLIENTE_ID) values(10003, '2020-10-13 24:00:00','3PM',10003);
-insert into ReservaEntity (id,fecha,hora,CLIENTE_ID) values(10004, '2020-10-14 07:00:00','3PM',10002);
-insert into ReservaEntity (id,fecha,hora,CLIENTE_ID) values(10005, '2020-10-15 02:34:22','3PM',10001);
-insert into ReservaEntity (id,fecha,hora,CLIENTE_ID) values(10006, '2020-10-16 01:00:00','3PM',10002);
-insert into ReservaEntity (id,fecha,hora,CLIENTE_ID) values(10007, '2020-10-17 09:00:00','3PM',10001);
-insert into ReservaEntity (id,fecha,hora,CLIENTE_ID) values(10008, '2020-10-18 15:00:00','3PM',10003);
-insert into ReservaEntity (id,fecha,hora,CLIENTE_ID) values(10009, '2020-10-19 22:00:00','3PM',10004);
-insert into ReservaEntity (id,fecha,hora,CLIENTE_ID) values(100010,'2020-10-20 11:00:00','3PM',10005);
+insert into ReservaEntity (id,fecha,horaInicio,horaFinal,direccionEntrega,direccionRecogida,estado,CLIENTE_ID) values(10001, '2020-10-11 03:00:00',10000,10001,'calle 114 #30-40','calle 116 # 40-20','ESTADO_INICIAL',10005);
+insert into ReservaEntity (id,fecha,horaInicio,horaFinal,direccionEntrega,direccionRecogida,estado,CLIENTE_ID) values(10002, '2020-10-11 03:00:00',10000,10001,'calle 114 #30-40','calle 116 # 40-20','ESTADO_INICIAL',10005);
+insert into ReservaEntity (id,fecha,horaInicio,horaFinal,direccionEntrega,direccionRecogida,estado,CLIENTE_ID) values(10003, '2020-10-11 03:00:00',10000,10001,'calle 114 #30-40','calle 116 # 40-20','ESTADO_INICIAL',10005);
+insert into ReservaEntity (id,fecha,horaInicio,horaFinal,direccionEntrega,direccionRecogida,estado,CLIENTE_ID) values(10004, '2020-10-11 03:00:00',10000,10001,'calle 114 #30-40','calle 116 # 40-20','ESTADO_INICIAL',10005);
+insert into ReservaEntity (id,fecha,horaInicio,horaFinal,direccionEntrega,direccionRecogida,estado,CLIENTE_ID) values(10005, '2020-10-11 03:00:00',10000,10001,'calle 114 #30-40','calle 116 # 40-20','ESTADO_INICIAL',10005);
+insert into ReservaEntity (id,fecha,horaInicio,horaFinal,direccionEntrega,direccionRecogida,estado,CLIENTE_ID) values(10006, '2020-10-11 03:00:00',10000,10001,'calle 114 #30-40','calle 116 # 40-20','ESTADO_INICIAL',10005);
+insert into ReservaEntity (id,fecha,horaInicio,horaFinal,direccionEntrega,direccionRecogida,estado,CLIENTE_ID) values(10007, '2020-10-11 03:00:00',10000,10001,'calle 114 #30-40','calle 116 # 40-20','ESTADO_INICIAL',10005);
+insert into ReservaEntity (id,fecha,horaInicio,horaFinal,direccionEntrega,direccionRecogida,estado,CLIENTE_ID) values(10008, '2020-10-11 03:00:00',10000,10001,'calle 114 #30-40','calle 116 # 40-20','ESTADO_INICIAL',10005);
+
 
 insert into PaqueteEntity(id,peso,tipo,dimensionA,dimensionB,dimensionC,envio_id) values (10001,40.2,'FRAGIL',40,57,62,10001);
 insert into PaqueteEntity(id,peso,tipo,dimensionA,dimensionB,dimensionC,envio_id) values (10002,8.0,'FRAGIL',21,11,7,10002);

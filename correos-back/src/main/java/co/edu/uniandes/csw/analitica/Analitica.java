@@ -12,10 +12,13 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
+import javax.ejb.Stateless;
+import javax.inject.Inject;
 /**
  *
  * @author a.silvag
  */
+@Stateless
 public class Analitica {
     
     BonoPersistance bonoP;
@@ -33,6 +36,7 @@ public class Analitica {
     TransportePersistence transporteP;
     ZonaPersistence zonaP;
   
+    @Inject
     public Analitica(BonoPersistance bp, 
             CalificacionPersistence cp, 
             ClientePersistence clp, 
@@ -62,6 +66,25 @@ public class Analitica {
         transporteP = tp;
         zonaP = zp;
     }
+
+    public Analitica() {
+        bonoP = null;
+        calificacionP = null;
+        clienteP = null;
+        cuentaP = null;
+        detalleP = null;
+        envioP = null;
+        eventoP = null;
+        mensajeroP = null;
+        pagoP = null;
+        paqueteP = null;
+        reservaP = null;
+        tarjetaP = null;
+        transporteP = null;
+        zonaP = null;
+    }
+    
+    
     
     public Double darPrecioPromedioTodosLosEnvios(){
         List<EnvioEntity> envios = envioP.findAll();
@@ -107,9 +130,10 @@ public class Analitica {
         Collections.sort(clientes);
         return clientes;
     }
-         List<MensajeroEntity> mensajeros = mensajeroP.findAll();
+         
          
         public List<MensajeroEntity> darMensajerosConMayorCalificacion(){
+            List<MensajeroEntity> mensajeros = mensajeroP.findAll();
             sort(mensajeros,0,mensajeros.size()-1);
             return mensajeros;
         }
@@ -142,6 +166,12 @@ public class Analitica {
                 counter += envio.getEventos().size();
             }
             return counter/envios.size();
+        }
+        
+        public List<CalificacionEntity> darMejoresCalificaciones(){
+            List<CalificacionEntity> clientes = calificacionP.findAll();
+            Collections.sort(clientes);
+            return clientes;
         }
         
         
