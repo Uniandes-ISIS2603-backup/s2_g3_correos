@@ -62,7 +62,10 @@ public class MensajeroEntity implements Serializable, Comparable {
      * caliicacion promedio del mensajero
      */
     private Double calificacionPromedio;
-    
+
+    private boolean ocupado;
+    private String password;
+
     /**
      * atributo que define si el mensajero esta ocupado o no 
      */
@@ -288,11 +291,16 @@ public class MensajeroEntity implements Serializable, Comparable {
         this.envios.add(envio);
     }
     
+
+
+    
+
     /**
      * metodo compare to de analitica
      * @param o
      * @return un entero que verifiaca la comprobacion 
      */
+
     @Override
     public int compareTo(Object o) {
       MensajeroEntity  pCliente= (MensajeroEntity)o;
@@ -301,4 +309,16 @@ public class MensajeroEntity implements Serializable, Comparable {
     public int compareTo2(MensajeroEntity pMensajero){
         return this.calificacionPromedio< pMensajero.calificacionPromedio?-1:this.calificacionPromedio>pMensajero.calificacionPromedio?1:0;
     }
+
+    public String getPassword()
+    {
+        return this.password;
+    }
+    
+    public void setPassword(String password)
+    {
+        this.password=password;
+    }
+    
+
 }

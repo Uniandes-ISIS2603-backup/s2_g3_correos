@@ -46,6 +46,9 @@
             $stateProvider.state('mensajeros', {
                url: '/mensajeros',
                abstract: true,
+                data: {
+                    requireLogin: false
+                },
                 views: {
                     'mainView': {
                         templateUrl: basePath + 'mensajeros.html',
@@ -57,6 +60,10 @@
                 {
                     url:'/list',
                     parent:'mensajeros',
+                    data: {
+                    requireLogin: true,
+                    roles:['administrador']
+                },
                     views:
                             {
                                 'listView':
@@ -69,6 +76,9 @@
                 {
                     url:'/create',
                     parent:'mensajeros',
+                data: {
+                    requireLogin: false
+                },
                     views:
                             {
                                 'detailView':
@@ -82,6 +92,10 @@
                 }).state('mensajeroUpdate',{
                     url:'update/{mensajeroId}',
                     parent:'mensajeros',
+                data: {
+                    requireLogin: true,
+                    roles:['mensajero']
+                },
                     param:
                             {
                                 mensajeroId:null
@@ -114,6 +128,9 @@
                 }).state('mensajeroDetail',{
                     url: '/{mensajeroId:int}/detail',
                     parent: 'mensajeros',
+                    data: {
+                    requireLogin: false
+                },
                     param: {
                         mensajeroId: null
                     },

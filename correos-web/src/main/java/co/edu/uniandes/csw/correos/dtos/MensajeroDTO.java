@@ -58,6 +58,7 @@ import co.edu.uniandes.csw.correos.entities.MensajeroEntity;
  */
 public class MensajeroDTO {
     
+<<<<<<< HEAD
     private Long id; // id del mensajero 
     private String nombre; // nombre del mensajero 
     private String celular; // celular del mensajero 
@@ -65,6 +66,15 @@ public class MensajeroDTO {
     private Double calificacionPromedio; // calificacion promedio del mensajero 
     private Boolean ocupado; // boolean que informa si esta ocupado o no 
     
+=======
+    private Long id;
+    private String nombre;
+    private String celular;
+    private String correo;
+    private Double calificacionPromedio;
+    private Boolean ocupado;
+    private String password;
+>>>>>>> f393779427d50863595ab3389a28e56a08659d33
     /**
      * Constructor por defecto
      */
@@ -84,7 +94,16 @@ public class MensajeroDTO {
         this.correo=entity.getCorreo();
         this.nombre=entity.getNombre();
         this.ocupado=entity.isOcupado();
+        this.password=entity.getPassword();
     } 
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
     
     /**
      * @return el ID del mensajero
@@ -185,6 +204,7 @@ public class MensajeroDTO {
         entity.setCorreo(this.correo);
         entity.setId(this.id);
         entity.setOcupado(this.ocupado);
+        entity.setPassword(password);
         return entity;
     } 
 }
