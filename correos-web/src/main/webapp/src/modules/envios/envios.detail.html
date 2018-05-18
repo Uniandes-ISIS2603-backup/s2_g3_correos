@@ -1,3 +1,6 @@
+<style>
+   .angular-google-map-container { height: 400px; margin-bottom: 10px; }
+</style> 
 <div class="panel panel-default"> 
     <div class="panel-body">
         <div class="row">
@@ -57,9 +60,12 @@
                     <dd>
                        <div class="panel panel-default">
       <div class="panel-body">
-        <google-map control="map.control" center="map.center" zoom="map.zoom">
-          <marker coords="marker.center"></marker>
-        </google-map>
+        <ui-gmap-google-map control="map.control" center="map.center" zoom="map.zoom">
+            <ui-gmap-marker coords="marker1.coords" options="marker1.options" events="marker1.events" idkey="1">
+            <ui-gmap-marker coords="marker2.coords" options="marker2.options" events="marker2.events" idkey="2">
+        </ui-gmap-marker>
+        </ui-gmap-google-map>
+          <br><br>
         <form class="form-horizontal" role="form">
           <div class="form-group">
             <label for="origin" class="col-sm-2 control-label">Origin</label>

@@ -8,7 +8,7 @@
                 $urlRouterProvider.otherwise("/web");
                 
             $stateProvider.state('home', {
-               url: '/index',
+               url: '/webIndex',
                 views: {
                     'mainView': {
                         templateUrl: basePath + 'web.home.html',
