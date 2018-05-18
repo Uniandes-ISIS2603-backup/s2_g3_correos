@@ -24,18 +24,28 @@ import uk.co.jemos.podam.common.PodamExclude;
 @Entity
 public class TarjetaCreditoEntity implements Serializable {
    
+    
     private String anio; // anio de vencimiento de la tarjeta
     private String numero; // numero de la tarjeta
     private String mes; // mes de vencimiento de la tarjeta
     
+    /**
+     * asociacion con pagos 
+     */
     @PodamExclude
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "tarjetaCredito")
     private List<PagoEntity> pagos;
     
+    /**
+     * asociacion con cliente 
+     */
     @PodamExclude
     @ManyToOne(fetch=FetchType.LAZY)
     private ClienteEntity cliente;
 
+    /**
+     * id del tarjeta 
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

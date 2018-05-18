@@ -36,8 +36,14 @@ import javax.persistence.TypedQuery;
 @Stateless
 public class TarjetaCreditoPersistence {
     
+    /**
+     * logger
+     */
     private static final Logger LOGGER= Logger.getLogger(TarjetaCreditoPersistence.class.getName());
     
+    /**
+     * entity manager
+     */
     @PersistenceContext(unitName="CorreosPU")
     protected EntityManager em;
     

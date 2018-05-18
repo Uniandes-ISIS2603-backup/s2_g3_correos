@@ -32,21 +32,40 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
  */
 @RunWith(Arquillian.class)
 public class MensajeroLogicTest {
+    
+    /**
+     * fabrica 
+     */
     private PodamFactory factory = new PodamFactoryImpl();
     
+    /**
+     * logica del mensajero 
+     */
     @Inject
     private MensajeroLogic mensajeroLogic;
     
     
-    
+    /**
+     * entity manager 
+     */
        @PersistenceContext
     private EntityManager em;
 
+       /**
+        * user transaction 
+        */
     @Inject
     private UserTransaction utx;
 
+    /**
+     * lista de mensajeros 
+     */
     private List<MensajeroEntity> data = new ArrayList<MensajeroEntity>();
 
+    /**
+     * crea el deployement 
+     * @return 
+     */
     @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)

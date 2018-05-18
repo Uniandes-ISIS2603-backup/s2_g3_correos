@@ -21,6 +21,9 @@ import javax.persistence.TypedQuery;
 public class CalificacionPersistence {
     private static final Logger LOGGER = Logger.getLogger(CalificacionPersistence.class.getName());
 
+    /**
+     * entity manager 
+     */
     @PersistenceContext(unitName = "CorreosPU")
     protected EntityManager em;
 

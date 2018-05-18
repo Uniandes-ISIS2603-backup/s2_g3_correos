@@ -22,8 +22,14 @@ import javax.persistence.TypedQuery;
 @Stateless
 public class EnvioPersistence {
     
+    /**
+     * logger
+     */
     private static final Logger LOGGER = Logger.getLogger(EnvioPersistence.class.getName());
     
+    /**
+     * entity manager 
+     */
     @PersistenceContext(unitName="CorreosPU")
     protected EntityManager em;
     

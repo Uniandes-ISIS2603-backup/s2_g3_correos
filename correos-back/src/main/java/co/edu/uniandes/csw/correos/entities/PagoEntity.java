@@ -25,21 +25,35 @@ import uk.co.jemos.podam.common.PodamStrategyValue;
 @Entity
 public class PagoEntity implements Serializable{
     
+    /**
+     * relacion con tarjetas de credito
+     */
     @PodamExclude
     @ManyToOne
     private TarjetaCreditoEntity tarjetaCredito;
     
+    /**
+     * relacion con cuenta bancaria 
+     */
     @PodamExclude
     @ManyToOne
     private CuentaBancariaEntity cuentaBancaria;
     
-    
+    /**
+     * valor 
+     */
     @PodamStrategyValue(PositiveIntegerStrategy.class)
     private Double valor;
     
+    /**
+     * fecha del pago 
+     */
     @Temporal(TemporalType.TIMESTAMP)
     private Date fecha;
 
+    /**
+     * id del pago 
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

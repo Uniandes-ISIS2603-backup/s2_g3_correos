@@ -21,12 +21,21 @@ import uk.co.jemos.podam.common.PodamStrategyValue;
 public class CalificacionEntity implements Serializable, Comparable{
     
 
+    /**
+     * calificacion
+     */
     @PodamStrategyValue(IntegerCalificacionStrategy.class)
     private Integer calificacion;
 
 
+    /**
+     * comentario
+     */
     private String comentario;
     
+    /**
+     * id de la calificacion 
+    */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -75,6 +84,11 @@ public class CalificacionEntity implements Serializable, Comparable{
         this.comentario=comentario;
     }
     
+    /**
+     * metodo compare to de analitica
+     * @param o
+     * @return 
+     */
     @Override
     public int compareTo(Object o) {
       CalificacionEntity  pCliente= (CalificacionEntity)o;

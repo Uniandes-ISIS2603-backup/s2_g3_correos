@@ -24,11 +24,16 @@ import uk.co.jemos.podam.common.PodamExclude;
 @Entity
 public class BonoEntity implements Serializable {
     
-    
+    /**
+     * id del bono
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
+    /**
+     * cliente al que el bono esta asociado
+     */
     @PodamExclude
     @OneToOne
     private ClienteEntity cliente;
