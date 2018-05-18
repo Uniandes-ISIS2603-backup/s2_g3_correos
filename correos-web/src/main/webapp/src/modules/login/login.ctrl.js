@@ -53,7 +53,7 @@
                         $scope.users = response.data;
                     });
                 
-                console.log($scope.users);
+                console.log($scope.data);
                 var flag = false;
                 
 
@@ -71,7 +71,7 @@
                     sessionStorage.token = $scope.user.token;
                     sessionStorage.setItem("correo", $scope.user.correo);
                     sessionStorage.setItem("nombre", $scope.user.nombre);
-                    sessionStorage.setItem("rol", $scope.user.role);
+                    sessionStorage.setItem("rol", $scope.data.role);
                     $rootScope.currentUser = $scope.user.nombre; 
                 }
                 

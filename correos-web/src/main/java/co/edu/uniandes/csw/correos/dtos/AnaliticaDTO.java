@@ -24,11 +24,11 @@ public class AnaliticaDTO {
     /**
      * lista de clientes mas fieles
      */
-    private List<ClienteEntity> clientesMasFieles;
+    private List<ClienteDTO> clientesMasFieles;
     /**
      * lista de clientes que perdieron actividades hace un mes 
      */
-    private List<ClienteEntity> clientesQuePerdieronActividadHaceUnMes;
+    private List<ClienteDTO> clientesQuePerdieronActividadHaceUnMes;
     /**
      * promedio de tarjetas de credito por cliente
      */
@@ -36,7 +36,7 @@ public class AnaliticaDTO {
     /**
      * mensajeros mas productivos 
      */
-    private List<MensajeroEntity> mensajerosMasProductivos;
+    private List<MensajeroDTO> mensajerosMasProductivos;
   
     /**
      * promedio de volumen por paquete

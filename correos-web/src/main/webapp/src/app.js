@@ -24,14 +24,11 @@
         'clientesModule',
         'calificacionesModule',
         'bonosModule',
-
-
         'webModule',
+'analiticaModule',
+        'loginModule'
 
-        'loginModule',
-
-
-        'analiticaModule'
+        
        
 
 
