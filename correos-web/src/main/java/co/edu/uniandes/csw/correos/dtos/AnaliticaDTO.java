@@ -15,21 +15,63 @@ import java.util.List;
  */
 
 public class AnaliticaDTO {
-    
+    /**
+     * Precio promedio de todos los envios
+     */
     private Double precioPromedioTodosLosEnvios;
+    /**
+     * lista de clientes mas fieles
+     */
     private List<ClienteEntity> clientesMasFieles;
+    /**
+     * lista de clientes que perdieron actividades hace un mes 
+     */
     private List<ClienteEntity> clientesQuePerdieronActividadHaceUnMes;
+    /**
+     * promedio de tarjetas de credito por cliente
+     */
     private Double promedioTarjetasDeCreditoPorCliente;
+    /**
+     * mensajeros mas productivos 
+     */
     private List<MensajeroEntity> mensajerosMasProductivos;
+    /**
+     * lista de envios por hora 
+     */
     private List<ArrayList<EnvioEntity>> enviosPorHora;
+    
+    /**
+     * promedio de volumen por paquete
+     */
     private Double volumenPromedioPorPaquete;
+    /**
+     * promedio de eventos por envio 
+     */
     private Double promedioEventosPorEnvio;
+    /**
+     * lisa de mejores calificaciones
+     */
     private List<CalificacionEntity> mejoresCalificaciones;
 
+    /**
+     * constructor que se deja vacio por defecto 
+     */
     public AnaliticaDTO(){
-        
+        // se deja vacio por defecto 
     }
 
+    /**
+     * constructor 
+     * @param precioPromedioTodosLosEnvios
+     * @param clientesMasFieles
+     * @param clientesQuePerdieronActividadHaceUnMes
+     * @param promedioTarjetasDeCreditoPorCliente
+     * @param mensajerosMasProductivos
+     * @param enviosPorHora
+     * @param volumenPromedioPorPaquete
+     * @param promedioEventosPorEnvio
+     * @param mejoresCalificaciones 
+     */
     public AnaliticaDTO(Double precioPromedioTodosLosEnvios, List<ClienteEntity> clientesMasFieles, List<ClienteEntity> clientesQuePerdieronActividadHaceUnMes, Double promedioTarjetasDeCreditoPorCliente, List<MensajeroEntity> mensajerosMasProductivos, List<ArrayList<EnvioEntity>> enviosPorHora, Double volumenPromedioPorPaquete, Double promedioEventosPorEnvio, List<CalificacionEntity> mejoresCalificaciones) {
         this.precioPromedioTodosLosEnvios = precioPromedioTodosLosEnvios;
         this.clientesMasFieles = clientesMasFieles;

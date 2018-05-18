@@ -20,8 +20,14 @@ import javax.persistence.TypedQuery;
 @Stateless
 public class ReservaPersistence {
     
+    /**
+     * logger
+     */
     private static final Logger LOGGER= Logger.getLogger(ReservaPersistence.class.getName());
     
+    /**
+     * entity manager
+     */
     @PersistenceContext(unitName="CorreosPU")
     protected EntityManager em;
     

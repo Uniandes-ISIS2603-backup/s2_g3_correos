@@ -37,21 +37,39 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
 @RunWith(Arquillian.class)
 public class CuentaBancariaLogicTest {
     
+    /**
+     * fabrica
+     */
     private PodamFactory factory = new PodamFactoryImpl();
     
+    /**
+     * logica de cuenta bancaria 
+     */
     @Inject
     private CuentaBancariaLogic cuentaBancariaLogic;
     
     
-    
+    /**
+     * entity manager 
+     */
        @PersistenceContext
     private EntityManager em;
 
+       /**
+        * user transaction 
+        */
     @Inject
     private UserTransaction utx;
 
+    /**
+     * lista de cuentas bancarias 
+     */
     private List<CuentaBancariaEntity> data = new ArrayList<CuentaBancariaEntity>();
 
+    /**
+     * crea el deployement 
+     * @return 
+     */
     @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)

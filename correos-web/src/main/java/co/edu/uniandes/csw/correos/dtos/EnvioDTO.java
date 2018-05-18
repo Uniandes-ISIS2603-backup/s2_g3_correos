@@ -43,13 +43,13 @@ import java.util.Date;
   */
  public class EnvioDTO {    
 
-    private Long idEnvio; 
-    private Long horaInicio;
-    private Long horaFinal;
-    private String direccionEntrega;
-    private String direccionRecogida;
-    private String estado;
-    private Date fecha;
+    private Long idEnvio; // id del envio
+    private Long horaInicio; // hora de incio del envio 
+    private Long horaFinal; // hroa final del envio
+    private String direccionEntrega; //direccion de la entrega del envio
+    private String direccionRecogida; // direccion de recogida del envio 
+    private String estado;// estado del envio 
+    private Date fecha; // fecha 
 
     /**
      * constructor por defecto

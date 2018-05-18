@@ -41,17 +41,47 @@ import uk.co.jemos.podam.common.PodamExclude;
 @Entity
 public class ReservaEntity implements Serializable{
     
+    /**
+     * fecha de la reserva
+     */
     @Temporal(TemporalType.TIMESTAMP)
     private Date fecha;
+    
+    /**
+     * hora de incio de la reserva
+     */
     private Long horaInicio;
+    
+    /**
+     * hora del final de la reserva
+     */
     private Long horaFinal;
+    
+    /**
+     * direccion de entrega 
+     */
     private String direccionEntrega;
+    
+    /**
+     * direccion de recogida
+     */
     private String direccionRecogida;
+    
+    /**
+     * estado de la reserva
+     */
     private String estado;
     
+    /**
+     * cliente con el que se tiene asociacion 
+     */
     @PodamExclude
     @ManyToOne
     private ClienteEntity cliente;
+    /**
+     * id de la reserva
+     */
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

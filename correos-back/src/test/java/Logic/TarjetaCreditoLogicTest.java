@@ -35,17 +35,32 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
 @RunWith(Arquillian.class)
 public class TarjetaCreditoLogicTest {
     
+    /**
+     * fabrica
+     */
     private PodamFactory factory = new PodamFactoryImpl();
 
+    /**
+     * logica de tarjeta de credito 
+     */
     @Inject
     private TarjetaCreditoLogic tarjetaCreditoLogic;
 
+    /**
+     * entity manager 
+     */
     @PersistenceContext
     private EntityManager em;
 
+    /**
+     * user transaction 
+     */
     @Inject
     private UserTransaction utx;
 
+    /**
+     * lista de tarjetas de credito 
+     */
     private List<TarjetaCreditoEntity> data = new ArrayList<TarjetaCreditoEntity>();
 
     @Deployment

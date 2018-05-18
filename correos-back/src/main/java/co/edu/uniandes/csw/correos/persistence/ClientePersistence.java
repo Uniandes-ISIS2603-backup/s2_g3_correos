@@ -36,8 +36,14 @@ import javax.persistence.TypedQuery;
 @Stateless
 public class ClientePersistence {
     
+    /**
+     * logger
+     */
     private static final Logger LOGGER= Logger.getLogger(ClientePersistence.class.getName());
     
+    /**
+     * entity manager
+     */
     @PersistenceContext(unitName="CorreosPU")
     protected EntityManager em;
     
