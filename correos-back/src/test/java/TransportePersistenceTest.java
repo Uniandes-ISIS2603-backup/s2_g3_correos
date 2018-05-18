@@ -99,6 +99,9 @@ public class TransportePersistenceTest {
         em.createQuery("delete from TransporteEntity").executeUpdate();
     }
     
+    /**
+     * lista de transportes 
+     */
     private List<TransporteEntity> data = new ArrayList<TransporteEntity>();
     
     

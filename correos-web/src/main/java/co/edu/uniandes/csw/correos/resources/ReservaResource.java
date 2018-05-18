@@ -166,7 +166,7 @@ public class ReservaResource {
      */
     @GET
     @Path("{id: \\d+}")
-    public ReservaDetailDTO getReserva(@PathParam("id") Long id)
+    public ReservaDetailDTO getReserva(@PathParam("id") Long id) throws BusinessLogicException
     {
       
         if(logic.getReserva(id)==null) 
@@ -209,7 +209,7 @@ public class ReservaResource {
      */
     @DELETE
     @Path("{id: \\d+}")
-    public void deleteReserva( @PathParam("id") Long id)
+    public void deleteReserva( @PathParam("id") Long id) throws BusinessLogicException
     {
         if(logic.getReserva(id)==null) 
             throw new WebApplicationException("La Reserva con id " + id,404);

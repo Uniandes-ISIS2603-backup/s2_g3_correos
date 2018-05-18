@@ -131,7 +131,11 @@ public class ReservaPersistenceTest {
         ReservaEntity entity = em.find(ReservaEntity.class, result.getId());
 
         Assert.assertEquals(newEntity.getFecha(), entity.getFecha());
-        Assert.assertEquals(newEntity.getHora(), entity.getHora());
+        Assert.assertEquals(newEntity.getHoraInicio(), entity.getHoraInicio());
+        Assert.assertEquals(newEntity.getHoraFinal(), entity.getHoraFinal());
+        Assert.assertEquals(newEntity.getDireccionEntrga(), entity.getDireccionEntrga());
+        Assert.assertEquals(newEntity.getDireccionRecogida(), entity.getDireccionRecogida());
+        Assert.assertEquals(newEntity.getEstado(), entity.getEstado());
         
 
     }
@@ -163,8 +167,11 @@ public class ReservaPersistenceTest {
         ReservaEntity newEntity = reservaPersistence.find(entity.getId());
         Assert.assertNotNull(newEntity);
         Assert.assertEquals(newEntity.getFecha(), entity.getFecha());
-        Assert.assertEquals(newEntity.getHora(), entity.getHora());
-        
+        Assert.assertEquals(newEntity.getHoraInicio(), entity.getHoraInicio());
+        Assert.assertEquals(newEntity.getHoraFinal(), entity.getHoraFinal());
+        Assert.assertEquals(newEntity.getDireccionEntrga(), entity.getDireccionEntrga());
+        Assert.assertEquals(newEntity.getDireccionRecogida(), entity.getDireccionRecogida());
+        Assert.assertEquals(newEntity.getEstado(), entity.getEstado());
     }
     
     /**
@@ -195,7 +202,12 @@ public class ReservaPersistenceTest {
 
         Assert.assertNotNull(newEntity);
         Assert.assertEquals(newEntity.getFecha(), resp.getFecha());
-        Assert.assertEquals(newEntity.getHora(), resp.getHora());
+        Assert.assertEquals(newEntity.getHoraInicio(), resp.getHoraInicio());
+        Assert.assertEquals(newEntity.getHoraFinal(), resp.getHoraFinal());
+        Assert.assertEquals(newEntity.getDireccionEntrga(), resp.getDireccionEntrga());
+        Assert.assertEquals(newEntity.getDireccionRecogida(), resp.getDireccionRecogida());
+        Assert.assertEquals(newEntity.getEstado(), resp.getEstado());
+        
         
     }
     

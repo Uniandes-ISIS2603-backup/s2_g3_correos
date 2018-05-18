@@ -34,8 +34,18 @@ import co.edu.uniandes.csw.correos.entities.CalificacionEntity;
  * @author ed.diaz11
  */
 public class CalificacionDTO {
+    /**
+     * id de la calificacion
+     */
     private long id;
+    /**
+     * calificacion 
+     */
     private Integer calificacion;
+    
+    /**
+     * comentario 
+     */
     private String comentario ;
     
     

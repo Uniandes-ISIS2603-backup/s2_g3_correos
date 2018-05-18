@@ -35,15 +35,19 @@ import uk.co.jemos.podam.common.PodamExclude;
 
 public class DetallePaqueteEntity implements Serializable {
 
+    /**
+     * paquete que tiene la relacion 
+     */
     @PodamExclude
     @OneToOne
     private PaqueteEntity paquete;
     
 
-    // Se le quito el id ya que las demas clases, aunque esta en el UML no lo declara
-
     private String mensaje; // mensaje del paquete
 
+    /**
+     * id del detalle paquete
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

@@ -1,3 +1,4 @@
+
 /*
 MIT License
 
@@ -34,9 +35,7 @@ package co.edu.uniandes.csw.correos.dtos;
  * <pre>
  *   {
  *      "idCliente": number,
- *      "nombre": string,
- *      "correo": String,
- *      "telefono": String
+ *      "nombre: string
  *   
  *   }
  * </pre>
@@ -46,9 +45,8 @@ package co.edu.uniandes.csw.correos.dtos;
  * 
  *   {
  *      "id": 91852,
- *      "name: "Pepito Perez",
- *      "correo":"correo1@uniandes.edu.co",
- *      "telefono": "3000000000" 
+ *      "name: "Pepito Perez"
+ *     
  *   }
  *
  * </pre>
@@ -61,7 +59,9 @@ public class ClienteDTO
     private String nombre; // nombre del cliente
     private String correo; // correo del cliente
     private String telefono; //telefono del cliente
+    private String password;
 
+    
     /**
      * Constructor por defecto
      */
@@ -81,20 +81,37 @@ public class ClienteDTO
     this.nombre = entity.getNombre();
     this.correo = entity.getCorreo();
     this.telefono = entity.getTelefono();
+    this.password=entity.getPassword();
 
 }
     /**
      * metodo que transforma a entidad 
      * @return la entidad 
      */
-public ClienteEntity toEntity(){
-    ClienteEntity entity = new ClienteEntity();
-    entity.setId(this.idCliente);
-    entity.setNombre(this.nombre);
-    entity.setCorreo(this.correo);
-    entity.setTelefono(this.telefono);
-    return entity;
-}
+    public ClienteEntity toEntity(){
+        ClienteEntity entity = new ClienteEntity();
+        entity.setId(this.idCliente);
+        entity.setNombre(this.nombre);
+        entity.setCorreo(this.correo);
+        entity.setTelefono(this.telefono);
+        entity.setPassword(this.password);
+        return entity;
+    }
+    public Long getIdCliente() {
+            return idCliente;
+       }
+
+    public void setIdCliente(Long idCliente) {
+        this.idCliente = idCliente;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
 
     /**
@@ -150,7 +167,7 @@ public ClienteEntity toEntity(){
      */
     public String getTelefono()
     {
-        return telefono;
+        return correo;
     }
     
     /**

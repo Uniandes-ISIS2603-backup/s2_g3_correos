@@ -43,6 +43,9 @@
             $stateProvider.state('zonas', {
                url: '/zonas',
                abstract: true,
+                data: {
+                    requireLogin: false
+                },
                 views: {
                     'mainView': {
                         templateUrl: basePath + 'zonas.html',
@@ -53,7 +56,10 @@
             }).state('zonasList',
                 {
                     url:'/list',
-                    parent:'zonas',
+                    parent:'zonas', 
+                    data: {
+                    requireLogin: false
+                },
                     views:
                             {
                                 'listView':
@@ -66,6 +72,10 @@
                 {
                     url:'/create',
                     parent:'zonas',
+                    data: {
+                    requireLogin: true,
+                    roles:['administrador']
+                },
                     views:
                             {
                                 'detailView':
@@ -79,6 +89,10 @@
                 }).state('zonaUpdate',{
                     url:'update/{zonaId}',
                     parent:'zonas',
+                    data: {
+                    requireLogin: true,
+                    roles:['administrador']
+                },
                     param:
                             {
                                 zonaId:null
@@ -95,6 +109,10 @@
                 }).state('zonaDelete',{
                     url:'/delete/{zonaId:int}',
                     parent:'zonas',
+                    data: {
+                    requireLogin: true,
+                    roles:['administrador']
+                },
                     param:
                             {
                                 zonaId:null
@@ -111,6 +129,9 @@
                 }).state('zonaDetail',{
                     url: '/{zonaId:int}/detail',
                     parent: 'zonas',
+                    data: {
+                    requireLogin: false
+                },
                     param: {
                        zonaId: null
                     },

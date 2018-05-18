@@ -16,21 +16,70 @@ import java.util.List;
  */
 
 public class AnaliticaDTO {
-    
+    /**
+     * Precio promedio de todos los envios
+     */
     private Double precioPromedioTodosLosEnvios;
-    private List<ClienteDTO> clientesMasFieles;
-    private List<ClienteDTO> clientesQuePerdieronActividadHaceUnMes;
+
+    /**
+     * lista de clientes mas fieles
+     */
+    private List<ClienteEntity> clientesMasFieles;
+    /**
+     * lista de clientes que perdieron actividades hace un mes 
+     */
+    private List<ClienteEntity> clientesQuePerdieronActividadHaceUnMes;
+    /**
+     * promedio de tarjetas de credito por cliente
+     */
     private Double promedioTarjetasDeCreditoPorCliente;
-    private List<MensajeroDTO> mensajerosMasProductivos;
+    /**
+     * mensajeros mas productivos 
+     */
+    private List<MensajeroEntity> mensajerosMasProductivos;
+  
+    /**
+     * promedio de volumen por paquete
+     */
+
     private Double volumenPromedioPorPaquete;
+    /**
+     * promedio de eventos por envio 
+     */
     private Double promedioEventosPorEnvio;
+
+    /**
+     * lisa de mejores calificaciones
+     */
+
     private List<CalificacionDTO> mejoresCalificaciones;
+      /**
+     * lisa de mejores mensajeros calificaciones
+     */
     private List<MensajeroDTO> mensajerosConMejorCalificacion;
 
+
+    /**
+     * constructor que se deja vacio por defecto 
+     */
     public AnaliticaDTO(){
-        
+        // se deja vacio por defecto 
     }
 
+
+  
+      /**
+     * constructor 
+     * @param precioPromedioTodosLosEnvios
+     * @param clientesMasFieles
+     * @param clientesQuePerdieronActividadHaceUnMes
+     * @param promedioTarjetasDeCreditoPorCliente
+     * @param mensajerosMasProductivos
+     * @param enviosPorHora
+     * @param volumenPromedioPorPaquete
+     * @param promedioEventosPorEnvio
+     * @param mejoresCalificaciones 
+     */
     public AnaliticaDTO(Double pPrecioPromedioTodosLosEnvios, List<ClienteEntity> pClientesMasFieles, List<ClienteEntity> pClientesQuePerdieronActividadHaceUnMes, Double pPromedioTarjetasDeCreditoPorCliente, List<MensajeroEntity> pMensajerosMasProductivos,  Double pVolumenPromedioPorPaquete, Double pPromedioEventosPorEnvio, List<CalificacionEntity> pMejoresCalificaciones, List<MensajeroEntity> brevPa2) {
 
         this.precioPromedioTodosLosEnvios = pPrecioPromedioTodosLosEnvios;
@@ -70,6 +119,7 @@ public class AnaliticaDTO {
     }
 
    
+
 
 
     

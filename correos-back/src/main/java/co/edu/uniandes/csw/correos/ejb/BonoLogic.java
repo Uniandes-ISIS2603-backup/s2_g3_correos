@@ -21,9 +21,7 @@ import javax.inject.Inject;
 
 @Stateless
 public class BonoLogic {
-    /**
-     * Logger para cuardar todo
-     */
+   
     
     private static final Logger LOGGER= Logger.getLogger(BonoLogic.class.getName());
     
@@ -32,12 +30,7 @@ public class BonoLogic {
      */
     private BonoPersistance persistence;
     
-    /**
-     * La persistencia de cliente
-     */
-   
-    private ClienteLogic clienteLogic;
-    
+  
     /**
      * se inyecta la logica del bono
      * @param persistence
@@ -47,7 +40,6 @@ public class BonoLogic {
     public BonoLogic (BonoPersistance persistence,ClienteLogic cl)
     {
         this.persistence=persistence;
-        this.clienteLogic=cl;
     }
     /**
      * constructor se inicializan las persistencias a null
@@ -56,7 +48,6 @@ public class BonoLogic {
 
     {
         this.persistence=null;
-        this.clienteLogic=null;
     }
     
     /**
@@ -69,7 +60,6 @@ public class BonoLogic {
      */
     public BonoEntity createBono(BonoEntity entity) throws BusinessLogicException {
         LOGGER.info("Inicia proceso de crear bono");
-        
         if(entity.getDescuento() < 0.0)
         {
             throw new BusinessLogicException("El descuento debe ser un número mayor a cero");

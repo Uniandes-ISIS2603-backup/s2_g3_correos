@@ -33,21 +33,40 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
 @RunWith(Arquillian.class)
 public class TransporteLogicTest {
     
+    /**
+     * fabrica 
+     */
     private PodamFactory factory = new PodamFactoryImpl();
     
+    /**
+     * logica de transporte 
+     */
     @Inject
     private TransporteLogic transporteLogic;
     
+    /**
+     * user transaction 
+     */
     @Inject
     private UserTransaction utx;
     
+    /**
+     * entity manager 
+     */
     @PersistenceContext
     private EntityManager em;
 
     
 
+    /**
+     * lista de transportes 
+     */
     private List<TransporteEntity> data = new ArrayList<TransporteEntity>();
 
+    /**
+     * crea el deployement 
+     * @return 
+     */
     @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)

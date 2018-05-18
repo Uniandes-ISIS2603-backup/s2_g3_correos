@@ -35,17 +35,32 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
 @RunWith(Arquillian.class)
 public class BonoLogicTest {
     
+    /**
+     * podam factory 
+     */
     private PodamFactory factory = new PodamFactoryImpl();
 
+    /**
+     * logica del bono
+     */
     @Inject
     private BonoLogic bonoLogic;
 
+    /**
+     * entity manager de bono 
+     */
     @PersistenceContext
     private EntityManager em;
 
+    /**
+     * user transaction 
+     */
     @Inject
     private UserTransaction utx;
 
+    /**
+     * lista de bonos 
+     */
     private List<BonoEntity> data = new ArrayList<BonoEntity>();
 
     @Deployment

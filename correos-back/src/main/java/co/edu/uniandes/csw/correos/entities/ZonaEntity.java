@@ -23,15 +23,28 @@ import uk.co.jemos.podam.common.PodamStrategyValue;
 @Entity
 public class ZonaEntity implements Serializable{
     
+    /**
+     * latitud de la zona 
+     */
     @PodamStrategyValue(DoubleZonaStrategy.class)
     private Double latitud;
+    
+    /**
+     * longitud de la zona 
+     */
     @PodamStrategyValue(DoubleZonaStrategy.class)
     private Double longitud;
     
+    /**
+     * asociacion con mensajeros
+     */
     @PodamExclude
     @ManyToMany
     private List<MensajeroEntity> mensajeros;
     
+    /**
+     * id de la zona 
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

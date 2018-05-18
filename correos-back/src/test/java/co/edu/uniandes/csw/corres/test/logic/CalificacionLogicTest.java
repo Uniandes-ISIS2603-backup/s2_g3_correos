@@ -35,21 +35,44 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
 @RunWith(Arquillian.class)
 public class CalificacionLogicTest {
      
+    /**
+     * fabrica
+     */
     private PodamFactory factory = new PodamFactoryImpl();
 
+    /**
+     * logica de calificaion 
+     */
     @Inject
     private CalificacionLogic calificacionLogic;
 
+    /**
+     * entity manager
+     */
     @PersistenceContext
     private EntityManager em;
 
+    /**
+     * user transaction 
+     */
     @Inject
     private UserTransaction utx;
 
+    /**
+     * lista de calificaciones 
+     */
     private List<CalificacionEntity> data = new ArrayList<CalificacionEntity>();
+    
+    /**
+     * lista de mensajeros 
+     */
     private List<MensajeroEntity> mensajeroData = new ArrayList<MensajeroEntity>();
 
 
+    /**
+     * crea el deployement 
+     * @return 
+     */
     @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)

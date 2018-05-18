@@ -36,25 +36,42 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
  */
 @RunWith(Arquillian.class)
 public class PagoLogicTest {
-    
-     private PodamFactory factory = new PodamFactoryImpl();
+   
+    /**
+     * fabrica
+     */
+    private PodamFactory factory = new PodamFactoryImpl();
 
+    /**
+     * logica de pago 
+     */
       @Inject
     private PagoLogic pagoLogic;
 
-    
+    /**
+     * entity manager 
+     */
     @PersistenceContext
     private EntityManager em;
 
  
+    /**
+     * user transaction 
+     */
     @Inject
     private UserTransaction utx;
 
   
+    /**
+     * lista de pagos 
+     */
     private List<PagoEntity> data = new ArrayList<PagoEntity>();
 
 
-    
+    /**
+     * crea el deployement 
+     * @return 
+     */
     @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
@@ -116,22 +133,20 @@ public class PagoLogicTest {
      * Prueba para crear un Pago
      *
      * 
+     * @throws co.edu.uniandes.csw.correos.exceptions.BusinessLogicException
      */
     @Test
-    public void createPagoTest() {
+    public void createPagoTest() throws BusinessLogicException {
         PagoEntity newEntity = factory.manufacturePojo(PagoEntity.class);
-        PagoEntity result;
-         try {
-             result = pagoLogic.createPago(newEntity);
-         } catch (BusinessLogicException ex) {
-             Logger.getLogger(PagoLogicTest.class.getName()).log(Level.SEVERE, null, ex);
-             return;
-         }
-        Assert.assertNotNull(result);
-        PagoEntity entity = em.find(PagoEntity.class, result.getId());
+        PagoEntity resultado = pagoLogic.createPago(newEntity);
+        Assert.assertNotNull(resultado);
+        PagoEntity entity = em.find(PagoEntity.class, resultado.getId());
         Assert.assertEquals(newEntity.getId(), entity.getId());
+        Assert.assertEquals(newEntity.getCuentaBancaria(), entity.getCuentaBancaria());
         Assert.assertEquals(newEntity.getFecha(), entity.getFecha());
+        Assert.assertEquals(newEntity.getTarjetaCredito(), entity.getTarjetaCredito());
         Assert.assertEquals(newEntity.getValor(), entity.getValor());
+      
     }
 
     /**

@@ -17,12 +17,12 @@ import java.util.ArrayList;
  */
 public class EnvioDetailDTO extends EnvioDTO {
 
-    private ClienteDTO cliente;
-    private PagoDTO pago;
-    private MensajeroDTO mensajero;
-    private List<EventoDTO> eventos;
-    private List<PaqueteDTO> paquetes;
-    private List<BonoDTO> bonos;
+    private ClienteDTO cliente; // cliente 
+    private PagoDTO pago; // pago 
+    private MensajeroDTO mensajero; // mensajero 
+    private List<EventoDTO> eventos; // eventos 
+    private List<PaqueteDTO> paquetes; // paquetes del envio 
+    private List<BonoDTO> bonos; // bonos del envio 
 
     /**
      * Constructor por defecto

@@ -43,33 +43,72 @@ import uk.co.jemos.podam.common.PodamExclude;
 @Entity
 public class MensajeroEntity implements Serializable, Comparable {
     
+    /**
+     * correo electronico del mensajero
+     */
     private String correo;
+    
+    /**
+     * nombre del mensajero
+     */
     private String nombre;
+    
+    /**
+     * celular del mensajero
+     */
     private String celular;
+    
+    /**
+     * caliicacion promedio del mensajero
+     */
     private Double calificacionPromedio;
+
+
+    private String password;
+
+    /**
+     * atributo que define si el mensajero esta ocupado o no 
+     */
     private boolean ocupado;
     
-    
+    /**
+     * asociacion con cuenta bancaria
+     */
     @PodamExclude
    @OneToOne(cascade= CascadeType.PERSIST, orphanRemoval = true, fetch = FetchType.EAGER)
     private CuentaBancariaEntity cuenta;
    
+    /**
+     * asociacion con transportes 
+     */
     @PodamExclude
     @OneToMany(cascade=CascadeType.PERSIST, orphanRemoval = true, fetch = FetchType.EAGER)
    private List<TransporteEntity> transportes;
   
+    /**
+     * asociacion con calificaciones 
+     */
     @PodamExclude
    @OneToMany(cascade=CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
    private List<CalificacionEntity> calificaciones;
 
+    /**
+     * asociacion con envios 
+     */
     @PodamExclude
     @OneToMany(cascade=CascadeType.PERSIST,mappedBy="mensajero", fetch = FetchType.LAZY)
     private List<EnvioEntity> envios;
     
+    /**
+     * zonas asociadas 
+     */
     @PodamExclude
     @ManyToMany(mappedBy="mensajeros", fetch = FetchType.LAZY)
     private List<ZonaEntity> zonas;
    
+    /**
+     * id del mensajero
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -252,7 +291,16 @@ public class MensajeroEntity implements Serializable, Comparable {
         this.envios.add(envio);
     }
     
+
+
     
+
+    /**
+     * metodo compare to de analitica
+     * @param o
+     * @return un entero que verifiaca la comprobacion 
+     */
+
     @Override
     public int compareTo(Object o) {
       MensajeroEntity  pCliente= (MensajeroEntity)o;
@@ -261,4 +309,16 @@ public class MensajeroEntity implements Serializable, Comparable {
     public int compareTo2(MensajeroEntity pMensajero){
         return this.calificacionPromedio< pMensajero.calificacionPromedio?-1:this.calificacionPromedio>pMensajero.calificacionPromedio?1:0;
     }
+
+    public String getPassword()
+    {
+        return this.password;
+    }
+    
+    public void setPassword(String password)
+    {
+        this.password=password;
+    }
+    
+
 }

@@ -32,19 +32,34 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
  */
 @RunWith(Arquillian.class)
 public class ReservaLogicTest {
+    
+    /**
+     * fabrica 
+     */
     private PodamFactory factory = new PodamFactoryImpl();
     
+    /**
+     * reserva de logica 
+     */
     @Inject
     private ReservaLogic reservaLogic;
     
     
-    
+    /**
+     * entity manager 
+     */
        @PersistenceContext
     private EntityManager em;
 
+       /**
+        * user transaction 
+        */
     @Inject
     private UserTransaction utx;
 
+    /**
+     * lista de reservas 
+     */
     private List<ReservaEntity> data = new ArrayList<ReservaEntity>();
 
     @Deployment
@@ -148,7 +163,7 @@ public class ReservaLogicTest {
      *
      */
     @Test
-    public void getReservaTest() {
+    public void getReservaTest() throws BusinessLogicException {
         ReservaEntity entity = data.get(0);
         ReservaEntity resultEntity = reservaLogic.getReserva(entity.getId());
         Assert.assertNotNull(resultEntity);

@@ -21,8 +21,16 @@ import javax.persistence.TypedQuery;
  */
 @Stateless
 public class EventoPersistence {
+    
+    /**
+     * logger
+     */
      private static final Logger LOGGER = Logger.getLogger(EventoPersistence.class.getName());
 
+     /**
+      * 
+      * emtity manager 
+      */
     @PersistenceContext(unitName = "CorreosPU")
     protected EntityManager em;
 

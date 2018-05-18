@@ -13,8 +13,8 @@ import co.edu.uniandes.csw.correos.entities.PaqueteEntity;
   */
  public class PaqueteDetailDTO extends PaqueteDTO {	  
 	    
-	    private EnvioDTO envio;
-	    private DetallePaqueteDTO detalle;	   
+	    private EnvioDTO envio; // envio 
+	    private DetallePaqueteDTO detalle;	  // detalle paquete   
 	    
 	    /**
 	     * Constructor por defecto
@@ -25,14 +25,13 @@ import co.edu.uniandes.csw.correos.entities.PaqueteEntity;
 	    }
 	    
             /**
-             * 
              * @param entity El paquete a ser creado
              */
             public PaqueteDetailDTO(PaqueteEntity entity)
             {            
                 super(entity);         
-                if (entity.getDetallePaquete()!=null){
-                this.detalle=new DetallePaqueteDTO(entity.getDetallePaquete());
+                if (entity.getDetalle()!=null){
+                this.detalle=new DetallePaqueteDTO(entity.getDetalle());
                 }
                 if (entity.getEnvio()!=null){
                 this.envio=new EnvioDTO(entity.getEnvio());
@@ -52,7 +51,7 @@ import co.edu.uniandes.csw.correos.entities.PaqueteEntity;
                 entity.setEnvio(this.envio.toEntity());
                 }
                 if(detalle != null){
-                entity.setDetallePaquete(this.detalle.toEntity());
+                entity.setDetalle(this.detalle.toEntity());
                 }
         
                 return entity;        
@@ -61,7 +60,7 @@ import co.edu.uniandes.csw.correos.entities.PaqueteEntity;
 	    /**
 	     * @return El detalle asociado al paquete
 	     */
-	    public DetallePaqueteDTO getPaquete() {
+	    public DetallePaqueteDTO getDetalle() {
 	        return detalle;
 	    }
 	    

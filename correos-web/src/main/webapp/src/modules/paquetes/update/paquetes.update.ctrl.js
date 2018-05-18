@@ -43,6 +43,7 @@
                 $scope.data.dimensionA=paquete.dimensionA;
                 $scope.data.dimensionB=paquete.dimensionB;
                 $scope.data.dimensionC=paquete.dimensionC;
+                $scope.data.detalle.mensaje=paquete.detalle.mensaje;
             });
             
             /**

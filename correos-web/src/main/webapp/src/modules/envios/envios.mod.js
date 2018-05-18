@@ -46,6 +46,9 @@
             $stateProvider.state('envios', {
                url: '/envios',
                abstract: true,
+               data: {
+                    requireLogin: false
+                },
                 views: {
                     'mainView': {
                         templateUrl: basePath + 'envios.html',
@@ -57,6 +60,10 @@
                 {
                     url:'/list',
                     parent:'envios',
+                    data: {
+                    requireLogin: true,
+                    roles:['administrador']
+                },
                     views:
                             {
                                 'listView':
@@ -69,6 +76,10 @@
                 {
                     url:'/create',
                     parent:'envios',
+                    data: {
+                    requireLogin: true,
+                    roles:['cliente']
+                },
                     views:
                             {
                                 'detailView':
@@ -82,6 +93,10 @@
                 }).state('envioUpdate',{
                     url:'update/{envioId}',
                     parent:'envios',
+                    data: {
+                    requireLogin: true,
+                    roles:['cliente','mensajero']
+                },
                     param:
                             {
                                 envioId:null
@@ -98,6 +113,10 @@
                 }).state('envioDelete',{
                     url:'/delete/{envioId:int}',
                     parent:'envios',
+                    data: {
+                    requireLogin: true,
+                    roles:['cliente']
+                },
                     param:
                             {
                                 envioId:null
@@ -114,6 +133,9 @@
                 }).state('envioDetail',{
                     url: '/{envioId:int}/detail',
                     parent: 'envios',
+                    data: {
+                    requireLogin: false
+                },
                     param: {
                         envioId: null
                     },

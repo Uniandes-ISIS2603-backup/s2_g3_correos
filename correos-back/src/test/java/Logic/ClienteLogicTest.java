@@ -35,19 +35,38 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
 @RunWith(Arquillian.class)
 public class ClienteLogicTest {
     
+    /**
+     * factory
+     */
     private PodamFactory factory = new PodamFactoryImpl();
 
+    /**
+     * logica del cliente
+     */
     @Inject
     private ClienteLogic clienteLogic;
 
+    /**
+     * entity manager
+     */
     @PersistenceContext
     private EntityManager em;
 
+    /**
+     * user transaction 
+     */
     @Inject
     private UserTransaction utx;
 
+    /**
+     * lista de clientes
+     */
     private List<ClienteEntity> data = new ArrayList<ClienteEntity>();
 
+    /**
+     * crea el deployement 
+     * @return 
+     */
     @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)

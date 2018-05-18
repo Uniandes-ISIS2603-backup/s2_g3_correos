@@ -35,17 +35,32 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
 @RunWith(Arquillian.class)
 public class TarjetaCreditoLogicTest {
     
+    /**
+     * fabrica
+     */
     private PodamFactory factory = new PodamFactoryImpl();
 
+    /**
+     * logica de tarjeta de credito 
+     */
     @Inject
     private TarjetaCreditoLogic tarjetaCreditoLogic;
 
+    /**
+     * entity manager 
+     */
     @PersistenceContext
     private EntityManager em;
 
+    /**
+     * user transaction 
+     */
     @Inject
     private UserTransaction utx;
 
+    /**
+     * lista de tarjetas de credito 
+     */
     private List<TarjetaCreditoEntity> data = new ArrayList<TarjetaCreditoEntity>();
 
     @Deployment
@@ -109,7 +124,7 @@ public class TarjetaCreditoLogicTest {
         Assert.assertNotNull(result);
         TarjetaCreditoEntity entity = em.find(TarjetaCreditoEntity.class, result.getId());
         Assert.assertEquals(newEntity.getId(), entity.getId());
-        Assert.assertEquals(newEntity.getAño(), entity.getAño());
+        Assert.assertEquals(newEntity.getAnio(), entity.getAnio());
         Assert.assertEquals(newEntity.getNumero(), entity.getNumero());
         Assert.assertEquals(newEntity.getMes(), entity.getMes());
       
@@ -142,7 +157,7 @@ public class TarjetaCreditoLogicTest {
         TarjetaCreditoEntity resultEntity = tarjetaCreditoLogic.getTarjetaCredito(entity.getId());
         Assert.assertNotNull(resultEntity);
         Assert.assertEquals(entity.getId(), resultEntity.getId());
-        Assert.assertEquals(entity.getAño(), resultEntity.getAño());
+        Assert.assertEquals(entity.getAnio(), resultEntity.getAnio());
         Assert.assertEquals(entity.getNumero(), resultEntity.getNumero());
         Assert.assertEquals(entity.getMes(), resultEntity.getMes());
   
@@ -172,7 +187,7 @@ public class TarjetaCreditoLogicTest {
         TarjetaCreditoEntity resp = em.find(TarjetaCreditoEntity.class, entity.getId());
 
         Assert.assertEquals(pojoEntity.getId(), resp.getId());
-        Assert.assertEquals(pojoEntity.getAño(), resp.getAño());
+        Assert.assertEquals(pojoEntity.getAnio(), resp.getAnio());
         Assert.assertEquals(pojoEntity.getNumero(), resp.getNumero());
         Assert.assertEquals(pojoEntity.getMes(), resp.getMes());
    
