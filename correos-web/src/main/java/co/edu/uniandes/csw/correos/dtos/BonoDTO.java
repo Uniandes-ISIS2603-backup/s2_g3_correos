@@ -136,11 +136,11 @@ public class BonoDTO
         return fechaDeVencimiento;
     }
     /**
-     * @param fechaDeVenc nueva fecha de vencimiento del bono 
+     * @param fechaDeVencimiento nueva fecha de vencimiento del bono 
      */
-    public void setFechaDeVencimiento (Date fechaDeVenc)
+    public void setFechaDeVencimiento (Date fechaDeVencimientio)
     {
-        this.fechaDeVencimiento = fechaDeVenc;
+        this.fechaDeVencimiento = fechaDeVencimientio;
     }
     
     // public BonoEntity toEntity(){} este metododo se realizara una vez se haya realizado la capa de persistencia 

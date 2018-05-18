@@ -107,12 +107,12 @@ public class BonoResource
             String arr[] = id.split(" ", 2);
             id = arr[0];*/
             entity.setDescuento(0.25);
-            entity.setDescripcion("tu Amigo con id: " + " es un Cumpa");
+            entity.setDescripcion("Tienes un amigo de los buenos cumpas");
             Calendar cal = Calendar.getInstance(); 
             cal.add(Calendar.MONTH, 1);
             entity.setFechaDeVencimiento(cal.getTime());
             entity.setCliente(clienteLogic.getCliente(idCliente));
-            entity.setCondicion("No Redimido"); 
+            entity.setCondicion("Sin redimir"); 
             entity.setCliente(clienteLogic.getCliente(idCliente));
         }
         else
