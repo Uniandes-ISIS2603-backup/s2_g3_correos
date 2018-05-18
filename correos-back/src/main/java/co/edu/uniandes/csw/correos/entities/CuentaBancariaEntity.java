@@ -27,18 +27,37 @@ import uk.co.jemos.podam.common.PodamStrategyValue;
 public class CuentaBancariaEntity implements Serializable{
 
 
+    /**
+     * numero de la cuenta 
+     */
     @PodamStrategyValue(TenPlusNumericString.class)
     private String numero;
+    /**
+     * string que define el banco 
+     */
     private String banco;
+    /**
+     * string que define el tipo de tarjeta
+     */
     private String tipoTarjeta;
+    
+    /**
+     * pagos asociados
+     */
     @PodamExclude
     @OneToMany(mappedBy = "cuentaBancaria", cascade = CascadeType.PERSIST, orphanRemoval = true)
     private List<PagoEntity> pagos = new ArrayList<>();
     
+    /**
+     * cliente asociado
+     */
     @PodamExclude
     @ManyToOne
     private ClienteEntity cliente;
     
+    /**
+     * id de la cuenta 
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

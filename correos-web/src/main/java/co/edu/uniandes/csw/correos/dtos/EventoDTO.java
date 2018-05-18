@@ -35,9 +35,9 @@ import co.edu.uniandes.csw.correos.entities.EventoEntity;
  */
 public class EventoDTO {
     
-    private long id;
-    private long ubicacion;
-    private String detalle;
+    private long id; // id del evento 
+    private long ubicacion; // ubicacion del evento 
+    private String detalle; // detalle del evento 
     
     /**
      * constructor por defecto

@@ -21,76 +21,55 @@ import javax.inject.Inject;
 @Stateless
 public class Analitica {
     
-    BonoPersistance bonoP;
+    
     CalificacionPersistence calificacionP;
     ClientePersistence clienteP;
-    CuentaBancariaPersistence cuentaP;
-    DetallePaquetePersistance detalleP;
+    
+    
     EnvioPersistence envioP;
-    EventoPersistence eventoP;
     MensajeroPersistence mensajeroP;
     PagoPersistence pagoP;
     PaquetePersistence paqueteP;
-    ReservaPersistence reservaP;
-    TarjetaCreditoPersistence tarjetaP;
-    TransportePersistence transporteP;
-    ZonaPersistence zonaP;
   
     @Inject
-    public Analitica(BonoPersistance bp, 
+    public Analitica(
             CalificacionPersistence cp, 
-            ClientePersistence clp, 
-            CuentaBancariaPersistence cbp, 
-            DetallePaquetePersistance dpp, 
+            ClientePersistence clp,  
             EnvioPersistence ep,
-            EventoPersistence evp,
             MensajeroPersistence mp,
             PagoPersistence pp,
             PaquetePersistence pap,
-            ReservaPersistence rp,
-            TarjetaCreditoPersistence tcp,
-            TransportePersistence tp,
-            ZonaPersistence zp){
-        bonoP = bp;
+            TransportePersistence tp){
+        
         calificacionP = cp;
         clienteP = clp;
-        cuentaP = cbp;
-        detalleP = dpp;
+        
+       
         envioP = ep;
-        eventoP = evp;
         mensajeroP = mp;
         pagoP = pp;
         paqueteP = pap;
-        reservaP = rp;
-        tarjetaP = tcp;
-        transporteP = tp;
-        zonaP = zp;
     }
 
     public Analitica() {
-        bonoP = null;
+      
         calificacionP = null;
         clienteP = null;
-        cuentaP = null;
-        detalleP = null;
+       
+        
         envioP = null;
-        eventoP = null;
         mensajeroP = null;
         pagoP = null;
         paqueteP = null;
-        reservaP = null;
-        tarjetaP = null;
-        transporteP = null;
-        zonaP = null;
     }
     
     
     
     public Double darPrecioPromedioTodosLosEnvios(){
-        List<EnvioEntity> envios = envioP.findAll();
+        List<PagoEntity> envios = pagoP.findAll();
         Double promedio = 0.0;
-        for (EnvioEntity envio : envios) {
-            promedio += envio.getPago().getValor();
+        for (PagoEntity envio : envios) {
+            promedio += envio.getValor();
         }
         return promedio/envios.size();
     }
@@ -102,18 +81,19 @@ public class Analitica {
     }
     
     public List<ClienteEntity> darClientesQuePerdieronActividadHaceUnMes(){
-        List<ClienteEntity> clientes = darClientesMasFieles();
+        List<ClienteEntity> clientes = clienteP.findAll();
+        List<ClienteEntity> ret = new ArrayList<>();
         Date aMonthAgo = new Date();
         aMonthAgo.setMonth(aMonthAgo.getMonth()-1);
         for (ClienteEntity cliente : clientes) {
             List<EnvioEntity> envios = cliente.getEnvios();
             for (EnvioEntity envio : envios) {
                 if (envio.getFecha().before(aMonthAgo)){
-                    clientes.add(cliente);
+                    ret.add(cliente);
                 }
             }
         }
-        return clientes;
+        return ret;
     }
     
     public Double darPromedioTarjetasDeCreditoPorCliente(){
@@ -139,9 +119,9 @@ public class Analitica {
         }
         
         public List<ArrayList<EnvioEntity>> darEnviosPorHora(){
-            List<ArrayList<EnvioEntity>> lista = new ArrayList<ArrayList<EnvioEntity>>(24);
-            for (ArrayList<EnvioEntity> arrayList : lista) {
-                arrayList = new ArrayList<>();
+            List<ArrayList<EnvioEntity>> lista = new ArrayList<ArrayList<EnvioEntity>>();
+            for (int i =0; i<24;i++) {
+                lista.add(new ArrayList<EnvioEntity>());
             }
             List<EnvioEntity> envios = envioP.findAll();
             for (EnvioEntity envio : envios) {

@@ -167,7 +167,7 @@ public class ClienteDTO
      */
     public String getTelefono()
     {
-        return correo;
+        return telefono;
     }
     
     /**

@@ -22,7 +22,7 @@ import javax.ws.rs.Produces;
 @RequestScoped
 public class AnaliticaResource {
     
-    
+  
     private Analitica anal;
     
     @Inject
@@ -37,7 +37,7 @@ public class AnaliticaResource {
     
     @GET
     public AnaliticaDTO getAnal(){
-            return new AnaliticaDTO(anal.darPrecioPromedioTodosLosEnvios(), anal.darClientesMasFieles(), anal.darClientesQuePerdieronActividadHaceUnMes(), anal.darPromedioTarjetasDeCreditoPorCliente(), anal.darMensajerosMasProductivos(), anal.darEnviosPorHora(), anal.darVolumenPromedioPaquetes(), anal.darPromedioEventosPorEnvio(), anal.darMejoresCalificaciones());
+            return new AnaliticaDTO(anal.darPrecioPromedioTodosLosEnvios(), anal.darClientesMasFieles(), anal.darClientesQuePerdieronActividadHaceUnMes(), anal.darPromedioTarjetasDeCreditoPorCliente(), anal.darMensajerosMasProductivos(),  anal.darVolumenPromedioPaquetes(), anal.darPromedioEventosPorEnvio(), anal.darMejoresCalificaciones(), anal.darMensajerosConMayorCalificacion());
     }
     
     

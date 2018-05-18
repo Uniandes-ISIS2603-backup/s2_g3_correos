@@ -13,8 +13,8 @@ import co.edu.uniandes.csw.correos.entities.PaqueteEntity;
   */
  public class PaqueteDetailDTO extends PaqueteDTO {	  
 	    
-	    private EnvioDTO envio;
-	    private DetallePaqueteDTO detalle;	   
+	    private EnvioDTO envio; // envio 
+	    private DetallePaqueteDTO detalle;	  // detalle paquete   
 	    
 	    /**
 	     * Constructor por defecto

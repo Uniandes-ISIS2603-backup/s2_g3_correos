@@ -46,6 +46,9 @@
             $stateProvider.state('clientes', {
                url: '/clientes',
                abstract: true,
+               data: {
+                    requireLogin: false
+                },
                 views: {
                     'mainView': {
                         templateUrl: basePath + 'clientes.html',
@@ -57,6 +60,10 @@
                 {
                     url:'/list',
                     parent:'clientes',
+                    data: {
+                    requireLogin: true,
+                    roles:['administrador']
+                },
                     views:
                             {
                                 'listView':
@@ -69,6 +76,9 @@
                 {
                     url:'/create',
                     parent:'clientes',
+                    data: {
+                    requireLogin: false
+                },
                     views:
                             {
                                 'detailView':
@@ -82,6 +92,10 @@
                 }).state('clienteUpdate',{
                     url:'update/{clienteId}',
                     parent:'clientes',
+                    data: {
+                    requireLogin: true,
+                    roles:['cliente','administrador']
+                },
                     param:
                             {
                                 clienteId:null
@@ -98,6 +112,10 @@
                 }).state('clienteDelete',{
                     url:'/delete/{clienteId:int}',
                     parent:'clientes',
+                     data: {
+                    requireLogin: true,
+                    roles:['cliente','administrador']
+                },
                     param:
                             {
                                 clienteId:null
@@ -114,6 +132,10 @@
                 }).state('clienteDetail',{
                     url: '/{clienteId:int}/detail',
                     parent: 'clientes',
+                    data: {
+                    requireLogin: true,
+                    roles:['administrador','cliente']
+                },
                     param: {
                         clienteId: null
                     },

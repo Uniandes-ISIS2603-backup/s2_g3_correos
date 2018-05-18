@@ -19,8 +19,15 @@ import javax.persistence.TypedQuery;
  */
 @Stateless
 public class TransportePersistence {
+    
+    /**
+     * logger
+     */
     private static final Logger LOGGER= Logger.getLogger(TransportePersistence.class.getName());
     
+    /**
+     * entity manager
+     */
     @PersistenceContext(unitName="CorreosPU")
     protected EntityManager em;
     

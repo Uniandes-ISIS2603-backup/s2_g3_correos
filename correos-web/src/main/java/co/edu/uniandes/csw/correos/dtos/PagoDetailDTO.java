@@ -13,8 +13,8 @@ import co.edu.uniandes.csw.correos.entities.PagoEntity;
  */
 public class PagoDetailDTO extends PagoDTO {
     
-    private CuentaBancariaDTO cuentaBancaria;
-    private TarjetaCreditoDTO tarjetaDeCredito;
+    private CuentaBancariaDTO cuentaBancaria; // cuenta bancaria 
+    private TarjetaCreditoDTO tarjetaDeCredito; // tarjeta de credito 
     
     /**
      * constructor por defecto

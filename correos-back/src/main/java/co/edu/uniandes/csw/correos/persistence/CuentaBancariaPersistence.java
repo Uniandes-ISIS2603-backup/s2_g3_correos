@@ -19,8 +19,15 @@ import javax.persistence.TypedQuery;
  */
 @Stateless
 public class CuentaBancariaPersistence {
+    
+    /**
+     * logger
+     */
         private static final java.util.logging.Logger LOGGER = java.util.logging.Logger.getLogger(CuentaBancariaPersistence.class.getName());
 
+        /**
+         * entity manager 
+         */
     @PersistenceContext(unitName = "CorreosPU")
     protected EntityManager em;
 

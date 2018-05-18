@@ -27,24 +27,43 @@ public class ClienteEntity implements Serializable, Comparable {
     private String nombre; // nombre del cliente
     private String correo; // correo del cliente
     private String telefono; // telefono del cliente
+
     private String password;
+
+
+   
+    /**
+     * bonos asociados con el cliente
+     */
 
     @PodamExclude
     @OneToMany(mappedBy = "cliente", cascade = CascadeType.PERSIST, orphanRemoval = true)
     private List<BonoEntity> bonos;
     
+    /**
+     * envios asociados al cliente
+     */
     @PodamExclude
     @OneToMany (fetch = FetchType.LAZY, mappedBy="cliente")
     private List<EnvioEntity> envios;
     
+    /**
+     * tarjetas asociadas al cliente
+     */
     @PodamExclude
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "cliente", cascade = CascadeType.PERSIST, orphanRemoval = true )
     private List<TarjetaCreditoEntity> tarjetasCredito;
     
+    /**
+     * reservas asociadas al cliente
+     */
     @PodamExclude
     @OneToMany(fetch =FetchType.LAZY, mappedBy = "cliente",orphanRemoval = true)
     private List <ReservaEntity> reservas;         
     
+    /**
+     * id del cliente
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -191,6 +210,11 @@ public class ClienteEntity implements Serializable, Comparable {
     }
 
 
+    /**
+     * metodo compare to de analitica
+     * @param o
+     * @return 
+     */
     @Override
     public int compareTo(Object o) {
       ClienteEntity  pCliente= (ClienteEntity)o;
