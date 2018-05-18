@@ -37,9 +37,9 @@ import java.util.Date;
  */
 public class PagoDTO {
     
-    private long id;
-    private double valor;
-    private Date fecha;
+    private long id; // id del pago 
+    private double valor; // valor del pago 
+    private Date fecha; // fecha del pago 
     
     /**
      * constructor por defecto

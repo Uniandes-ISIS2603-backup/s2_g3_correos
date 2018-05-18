@@ -16,6 +16,9 @@ import java.util.List;
  */
 public class CuentaBancariaDetailDTO extends CuentaBancariaDTO {
 
+    /**
+     * lista de pagos 
+     */
 private List<PagoDTO> pagos;
 
 /**

@@ -33,6 +33,9 @@ import co.edu.uniandes.csw.correos.entities.BonoEntity;
  */
 public class BonoDetailDTO extends BonoDTO
 {    
+    /**
+     * cliente 
+     */
     private ClienteDTO cliente;
 
     /**
