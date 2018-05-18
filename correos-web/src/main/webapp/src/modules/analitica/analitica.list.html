@@ -1,0 +1,157 @@
+<alert class="alert alert-danger" ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert()">{{alert.msg}} </alert>
+<div class="container-fluid">    
+    <table class="table table-striped col-md-4">
+        <thead>
+            <h3>Clientes mas fieles</h3>
+            <tr>
+                <th>Nombre</th>
+                <th>Telefono</th>
+                <th>Correo</th>
+                <th>ID</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="record in analiticaRecords.clientesMasFieles">
+
+                <td id="{{$index}}-nombre"  > {{record.nombre}}</td>
+                <td id="{{$index}}-telefono">{{record.telefono}}</td>
+                <td id="{{$index}}-celular">{{record.correo}}</td>
+                <td id="{{$index}}-calificacionPromedio">{{record.id}}</td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+        <div class="btn-group mr-2" role="group" aria-label="First group">
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid">    
+    <table class="table table-striped col-md-4">
+        <h3>Clientes Que Perdieron Actividad Hace Un Mes</h3>
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Telefono</th>
+                <th>Correo</th>
+                <th>Id</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="record in analiticaRecords.clientesQuePerdieronActividadHaceUnMes">
+
+                <td id="{{$index}}-nombre"  > {{record.nombre}}</td>
+                <td id="{{$index}}-correo">{{record.telefono}}</td>
+                <td id="{{$index}}-celular">{{record.correo}}</td>
+                <td id="{{$index}}-calificacionPromedio">{{record.id}}</td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+        <div class="btn-group mr-2" role="group" aria-label="First group">
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid">    
+    <table class="table table-striped col-md-4">
+        <h3>Mejores Calificaciones</h3>
+        <thead>
+            <tr>
+                <th>Calificacion</th>
+                <th>Comentario</th>
+                <th>Id</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="record in analiticaRecords.mejoresCalificaciones">
+
+                <td id="{{$index}}-nombre"  > {{record.calificacion}}</td>
+                <td id="{{$index}}-correo">{{record.comentario}}</td>
+                <td id="{{$index}}-celular">{{record.id}}</td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+        <div class="btn-group mr-2" role="group" aria-label="First group">
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid">    
+    <table class="table table-striped col-md-4">
+        <h3>Mensajeros con mejor calificaciones</h3>
+        <thead>
+            <tr>
+                <th>Calificacion</th>
+                <th>id</th>
+                <th>nombre</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="record in analiticaRecords.mensajerosConMejorCalificacion">
+
+                <td id="{{$index}}-nombre"  > {{record.calificacionPromedio}}</td>
+                <td id="{{$index}}-correo">{{record.id}}</td>
+                <td id="{{$index}}-celular">{{record.nombre}}</td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+        <div class="btn-group mr-2" role="group" aria-label="First group">
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid">    
+    <table class="table table-striped col-md-4">
+        <h3>Mensajeros mas productivos</h3>
+        <thead>
+            <tr>
+                <th>Calificacion</th>
+                <th>id</th>
+                <th>nombre</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="record in analiticaRecords.mensajerosMasProductivos">
+
+                <td id="{{$index}}-nombre"  > {{record.calificacionPromedio}}</td>
+                <td id="{{$index}}-correo">{{record.id}}</td>
+                <td id="{{$index}}-celular">{{record.nombre}}</td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+        <div class="btn-group mr-2" role="group" aria-label="First group">
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid">    
+    <table class="table table-striped col-md-4">
+        <h3>Otros</h3>
+        <thead>
+            <tr>
+                <th>Precio promedio todos los envios</th>
+                <th>Eventos por envio promedio</th>
+                <th>Promedio TdC por cliente</th>
+                <th>Volumen promedio por paquete</th>
+            </tr>
+        </thead>
+        <tbody>
+            
+
+                <td id="{{$index}}-nombre"  >{{ analiticaRecords.precioPromedioTodosLosEnvios}}</td>
+                <td id="{{$index}}-nombre"  >{{ analiticaRecords.promedioEventosPorEnvio}}</td>
+                <td id="{{$index}}-nombre"  >{{ analiticaRecords.promedioTarjetasDeCreditoPorCliente}}</td>
+                <td id="{{$index}}-nombre"  >{{ analiticaRecords.volumenPromedioPorPaquete}}</td>
+               
+            </tr>
+        </tbody>
+    </table>
+    <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+        <div class="btn-group mr-2" role="group" aria-label="First group">
+        </div>
+    </div>
+</div>

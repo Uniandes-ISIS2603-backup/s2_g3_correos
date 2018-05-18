@@ -25,10 +25,14 @@
         'calificacionesModule',
         'bonosModule',
 
+
         'webModule',
 
-        'loginModule'
+        'loginModule',
 
+
+        'analiticaModule'
+       
 
 
     ]);
