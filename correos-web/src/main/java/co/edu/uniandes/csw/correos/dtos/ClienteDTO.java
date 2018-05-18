@@ -1,7 +1,26 @@
+
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+MIT License
+
+Copyright (c) 2017 ISIS2603
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
  */
 package co.edu.uniandes.csw.correos.dtos;
 
@@ -16,9 +35,7 @@ package co.edu.uniandes.csw.correos.dtos;
  * <pre>
  *   {
  *      "idCliente": number,
- *      "nombre": string,
- *      "correo": String,
- *      "telefono": String
+ *      "nombre: string
  *   
  *   }
  * </pre>
@@ -28,9 +45,8 @@ package co.edu.uniandes.csw.correos.dtos;
  * 
  *   {
  *      "id": 91852,
- *      "name: "Pepito Perez",
- *      "correo":"correo1@uniandes.edu.co",
- *      "telefono": "3000000000" 
+ *      "name: "Pepito Perez"
+ *     
  *   }
  *
  * </pre>
@@ -43,7 +59,9 @@ public class ClienteDTO
     private String nombre; // nombre del cliente
     private String correo; // correo del cliente
     private String telefono; //telefono del cliente
+    private String password;
 
+    
     /**
      * Constructor por defecto
      */
@@ -63,20 +81,37 @@ public class ClienteDTO
     this.nombre = entity.getNombre();
     this.correo = entity.getCorreo();
     this.telefono = entity.getTelefono();
+    this.password=entity.getPassword();
 
 }
     /**
      * metodo que transforma a entidad 
      * @return la entidad 
      */
-public ClienteEntity toEntity(){
-    ClienteEntity entity = new ClienteEntity();
-    entity.setId(this.idCliente);
-    entity.setNombre(this.nombre);
-    entity.setCorreo(this.correo);
-    entity.setTelefono(this.telefono);
-    return entity;
-}
+    public ClienteEntity toEntity(){
+        ClienteEntity entity = new ClienteEntity();
+        entity.setId(this.idCliente);
+        entity.setNombre(this.nombre);
+        entity.setCorreo(this.correo);
+        entity.setTelefono(this.telefono);
+        entity.setPassword(this.password);
+        return entity;
+    }
+    public Long getIdCliente() {
+            return idCliente;
+       }
+
+    public void setIdCliente(Long idCliente) {
+        this.idCliente = idCliente;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
 
     /**
@@ -132,7 +167,7 @@ public ClienteEntity toEntity(){
      */
     public String getTelefono()
     {
-        return telefono;
+        return correo;
     }
     
     /**

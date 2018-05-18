@@ -27,7 +27,8 @@ public class ClienteEntity implements Serializable, Comparable {
     private String nombre; // nombre del cliente
     private String correo; // correo del cliente
     private String telefono; // telefono del cliente
-   
+    private String password;
+
     @PodamExclude
     @OneToMany(mappedBy = "cliente", cascade = CascadeType.PERSIST, orphanRemoval = true)
     private List<BonoEntity> bonos;
@@ -195,5 +196,12 @@ public class ClienteEntity implements Serializable, Comparable {
       ClienteEntity  pCliente= (ClienteEntity)o;
         return this.envios.size()<pCliente.envios.size()?-1:this.envios.size()>pCliente.envios.size()?1:0;    }
     
-    
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+   
 }

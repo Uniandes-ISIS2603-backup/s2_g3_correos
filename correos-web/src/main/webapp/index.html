@@ -142,6 +142,10 @@
         <script src="src/modules/tarjetasCredito/update/tarjetasCredito.update.ctrl.js" type="text/javascript"></script>
         <script src="src/modules/tarjetasCredito/delete/tarjetasCredito.delete.ctrl.js" type="text/javascript"></script>
 
+                <!-- Login -->
+        <script src="src/modules/login/login.mod.js" type="text/javascript"></script>
+        <script src="src/modules/login/login.ctrl.js" type="text/javascript"></script>
+        
         <!-- Bonos -->
         <script src="src/modules/bonos/bonos.mod.js" type="text/javascript"></script>
         <script src="src/modules/bonos/bonos.ctrl.js" type="text/javascript"></script>       
@@ -149,6 +153,8 @@
         <script src="src/modules/bonos/update/bonos.update.ctrl.js" type="text/javascript"></script>
         <script src="src/modules/bonos/delete/bonos.delete.ctrl.js" type="text/javascript"></script>
         <script src="src/modules/bonos/createAmigo/bonosAmigo.create.ctrl.js" type="text/javascript"></script>
+        
+
         
     </head>
     
@@ -175,10 +181,14 @@
   					<li><a href="#gallery">Galeria</a> 
   					<li><a href="#features">Funcionalidades</a> 
   					<li><a href="#faq">FAQ</a> 
-  					<li><a href="#contact">Contactanos</a> 
+  					<li><a href="#contact">Contactanos</a>
+                                        <li><a ui-sref="signup" ng-if="!isAuthenticated()">Unete!</a> 
+                                        <li><a ui-sref="login">Acceder</a> 
   				</ul>
   			</div>
+                       
   		</div><!-- End Container-->
+                
   	</nav><!-- End navbar -->
         
         <!-- jumbotron-->
@@ -189,16 +199,18 @@
   			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse consectetur </p>
 
   			<div class="btn-group">
-  				<a ui-sref="mensajerosList" class="btn btn-lg btn-info">Mensajeros</a>
+
+  				<a ui-sref="mensajerosList" class="btn btn-lg btn-info" ng-if="isAuthenticated()">Mensajeros</a>
   				<a ui-sref="clientesList" class="btn btn-lg btn-info">Clientes</a>
   				<a ui-sref="reservasList" class="btn btn-lg btn-info">Reservas</a>
-                                <a ui-sref="cuentasBancariasList" class="btn btn-lg btn-info">Cuentas</a>
+                                <a ui-sref="cuentasList" class="btn btn-lg btn-info">Cuentas</a>
                                 <a ui-sref="enviosList" class="btn btn-lg btn-info">Envios</a>
-                               <a ui-sref="zonasList" class="btn btn-lg btn-info">Zonas</a>
+                                <a ui-sref="zonasList" class="btn btn-lg btn-info">Zonas</a>
+
   			</div>
   		</div><!-- End container -->
-  	</div><!-- End jumbotron-->
-        
+  	</div><!-- End jumbotron-->         
+         <div ui-view="mainView" ></div>
         <!-- Feedback-->
   	<div class="container">
   		<section>
@@ -397,7 +409,7 @@
           <div class="panel panel-default">
             <div class="panel-heading">
               <div class="panel-title">
-                <a href="#collapse-1" data-toggle="collapse" data-parent="#accordion">
+                <a href="!#collapse-1" data-toggle="collapse" data-parent="#accordion">
                   Pregunta uno?
                 </a>
               </div><!-- End panel title -->
@@ -412,7 +424,7 @@
           <div class="panel panel-default">
             <div class="panel-heading">
               <div class="panel-title">
-                <a href="#collapse-2" data-toggle="collapse" data-parent="#accordion">
+                <a href="!#collapse-2" data-toggle="collapse" data-parent="#accordion">
                   Pregunta Dos?
                 </a>
               </div><!-- End panel title -->
@@ -427,7 +439,7 @@
           <div class="panel panel-default">
             <div class="panel-heading">
               <div class="panel-title">
-                <a href="#collapse-3" data-toggle="collapse" data-parent="#accordion">
+                <a href="!#collapse-3" data-toggle="collapse" data-parent="#accordion">
                   Pregunta Tres?
                 </a>
               </div><!-- End panel title -->
@@ -482,7 +494,7 @@
             </div>
         </footer>
 
-        <div ui-view="mainView" ></div>
+        
         
         <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
 	<!-- Latest compiled and minified JavaScript -->
