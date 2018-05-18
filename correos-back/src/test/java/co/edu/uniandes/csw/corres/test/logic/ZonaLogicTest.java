@@ -33,17 +33,33 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
  */
 @RunWith(Arquillian.class)
 public class ZonaLogicTest {
+    
+    /**
+     * fabrica 
+     */
     private PodamFactory factory = new PodamFactoryImpl();
 
+    /**
+     * logica de zonas
+     */
     @Inject
     private ZonaLogic zonaLogic;
 
+    /**
+     * entity manager 
+     */
     @PersistenceContext
     private EntityManager em;
 
+    /**
+     * user transaction 
+     */
     @Inject
     private UserTransaction utx;
 
+    /**
+     * lista de zonas 
+     */
     private List<ZonaEntity> data = new ArrayList<ZonaEntity>();
 
 

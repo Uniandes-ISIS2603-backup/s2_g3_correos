@@ -22,8 +22,14 @@ import javax.persistence.TypedQuery;
 @Stateless
 public class PaquetePersistence {
     
+    /**
+     * logger
+     */
     private static final Logger LOGGER = Logger.getLogger(PaquetePersistence.class.getName());
     
+    /**
+     * entity manager
+     */
     @PersistenceContext(unitName="CorreosPU")
     protected EntityManager em;
     

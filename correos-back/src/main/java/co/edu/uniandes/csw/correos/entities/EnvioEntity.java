@@ -30,39 +30,79 @@ import uk.co.jemos.podam.common.PodamExclude;
 @Entity
 public class EnvioEntity implements Serializable{   
    
+    /**
+     * hora de inicio del envio
+     */
    private Long horaInicio;
+   
+   /**
+    * hora final del envio
+    */
    private Long horaFinal;    
+   /**
+    * estado del envio
+    */
    private String estado;
+   /**
+    * direccion de entrega del envio
+    */
    private String direccionEntrega;
+   /**
+    * direccion de recogida del envio
+    */
    private String direccionRecogida; 
    
+   /**
+    * fecha del envio
+    */
    @Temporal(TemporalType.TIMESTAMP)
    private Date fecha;
    
+   /**
+    * id del envio 
+    */
    @Id
    @GeneratedValue(strategy = GenerationType.IDENTITY)
    private Long id;
    
+   /**
+    * relacion con mensajero
+    */
    @PodamExclude
    @ManyToOne (fetch = FetchType.LAZY)
    private MensajeroEntity mensajero;
    
+   /**
+    * relacion con cliente 
+    */
    @PodamExclude
    @ManyToOne (fetch = FetchType.LAZY)
    private ClienteEntity cliente;
    
+   /**
+    * relacion con pagos
+    */
    @PodamExclude
    @OneToOne (fetch = FetchType.LAZY)
    private PagoEntity pago;
    
+   /**
+    * relacion con eventos 
+    */
    @PodamExclude
    @OneToMany(cascade=CascadeType.ALL, orphanRemoval = true, mappedBy = "envio", fetch = FetchType.LAZY)
    private List<EventoEntity> eventos = new ArrayList<>();
    
+   /**
+    * relacion con paquetes
+    */
    @PodamExclude
    @OneToMany(cascade=CascadeType.ALL, orphanRemoval = true, mappedBy = "envio", fetch = FetchType.LAZY)
    private List<PaqueteEntity> paquetes = new ArrayList<>();
    
+   /**
+    * relacion con bonos 
+    */
    @PodamExclude
    @OneToMany(fetch = FetchType.EAGER)
    private List<BonoEntity> bonos = new ArrayList<>();

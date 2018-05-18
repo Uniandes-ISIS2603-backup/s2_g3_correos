@@ -37,21 +37,46 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
 @RunWith(Arquillian.class)
 public class EnvioLogicTest {
     
+    /**
+     * factory
+     */
     private PodamFactory factory = new PodamFactoryImpl();
 
+    /**
+     * envioLogic 
+     */
     @Inject
     private EnvioLogic envioLogic;   
 
+    /**
+     * entity manager 
+     */
     @PersistenceContext
     private EntityManager em;
 
+    /**
+     * user transaction 
+     */
     @Inject
     private UserTransaction utx;
 
+    /**
+     * lista de envios 
+     */
     private List<EnvioEntity> data = new ArrayList<EnvioEntity>();
+    /**
+     * lista de paquetes 
+     */
     private List<PaqueteEntity> dataPaquetes = new ArrayList<PaqueteEntity>();
+    /**
+     * lista de clientes 
+     */
     private List<ClienteEntity> dataClientes = new ArrayList<ClienteEntity>();
     
+    /**
+     * crea el deployement 
+     * @return 
+     */
     @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)

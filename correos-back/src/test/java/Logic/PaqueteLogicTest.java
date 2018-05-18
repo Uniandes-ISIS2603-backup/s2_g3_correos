@@ -38,22 +38,44 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
 @RunWith(Arquillian.class)
 public class PaqueteLogicTest {
     
+    /**
+     * fabrica
+     */
     private PodamFactory factory = new PodamFactoryImpl();
 
+    /**
+     * logica del paquete
+     */
     @Inject
     private PaqueteLogic paqueteLogic;
     
+    /**
+     * envio logic 
+     */
     @Inject
     private EnvioLogic envioLogic;
 
+    /**
+     * entity manager 
+     */
     @PersistenceContext
     private EntityManager em;
 
+    /**
+     * user transaction 
+     */
     @Inject
     private UserTransaction utx;
 
+    /**
+     * lista de paquetes 
+     */
     private List<PaqueteEntity> data = new ArrayList<PaqueteEntity>();
 
+    /**
+     * crea del deployement
+     * @return 
+     */
     @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
