@@ -34,6 +34,9 @@
             $stateProvider.state('reservas', {
                 url: '/reservas',
                 abstract: true,
+                data: {
+                    requireLogin:false
+                },
                 views: {
                     'mainView': {
                         templateUrl: basePath + 'reservas.html',
@@ -44,6 +47,10 @@
             }).state('reservasList', {
                 url: '/list',
                 parent: 'reservas',
+                data: {
+                    requireLogin:true,
+                    roles:['administrador']
+                },
                 views: {
                     'listView': {
                         templateUrl: basePath + 'reservas.list.html',
@@ -54,6 +61,10 @@
             }).state('reservasDetail', {
                 url: '/detail',
                 parent: 'reservas',
+                data: {
+                    requireLogin:true,
+                    roles:['cliente']
+                },
                 params:{reservaId:null},
                 views:
                             {
@@ -68,6 +79,10 @@
             }).state('reservasCreate', {
                 url: '/create',
                 parent: 'reservas',
+                data: {
+                    requireLogin:true,
+                    roles:['cliente']
+                },
                 views:
                             {
                                 'detailView':
@@ -82,6 +97,10 @@
                 url: '/update',
                 parent: 'reservas',
                 params:{reservaId:null},
+                data: {
+                    requireLogin:true,
+                    roles:['cliente']
+                },
                 views:
                             {
                                 'detailView':
@@ -95,6 +114,10 @@
             }).state('reservasDelete', {
                 url: '/delete',
                 parent: 'reservas',
+                data: {
+                    requireLogin:true,
+                    roles:['cliente']
+                },
                 params:{reservaId:null},
                 views:
                             {

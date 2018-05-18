@@ -94,7 +94,7 @@
                     parent:'mensajeros',
                 data: {
                     requireLogin: true,
-                    roles:['mensajero']
+                    roles:['mensajero','administrador']
                 },
                     param:
                             {
@@ -112,6 +112,10 @@
                 }).state('mensajeroDelete',{
                     url:'/delete/{mensajeroId:int}',
                     parent:'mensajeros',
+                    data: {
+                    requireLogin: true,
+                    roles:['mensajero','administrador']
+                },
                     param:
                             {
                                 mensajeroId:null

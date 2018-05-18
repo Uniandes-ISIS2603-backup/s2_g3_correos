@@ -16,6 +16,9 @@
             $stateProvider.state('cuentasBancarias', {
                 url: '/cuentasBancarias',
                 abstract: true,
+                data: {
+                    requireLogin: false
+                },
                 views: {
                     'mainView': {
                         templateUrl: basePath + 'cuentasBancarias.html',
@@ -26,6 +29,10 @@
             }).state('cuentasBancariasList', {
                 url: '/list',
                 parent: 'cuentasBancarias',
+                data: {
+                    requireLogin: true,
+                    roles:['administrador']
+                },
                 views: {
                     'listView': {
                         templateUrl: basePath + 'cuentasBancarias.list.html',
@@ -37,6 +44,10 @@
                 {
                     url:'/create',
                     parent:'cuentasBancarias',
+                    data: {
+                    requireLogin: true,
+                    roles:['cliente','mensajero']
+                },
                     views:
                             {
                                 'detailView':
@@ -50,6 +61,10 @@
                 }).state('cuentaBancariaUpdate',{
                     url:'update/{cuentaBancariaId}',
                     parent:'cuentasBancarias',
+                    data: {
+                    requireLogin: true,
+                    roles:['cliente','mensajero']
+                },
                     param:
                             {
                                 cuentaBancariaId:null
@@ -66,6 +81,10 @@
                 }).state('cuentaBancariaDetail',{
                     url: '/{cuentaBancariaId:int}/detail',
                     parent: 'cuentasBancarias',
+                    data: {
+                    requireLogin: true,
+                    roles:['cliente','mensajero']
+                },
                     param: {
                         cuentaBancariaId: null
                     },
@@ -81,6 +100,10 @@
                 }).state('cuentaBancariaDelete',{
                     url:'/delete/{cuentaBancariaId:int}',
                     parent:'cuentasBancarias',
+                    data: {
+                    requireLogin: true,
+                    roles:['cliente','mensajero']
+                },
                     param:
                             {
                                 cuentaBancariaId:null
